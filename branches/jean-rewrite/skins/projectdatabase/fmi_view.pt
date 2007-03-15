@@ -1,0 +1,387 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xml:lang="en"
+      lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      metal:use-macro="here/main_template/macros/master"
+      i18n:domain="GefProjectDB">
+
+  <head><title></title></head>
+  <body>
+  
+    <metal:fill fill-slot="main">
+      <metal:main_macro define-macro="main">
+     <tal:redirect tal:condition="python: context.portal_type =='FinancialManagementInformation'" >
+    <b tal:define="dummy python:container.REQUEST.RESPONSE.redirect(here.aq_parent.absolute_url() + '/fmi_view')">
+    redirect to parent!
+    </b>
+    
+  </tal:redirect>
+       <tal:fmilisting tal:define="fmiresults python:container.portal_catalog(portal_type = ['FinancialManagementInformation'],review_state=['published','visible'],path='/'.join(here.getPhysicalPath()));">
+
+	   <!--h4 tal:content="title_string | here/title_or_id" /-->
+	   <h1> Project Category: 
+	        <tal:entry tal:repeat="category fmiresults">
+	        	<a tal:define="co category/getObject" tal:attributes="href string:#${co/finance_category}" tal:content="co/finance_category"> 
+	        	PDFA, PDFB, MSP, ... </a>
+	        </tal:entry>
+	   
+       </h1>
+       <a href="#" tal:attributes="href python:here.absolute_url()+'/createObject?type_name=FinancialManagementInformation';">
+        <img SRC="add_fmi.jpg"></a>
+	   <div metal:use-macro="here/document_actions/macros/document_actions" tal:on-error="nothing" >
+	   	   	              Document actions (print, sendto etc)
+       </div>
+       <tal:fmis  tal:repeat="category fmiresults">
+        <tal:entry  tal:define="co category/getObject"> 
+        <a tal:attributes="name co/finance_category">
+       	<h2 tal:content="string:Category ${co/finance_category}"> Category: FSP </h2>
+        </a>
+        <form tal:attributes="action string:${co/absolute_url}/base_edit" method="link">
+         <input type="submit" value="Edit">
+        </form> 
+        <table>
+       	
+        <tr><td>
+       	<table class="financialinfotable" id="financialcore" width='100%'>
+       	  <tbody>
+       	  	<tr  tal:define="field python:co.Schema()['title']; accessor python:getattr(co, field.accessor);
+       	  											mode string:view;
+		   	   	   		   							widget_view python:co.widget(field.getName(), mode=mode, use_label=1);"
+		   	   	   		   							tal:condition="python:not accessor()==''">
+       	  	<td bgcolor="#d6d7d9">Project Title:</td> <td bgcolor="#f7f9fa" >  <metal:block use-macro="widget_view" /> </td>
+       	  	</tr>
+            <tr  tal:define="field python:co.Schema()['finance_category']; accessor python:getattr(co, field.accessor);
+       	  											mode string:view;
+		   	   	   		   							widget_view python:co.widget(field.getName(), mode=mode, use_label=1);"
+		   	   	   		   							tal:condition="python:not accessor()==''">
+       	  	<td bgcolor="#d6d7d9">Project Category:</td> <td bgcolor="#f7f9fa">  <metal:block use-macro="widget_view" /> </td>
+       	  	</tr>
+       	  	<tr tal:define="field python:co.Schema()['pms_number']; accessor python:getattr(co, field.accessor);
+       	  											mode string:view;
+		   	   	   		   							widget_view python:co.widget(field.getName(), mode=mode, use_label=1);"
+		   	   	   		   							tal:condition="python:not accessor()==''">
+       	  	<td bgcolor="#d6d7d9">PMS Number:</td> <td bgcolor="#f7f9fa" >  <metal:block use-macro="widget_view" /></td>
+       	  	</tr>
+       	  	<tr>
+       	  	<td bgcolor="#d6d7d9">IMIS Number:</td> <td bgcolor="#f7f9fa" tal:content="co/imis_number"> 477862 </td>
+       	  	</tr>
+       	  	<tr tal:on-error="nothing"  tal:define="field python:co.Schema()['account_code']; accessor python:getattr(co, field.accessor);
+       	  											mode string:view;
+		   	   	   		   							widget_view python:co.widget(field.getName(), mode=mode, use_label=1);"
+		   	   	   		   							tal:condition="python:not accessor()==''">
+       	  	<td bgcolor="#d6d7d9">Account code:</td> <td bgcolor="#f7f9fa" >  <metal:block use-macro="widget_view" /> </td>
+       	  	</tr>
+       	  	<tr  tal:on-error="nothing"  tal:define="field python:co.Schema()['gef_project_allocation']; accessor python:getattr(co, field.accessor);
+       	  											mode string:view;
+		   	   	   		   							widget_view python:co.widget(field.getName(), mode=mode, use_label=1);"
+		   	   	   		   							tal:condition="python:not accessor()==''">
+       	  	<td bgcolor="#d6d7d9">Total GEF Allocation: </td> <td bgcolor="#f7f9fa"> <metal:block use-macro="widget_view" /> </td>
+       	  	</tr>
+       	  	<tr  tal:on-error="nothing"  tal:define="field python:co.Schema()['suppl_total_cost_planned']; accessor python:getattr(co, field.accessor);
+       	  											mode string:view;
+		   	   	   		   							widget_view python:co.widget(field.getName(), mode=mode, use_label=1);"
+		   	   	   		   							tal:condition="python:not accessor()==''">
+       	  	<td bgcolor="#d6d7d9">Total cost to Project Stage : (Planned) </td> <td bgcolor="#f7f9fa" > <metal:block use-macro="widget_view" /> </td>
+       	  	</tr>
+       	  	<tr  tal:on-error="nothing"  tal:define="field python:co.Schema()['suppl_total_cost_actual']; accessor python:getattr(co, field.accessor);
+       	  											mode string:view;
+		   	   	   		   							widget_view python:co.widget(field.getName(), mode=mode, use_label=1);"
+		   	   	   		   							tal:condition="python:not accessor()==''">
+       	  	<td bgcolor="#d6d7d9">Total cost to Project Stage: (Actual)</td> <td bgcolor="#f7f9fa"> <metal:block use-macro="widget_view" /> </td>
+       	  	</tr>
+       	  	<tr  tal:on-error="nothing"  tal:define="field python:co.Schema()['approved_unep_budget']; accessor python:getattr(co, field.accessor);
+       	  											mode string:view;
+		   	   	   		   							widget_view python:co.widget(field.getName(), mode=mode, use_label=1);"
+		   	   	   		   							tal:condition="python:not accessor()==''">
+       	  	<td bgcolor="#d6d7d9">Approved UNEP Budget:</td> <td bgcolor="#f7f9fa"> <metal:block use-macro="widget_view" /> </td>
+       	  	</tr>
+       	  	<tr tal:on-error="nothing" tal:define="field python:co.Schema()['lead_executing_agency']; accessor python:getattr(co, field.accessor);
+       	  											mode string:view;
+		   	   	   		   							widget_view python:co.widget(field.getName(), mode=mode, use_label=1);"
+		   	   	   		   							tal:condition="python:not accessor()==''">
+       	  	<td bgcolor="#d6d7d9">Lead Executing agency:</td> <td bgcolor="#f7f9fa"> <metal:block use-macro="widget_view" /> </td>
+       	  	</tr>
+       	  	<tr tal:on-error="nothing" tal:define="field python:co.Schema()['other_lead_executing_agency']; accessor python:getattr(co, field.accessor);
+       	  											mode string:view;
+		   	   	   		   							widget_view python:co.widget(field.getName(), mode=mode, use_label=1);"
+		   	   	   		   							tal:condition="python:not accessor()==''">
+       	  	<td bgcolor="#d6d7d9" valign="top">Other executing Agencies:</td> <td bgcolor="#f7f9fa"> <metal:block use-macro="widget_view" /> </td>
+       	  	</tr>
+       	  	<tr tal:on-error="nothing" tal:define="field python:co.Schema()['fund_management_officer']; accessor python:getattr(co, field.accessor);
+       	  											mode string:view;
+		   	   	   		   							widget_view python:co.widget(field.getName(), mode=mode, use_label=1);"
+		   	   	   		   							tal:condition="python:not accessor()==''">
+       	  	<td bgcolor="#d6d7d9">Fund Management Officer (FMO):</td> <td bgcolor="#f7f9fa"> <metal:block use-macro="widget_view" /> </td>
+       	  	</tr>
+       	  </tbody>
+       	</table>
+       	</td>
+        <td valign="top">
+       	<table  class="financialinfotable" id="gefalloc" width='100%' valign="top">
+       		<thead> <tr>
+       	  		<th colspan="2"  bgcolor="#d67500">GEF Allocation to UNEP US$:</th>
+       	  	</tr></thead>
+       	  <tbody>
+       	  	<tr tal:on-error="nothing" tal:define="field python:co.Schema()['cash_unep_allocation']; accessor python:getattr(co, field.accessor);
+       	  											mode string:view;
+		   	   	   		   							widget_view python:co.widget(field.getName(), mode=mode, use_label=1);"
+		   	   	   		   							tal:condition="python:not accessor()==''">
+       	  	  <td bgcolor="#fce2b1">Total</td><td bgcolor="#f7f9fa">  <metal:block use-macro="widget_view" /></td>
+       	  	</tr>
+       	  	<tr tal:on-error="nothing" tal:define="field python:co.Schema()['gef_trust_fund']; accessor python:getattr(co, field.accessor);
+       	  											mode string:view;
+		   	   	   		   							widget_view python:co.widget(field.getName(), mode=mode, use_label=1);"
+		   	   	   		   							tal:condition="python:not accessor()==''">
+       	  	  <td bgcolor="#fce2b1">GEF Trust Fund</td><td bgcolor="#f7f9fa">  <metal:block use-macro="widget_view" /></td>
+       	  	</tr>
+       	  	<tr tal:on-error="nothing" tal:define="field python:co.Schema()['ldc_fund_allocation']; accessor python:getattr(co, field.accessor);
+       	  											mode string:view;
+		   	   	   		   							widget_view python:co.widget(field.getName(), mode=mode, use_label=1);"
+		   	   	   		   							tal:condition="python:not accessor()==''">
+       	  	  <td bgcolor="#fce2b1">LDC Fund</td><td bgcolor="#f7f9fa">  <metal:block use-macro="widget_view" /></td>
+       	  	</tr>
+       	  	<tr tal:on-error="nothing" tal:define="field python:co.Schema()['sccf_allocation']; accessor python:getattr(co, field.accessor);
+       	  											mode string:view;
+		   	   	   		   							widget_view python:co.widget(field.getName(), mode=mode, use_label=1);"
+		   	   	   		   							tal:condition="python:not accessor()==''">
+       	  	  <td bgcolor="#fce2b1">SCCF</td><td bgcolor="#f7f9fa"> <metal:block use-macro="widget_view" /></td>
+       	  	</tr>
+       	  	<tr tal:on-error="nothing" tal:define="field python:co.Schema()['strategic_partnership']; accessor python:getattr(co, field.accessor);
+       	  											mode string:view;
+		   	   	   		   							widget_view python:co.widget(field.getName(), mode=mode, use_label=1);"
+		   	   	   		   							tal:condition="python:not accessor()==''">
+       	  	  <td bgcolor="#fce2b1">Strategic Partnership</td><td bgcolor="#f7f9fa"> <metal:block use-macro="widget_view" /></td>
+       	  	</tr>
+       	  	<tr tal:on-error="nothing" tal:define="field python:co.Schema()['adaptation_trust_fund']; accessor python:getattr(co, field.accessor);
+       	  											mode string:view;
+		   	   	   		   							widget_view python:co.widget(field.getName(), mode=mode, use_label=1);"
+		   	   	   		   							tal:condition="python:not accessor()==''">
+       	  	  <td bgcolor="#fce2b1">Adaptation Trust Fund</td><td bgcolor="#f7f9fa"> <metal:block use-macro="widget_view" /></td>
+       	  	</tr>
+       	  </tbody>
+       	</table>
+       	
+       	<table class="financialinfotable" id="supplementalalloc" width='100%'>
+       		<thead> <tr>
+       	  		<th colspan="2"  bgcolor="#56732e">Supplementary Allocation to UNEP:</th>
+       	  	</tr></thead>
+       	  <tbody>
+       	  	<tr tal:on-error="nothing" tal:define="field python:co.Schema()['supplementary_unep_allocation']; accessor python:getattr(co, field.accessor);
+       	  											mode string:view;
+		   	   	   		   							widget_view python:co.widget(field.getName(), mode=mode, use_label=1);"
+		   	   	   		   							tal:condition="python:not accessor()==''">
+       	  	  <td bgcolor="#c5d5a9" >Allocation amount:</td><td bgcolor="#f7f9fa"><metal:block use-macro="widget_view" /></td>
+       	  	</tr>
+       	  	<tr tal:on-error="nothing" tal:define="field python:co.Schema()['supplementary_unep_allocation_remark']; accessor python:getattr(co, field.accessor);
+       	  											mode string:view;
+		   	   	   		   							widget_view python:co.widget(field.getName(), mode=mode, use_label=1);"
+		   	   	   		   							tal:condition="python:not accessor()==''">
+       	  	  <td bgcolor="#c5d5a9" >Remarks:</td><td bgcolor="#f7f9fa"><metal:block use-macro="widget_view" /></td>
+       	  	</tr>
+       	  </tbody>
+       	</table>
+       	
+		<table class="financialinfotable" id="completiondate" width='100%'>
+       		<thead> <tr>
+       	  		<th colspan="2" bgcolor="#624a7e">Completion Date:</th>
+       	  	</tr></thead>
+       	  <tbody>
+       	  	<tr tal:on-error="nothing" tal:define="field python:co.Schema()['initial_completion_date']; accessor python:getattr(co, field.accessor);
+       	  											mode string:view;
+		   	   	   		   							widget_view python:co.widget(field.getName(), mode=mode, use_label=1);"
+		   	   	   		   							tal:condition="python:not accessor()==''">
+       	  	  <td bgcolor="#bfb0d0">Initial date:</td><td bgcolor="#f7f9fa"><metal:block use-macro="widget_view" /></td>
+       	  	</tr>
+       	  	<tr tal:on-error="nothing" tal:define="field python:co.Schema()['revised_completion_date']; accessor python:getattr(co, field.accessor);
+       	  											mode string:view;
+		   	   	   		   							widget_view python:co.widget(field.getName(), mode=mode, use_label=1);"
+		   	   	   		   							tal:condition="python:not accessor()==''">
+       	  	  <td bgcolor="#bfb0d0">Revised Date:</td><td bgcolor="#f7f9fa"><metal:block use-macro="widget_view" /></td>
+       	  	</tr>
+       	  	<tr  tal:on-error="nothing" tal:define="field python:co.Schema()['delay_reason']; accessor python:getattr(co, field.accessor);
+       	  											mode string:view;
+		   	   	   		   							widget_view python:co.widget(field.getName(), mode=mode, use_label=1);"
+		   	   	   		   							tal:condition="python:not accessor()==''">
+       	  	  <td bgcolor="#bfb0d0"> Reason for delay:</td><td bgcolor="#f7f9fa" > <metal:block use-macro="widget_view" /></td>
+       	  	</tr>
+       	  </tbody>
+       	</table>
+       	</td>
+        </tr>
+        
+       <!-- Details for financial Information --> 
+       
+       <tr><td width='50%' valign='top'>
+
+       	<table class="financialinfotable" id="CofinancingCash">
+        	<thead> <tr>
+       	  		<th bgcolor="#78a5d1"  colspan="4" >Co-financing: Cash</th>
+       	  	</tr></thead>
+       	  <tbody>
+       	  	 <tr tal:on-error="nothing"  tal:define="field python:co.Schema()['sum_cofin_cash_planned']; accessor python:getattr(co, field.accessor);
+       	  											mode string:view;
+		   	   	   		   							widget_view python:co.widget(field.getName(), mode=mode, use_label=1);"
+		   	   	   		   							tal:condition="python:not accessor()==''">
+       	  	 	<td colspan=2 bgcolor='#DFEAF4'> Planned Total (cash):</td>
+                        <td colspan=2> <metal:block use-macro="widget_view" /></td>
+       	  	 </tr>
+       	  	 <tr tal:on-error="nothing"  tal:define="field python:co.Schema()['sum_cofin_cash_actual']; accessor python:getattr(co, field.accessor);
+       	  											mode string:view;
+		   	   	   		   							widget_view python:co.widget(field.getName(), mode=mode, use_label=1);"
+		   	   	   		   							tal:condition="python:not accessor()==''">
+       	  	 	<td colspan=2  bgcolor='#DFEAF4'> Actual Total (cash):</td>
+                        <td colspan=2> <metal:block use-macro="widget_view" /></td>
+       	  	 </tr>
+       	  	 <tr bgcolor='#D6D7D9'>
+       	  	 	<td width='19%'> Source</td> <td width='30%'>Name of donor</td> <td width='26%'>Planned $ Amount</td> <td width='25%'>Actual $ Amount</td>
+       	  	 </tr>
+                <tal:block repeat="cofincash co/getCofinancing_cash">
+       	  	<tr>                
+                    <td tal:content="python:cofincash['cofinancing_cash_source']" width='19%' bgcolor='#F7F9FA'>first val</td>
+                    <td tal:content="python:cofincash['cofinancing_cash_donor_name']" width='21%' bgcolor='#F7F9FA'>first val</td>
+                    <td tal:content="python:cofincash['cofinancing_cash_planned_amount']" width='12%' bgcolor='#F7F9FA'>first val</td>
+                    <td tal:content="python:cofincash['cofinancing_cash_actual_amount']" width='48%' bgcolor='#F7F9FA'>first val</td>
+                </tr>
+       	  	</tal:block>
+
+           </tbody>
+       	</table>
+
+        </td><td width='50%' valign='top'>
+
+      	<table class="financialinfotable" id="CofinancingInKind">
+        	<thead> <tr>
+       	  		<th bgcolor="#78a5d1"  colspan="4" >Co-financing: In Kind</th>
+       	  	</tr></thead>
+       	  <tbody>
+       	  	 <tr tal:on-error="nothing"  tal:define="field python:co.Schema()['sum_cofin_inkind_planned']; accessor python:getattr(co, field.accessor);
+       	  											mode string:view;
+		   	   	   		   							widget_view python:co.widget(field.getName(), mode=mode, use_label=1);"
+		   	   	   		   							tal:condition="python:not accessor()==''">
+       	  	 	<td colspan=2  bgcolor='#DFEAF4'> Planned Total (in kind):</td>
+                        <td colspan=2> <metal:block use-macro="widget_view" /></td>
+       	  	 </tr>
+       	  	 <tr tal:on-error="nothing"  tal:define="field python:co.Schema()['sum_cofin_inkind_actual']; accessor python:getattr(co, field.accessor);
+       	  											mode string:view;
+		   	   	   		   							widget_view python:co.widget(field.getName(), mode=mode, use_label=1);"
+		   	   	   		   							tal:condition="python:not accessor()==''">
+       	  	 	<td colspan=2  bgcolor='#DFEAF4'> Actual Total (in kind):</td>
+                        <td colspan=2> <metal:block use-macro="widget_view" /></td>
+       	  	 </tr>
+       	  	 <tr bgcolor='#D6D7D9'>
+       	  	 	<td width='19%'> Source</td> <td width='30%'>Name of donor</td> <td width='26%'>Planned $ Amount</td> <td width='25%'>Actual $ Amount</td>
+       	  	 </tr>
+                <tal:block repeat="cofin_inkind co/getCofinancing_inkind">
+       	  	<tr>                
+                    <td tal:content="python:cofin_inkind['cofinancing_inkind_source']" width='19%' bgcolor='#F7F9FA'>first val</td>
+                    <td tal:content="python:cofin_inkind['cofinancing_inkind_donor_name']" width='21%' bgcolor='#F7F9FA'>first val</td>
+                    <td tal:content="python:cofin_inkind['cofinancing_inkind_planned_amount']" width='12%' bgcolor='#F7F9FA'>first val</td>
+                    <td tal:content="python:cofin_inkind['cofinancing_inkind_actual_amount']" width='48%' bgcolor='#F7F9FA'>first val</td>
+                </tr>
+       	  	</tal:block>
+
+
+           </tbody>
+       	</table>
+
+        </td></tr>
+        <tr><td width='50%'>
+     	<table class="financialinfotable" id="CashDisbursement">
+        	<thead> <tr>
+       	  		<th bgcolor="#78a5d1"  colspan="3" >Cash Disbursements</th>
+       	  	</tr></thead>
+       	  <tbody>
+       	  	 <tr tal:on-error="nothing"  tal:define="field python:co.Schema()['sum_cash_disbursements']; accessor python:getattr(co, field.accessor);
+       	  											mode string:view;
+		   	   	   		   							widget_view python:co.widget(field.getName(), mode=mode, use_label=1);"
+		   	   	   		   							tal:condition="python:not accessor()==''">
+       	  	 	<td colspan=1  bgcolor='#DFEAF4'>Total Disbursements:</td>
+                        <td colspan=2> <metal:block use-macro="widget_view" /></td>
+       	  	 </tr>
+       	  	 <tr bgcolor='#D6D7D9'>
+       	  	 	<td width='22%'> Date</td> <td width='32%'>Amount</td> <td width='46%'>Bank Reference Number</td>
+       	  	 </tr>
+                <tal:block repeat="cash_disburs co/getCash_disbursements">
+       	  	<tr>                
+                    <td tal:content="python:cash_disburs['cash_disbursements_date']" width='19%' bgcolor='#F7F9FA'>first val</td>
+                    <td tal:content="python:cash_disburs['cash_disbursements_amount']" width='21%' bgcolor='#F7F9FA'>first val</td>
+                    <td tal:content="python:cash_disburs['cash_disbursements_bank_ref_number']" width='12%' bgcolor='#F7F9FA'>first val</td>
+                </tr>
+       	  	</tal:block>
+            
+           </tbody>
+       	</table>
+
+ 
+</td><td width='50%' valign='top'>
+
+     	<table class="financialinfotable" id="IMISExpenditure">
+        	<thead> <tr>
+       	  		<th bgcolor="#78a5d1"  colspan="2" >Expenditures per IMIS</th>
+       	  	</tr></thead>
+       	  <tbody>
+       	  	 <tr tal:on-error="nothing"  tal:define="field python:co.Schema()['sum_imis_expenditures']; accessor python:getattr(co, field.accessor);
+       	  											mode string:view;
+		   	   	   		   							widget_view python:co.widget(field.getName(), mode=mode, use_label=1);"
+		   	   	   		   							tal:condition="python:not accessor()==''">
+       	  	 	<td colspan=1  bgcolor='#DFEAF4'>Total IMIS Expenditures:</td>
+                        <td colspan=2> <metal:block use-macro="widget_view" /></td>
+       	  	 </tr>
+       	  	 <tr bgcolor='#D6D7D9'>
+       	  	 	<td width='46%'> Year</td> <td width='54%'>Amount</td>
+                </tr>
+                <tal:block repeat="imis_exp co/getImis_expenditures">
+       	  	<tr>                
+                    <td tal:content="python:imis_exp['imis_expenditure_year']" width='19%' bgcolor='#F7F9FA'>first val</td>
+                    <td tal:content="python:imis_exp['imis_expenditure_amount']" width='21%' bgcolor='#F7F9FA'>first val</td>
+                 </tr>
+       	  	</tal:block>
+            
+           </tbody>
+       	</table>
+
+
+        </td></tr>
+        <tr><td  width='50%'>
+
+     	<table class="financialinfotable" id="Reports">
+        	<thead><tr>
+       	  		<th bgcolor="#78a5d1"  colspan="3" >Reports</th>
+       	  	</tr></thead>
+       	  <tbody>
+       	  	 <tr bgcolor='#D6D7D9'>
+       	  	 	<td width='20%'>Report Type</td> <td width='40%'>Report Period</td> <td width='40%'>Report Recieved Date</td>
+                </tr>
+                <tal:block repeat="report co/getReports"
+                      tal:condition="co/getReports|nothing">
+
+       	  	<tr>                
+                    <td tal:content="python:report['report_type']" width='19%' bgcolor='#F7F9FA'>first val</td>
+                    <td tal:content="python:report['report_period']" width='21%' bgcolor='#F7F9FA'>first val</td>
+                    <td tal:content="python:report['report_received_date']" width='21%' bgcolor='#F7F9FA'>first val</td>
+                 </tr>
+       	  	</tal:block>
+
+           </tbody>
+       	</table>
+
+</td></tr>
+       
+       </table>
+        </tal:entry>
+ 
+       </tal:fmis>
+           
+       <!-- -->
+      
+      
+
+
+
+        </tal:fmilisting>
+      </metal:main_macro>
+    </metal:fill>
+  </body>
+</html>

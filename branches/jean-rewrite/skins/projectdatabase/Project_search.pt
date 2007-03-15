@@ -1,0 +1,577 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      lang="en"
+      metal:use-macro="here/main_template/macros/master"
+      i18n:domain="plone">
+
+<head>
+<metal:block metal:fill-slot="javascript_head_slot">
+      <script type="text/javascript"
+            src="http://localhost:8080/tasty/plone_menu.js"
+            tal:attributes="src string: ${here/portal_url}/tasty_js.js">
+      </script>
+</metal:block>
+</head>
+
+<div metal:fill-slot="main">
+
+    <h1 tal:content="here/title_or_id"></h1>
+
+    <div class="documentDescription">
+    Search for project information.
+    </div>
+
+    <form action="ProjectSearchResults" method="get" name="search">
+
+   <div class="formControls">
+                <input class="context"
+                       tabindex=""
+                       type="submit"
+                       name="submit"
+                       value="Search"
+                       i18n:attributes="value"
+                       tal:attributes="tabindex tabindex/next;"
+                       />
+                  <input class="standalone"
+                   tabindex=""
+                   type="reset"
+                   name="form.button.Cancel"
+                   value="Cancel"
+                   i18n:attributes="value"
+                   tal:attributes="tabindex tabindex/next;" />
+            </div>
+
+        <fieldset>
+
+            <legend i18n:translate="legend_search_terms">Project Core
+            <a tal:attributes="href string:#; onclick string:javascript:toggle_thread('bmcfid-projectcore');;return false;;" >+/-</a>
+           (Click on +/- to expand or minimize the search screen.)
+            </legend>
+           
+           <div tal:attributes="id string:bmcfid-projectcore" style="display:none;">
+
+            <div class="field">
+                <label for="SearchableText" i18n:translate="label_search_text">Search text</label>
+
+                <div class="formHelp">
+
+                Enter a search string here. like 'Water Based Management.'<br/>
+
+                Use a wildcard character '*' for parts you are not sure of.
+                Eg. 'Water Based Management*'
+                </div>
+                <input type="text"
+                       id="SearchableText" 
+                       name="SearchableText"
+                       size="40"
+                       tabindex=""
+                       tal:attributes="tabindex tabindex/next;"
+                       />
+            </div>
+
+		<div class="field">
+
+		    <label for="Taskmanager">Taskmanager</label>
+
+		    <div class="formHelp">
+		    Select the current taskmanager.
+		    </div>
+
+   		  <select name="getRawCurrent_task_manager"
+			       id="task manager"
+			       tabindex=""
+			       tal:attributes="tabindex tabindex/next;">
+                          <option value="">Select One</option>
+		          <tal:block repeat="taskman here/getTaskManagers">
+                          <option value="" tal:on-error="nothing"
+                              tal:attributes="value python:taskman[0]"
+                              tal:content="python:taskman[1]"> taskmanager </option>
+                  </tal:block>
+		       </select>
+		      
+
+
+            </div>
+
+
+           <div class="field">
+                <label for="GefId" i18n:translate="label_search_gefid">GEF Project Id</label>
+
+                <div class="formHelp">
+                Every Gef project has an unique Id
+                </div>
+
+                <input type="text"
+                       id="Title"
+                       name="Title"
+                       size="25"
+                       tabindex=""
+                       tal:attributes="tabindex tabindex/next;"
+                       />
+            </div>
+
+
+       	 	<div class="field">
+
+		    <label for="Focal Area">Focal Area</label>
+
+		    <div class="formHelp">
+		    Select specific Focal Area.
+		    </div>
+
+   		  <select name="getFocal_area"
+			       id="focal_area"
+			       tabindex=""
+			       tal:attributes="tabindex tabindex/next;">
+		  <tal:block repeat="focal_area here/getFocalAreas">
+				  <option value=""
+				      tal:attributes="value python:focal_area[0]"
+				      tal:content="python:focal_area[1]"> Focal Area </option>
+   		  </tal:block>
+		       </select>
+		      
+
+
+            </div>
+
+
+
+	
+<!-- GEF Strategic priority -->
+			<div class="field" tal:on-error="nothing">
+
+		    	<label for="GEF Strategic priority">GEF Strategic priority</label>
+
+		    	<div class="formHelp">
+		    	Select specific GEF Strategic priority.
+		    	</div>
+
+   		  		<select name="getStrategic_priority"
+			       id="strategic_priority"
+			       tabindex=""
+			       tal:attributes="tabindex tabindex/next;">
+                                        <option value=""> </option>
+		  			<tal:block repeat="strategic_priority here/getStrategicPriorities">
+				  	<option value=""
+				      tal:attributes="value python:strategic_priority[0]"
+				      tal:content="python:strategic_priority[1]"> Focal Area </option>
+   		  			</tal:block>
+		       </select>
+		      
+            </div>
+
+
+
+         <div class="field">
+
+			    <label for="Title">Limit Project Types</label>
+
+			    <div class="formHelp">
+			    Select specific Project Types.
+			    </div>
+
+			  <tal:block repeat="getProject_vals here/getProjectTypes">
+
+			    <input type="checkbox"
+				   name="getProject_type:list"
+				   size="105"
+				   value="python:getProject_vals[0]"
+				   checked
+				   tabindex=""
+				   tal:condition="python:getProject_vals[0]"
+				   tal:attributes="tabindex tabindex/next;
+						   value python:getProject_vals[0];"
+
+				   /> <span tal:replace="python:getProject_vals[1]"/>
+
+		  </tal:block>
+
+		
+
+
+            
+            </div>
+
+<!-- Pipeline Number -->
+
+           <div class="field">
+                <label for="Pipeline_number" i18n:translate="label_search_ Pipeline_number">Pipeline number</label>
+
+                <div class="formHelp">
+                  Pipeline number is a number between 1 and 50.
+                </div>
+
+                <input type="text"
+                       id="Title"
+                       name="getPipeline_number"
+                       size="4"
+                       tabindex=""
+                       tal:attributes="tabindex tabindex/next;"
+                       />
+            </div>
+<!-- Geographic Scope -->
+			<div class="field"  tal:on-error="nothing">
+
+		    <label for="Geographic Scope">Geographic Scope</label>
+
+		    	<div class="formHelp">
+		    	Select Geographic Scope
+		    	</div>
+
+		  		<select name="getScope"
+			       id="Scope"
+			       tabindex=""
+			       tal:attributes="tabindex tabindex/next;">
+                                       <option value=""> </option>
+		  			<tal:block repeat="scope here/getGeographicScope">
+						<option value="" tal:attributes="value python:scope[0]" tal:content="python:scope[1]"> Country </option>
+		  			</tal:block>
+		      	</select>
+
+
+            </div>
+<!-- Region -->
+			<div class="field">
+
+		    <label for="Region">Region</label>
+
+		    	<div class="formHelp">
+		    	Select Geographic Region
+		    	</div>
+
+		  		<select name="getRegion"
+			       id="Region"
+			       tabindex=""
+			       tal:attributes="tabindex tabindex/next;"> <option value=""> </option>
+		  			<tal:block repeat="region here/getRegions">
+						<option value="" tal:attributes="value python:region[0]" tal:content="python:region[1]"> Country </option>
+		  			</tal:block>
+		      	</select>
+
+
+            </div>
+
+            <div class="field">
+
+		    <label for="Country">Country</label>
+
+		    	<div class="formHelp">
+		    	Select Country
+		    	</div>
+
+		  		<select name="getCountry"
+			       id="country"
+			       tabindex=""
+			       tal:attributes="tabindex tabindex/next;">
+		  			<tal:block repeat="country python:here.portal_catalog.uniqueValuesFor('getCountry')">
+						<option value="" tal:attributes="value country" tal:content="country"> Country </option>
+		  			</tal:block>
+		      	</select>
+
+
+            </div>
+
+
+            <div class="field">
+
+		    <label for="Lead Agency">Lead Agency</label>
+
+		    <div class="formHelp">
+		    Select Lead Agency
+		    </div>
+
+		  <select name="getLeadagency"
+			       id="lead_agency"
+			       tabindex=""
+			       tal:attributes="tabindex tabindex/next;">
+		  <tal:block repeat="lead_agency here/getLeadAgency">
+			<option value="" tal:attributes="value python:lead_agency[0]" tal:content="python:lead_agency[1]"> Lead Agency </option>
+		  </tal:block>
+		  </select>
+
+
+            </div>
+
+
+            <div class="field">
+
+	    <label for="Operational Programme">Operational Programmes</label>
+
+	    <div class="formHelp">
+	    Select Operational Programme
+	    </div>
+
+	  <select name="getOperational_programme"
+		       id="operational_programme"
+		       tabindex=""
+		       tal:attributes="tabindex tabindex/next;">
+          <option value=""> </option>
+	  <tal:block repeat="operational_programme here/getOperationalProgrammes">
+		<option value="" tal:attributes="value python:operational_programme[0]" tal:content="python:operational_programme[1]"> Operational Programme </option>
+	  </tal:block>
+	      </select>
+
+
+            </div>
+
+<!-- GEF Phase -->
+			<div class="field" tal:on-error="nothing">
+
+		    <label for="GEF Phase">GEF Phase</label>
+
+		    	<div class="formHelp">
+		    	Select GEF Phase
+		    	</div>
+
+		  		<select name="getGef_phase"
+			       id="Gef_phase"
+			       tabindex=""
+			       tal:attributes="tabindex tabindex/next;">
+		  			<tal:block repeat="phase here/getGEFPhase">
+						<option value="" tal:attributes="value python:phase[0]" tal:content="python:phase[1]"> Country </option>
+		  			</tal:block>
+		      	</select>
+
+
+            </div>		
+
+        </div>
+
+          
+        </fieldset>
+
+  
+
+        <fieldset>
+
+      
+
+        
+
+            <legend i18n:translate="legend_search_terms">Financial Management Information
+<a tal:attributes="href string:#; onclick string:javascript:toggle_thread('bmcfid-fmi');;return false;;" >+/-</a>
+(Click on +/- to expand or minimize the search screen.)
+            </legend>
+           
+           <div tal:attributes="id string:bmcfid-fmi" style="display:none;">
+
+            <div class="field">
+                <label for="Title" i18n:translate="label_search_text">Project Title</label>
+
+                <div class="formHelp">
+                     Enter a search string here.
+                </div>
+
+                <input type="text"
+                       id="Title"
+                       name="FMITitle"
+                       size="25"
+                       tabindex=""
+                       tal:attributes="tabindex tabindex/next;"
+                       />
+            </div>
+
+
+         <div class="field" tal:on-error="nothing">
+
+		    <label for="financial category">Category</label>
+
+		    	<div class="formHelp">
+		    	Select financial category
+		    	</div>
+
+		  	<select name="getFinance_category"
+			       id="Finance_category"
+			       tabindex=""
+			       tal:attributes="tabindex tabindex/next;">
+		  			<tal:block repeat="category python:here.portal_catalog.uniqueValuesFor('getFinance_category')">
+						<option value="" tal:attributes="value category" tal:content="category"> Category </option>
+		  			</tal:block>
+		      	</select>
+
+
+            </div>		
+
+
+		     <div class="field">
+                <label for="PMS Number" i18n:translate="label_search_ PMS_number">PMS number</label>
+
+                <div class="formHelp">
+                  PMS number 
+                </div>
+
+                <input type="text"
+                       id=" Pms_number"
+                       name="getPms_number"
+                       size="20"
+                       tabindex=""
+                       tal:attributes="tabindex tabindex/next;"
+                       />
+            </div>
+            <div class="field">
+                <label for="IMIS Number" i18n:translate="label_search_IMIS_number">IMIS number</label>
+
+                <div class="formHelp">
+                  IMIS number.
+                </div>
+
+                <input type="text"
+                       id="Imis_number"
+                       name="getImis_number"
+                       size="20"
+                       tabindex=""
+                       tal:attributes="tabindex tabindex/next;"
+                       />
+            </div>
+
+       </div>     
+          
+        </fieldset>
+
+  
+
+        <fieldset>
+
+            <legend i18n:translate="legend_search_terms">Milestones
+<a tal:attributes="href string:#; onclick string:javascript:toggle_thread('bmcfid-milestones');;return false;;" >+/-</a>
+(Click on +/- to expand or minimize the search screen.)
+            </legend>
+           
+           <div tal:attributes="id string:bmcfid-milestones" style="display:none;">
+
+           	<div class="field" tal:on-error="nothing">
+
+		    <label for="Stage">Stage</label>
+
+		    	<div class="formHelp">
+		    	Select GEF Phase
+		    	</div>
+
+		  		<select name="getMileStoneGef_phase"
+			       id="Gef_phase"
+			       tabindex=""
+			       tal:attributes="tabindex tabindex/next;"> <option value=""> </option>
+		  			<tal:block repeat="phase python:here.portal_catalog.uniqueValuesFor('getImplementation_status')">
+						<option value="" tal:attributes="value phase" tal:content="phase"> Country </option>
+		  			</tal:block>
+		      	</select>
+
+
+            </div>		
+			<div class="field" tal:on-error="nothing"> 
+
+		    <label for="Milestone name">Milestone</label>
+
+		    	<div class="formHelp">
+		    	Select Milestone Name
+		    	</div>
+
+		  	<select name="getMilestoneName"
+			       id="MilestoneName"
+			       tabindex=""
+			       tal:attributes="tabindex tabindex/next;"> <option value=""> </option>
+		  			<tal:block repeat="mname python:here.portal_catalog.uniqueValuesFor('getMilestone_name')">
+						<option value="" tal:attributes="value mname" tal:content="mname"> Country </option>
+		  			</tal:block>
+		      	</select>
+
+
+            </div>		
+
+           </div>
+
+           </fieldset> 
+
+
+ <div class="field">
+    
+                <label for="review_state" i18n:translate="label_review_status">Review status</label>
+
+                <div class="formHelp" i18n:translate="help_search_review_status">
+                Search for items based on their
+                review state. If you wish to constrain results to items
+                in certain states, select them from this list.
+                </div>
+    
+                <span class="optionsToggle" tal:define="tabindex tabindex/next">
+                <input type="checkbox"
+                       onclick="javascript:toggleSelect(this, 'review_state:list', true);"
+                       name="rs_toggle"
+                       value="#"
+                       id="rs_toggle"
+                       class="noborder"
+                       checked="checked"
+                       tabindex=""
+                       tal:attributes="tabindex tabindex;"/>
+                <label for=""
+                       i18n:translate="label_toggle"
+                       tal:attributes="for string:rs_toggle"
+                       >Select All/None
+                </label>
+                <br />
+                </span>
+
+                <tal:states define="
+                                navtree_props portal_properties/navtree_properties;
+                                states          python:wtool.listWFStatesByTitle(filter_similar=1);
+                                state_lists     python: here.createMultiColumnList(states, numCols=1, sort_on='self');"
+                            repeat="sublist state_lists">
+                    <tal:items repeat="state sublist">
+                    <input class="noborder"
+                           type="checkbox"
+                           name="review_state:list"
+                           checked="checked"
+                           tal:attributes="value python:state[1];
+                                           id python:normalizeString(state[1]);" />
+                    <label for="review_state:list"
+                           i18n:translate=""
+                           tal:content="python:state[0] or state[1]"
+                           />
+                    <br />
+                    </tal:items>
+                </tal:states>
+            </div>
+
+
+
+                <input type="hidden"
+                       id="Path"
+                       name="path"
+                       size="25"
+                       tabindex=""
+                       tal:attributes="tabindex tabindex/next;
+                                       value python: '/'.join(here.getPhysicalPath());
+                       "
+                       />
+         
+
+            <input type="hidden" name="portal_type" value="Project" />
+            <div class="formControls">
+                <input class="context"
+                       tabindex=""
+                       type="submit"
+                       name="submit"
+                       value="Search"
+                       i18n:attributes="value"
+                       tal:attributes="tabindex tabindex/next;"
+                       />
+                  <input class="standalone"
+                   tabindex=""
+                   type="reset"
+                   name="form.button.Cancel"
+                   value="Cancel"
+                   i18n:attributes="value"
+                   tal:attributes="tabindex tabindex/next;" />
+            </div>
+             
+      
+
+      
+
+    </form>
+
+    
+
+
+</div>
+
+</html>

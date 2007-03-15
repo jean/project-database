@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vdex xmlns="http://www.imsglobal.org/xsd/imsvdex_v1p0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.imsglobal.org/xsd/imsvdex_v1p0 imsvdex_v1p0.xsd http://www.imsglobal.org/xsd/imsmd_rootv1p2p1 imsmd_rootv1p2p1.xsd"
+    language="en" orderSignificant="true" profileType="flatTokenTerms">
+<vocabName>
+  <langstring language="en">Lead Agency</langstring>
+</vocabName>
+<term>
+  <termIdentifier>AFDB</termIdentifier>
+  <caption>
+    <langstring language="en">African Development Bank</langstring>
+  </caption>
+  <description />
+</term>
+<term>
+  <termIdentifier>ADB</termIdentifier>
+  <caption>
+    <langstring language="en">Asian Development Bank</langstring>
+  </caption>
+  <description />
+</term>
+<term>
+  <termIdentifier>EBRD</termIdentifier>
+  <caption>
+    <langstring language="en">European Bank for Reconstruction and Development</langstring>
+  </caption>
+  <description />
+</term>
+<term>
+  <termIdentifier>FAO</termIdentifier>
+  <caption>
+    <langstring language="en">Food and Agriculture Organization</langstring>
+  </caption>
+  <description />
+</term>
+<term>
+  <termIdentifier>IADB</termIdentifier>
+  <caption>
+    <langstring language="en">Inter-American Development Bank</langstring>
+  </caption>
+  <description />
+</term>
+<term>
+  <termIdentifier>IFAD</termIdentifier>
+  <caption>
+    <langstring language="en">International Fund for Agriculture and Development</langstring>
+  </caption>
+  <description />
+</term>
+<term>
+  <termIdentifier>UNDP</termIdentifier>
+  <caption>
+    <langstring language="en">United Nations Development Programme</langstring>
+  </caption>
+  <description />
+</term>
+<term>
+  <termIdentifier>UNEP</termIdentifier>
+  <caption>
+    <langstring language="en">United Nations Environment Programme</langstring>
+  </caption>
+  <description />
+</term>
+<term>
+  <termIdentifier>IBRD</termIdentifier>
+  <caption>
+    <langstring language="en">World Bank</langstring>
+  </caption>
+  <description />
+</term>
+</vdex>
