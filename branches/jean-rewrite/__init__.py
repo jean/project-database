@@ -3,7 +3,7 @@
 # File: ProjectDatabase.py
 #
 # Copyright (c) 2007 by []
-# Generator: ArchGenXML Version 1.5.1-svn
+# Generator: ArchGenXML Version 1.5.2
 #            http://plone.org/products/archgenxml
 #
 # GNU General Public License (GPL)
@@ -47,18 +47,21 @@ try:
 except ImportError:
     CustomizationPolicy = None
 
+import os, os.path
 from Globals import package_home
 from Products.CMFCore import utils as cmfutils
-from Products.CMFCore import CMFCorePermissions
+
+try: # New CMF
+    from Products.CMFCore import permissions as CMFCorePermissions 
+except: # Old CMF
+    from Products.CMFCore import CMFCorePermissions
+
 from Products.CMFCore import DirectoryView
 from Products.CMFPlone.utils import ToolInit
 from Products.Archetypes.atapi import *
 from Products.Archetypes import listTypes
 from Products.Archetypes.utils import capitalize
-
-import os, os.path
-
-from Products.ProjectDatabase.config import *
+from config import *
 
 DirectoryView.registerDirectory('skins', product_globals)
 DirectoryView.registerDirectory('skins/ProjectDatabase',

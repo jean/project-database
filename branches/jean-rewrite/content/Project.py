@@ -3,7 +3,7 @@
 # File: Project.py
 #
 # Copyright (c) 2007 by []
-# Generator: ArchGenXML Version 1.5.1-svn
+# Generator: ArchGenXML Version 1.5.2
 #            http://plone.org/products/archgenxml
 #
 # GNU General Public License (GPL)
@@ -36,6 +36,7 @@ from Products.ATVocabularyManager.namedvocabulary import NamedVocabulary
 from Products.ProjectDatabase.config import *
 
 # additional imports from tagged value 'import'
+from Products.ProjectDatabase.content import permissions
 from Products.FinanceFields.MoneyField import MoneyField
 from Products.FinanceFields.MoneyWidget import MoneyWidget
 from Products.DataGridField import DataGridField, DataGridWidget, Column, SelectColumn
@@ -55,7 +56,7 @@ schema = Schema((
         name='SummaryDescription',
         allowable_content_types=('text/plain', 'text/structured', 'text/html', 'application/msword',),
         widget=RichWidget(
-            label="Summary Description",
+            label="Project Description",
             label_msgid='ProjectDatabase_label_SummaryDescription',
             i18n_domain='ProjectDatabase',
         ),
@@ -209,7 +210,8 @@ schema = Schema((
             label='Website',
             label_msgid='ProjectDatabase_label_Website',
             i18n_domain='ProjectDatabase',
-        )
+        ),
+        validators=('isUrl',)
     ),
 
     ReferenceField(
@@ -496,6 +498,9 @@ Project_schema = BaseFolderSchema.copy() + \
     schema.copy()
 
 ##code-section after-schema #fill in your manual code here
+idField = Project_schema['id']
+idField.widget.visible = {'edit': 'hidden', 'view': 'visible'}
+idField.widget.label = 'Internal Id'
 ##/code-section after-schema
 
 class Project(BaseFolder, CurrencyMixin):
@@ -520,6 +525,30 @@ class Project(BaseFolder, CurrencyMixin):
     suppl_views = ()
     typeDescription = "Project"
     typeDescMsgId = 'description_edit_project'
+
+
+    actions =  (
+
+
+       {'action': "string:${object_url}/Overview",
+        'category': "object_tabs",
+        'id': 'overview',
+        'name': 'Overview',
+        'permissions': (permissions.ViewProjects,),
+        'condition': 'python:1'
+       },
+
+
+       {'action': "string:${object_url}/project_general_information",
+        'category': "object_tabs",
+        'id': 'view',
+        'name': 'Project General Information',
+        'permissions': (permissions.ViewProjects,),
+        'condition': 'python:1'
+       },
+
+
+    )
 
     _at_rename_after_creation = True
 

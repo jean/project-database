@@ -3,7 +3,7 @@
 # File: FinancialsMixin.py
 #
 # Copyright (c) 2007 by []
-# Generator: ArchGenXML Version 1.5.1-svn
+# Generator: ArchGenXML Version 1.5.2
 #            http://plone.org/products/archgenxml
 #
 # GNU General Public License (GPL)
@@ -355,12 +355,11 @@ class FinancialsMixin:
         cash_values = self.getCofinancingCash()
         return self.computeDataGridAmount([v['cofinancing_cash_planned_amount'] for v in cash_values])
 
-    security.declarePublic('getSumCofinCashActual')
-    def getSumCofinCashActual(self):
+    security.declarePublic('getSumCofinActual')
+    def getSumCofinActual(self):
         """
         """
-        cash_values = self.getCofinancingCash()
-        return self.computeDataGridAmount([v['cofinancing_cash_actual_amount'] for v in cash_values])
+        pass
 
     security.declarePublic('getSumCofinInKindPlanned')
     def getSumCofinInKindPlanned(self):
@@ -389,6 +388,15 @@ class FinancialsMixin:
         """
         cash_values = self.getIMISExpenditures()
         return self.computeDataGridAmount([v['imis_expenditure_amount'] for v in cash_values])
+
+    # Manually created methods
+
+    security.declarePublic('getSumCofinCashActual')
+    def getSumCofinCashActual(self):
+        """
+        """
+        cash_values = self.getCofinancingCash()
+        return self.computeDataGridAmount([v['cofinancing_cash_actual_amount'] for v in cash_values])
 
 
 
