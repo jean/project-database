@@ -3,7 +3,7 @@
 # File: SubProject.py
 #
 # Copyright (c) 2007 by []
-# Generator: ArchGenXML Version 1.5.1-svn
+# Generator: ArchGenXML Version 1.5.2
 #            http://plone.org/products/archgenxml
 #
 # GNU General Public License (GPL)
@@ -66,26 +66,16 @@ copied_fields['OtherLeadExecutingAgency'].relationship = "SubProject_OtherLeadEx
 schema = Schema((
 
     copied_fields['SummaryDescription'],
-
-    copied_fields['Country'],
-
-    copied_fields['Scope'],
-
-    copied_fields['Region'],
-
-    copied_fields['ImplementationMode'],
-
-    copied_fields['Office'],
-
-    copied_fields['Website'],
-
-    copied_fields['ProjectCoordinator'],
-
-    copied_fields['LeadExecutingAgency'],
-
-    copied_fields['OtherLeadExecutingAgency'],
-
-),
+        copied_fields['Country'],
+        copied_fields['Scope'],
+        copied_fields['Region'],
+        copied_fields['ImplementationMode'],
+        copied_fields['Office'],
+        copied_fields['Website'],
+        copied_fields['ProjectCoordinator'],
+        copied_fields['LeadExecutingAgency'],
+        copied_fields['OtherLeadExecutingAgency'],
+    ),
 )
 
 ##code-section after-local-schema #fill in your manual code here

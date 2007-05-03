@@ -3,7 +3,7 @@
 # File: testProject.py
 #
 # Copyright (c) 2007 by []
-# Generator: ArchGenXML Version 1.5.1-svn
+# Generator: ArchGenXML Version 1.5.2
 #            http://plone.org/products/archgenxml
 #
 # GNU General Public License (GPL)
@@ -100,6 +100,14 @@ class testProject(PortalDatabaseTestCase):
 
     # from class Project:
     def test_getProjectTitle(self):
+        pass
+
+    # from class Project:
+    def test_Overview(self):
+        pass
+
+    # from class Project:
+    def test_project_general_information(self):
         pass
 
     # from class CurrencyMixin:

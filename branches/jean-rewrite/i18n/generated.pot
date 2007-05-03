@@ -303,6 +303,11 @@ msgstr ""
 msgid "ProjectDatabase_label_OtherLeadExecutingAgency"
 msgstr ""
 
+#. Default: "Overview"
+#: content/Project.py
+msgid "ProjectDatabase_label_Overview"
+msgstr ""
+
 #. Default: "Pdfastatus"
 #: content/Project.py
 msgid "ProjectDatabase_label_PDFAStatus"
