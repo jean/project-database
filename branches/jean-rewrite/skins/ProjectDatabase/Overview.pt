@@ -52,6 +52,30 @@
             <td bgcolor="#F1F1F1" width="30%"><b>GEF Project Id:</b></td>
             <td><span tal:replace="structure accessor"/> </td>
         </tr>
+        <tr tal:on-error="nothing" 
+            tal:define="field python:here.Schema()['PDFAStatus']; 
+                        accessor python:getattr(here, field.accessor)">
+            <td bgcolor='#F1F1F1'><b>PDF A Status</b></td> 
+            <td><span tal:replace="structure accessor"/> </td>
+        </tr>
+        <tr tal:on-error="nothing" 
+            tal:define="field python:here.Schema()['PDFBStatus']; 
+                        accessor python:getattr(here, field.accessor)">
+            <td bgcolor='#F1F1F1'><b>PDF B Status</b></td>
+            <td><span tal:replace="structure accessor"/></td>
+        </tr>
+        <tr tal:on-error="nothing" 
+            tal:define="field python:here.Schema()['MSPStatus']; 
+                        accessor python:getattr(here, field.accessor)">
+            <td bgcolor='#F1F1F1'><b>MSP Status</b></td> 
+            <td><span tal:replace="structure accessor"/> </td>
+        </tr>
+        <tr tal:on-error="nothing" 
+            tal:define="field python:here.Schema()['FSPStatus']; 
+                        accessor python:getattr(here, field.accessor)">
+            <td bgcolor='#F1F1F1'><b>FSP Status</b></td> 
+            <td><span tal:replace="structure accessor"/></td>
+        </tr>
 	   	<tr tal:on-error="nothing"  
             tal:define="field python:here.Schema()['PipelineNumber']; 
                         accessor python:getattr(here, field.accessor)">
@@ -153,10 +177,6 @@
 	           </tr>
 	           
 	           
-	           <tr tal:on-error="nothing" tal:define="field python:here.Schema()['PDFAStatus']; accessor python:getattr(here, field.accessor)"><td><b><font color='#336699'>PDF A Status</font></b></td> <td><span tal:replace="structure accessor"/> </td></tr>
-	   	   <tr tal:on-error="nothing" tal:define="field python:here.Schema()['PDFBStatus']; accessor python:getattr(here, field.accessor)"><td><b><font color='#336699'>PDF B Status</font></b></td> <td><span tal:replace="structure accessor"/></td></tr>
-	   	   <tr tal:on-error="nothing" tal:define="field python:here.Schema()['MSPStatus']; accessor python:getattr(here, field.accessor)"><td><b><font color='#336699'>MSP Status</font></b></td> <td><span tal:replace="structure accessor"/> </td></tr>
-	   	   <tr tal:on-error="nothing" tal:define="field python:here.Schema()['FSPStatus']; accessor python:getattr(here, field.accessor)"><td><b><font color='#336699'>FSP Status</font></b></td> <td><span tal:replace="structure accessor"/></td></tr>
 	           <tr tal:on-error="nothing" tal:define="field python:here.Schema()['CurrentTaskManager']; 
 		   	   	   		   accessor python:getattr(here, field.accessor);
 		   	   	   		   mode string:view;

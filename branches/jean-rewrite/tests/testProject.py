@@ -120,6 +120,9 @@ class testProject(PortalDatabaseTestCase):
 
     # Manually created methods
 
+    def test_export_project_data(self):
+        pass
+
 
 def test_suite():
     from unittest import TestSuite, makeSuite

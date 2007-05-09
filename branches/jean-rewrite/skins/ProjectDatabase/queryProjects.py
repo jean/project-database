@@ -56,8 +56,6 @@ for k in REQUEST_keys:
     #if k in ('SESSION',):
     #    continue
     v = REQUEST.get(k)
-    mystr = "%s(%s)" % (k,v)
-    context.plone_log( mystr )
     if v and k in indexes:
         if k in quote_logic_indexes:
             v = quote_bad_chars(v)
@@ -92,8 +90,6 @@ if show_query:
         pass
 res1 = results
 #print query
-for r in results:
-    context.plone_log("RESUL:TS::" + str(r.getObject()))
 
 
 # If this query has no results, then why should we go on ?
@@ -104,7 +100,6 @@ pathlist =[]
 for r in results:
     pathlist.append(r.getPath())
 
-context.plone_log( "PATHLIST:" + str(pathlist))
 #print pathlist
 #print '\n\n<br/><hr/>'
 
@@ -130,7 +125,6 @@ if pathlist:
 
 qfmi['portal_type']='FinancialManagementInformation'
 
-context.plone_log( "WAT!!!")
 res2=None
 if Title or Imis_number or Pms_number or getFinance_category:
     try:
@@ -138,9 +132,6 @@ if Title or Imis_number or Pms_number or getFinance_category:
     except ParseError:
         pass
     #print qfmi
-    context.plone_log( "HIESO" )
-    for r in results:
-        context.plone_log( "OTHER RESULTS??" + str(r.getObject()) )
 
     res2 = results
     #if not results:
@@ -156,9 +147,6 @@ if Title or Imis_number or Pms_number or getFinance_category:
 else:
 	#if we do not query any fmi we still have the same paths
 	alist = pathlist   
-
-context.plone_log( "HERE")
-
 
 #query the Milestone dates:
 qmd ={}
