@@ -199,6 +199,15 @@ class ProjectDatabase(BaseFolder):
        },
 
 
+       {'action': "string:${object_url}/export_project_data",
+        'category': "object_tabs",
+        'id': 'export_project_data',
+        'name': 'Export Project Data (csv)',
+        'permissions': (permissions.ViewProjects,),
+        'condition': 'python:1'
+       },
+
+
     )
 
     _at_rename_after_creation = True
