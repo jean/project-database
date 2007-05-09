@@ -384,9 +384,10 @@ schema = Schema((
             label_msgid='ProjectDatabase_label_LeadAgency',
             i18n_domain='ProjectDatabase',
         ),
-        allowed_types=('Agency',),
         multiValued=0,
-        relationship="Project_LeadAgency"
+        relationship="Project_LeadAgency",
+        vocabulary=NamedVocabulary("""LeadAgency"""),
+        allowed_types=('Agency',)
     ),
 
     ComputedField(
@@ -512,7 +513,7 @@ class Project(BaseFolder, CurrencyMixin):
     zope.interface.implements(IProject)
 
     # This name appears in the 'add' box
-    archetype_name = 'Project'
+    archetype_name = 'Project General Information'
 
     meta_type = 'Project'
     portal_type = 'Project'
@@ -523,7 +524,7 @@ class Project(BaseFolder, CurrencyMixin):
     immediate_view = 'base_view'
     default_view = 'base_view'
     suppl_views = ()
-    typeDescription = "Project"
+    typeDescription = "Project General Information"
     typeDescMsgId = 'description_edit_project'
 
 

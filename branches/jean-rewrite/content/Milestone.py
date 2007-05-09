@@ -110,7 +110,7 @@ class Milestone(BaseContent):
     zope.interface.implements(IMilestone)
 
     # This name appears in the 'add' box
-    archetype_name = 'Milestone'
+    archetype_name = 'Project Cycle Milestone'
 
     meta_type = 'Milestone'
     portal_type = 'Milestone'
@@ -121,7 +121,7 @@ class Milestone(BaseContent):
     immediate_view = 'base_view'
     default_view = 'base_view'
     suppl_views = ()
-    typeDescription = "Milestone"
+    typeDescription = "Project Cycle Milestone"
     typeDescMsgId = 'description_edit_milestone'
 
     _at_rename_after_creation = True
