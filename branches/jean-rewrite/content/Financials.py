@@ -206,7 +206,7 @@ class Financials(BaseContent, CurrencyMixin, FinancialsMixin):
     zope.interface.implements(IFinancials)
 
     # This name appears in the 'add' box
-    archetype_name = 'Financials'
+    archetype_name = 'Project Financial Information'
 
     meta_type = 'Financials'
     portal_type = 'Financials'
@@ -217,7 +217,7 @@ class Financials(BaseContent, CurrencyMixin, FinancialsMixin):
     immediate_view = 'base_view'
     default_view = 'base_view'
     suppl_views = ()
-    typeDescription = "Financials"
+    typeDescription = "Project Financial Information"
     typeDescMsgId = 'description_edit_financials'
 
     _at_rename_after_creation = True

@@ -91,6 +91,7 @@ def install(self, reinstall=False):
          'Scope': ('VdexVocabulary', 'SimpleVocabularyTerm'),
          'DonorType': ('VdexVocabulary', 'SimpleVocabularyTerm'),
          'OperationalProgramme': ('VdexVocabulary', 'SimpleVocabularyTerm'),
+         'LeadAgency': ('VdexVocabulary', 'SimpleVocabularyTerm'),
         }
     for vocabname in vocabmap.keys():
         if not vocabname in atvm.contentIds():

@@ -62,6 +62,14 @@ class testProjectDatabase(PortalDatabaseTestCase):
     def test_getLeadAgencies(self):
         pass
 
+    # from class ProjectDatabase:
+    def test_getVocabulary(self):
+        pass
+
+    # from class ProjectDatabase:
+    def test_project_search(self):
+        pass
+
     # Manually created methods
 
     def test_skins(self):

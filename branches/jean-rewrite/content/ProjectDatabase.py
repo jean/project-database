@@ -37,6 +37,7 @@ from Products.ProjectDatabase.config import *
 # additional imports from tagged value 'import'
 from Products.ProjectDatabase.widgets.SelectedLinesField import SelectedLinesField
 from Products.CMFCore.utils import getToolByName
+from Products.ProjectDatabase.content import permissions
 from Products.FinanceFields.MoneyField import MoneyField
 from Products.FinanceFields.MoneyWidget import MoneyWidget
 from Products.DataGridField import DataGridField, DataGridWidget, Column, SelectColumn
@@ -185,6 +186,21 @@ class ProjectDatabase(BaseFolder):
     typeDescription = "ProjectDatabase"
     typeDescMsgId = 'description_edit_projectdatabase'
 
+
+    actions =  (
+
+
+       {'action': "string:${object_url}/project_search",
+        'category': "object_tabs",
+        'id': 'search',
+        'name': 'Project Search',
+        'permissions': (permissions.ViewProjects,),
+        'condition': 'python:1'
+       },
+
+
+    )
+
     _at_rename_after_creation = True
 
     schema = ProjectDatabase_schema
@@ -201,6 +217,14 @@ class ProjectDatabase(BaseFolder):
         catalog = getToolByName(self, 'portal_catalog')
         proxies = catalog(portal_type='Agency')
         return [p.getObject() for p in proxies]
+
+    security.declarePublic('getVocabulary')
+    def getVocabulary(self,vocabName):
+        """Get the named vocabulary
+        """
+        pv_tool = getToolByName(self, 'portal_vocabularies')
+        vocab = pv_tool.getVocabularyByName(vocabName)
+        return vocab.getDisplayList(vocab)
 
 
 registerType(ProjectDatabase, PROJECTNAME)
