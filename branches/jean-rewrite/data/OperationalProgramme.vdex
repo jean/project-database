@@ -9,7 +9,7 @@
 <term>
   <termIdentifier>1</termIdentifier>
   <caption>
-    <langstring language="en">OP1 - Arid and Semi-Arid Ecosystems</langstring>
+    <langstring language="en">OP1 - Arid and Semi-Arid Zones Ecosystems</langstring>
   </caption>
   <description />
 </term>
@@ -17,7 +17,7 @@
 <term>
   <termIdentifier>2</termIdentifier>
   <caption>
-    <langstring language="en">OP2 - Costal Marine and Freshwater Ecosystems</langstring>
+    <langstring language="en">OP2 - Coastal Marine and Freshwater Ecosystems</langstring>
   </caption>
   <description />
 </term>
@@ -34,22 +34,6 @@
   <termIdentifier>4</termIdentifier>
   <caption>
     <langstring language="en">OP4 - Mountain Ecosystems</langstring>
-  </caption>
-  <description />
-</term>
-
-<term>
-  <termIdentifier>BD-EA</termIdentifier>
-  <caption>
-    <langstring language="en">EA - Biodiversity Enabling Activities</langstring>
-  </caption>
-  <description />
-</term>
-
-<term>
-  <termIdentifier>BD-STRM</termIdentifier>
-  <caption>
-    <langstring language="en">STRM - Biodiversity Short Term Measures</langstring>
   </caption>
   <description />
 </term>
@@ -79,33 +63,9 @@
 </term>
 
 <term>
-  <termIdentifier>11</termIdentifier>
-  <caption>
-    <langstring language="en">OP11 - Promoting Environmentally Sustainable Transport</langstring>
-  </caption>
-  <description />
-</term>
-
-<term>
-  <termIdentifier>CC-EA</termIdentifier>
-  <caption>
-    <langstring language="en">EA - Climate Change Enabling Activities</langstring>
-  </caption>
-  <description />
-</term>
-
-<term>
-  <termIdentifier>CC-STRM</termIdentifier>
-  <caption>
-    <langstring language="en">STRM - Climate Change Short Term Measures</langstring>
-  </caption>
-  <description />
-</term>
-
-<term>
   <termIdentifier>8</termIdentifier>
   <caption>
-    <langstring language="en">OP8 - Water based Program</langstring>
+    <langstring language="en">OP8 - Water Body-based Operational Program</langstring>
   </caption>
   <description />
 </term>
@@ -113,7 +73,8 @@
 <term>
   <termIdentifier>9</termIdentifier>
   <caption>
-    <langstring language="en">OP9 - Integrated Ecosystem and Resource Management</langstring>
+    <langstring language="en">OP9 - Integrated Land and Water Multiple
+    Focal Area Program</langstring>
   </caption>
   <description />
 </term>
@@ -127,9 +88,9 @@
 </term>
 
 <term>
-  <termIdentifier>STRM</termIdentifier>
+  <termIdentifier>11</termIdentifier>
   <caption>
-    <langstring language="en">STRM - Projects and Country Programs to identify/prepare eligible projects.</langstring>
+    <langstring language="en">OP11 - Promoting Environmentally Sustainable Transport</langstring>
   </caption>
   <description />
 </term>
@@ -138,6 +99,64 @@
   <termIdentifier>12</termIdentifier>
   <caption>
     <langstring language="en">OP12 - Integrated Ecosystem Management</langstring>
+  </caption>
+  <description />
+</term>
+
+<term>
+  <termIdentifier>13</termIdentifier>
+  <caption>
+    <langstring language="en">OP13 - Conservation and Sustainable Use of Biological Diversity Important to Agriculture</langstring>
+  </caption>
+  <description />
+</term>
+
+<term>
+  <termIdentifier>14</termIdentifier>
+  <caption>
+    <langstring language="en">OP14 - Program for Reducing and
+    Eliminating Releases of Persistent Organic Pollutants</langstring>
+  </caption>
+  <description />
+</term>
+
+<term>
+  <termIdentifier>15</termIdentifier>
+  <caption>
+    <langstring language="en">OP15 - Sustainable Land Management
+    Operational Program</langstring>
+  </caption>
+  <description />
+</term>
+
+<term>
+  <termIdentifier>-EA</termIdentifier>
+  <caption>
+    <langstring language="en">EA - Enabling Activities</langstring>
+  </caption>
+  <description />
+</term>
+
+<term>
+  <termIdentifier>STRM</termIdentifier>
+  <caption>
+    <langstring language="en">STRM - Projects and Country Programs to identify/prepare eligible projects.</langstring>
+  </caption>
+  <description />
+</term>
+
+<!--term>
+  <termIdentifier>CC-EA</termIdentifier>
+  <caption>
+    <langstring language="en">EA - Climate Change Enabling Activities</langstring>
+  </caption>
+  <description />
+</term>
+
+<term>
+  <termIdentifier>CC-STRM</termIdentifier>
+  <caption>
+    <langstring language="en">STRM - Climate Change Short Term Measures</langstring>
   </caption>
   <description />
 </term>
@@ -215,27 +234,20 @@
 </term>
 
 <term>
-  <termIdentifier>13</termIdentifier>
+  <termIdentifier>BD-EA</termIdentifier>
   <caption>
-    <langstring language="en">OP13 - Conservation and Sustainable Use of Biological Diversity Important to Agriculture</langstring>
+    <langstring language="en">EA - Biodiversity Enabling Activities</langstring>
   </caption>
   <description />
 </term>
 
 <term>
-  <termIdentifier>14</termIdentifier>
+  <termIdentifier>BD-STRM</termIdentifier>
   <caption>
-    <langstring language="en">OP14 - Draft Operational Program on Persistent Organic Pollutants</langstring>
+    <langstring language="en">STRM - Biodiversity Short Term Measures</langstring>
   </caption>
   <description />
-</term>
+</term-->
 
-<term>
-  <termIdentifier>15</termIdentifier>
-  <caption>
-    <langstring language="en">OP15 - Operational Program on Sustainable Land Management</langstring>
-  </caption>
-  <description />
-</term>
  
 </vdex>

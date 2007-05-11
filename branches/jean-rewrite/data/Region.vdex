@@ -7,6 +7,14 @@
   <langstring language="en">Region</langstring>
 </vocabName>
 <term>
+  <termIdentifier>Global</termIdentifier>
+  <caption>
+    <langstring language="en">Global</langstring>
+  </caption>
+  <description />
+</term>
+
+<term>
   <termIdentifier>Africa</termIdentifier>
   <caption>
     <langstring language="en">Africa</langstring>
@@ -17,15 +25,7 @@
 <term>
   <termIdentifier>Americas</termIdentifier>
   <caption>
-    <langstring language="en">Americas</langstring>
-  </caption>
-  <description />
-</term>
-
-<term>
-  <termIdentifier>Asia</termIdentifier>
-  <caption>
-    <langstring language="en">Asia</langstring>
+    <langstring language="en">Latin America and the Caribbean</langstring>
   </caption>
   <description />
 </term>
@@ -39,17 +39,17 @@
 </term>
 
 <term>
-  <termIdentifier>Global</termIdentifier>
+  <termIdentifier>Asia</termIdentifier>
   <caption>
-    <langstring language="en">Global</langstring>
+    <langstring language="en">Asia and the Pacific</langstring>
   </caption>
   <description />
 </term>
 
 <term>
-  <termIdentifier>Oceania</termIdentifier>
+  <termIdentifier>Western Asia</termIdentifier>
   <caption>
-    <langstring language="en">Oceania</langstring>
+    <langstring language="en">Western Asia</langstring>
   </caption>
   <description />
 </term>

@@ -14,16 +14,16 @@
   <description />
 </term>
 <term>
-  <termIdentifier>Multi - Country</termIdentifier>
+  <termIdentifier>Global Multi Country</termIdentifier>
   <caption>
-    <langstring language="en">Multi - Country</langstring>
+    <langstring language="en">Global Multi Country</langstring>
   </caption>
   <description />
 </term>
 <term>
-  <termIdentifier>Regional Multi - Country</termIdentifier>
+  <termIdentifier>Multi Regional</termIdentifier>
   <caption>
-    <langstring language="en">Regional Multi - Country</langstring>
+    <langstring language="en">Multi Regional</langstring>
   </caption>
   <description />
 </term>
@@ -31,6 +31,20 @@
   <termIdentifier>Regional</termIdentifier>
   <caption>
     <langstring language="en">Regional</langstring>
+  </caption>
+  <description />
+</term>
+<term>
+  <termIdentifier>Sub-regional</termIdentifier>
+  <caption>
+    <langstring language="en">Regional</langstring>
+  </caption>
+  <description />
+</term>
+<term>
+  <termIdentifier>Regional Multi Country</termIdentifier>
+  <caption>
+    <langstring language="en">Regional Multi Country</langstring>
   </caption>
   <description />
 </term>
