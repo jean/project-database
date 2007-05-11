@@ -31,6 +31,7 @@ from AccessControl import ClassSecurityInfo
 from Products.Archetypes.atapi import *
 import zope
 from Products.ProjectDatabase.CurrencyMixin import CurrencyMixin
+from Products.ProjectDatabase.content.DocumentLinks import DocumentLinks
 from Products.ProjectDatabase.interfaces.IProject import IProject
 from Products.ATVocabularyManager.namedvocabulary import NamedVocabulary
 from Products.ProjectDatabase.config import *
@@ -63,41 +64,54 @@ schema = Schema((
         default_output_type='text/html'
     ),
 
-    StringField(
+    LinesField(
         name='Country',
         schemata="Location",
-        widget=SelectionWidget(
+        widget=MultiSelectionWidget(
             label='Country',
             label_msgid='ProjectDatabase_label_Country',
             i18n_domain='ProjectDatabase',
         ),
+        multiValued=1,
         vocabulary=NamedVocabulary("""Country""")
     ),
 
-    StringField(
+    LinesField(
+        name='OtherNonGEFEligibleCountries',
+        widget=LinesField._properties['widget'](
+            label="Other Non-GEF Eligible Project Participating Countries",
+            label_msgid='ProjectDatabase_label_OtherNonGEFEligibleCountries',
+            i18n_domain='ProjectDatabase',
+        )
+    ),
+
+    LinesField(
         name='Scope',
-        widget=SelectionWidget(
+        widget=MultiSelectionWidget(
             label='Scope',
             label_msgid='ProjectDatabase_label_Scope',
             i18n_domain='ProjectDatabase',
         ),
         schemata="Location",
+        multiValued=1,
         vocabulary=NamedVocabulary("""Scope""")
     ),
 
-    StringField(
+    LinesField(
         name='Region',
-        widget=SelectionWidget(
+        widget=MultiSelectionWidget(
             label='Region',
             label_msgid='ProjectDatabase_label_Region',
             i18n_domain='ProjectDatabase',
         ),
         schemata="Location",
+        multiValued=1,
         vocabulary=NamedVocabulary("""Region""")
     ),
 
     StringField(
         name='FocalArea',
+        index="FieldIndex:brains",
         widget=SelectionWidget(
             label="Focal Area",
             label_msgid='ProjectDatabase_label_FocalArea',
@@ -116,6 +130,50 @@ schema = Schema((
         vocabulary=NamedVocabulary("""OperationalProgramme""")
     ),
 
+    LinesField(
+        name='EABiodiversity',
+        widget=MultiSelectionWidget(
+            label="EA-Biodiversity",
+            label_msgid='ProjectDatabase_label_EABiodiversity',
+            i18n_domain='ProjectDatabase',
+        ),
+        multiValued=1,
+        vocabulary=NamedVocabulary("""EABiodiversity""")
+    ),
+
+    LinesField(
+        name='EAClimateChange',
+        widget=MultiSelectionWidget(
+            label="EA-Climate Change",
+            label_msgid='ProjectDatabase_label_EAClimateChange',
+            i18n_domain='ProjectDatabase',
+        ),
+        multiValued=1,
+        vocabulary=NamedVocabulary("""EAClimateChange""")
+    ),
+
+    LinesField(
+        name='EAPOP',
+        widget=MultiSelectionWidget(
+            label="EA-POP",
+            label_msgid='ProjectDatabase_label_EAPOP',
+            i18n_domain='ProjectDatabase',
+        ),
+        multiValued=1,
+        vocabulary=NamedVocabulary("""EAPOP""")
+    ),
+
+    LinesField(
+        name='MultipleFocalAreas',
+        widget=MultiSelectionWidget(
+            label="Multiple Focal Areas",
+            label_msgid='ProjectDatabase_label_MultipleFocalAreas',
+            i18n_domain='ProjectDatabase',
+        ),
+        multiValued=1,
+        vocabulary=NamedVocabulary("""MultipleFocalAreas""")
+    ),
+
     StringField(
         name='StrategicPriority',
         widget=SelectionWidget(
@@ -128,6 +186,7 @@ schema = Schema((
 
     StringField(
         name='ProjectType',
+        index="FieldIndex:brains",
         widget=SelectionWidget(
             label="Project Type",
             label_msgid='ProjectDatabase_label_ProjectType',
@@ -377,9 +436,9 @@ schema = Schema((
         relationship="Project_OtherImplementingAgency"
     ),
 
-    ReferenceField(
+    StringField(
         name='LeadAgency',
-        widget=ReferenceField._properties['widget'](
+        widget=SelectionWidget(
             label="Lead Agency",
             label_msgid='ProjectDatabase_label_LeadAgency',
             i18n_domain='ProjectDatabase',
@@ -496,6 +555,7 @@ schema = Schema((
 ##/code-section after-local-schema
 
 Project_schema = BaseFolderSchema.copy() + \
+    getattr(DocumentLinks, 'schema', Schema(())).copy() + \
     schema.copy()
 
 ##code-section after-schema #fill in your manual code here
@@ -504,11 +564,11 @@ idField.widget.visible = {'edit': 'hidden', 'view': 'visible'}
 idField.widget.label = 'Internal Id'
 ##/code-section after-schema
 
-class Project(BaseFolder, CurrencyMixin):
+class Project(BaseFolder, CurrencyMixin, DocumentLinks):
     """
     """
     security = ClassSecurityInfo()
-    __implements__ = (getattr(BaseFolder,'__implements__',()),) + (getattr(CurrencyMixin,'__implements__',()),)
+    __implements__ = (getattr(BaseFolder,'__implements__',()),) + (getattr(CurrencyMixin,'__implements__',()),) + (getattr(DocumentLinks,'__implements__',()),)
     # zope3 interfaces
     zope.interface.implements(IProject)
 
@@ -517,7 +577,7 @@ class Project(BaseFolder, CurrencyMixin):
 
     meta_type = 'Project'
     portal_type = 'Project'
-    allowed_content_types = ['ProjectImplementation', 'Financials', 'Milestone', 'SubProject']
+    allowed_content_types = ['ProjectImplementation', 'Financials', 'Milestone', 'SubProject'] + list(getattr(DocumentLinks, 'allowed_content_types', []))
     filter_content_types = 1
     global_allow = 0
     #content_icon = 'Project.gif'

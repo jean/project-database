@@ -4,15 +4,46 @@
       i18n:domain="plone">
 
 <head>
-<metal:block metal:fill-slot="javascript_head_slot">
+<!--metal:block metal:fill-slot="javascript_head_slot">
       <script type="text/javascript"
             src="http://localhost:8080/tasty/plone_menu.js"
             tal:attributes="src string: ${here/portal_url}/tasty_js.js">
       </script>
-</metal:block>
+</metal:block-->
 </head>
 
 <div metal:fill-slot="main">
+
+    <script type="text/javascript">
+
+    function toggle_thread(element_id) {
+            displaystyle = document.getElementById(element_id).style;
+            if (displaystyle.display == 'none') {
+                displaystyle.display = 'block';
+                if (element_id == 'pgi-screen') {
+                    document.getElementById('pgi').value='block'
+                }
+                if (element_id == 'fmi-screen') {
+                    document.getElementById('fmi').value='block'
+                }
+                if (element_id == 'pcm-screen') {
+                    document.getElementById('pcm').value='block'
+                }
+            } else {
+                displaystyle.display = 'none';
+                if (element_id == 'pgi-screen') {
+                    document.getElementById('pgi').value='none'
+                }
+                if (element_id == 'fmi-screen') {
+                    document.getElementById('fmi').value='none'
+                }
+                if (element_id == 'pcm-screen') {
+                    document.getElementById('pcm').value='none'
+                }
+            }
+            return false;
+        }
+    </script>
 
     <h1 tal:content="here/title_or_id"></h1>
 
@@ -22,6 +53,9 @@
 
     <form action="ProjectSearchResults" method="get" name="search">
 
+    <input type="hidden" id="pgi" name="pgi" value="none"/>
+    <input type="hidden" id="fmi" name="fmi" value="none"/>
+    <input type="hidden" id="pcm" name="pcm" value="none"/>
    <div class="formControls">
                 <input class="context"
                        tabindex=""
@@ -40,15 +74,37 @@
                    tal:attributes="tabindex tabindex/next;" />
             </div>
 
+            <!--table>
+            <tr>
+                <td>
+                    Group results by 
+                </td>
+                <td>
+                    <select name="orderby"
+                            id="orderby"
+                            tabindex=""
+                            tal:attributes="tabindex tabindex/next;">
+                        <option value="nogroup"> No grouping </option>
+                        <option value="getFocalArea"> Focal Area </option>
+                        <option value="getProjectType">Project Type</option>
+                    </select>
+                </td>
+            </tr>
+            </table-->
+    
+
         <fieldset>
 
+            
             <legend i18n:translate="legend_search_terms">Project General Information
-            <!--a tal:attributes="href string:#; onclick string:javascript:toggle_thread('bmcfid-projectcore');;return false;;" >+/-</a>
-           (Click on +/- to expand or minimize the search screen.)-->
+            <a tal:attributes="href string:project_search/#; onclick string:javascript:toggle_thread('pgi-screen');;return false;;" >+/-</a>
+           (Click on +/- to expand or minimize the search screen.)
             </legend>
            
-           <!--div tal:attributes="id string:bmcfid-projectcore" style="display:none;"-->
-           <div tal:attributes="id string:bmcfid-projectcore">
+           <div tal:define="pgiDisplay request/pgi|string:none"
+                tal:attributes="id string:pgi-screen;
+                                style string:display:${pgiDisplay};;;">
+           <!--div tal:attributes="id string:pgi-screen"-->
 
             <div class="field">
                 <label for="SearchableText" i18n:translate="label_search_text">Search text</label>
@@ -324,12 +380,14 @@
         
 
             <legend i18n:translate="legend_search_terms">Financial Management Information
-<a tal:attributes="href string:#; onclick string:javascript:toggle_thread('bmcfid-fmi');;return false;;" >+/-</a>
+<a tal:attributes="href string:#; onclick string:javascript:toggle_thread('fmi-screen');;return false;;" >+/-</a>
 (Click on +/- to expand or minimize the search screen.)
             </legend>
            
-           <!--div tal:attributes="id string:bmcfid-fmi" style="display:none;"-->
-           <div tal:attributes="id string:bmcfid-fmi">
+           <div tal:define="fmiDisplay request/fmi|string:none"
+                tal:attributes="id string:fmi-screen;
+                                style string:display:${fmiDisplay};;;">
+           <!--div tal:attributes="id string:fmi-screen"-->
 
             <div class="field">
                 <label for="Title" i18n:translate="label_search_text">Project Title</label>
@@ -408,13 +466,15 @@
 
         <fieldset>
 
-            <legend i18n:translate="legend_search_terms">Milestones
-<a tal:attributes="href string:#; onclick string:javascript:toggle_thread('bmcfid-milestones');;return false;;" >+/-</a>
+            <legend i18n:translate="legend_search_terms">Project Cycle Milestones
+<a tal:attributes="href string:#; onclick string:javascript:toggle_thread('pcm-screen');;return false;;" >+/-</a>
 (Click on +/- to expand or minimize the search screen.)
             </legend>
            
-           <!--div tal:attributes="id string:bmcfid-milestones" style="display:none;"-->
-           <div tal:attributes="id string:bmcfid-milestones">
+           <div tal:define="pcmDisplay request/pcm|string:none"
+                tal:attributes="id string:pcm-screen;
+                                style string:display:${pcmDisplay};;;">
+           <!--div tal:attributes="id string:pcm-screen"-->
 
            	<div class="field" tal:on-error="nothing">
 

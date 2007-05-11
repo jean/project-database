@@ -27,11 +27,26 @@ msgstr ""
 msgid "ProjectDatabase_label_AdaptationTrustFund"
 msgstr ""
 
+#. Default: "Annexestoprojectbrief"
+#: content/DocumentLinks.py
+msgid "ProjectDatabase_label_AnnexesToProjectBrief"
+msgstr ""
+
 #. Default: "Approvedunepbudget"
 #: content/SubProject.py
 #: content/Financials.py
 #: content/FinancialsMixin.py
 msgid "ProjectDatabase_label_ApprovedUNEPBudget"
+msgstr ""
+
+#. Default: "Auditedcertificateofaccounts"
+#: content/DocumentLinks.py
+msgid "ProjectDatabase_label_AuditedCertificateOfAccounts"
+msgstr ""
+
+#. Default: "Ceoendorsementletter"
+#: content/DocumentLinks.py
+msgid "ProjectDatabase_label_CEOEndorsementLetter"
 msgstr ""
 
 #. Default: "Cashdisbursements"
@@ -90,9 +105,29 @@ msgstr ""
 msgid "ProjectDatabase_label_DonorTypes"
 msgstr ""
 
+#. Default: "EA-Biodiversity"
+#: content/Project.py
+msgid "ProjectDatabase_label_EABiodiversity"
+msgstr ""
+
+#. Default: "EA-Climate Change"
+#: content/Project.py
+msgid "ProjectDatabase_label_EAClimateChange"
+msgstr ""
+
+#. Default: "EA-POP"
+#: content/Project.py
+msgid "ProjectDatabase_label_EAPOP"
+msgstr ""
+
 #. Default: "Enddate"
 #: content/SubProject.py
 msgid "ProjectDatabase_label_EndDate"
+msgstr ""
+
+#. Default: "Executivesummary"
+#: content/DocumentLinks.py
+msgid "ProjectDatabase_label_ExecutiveSummary"
 msgstr ""
 
 #. Default: "Fspstatus"
@@ -105,6 +140,26 @@ msgstr ""
 #: content/Financials.py
 #: content/FinancialsMixin.py
 msgid "ProjectDatabase_label_FinanceCategory"
+msgstr ""
+
+#. Default: "Financialreport1"
+#: content/DocumentLinks.py
+msgid "ProjectDatabase_label_FinancialReport1"
+msgstr ""
+
+#. Default: "Financialreport2"
+#: content/DocumentLinks.py
+msgid "ProjectDatabase_label_FinancialReport2"
+msgstr ""
+
+#. Default: "Financialreport3"
+#: content/DocumentLinks.py
+msgid "ProjectDatabase_label_FinancialReport3"
+msgstr ""
+
+#. Default: "Financialreport4"
+#: content/DocumentLinks.py
+msgid "ProjectDatabase_label_FinancialReport4"
 msgstr ""
 
 #. Default: "Focalarea"
@@ -123,6 +178,11 @@ msgstr ""
 msgid "ProjectDatabase_label_FundManagementOfficer"
 msgstr ""
 
+#. Default: "Geffocalpointendorsementletters"
+#: content/DocumentLinks.py
+msgid "ProjectDatabase_label_GEFFocalPointEndorsementLetters"
+msgstr ""
+
 #. Default: "Gefphase"
 #: content/Project.py
 #: content/ProjectDatabase.py
@@ -134,6 +194,11 @@ msgstr ""
 #: content/Financials.py
 #: content/FinancialsMixin.py
 msgid "ProjectDatabase_label_GEFProjectAllocation"
+msgstr ""
+
+#. Default: "Gefreviewsheets"
+#: content/DocumentLinks.py
+msgid "ProjectDatabase_label_GEFReviewSheets"
 msgstr ""
 
 #. Default: "Geftrustfund"
@@ -204,6 +269,11 @@ msgstr ""
 msgid "ProjectDatabase_label_InitialCompletionDate"
 msgstr ""
 
+#. Default: "Inventoryofnonexpendableequipment"
+#: content/DocumentLinks.py
+msgid "ProjectDatabase_label_InventoryOfNonExpendableEquipment"
+msgstr ""
+
 #. Default: "IDC Fund Allocation"
 #: content/Financials.py
 msgid "ProjectDatabase_label_LDCFundAllocation"
@@ -235,9 +305,29 @@ msgstr ""
 msgid "ProjectDatabase_label_LeveragedFinancingRemark"
 msgstr ""
 
+#. Default: "Mou"
+#: content/DocumentLinks.py
+msgid "ProjectDatabase_label_MOU"
+msgstr ""
+
 #. Default: "Mspstatus"
 #: content/Project.py
 msgid "ProjectDatabase_label_MSPStatus"
+msgstr ""
+
+#. Default: "Midtermevaluation"
+#: content/DocumentLinks.py
+msgid "ProjectDatabase_label_MidtermEvaluation"
+msgstr ""
+
+#. Default: "Midtermevaluationlink"
+#: content/Project.py
+msgid "ProjectDatabase_label_MidtermEvaluationLink"
+msgstr ""
+
+#. Default: "Midtermreview"
+#: content/DocumentLinks.py
+msgid "ProjectDatabase_label_MidtermReview"
 msgstr ""
 
 #. Default: "Midtermreviewactualdate"
@@ -275,6 +365,21 @@ msgstr ""
 msgid "ProjectDatabase_label_MilestoneName"
 msgstr ""
 
+#. Default: "Missionreports"
+#: content/DocumentLinks.py
+msgid "ProjectDatabase_label_MissionReports"
+msgstr ""
+
+#. Default: "Multiple Focal Areas"
+#: content/Project.py
+msgid "ProjectDatabase_label_MultipleFocalAreas"
+msgstr ""
+
+#. Default: "Newtablesforprojectrevisions"
+#: content/DocumentLinks.py
+msgid "ProjectDatabase_label_NewTablesForProjectRevisions"
+msgstr ""
+
 #. Default: "Office"
 #: content/Project.py
 #: content/SubProject.py
@@ -303,6 +408,11 @@ msgstr ""
 msgid "ProjectDatabase_label_OtherLeadExecutingAgency"
 msgstr ""
 
+#. Default: "Other Non-GEF Eligible Project Participating Countries"
+#: content/Project.py
+msgid "ProjectDatabase_label_OtherNonGEFEligibleCountries"
+msgstr ""
+
 #. Default: "Overview"
 #: content/Project.py
 msgid "ProjectDatabase_label_Overview"
@@ -318,9 +428,19 @@ msgstr ""
 msgid "ProjectDatabase_label_PDFBStatus"
 msgstr ""
 
+#. Default: "Pdfdocument"
+#: content/DocumentLinks.py
+msgid "ProjectDatabase_label_PDFDocument"
+msgstr ""
+
 #. Default: "Pdfresults"
 #: content/Financials.py
 msgid "ProjectDatabase_label_PDFResults"
+msgstr ""
+
+#. Default: "Pir"
+#: content/DocumentLinks.py
+msgid "ProjectDatabase_label_PIR"
 msgstr ""
 
 #. Default: "Pmsnumber"
@@ -340,15 +460,40 @@ msgstr ""
 msgid "ProjectDatabase_label_PreviousTaskManager"
 msgstr ""
 
+#. Default: "Progressreport"
+#: content/DocumentLinks.py
+msgid "ProjectDatabase_label_ProgressReport"
+msgstr ""
+
+#. Default: "Projectbrief"
+#: content/DocumentLinks.py
+msgid "ProjectDatabase_label_ProjectBrief"
+msgstr ""
+
 #. Default: "Projectcoordinator"
 #: content/Project.py
 #: content/SubProject.py
 msgid "ProjectDatabase_label_ProjectCoordinator"
 msgstr ""
 
+#. Default: "Projectdocument"
+#: content/DocumentLinks.py
+msgid "ProjectDatabase_label_ProjectDocument"
+msgstr ""
+
+#. Default: "Projectdocumentlink"
+#: content/Project.py
+msgid "ProjectDatabase_label_ProjectDocumentLink"
+msgstr ""
+
 #. Default: "Projectresults"
 #: content/Project.py
 msgid "ProjectDatabase_label_ProjectResults"
+msgstr ""
+
+#. Default: "Projectrevisions"
+#: content/DocumentLinks.py
+msgid "ProjectDatabase_label_ProjectRevisions"
 msgstr ""
 
 #. Default: "Projectstatus"
@@ -375,6 +520,11 @@ msgstr ""
 #. Default: "Projecttypes"
 #: content/ProjectDatabase.py
 msgid "ProjectDatabase_label_ProjectTypes"
+msgstr ""
+
+#. Default: "Recommendationsfollowup"
+#: content/DocumentLinks.py
+msgid "ProjectDatabase_label_RecommendationsFollowUp"
 msgstr ""
 
 #. Default: "Region"
@@ -434,6 +584,11 @@ msgstr ""
 msgid "ProjectDatabase_label_Status"
 msgstr ""
 
+#. Default: "Steeringcommitteemeetingminutes"
+#: content/DocumentLinks.py
+msgid "ProjectDatabase_label_SteeringCommitteeMeetingMinutes"
+msgstr ""
+
 #. Default: "Strategicpartnership"
 #: content/Financials.py
 msgid "ProjectDatabase_label_StrategicPartnership"
@@ -453,6 +608,21 @@ msgstr ""
 #. Default: "Subprojectcofincashactual"
 #: content/SubProject.py
 msgid "ProjectDatabase_label_SubProjectCofinCashActual"
+msgstr ""
+
+#. Default: "Subprojectdocuments"
+#: content/DocumentLinks.py
+msgid "ProjectDatabase_label_SubProjectDocuments"
+msgstr ""
+
+#. Default: "Substantivepublication"
+#: content/DocumentLinks.py
+msgid "ProjectDatabase_label_SubstantivePublication"
+msgstr ""
+
+#. Default: "Substantivereport"
+#: content/DocumentLinks.py
+msgid "ProjectDatabase_label_SubstantiveReport"
 msgstr ""
 
 #. Default: "Sumcashdisbursements"
@@ -517,6 +687,16 @@ msgstr ""
 msgid "ProjectDatabase_label_SupplementaryUNEPAllocationRemark"
 msgstr ""
 
+#. Default: "Terminalevaluation"
+#: content/DocumentLinks.py
+msgid "ProjectDatabase_label_TerminalEvaluation"
+msgstr ""
+
+#. Default: "Terminalevaluationlink"
+#: content/Project.py
+msgid "ProjectDatabase_label_TerminalEvaluationLink"
+msgstr ""
+
 #. Default: "Terminalevaluationreportdate"
 #: content/Project.py
 msgid "ProjectDatabase_label_TerminalEvaluationReportDate"
@@ -570,6 +750,16 @@ msgstr ""
 #. Default: "Unepimplementingagencyfee"
 #: content/Project.py
 msgid "ProjectDatabase_label_UNEPImplementingAgencyFee"
+msgstr ""
+
+#. Default: "Unepprojectannexes"
+#: content/DocumentLinks.py
+msgid "ProjectDatabase_label_UNEPProjectAnnexes"
+msgstr ""
+
+#. Default: "Unepprojectdocument"
+#: content/DocumentLinks.py
+msgid "ProjectDatabase_label_UNEPProjectDocument"
 msgstr ""
 
 #. Default: "Unepcomponentdescription"

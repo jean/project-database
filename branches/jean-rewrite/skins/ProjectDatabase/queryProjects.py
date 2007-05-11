@@ -85,7 +85,7 @@ for k, v in second_pass.items():
 # any items were found, then you can pass show_all=1.
 if show_query:
     try:
-        results = catalog(query, show_inactive=False)
+        results = catalog(query, show_inactive=False, sort_on='sortable_title')
     except ParseError:
         pass
 res1 = results
@@ -128,7 +128,7 @@ qfmi['portal_type']='FinancialManagementInformation'
 res2=None
 if Title or Imis_number or Pms_number or getFinance_category:
     try:
-        results = catalog(qfmi, show_inactive=False)
+        results = catalog(qfmi, show_inactive=False, sort_on='sortable_title')
     except ParseError:
         pass
     #print qfmi
@@ -167,7 +167,7 @@ if getMilestoneName:
 res3=None
 if Gef_phase or getMilestoneName:
     try:
-        results = catalog(qmd, show_inactive=False)
+        results = catalog(qmd, show_inactive=False, sort_on='sortable_title')
     except ParseError:
         pass
     print qmd
@@ -195,7 +195,7 @@ q['path']=alist
 q['portal_type']='Project'
 if alist:
     try:
-        results = catalog(q, show_inactive=False)
+        results = catalog(q, show_inactive=False, sort_on='sortable_title')
     except ParseError:
         pass
 

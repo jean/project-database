@@ -287,9 +287,260 @@
             </td></tr>
          <!--End of implementation status--> 
           
-        
-	
+        <tr>
+            <td>
+                <table tal:define="finobjs python:here.objectValues(spec='Financials');" 
+                        border="1" 
+                        cellpadding="0" 
+                        cellspacing="3" 
+                        style="border-collapse: collapse" 
+                        bordercolor="#D6D7D9">
+                <th>Financial Status</th>
+                <tr tal:repeat="finobj finobjs">
+                    <td><span tal:replace="python:finobj.getStatus()"/>
+                    </td>
+                </tr>
+                </table>
+            </td>
+            <td>
+                <table tal:define="milestoneObjs python:here.objectValues(spec='Milestone');" 
+                        border="1" 
+                        cellpadding="0" 
+                        cellspacing="3" 
+                        style="border-collapse: collapse" 
+                        bordercolor="#D6D7D9">
+                <th>Milestone Name</th> <th>Milestone Date</th>
+                <tr tal:repeat="msObj milestoneObjs">
+                    <td><span tal:replace="python:msObj.getMilestoneName()"/>
+                    </td>
+                    <td><span tal:replace="python:msObj.getMilestoneDate()"/>
+                    </td>
+                </tr>
+                </table>
+                
+            </td>
+        </tr>
 
+        <tr> 
+            <td>
+            <table border="1"
+                    cellpadding="0" 
+                    cellspacing="3" 
+                    style="border-collapse: collapse">
+            <th>GEF Documents</th>
+            <tr>
+                <td>
+                    <a  tal:condition="here/getExecutiveSummary"
+                        tal:attributes="href here/getExecutiveSummary">Executive Summary</a>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <a  tal:condition="here/getGEFReviewSheets"
+                        tal:attributes="href here/getGEFReviewSheets">GEF Review Sheets</a>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <a  tal:condition="here/getProjectBrief"
+                        tal:attributes="href here/getProjectBrief">Project Brief</a>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <a  tal:condition="here/getAnnexesToProjectBrief"
+                        tal:attributes="href here/getAnnexesToProjectBrief">Annexes to Project Brief</a>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <a  tal:condition="here/getCEOEndorsementLetter"
+                        tal:attributes="href here/getCEOEndorsementLetter">CEO EndorsementLetter</a>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <a
+                    tal:condition="here/getGEFFocalPointEndorsementLetters"
+                        tal:attributes="href here/getGEFFocalPointEndorsementLetters">GEF Focal Point Endorsement Letter</a>
+                </td>
+            </tr>
+            </table>
+            </td>
+            
+            <td>
+            <table border="1"
+                    cellpadding="0" 
+                    cellspacing="3" 
+                    style="border-collapse: collapse">
+            <th>UNEP Documents</th>
+            <tr>
+                <td>
+                    <a  tal:condition="here/getUNEPProjectDocument"
+                        tal:attributes="href here/getUNEPProjectDocument">UNEP Project Document</a>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <a  tal:condition="here/getUNEPProjectAnnexes"
+                        tal:attributes="href here/getUNEPProjectAnnexes">UNEP Project Annexes</a>
+                </td>
+            </tr>
+            </table>
+            </td>
+            </tr>
+            <tr>
+            <td>
+            <table border="1"
+                    cellpadding="0" 
+                    cellspacing="3" 
+                    style="border-collapse: collapse">
+            <th>Financial Documents</th>
+            <tr>
+                <td>
+                    <a  tal:condition="here/getFinancialReport1"
+                        tal:attributes="href here/getFinancialReport1">Financial Report 1st Quarter</a>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <a  tal:condition="here/getFinancialReport2"
+                        tal:attributes="href here/getFinancialReport2">Financial Report 2nd Quarter</a>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <a  tal:condition="here/getFinancialReport3"
+                        tal:attributes="href here/getFinancialReport3">Financial Report 3rd Quarter</a>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <a  tal:condition="here/getFinancialReport4"
+                        tal:attributes="href here/getFinancialReport4">Financial Report 4th Quarter</a>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <a
+                    tal:condition="here/getAuditedCertificateOfAccounts"
+                        tal:attributes="href here/getAuditedCertificateOfAccounts">Audited Certificate Of Accounts</a>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <a
+                    tal:condition="here/getSubProjectDocuments"
+                        tal:attributes="href here/getSubProjectDocuments">Subproject Documents</a>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <a
+                    tal:condition="here/getMOU"
+                        tal:attributes="href here/getMOU">MOUs</a>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <a
+                    tal:condition="here/getProjectRevisions"
+                        tal:attributes="href here/getProjectRevisions">Project Revisions</a>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <a
+                    tal:condition="here/getNewTablesForProjectRevisions"
+                        tal:attributes="href here/getNewTablesForProjectRevisions">New Tables for Projects Revisions</a>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <a
+                    tal:condition="here/getInventoryOfNonExpendableEquipment"
+                        tal:attributes="href here/getInventoryOfNonExpendableEquipment">Inventory of Nonexpendable Equipment</a>
+                </td>
+            </tr>
+            </table>
+            </td>
+
+            <td>
+            <table border="1"
+                    cellpadding="0" 
+                    cellspacing="3" 
+                    style="border-collapse: collapse">
+            <th>M&amp;E Documents</th>
+            <tr>
+                <td>
+                    <a  tal:condition="here/getPIR"
+                        tal:attributes="href here/getPIR">PIRs</a>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <a  tal:condition="here/getProgressReport"
+                        tal:attributes="href here/getProgressReport">Progress Report</a>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <a  tal:condition="here/getMidtermReview"
+                        tal:attributes="href here/getMidtermReview">Mid term Review</a>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <a  tal:condition="here/getRecommendationsFollowUp"
+                        tal:attributes="href here/getRecommendationsFollowUp">Recommendations Follow up</a>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <a
+                    tal:condition="here/getSteeringCommitteeMeetingMinutes"
+                        tal:attributes="href here/getSteeringCommitteeMeetingMinutes">Steering Committee Meeting Minutes</a>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <a  tal:condition="here/getMissionReports"
+                        tal:attributes="href here/getMissionReports">Mission Reports</a>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <a  tal:condition="here/getSubstantiveReport"
+                        tal:attributes="href here/getSubstantiveReport">Substantive Report</a>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <a  tal:condition="here/getSubstantivePublication"
+                        tal:attributes="href here/getSubstantivePublication">Substantive Publication</a>
+                </td>
+            </tr>
+            </table>
+            </td>
+            </tr>
+            <tr>
+            <td>
+            <table border="1"
+                    cellpadding="0" 
+                    cellspacing="3" 
+                    style="border-collapse: collapse">
+            <th>PDF Documents</th>
+            <tr>
+                <td>
+                    <a  tal:condition="here/getPDFDocument"
+                        tal:attributes="href here/getPDFDocument">PDF Documents</a>
+                </td>
+            </tr>
+            </table>
+            </td>
+
+        </tr>
+        </table>
       
 
       </metal:main_macro>
