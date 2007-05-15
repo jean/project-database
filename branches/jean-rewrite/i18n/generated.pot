@@ -16,6 +16,36 @@ msgstr ""
 "Preferred-Encodings: latin1 utf-8\n"
 "Domain: ProjectDatabase\n"
 
+#. Default: "Enter the Full implementing agency fee"
+#: content/FinancialsMixin.py
+msgid "ProjectDatabase_help_ImplementingAgencyFee"
+msgstr ""
+
+#. Default: "Enter sources and Purposes"
+#: content/Project.py
+msgid "ProjectDatabase_help_LeveragedFinancingRemark"
+msgstr ""
+
+#. Default: "Is this a Phased project?"
+#: content/Project.py
+msgid "ProjectDatabase_help_Phased"
+msgstr ""
+
+#. Default: "Enter overall Project Results AFTER Project Terminal Evaluation"
+#: content/Project.py
+msgid "ProjectDatabase_help_ProjectResults"
+msgstr ""
+
+#. Default: "Is this a Tranched project?"
+#: content/Project.py
+msgid "ProjectDatabase_help_Tranched"
+msgstr ""
+
+#. Default: "Enter a description of UNEP components only in the case of jointly implemented projects"
+#: content/Project.py
+msgid "ProjectDatabase_help_UnepComponentDescription"
+msgstr ""
+
 #: content/Project.py
 #: content/SubProject.py
 #: content/Financials.py
@@ -25,6 +55,11 @@ msgstr ""
 #. Default: "Adaptationtrustfund"
 #: content/Financials.py
 msgid "ProjectDatabase_label_AdaptationTrustFund"
+msgstr ""
+
+#. Default: "Addon"
+#: content/Project.py
+msgid "ProjectDatabase_label_AddOn"
 msgstr ""
 
 #. Default: "Annexestoprojectbrief"
@@ -59,6 +94,11 @@ msgstr ""
 #. Default: "Cashunepallocation"
 #: content/Financials.py
 msgid "ProjectDatabase_label_CashUNEPAllocation"
+msgstr ""
+
+#. Default: "Category"
+#: content/ProjectExecutingPartner.py
+msgid "ProjectDatabase_label_Category"
 msgstr ""
 
 #. Default: "Cofinancingcash"
@@ -110,14 +150,29 @@ msgstr ""
 msgid "ProjectDatabase_label_EABiodiversity"
 msgstr ""
 
+#. Default: "Other EA Biodiversity"
+#: content/Project.py
+msgid "ProjectDatabase_label_EABiodiversityOther"
+msgstr ""
+
 #. Default: "EA-Climate Change"
 #: content/Project.py
 msgid "ProjectDatabase_label_EAClimateChange"
 msgstr ""
 
+#. Default: "EA Climate Change Other"
+#: content/Project.py
+msgid "ProjectDatabase_label_EAClimateChangeOther"
+msgstr ""
+
 #. Default: "EA-POP"
 #: content/Project.py
 msgid "ProjectDatabase_label_EAPOP"
+msgstr ""
+
+#. Default: "EA-POP Other"
+#: content/Project.py
+msgid "ProjectDatabase_label_EAPOPOther"
 msgstr ""
 
 #. Default: "Enddate"
@@ -176,6 +231,11 @@ msgstr ""
 #. Default: "Fundmanagementofficer"
 #: content/Financials.py
 msgid "ProjectDatabase_label_FundManagementOfficer"
+msgstr ""
+
+#. Default: "GEF Agency Implementation"
+#: content/Project.py
+msgid "ProjectDatabase_label_GEFAgencyImplementation"
 msgstr ""
 
 #. Default: "Geffocalpointendorsementletters"
@@ -259,6 +319,7 @@ msgstr ""
 
 #. Default: "Implementingagencyfee"
 #: content/Project.py
+#: content/FinancialsMixin.py
 msgid "ProjectDatabase_label_ImplementingAgencyFee"
 msgstr ""
 
@@ -375,6 +436,11 @@ msgstr ""
 msgid "ProjectDatabase_label_MultipleFocalAreas"
 msgstr ""
 
+#. Default: "Multiple Focal Areas Other"
+#: content/Project.py
+msgid "ProjectDatabase_label_MultipleFocalAreasOther"
+msgstr ""
+
 #. Default: "Newtablesforprojectrevisions"
 #: content/DocumentLinks.py
 msgid "ProjectDatabase_label_NewTablesForProjectRevisions"
@@ -395,6 +461,11 @@ msgstr ""
 #. Default: "Operationalprogrammes"
 #: content/ProjectDatabase.py
 msgid "ProjectDatabase_label_OperationalProgrammes"
+msgstr ""
+
+#. Default: "Other Categories"
+#: content/ProjectExecutingPartner.py
+msgid "ProjectDatabase_label_OtherCategories"
 msgstr ""
 
 #. Default: "Other Implementing Agency"
@@ -450,6 +521,16 @@ msgstr ""
 msgid "ProjectDatabase_label_PMSNumber"
 msgstr ""
 
+#. Default: "Phased"
+#: content/Project.py
+msgid "ProjectDatabase_label_Phased"
+msgstr ""
+
+#. Default: "Phasednumber"
+#: content/Project.py
+msgid "ProjectDatabase_label_PhasedNumber"
+msgstr ""
+
 #. Default: "Pipelinenumber"
 #: content/Project.py
 msgid "ProjectDatabase_label_PipelineNumber"
@@ -484,6 +565,11 @@ msgstr ""
 #. Default: "Projectdocumentlink"
 #: content/Project.py
 msgid "ProjectDatabase_label_ProjectDocumentLink"
+msgstr ""
+
+#. Default: "Project Executing Agency"
+#: content/Project.py
+msgid "ProjectDatabase_label_ProjectExecutingAgency"
 msgstr ""
 
 #. Default: "Projectresults"
@@ -587,6 +673,11 @@ msgstr ""
 #. Default: "Steeringcommitteemeetingminutes"
 #: content/DocumentLinks.py
 msgid "ProjectDatabase_label_SteeringCommitteeMeetingMinutes"
+msgstr ""
+
+#. Default: "Strategic Objectives"
+#: content/Project.py
+msgid "ProjectDatabase_label_StrategicObjectives"
 msgstr ""
 
 #. Default: "Strategicpartnership"
@@ -747,9 +838,24 @@ msgstr ""
 msgid "ProjectDatabase_label_TotalUNEPAllocation"
 msgstr ""
 
+#. Default: "Tranched"
+#: content/Project.py
+msgid "ProjectDatabase_label_Tranched"
+msgstr ""
+
+#. Default: "Tranchednumber"
+#: content/Project.py
+msgid "ProjectDatabase_label_TranchedNumber"
+msgstr ""
+
 #. Default: "Unepimplementingagencyfee"
 #: content/Project.py
 msgid "ProjectDatabase_label_UNEPImplementingAgencyFee"
+msgstr ""
+
+#. Default: "Unepimplentingagencyfee"
+#: content/FinancialsMixin.py
+msgid "ProjectDatabase_label_UNEPImplentingAgencyFee"
 msgstr ""
 
 #. Default: "Unepprojectannexes"

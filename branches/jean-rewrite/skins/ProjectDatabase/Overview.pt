@@ -135,23 +135,56 @@
 
 	         <td bgcolor='#F1F1F1' width=30%><b>Strategic Priority:</b></td><td><metal:block use-macro="widget_view" /></td>
 	         </tr>
-	         <tr tal:on-error="nothing" tal:define="field python:here.Schema()['LeadAgency']; accessor python:getattr(here, field.accessor)" tal:condition="python:not accessor()==''">
-                 <td bgcolor='#F1F1F1' width=30%><b>Lead Implementing Agency:</b></td><td><span tal:replace="structure accessor"/> </td></tr>
+	         <tr tal:on-error="nothing" tal:define="field python:here.Schema()['LeadAgency']; 
+		 		   accessor python:getattr(here, field.accessor);
+		 		   mode string:view;
+		 		   widget_view python:here.widget(field.getName(), mode=mode, use_label=1);">
+		 
+		 		<td bgcolor='#F1F1F1' width=30%><b>Lead Implementing Agency:</b></td><td><metal:block use-macro="widget_view" /></td>
+		 </tr>
 	         <tr tal:on-error="nothing" tal:define="field python:here.Schema()['OtherImplementingAgency']; 
 		 		   accessor python:getattr(here, field.accessor);
 		 		   mode string:view;
 		 		   widget_view python:here.widget(field.getName(), mode=mode, use_label=1);">
 		 
-		 		<td bgcolor='#F1F1F1' width=30%><b>Other Implementing Agencies:</b></td><td><metal:block use-macro="widget_view" /></td>
+		 		<td bgcolor='#F1F1F1' width=30%><b>Other GEF Implementing Agencies:</b></td><td><metal:block use-macro="widget_view" /></td>
 		 </tr>
 
 	   	 <tr tal:on-error="nothing" tal:define="field python:here.Schema()['ImplementingAgencyFee']; accessor python:getattr(here, field.accessor)"><td bgcolor='#F1F1F1' width=30%><b>Implementing Agency Fee:</b></td><td> <span tal:replace="structure accessor"/> </td></tr>		 	   
                  <tr tal:on-error="nothing" tal:define="field python:here.Schema()['UNEPImplementingAgencyFee']; accessor python:getattr(here, field.accessor)"><td bgcolor='#F1F1F1' width=30%><b>UNEP Implementing Agency Fee:</b></td><td> <span tal:replace="structure accessor"/> </td></tr>		 	   
                  <tr tal:on-error="nothing" tal:define="field python:here.Schema()['Website']; accessor python:getattr(here, field.accessor)"><td bgcolor='#F1F1F1' width=30%><b>Project Website Address:</b></td><td> <span tal:replace="structure accessor"/> </td></tr>		 	   
-		 	   
+                 <tr 
+                    tal:define="field python:here.Schema()['Tranched']; 
+                                accessor python:getattr(here, field.accessor)">
+                    <td bgcolor='#F1F1F1' width=30%><b>Tranched:</b></td>
+                    <td> <span tal:replace="structure accessor"/> 
+                        &nbsp; &nbsp;
+                        <span tal:define="field_tn python:here.Schema()['TranchedNumber'];
+                                          tn_accessor python:getattr(here, field_tn.accessor)"
+                            tal:replace="structure tn_accessor"/>
+                    </td>
+                 </tr>
 
-	  
-	        	   	
+                 <tr 
+                    tal:define="field python:here.Schema()['Phased']; 
+                                accessor python:getattr(here, field.accessor)">
+                    <td bgcolor='#F1F1F1' width=30%><b>Phased:</b></td>
+                    <td> <span tal:replace="structure accessor"/> 
+                        &nbsp; &nbsp;
+                        <span tal:define="field_pn python:here.Schema()['PhasedNumber'];
+                                          pn_accessor python:getattr(here, field_pn.accessor)"
+                            tal:replace="structure pn_accessor"/>
+                    </td>
+                 </tr>
+
+                 <tr 
+                    tal:define="field python:here.Schema()['AddOn']; 
+                                accessor python:getattr(here, field.accessor)">
+                    <td bgcolor='#F1F1F1' width=30%><b>Add-On:</b></td>
+                    <td> <span tal:replace="structure accessor"/> 
+                    </td>
+                 </tr>
+
 	   </table>
 	   
 	   </td>
@@ -213,6 +246,10 @@
 	   
 	   <tr><td colspan=2 bgcolor="#F1F1F1"><b>Project Description</b></td></tr>
 	   <tr bgcolor="#FFFFFF" tal:define="field python:here.Schema()['SummaryDescription']; accessor python:getattr(here, field.accessor)" tal:condition="python:not accessor()==''">
+	   	   	<td colspan=2><span tal:replace="structure accessor"/> </td>
+	   </tr>
+	   <tr><td colspan=2 bgcolor="#F1F1F1"><b>Actual Overall Project Results</b></td></tr>
+	   <tr bgcolor="#FFFFFF" tal:define="field python:here.Schema()['ProjectResults']; accessor python:getattr(here, field.accessor)" tal:condition="python:not accessor()==''">
 	   	   	<td colspan=2><span tal:replace="structure accessor"/> </td>
 	   </tr>
 	   <!--tr tal:on-error="N/A" bgcolor="#FFFFFF" tal:define="field python:here.Schema()['unep_component_description']; accessor python:getattr(here, field.accessor)" tal:condition="python:not accessor()==''"><td colspan=2 bgcolor="#F1F1F1"><b>Description of UNEP Components</b></td></tr>

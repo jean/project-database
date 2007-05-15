@@ -6,176 +6,18 @@
 <vocabName>
   <langstring language="en">Strategic Priority</langstring>
 </vocabName>
+
 <term>
-  <termIdentifier>BD1</termIdentifier>
+  <termIdentifier>CB-1</termIdentifier>
   <caption>
-    <langstring language="en">Catalyzing Sustainability of Protected Areas</langstring>
+    <langstring language="en">Enabling Activities (climate change and
+    biodiversity) </langstring>
   </caption>
   <description />
 </term>
 
 <term>
-  <termIdentifier>BD2</termIdentifier>
-  <caption>
-    <langstring language="en">Mainstreaming Biodiversity in Production Landscapes and Sectors</langstring>
-  </caption>
-  <description />
-</term>
-
-<term>
-  <termIdentifier>BD3</termIdentifier>
-  <caption>
-    <langstring language="en">Capacity Building for the Implementation of the Cartagena Protocol on Biosafety</langstring>
-  </caption>
-  <description />
-</term>
-
-<term>
-  <termIdentifier>BD4</termIdentifier>
-  <caption>
-    <langstring language="en">Generation and Dissemination of Best Practices for Addressing Current and Emerging Biodiversity Issues</langstring>
-  </caption>
-  <description />
-</term>
-
-<term>
-  <termIdentifier>CC1</termIdentifier>
-  <caption>
-    <langstring language="en">Transformation of Markets for High Volume Products and Processes</langstring>
-  </caption>
-  <description />
-</term>
-
-<term>
-  <termIdentifier>CC2</termIdentifier>
-  <caption>
-    <langstring language="en">Increased Access to Local Sources of Financing for Renewable Energy and Energy Efficiency</langstring>
-  </caption>
-  <description />
-</term>
-
-<term>
-  <termIdentifier>CC3</termIdentifier>
-  <caption>
-    <langstring language="en">Power Sector Policy Frameworks Supportive of Renewable Energy and Energy Efficiency</langstring>
-  </caption>
-  <description />
-</term>
-
-<term>
-  <termIdentifier>CC4</termIdentifier>
-  <caption>
-    <langstring language="en">Productive Uses of Renewable Energy</langstring>
-  </caption>
-  <description />
-</term>
-
-<term>
-  <termIdentifier>CC5</termIdentifier>
-  <caption>
-    <langstring language="en">Global Market Aggregation and National Innovation for Emerging Technologies</langstring>
-  </caption>
-  <description />
-</term>
-
-<term>
-  <termIdentifier>CC6</termIdentifier>
-  <caption>
-    <langstring language="en">Modal Shifts in Urban Transport and Clean Vehicle/Fuel Technologies</langstring>
-  </caption>
-  <description />
-</term>
- 
-<term>
-  <termIdentifier>CC7</termIdentifier>
-  <caption>
-    <langstring language="en">Short Term Measures</langstring>
-  </caption>
-  <description />
-</term>
-
-<term>
-  <termIdentifier>IW1</termIdentifier>
-  <caption>
-    <langstring language="en">Catalyzing Financial Resources for Implementation of Agreed Actions</langstring>
-  </caption>
-  <description />
-</term>
-
-<term>
-  <termIdentifier>IW2</termIdentifier>
-  <caption>
-    <langstring language="en">Expand Global Coverage with Capacity Building Foundational Work</langstring>
-  </caption>
-  <description />
-</term>
-
-<term>
-  <termIdentifier>IW3</termIdentifier>
-  <caption>
-    <langstring language="en">Undertake Innovative Demonstrations for Reducing Contaminants and Addressing Water Scarcity</langstring>
-  </caption>
-  <description />
-</term>
-
-<term>
-  <termIdentifier>OZ1</termIdentifier>
-  <caption>
-    <langstring language="en">Methyl Bromide Reduction</langstring>
-  </caption>
-  <description />
-</term>
-
-<term>
-  <termIdentifier>POP1</termIdentifier>
-  <caption>
-    <langstring language="en">Targeted Capacity Building</langstring>
-  </caption>
-  <description />
-</term>
-
-<term>
-  <termIdentifier>POP2</termIdentifier>
-  <caption>
-    <langstring language="en">Implementation of Policy/Regulatory Reforms and Investments</langstring>
-  </caption>
-  <description />
-</term>
-
-<term>
-  <termIdentifier>POP3</termIdentifier>
-  <caption>
-    <langstring language="en">Demonstration of Innovative and Cost Effective Technologies</langstring>
-  </caption>
-  <description />
-</term>
-
-<term>
-  <termIdentifier>SLM1</termIdentifier>
-  <caption>
-    <langstring language="en">Targeted Capacity Building</langstring>
-  </caption>
-  <description />
-</term>
-
-<term>
-  <termIdentifier>SLM2</termIdentifier>
-  <caption>
-    <langstring language="en">Implementation of Innovative and Indigenous Sustainable Land Management Practices</langstring>
-  </caption>
-  <description />
-</term>
-
-<term>
-  <termIdentifier>CB1</termIdentifier>
-  <caption>
-    <langstring language="en">Enabling Activities</langstring>
-  </caption>
-  <description />
-</term>
-
-<term>
-  <termIdentifier>CB2</termIdentifier>
+  <termIdentifier>CB-2</termIdentifier>
   <caption>
     <langstring language="en">Crosscutting Capacity Building</langstring>
   </caption>
@@ -183,19 +25,179 @@
 </term>
 
 <term>
-  <termIdentifier>EM1</termIdentifier>
+  <termIdentifier>BD-1</termIdentifier>
+  <caption>
+    <langstring language="en">Catalyzing Sustainability of Protected Areas</langstring>
+  </caption>
+  <description />
+</term>
+
+<term>
+  <termIdentifier>BD-2</termIdentifier>
+  <caption>
+    <langstring language="en">Mainstreaming Biodiversity in Production Landscapes and Sectors</langstring>
+  </caption>
+  <description />
+</term>
+
+<term>
+  <termIdentifier>BD-3</termIdentifier>
+  <caption>
+    <langstring language="en">Capacity Building for the Implementation of the Cartagena Protocol on Biosafety</langstring>
+  </caption>
+  <description />
+</term>
+
+<term>
+  <termIdentifier>BD-4</termIdentifier>
+  <caption>
+    <langstring language="en">Generation and Dissemination of Best Practices for Addressing Current and Emerging Biodiversity Issues</langstring>
+  </caption>
+  <description />
+</term>
+
+<term>
+  <termIdentifier>CC-1</termIdentifier>
+  <caption>
+    <langstring language="en">Transformation of Markets for High Volume Products and Processes</langstring>
+  </caption>
+  <description />
+</term>
+
+<term>
+  <termIdentifier>CC-2</termIdentifier>
+  <caption>
+    <langstring language="en">Increased Access to Local Sources of Financing for Renewable Energy and Energy Efficiency</langstring>
+  </caption>
+  <description />
+</term>
+
+<term>
+  <termIdentifier>CC-3</termIdentifier>
+  <caption>
+    <langstring language="en">Power Sector Policy Frameworks Supportive of Renewable Energy and Energy Efficiency</langstring>
+  </caption>
+  <description />
+</term>
+
+<term>
+  <termIdentifier>CC-4</termIdentifier>
+  <caption>
+    <langstring language="en">Productive Uses of Renewable Energy</langstring>
+  </caption>
+  <description />
+</term>
+
+<term>
+  <termIdentifier>CC-5</termIdentifier>
+  <caption>
+    <langstring language="en">Global Market Aggregation and National Innovation for Emerging Technologies</langstring>
+  </caption>
+  <description />
+</term>
+
+<term>
+  <termIdentifier>CC-6</termIdentifier>
+  <caption>
+    <langstring language="en">Modal Shifts in Urban Transport and Clean Vehicle/Fuel Technologies</langstring>
+  </caption>
+  <description />
+</term>
+ 
+<term>
+  <termIdentifier>CC-7</termIdentifier>
+  <caption>
+    <langstring language="en">Short Term Measures</langstring>
+  </caption>
+  <description />
+</term>
+
+<term>
+  <termIdentifier>IW-1</termIdentifier>
+  <caption>
+    <langstring language="en">Catalyzing Financial Resources for Implementation of Agreed Actions</langstring>
+  </caption>
+  <description />
+</term>
+
+<term>
+  <termIdentifier>IW-2</termIdentifier>
+  <caption>
+    <langstring language="en">Expand Global Coverage with Capacity Building Foundational Work</langstring>
+  </caption>
+  <description />
+</term>
+
+<term>
+  <termIdentifier>IW-3</termIdentifier>
+  <caption>
+    <langstring language="en">Undertake Innovative Demonstrations for Reducing Contaminants and Addressing Water Scarcity</langstring>
+  </caption>
+  <description />
+</term>
+
+<term>
+  <termIdentifier>OZ-1</termIdentifier>
+  <caption>
+    <langstring language="en">Methyl Bromide Reduction</langstring>
+  </caption>
+  <description />
+</term>
+
+<term>
+  <termIdentifier>POP-1</termIdentifier>
+  <caption>
+    <langstring language="en">Targeted Capacity Building</langstring>
+  </caption>
+  <description />
+</term>
+
+<term>
+  <termIdentifier>POP-2</termIdentifier>
+  <caption>
+    <langstring language="en">Implementation of Policy/Regulatory Reforms and Investments</langstring>
+  </caption>
+  <description />
+</term>
+
+<term>
+  <termIdentifier>POP-3</termIdentifier>
+  <caption>
+    <langstring language="en">Demonstration of Innovative and Cost Effective Technologies</langstring>
+  </caption>
+  <description />
+</term>
+
+<term>
+  <termIdentifier>SLM-1</termIdentifier>
+  <caption>
+    <langstring language="en">Targeted Capacity Building</langstring>
+  </caption>
+  <description />
+</term>
+
+<term>
+  <termIdentifier>SLM-2</termIdentifier>
+  <caption>
+    <langstring language="en">Implementation of Innovative and Indigenous Sustainable Land Management Practices</langstring>
+  </caption>
+  <description />
+</term>
+
+<term>
+  <termIdentifier>EM-1</termIdentifier>
   <caption>
     <langstring language="en">Integrated Approach to Ecosystem Management</langstring>
   </caption>
   <description />
 </term>
 
-<term>
+<!--term>
   <termIdentifier>SGP1</termIdentifier>
   <caption>
     <langstring language="en">Small Grants Progam</langstring>
   </caption>
   <description />
-</term>
+</term-->
 
 </vdex>

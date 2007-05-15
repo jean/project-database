@@ -110,6 +110,14 @@ class testProject(PortalDatabaseTestCase):
     def test_project_general_information(self):
         pass
 
+    # from class Project:
+    def test_validate_TranchedNumber(self):
+        pass
+
+    # from class Project:
+    def test_validate_PhasedNumber(self):
+        pass
+
     # from class CurrencyMixin:
     def test_getZeroMoneyInstance(self):
         pass

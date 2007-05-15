@@ -13,6 +13,7 @@
   </caption>
   <description />
 </term>
+
 <term>
   <termIdentifier>I</termIdentifier>
   <caption>
@@ -20,6 +21,7 @@
   </caption>
   <description />
 </term>
+
 <term>
   <termIdentifier>II</termIdentifier>
   <caption>
@@ -27,6 +29,7 @@
   </caption>
   <description />
 </term>
+
 <term>
   <termIdentifier>III</termIdentifier>
   <caption>
@@ -34,4 +37,29 @@
   </caption>
   <description />
 </term>
+
+<term>
+  <termIdentifier>IV</termIdentifier>
+  <caption>
+    <langstring language="en">IV</langstring>
+  </caption>
+  <description />
+</term>
+
+<term>
+  <termIdentifier>V</termIdentifier>
+  <caption>
+    <langstring language="en">V</langstring>
+  </caption>
+  <description />
+</term>
+
+<term>
+  <termIdentifier>VI</termIdentifier>
+  <caption>
+    <langstring language="en">VI</langstring>
+  </caption>
+  <description />
+</term>
+
 </vdex>

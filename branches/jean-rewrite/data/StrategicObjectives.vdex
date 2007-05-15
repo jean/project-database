@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vdex xmlns="http://www.imsglobal.org/xsd/imsvdex_v1p0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.imsglobal.org/xsd/imsvdex_v1p0 imsvdex_v1p0.xsd http://www.imsglobal.org/xsd/imsmd_rootv1p2p1 imsmd_rootv1p2p1.xsd"
+    language="en" orderSignificant="true" profileType="flatTokenTerms">
+<vocabName>
+  <langstring language="en">StrategicObjectives</langstring>
+</vocabName>
+
+<term>
+  <termIdentifier>BDrev-1</termIdentifier>
+  <caption>
+    <langstring language="en">Catalyze sustainability of protected areas
+    at national levels
+    </langstring>
+  </caption>
+  <description />
+</term>
+
+<term>
+  <termIdentifier>BDrev-2</termIdentifier>
+  <caption>
+    <langstring language="en">Mainstream biodiversity in production
+    landscapes, seascapes and sectors
+    </langstring>
+  </caption>
+  <description />
+</term>
+
+<term>
+  <termIdentifier>BDrev-3</termIdentifier>
+  <caption>
+    <langstring language="en">Build capacity for the implementation of
+    the Cartagena Protocol on Biosafety
+    </langstring>
+  </caption>
+  <description />
+</term>
+
+<term>
+  <termIdentifier>BDrev-4</termIdentifier>
+  <caption>
+    <langstring language="en">Generate, Disseminate and uptake of good
+    practices for addressing current and emerging biodiversity issues
+    </langstring>
+  </caption>
+  <description />
+</term>
+
+<term>
+  <termIdentifier>CCrev-1</termIdentifier>
+  <caption>
+    <langstring language="en">Promote of widespread adoption of
+    energy-efficient technologies and practices in the built environment
+    </langstring>
+  </caption>
+  <description />
+</term>
+
+<term>
+  <termIdentifier>CCrev-2</termIdentifier>
+  <caption>
+    <langstring language="en">Promote of supply and demand for grid
+    electricity from renewable resources
+    </langstring>
+  </caption>
+  <description />
+</term>
+
+<term>
+  <termIdentifier>CCrev-3</termIdentifier>
+  <caption>
+    <langstring language="en">Facilitate GHG reduction through market
+    transformation for sustainable mobility in urban areas
+    </langstring>
+  </caption>
+  <description />
+</term>
+
+<term>
+  <termIdentifier>CCrev-4</termIdentifier>
+  <caption>
+    <langstring language="en">Improve the efficiency and performance of
+    existing power plants in order to reduce CO2 emissions from
+    electricity generation
+    </langstring>
+  </caption>
+  <description />
+</term>
+
+<term>
+  <termIdentifier>CCrev-5</termIdentifier>
+  <caption>
+    <langstring language="en">Promote use of renewable energy for the
+    provision of rural energy services
+    </langstring>
+  </caption>
+  <description />
+</term>
+
+<term>
+  <termIdentifier>CCrev-6</termIdentifier>
+  <caption>
+    <langstring language="en">Promote the deployment and diffusion of
+    energy-efficient technologies and practices in industrial production
+    and manufacturing processes
+    </langstring>
+  </caption>
+  <description />
+</term>
+
+<term>
+  <termIdentifier>CCrev-7</termIdentifier>
+  <caption>
+    <langstring language="en">Support the deployment of new, low
+    GHG-emitting energy technologies by aggregating demand for the
+    technologies in niche applications and facilitate technological
+    access and innovation
+    </langstring>
+  </caption>
+  <description />
+</term>
+
+<term>
+  <termIdentifier>CCrev-8</termIdentifier>
+  <caption>
+    <langstring language="en">Support pilot and demonstration projects
+    that both address adaptation needs and generate global environmental
+    benefits in the GEF focal areas
+    </langstring>
+  </caption>
+  <description />
+</term>
+
+<term>
+  <termIdentifier>IWrev-1</termIdentifier>
+  <caption>
+    <langstring language="en">Catalyze implementation of agreed reforms
+    and on-the-ground stress reduction investments to address
+    transboundary water concerns
+    </langstring>
+  </caption>
+  <description />
+</term>
+
+<term>
+  <termIdentifier>IWrev-2</termIdentifier>
+  <caption>
+    <langstring language="en">Expand foundational capacity-building to a
+    limited number of new transboundary systems through integrated
+    approaches and foster replication through targeted learning for the
+    international waters portfolio
+    </langstring>
+  </caption>
+  <description />
+</term>
+
+<term>
+  <termIdentifier>IWrev-3</termIdentifier>
+  <caption>
+    <langstring language="en">Undertake innovative demonstrations
+    addressing key program gaps with a focus on SIDS water
+    supply/coastal protection and IWRM ISSD targets
+    </langstring>
+  </caption>
+  <description />
+</term>
+
+<term>
+  <termIdentifier>OZrev-1</termIdentifier>
+  <caption>
+    <langstring language="en">Address HCFCs, residual use of MeBr, and
+    strengthen institutions and other non-investment activities
+    </langstring>
+  </caption>
+  <description />
+</term>
+
+</vdex>

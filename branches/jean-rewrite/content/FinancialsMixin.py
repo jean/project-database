@@ -278,6 +278,26 @@ schema = Schema((
         )
     ),
 
+    MoneyField(
+        name='ImplementingAgencyFee',
+        widget=MoneyField._properties['widget'](
+            label="Implementing Agency Fee",
+            description="Enter the Full implementing agency fee",
+            label_msgid='ProjectDatabase_label_ImplementingAgencyFee',
+            description_msgid='ProjectDatabase_help_ImplementingAgencyFee',
+            i18n_domain='ProjectDatabase',
+        )
+    ),
+
+    MoneyField(
+        name='UNEPImplentingAgencyFee',
+        widget=MoneyField._properties['widget'](
+            label='Unepimplentingagencyfee',
+            label_msgid='ProjectDatabase_label_UNEPImplentingAgencyFee',
+            i18n_domain='ProjectDatabase',
+        )
+    ),
+
 ),
 )
 

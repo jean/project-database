@@ -4,28 +4,21 @@
     xsi:schemaLocation="http://www.imsglobal.org/xsd/imsvdex_v1p0 imsvdex_v1p0.xsd http://www.imsglobal.org/xsd/imsmd_rootv1p2p1 imsmd_rootv1p2p1.xsd"
     language="en" orderSignificant="true" profileType="flatTokenTerms">
 <vocabName>
-  <langstring language="en">Project Type</langstring>
+  <langstring language="en">YesOrNo</langstring>
 </vocabName>
+
 <term>
-  <termIdentifier>EA</termIdentifier>
+  <termIdentifier>Yes</termIdentifier>
   <caption>
-    <langstring language="en">Expedited Enabling Activity</langstring>
+    <langstring language="en">Yes</langstring>
   </caption>
   <description />
 </term>
 
 <term>
-  <termIdentifier>FSP</termIdentifier>
+  <termIdentifier>No</termIdentifier>
   <caption>
-    <langstring language="en">FSP</langstring>
-  </caption>
-  <description />
-</term>
-
-<term>
-  <termIdentifier>MSP</termIdentifier>
-  <caption>
-    <langstring language="en">MSP</langstring>
+    <langstring language="en">No</langstring>
   </caption>
   <description />
 </term>
