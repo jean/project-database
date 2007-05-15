@@ -52,6 +52,8 @@ import Financials
 import SubProject
 import FinancialsMixin
 import DocumentLinks
+import ProjectExecutingPartner
+import MoneField
 
 ##code-section init-module-footer #fill in your manual code here
 ##/code-section init-module-footer

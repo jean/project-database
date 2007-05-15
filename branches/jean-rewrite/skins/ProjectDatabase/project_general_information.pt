@@ -156,7 +156,7 @@
                             mode string:view;
                             widget_view python:here.widget(field.getName(), mode=mode, use_label=1);" 
                 tal:condition="python:not accessor()==''">
-                <td bgcolor="#F1F1F1"><b>Operational Programme:</b></td>
+                <td bgcolor="#FCE2B1"><b>Operational Programme:</b></td>
                 <td><metal:block use-macro="widget_view" /></td>
 	        </tr>
 	   	    <tr tal:on-error="nothing" 
@@ -165,7 +165,7 @@
 			   	   	        mode string:view;
 			   	   			widget_view python:here.widget(field.getName(), mode=mode, use_label=1);" 
                 tal:condition="python:not accessor()==''">
-                <td bgcolor="#F1F1F1"><b>Strategic Priority:</b></td> 
+                <td bgcolor="#FCE2B1"><b>Strategic Priority:</b></td> 
                 <td><metal:block use-macro="widget_view" /></td>
             </tr>
 	   	    <tr tal:on-error="nothing" 
@@ -180,17 +180,20 @@
             </tr>
 	   	    <tr tal:on-error="nothing" 
                 tal:define="field python:here.Schema()['LeadAgency']; 
-                            accessor python:getattr(here, field.accessor)">
-                <td bgcolor="#C5D5A9"><b>Lead Implementing Agency </b></td> 
-                <td><span tal:replace="structure accessor"/> </td>
-            </tr>
+		   	   	   		    accessor python:getattr(here, field.accessor);
+		   	   	   		    mode string:view;
+		   	   	   		    widget_view python:here.widget(field.getName(), mode=mode, use_label=1);" 
+                tal:condition="python:not accessor()==''">
+                <td bgcolor="#C5D5A9"><b>Lead GEF Implementing Agency</b></td>
+                <td><metal:block use-macro="widget_view" /></td>
+	   	    </tr>
 	   	    <tr tal:on-error="nothing" 
                 tal:define="field python:here.Schema()['OtherImplementingAgency']; 
 		   	   	   		    accessor python:getattr(here, field.accessor);
 		   	   	   		    mode string:view;
 		   	   	   		    widget_view python:here.widget(field.getName(), mode=mode, use_label=1);" 
                 tal:condition="python:not accessor()==''">
-                <td bgcolor="#C5D5A9"><b>Other Implementing Agencies:</b></td>
+                <td bgcolor="#C5D5A9"><b>Other GEF Implementing Agency</b></td>
                 <td><metal:block use-macro="widget_view" /></td>
 	   	    </tr>
 	   	    <tr><td colspan="2" 
@@ -386,7 +389,7 @@
             <tr tal:on-error="nothing" 
                 tal:define="field python:here.Schema()['ImplementationMode']; 
                             accessor python:getattr(here, field.accessor)">
-                <td bgcolor="#F1F1F1" width=30%>Mode:</td>
+                <td bgcolor="#F1F1F1" width=30%>Mode of Implementation:</td>
                 <td><span tal:replace="structure accessor"/> </td>
             </tr>
             <tr tal:on-error="nothing" 

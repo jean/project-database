@@ -141,6 +141,15 @@ schema = Schema((
         vocabulary=NamedVocabulary("""EABiodiversity""")
     ),
 
+    TextField(
+        name='EABiodiversityOther',
+        widget=TextAreaWidget(
+            label="Other EA Biodiversity",
+            label_msgid='ProjectDatabase_label_EABiodiversityOther',
+            i18n_domain='ProjectDatabase',
+        )
+    ),
+
     LinesField(
         name='EAClimateChange',
         widget=MultiSelectionWidget(
@@ -150,6 +159,15 @@ schema = Schema((
         ),
         multiValued=1,
         vocabulary=NamedVocabulary("""EAClimateChange""")
+    ),
+
+    TextField(
+        name='EAClimateChangeOther',
+        widget=TextAreaWidget(
+            label="EA Climate Change Other",
+            label_msgid='ProjectDatabase_label_EAClimateChangeOther',
+            i18n_domain='ProjectDatabase',
+        )
     ),
 
     LinesField(
@@ -163,6 +181,15 @@ schema = Schema((
         vocabulary=NamedVocabulary("""EAPOP""")
     ),
 
+    TextField(
+        name='EAPOPOther',
+        widget=TextAreaWidget(
+            label="EA-POP Other",
+            label_msgid='ProjectDatabase_label_EAPOPOther',
+            i18n_domain='ProjectDatabase',
+        )
+    ),
+
     LinesField(
         name='MultipleFocalAreas',
         widget=MultiSelectionWidget(
@@ -174,6 +201,15 @@ schema = Schema((
         vocabulary=NamedVocabulary("""MultipleFocalAreas""")
     ),
 
+    TextField(
+        name='MultipleFocalAreasOther',
+        widget=TextAreaWidget(
+            label="Multiple Focal Areas Other",
+            label_msgid='ProjectDatabase_label_MultipleFocalAreasOther',
+            i18n_domain='ProjectDatabase',
+        )
+    ),
+
     StringField(
         name='StrategicPriority',
         widget=SelectionWidget(
@@ -182,6 +218,16 @@ schema = Schema((
             i18n_domain='ProjectDatabase',
         ),
         vocabulary=NamedVocabulary("""StrategicPriority""")
+    ),
+
+    StringField(
+        name='StrategicObjectives',
+        widget=SelectionWidget(
+            label="Strategic Objectives",
+            label_msgid='ProjectDatabase_label_StrategicObjectives',
+            i18n_domain='ProjectDatabase',
+        ),
+        vocabulary=NamedVocabulary("""StrategicObjectives""")
     ),
 
     StringField(
@@ -210,7 +256,9 @@ schema = Schema((
         allowable_content_types=('text/plain', 'text/structured', 'text/html', 'application/msword',),
         widget=RichWidget(
             label="UNEP Component Description",
+            description="Enter a description of UNEP components only in the case of jointly implemented projects",
             label_msgid='ProjectDatabase_label_UnepComponentDescription',
+            description_msgid='ProjectDatabase_help_UnepComponentDescription',
             i18n_domain='ProjectDatabase',
         ),
         default_output_type='text/html'
@@ -224,24 +272,6 @@ schema = Schema((
             i18n_domain='ProjectDatabase',
         ),
         vocabulary=NamedVocabulary("""GEFPhase""")
-    ),
-
-    MoneyField(
-        name='ImplementingAgencyFee',
-        widget=MoneyField._properties['widget'](
-            label="Implementing Agency Fee",
-            label_msgid='ProjectDatabase_label_ImplementingAgencyFee',
-            i18n_domain='ProjectDatabase',
-        )
-    ),
-
-    MoneyField(
-        name='UNEPImplementingAgencyFee',
-        widget=MoneyField._properties['widget'](
-            label="UNEP Implementing Agency Fee",
-            label_msgid='ProjectDatabase_label_UNEPImplementingAgencyFee',
-            i18n_domain='ProjectDatabase',
-        )
     ),
 
     StringField(
@@ -405,8 +435,10 @@ schema = Schema((
         name='LeveragedFinancingRemark',
         allowable_content_types=('text/plain', 'text/structured', 'text/html', 'application/msword',),
         widget=RichWidget(
-            label="Leveraged Financing Remark",
+            label="Leveraged Financial Amount Description",
+            description="Enter sources and Purposes",
             label_msgid='ProjectDatabase_label_LeveragedFinancingRemark',
+            description_msgid='ProjectDatabase_help_LeveragedFinancingRemark',
             i18n_domain='ProjectDatabase',
         ),
         default_output_type='text/html',
@@ -417,36 +449,37 @@ schema = Schema((
         name='ProjectResults',
         allowable_content_types=('text/plain', 'text/structured', 'text/html', 'application/msword',),
         widget=RichWidget(
-            label="Project Results",
+            label="Actual Overall Project Results",
+            description="Enter overall Project Results AFTER Project Terminal Evaluation",
             label_msgid='ProjectDatabase_label_ProjectResults',
+            description_msgid='ProjectDatabase_help_ProjectResults',
             i18n_domain='ProjectDatabase',
         ),
         default_output_type='text/html'
     ),
 
     ReferenceField(
+        name='LeadAgency',
+        widget=ReferenceField._properties['widget'](
+            label="Lead GEF Agency",
+            label_msgid='ProjectDatabase_label_LeadAgency',
+            i18n_domain='ProjectDatabase',
+        ),
+        allowed_types=('Agency',),
+        multiValued=0,
+        relationship="Project_LeadAgency"
+    ),
+
+    ReferenceField(
         name='OtherImplementingAgency',
         widget=ReferenceField._properties['widget'](
-            label="Other Implementing Agency",
+            label="Other GEF Implementing Agency",
             label_msgid='ProjectDatabase_label_OtherImplementingAgency',
             i18n_domain='ProjectDatabase',
         ),
         allowed_types=('Agency',),
         multiValued=0,
         relationship="Project_OtherImplementingAgency"
-    ),
-
-    StringField(
-        name='LeadAgency',
-        widget=SelectionWidget(
-            label="Lead Agency",
-            label_msgid='ProjectDatabase_label_LeadAgency',
-            i18n_domain='ProjectDatabase',
-        ),
-        multiValued=0,
-        relationship="Project_LeadAgency",
-        vocabulary=NamedVocabulary("""LeadAgency"""),
-        allowed_types=('Agency',)
     ),
 
     ComputedField(
@@ -548,6 +581,78 @@ schema = Schema((
         )
     ),
 
+    StringField(
+        name='GEFAgencyImplementation',
+        widget=SelectionWidget(
+            label="GEF Agency Implementation",
+            label_msgid='ProjectDatabase_label_GEFAgencyImplementation',
+            i18n_domain='ProjectDatabase',
+        ),
+        vocabulary=NamedVocabulary("""AgencyImplementation""")
+    ),
+
+    StringField(
+        name='ProjectExecutingAgency',
+        widget=StringWidget(
+            label="Project Executing Agency",
+            label_msgid='ProjectDatabase_label_ProjectExecutingAgency',
+            i18n_domain='ProjectDatabase',
+        )
+    ),
+
+    StringField(
+        name='Tranched',
+        widget=SelectionWidget(
+            description="Is this a Tranched project?",
+            label='Tranched',
+            label_msgid='ProjectDatabase_label_Tranched',
+            description_msgid='ProjectDatabase_help_Tranched',
+            i18n_domain='ProjectDatabase',
+        ),
+        vocabulary=NamedVocabulary("""YesOrNo""")
+    ),
+
+    IntegerField(
+        name='TranchedNumber',
+        default=0,
+        widget=IntegerField._properties['widget'](
+            label='Tranchednumber',
+            label_msgid='ProjectDatabase_label_TranchedNumber',
+            i18n_domain='ProjectDatabase',
+        )
+    ),
+
+    StringField(
+        name='Phased',
+        widget=SelectionWidget(
+            description="Is this a Phased project?",
+            label='Phased',
+            label_msgid='ProjectDatabase_label_Phased',
+            description_msgid='ProjectDatabase_help_Phased',
+            i18n_domain='ProjectDatabase',
+        ),
+        vocabulary=NamedVocabulary("""YesOrNo""")
+    ),
+
+    IntegerField(
+        name='PhasedNumber',
+        widget=IntegerField._properties['widget'](
+            label='Phasednumber',
+            label_msgid='ProjectDatabase_label_PhasedNumber',
+            i18n_domain='ProjectDatabase',
+        )
+    ),
+
+    StringField(
+        name='AddOn',
+        widget=SelectionWidget(
+            label='Addon',
+            label_msgid='ProjectDatabase_label_AddOn',
+            i18n_domain='ProjectDatabase',
+        ),
+        vocabulary=NamedVocabulary("""YesOrNo""")
+    ),
+
 ),
 )
 
@@ -577,7 +682,7 @@ class Project(BaseFolder, CurrencyMixin, DocumentLinks):
 
     meta_type = 'Project'
     portal_type = 'Project'
-    allowed_content_types = ['ProjectImplementation', 'Financials', 'Milestone', 'SubProject'] + list(getattr(DocumentLinks, 'allowed_content_types', []))
+    allowed_content_types = ['ProjectImplementation', 'Financials', 'Milestone', 'SubProject', 'ProjectExecutingPartner'] + list(getattr(DocumentLinks, 'allowed_content_types', []))
     filter_content_types = 1
     global_allow = 0
     #content_icon = 'Project.gif'
@@ -685,6 +790,42 @@ class Project(BaseFolder, CurrencyMixin, DocumentLinks):
         """
         """
         pass
+
+    security.declarePublic('validate_TranchedNumber')
+    def validate_TranchedNumber(self, value):
+        """
+        """
+        val=0
+        try:
+            val = int(value)
+        except ValueError:
+            return 'Value must be an integer'
+
+        if self.REQUEST.get('Tranched') == 'Yes':
+            if val <= 0:
+                return 'Value must be bigger than zero if Tranched is Yes'
+        if self.REQUEST.get('Tranched') == 'No':
+            if val != 0:
+                return 'Value must be zero if Tranched is No'
+        return ''
+
+    security.declarePublic('validate_PhasedNumber')
+    def validate_PhasedNumber(self, value):
+        """
+        """
+        val=0
+        try:
+            val = int(value)
+        except ValueError:
+            return 'Value must be an integer'
+
+        if self.REQUEST.get('Phased') == 'Yes':
+            if val <= 0:
+                return 'Value must be bigger than zero if Phased is Yes'
+        if self.REQUEST.get('Phased') == 'No':
+            if val != 0:
+                return 'Value must be zero if Phased is No'
+        return ''
 
 
 registerType(Project, PROJECTNAME)

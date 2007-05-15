@@ -74,8 +74,10 @@ def install(self, reinstall=False):
     # Create vocabularies in vocabulary lib
     from Products.ATVocabularyManager.config import TOOL_NAME as ATVOCABULARYTOOL
     atvm = getToolByName(self, ATVOCABULARYTOOL)
-    vocabmap = {'StrategicPriority': ('VdexVocabulary', 'SimpleVocabularyTerm'),
+    vocabmap = {'Category': ('VdexVocabulary', 'SimpleVocabularyTerm'),
+         'StrategicPriority': ('VdexVocabulary', 'SimpleVocabularyTerm'),
          'GEFPhase': ('VdexVocabulary', 'SimpleVocabularyTerm'),
+         'YesOrNo': ('VdexVocabulary', 'SimpleVocabularyTerm'),
          'Scope': ('VdexVocabulary', 'SimpleVocabularyTerm'),
          'Status': ('VdexVocabulary', 'SimpleVocabularyTerm'),
          'ImplementationMode': ('VdexVocabulary', 'SimpleVocabularyTerm'),
@@ -94,8 +96,9 @@ def install(self, reinstall=False):
          'ReportType': ('VdexVocabulary', 'SimpleVocabularyTerm'),
          'MultipleFocalAreas': ('VdexVocabulary', 'SimpleVocabularyTerm'),
          'FocalArea': ('VdexVocabulary', 'SimpleVocabularyTerm'),
+         'AgencyImplementation': ('VdexVocabulary', 'SimpleVocabularyTerm'),
+         'StrategicObjectives': ('VdexVocabulary', 'SimpleVocabularyTerm'),
          'EAClimateChange': ('VdexVocabulary', 'SimpleVocabularyTerm'),
-         'LeadAgency': ('VdexVocabulary', 'SimpleVocabularyTerm'),
         }
     for vocabname in vocabmap.keys():
         if not vocabname in atvm.contentIds():
@@ -151,6 +154,8 @@ def install(self, reinstall=False):
         "SubProject",
         "FinancialsMixin",
         "DocumentLinks",
+        "ProjectExecutingPartner",
+        "MoneField",
         "testProjectDatabaseSetup",
         "PortalDatabaseTestCase",
         "testProjectDatabase",

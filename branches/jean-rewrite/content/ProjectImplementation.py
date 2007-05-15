@@ -81,7 +81,7 @@ class ProjectImplementation(BaseContent):
     zope.interface.implements(IProjectImplementation)
 
     # This name appears in the 'add' box
-    archetype_name = 'ProjectImplementation'
+    archetype_name = 'Project Implementation'
 
     meta_type = 'ProjectImplementation'
     portal_type = 'ProjectImplementation'
@@ -92,7 +92,7 @@ class ProjectImplementation(BaseContent):
     immediate_view = 'base_view'
     default_view = 'base_view'
     suppl_views = ()
-    typeDescription = "ProjectImplementation"
+    typeDescription = "Project Implementation"
     typeDescMsgId = 'description_edit_projectimplementation'
 
     _at_rename_after_creation = True

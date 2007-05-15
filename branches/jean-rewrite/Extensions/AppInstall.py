@@ -28,6 +28,7 @@ def install(self):
                 ('UNDP', 'United Nations Development Programme'),
                 ('UNEP', 'United Nations Environment Programme'),
                 ('IBRD', 'World Bank'),
+                ('UNIDO', 'UNIDO'),
                 ):
             portal.contacts.invokeFactory('Agency', id.lower(), title=title)
         out.write('Added agencies.')
