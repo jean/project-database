@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vdex xmlns="http://www.imsglobal.org/xsd/imsvdex_v1p0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.imsglobal.org/xsd/imsvdex_v1p0 imsvdex_v1p0.xsd http://www.imsglobal.org/xsd/imsmd_rootv1p2p1 imsmd_rootv1p2p1.xsd"
+    language="en" orderSignificant="true" profileType="flatTokenTerms">
+<vocabName>
+  <langstring language="en">MEMilestoneName</langstring>
+</vocabName>
+
+<term>
+  <termIdentifier>Draft TOR</termIdentifier>
+  <caption>
+    <langstring language="en">Draft TOR</langstring>
+  </caption>
+  <description />
+</term>
+
+<term>
+  <termIdentifier>Agreed TOR</termIdentifier>
+  <caption>
+    <langstring language="en">Agreed TOR</langstring>
+  </caption>
+  <description />
+</term>
+
+<term>
+  <termIdentifier>Collation of Project Information</termIdentifier>
+  <caption>
+    <langstring language="en">Collation of Project Information</langstring>
+  </caption>
+  <description />
+</term>
+
+<term>
+  <termIdentifier>Selection of Evaluation consultant/team</termIdentifier>
+  <caption>
+    <langstring language="en">Selection of Evaluation consultant/team</langstring>
+  </caption>
+  <description />
+</term>
+
+<term>
+  <termIdentifier>Contract Approval</termIdentifier>
+  <caption>
+    <langstring language="en">Contract Approval</langstring>
+  </caption>
+  <description />
+</term>
+
+<term>
+  <termIdentifier>Travel Approval</termIdentifier>
+  <caption>
+    <langstring language="en">Travel Approval</langstring>
+  </caption>
+  <description />
+</term>
+
+<term>
+  <termIdentifier>Draft Report</termIdentifier>
+  <caption>
+    <langstring language="en">Draft Report</langstring>
+  </caption>
+  <description />
+</term>
+
+<term>
+  <termIdentifier>Comments to the Report</termIdentifier>
+  <caption>
+    <langstring language="en">Comments to the Report</langstring>
+  </caption>
+  <description />
+</term>
+
+<term>
+  <termIdentifier>Final Report</termIdentifier>
+  <caption>
+    <langstring language="en">Final Report</langstring>
+  </caption>
+  <description />
+</term>
+
+<term>
+  <termIdentifier>EOU Quality Assessment Review</termIdentifier>
+  <caption>
+    <langstring language="en">EOU Quality Assessment Review</langstring>
+  </caption>
+  <description />
+</term>
+
+<term>
+  <termIdentifier>Submission to GEF EO</termIdentifier>
+  <caption>
+    <langstring language="en">Submission to GEF EO</langstring>
+  </caption>
+  <description />
+</term>
+
+<term>
+  <termIdentifier>Submission to project partners</termIdentifier>
+  <caption>
+    <langstring language="en">Submission to project partners</langstring>
+  </caption>
+  <description />
+</term>
+
+<term>
+  <termIdentifier>Assessment of Consultants</termIdentifier>
+  <caption>
+    <langstring language="en">Assessment of Consultants</langstring>
+  </caption>
+  <description />
+</term>
+
+<term>
+  <termIdentifier>Final Payment</termIdentifier>
+  <caption>
+    <langstring language="en">Final Payment</langstring>
+  </caption>
+  <description />
+</term>
+
+</vdex>

@@ -111,10 +111,11 @@
 
                 <div class="formHelp">
 
-                Enter a search string here. like 'Water Based Management.'<br/>
+                Enter a search string here. like 'Water'<br/>
 
-                Use a wildcard character '*' for parts you are not sure of.
-                Eg. 'Water Based Management*'
+                An asterisk (*) can be used to represent zero or more
+                characters when searching. eg 'Water*'
+                will match, among others,  'Water Based Management'
                 </div>
                 <input type="text"
                        id="SearchableText" 
@@ -125,11 +126,12 @@
                        />
             </div>
 
-           <div class="field">
-                <label for="GefId" i18n:translate="label_search_gefid">GEF Project Id</label>
+           <div class="field"
+                tal:condition="python: user.has_permission('View Projects', here)">
+                <label for="GefId" i18n:translate="label_search_gefid">GEF Project ID</label>
 
                 <div class="formHelp">
-                Every Gef project has an unique Id
+                Every GEF project has an unique ID
                 </div>
 
                 <input type="text"
@@ -147,13 +149,14 @@
 		    <label for="Focal Area">Focal Area</label>
 
 		    <div class="formHelp">
-		    Select specific Focal Area.
+		    Select a specific Focal Area
 		    </div>
 
-   		  <select name="getFocal_area"
+   		  <select name="getFocalArea"
 			       id="focal_area"
 			       tabindex=""
 			       tal:attributes="tabindex tabindex/next;">
+            <option value=""/>
 		  <tal:block repeat="focal_area python:here.getVocabulary('FocalArea').items()">
 				  <option value=""
 				      tal:attributes="value python:focal_area[0]"
@@ -166,18 +169,95 @@
             </div>
 
 
+    <div class="field">
 
-	
+        <label for="Operational Programme">Operational Programmes</label>
+
+        <div class="formHelp">
+        Select Operational Programme
+        </div>
+
+        <select name="getOperationalProgramme"
+            id="operational_programme"
+            tabindex=""
+            tal:attributes="tabindex tabindex/next;">
+        <option value=""> </option>
+        <tal:block repeat="operational_programme python:here.getVocabulary('OperationalProgramme').items()">
+        <option value="" tal:attributes="value python:operational_programme[0]" tal:content="python:operational_programme[1]"> Operational Programme </option>
+        </tal:block>
+        </select>
+
+
+    </div>
+
+<!-- Geographic Scope -->
+    <div class="field">
+
+        <label for="Geographic Scope">Geographic Scope</label>
+
+        <div class="formHelp">
+        Select Geographic Scope
+        </div>
+
+        <select name="getScope"
+            id="Scope"
+            tabindex=""
+            tal:attributes="tabindex tabindex/next;">
+        <option value=""> </option>
+        <tal:block repeat="scope python:here.getVocabulary('Scope').items()">
+            <option value="" tal:attributes="value python:scope[0]" tal:content="python:scope[1]"> Geographic Scope </option>
+        </tal:block>
+        </select>
+    </div>
+
+<!-- Region -->
+    <div class="field">
+
+        <label for="Region">Region</label>
+
+        <div class="formHelp">
+        Select Geographic Region
+        </div>
+
+        <select name="getRegion"
+            id="Region"
+            tabindex=""
+            tal:attributes="tabindex tabindex/next;"> <option value=""> </option>
+            <tal:block repeat="region python:here.getVocabulary('Region').items()">
+                <option value="" tal:attributes="value python:region[0]" tal:content="python:region[1]"> Region </option>
+            </tal:block>
+        </select>
+    </div>
+
+    <div class="field">
+        <label for="Country">Country</label>
+
+        <div class="formHelp">
+        Select Country
+        </div>
+
+        <select name="getCountry"
+        id="country"
+        tabindex=""
+        tal:attributes="tabindex tabindex/next;">
+            <option value=""/>
+            <tal:block repeat="country python:here.getVocabulary('Country').items()">
+                <option value="" tal:attributes="value python:country[0]" tal:content="python:country[1]"> Country </option>
+            </tal:block>
+        </select>
+    </div>
+
 <!-- GEF Strategic priority -->
-			<div class="field" tal:on-error="nothing">
+			<div class="field" 
+                tal:condition="python: user.has_permission('View Projects', here)">
 
 		    	<label for="GEF Strategic priority">GEF Strategic priority</label>
 
 		    	<div class="formHelp">
-		    	Select specific GEF Strategic priority.
+		    	Select specific GEF Strategic priority
 		    	</div>
 
-   		  		<select name="getStrategic_priority"
+   		  		<select name="getStrategicPriority"
 			       id="strategic_priority"
 			       tabindex=""
 			       tal:attributes="tabindex tabindex/next;">
@@ -191,119 +271,8 @@
 		      
             </div>
 
-
-
-         <div class="field">
-
-			    <label for="Title">Limit Project Types</label>
-
-			    <div class="formHelp">
-			    Select specific Project Types.
-			    </div>
-
-			  <tal:block repeat="getProject_vals python:here.getVocabulary('ProjectType').items()">
-
-			    <input type="checkbox"
-				   name="getProject_type:list"
-				   size="105"
-				   value="python:getProject_vals[0]"
-				   checked
-				   tabindex=""
-				   tal:condition="python:getProject_vals[0]"
-				   tal:attributes="tabindex tabindex/next;
-						   value python:getProject_vals[0];"
-
-				   /> <span tal:replace="python:getProject_vals[1]"/>
-
-		  </tal:block>
-
-		
-
-
-            
-            </div>
-
-<!-- Pipeline Number -->
-
-           <div class="field">
-                <label for="Pipeline_number" i18n:translate="label_search_ Pipeline_number">Pipeline number</label>
-
-                <div class="formHelp">
-                  Pipeline number is a number between 1 and 50.
-                </div>
-
-                <input type="text"
-                       id="Title"
-                       name="getPipeline_number"
-                       size="4"
-                       tabindex=""
-                       tal:attributes="tabindex tabindex/next;"
-                       />
-            </div>
-<!-- Geographic Scope -->
-			<div class="field"  tal:on-error="nothing">
-
-		    <label for="Geographic Scope">Geographic Scope</label>
-
-		    	<div class="formHelp">
-		    	Select Geographic Scope
-		    	</div>
-
-		  		<select name="getScope"
-			       id="Scope"
-			       tabindex=""
-			       tal:attributes="tabindex tabindex/next;">
-                                       <option value=""> </option>
-		  			<tal:block repeat="scope python:here.getVocabulary('Scope').items()">
-						<option value="" tal:attributes="value python:scope[0]" tal:content="python:scope[1]"> Geographic Scope </option>
-		  			</tal:block>
-		      	</select>
-
-
-            </div>
-<!-- Region -->
-			<div class="field">
-
-		    <label for="Region">Region</label>
-
-		    	<div class="formHelp">
-		    	Select Geographic Region
-		    	</div>
-
-		  		<select name="getRegion"
-			       id="Region"
-			       tabindex=""
-			       tal:attributes="tabindex tabindex/next;"> <option value=""> </option>
-		  			<tal:block repeat="region python:here.getVocabulary('Region').items()">
-						<option value="" tal:attributes="value python:region[0]" tal:content="python:region[1]"> Region </option>
-		  			</tal:block>
-		      	</select>
-
-
-            </div>
-
-            <div class="field">
-
-		    <label for="Country">Country</label>
-
-		    	<div class="formHelp">
-		    	Select Country
-		    	</div>
-
-		  		<select name="getCountry"
-			       id="country"
-			       tabindex=""
-			       tal:attributes="tabindex tabindex/next;">
-		  			<tal:block repeat="country python:here.getVocabulary('Country').items()">
-						<option value="" tal:attributes="value python:country[0]" tal:content="python:country[1]"> Country </option>
-		  			</tal:block>
-		      	</select>
-
-
-            </div>
-
-
-            <div class="field">
+            <div class="field"
+                tal:condition="python: user.has_permission('View Projects', here)">
 
 		    <label for="Lead Agency">Lead Agency</label>
 
@@ -311,10 +280,11 @@
 		    Select Lead Agency
 		    </div>
 
-		  <select name="getLeadagency"
+		  <select name="getLeadAgency"
 			       id="lead_agency"
 			       tabindex=""
 			       tal:attributes="tabindex tabindex/next;">
+            <option value=""/>
 		  <tal:block repeat="lead_agency python:here.getVocabulary('LeadAgency').items()">
 			<option value="" tal:attributes="value python:lead_agency[0]" tal:content="python:lead_agency[1]"> Lead Agency </option>
 		  </tal:block>
@@ -324,29 +294,9 @@
             </div>
 
 
-            <div class="field">
-
-	    <label for="Operational Programme">Operational Programmes</label>
-
-	    <div class="formHelp">
-	    Select Operational Programme
-	    </div>
-
-	  <select name="getOperational_programme"
-		       id="operational_programme"
-		       tabindex=""
-		       tal:attributes="tabindex tabindex/next;">
-          <option value=""> </option>
-	  <tal:block repeat="operational_programme python:here.getVocabulary('OperationalProgramme').items()">
-		<option value="" tal:attributes="value python:operational_programme[0]" tal:content="python:operational_programme[1]"> Operational Programme </option>
-	  </tal:block>
-	      </select>
-
-
-            </div>
-
 <!-- GEF Phase -->
-			<div class="field" tal:on-error="nothing">
+			<div class="field"
+                tal:condition="python: user.has_permission('View Projects', here)">
 
 		    <label for="GEF Phase">GEF Phase</label>
 
@@ -354,7 +304,7 @@
 		    	Select GEF Phase
 		    	</div>
 
-		  		<select name="getGef_phase"
+		  		<select name="getGEFPhase"
 			       id="Gef_phase"
 			       tabindex=""
 			       tal:attributes="tabindex tabindex/next;">
@@ -365,6 +315,51 @@
 
 
             </div>		
+
+
+    <div class="field">
+
+        <label for="Title">Limit Project Types</label>
+
+        <div class="formHelp">
+            Select specific Project Types
+        </div>
+
+        <tal:block repeat="getProject_vals python:here.getVocabulary('ProjectType').items()">
+
+            <input type="checkbox"
+                name="getProjectType:list"
+                value=""
+                checked
+                tabindex=""
+                tal:condition="python:getProject_vals[0]"
+                tal:attributes="tabindex tabindex/next;
+                                value python:getProject_vals[0];"
+            />
+            <span tal:replace="python:getProject_vals[1]"/>
+
+        </tal:block>
+    </div>
+
+<!-- Pipeline Number -->
+
+           <div class="field"
+                tal:condition="python: user.has_permission('View Projects', here)">
+                <label for="Pipeline_number" i18n:translate="label_search_ Pipeline_number">Pipeline number</label>
+
+                <div class="formHelp">
+                  Pipeline number is a number between 1 and 50
+                </div>
+
+                <input type="text"
+                       id="Title"
+                       name="getPipelineNumber"
+                       size="4"
+                       tabindex=""
+                       tal:attributes="tabindex tabindex/next;"
+                       />
+            </div>
+
 
         </div>
 
@@ -389,11 +384,12 @@
                                 style string:display:${fmiDisplay};;;">
            <!--div tal:attributes="id string:fmi-screen"-->
 
-            <div class="field">
+            <div class="field"
+                tal:condition="python: user.has_permission('View Projects', here)">
                 <label for="Title" i18n:translate="label_search_text">Project Title</label>
 
                 <div class="formHelp">
-                     Enter a search string here.
+                     Enter a search string here
                 </div>
 
                 <input type="text"
@@ -406,7 +402,8 @@
             </div>
 
 
-         <div class="field" tal:on-error="nothing">
+         <div class="field"
+                tal:condition="python: user.has_permission('View Projects', here)">
 
 		    <label for="financial category">Category</label>
 
@@ -427,11 +424,13 @@
             </div>		
 
 
-		     <div class="field">
-                <label for="PMS Number" i18n:translate="label_search_ PMS_number">PMS number</label>
+		     <div class="field"
+                tal:condition="python: user.has_permission('View Projects', here)">
+                <label for="PMS Number" i18n:translate="label_search_PMS_number">PMS Number</label>
 
                 <div class="formHelp">
-                  PMS number 
+                  PMS Number is for older projects, and is usually of
+                  the form GF-xx-xxx
                 </div>
 
                 <input type="text"
@@ -443,10 +442,15 @@
                        />
             </div>
             <div class="field">
-                <label for="IMIS Number" i18n:translate="label_search_IMIS_number">IMIS number</label>
+                <label tal:condition="python: user.has_permission('View Projects', here)"
+                    for="IMIS Number" i18n:translate="label_search_IMIS_number">IMIS number</label>
+
+                <label tal:condition="python: not user.has_permission('View Projects', here)"
+                    for="IMIS Number" i18n:translate="label_search_IMIS_number">Project No.</label>
 
                 <div class="formHelp">
-                  IMIS number.
+                  IMIS number is for newer projects, and is usually of 
+                  the form GFL/2328-xxxx-xxxx
                 </div>
 
                 <input type="text"
@@ -456,6 +460,42 @@
                        tabindex=""
                        tal:attributes="tabindex tabindex/next;"
                        />
+            </div>
+
+            <div class="field">
+                <label for="GEFProjectAllocation" i18n:translate="label_search_GEFProjectAllocation">GEF Project Allocation</label>
+                <input 
+                    type="text"
+                    name="getGEFProjectAllocation"
+                    value=""
+                    size="10"
+                    />
+                    <select tal:attributes="name string:getGEFProjectAllocation_currency;"
+                        tal:define="default_currency_symbol string:$$;">
+
+                    <!-- Curreny dropdown -->
+                    <option
+                        tal:repeat="item python:modules['Products.FinanceFields.config'].CURRENCY_DISPLAY_LIST"
+                        tal:attributes="
+                            selected python:test(here.checkSelected(item, item and item[0] or default_currency_symbol), 'selected', None); "
+                            tal:content="item"
+                            i18n:translate=""
+                            />
+                    </select>
+            </div>
+
+            <div class="field">
+                <label for="PlannedDuration" i18n:translate="label_search_PlannedDuration">Project Duration</label>
+                <input 
+                    type="text"
+                    name="getPlannedDuration"
+                    value=""
+                    size="10"
+                    />
+            </div>
+
+            <div class="field">
+                <label for="FundManagementOfficer" i18n:translate="label_search_FundManagementOfficer">Fund Management Officer</label>
             </div>
 
        </div>     
@@ -476,26 +516,27 @@
                                 style string:display:${pcmDisplay};;;">
            <!--div tal:attributes="id string:pcm-screen"-->
 
-           	<div class="field" tal:on-error="nothing">
+           <div class="field"
+                tal:condition="python: user.has_permission('View Projects', here)">
 
-		    <label for="Stage">Stage</label>
+		    <label for="Stage">Project Cycle Stage</label>
 
 		    	<div class="formHelp">
-		    	Select GEF Phase
 		    	</div>
 
-		  		<select name="getMileStoneGef_phase"
-			       id="Gef_phase"
+		  		<select name="getProjecCycleStage"
+			       id="ProjecCycleStage"
 			       tabindex=""
 			       tal:attributes="tabindex tabindex/next;"> <option value=""> </option>
-		  			<tal:block repeat="phase python:here.getVocabulary('ImplementationStatus').items()">
+		  			<tal:block repeat="phase python:here.getVocabulary('ProjectCycleStage').items()">
 						<option value="" tal:attributes="value python:phase[0]" tal:content="python:phase[1]"> Country </option>
 		  			</tal:block>
 		      	</select>
 
 
             </div>		
-			<div class="field" tal:on-error="nothing"> 
+			<div class="field"
+                tal:condition="python: user.has_permission('View Projects', here)">
 
 		    <label for="Milestone name">Milestone</label>
 
@@ -520,9 +561,9 @@
            </fieldset> 
 
 
- <div class="field">
+    <div class="field">
     
-                <label for="review_state" i18n:translate="label_review_status">Review status</label>
+                <label for="review_state" i18n:translate="label_review_status">Data Entry Status</label>
 
                 <div class="formHelp" i18n:translate="help_search_review_status">
                 Search for items based on their
@@ -567,7 +608,7 @@
                     <br />
                     </tal:items>
                 </tal:states>
-            </div>
+    </div>
 
 
 

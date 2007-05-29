@@ -35,6 +35,7 @@ from Products.ATVocabularyManager.namedvocabulary import NamedVocabulary
 from Products.ProjectDatabase.config import *
 
 # additional imports from tagged value 'import'
+from Products.DataGridField import CalendarColumn
 from Products.FinanceFields.MoneyField import MoneyField
 from Products.FinanceFields.MoneyWidget import MoneyWidget
 from Products.DataGridField import DataGridField, DataGridWidget, Column, SelectColumn
@@ -50,13 +51,14 @@ from Products.FinanceFields.Money import Money
 schema = Schema((
 
     StringField(
-        name='ImplementationStatus',
+        name='ProjectCycleStage',
+        index="FieldIndex:brains",
         widget=SelectionWidget(
-            label="Implementation Status",
-            label_msgid='ProjectDatabase_label_ImplementationStatus',
+            label="Project Cycle Stage",
+            label_msgid='ProjectDatabase_label_ProjectCycleStage',
             i18n_domain='ProjectDatabase',
         ),
-        vocabulary=NamedVocabulary("""ImplementationStatus""")
+        vocabulary=NamedVocabulary("""ProjectCycleStage""")
     ),
 
     StringField(
@@ -82,11 +84,49 @@ schema = Schema((
         name='MilestoneDescription',
         allowable_content_types=('text/plain', 'text/structured', 'text/html', 'application/msword',),
         widget=RichWidget(
-            label="Milestone Description",
+            label="Remarks on Decision",
             label_msgid='ProjectDatabase_label_MilestoneDescription',
             i18n_domain='ProjectDatabase',
         ),
-        default_output_type='text/html'
+        default_output_type='text/html',
+        vocabulary=NamedVocabulary("""ProjectStatusses""")
+    ),
+
+    DataGridField(
+        name='ProjectProcess',
+        widget=DataGridField._properties['widget'](
+            columns={'project_process':SelectColumn('Project Process',vocabulary='getProjectProcesses'),'project_status':SelectColumn('Status', vocabulary='getProjectStatusses')},
+            label="Project Processes",
+            description="Project Process and Review Dates",
+            label_msgid='ProjectDatabase_label_ProjectProcess',
+            description_msgid='ProjectDatabase_help_ProjectProcess',
+            i18n_domain='ProjectDatabase',
+        ),
+        vocabulary=NamedVocabulary("""ProjectProcesses"""),
+        columns=('project_process', 'project_status')
+    ),
+
+    DataGridField(
+        name='NationalFocalPointEndorsements',
+        widget=DataGridField._properties['widget'](
+            label="National Focal Point Endorsements",
+            columns={'country':SelectColumn('Country', vocabulary='getCountryNames'),'endorsement_date':CalendarColumn('Endorsement Date')},
+            label_msgid='ProjectDatabase_label_NationalFocalPointEndorsements',
+            i18n_domain='ProjectDatabase',
+        ),
+        columns=('country', 'endorsement_date')
+    ),
+
+    DataGridField(
+        name='ApprovalInitiationAndClosure',
+        widget=DataGridField._properties['widget'](
+            label="Project Approval, Initiation and Closure",
+            columns={'approval_initiation_closure':SelectColumn('Project Approval, Initiation and Closure', vocabulary='getApprovalInitiationClosure'), 'actual_date':CalendarColumn('Date')},
+            label_msgid='ProjectDatabase_label_ApprovalInitiationAndClosure',
+            i18n_domain='ProjectDatabase',
+        ),
+        vocabulary=NamedVocabulary("""ApprovalInitiationClosure"""),
+        columns=('approval_initiation_closure','actual_date')
     ),
 
 ),
@@ -132,6 +172,38 @@ class Milestone(BaseContent):
     ##/code-section class-header
 
     # Methods
+
+    security.declarePublic('getProjectProcesses')
+    def getProjectProcesses(self):
+        """
+        """
+        atvm = self.portal_vocabularies
+        vocab = atvm.getVocabularyByName('ProjectProcesses')
+        return vocab.getDisplayList(self)
+
+    security.declarePublic('getProjectStatusses')
+    def getProjectStatusses(self):
+        """
+        """
+        atvm = self.portal_vocabularies
+        vocab = atvm.getVocabularyByName('ProjectProcesses')
+        return vocab.getDisplayList(self)
+
+    security.declarePublic('getCountryNames')
+    def getCountryNames(self):
+        """
+        """
+        atvm = self.portal_vocabularies
+        vocab = atvm.getVocabularyByName('Country')
+        return vocab.getDisplayList(self)
+
+    security.declarePublic('getApprovalInitiationClosure')
+    def getApprovalInitiationClosure(self):
+        """
+        """
+        atvm = self.portal_vocabularies
+        vocab = atvm.getVocabularyByName('ApprovalInitiationClosure')
+        return vocab.getDisplayList(self)
 
 
 registerType(Milestone, PROJECTNAME)

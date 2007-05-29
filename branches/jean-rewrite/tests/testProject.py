@@ -118,6 +118,14 @@ class testProject(PortalDatabaseTestCase):
     def test_validate_PhasedNumber(self):
         pass
 
+    # from class Project:
+    def test_fmi_view(self):
+        pass
+
+    # from class Project:
+    def test_getProject(self):
+        pass
+
     # from class CurrencyMixin:
     def test_getZeroMoneyInstance(self):
         pass

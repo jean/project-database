@@ -54,6 +54,15 @@ import FinancialsMixin
 import DocumentLinks
 import ProjectExecutingPartner
 import MoneField
+import Tranched
+import CoreMixin
+import Phased
+import AddOn
+import BlankCoreMixin
+import calendar
+import MonitoringAndEvaluation
+import EvaluationMilestone
+import RatingTrackingSystem
 
 ##code-section init-module-footer #fill in your manual code here
 ##/code-section init-module-footer

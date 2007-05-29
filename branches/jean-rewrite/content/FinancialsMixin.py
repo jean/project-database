@@ -55,11 +55,13 @@ schema = Schema((
             i18n_domain='ProjectDatabase',
         ),
         schemata="Supplemental",
-        vocabulary=NamedVocabulary("""FinanceCategory""")
+        vocabulary=NamedVocabulary("""FinanceCategory"""),
+        index="FieldIndex:brains"
     ),
 
     StringField(
         name='PMSNumber',
+        index="FieldIndex:brains",
         widget=StringWidget(
             label="PMS Number",
             label_msgid='ProjectDatabase_label_PMSNumber',
@@ -69,6 +71,7 @@ schema = Schema((
 
     StringField(
         name='IMISNumber',
+        index="FieldIndex:brains",
         widget=StringWidget(
             label="IMIS Number",
             label_msgid='ProjectDatabase_label_IMISNumber',
@@ -78,6 +81,7 @@ schema = Schema((
 
     MoneyField(
         name='GEFProjectAllocation',
+        index="FieldIndex:brains",
         widget=MoneyField._properties['widget'](
             label="GEF Project Allocation",
             label_msgid='ProjectDatabase_label_GEFProjectAllocation',
@@ -147,23 +151,12 @@ schema = Schema((
     StringField(
         name='Status',
         widget=SelectionWidget(
-            label="Status",
+            label="Project Status",
             label_msgid='ProjectDatabase_label_Status',
             i18n_domain='ProjectDatabase',
         ),
         schemata="Budget",
         vocabulary=NamedVocabulary("""Status""")
-    ),
-
-    DateTimeField(
-        name='StartDate',
-        widget=CalendarWidget
-        (
-            label="Start Date",
-            label_msgid='ProjectDatabase_label_StartDate',
-            i18n_domain='ProjectDatabase',
-        ),
-        schemata="Budget"
     ),
 
     DateTimeField(
@@ -182,7 +175,9 @@ schema = Schema((
         widget=CalendarWidget
         (
             label="Revised Completion Date",
+            description="As per last revision",
             label_msgid='ProjectDatabase_label_RevisedCompletionDate',
+            description_msgid='ProjectDatabase_help_RevisedCompletionDate',
             i18n_domain='ProjectDatabase',
         ),
         schemata="Budget"
@@ -190,20 +185,18 @@ schema = Schema((
 
     TextField(
         name='DelayReason',
-        allowable_content_types=('text/plain', 'text/structured', 'text/html', 'application/msword',),
-        widget=RichWidget(
-            label="Reason for delay",
+        widget=TextAreaWidget(
+            label="Reasons for delay",
             label_msgid='ProjectDatabase_label_DelayReason',
             i18n_domain='ProjectDatabase',
         ),
-        default_output_type='text/html',
         schemata="Budget"
     ),
 
     DataGridField(
         name='Reports',
         widget=DataGridField._properties['widget'](
-            columns={ 'report_type' : SelectColumn("Source", vocabulary="getReportTypesVocabulary"), 'report_period' : Column("Report Period"), 'report_received_date' : Column("Report Received Date") },
+            columns={ 'report_type' : SelectColumn("Report Type", vocabulary="getReportTypesVocabulary"), 'report_period' : Column("Report Period"), 'report_received_date' : Column("Report Received Date") },
             label="Reports",
             label_msgid='ProjectDatabase_label_Reports',
             i18n_domain='ProjectDatabase',
@@ -294,6 +287,45 @@ schema = Schema((
         widget=MoneyField._properties['widget'](
             label='Unepimplentingagencyfee',
             label_msgid='ProjectDatabase_label_UNEPImplentingAgencyFee',
+            i18n_domain='ProjectDatabase',
+        )
+    ),
+
+    IntegerField(
+        name='PlannedDuration',
+        index="FieldIndex:brains",
+        widget=IntegerField._properties['widget'](
+            label="Planned Duration",
+            description="The number of months",
+            label_msgid='ProjectDatabase_label_PlannedDuration',
+            description_msgid='ProjectDatabase_help_PlannedDuration',
+            i18n_domain='ProjectDatabase',
+        )
+    ),
+
+    TextField(
+        name='FinancialStatusRemarks',
+        widget=TextAreaWidget(
+            label='Financialstatusremarks',
+            label_msgid='ProjectDatabase_label_FinancialStatusRemarks',
+            i18n_domain='ProjectDatabase',
+        )
+    ),
+
+    StringField(
+        name='ProjectRevisionNumber',
+        widget=StringWidget(
+            label="Project Revision Number",
+            label_msgid='ProjectDatabase_label_ProjectRevisionNumber',
+            i18n_domain='ProjectDatabase',
+        )
+    ),
+
+    DateTimeField(
+        name='RevisionDate',
+        widget=CalendarWidget(
+            label="Date of Revision",
+            label_msgid='ProjectDatabase_label_RevisionDate',
             i18n_domain='ProjectDatabase',
         )
     ),

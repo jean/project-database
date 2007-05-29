@@ -75,7 +75,16 @@ schema = Schema((
         copied_fields['ProjectCoordinator'],
         copied_fields['LeadExecutingAgency'],
         copied_fields['OtherLeadExecutingAgency'],
+        StringField(
+        name='AccountCode',
+        widget=StringWidget(
+            label="Account Code",
+            label_msgid='ProjectDatabase_label_AccountCode',
+            i18n_domain='ProjectDatabase',
+        )
     ),
+
+),
 )
 
 ##code-section after-local-schema #fill in your manual code here

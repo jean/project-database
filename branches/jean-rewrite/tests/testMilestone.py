@@ -59,6 +59,22 @@ class testMilestone(PortalDatabaseTestCase):
     def afterSetUp(self):
         pass
 
+    # from class Milestone:
+    def test_getProjectProcesses(self):
+        pass
+
+    # from class Milestone:
+    def test_getProjectStatusses(self):
+        pass
+
+    # from class Milestone:
+    def test_getCountryNames(self):
+        pass
+
+    # from class Milestone:
+    def test_getApprovalInitiationClosure(self):
+        pass
+
     # Manually created methods
 
     def test_view(self):

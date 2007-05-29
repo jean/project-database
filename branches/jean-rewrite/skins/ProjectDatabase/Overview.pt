@@ -150,6 +150,14 @@
 		 		<td bgcolor='#F1F1F1' width=30%><b>Other GEF Implementing Agencies:</b></td><td><metal:block use-macro="widget_view" /></td>
 		 </tr>
 
+         <tr tal:on-error="nothing" tal:define="field python:here.Schema()['ProjectResults']; 
+            accessor python:getattr(here, field.accessor);
+            mode string:view;
+            widget_view python:here.widget(field.getName(), mode=mode, use_label=1);">
+        
+            <td bgcolor='#F1F1F1' width=30%><b>Actual Overall Project Results:</b></td><td><metal:block use-macro="widget_view" /></td>
+        </tr>
+
 	   	 <tr tal:on-error="nothing" tal:define="field python:here.Schema()['ImplementingAgencyFee']; accessor python:getattr(here, field.accessor)"><td bgcolor='#F1F1F1' width=30%><b>Implementing Agency Fee:</b></td><td> <span tal:replace="structure accessor"/> </td></tr>		 	   
                  <tr tal:on-error="nothing" tal:define="field python:here.Schema()['UNEPImplementingAgencyFee']; accessor python:getattr(here, field.accessor)"><td bgcolor='#F1F1F1' width=30%><b>UNEP Implementing Agency Fee:</b></td><td> <span tal:replace="structure accessor"/> </td></tr>		 	   
                  <tr tal:on-error="nothing" tal:define="field python:here.Schema()['Website']; accessor python:getattr(here, field.accessor)"><td bgcolor='#F1F1F1' width=30%><b>Project Website Address:</b></td><td> <span tal:replace="structure accessor"/> </td></tr>		 	   
