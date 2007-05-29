@@ -21,9 +21,9 @@
   <description />
 </term>
 <term>
-  <termIdentifier>Complete</termIdentifier>
+  <termIdentifier>Completed</termIdentifier>
   <caption>
-    <langstring language="en">Complete</langstring>
+    <langstring language="en">Completed</langstring>
   </caption>
   <description />
 </term>
@@ -34,4 +34,29 @@
   </caption>
   <description />
 </term>
+
+<term>
+  <termIdentifier>Cancelled</termIdentifier>
+  <caption>
+    <langstring language="en">Cancelled</langstring>
+  </caption>
+  <description />
+</term>
+
+<term>
+  <termIdentifier>Appraisal</termIdentifier>
+  <caption>
+    <langstring language="en">Appraisal</langstring>
+  </caption>
+  <description />
+</term>
+
+<term>
+  <termIdentifier>Under Development</termIdentifier>
+  <caption>
+    <langstring language="en">Under Development</langstring>
+  </caption>
+  <description />
+</term>
+
 </vdex>

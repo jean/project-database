@@ -63,10 +63,10 @@ schema = Schema((
     ),
 
     MoneyField(
-        name='IDCFundAllocation',
+        name='LDCFundAllocation',
         widget=MoneyField._properties['widget'](
-            label="IDC Fund Allocation",
-            label_msgid='ProjectDatabase_label_IDCFundAllocation',
+            label="LDC Fund Allocation",
+            label_msgid='ProjectDatabase_label_LDCFundAllocation',
             i18n_domain='ProjectDatabase',
         ),
         schemata="SupplementalFinance"
@@ -140,7 +140,7 @@ schema = Schema((
     ReferenceField(
         name='OtherLeadExecutingAgency',
         widget=ReferenceField._properties['widget'](
-            label="Lead Executing Agency (other)",
+            label="Other Project Executing Partners",
             label_msgid='ProjectDatabase_label_OtherLeadExecutingAgency',
             i18n_domain='ProjectDatabase',
         ),
@@ -152,15 +152,16 @@ schema = Schema((
 
     ReferenceField(
         name='FundManagementOfficer',
+        index="FieldIndex:brains",
         widget=ReferenceField._properties['widget'](
             label="Fund Management Officer",
             label_msgid='ProjectDatabase_label_FundManagementOfficer',
             i18n_domain='ProjectDatabase',
         ),
-        allowed_types=('mxmContactsPerson',),
         schemata="Final",
         multiValued=0,
-        relationship="Financials_FundManagementOfficer"
+        relationship="Financials_FundManagementOfficer",
+        allowed_types=('mxmContactsPerson',)
     ),
 
     TextField(

@@ -4,34 +4,47 @@
     xsi:schemaLocation="http://www.imsglobal.org/xsd/imsvdex_v1p0 imsvdex_v1p0.xsd http://www.imsglobal.org/xsd/imsmd_rootv1p2p1 imsmd_rootv1p2p1.xsd"
     language="en" orderSignificant="true" profileType="flatTokenTerms">
 <vocabName>
-  <langstring language="en">Report Type</langstring>
+  <langstring language="en">InceptionRiskRating</langstring>
 </vocabName>
+
 <term>
-  <termIdentifier>Expenditure Statements</termIdentifier>
+  <termIdentifier>L</termIdentifier>
   <caption>
-    <langstring language="en">Expenditure Statements</langstring>
+    <langstring language="en">Low Risk</langstring>
   </caption>
   <description />
 </term>
+
 <term>
-  <termIdentifier>Audit Report</termIdentifier>
+  <termIdentifier>M</termIdentifier>
   <caption>
-    <langstring language="en">Audit Report</langstring>
+    <langstring language="en">Modest Risk</langstring>
   </caption>
   <description />
 </term>
+
 <term>
-  <termIdentifier>Co-finance Report</termIdentifier>
+  <termIdentifier>S</termIdentifier>
   <caption>
-    <langstring language="en">Co-finance Report</langstring>
+    <langstring language="en">Substantial Risk</langstring>
   </caption>
   <description />
 </term>
+
 <term>
-  <termIdentifier>Inventory of non-expendable equipment<</termIdentifier>
+  <termIdentifier>H</termIdentifier>
   <caption>
-    <langstring language="en">Inventory of non-expendable equipment</langstring>
+    <langstring language="en">High Risk</langstring>
   </caption>
   <description />
 </term>
+
+<term>
+  <termIdentifier>TBD</termIdentifier>
+  <caption>
+    <langstring language="en">To be determined</langstring>
+  </caption>
+  <description />
+</term>
+
 </vdex>

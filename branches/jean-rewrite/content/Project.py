@@ -55,23 +55,23 @@ schema = Schema((
 
     TextField(
         name='SummaryDescription',
-        allowable_content_types=('text/plain', 'text/structured', 'text/html', 'application/msword',),
-        widget=RichWidget(
+        widget=TextAreaWidget(
             label="Project Description",
             label_msgid='ProjectDatabase_label_SummaryDescription',
             i18n_domain='ProjectDatabase',
         ),
-        default_output_type='text/html'
+        searchable=1
     ),
 
     LinesField(
         name='Country',
-        schemata="Location",
+        index="FieldIndex:brains",
         widget=MultiSelectionWidget(
             label='Country',
             label_msgid='ProjectDatabase_label_Country',
             i18n_domain='ProjectDatabase',
         ),
+        schemata="Location",
         multiValued=1,
         vocabulary=NamedVocabulary("""Country""")
     ),
@@ -87,41 +87,45 @@ schema = Schema((
 
     LinesField(
         name='Scope',
+        index="FieldIndex:brains",
         widget=MultiSelectionWidget(
             label='Scope',
             label_msgid='ProjectDatabase_label_Scope',
             i18n_domain='ProjectDatabase',
         ),
-        schemata="Location",
         multiValued=1,
-        vocabulary=NamedVocabulary("""Scope""")
+        vocabulary=NamedVocabulary("""Scope"""),
+        schemata="Location"
     ),
 
     LinesField(
         name='Region',
+        index="FieldIndex:brains",
         widget=MultiSelectionWidget(
             label='Region',
             label_msgid='ProjectDatabase_label_Region',
             i18n_domain='ProjectDatabase',
         ),
-        schemata="Location",
         multiValued=1,
-        vocabulary=NamedVocabulary("""Region""")
+        vocabulary=NamedVocabulary("""Region"""),
+        schemata="Location"
     ),
 
-    StringField(
+    LinesField(
         name='FocalArea',
         index="FieldIndex:brains",
-        widget=SelectionWidget(
+        widget=MultiSelectionWidget(
             label="Focal Area",
             label_msgid='ProjectDatabase_label_FocalArea',
             i18n_domain='ProjectDatabase',
         ),
+        multiValued=1,
         vocabulary=NamedVocabulary("""FocalArea""")
     ),
 
     StringField(
         name='OperationalProgramme',
+        index="FieldIndex:brains",
         widget=SelectionWidget(
             label="Operational Programme",
             label_msgid='ProjectDatabase_label_OperationalProgramme',
@@ -212,6 +216,7 @@ schema = Schema((
 
     StringField(
         name='StrategicPriority',
+        index="FieldIndex:brains",
         widget=SelectionWidget(
             label="Strategic Priority",
             label_msgid='ProjectDatabase_label_StrategicPriority',
@@ -266,6 +271,7 @@ schema = Schema((
 
     StringField(
         name='GEFPhase',
+        index="FieldIndex:brains",
         widget=SelectionWidget(
             label="GEF Phase",
             label_msgid='ProjectDatabase_label_GEFPhase',
@@ -460,6 +466,7 @@ schema = Schema((
 
     ReferenceField(
         name='LeadAgency',
+        index="FieldIndex:brains",
         widget=ReferenceField._properties['widget'](
             label="Lead GEF Agency",
             label_msgid='ProjectDatabase_label_LeadAgency',
@@ -682,7 +689,7 @@ class Project(BaseFolder, CurrencyMixin, DocumentLinks):
 
     meta_type = 'Project'
     portal_type = 'Project'
-    allowed_content_types = ['ProjectImplementation', 'Financials', 'Milestone', 'SubProject', 'ProjectExecutingPartner'] + list(getattr(DocumentLinks, 'allowed_content_types', []))
+    allowed_content_types = ['ProjectImplementation', 'Financials', 'Milestone', 'SubProject', 'ProjectExecutingPartner', 'Tranched', 'Phased', 'AddOn', 'MonitoringAndEvaluation'] + list(getattr(DocumentLinks, 'allowed_content_types', []))
     filter_content_types = 1
     global_allow = 0
     #content_icon = 'Project.gif'
@@ -709,6 +716,15 @@ class Project(BaseFolder, CurrencyMixin, DocumentLinks):
         'category': "object_tabs",
         'id': 'view',
         'name': 'Project General Information',
+        'permissions': (permissions.ViewProjects,),
+        'condition': 'python:1'
+       },
+
+
+       {'action': "string:${object_url}/fmi_view",
+        'category': "object_tabs",
+        'id': 'fmi_view',
+        'name': 'FMi View',
         'permissions': (permissions.ViewProjects,),
         'condition': 'python:1'
        },
@@ -807,7 +823,7 @@ class Project(BaseFolder, CurrencyMixin, DocumentLinks):
         if self.REQUEST.get('Tranched') == 'No':
             if val != 0:
                 return 'Value must be zero if Tranched is No'
-        return ''
+        return
 
     security.declarePublic('validate_PhasedNumber')
     def validate_PhasedNumber(self, value):
@@ -825,7 +841,11 @@ class Project(BaseFolder, CurrencyMixin, DocumentLinks):
         if self.REQUEST.get('Phased') == 'No':
             if val != 0:
                 return 'Value must be zero if Phased is No'
-        return ''
+        return
+
+    security.declarePublic('getProject')
+    def getProject(self):
+        return self.aq_inner
 
 
 registerType(Project, PROJECTNAME)

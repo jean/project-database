@@ -16,6 +16,7 @@ query={}
 #show_query=show_all
 second_pass = {}
 
+context.plone_log(str(indexes))
 
 def quotestring(s):
     return '"%s"' % s
@@ -51,7 +52,7 @@ def quote_bad_chars(s):
 
 
 # Avoid creating a session implicitly.
-REQUEST_keys=['SearchableText','Title','getRawCurrent_task_manager','getFocal_area','getStrategic_priority','getProject_type','getPipeline_number','getScope','getRegion','getCountry','getLeadagency','getOperational_programme','getGef_phase','path','portal_type','review_state']
+REQUEST_keys=['SearchableText','Title','getRawCurrent_task_manager','getFocalArea','getStrategicPriority','getProjectType','getPipelineNumber','getScope','getRegion','getCountry','getLeadAgency','getOperationalProgramme','getGEFPhase', 'getProjectType', 'path','portal_type','review_state']
 for k in REQUEST_keys:
     #if k in ('SESSION',):
     #    continue
@@ -110,20 +111,28 @@ if Title:
 
 getFinance_category=REQUEST.get('getFinance_category')
 if getFinance_category:
-   qfmi['getFinance_category'] = getFinance_category
+   qfmi['getFinanceCategory'] = getFinance_category
 
 Pms_number=REQUEST.get('getPms_number',None)
 if Pms_number:
-	qfmi['getPms_number'] = Pms_number
+	qfmi['getPMSNumber'] = Pms_number
 
 Imis_number=REQUEST.get('getImis_number',None)
 if Imis_number:
-	qfmi['getImis_number'] = Imis_number
+	qfmi['getIMISNumber'] = Imis_number
+
+GEFProjectAllocation = REQUEST.get('getGEFProjectAllocation')
+if GEFProjectAllocation:
+    qfmi['getGEFProjectAllocation'] = GEFProjectAllocation
+
+PlannedDuration = REQUEST.get('getPlannedDuration')
+if PlannedDuration:
+    qfmi['getPlannedDuration'] = PlannedDuration
 
 if pathlist:
 	qfmi['path'] = pathlist 
 
-qfmi['portal_type']='FinancialManagementInformation'
+qfmi['portal_type']='Financials'
 
 res2=None
 if Title or Imis_number or Pms_number or getFinance_category:
@@ -156,9 +165,9 @@ qmd['path'] = alist
 
 qmd['portal_type']='MilestoneDates'
 
-Gef_phase=REQUEST.get('getMileStoneGef_phase',None)
+Gef_phase=REQUEST.get('getProjectCycleStage',None)
 if Gef_phase:
-   qmd['getImplementation_status'] = Gef_phase
+   qmd['getProjectCycleStage'] = Gef_phase
 
 getMilestoneName=REQUEST.get('getMilestoneName', None)
 if getMilestoneName:
