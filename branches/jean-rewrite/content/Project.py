@@ -472,9 +472,10 @@ schema = Schema((
             label_msgid='ProjectDatabase_label_LeadAgency',
             i18n_domain='ProjectDatabase',
         ),
-        allowed_types=('Agency',),
         multiValued=0,
-        relationship="Project_LeadAgency"
+        relationship="Project_LeadAgency",
+        vocabulary=NamedVocabulary("""LeadAgency"""),
+        allowed_types=('Agency',)
     ),
 
     ReferenceField(
