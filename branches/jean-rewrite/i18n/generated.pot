@@ -380,6 +380,11 @@ msgstr ""
 msgid "ProjectDatabase_label_FundManagementOfficer"
 msgstr ""
 
+#. Default: "Fund Manager Officer"
+#: content/MonitoringAndEvaluation.py
+msgid "ProjectDatabase_label_FundManagerOfficer"
+msgstr ""
+
 #. Default: "GEF Agency Implementation"
 #: content/Project.py
 msgid "ProjectDatabase_label_GEFAgencyImplementation"

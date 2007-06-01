@@ -181,9 +181,9 @@ schema = Schema((
         vocabulary=NamedVocabulary("""Rating""")
     ),
 
-    SelectField(
+    StringField(
         name='EORatingElements',
-        widget=select._properties['widget'](
+        widget=SelectionWidget(
             label="EO Rating Elements",
             label_msgid='ProjectDatabase_label_EORatingElements',
             i18n_domain='ProjectDatabase',
