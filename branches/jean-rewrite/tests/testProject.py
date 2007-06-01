@@ -136,6 +136,9 @@ class testProject(PortalDatabaseTestCase):
 
     # Manually created methods
 
+    def test_project_ratings_disconnect(self):
+        pass
+
     def test_export_project_data(self):
         pass
 

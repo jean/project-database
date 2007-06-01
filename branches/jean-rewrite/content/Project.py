@@ -724,7 +724,7 @@ class Project(BaseFolder, CurrencyMixin, DocumentLinks):
        {'action': "string:${object_url}/fmi_view",
         'category': "object_tabs",
         'id': 'fmi_view',
-        'name': 'FMi View',
+        'name': 'FMI View',
         'permissions': (permissions.ViewProjects,),
         'condition': 'python:1'
        },

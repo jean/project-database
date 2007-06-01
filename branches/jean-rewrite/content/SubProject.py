@@ -56,7 +56,6 @@ copied_fields['Scope'] = Project.schema['Scope'].copy()
 copied_fields['Region'] = Project.schema['Region'].copy()
 copied_fields['ImplementationMode'] = Project.schema['ImplementationMode'].copy()
 copied_fields['Office'] = Project.schema['Office'].copy()
-copied_fields['Website'] = Project.schema['Website'].copy()
 copied_fields['ProjectCoordinator'] = Project.schema['ProjectCoordinator'].copy()
 copied_fields['ProjectCoordinator'].relationship = "SubProject_ProjectCoordinator"
 copied_fields['LeadExecutingAgency'] = Financials.schema['LeadExecutingAgency'].copy()
@@ -71,8 +70,16 @@ schema = Schema((
         copied_fields['Region'],
         copied_fields['ImplementationMode'],
         copied_fields['Office'],
-        copied_fields['Website'],
-        copied_fields['ProjectCoordinator'],
+        StringField(
+        name='Website',
+        widget=StringWidget(
+            label='Website',
+            label_msgid='ProjectDatabase_label_Website',
+            i18n_domain='ProjectDatabase',
+        )
+    ),
+
+    copied_fields['ProjectCoordinator'],
         copied_fields['LeadExecutingAgency'],
         copied_fields['OtherLeadExecutingAgency'],
         StringField(

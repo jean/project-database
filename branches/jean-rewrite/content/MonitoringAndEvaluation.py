@@ -33,6 +33,7 @@ from Products.ATVocabularyManager.namedvocabulary import NamedVocabulary
 from Products.ProjectDatabase.config import *
 
 # additional imports from tagged value 'import'
+from Products.ProjectDatabase.content import permissions
 from Products.FinanceFields.MoneyField import MoneyField
 from Products.FinanceFields.MoneyWidget import MoneyWidget
 from Products.DataGridField import DataGridField, DataGridWidget, Column, SelectColumn
@@ -46,18 +47,32 @@ from Products.FinanceFields.Money import Money
 ##/code-section module-header
 
 copied_fields = {}
-copied_fields['IMISNumber'] = Finanancials.schema['IMISNumber'].copy()
 copied_fields['CurrentTaskManager'] = Project.schema['CurrentTaskManager'].copy()
-copied_fields['FundManagerOfficer'] = Finanancials.schema['FundManagerOfficer'].copy()
-copied_fields['RevisedCompletionDate'] = Financials.schema['RevisedCompletionDate'].copy()
-copied_fields['InitialCompletionDate'] = Financials.schema['InitialCompletionDate'].copy()
 copied_fields['GEFAgencyImplementation'] = Project.schema['GEFAgencyImplementation'].copy()
 schema = Schema((
 
-    copied_fields['IMISNumber'],
-        copied_fields['CurrentTaskManager'],
-        copied_fields['FundManagerOfficer'],
-        DateTimeField(
+    StringField(
+        name='IMISNumber',
+        widget=StringWidget(
+            label='Imisnumber',
+            label_msgid='ProjectDatabase_label_IMISNumber',
+            i18n_domain='ProjectDatabase',
+        )
+    ),
+
+    copied_fields['CurrentTaskManager'],
+        ReferenceField(
+        name='FundManagerOfficer',
+        widget=ReferenceField._properties['widget'](
+            label="Fund Manager Officer",
+            label_msgid='ProjectDatabase_label_FundManagerOfficer',
+            i18n_domain='ProjectDatabase',
+        ),
+        allowed_types=('mxmContactsPerson',),
+        relationship="MandE_fundmanagerofficer"
+    ),
+
+    DateTimeField(
         name='CEOApproval',
         widget=CalendarWidget(
             label="CEO Approval Date",
@@ -84,9 +99,25 @@ schema = Schema((
         )
     ),
 
-    copied_fields['RevisedCompletionDate'],
-        copied_fields['InitialCompletionDate'],
-        DateTimeField(
+    DateTimeField(
+        name='RevisedCompletionDate',
+        widget=CalendarWidget(
+            label='Revisedcompletiondate',
+            label_msgid='ProjectDatabase_label_RevisedCompletionDate',
+            i18n_domain='ProjectDatabase',
+        )
+    ),
+
+    DateTimeField(
+        name='InitialCompletionDate',
+        widget=CalendarWidget(
+            label='Initialcompletiondate',
+            label_msgid='ProjectDatabase_label_InitialCompletionDate',
+            i18n_domain='ProjectDatabase',
+        )
+    ),
+
+    DateTimeField(
         name='FinancialClosure',
         widget=CalendarWidget(
             label="Financial Closure",
@@ -252,6 +283,21 @@ class MonitoringAndEvaluation(BaseFolder):
     suppl_views = ()
     typeDescription = "MonitoringAndEvaluation"
     typeDescMsgId = 'description_edit_monitoringandevaluation'
+
+
+    actions =  (
+
+
+       {'action': "string:${object_url}/project_ratings_disconnect_view",
+        'category': "object_tabs",
+        'id': 'project_ratings_disconnect_view',
+        'name': 'Project Ratings Disconnect',
+        'permissions': (permissions.ViewProjects,),
+        'condition': 'python:1'
+       },
+
+
+    )
 
     _at_rename_after_creation = True
 
