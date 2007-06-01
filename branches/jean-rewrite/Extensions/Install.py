@@ -113,6 +113,7 @@ def install(self, reinstall=False):
          'EvaluationTypeMilestone': ('VdexVocabulary', 'SimpleVocabularyTerm'),
          'EAClimateChange': ('VdexVocabulary', 'SimpleVocabularyTerm'),
          'RevisionNumber': ('VdexVocabulary', 'SimpleVocabularyTerm'),
+         'LeadAgency': ('VdexVocabulary', 'SimpleVocabularyTerm'),
         }
     for vocabname in vocabmap.keys():
         if not vocabname in atvm.contentIds():
