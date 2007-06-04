@@ -447,8 +447,9 @@ schema = Schema((
             description_msgid='ProjectDatabase_help_LeveragedFinancingRemark',
             i18n_domain='ProjectDatabase',
         ),
-        default_output_type='text/html',
-        schemata="Financing"
+        schemata="Financing",
+        vocabulary=NamedVocabulary("""LeadAgency"""),
+        default_output_type='text/html'
     ),
 
     TextField(
@@ -472,10 +473,9 @@ schema = Schema((
             label_msgid='ProjectDatabase_label_LeadAgency',
             i18n_domain='ProjectDatabase',
         ),
+        allowed_types=('Agency',),
         multiValued=0,
-        relationship="Project_LeadAgency",
-        vocabulary=NamedVocabulary("""LeadAgency"""),
-        allowed_types=('Agency',)
+        relationship="Project_LeadAgency"
     ),
 
     ReferenceField(
