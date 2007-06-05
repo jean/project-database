@@ -90,12 +90,12 @@ schema = Schema((
     ),
 
     TextField(
-        name='Remarls',
+        name='Remarks',
         widget=TextAreaWidget(
             description="To track changes related to evaluation planning",
-            label='Remarls',
-            label_msgid='ProjectDatabase_label_Remarls',
-            description_msgid='ProjectDatabase_help_Remarls',
+            label='Remarks',
+            label_msgid='ProjectDatabase_label_Remarks',
+            description_msgid='ProjectDatabase_help_Remarks',
             i18n_domain='ProjectDatabase',
         )
     ),

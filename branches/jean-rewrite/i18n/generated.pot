@@ -68,6 +68,7 @@ msgstr ""
 
 #. Default: "Refers to significant changes within specific budget lines as compared to the originally approved budget"
 #: content/RatingTrackingSystem.py
+#: content/EvaluationMilestone.py
 msgid "ProjectDatabase_help_Remarks"
 msgstr ""
 
@@ -387,6 +388,7 @@ msgstr ""
 
 #. Default: "Fundmanagementofficer"
 #: content/Financials.py
+#: content/MonitoringAndEvaluation.py
 msgid "ProjectDatabase_label_FundManagementOfficer"
 msgstr ""
 
@@ -912,6 +914,7 @@ msgstr ""
 
 #. Default: "Remarks"
 #: content/RatingTrackingSystem.py
+#: content/EvaluationMilestone.py
 msgid "ProjectDatabase_label_Remarks"
 msgstr ""
 

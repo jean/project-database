@@ -191,18 +191,18 @@ schema = Schema((
 ##code-section after-local-schema #fill in your manual code here
 ##/code-section after-local-schema
 
-Financials_schema = BaseSchema.copy() + \
+Financials_schema = BaseFolderSchema.copy() + \
     getattr(FinancialsMixin, 'schema', Schema(())).copy() + \
     schema.copy()
 
 ##code-section after-schema #fill in your manual code here
 ##/code-section after-schema
 
-class Financials(BaseContent, CurrencyMixin, FinancialsMixin):
+class Financials(BaseFolder, CurrencyMixin, FinancialsMixin):
     """
     """
     security = ClassSecurityInfo()
-    __implements__ = (getattr(BaseContent,'__implements__',()),) + (getattr(CurrencyMixin,'__implements__',()),) + (getattr(FinancialsMixin,'__implements__',()),)
+    __implements__ = (getattr(BaseFolder,'__implements__',()),) + (getattr(CurrencyMixin,'__implements__',()),) + (getattr(FinancialsMixin,'__implements__',()),)
     # zope3 interfaces
     zope.interface.implements(IFinancials)
 
@@ -211,8 +211,8 @@ class Financials(BaseContent, CurrencyMixin, FinancialsMixin):
 
     meta_type = 'Financials'
     portal_type = 'Financials'
-    allowed_content_types = [] + list(getattr(FinancialsMixin, 'allowed_content_types', []))
-    filter_content_types = 0
+    allowed_content_types = ['MonitoringAndEvaluation'] + list(getattr(FinancialsMixin, 'allowed_content_types', []))
+    filter_content_types = 1
     global_allow = 0
     #content_icon = 'Financials.gif'
     immediate_view = 'base_view'
