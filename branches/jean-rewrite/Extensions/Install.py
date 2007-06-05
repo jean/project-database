@@ -181,6 +181,7 @@ def install(self, reinstall=False):
         "EvaluationMilestone",
         "RatingTrackingSystem",
         "select",
+        "EvaluatorsInformation",
         "testProjectDatabaseSetup",
         "PortalDatabaseTestCase",
         "testProjectDatabase",

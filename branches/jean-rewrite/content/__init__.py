@@ -64,6 +64,7 @@ import MonitoringAndEvaluation
 import EvaluationMilestone
 import RatingTrackingSystem
 import select
+import EvaluatorsInformation
 
 ##code-section init-module-footer #fill in your manual code here
 ##/code-section init-module-footer

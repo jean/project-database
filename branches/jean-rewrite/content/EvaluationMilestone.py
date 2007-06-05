@@ -71,7 +71,7 @@ schema = Schema((
         name='PlannedDate',
         widget=CalendarWidget(
             label="Planned Date",
-            description="Planned date for the",
+            description="Planned date for the particular milestone",
             label_msgid='ProjectDatabase_label_PlannedDate',
             description_msgid='ProjectDatabase_help_PlannedDate',
             i18n_domain='ProjectDatabase',
@@ -119,7 +119,7 @@ class EvaluationMilestone(BaseContent):
     __implements__ = (getattr(BaseContent,'__implements__',()),)
 
     # This name appears in the 'add' box
-    archetype_name = 'EvaluationMilestone'
+    archetype_name = 'Evaluation Milestone'
 
     meta_type = 'EvaluationMilestone'
     portal_type = 'EvaluationMilestone'
@@ -130,7 +130,7 @@ class EvaluationMilestone(BaseContent):
     immediate_view = 'base_view'
     default_view = 'base_view'
     suppl_views = ()
-    typeDescription = "EvaluationMilestone"
+    typeDescription = "Evaluation Milestone"
     typeDescMsgId = 'description_edit_evaluationmilestone'
 
     _at_rename_after_creation = True

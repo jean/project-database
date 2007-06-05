@@ -37,14 +37,15 @@
         <p><strong i18n:translate="description_no_results_found">No results were found.</strong></p>
     </div>
 
-    <div tal:condition="results" 
+    <div tal:condition="results">
+        <div
           tal:define="batch python:Batch(results, b_size, int(b_start), orphan=1);
                       st_val python:request.get('SearchableText'); 
                       tm_val python:request.get('getRawCurrent_task_manager');    
                       id_val python:request.get('Title');                     
                       fa_val python:request.get('getFocal_area');
                       sp_val python:request.get('getStrategic_priority');
-                      pj_val python:request.get('getProject_type');
+                      pj_val python:request.get('getProjectType');
                       pn_val python:request.get('getPipeline_number');
                       scope_val python:request.get('getScope');
                       reg_val python:request.get('getRegion');
@@ -113,7 +114,7 @@
 	  	        
 	  	        <metal:block tal:condition="batch|not:standalone|nothing">
 	  	        <form action="ProjectSearchResults" method="get" name="search">
-	  	        <tr tal:define="ptype_val python: request.get('getProject_type'); 
+	  	        <tr tal:define="ptype_val python: request.get('getProjectType'); 
 	  	                        url_val python: request.get('path')">
   
 	                    <!-- Hidden form values-->
@@ -191,7 +192,7 @@
 
         <!-- Navigation -->
         <div metal:use-macro="here/batch_macros/macros/navigation" />
-
+    </div>
     </div>
  </body>
   </div>

@@ -129,7 +129,7 @@ schema = Schema((
     StringField(
         name='JointEvaluation',
         widget=SelectionWidget(
-            label="Join Evaluation",
+            label="Joint Evaluation",
             label_msgid='ProjectDatabase_label_JointEvaluation',
             i18n_domain='ProjectDatabase',
         ),
@@ -149,7 +149,7 @@ schema = Schema((
     ReferenceField(
         name='JointEvaluationAgencyContact',
         widget=ReferenceField._properties['widget'](
-            label="Join Evaluation Agency Contact",
+            label="Joint Evaluation Agency Contact",
             description="Name of evaluation officer in the other agency",
             label_msgid='ProjectDatabase_label_JointEvaluationAgencyContact',
             description_msgid='ProjectDatabase_help_JointEvaluationAgencyContact',
@@ -270,18 +270,18 @@ class MonitoringAndEvaluation(BaseFolder):
     __implements__ = (getattr(BaseFolder,'__implements__',()),)
 
     # This name appears in the 'add' box
-    archetype_name = 'MonitoringAndEvaluation'
+    archetype_name = 'Monitoring and Evaluation'
 
     meta_type = 'MonitoringAndEvaluation'
     portal_type = 'MonitoringAndEvaluation'
-    allowed_content_types = ['EvaluationMilestone', 'RatingTrackingSystem']
+    allowed_content_types = ['EvaluationMilestone', 'RatingTrackingSystem', 'EvaluatorsInformation']
     filter_content_types = 1
     global_allow = 0
     #content_icon = 'MonitoringAndEvaluation.gif'
     immediate_view = 'base_view'
     default_view = 'base_view'
     suppl_views = ()
-    typeDescription = "MonitoringAndEvaluation"
+    typeDescription = "Monitoring and Evaluation"
     typeDescMsgId = 'description_edit_monitoringandevaluation'
 
 
@@ -292,6 +292,15 @@ class MonitoringAndEvaluation(BaseFolder):
         'category': "object_tabs",
         'id': 'project_ratings_disconnect_view',
         'name': 'Project Ratings Disconnect',
+        'permissions': (permissions.ViewProjects,),
+        'condition': 'python:1'
+       },
+
+
+       {'action': "string:${object_url}/evaluation_process_progress",
+        'category': "object_tabs",
+        'id': 'evaluation_process_progress_view',
+        'name': 'Evaluation Process Progress',
         'permissions': (permissions.ViewProjects,),
         'condition': 'python:1'
        },
