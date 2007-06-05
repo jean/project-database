@@ -62,10 +62,10 @@ schema = Schema((
 
     copied_fields['CurrentTaskManager'],
         ReferenceField(
-        name='FundManagerOfficer',
+        name='FundManagementOfficer',
         widget=ReferenceField._properties['widget'](
             label="Fund Manager Officer",
-            label_msgid='ProjectDatabase_label_FundManagerOfficer',
+            label_msgid='ProjectDatabase_label_FundManagementOfficer',
             i18n_domain='ProjectDatabase',
         ),
         allowed_types=('mxmContactsPerson',),

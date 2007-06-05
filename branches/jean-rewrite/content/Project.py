@@ -690,7 +690,7 @@ class Project(BaseFolder, CurrencyMixin, DocumentLinks):
 
     meta_type = 'Project'
     portal_type = 'Project'
-    allowed_content_types = ['ProjectImplementation', 'Financials', 'Milestone', 'SubProject', 'ProjectExecutingPartner', 'Tranched', 'Phased', 'AddOn', 'MonitoringAndEvaluation'] + list(getattr(DocumentLinks, 'allowed_content_types', []))
+    allowed_content_types = ['ProjectImplementation', 'Financials', 'Milestone', 'SubProject', 'ProjectExecutingPartner', 'Tranched', 'Phased', 'AddOn'] + list(getattr(DocumentLinks, 'allowed_content_types', []))
     filter_content_types = 1
     global_allow = 0
     #content_icon = 'Project.gif'
