@@ -51,7 +51,7 @@ schema = Schema((
         name='PIRRating',
         widget=DataGridField._properties['widget'](
             columns={'pir_rating_category':SelectColumn('PIR Rating Category', vocabulary='getPIRRatingCategory'), 'rating':SelectColumn('Rating', vocabulary='getRatingList')},
-            label='Pirrating',
+            label="PIR Rating",
             label_msgid='ProjectDatabase_label_PIRRating',
             i18n_domain='ProjectDatabase',
         ),
@@ -250,7 +250,7 @@ class RatingTrackingSystem(BaseContent):
     __implements__ = (getattr(BaseContent,'__implements__',()),)
 
     # This name appears in the 'add' box
-    archetype_name = 'RatingTrackingSystem'
+    archetype_name = 'Rating Tracking System'
 
     meta_type = 'RatingTrackingSystem'
     portal_type = 'RatingTrackingSystem'
@@ -261,7 +261,7 @@ class RatingTrackingSystem(BaseContent):
     immediate_view = 'base_view'
     default_view = 'base_view'
     suppl_views = ()
-    typeDescription = "RatingTrackingSystem"
+    typeDescription = "Rating Tracking System"
     typeDescMsgId = 'description_edit_ratingtrackingsystem'
 
     _at_rename_after_creation = True

@@ -81,6 +81,16 @@ msgstr ""
 msgid "ProjectDatabase_help_RevisedCompletionDate"
 msgstr ""
 
+#. Default: "Name of evaluation team leader"
+#: content/EvaluatorsInformation.py
+msgid "ProjectDatabase_help_TeamLeader"
+msgstr ""
+
+#. Default: "Names of other evaluation team members"
+#: content/EvaluatorsInformation.py
+msgid "ProjectDatabase_help_TeamMembers"
+msgstr ""
+
 #. Default: "Is this a Tranched project?"
 #: content/Project.py
 msgid "ProjectDatabase_help_Tranched"
@@ -1089,6 +1099,16 @@ msgstr ""
 #. Default: "TE Rating"
 #: content/RatingTrackingSystem.py
 msgid "ProjectDatabase_label_TERating"
+msgstr ""
+
+#. Default: "Team Leader"
+#: content/EvaluatorsInformation.py
+msgid "ProjectDatabase_label_TeamLeader"
+msgstr ""
+
+#. Default: "Team Members"
+#: content/EvaluatorsInformation.py
+msgid "ProjectDatabase_label_TeamMembers"
 msgstr ""
 
 #. Default: "Terminalevaluation"

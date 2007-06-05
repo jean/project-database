@@ -84,6 +84,8 @@ for k, v in second_pass.items():
 # doesn't normal call catalog unless some field has been queried
 # against. if you want to call the catalog _regardless_ of whether
 # any items were found, then you can pass show_all=1.
+
+
 if show_query:
     try:
         results = catalog(query, show_inactive=False, sort_on='sortable_title')
