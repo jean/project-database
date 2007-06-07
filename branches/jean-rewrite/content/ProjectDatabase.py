@@ -208,6 +208,15 @@ class ProjectDatabase(BaseFolder):
        },
 
 
+       {'action': "string:${object_url}/project_view",
+        'category': "object_tabs",
+        'id': 'view',
+        'name': 'project view',
+        'permissions': (permissions.ViewProjects,),
+        'condition': 'python:1'
+       },
+
+
     )
 
     _at_rename_after_creation = True

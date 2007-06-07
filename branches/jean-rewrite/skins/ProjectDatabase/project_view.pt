@@ -1,0 +1,198 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      lang="en"
+      metal:use-macro="here/main_template/macros/master"
+      i18n:domain="plonehelpcenter">
+      
+<head>
+    <metal:css fill-slot="css_slot">
+    <style type="text/css" media="all"
+           tal:content="string: @import url($portal_url/helpcenter.css);"></style>
+    </metal:css>
+
+   
+
+</head>
+<body>
+
+<metal:main fill-slot="main">
+    <tal:main-macro metal:define-macro="main"
+                    tal:define="my_path python: '/'.join(here.getPhysicalPath());">
+            <h1 tal:content="here/title_or_id" class="documentFirstHeading">
+              Title or id
+            </h1>
+        
+            <div metal:use-macro="here/document_actions/macros/document_actions">
+                Document actions (print, sendto etc)
+            </div>
+        
+            
+
+            <div class="documentDescription"
+                 tal:content="here/Description">
+                description
+            </div>
+        
+            
+
+          
+
+            <div class="visualClear"></div>
+            
+            	    
+                    <!--div>
+                        <h6>
+                        <a tal:attributes="href string:${here/absolute_url}/Project_search;">
+				<span i18n:translate="">
+                    		Search for Projects 
+				</span>
+                        </a>
+                        </h6>
+
+                        <div class="portletBody">
+                            
+                            <form action="ProjectSearchResults" method="get" name="search">
+			    
+			    <fieldset>
+                            <legend i18n:translate="legend_search_terms"></legend>
+
+				
+
+				
+				   
+				 <p>
+			      <a href=""
+				tal:attributes="href string:${here/absolute_url}/Project_search;">Click to search Project Database</a>
+
+			     </p>
+				 
+
+			      </fieldset>
+				    	
+    			    </form>
+			    
+			</div>
+                     </div>
+                     <br><br-->
+                     
+                     <div>
+			     <h6>
+			     <a tal:attributes="href string:${here/absolute_url}/Project_search;">
+				<span i18n:translate="">
+					View Reports
+				</span>
+			     </a>
+			     </h6>
+		     
+		                             <div class="portletBody">
+		                               <BR>  
+		                                 
+		     			    
+		     			    <fieldset>
+		     				
+		     				<legend i18n:translate="legend_search_terms">Project Reports</legend>
+		     
+		     				<div class="field">
+		     				    
+		     				    <div class="formHelp">
+		     
+		     				    Click on each heading to view the relevant report.
+		     
+		     				      
+		     				    </div>
+		     
+		     				    <div>
+                                                     <a href=""
+							tal:attributes="href string:${here/absolute_url}/orgp_report;">
+                                                     Operational Report on GEF Projects (ORGP).</a> </div>
+
+                                                    <div>
+                                                     <a href=""
+							tal:attributes="href string:${here/absolute_url}/proj_fund_report;"> 
+                                                    Project Funding Report.</a> </div>
+		     				    <div> Ageing Projects.</div>
+                                                    <div> Project Cycle Review.</div>
+                                                    <div> Quarterly Report on UNEP approvals.</div>
+                                                    <div> Quarterly Report on dropped/cancelled/amendments.</div>
+                                                    <div> Annual report for reconciliation between the trustee and UNEP.</div>
+                                                    <div> Financial status of UNEP's GEF work program.</div>
+                                                    <div> Monthly confirmation of Council and CEO approvals/endorsements.</div>
+		     				    <p> <img tal:attributes="src string:${here/portal_url}/UNDERCON.GIF" /> </p>
+		     				</div>
+		     				
+		     				<BR>
+		     				            
+		     			      </fieldset>
+		     				    
+		         			   
+		     				
+		     			</div>
+                     </div>
+                     <br><br>
+                     
+                     <div>
+			     <h6>
+			     <a tal:attributes="href string:${here/absolute_url}/Project_search;">
+				<span i18n:translate="">
+					Export Project Data to MS Excel
+				</span>
+			     </a>
+			     </h6>
+		     
+		                             <div class="portletBody">
+		                               <BR>  
+		                                 
+		     			    
+		     			    <fieldset>
+		     				
+		     				<legend i18n:translate="legend_search_terms"></legend>
+		     
+		     				<div class="field">
+		     				    
+		     				    <div>
+		     				    <a href=""
+							tal:attributes="href string:${here/absolute_url}/project_core_export/ZScriptHTML_tryForm;">Project Core.
+						    </a>
+						   </div>
+
+		     				    <div>
+		     				    <a href=""
+							tal:attributes="href string:${here/absolute_url}/project_core_impl_status/ZScriptHTML_tryForm;">Project Implementation Status.
+						    </a>
+						   </div>
+
+		     				    <div>
+		     				    <a href=""
+							tal:attributes="href string:${here/absolute_url}/fmi_export/ZScriptHTML_tryForm;">Financial Management Data.
+						    </a>
+						   </div>
+
+
+		     				    <BR><BR><BR>
+		     				    <BR><BR><BR>
+		     				</div>
+		     				
+		     				<BR>
+		     				            
+		     			      </fieldset>
+		     				    
+		         			   
+		     				
+		     			</div>
+                     </div>
+                     
+               
+         
+        <div class="visualClear"> <br/> </div>
+        
+           
+      
+        </tal:main-macro>
+
+        <div class="visualClear"/>
+
+       
+
+    </metal:main>
+
+  </body>
+</html>
