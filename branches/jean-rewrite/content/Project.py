@@ -746,67 +746,158 @@ class Project(BaseFolder, CurrencyMixin, DocumentLinks):
     def getTotalGEFAllocation(self):
         """
         """
-        pass
+        fmi_cash_objs = self.contentValues('Financials')
+        subproject_objs = self.contentValues('SubProject')
+        total = self.getZeroMoneyInstance()
+        for fmi_obj in fmi_cash_objs:
+            if fmi_obj.getGEFProjectAllocation():
+                total += fmi_obj.getGEFProjectAllocation()
+        for sp_obj in subproject_objs:
+            if sp_obj.getGEFProjectAllocation():
+                total += sp_obj.getGEFProjectAllocation()
+        return total
 
     security.declarePublic('getTotalUNEPAllocation')
     def getTotalUNEPAllocation(self):
         """
         """
-        pass
+        fmi_cash_objs = self.contentValues('Financials')
+        total = self.getZeroMoneyInstance()
+        for fmi_obj in fmi_cash_objs:
+            if fmi_obj.getCashUNEPAllocation():
+                total += fmi_obj.getCashUNEPAllocation()
+        return total
 
     security.declarePublic('getTotalCofinancingPlanned')
     def getTotalCofinancingPlanned(self):
         """
         """
-        pass
+        fmi_cash_objs = self.contentValues('Financials')
+        subproject_objs = self.contentValues('SubProject')
+        total = self.getZeroMoneyInstance()
+        for fmi_obj in fmi_cash_objs:
+            if fmi_obj.getSumCofinCashPlanned():
+                total += fmi_obj.getSumCofinCashPlanned()
+            if fmi_obj.getSumCofinInKindPlanned():
+                total += fmi_obj.getSumCofinInKindPlanned()
+        for sp_obj in subproject_objs:
+            if sp_obj.getSumCofinCashPlanned():
+                total += sp_obj.getSumCofinCashPlanned()
+            if sp_obj.getSumCofinInKindPlanned():
+                total += sp_obj.getSumCofinInKindPlanned()
+        return total
 
     security.declarePublic('getTotalCofinancingActual')
     def getTotalCofinancingActual(self):
         """
         """
-        pass
+        fmi_cash_objs = self.contentValues('Financials')
+        subproject_objs = self.contentValues('SubProject')
+        total = self.getZeroMoneyInstance()
+        for fmi_obj in fmi_cash_objs:
+            if fmi_obj.getSumCofinCashActual():
+                total += fmi_obj.getSumCofinCashActual()
+            if fmi_obj.getSumCofinInKindActual():
+                total += fmi_obj.getSumCofinInKindActual()
+        for sp_obj in subproject_objs:
+            if sp_obj.getSumCofinCashActual():
+                total += sp_obj.getSumCofinCashActual()
+            if sp_obj.getSumCofinInKindActual():
+                total += sp_obj.getSumCofinInKindActual()
+        return total
 
     security.declarePublic('getTotalCashDisbursements')
     def getTotalCashDisbursements(self):
         """
         """
-        pass
+        fmi_cash_objs = self.contentValues('Financials')
+        subproject_objs = self.contentValues('SubProject')
+        total = self.getZeroMoneyInstance()
+        for fmi_obj in fmi_cash_objs:
+            if fmi_obj.getSumCashDisbursements():
+                total += fmi_obj.getSumCashDisbursements()
+        for sp_obj in subproject_objs:
+            if sp_obj.getSumCashDisbursements():
+                total += sp_obj.getSumCashDisbursements()
+        return total
 
     security.declarePublic('getTotalIMISExpenditures')
     def getTotalIMISExpenditures(self):
         """
         """
-        pass
+        fmi_cash_objs = self.contentValues('Financials')
+        subproject_objs = self.contentValues('SubProject')
+        total = self.getZeroMoneyInstance()
+        for fmi_obj in fmi_cash_objs:
+            if fmi_obj.getSumIMISExpenditures():
+                total += fmi_obj.getSumIMISExpenditures()
+        for sp_obj in subproject_objs:
+            if sp_obj.getSumIMISExpenditures():
+                total += sp_obj.getSumIMISExpenditures()
+        return total
 
     security.declarePublic('getPDFAStatus')
     def getPDFAStatus(self):
         """
         """
-        pass
+        fmi_objs = self.contentValues('Financials')
+        status = ''
+        for fmi_obj in fmi_objs:
+            if fmi_obj.getFinanceCategory() == 'PDF A':
+                status = fmi_obj.getStatus()
+        return status
 
     security.declarePublic('getPDFBStatus')
     def getPDFBStatus(self):
         """
         """
-        pass
+        fmi_objs = self.contentValues('Financials')
+        status = ''
+        for fmi_obj in fmi_objs:
+            if fmi_obj.getFinanceCategory() == 'PDF B':
+                status = fmi_obj.getStatus()
+        return status
 
     security.declarePublic('getMSPStatus')
     def getMSPStatus(self):
         """
         """
-        pass
+        fmi_objs = self.contentValues('Financials')
+        status = ''
+        for fmi_obj in fmi_objs:
+            if fmi_obj.getFinanceCategory() == 'MSP':
+                status = fmi_obj.getStatus()
+        return status
 
     security.declarePublic('getFSPStatus')
     def getFSPStatus(self):
         """
         """
-        pass
+        fmi_objs = self.contentValues('Financials')
+        status = ''
+        for fmi_obj in fmi_objs:
+            if fmi_obj.getFinanceCategory() == 'FSP':
+                status = fmi_obj.getStatus()
+        return status
 
     security.declarePublic('getProjectTitle')
     def getProjectTitle(self):
+        """ Code copied from previous project; dunno what it means...
         """
-        """
-        pass
+        start_date_val = ''
+        start_date_val_comp = ''
+        r_str = ''
+
+        for fobj in self.contentValues('Financials'):
+            start_date_val = fobj.getStartDate()
+            if start_date_val_comp == '':
+                start_date_val_comp = fobj.getStartDate()
+                r_str = fobj.Title()
+            else:
+                if start_date_val > start_date_val_comp:
+                    start_date_val_comp = start_date_val
+                    r_str = fobj.Title()
+        return r_str
 
     security.declarePublic('validate_TranchedNumber')
     def validate_TranchedNumber(self, value):

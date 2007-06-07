@@ -27,7 +27,7 @@
                        
            
 	   
-           <h1 tal:on-error="nothing" 
+           <h1 
                 tal:define="field python:here.Schema()['ProjectTitle']; 
                             accessor python:getattr(here, field.accessor)" 
                 tal:condition="python:not accessor()==''" >
@@ -204,12 +204,12 @@
 	   <table border=1 cellspacing=0 cellpadding=2 width=100% bordercolor='#CCCCCC' bgcolor='#E9F4FF'>
 	           <tr><td colspan='2' align='center'><b>PROJECT SUMMARY</b></td></tr>
 	   	   <tr tal:on-error="nothing" tal:define="field python:here.Schema()['TotalGEFAllocation']; accessor python:getattr(here, field.accessor)" tal:condition="python:not accessor()==''"><td width=65%><b><font color='#336699'>Total GEF Project Allocation</font></b></td> <td><span tal:replace="structure accessor"/> </td></tr>
-	   	   <tr tal:on-error="nothing" tal:define="field python:here.Schema()['TotalUNEPAllocation']; accessor python:getattr(here, field.accessor)" tal:condition="python:not accessor()==''"><td width=65%><b><font color='#336699'>Total GEF Allocation to UNEP</font></b></td> <td><span tal:replace="structure accessor"/> </td></tr>
-	   	   <tr tal:on-error="nothing" tal:define="field python:here.Schema()['TotalCofinancingActual']; accessor python:getattr(here, field.accessor)" tal:condition="python:not accessor()==''"><td width=65%><b><font color='#336699'>Cofinancing (Actual)</font></b></td> <td><span tal:replace="structure accessor"/></td></tr>
-	   	   <tr tal:on-error="nothing" tal:define="field python:here.Schema()['TotalCofinancingPlanned']; accessor python:getattr(here, field.accessor)" tal:condition="python:not accessor()==''"><td width=65%><b><font color='#336699'>Cofinancing (Planned)</font></b></td> <td><span tal:replace="structure accessor"/></td></tr>
-	   	   <tr tal:on-error="nothing" tal:define="field python:here.Schema()['TotalIMISExpenditures']; accessor python:getattr(here, field.accessor)" tal:condition="python:not accessor()==''"><td width=65%><b><font color='#336699'>Total Expenditures</font></b></td> <td><span tal:replace="structure accessor"/></td></tr>
-	   	   <tr tal:on-error="nothing" tal:define="field python:here.Schema()['TotalCashDisbursements']; accessor python:getattr(here, field.accessor)" tal:condition="python:not accessor()==''"><td width=65%><b><font color='#336699'>Total Disbursements</font></b></td> <td><span tal:replace="structure accessor"/></td></tr>
-	   	   <tr tal:on-error="nothing" tal:define="field python:here.Schema()['ProjectType']; 
+	   	   <tr tal:define="field python:here.Schema()['TotalUNEPAllocation']; accessor python:getattr(here, field.accessor)" tal:condition="python:not accessor()==''"><td width=65%><b><font color='#336699'>Total GEF Allocation to UNEP</font></b></td> <td><span tal:replace="structure accessor"/> </td></tr>
+	   	   <tr tal:define="field python:here.Schema()['TotalCofinancingActual']; accessor python:getattr(here, field.accessor)" tal:condition="python:not accessor()==''"><td width=65%><b><font color='#336699'>Cofinancing (Actual)</font></b></td> <td><span tal:replace="structure accessor"/></td></tr>
+	   	   <tr tal:define="field python:here.Schema()['TotalCofinancingPlanned']; accessor python:getattr(here, field.accessor)" tal:condition="python:not accessor()==''"><td width=65%><b><font color='#336699'>Cofinancing (Planned)</font></b></td> <td><span tal:replace="structure accessor"/></td></tr>
+	   	   <tr tal:define="field python:here.Schema()['TotalIMISExpenditures']; accessor python:getattr(here, field.accessor)" tal:condition="python:not accessor()==''"><td width=65%><b><font color='#336699'>Total Expenditures</font></b></td> <td><span tal:replace="structure accessor"/></td></tr>
+	   	   <tr tal:define="field python:here.Schema()['TotalCashDisbursements']; accessor python:getattr(here, field.accessor)" tal:condition="python:not accessor()==''"><td width=65%><b><font color='#336699'>Total Disbursements</font></b></td> <td><span tal:replace="structure accessor"/></td></tr>
+	   	   <tr tal:define="field python:here.Schema()['ProjectType']; 
 		   			   accessor python:getattr(here, field.accessor);
 		   			   mode string:view;
 		   			   widget_view python:here.widget(field.getName(), mode=mode, use_label=1);">
@@ -218,7 +218,7 @@
 	           </tr>
 	           
 	           
-	           <tr tal:on-error="nothing" tal:define="field python:here.Schema()['CurrentTaskManager']; 
+	           <tr tal:define="field python:here.Schema()['CurrentTaskManager']; 
 		   	   	   		   accessor python:getattr(here, field.accessor);
 		   	   	   		   mode string:view;
 		   	   	   		   widget_view python:here.widget(field.getName(), mode=mode, use_label=1);" 
