@@ -40,13 +40,13 @@ from Products.ProjectDatabase.config import *
 
 productname = 'ProjectDatabase'
 
-def setupMilestoneWorkflow(self, workflow):
-    """Define the MilestoneWorkflow workflow.
+def setupFinancialsWorkflow(self, workflow):
+    """Define the FinancialsWorkflow workflow.
     """
     # Add additional roles to portal
     portal = getToolByName(self,'portal_url').getPortalObject()
     data = list(portal.__ac_roles__)
-    for role in ['MilestoneEdit']:
+    for role in ['FmiEdit', 'ProjectEdit', 'PortfolioManager']:
         if not role in data:
             data.append(role)
             # add to portal_role_manager
@@ -57,20 +57,20 @@ def setupMilestoneWorkflow(self, workflow):
                 if prm is not None:
                     try:
                         prm.addRole(role, role, 
-                                    "Added by product 'ProjectDatabase'/workflow 'MilestoneWorkflow'")
+                                    "Added by product 'ProjectDatabase'/workflow 'FinancialsWorkflow'")
                     except KeyError: # role already exists
                         pass
             except AttributeError:
                 pass
     portal.__ac_roles__ = tuple(data)
 
-    workflow.setProperties(title='MilestoneWorkflow')
+    workflow.setProperties(title='FinancialsWorkflow')
 
     ##code-section create-workflow-setup-method-header #fill in your manual code here
     ##/code-section create-workflow-setup-method-header
 
 
-    for s in ['private', 'published', 'pending', 'visible']:
+    for s in ['published', 'pending', 'private', 'visible']:
         workflow.states.addState(s)
 
     for t in ['hide', 'publish', 'reject', 'retract', 'show', 'submit']:
@@ -94,73 +94,73 @@ def setupMilestoneWorkflow(self, workflow):
 
     ## States initialization
 
-    stateDef = workflow.states['private']
-    stateDef.setProperties(title="""private""",
-                           description="""""",
-                           transitions=['show'])
-    stateDef.setPermission('Access contents information',
-                           0,
-                           ['Manager', 'Owner'])
-    stateDef.setPermission('Modify portal content',
-                           0,
-                           ['Manager', 'Owner'])
-    stateDef.setPermission('View',
-                           0,
-                           ['Manager', 'Owner'])
-    stateDef.setPermission('Change portal events',
-                           0,
-                           ['Manager', 'Owner'])
-
     stateDef = workflow.states['published']
     stateDef.setProperties(title="""published""",
                            description="""""",
                            transitions=['reject', 'retract'])
     stateDef.setPermission('Access contents information',
                            1,
-                           ['Anonymous', 'Manager'])
+                           ['Anonymous', 'Manager', 'FmiEdit', 'PortfolioManager'])
     stateDef.setPermission('Modify portal content',
                            0,
-                           ['Manager'])
+                           ['Manager', 'FmiEdit', 'PortfolioManager'])
     stateDef.setPermission('View',
                            1,
-                           ['Anonymous', 'Manager'])
+                           ['Anonymous', 'Manager', 'FmiEdit', 'PortfolioManager'])
     stateDef.setPermission('Change portal events',
                            0,
-                           ['Manager'])
+                           ['Manager', 'FmiEdit', 'PortfolioManager'])
 
     stateDef = workflow.states['pending']
     stateDef.setProperties(title="""pending""",
                            description="""""",
-                           transitions=['hide', 'publish', 'reject', 'retract'])
+                           transitions=['reject', 'retract', 'publish', 'hide'])
     stateDef.setPermission('Access contents information',
                            1,
-                           ['Manager', 'Owner', 'Reviewer'])
+                           ['FmiEdit', 'PortfolioManager'])
     stateDef.setPermission('Modify portal content',
                            0,
-                           ['Manager', 'Reviewer'])
+                           ['FmiEdit', 'PortfolioManager'])
     stateDef.setPermission('View',
                            1,
-                           ['Manager', 'Owner', 'Reviewer'])
+                           ['FmiEdit', 'PortfolioManager'])
     stateDef.setPermission('Change portal events',
                            0,
-                           ['Manager', 'Reviewer'])
+                           ['FmiEdit', 'PortfolioManager'])
+
+    stateDef = workflow.states['private']
+    stateDef.setProperties(title="""private""",
+                           description="""""",
+                           transitions=['show'])
+    stateDef.setPermission('Access contents information',
+                           0,
+                           ['PortfolioManager', 'Manager', 'Owner', 'FmiEdit'])
+    stateDef.setPermission('Modify portal content',
+                           0,
+                           ['PortfolioManager', 'Manager', 'Owner', 'FmiEdit'])
+    stateDef.setPermission('View',
+                           0,
+                           ['PortfolioManager', 'Manager', 'Owner', 'FmiEdit'])
+    stateDef.setPermission('Change portal events',
+                           0,
+                           ['PortfolioManager', 'Manager', 'Owner', 'FmiEdit'])
 
     stateDef = workflow.states['visible']
     stateDef.setProperties(title="""visible""",
                            description="""""",
-                           transitions=['hide', 'publish', 'submit'])
+                           transitions=['publish', 'submit'])
     stateDef.setPermission('Access contents information',
                            1,
-                           ['Anonymous', 'Manager', 'Reviewer', 'MilestoneEdit'])
+                           ['Anonymous', 'Manager', 'Reviewer', 'FmiEdit', 'PortfolioManager', 'ProjectEdit'])
     stateDef.setPermission('Modify portal content',
-                           1,
-                           ['Manager', 'Owner', 'MilestoneEdit'])
+                           0,
+                           ['Manager', 'Owner', 'FmiEdit', 'PortfolioManager', 'ProjectEdit'])
     stateDef.setPermission('View',
                            1,
-                           ['Anonymous', 'Manager', 'Reviewer', 'MilestoneEdit'])
+                           ['Anonymous', 'Manager', 'Reviewer', 'FmiEdit', 'PortfolioManager', 'ProjectEdit'])
     stateDef.setPermission('Change portal events',
                            0,
-                           ['Manager', 'Owner', 'MilestoneEdit'])
+                           ['Manager', 'Owner', 'FmiEdit', 'PortfolioManager', 'ProjectEdit'])
 
     ## Transitions initialization
 
@@ -173,7 +173,7 @@ def setupMilestoneWorkflow(self, workflow):
                                 actbox_name="""hide""",
                                 actbox_url="""""",
                                 actbox_category="""workflow""",
-                                props={'guard_roles': 'MilestoneEdit;Manager'},
+                                props={'guard_roles': 'FmiEdit;Manager'},
                                 )
 
     transitionDef = workflow.transitions['publish']
@@ -185,7 +185,7 @@ def setupMilestoneWorkflow(self, workflow):
                                 actbox_name="""publish""",
                                 actbox_url="""""",
                                 actbox_category="""workflow""",
-                                props={'guard_permissions': 'Review portal content', 'guard_roles': 'MilestoneEdit;Manager'},
+                                props={'guard_roles': 'FmiEdit;Manager'},
                                 )
 
     transitionDef = workflow.transitions['reject']
@@ -197,7 +197,7 @@ def setupMilestoneWorkflow(self, workflow):
                                 actbox_name="""reject""",
                                 actbox_url="""""",
                                 actbox_category="""workflow""",
-                                props={'guard_permissions': 'Review portal content', 'guard_roles': 'MilestoneEdit;Manager'},
+                                props={'guard_permissions': 'Review portal content', 'guard_roles': 'FmiEdit;Manager'},
                                 )
 
     transitionDef = workflow.transitions['retract']
@@ -221,7 +221,7 @@ def setupMilestoneWorkflow(self, workflow):
                                 actbox_name="""show""",
                                 actbox_url="""""",
                                 actbox_category="""workflow""",
-                                props={'guard_roles': 'MilestoneEdit;Manager'},
+                                props={'guard_roles': 'FmiEdit;Manager'},
                                 )
 
     transitionDef = workflow.transitions['submit']
@@ -233,7 +233,7 @@ def setupMilestoneWorkflow(self, workflow):
                                 actbox_name="""submit""",
                                 actbox_url="""""",
                                 actbox_category="""workflow""",
-                                props={'guard_permissions': 'Request review'},
+                                props={'guard_roles': 'FmiEdit;ProjectEdit;Manager'},
                                 )
 
     ## State Variable
@@ -295,7 +295,7 @@ def setupMilestoneWorkflow(self, workflow):
                               actbox_url=actbox_url,
                               actbox_category="global",
                               props={'guard_permissions': 'Review portal content',
-                                     'guard_roles': 'MilestoneEdit',
+                                     'guard_roles': 'FmiEdit',
                                      'var_match_review_state': ';'.join(worklistStates)})
 
     # WARNING: below protected section is deprecated.
@@ -306,17 +306,17 @@ def setupMilestoneWorkflow(self, workflow):
 
 
 
-def createMilestoneWorkflow(self, id):
+def createFinancialsWorkflow(self, id):
     """Create the workflow for ProjectDatabase.
     """
 
     ob = DCWorkflowDefinition(id)
-    setupMilestoneWorkflow(self, ob)
+    setupFinancialsWorkflow(self, ob)
     return ob
 
-addWorkflowFactory(createMilestoneWorkflow,
-                   id='MilestoneWorkflow',
-                   title='MilestoneWorkflow')
+addWorkflowFactory(createFinancialsWorkflow,
+                   id='FinancialsWorkflow',
+                   title='FinancialsWorkflow')
 
 ##code-section create-workflow-module-footer #fill in your manual code here
 ##/code-section create-workflow-module-footer

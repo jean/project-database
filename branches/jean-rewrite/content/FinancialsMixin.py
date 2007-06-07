@@ -306,7 +306,7 @@ schema = Schema((
     TextField(
         name='FinancialStatusRemarks',
         widget=TextAreaWidget(
-            label='Financialstatusremarks',
+            label="Project Financial Status - Remarks",
             label_msgid='ProjectDatabase_label_FinancialStatusRemarks',
             i18n_domain='ProjectDatabase',
         )

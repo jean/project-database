@@ -70,7 +70,7 @@ schema = Schema((
     StringField(
         name='TerminalEvaluation',
         widget=StringWidget(
-            label='Terminalevaluation',
+            label="Terminal Evaluation",
             label_msgid='ProjectDatabase_label_TerminalEvaluation',
             i18n_domain='ProjectDatabase',
         ),

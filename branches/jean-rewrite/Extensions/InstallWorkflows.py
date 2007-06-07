@@ -41,33 +41,33 @@ def installWorkflows(self, package, out):
     workflowTool = getToolByName(self, 'portal_workflow')
 
     ourProductWorkflow = ExternalMethod('temp', 'temp',
-                                        productname+'.'+'State_Machine_1',
-                                        'createState_Machine_1')
-    workflow = ourProductWorkflow(self, 'State_Machine_1')
-    if 'State_Machine_1' in workflowTool.listWorkflows():
-        print >> out, 'State_Machine_1 already in workflows.'
+                                        productname+'.'+'ProjectWorkflow',
+                                        'createProjectWorkflow')
+    workflow = ourProductWorkflow(self, 'ProjectWorkflow')
+    if 'ProjectWorkflow' in workflowTool.listWorkflows():
+        print >> out, 'ProjectWorkflow already in workflows.'
     else:
-        workflowTool._setObject('State_Machine_1', workflow)
-    workflowTool.setChainForPortalTypes(['Project'], workflow.getId())
+        workflowTool._setObject('ProjectWorkflow', workflow)
+    workflowTool.setChainForPortalTypes(['Project', 'ProjectImplementation', 'SubProject'], workflow.getId())
 
     ourProductWorkflow = ExternalMethod('temp', 'temp',
-                                        productname+'.'+'State_Machine_2',
-                                        'createState_Machine_2')
-    workflow = ourProductWorkflow(self, 'State_Machine_2')
-    if 'State_Machine_2' in workflowTool.listWorkflows():
-        print >> out, 'State_Machine_2 already in workflows.'
+                                        productname+'.'+'MilestoneWorkflow',
+                                        'createMilestoneWorkflow')
+    workflow = ourProductWorkflow(self, 'MilestoneWorkflow')
+    if 'MilestoneWorkflow' in workflowTool.listWorkflows():
+        print >> out, 'MilestoneWorkflow already in workflows.'
     else:
-        workflowTool._setObject('State_Machine_2', workflow)
+        workflowTool._setObject('MilestoneWorkflow', workflow)
     workflowTool.setChainForPortalTypes(['Milestone'], workflow.getId())
 
     ourProductWorkflow = ExternalMethod('temp', 'temp',
-                                        productname+'.'+'State_Machine_1',
-                                        'createState_Machine_1')
-    workflow = ourProductWorkflow(self, 'State_Machine_1')
-    if 'State_Machine_1' in workflowTool.listWorkflows():
-        print >> out, 'State_Machine_1 already in workflows.'
+                                        productname+'.'+'FinancialsWorkflow',
+                                        'createFinancialsWorkflow')
+    workflow = ourProductWorkflow(self, 'FinancialsWorkflow')
+    if 'FinancialsWorkflow' in workflowTool.listWorkflows():
+        print >> out, 'FinancialsWorkflow already in workflows.'
     else:
-        workflowTool._setObject('State_Machine_1', workflow)
+        workflowTool._setObject('FinancialsWorkflow', workflow)
     workflowTool.setChainForPortalTypes(['Financials'], workflow.getId())
 
     ##code-section after-workflow-install #fill in your manual code here

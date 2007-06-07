@@ -37,7 +37,7 @@
             </thead>
             <tbody  >
                 <tr><td width=30% bgcolor="#DFEAF4">Name</td>
-                    <td width=30% bgcolor="#DFEAF4">Planned Date</td>
+                    <td width=30% bgcolor="#DFEAF4">Value/Planned Date</td>
                     <td width=40% bgcolor="#DFEAF4">Actual Date</td>
                 </tr>
                 <tal:entry tal:repeat="em emresults">

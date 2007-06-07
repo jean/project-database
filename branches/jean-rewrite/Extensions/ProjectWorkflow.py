@@ -3,7 +3,7 @@
 # File: ProjectDatabase.py
 #
 # Copyright (c) 2007 by []
-# Generator: ArchGenXML Version 1.5.1-svn
+# Generator: ArchGenXML Version 1.5.2
 #            http://plone.org/products/archgenxml
 #
 # GNU General Public License (GPL)
@@ -24,7 +24,7 @@
 # 02110-1301, USA.
 #
 
-__author__ = """unknown <unknown>"""
+__author__ = """Jean Jordaan <jean.jordaan@gmail.com>"""
 __docformat__ = 'plaintext'
 
 
@@ -43,6 +43,26 @@ productname = 'ProjectDatabase'
 def setupProjectWorkflow(self, workflow):
     """Define the ProjectWorkflow workflow.
     """
+    # Add additional roles to portal
+    portal = getToolByName(self,'portal_url').getPortalObject()
+    data = list(portal.__ac_roles__)
+    for role in ['ProjectEdit', 'PortfolioManager']:
+        if not role in data:
+            data.append(role)
+            # add to portal_role_manager
+            # first try to fetch it. if its not there, we probaly have no PAS 
+            # or another way to deal with roles was configured.            
+            try:
+                prm = portal.acl_users.get('portal_role_manager', None)
+                if prm is not None:
+                    try:
+                        prm.addRole(role, role, 
+                                    "Added by product 'ProjectDatabase'/workflow 'ProjectWorkflow'")
+                    except KeyError: # role already exists
+                        pass
+            except AttributeError:
+                pass
+    portal.__ac_roles__ = tuple(data)
 
     workflow.setProperties(title='ProjectWorkflow')
 
@@ -53,14 +73,18 @@ def setupProjectWorkflow(self, workflow):
     for s in ['published', 'pending', 'private', 'visible']:
         workflow.states.addState(s)
 
-    for t in ['hide', 'publish', 'reject', 'retract', 'show', 'submit']:
+    for t in ['hide', 'submit', 'show', 'retract', 'reject', 'publish']:
         workflow.transitions.addTransition(t)
 
     for v in ['review_history', 'comments', 'time', 'actor', 'action']:
         workflow.variables.addVariable(v)
 
+    workflow.addManagedPermission('Access contents information')
+    workflow.addManagedPermission('Modify portal content')
+    workflow.addManagedPermission('View')
+    workflow.addManagedPermission('Change portal events')
 
-    for l in []:
+    for l in ['reviewer_queue']:
         if not l in workflow.worklists.objectValues():
             workflow.worklists.addWorklist(l)
 
@@ -74,21 +98,69 @@ def setupProjectWorkflow(self, workflow):
     stateDef.setProperties(title="""published""",
                            description="""""",
                            transitions=['reject', 'retract'])
+    stateDef.setPermission('Access contents information',
+                           1,
+                           ['Anonymous', 'Manager', 'PortfolioManager'])
+    stateDef.setPermission('Modify portal content',
+                           0,
+                           ['Manager', 'PortfolioManager'])
+    stateDef.setPermission('View',
+                           1,
+                           ['Anonymous', 'Manager', 'PortfolioManager'])
+    stateDef.setPermission('Change portal events',
+                           0,
+                           ['Manager', 'PortfolioManager'])
 
     stateDef = workflow.states['pending']
     stateDef.setProperties(title="""pending""",
                            description="""""",
                            transitions=['hide', 'publish', 'reject', 'retract'])
+    stateDef.setPermission('Access contents information',
+                           1,
+                           ['PortfolioManager'])
+    stateDef.setPermission('Modify portal content',
+                           0,
+                           ['PortfolioManager'])
+    stateDef.setPermission('View',
+                           1,
+                           ['PortfolioManager'])
+    stateDef.setPermission('Change portal events',
+                           0,
+                           ['PortfolioManager'])
 
     stateDef = workflow.states['private']
     stateDef.setProperties(title="""private""",
                            description="""""",
                            transitions=['show'])
+    stateDef.setPermission('Access contents information',
+                           0,
+                           ['PortfolioManager'])
+    stateDef.setPermission('Modify portal content',
+                           0,
+                           ['PortfolioManager'])
+    stateDef.setPermission('View',
+                           0,
+                           ['PortfolioManager'])
+    stateDef.setPermission('Change portal events',
+                           0,
+                           ['PortfolioManager'])
 
     stateDef = workflow.states['visible']
     stateDef.setProperties(title="""visible""",
                            description="""""",
                            transitions=['publish', 'submit'])
+    stateDef.setPermission('Access contents information',
+                           1,
+                           ['Anonymous', 'Manager', 'Reviewer', 'PortfolioManager', 'ProjectEdit'])
+    stateDef.setPermission('Modify portal content',
+                           0,
+                           ['Manager', 'Owner', 'PortfolioManager', 'ProjectEdit'])
+    stateDef.setPermission('View',
+                           1,
+                           ['Anonymous', 'Manager', 'Reviewer', 'PortfolioManager', 'ProjectEdit'])
+    stateDef.setPermission('Change portal events',
+                           0,
+                           ['Manager', 'Owner', 'PortfolioManager', 'ProjectEdit'])
 
     ## Transitions initialization
 
@@ -101,55 +173,7 @@ def setupProjectWorkflow(self, workflow):
                                 actbox_name="""hide""",
                                 actbox_url="""""",
                                 actbox_category="""workflow""",
-                                props={},
-                                )
-
-    transitionDef = workflow.transitions['publish']
-    transitionDef.setProperties(title="""publish""",
-                                new_state_id="""published""",
-                                trigger_type=1,
-                                script_name="""""",
-                                after_script_name="""""",
-                                actbox_name="""publish""",
-                                actbox_url="""""",
-                                actbox_category="""workflow""",
-                                props={},
-                                )
-
-    transitionDef = workflow.transitions['reject']
-    transitionDef.setProperties(title="""reject""",
-                                new_state_id="""visible""",
-                                trigger_type=1,
-                                script_name="""""",
-                                after_script_name="""""",
-                                actbox_name="""reject""",
-                                actbox_url="""""",
-                                actbox_category="""workflow""",
-                                props={},
-                                )
-
-    transitionDef = workflow.transitions['retract']
-    transitionDef.setProperties(title="""retract""",
-                                new_state_id="""visible""",
-                                trigger_type=1,
-                                script_name="""""",
-                                after_script_name="""""",
-                                actbox_name="""retract""",
-                                actbox_url="""""",
-                                actbox_category="""workflow""",
-                                props={},
-                                )
-
-    transitionDef = workflow.transitions['show']
-    transitionDef.setProperties(title="""show""",
-                                new_state_id="""pending""",
-                                trigger_type=1,
-                                script_name="""""",
-                                after_script_name="""""",
-                                actbox_name="""show""",
-                                actbox_url="""""",
-                                actbox_category="""workflow""",
-                                props={},
+                                props={'guard_roles': 'ProjectEdit;Manager'},
                                 )
 
     transitionDef = workflow.transitions['submit']
@@ -161,7 +185,55 @@ def setupProjectWorkflow(self, workflow):
                                 actbox_name="""submit""",
                                 actbox_url="""""",
                                 actbox_category="""workflow""",
-                                props={},
+                                props={'guard_roles': 'ProjectEdit;Manager'},
+                                )
+
+    transitionDef = workflow.transitions['show']
+    transitionDef.setProperties(title="""show""",
+                                new_state_id="""visible""",
+                                trigger_type=1,
+                                script_name="""""",
+                                after_script_name="""""",
+                                actbox_name="""show""",
+                                actbox_url="""""",
+                                actbox_category="""workflow""",
+                                props={'guard_roles': 'ProjectEdit;Manager'},
+                                )
+
+    transitionDef = workflow.transitions['retract']
+    transitionDef.setProperties(title="""retract""",
+                                new_state_id="""visible""",
+                                trigger_type=1,
+                                script_name="""""",
+                                after_script_name="""""",
+                                actbox_name="""retract""",
+                                actbox_url="""""",
+                                actbox_category="""workflow""",
+                                props={'guard_permissions': 'Request review'},
+                                )
+
+    transitionDef = workflow.transitions['reject']
+    transitionDef.setProperties(title="""reject""",
+                                new_state_id="""visible""",
+                                trigger_type=1,
+                                script_name="""""",
+                                after_script_name="""""",
+                                actbox_name="""reject""",
+                                actbox_url="""""",
+                                actbox_category="""workflow""",
+                                props={'guard_permissions': 'Review portal content', 'guard_roles': 'PortfolioManager'},
+                                )
+
+    transitionDef = workflow.transitions['publish']
+    transitionDef.setProperties(title="""publish""",
+                                new_state_id="""published""",
+                                trigger_type=1,
+                                script_name="""""",
+                                after_script_name="""""",
+                                actbox_name="""publish""",
+                                actbox_url="""""",
+                                actbox_category="""workflow""",
+                                props={'guard_permissions': 'Review portal content', 'guard_roles': 'Reviewer;Manager'},
                                 )
 
     ## State Variable
@@ -215,6 +287,16 @@ def setupProjectWorkflow(self, workflow):
 
     ## Worklists Initialization
 
+    worklistDef = workflow.worklists['reviewer_queue']
+    worklistStates = ['pending']
+    actbox_url = "%(portal_url)s/search?review_state=" + "&review_state=".join(worklistStates)
+    worklistDef.setProperties(description="Reviewer tasks",
+                              actbox_name="Pending (%(count)d)",
+                              actbox_url=actbox_url,
+                              actbox_category="global",
+                              props={'guard_permissions': 'Review portal content',
+                                     'guard_roles': 'ProjectEdit',
+                                     'var_match_review_state': ';'.join(worklistStates)})
 
     # WARNING: below protected section is deprecated.
     # Add a tagged value 'worklist' with the worklist name to your state(s) instead.
