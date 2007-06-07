@@ -154,6 +154,10 @@ def install(self, reinstall=False):
     else:
         print >>out,'no workflow install'
 
+    #bind classes to workflows
+    wft = getToolByName(self,'portal_workflow')
+    wft.setChainForPortalTypes( ['ProjectImplementation'], "ProjectWorkflow")
+    wft.setChainForPortalTypes( ['SubProject'], "ProjectWorkflow")
 
 
     # enable portal_factory for given types
@@ -170,7 +174,6 @@ def install(self, reinstall=False):
         "FinancialsMixin",
         "DocumentLinks",
         "ProjectExecutingPartner",
-        "MoneField",
         "Tranched",
         "CoreMixin",
         "Phased",
