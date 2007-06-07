@@ -82,6 +82,11 @@ msgstr ""
 msgid "ProjectDatabase_help_RevisedCompletionDate"
 msgstr ""
 
+#. Default: "Select project start date"
+#: content/FinancialsMixin.py
+msgid "ProjectDatabase_help_StartDate"
+msgstr ""
+
 #. Default: "Name of evaluation team leader"
 #: content/EvaluatorsInformation.py
 msgid "ProjectDatabase_help_TeamLeader"

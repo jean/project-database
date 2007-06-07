@@ -330,6 +330,19 @@ schema = Schema((
         )
     ),
 
+    DateTimeField(
+        name='StartDate',
+        index="FieldIndex:brains",
+        widget=CalendarWidget(
+            label="Start Date",
+            description="Select project start date",
+            label_msgid='ProjectDatabase_label_StartDate',
+            description_msgid='ProjectDatabase_help_StartDate',
+            i18n_domain='ProjectDatabase',
+        ),
+        schemata="Budget"
+    ),
+
 ),
 )
 

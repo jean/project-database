@@ -232,9 +232,20 @@ class Financials(BaseFolder, CurrencyMixin, FinancialsMixin):
 
     security.declarePublic('getCashUNEPAllocation')
     def getCashUNEPAllocation(self):
+        """Compute the cash allocation for the field
         """
-        """
-        return 0
+        total = self.getZeroMoneyInstance()
+        if self.getGEFTrustFund():
+            total = total + self.getGEFTrustFund()
+        if self.getLDCFundAllocation():
+            total = total + self.getLDCFundAllocation()
+        if self.getSCCFAllocation():
+            total = total + self.getSCCFAllocation()
+        if self.getStrategicPartnership():
+            total = total + self.getStrategicPartnership()
+        if self.getAdaptationTrustFund():
+            total = total + self.getAdaptationTrustFund()
+        return total
         return self.getGEFTrustFund() + self.getIDCFundAllocation() + self.getSCCFAllocation() + self.getStrategicPartnership() + self.getAdaptationTrustFund()
 
 
