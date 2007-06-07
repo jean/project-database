@@ -63,6 +63,7 @@ schema = Schema((
 
     StringField(
         name='MilestoneName',
+        index="FieldIndex:brains",
         widget=SelectionWidget(
             label="Milestone Name",
             label_msgid='ProjectDatabase_label_MilestoneName',
@@ -73,6 +74,7 @@ schema = Schema((
 
     DateTimeField(
         name='MilestoneDate',
+        index="FieldIndex:brains",
         widget=CalendarWidget(
             label="Milestone Date",
             label_msgid='ProjectDatabase_label_MilestoneDate',

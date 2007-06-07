@@ -74,6 +74,10 @@ class testProjectDatabase(PortalDatabaseTestCase):
     def test_export_project_data(self):
         pass
 
+    # from class ProjectDatabase:
+    def test_project_view(self):
+        pass
+
     # Manually created methods
 
     def test_skins(self):

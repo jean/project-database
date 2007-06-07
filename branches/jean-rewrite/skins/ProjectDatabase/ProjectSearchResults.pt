@@ -70,7 +70,7 @@
                                   <span tal:condition="id_val"> GEF Project Id:</span><strong><span tal:content="python:id_val">focal area</span></strong><span tal:condition="id_val">;</span>
                                   <span tal:condition="fa_val">Focal Area:</span><strong><span tal:content="python:fa_val">focal area</span></strong><span tal:condition="fa_val">;</span>
                                   <span tal:condition="sp_val">GEF strategic priority:</span><strong><span tal:content="python:sp_val">strategic priority</span></strong><span tal:condition="sp_val">;</span>
-                                  <span tal:condition="pj_val">Project Type:</span><strong><span tal:content="python:', '.join(pj_val)">project types</span></strong><span tal:condition="pj_val">;</span>
+                                  <span tal:condition="pj_val">Project Type:</span><strong><span tal:condition="pj_val" tal:content="python:', '.join(pj_val)">project types</span></strong><span tal:condition="pj_val">;</span>
                                   <span tal:condition="pn_val">Pipeline Number:</span><strong><span tal:content="python:pn_val">pipeline number</span></strong><span tal:condition="pn_val">;</span>
                                   <span tal:condition="scope_val">Geographic Scope:</span><strong><span tal:content="python:scope_val">geographic scope</span></strong><span tal:condition="scope_val">;</span>
                                   <span tal:condition="reg_val">Region:</span><strong><span tal:content="python:reg_val">region</span></strong><span tal:condition="reg_val">;</span>
@@ -85,7 +85,7 @@
                                   <span tal:condition="mgp_val">Stage:</span> <strong><span tal:content="python:mgp_val">stage</span></strong><span tal:condition="mgp_val">;</span>
                                   <span tal:condition="mn_val">Milestone Name:</span><strong><span tal:content="python:mn_val">milestone name</span></strong><span tal:condition="mn_val">;</span>                             
 
-                                  <span tal:condition="review_val">Review Status:</span><strong><span tal:content="python:', '.join(review_val)">review val</span></strong><span tal:condition="review_val">;</span>
+                                  <span tal:condition="review_val">Review Status:</span><strong><span tal:condition="review_val" tal:content="python:', '.join(review_val)">review val</span></strong><span tal:condition="review_val">;</span>
                                 
         </span>
         
@@ -136,13 +136,13 @@
    	   </thead> 
           
            <tr>
-           <th class="nosort" width="10%">Country</th> 
-           <th class="nosort">Title</th>
-           <th class="nosort">Region</th>
-           <th class="nosort">Focal Area</th>
-           <th class="nosort">Project Type</th>
-           <th class="nosort" width="6%">Details</th> 
-           <th class="nosort" width="6%">Documents</th> 
+           <th class="nosort" width="10%" align="left">Country</th> 
+           <th class="nosort" align="left">Title</th>
+           <th class="nosort" align="left">Region</th>
+           <th class="nosort" align="left">Focal Area</th>
+           <th class="nosort" align="left">Project Type</th>
+           <th class="nosort" width="6%" align="left">Details</th> 
+           <th class="nosort" width="6%" align="left">Documents</th> 
            </tr>
 
            <tal:results  repeat="result batch">
@@ -154,13 +154,33 @@
                    "
                    tal:attributes="class python:test(oddrow, 'even', 'odd')">
    
-            <td width="10%"><span  tal:content="pjobj/getCountry">Country goes here</span></td>
+            <td width="10%"><span   
+                        tal:define="field python:pjobj.Schema()['Country'];
+                                    accessor python:getattr(pjobj, field.accessor);
+                                    mode string:view;
+                                    widget_view python:pjobj.widget(field.getName(), mode=mode, use_label=1);"
+                        tal:condition="python: not accessor()==''"><metal:block use-macro="widget_view"/></span></td>
             <td><a tal:attributes="href pjobj/getProjectDocument|pjobj/absolute_url;" 
                     tal:content="pjobj/Title"> Title goes here</a>
             </td>
-            <td><span  tal:content="pjobj/getRegion"> Region goes here</span></td>
-            <td><span  tal:content="pjobj/getFocalArea"> Focal Area goes here</span></td>
-            <td><span  tal:content="pjobj/getProjectType"> Project Type goes here</span></td>
+            <td><span   
+                        tal:define="field python:pjobj.Schema()['Region'];
+                                    accessor python:getattr(pjobj, field.accessor);
+                                    mode string:view;
+                                    widget_view python:pjobj.widget(field.getName(), mode=mode, use_label=1);"
+                        tal:condition="python: not accessor()==''"><metal:block use-macro="widget_view"/></span></td>
+            <td><span  
+                        tal:define="field python:pjobj.Schema()['FocalArea'];
+                                    accessor python:getattr(pjobj, field.accessor);
+                                    mode string:view;
+                                    widget_view python:pjobj.widget(field.getName(), mode=mode, use_label=1);"
+                        tal:condition="python: not accessor()==''"> <metal:block use-macro="widget_view"/></span></td>
+            <td><span  
+                        tal:define="field python:pjobj.Schema()['ProjectType'];
+                                    accessor python:getattr(pjobj, field.accessor);
+                                    mode string:view;
+                                    widget_view python:pjobj.widget(field.getName(), mode=mode, use_label=1);"
+                        tal:condition="python: not accessor()==''"> <metal:block use-macro="widget_view"/></span></td>
             <td width=6%><a
                 href="#" tal:attributes="href pjobj/absolute_url"/>details</td>
             <td>
