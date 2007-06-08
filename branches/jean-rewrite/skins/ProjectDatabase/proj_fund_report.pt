@@ -58,7 +58,7 @@
                   accessor python:getattr(fo, field.accessor)">
                 <span tal:replace="structure accessor"/> 
              </td>
-             <td  tal:on-error="nothing" 
+             <td  
                   tal:define="field python:fo.Schema()['Status']; 
                   accessor python:getattr(fo, field.accessor)">
                 <span tal:replace="structure accessor"/> 
@@ -73,57 +73,57 @@
                   accessor python:getattr(fo, field.accessor)">
                 <span tal:replace="structure accessor"/> 
               </td-->
-              <td  tal:on-error="nothing" 
+              <td  
                   tal:define="field python:fo.Schema()['GEFTrustFund']; 
                   accessor python:getattr(fo, field.accessor)">
                 <span tal:replace="structure accessor"/> 
               </td>
-              <td  tal:on-error="nothing" 
+              <td  
                   tal:define="field python:fo.Schema()['LDCFundAllocation']; 
                   accessor python:getattr(fo, field.accessor)">
                 <span tal:replace="structure accessor"/> 
               </td>
-              <td  tal:on-error="nothing" 
+              <td  
                   tal:define="field python:fo.Schema()['SCCFAllocation']; 
                   accessor python:getattr(fo, field.accessor)">
                 <span tal:replace="structure accessor"/> 
               </td>
-              <td  tal:on-error="nothing" 
+              <td  
                   tal:define="field python:fo.Schema()['StrategicPartnership']; 
                   accessor python:getattr(fo, field.accessor)">
                 <span tal:replace="structure accessor"/> 
               </td>
-              <td  tal:on-error="nothing" 
+              <td  
                   tal:define="field python:fo.Schema()['AdaptationTrustFund']; 
                   accessor python:getattr(fo, field.accessor)">
                 <span tal:replace="structure accessor"/> 
               </td>
-              <td  tal:on-error="nothing" 
+              <td  
                   tal:define="field python:fo.Schema()['SumCofinCashPlanned']; 
                   accessor python:getattr(fo, field.accessor)">
                 <span tal:replace="structure accessor"/> 
               </td>
-              <td  tal:on-error="nothing" 
+              <td  
                   tal:define="field python:fo.Schema()['SumCofinCashActual']; 
                   accessor python:getattr(fo, field.accessor)">
                 <span tal:replace="structure accessor"/> 
               </td>
-              <td  tal:on-error="nothing" 
+              <td  
                   tal:define="field python:fo.Schema()['SumCofinInKindPlanned']; 
                   accessor python:getattr(fo, field.accessor)">
                 <span tal:replace="structure accessor"/> 
               </td>
-              <td  tal:on-error="nothing" 
+              <td  
                   tal:define="field python:fo.Schema()['SumCofinInKindActual']; 
                   accessor python:getattr(fo, field.accessor)">
                 <span tal:replace="structure accessor"/> 
               </td>
-              <td  tal:on-error="nothing" 
+              <td  
                   tal:define="field python:fo.Schema()['SumCashDisbursements']; 
                   accessor python:getattr(fo, field.accessor)">
                 <span tal:replace="structure accessor"/> 
               </td>
-              <td  tal:on-error="nothing" 
+              <td  
                   tal:define="field python:fo.Schema()['SumIMISExpenditures']; 
                   accessor python:getattr(fo, field.accessor)">
                 <span tal:replace="structure accessor"/> 

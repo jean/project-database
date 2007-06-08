@@ -150,19 +150,19 @@
 		     				    
 		     				    <div>
 		     				    <a href=""
-							tal:attributes="href string:${here/absolute_url}/project_core_export/ZScriptHTML_tryForm;">Project Core.
+							tal:attributes="href string:${here/absolute_url}/export_project_data;">Project General Information
 						    </a>
 						   </div>
 
 		     				    <div>
 		     				    <a href=""
-							tal:attributes="href string:${here/absolute_url}/project_core_impl_status/ZScriptHTML_tryForm;">Project Implementation Status.
+							tal:attributes="href string:${here/absolute_url}/project_implementation_status;">Project Implementation Status.
 						    </a>
 						   </div>
 
 		     				    <div>
 		     				    <a href=""
-							tal:attributes="href string:${here/absolute_url}/fmi_export/ZScriptHTML_tryForm;">Financial Management Data.
+							tal:attributes="href string:${here/absolute_url}/fmi_export;">Financial Management Data.
 						    </a>
 						   </div>
 
