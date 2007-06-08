@@ -35,8 +35,8 @@ for result in results:
     leadimplagency_val = pj.getLeadAgency()
     descr_comp_val = pj.getUnepComponentDescription()
     phase_val = pj.getGEFPhase()
-    implementing_agency_fee_val = pj.getImplementingAgencyFee()
-    unep_ia_fee_val = pj.getUNEPImplementingAgencyFee()
+    #implementing_agency_fee_val = pj.getImplementingAgencyFee()
+    #unep_ia_fee_val = pj.getUNEPImplementingAgencyFee()
     
 
     
