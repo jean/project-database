@@ -246,6 +246,7 @@ msgstr ""
 #. Default: "Currenttaskmanager"
 #: content/Project.py
 #: content/CoreMixin.py
+#: content/MonitoringAndEvaluation.py
 msgid "ProjectDatabase_label_CurrentTaskManager"
 msgstr ""
 
@@ -1223,6 +1224,11 @@ msgstr ""
 #. Default: "Tranchednumber"
 #: content/Project.py
 msgid "ProjectDatabase_label_TranchedNumber"
+msgstr ""
+
+#. Default: "UNEP Component Description"
+#: content/BlankCoreMixin.py
+msgid "ProjectDatabase_label_UNEPComponentDescription"
 msgstr ""
 
 #. Default: "UNEP Component Description"

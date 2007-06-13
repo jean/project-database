@@ -188,7 +188,7 @@ class Milestone(BaseContent):
         """
         """
         atvm = self.portal_vocabularies
-        vocab = atvm.getVocabularyByName('ProjectProcesses')
+        vocab = atvm.getVocabularyByName('ProjectStatusses')
         return vocab.getDisplayList(self)
 
     security.declarePublic('getCountryNames')

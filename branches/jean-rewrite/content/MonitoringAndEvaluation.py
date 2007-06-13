@@ -47,7 +47,6 @@ from Products.FinanceFields.Money import Money
 ##/code-section module-header
 
 copied_fields = {}
-copied_fields['CurrentTaskManager'] = Project.schema['CurrentTaskManager'].copy()
 copied_fields['GEFAgencyImplementation'] = Project.schema['GEFAgencyImplementation'].copy()
 schema = Schema((
 
@@ -60,8 +59,18 @@ schema = Schema((
         )
     ),
 
-    copied_fields['CurrentTaskManager'],
-        ReferenceField(
+    ReferenceField(
+        name='CurrentTaskManager',
+        widget=ReferenceField._properties['widget'](
+            label='Currenttaskmanager',
+            label_msgid='ProjectDatabase_label_CurrentTaskManager',
+            i18n_domain='ProjectDatabase',
+        ),
+        allowed_types=('mxmContacstPerson',),
+        relationship="MandE_TaskManager"
+    ),
+
+    ReferenceField(
         name='FundManagementOfficer',
         widget=ReferenceField._properties['widget'](
             label="Fund Manager Officer",

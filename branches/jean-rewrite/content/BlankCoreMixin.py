@@ -59,11 +59,11 @@ schema = Schema((
     ),
 
     TextField(
-        name='UNEPComponentDescruption',
+        name='UNEPComponentDescription',
         allowable_content_types=('text/plain', 'text/structured', 'text/html', 'application/msword',),
         widget=RichWidget(
             label="UNEP Component Description",
-            label_msgid='ProjectDatabase_label_UNEPComponentDescruption',
+            label_msgid='ProjectDatabase_label_UNEPComponentDescription',
             i18n_domain='ProjectDatabase',
         ),
         default_output_type='text/html'
@@ -305,6 +305,36 @@ class BlankCoreMixin:
     ##/code-section class-header
 
     # Methods
+
+    security.declarePublic('getTotalGEFAllocation')
+    def getTotalGEFAllocation(self):
+        """
+        """
+        pass
+
+    security.declarePublic('getTotalUNEPAllocation')
+    def getTotalUNEPAllocation(self):
+        """
+        """
+        pass
+
+    security.declarePublic('getTotalCofinancingPlanned')
+    def getTotalCofinancingPlanned(self):
+        """
+        """
+        pass
+
+    security.declarePublic('getTotalCofinancingActual')
+    def getTotalCofinancingActual(self):
+        """
+        """
+        pass
+
+    security.declarePublic('getSumIMISExpenditures')
+    def getSumIMISExpenditures(self):
+        """
+        """
+        pass
 
 
 # end of class BlankCoreMixin
