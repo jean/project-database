@@ -974,6 +974,11 @@ msgstr ""
 msgid "ProjectDatabase_label_Scope"
 msgstr ""
 
+#. Default: "Geographic Scope - Other"
+#: content/Project.py
+msgid "ProjectDatabase_label_ScopeOther"
+msgstr ""
+
 #. Default: "Startdate"
 #: content/SubProject.py
 #: content/Financials.py

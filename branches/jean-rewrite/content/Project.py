@@ -89,12 +89,22 @@ schema = Schema((
         name='Scope',
         index="FieldIndex:brains",
         widget=MultiSelectionWidget(
-            label='Scope',
+            label="Geographic Scope",
             label_msgid='ProjectDatabase_label_Scope',
             i18n_domain='ProjectDatabase',
         ),
         multiValued=1,
         vocabulary=NamedVocabulary("""Scope"""),
+        schemata="Location"
+    ),
+
+    StringField(
+        name='ScopeOther',
+        widget=StringWidget(
+            label="Geographic Scope - Other",
+            label_msgid='ProjectDatabase_label_ScopeOther',
+            i18n_domain='ProjectDatabase',
+        ),
         schemata="Location"
     ),
 
@@ -624,7 +634,7 @@ schema = Schema((
         name='TranchedNumber',
         default=0,
         widget=IntegerField._properties['widget'](
-            label='Tranchednumber',
+            label="",
             label_msgid='ProjectDatabase_label_TranchedNumber',
             i18n_domain='ProjectDatabase',
         )
@@ -644,8 +654,9 @@ schema = Schema((
 
     IntegerField(
         name='PhasedNumber',
+        default=0,
         widget=IntegerField._properties['widget'](
-            label='Phasednumber',
+            label="Phased Number",
             label_msgid='ProjectDatabase_label_PhasedNumber',
             i18n_domain='ProjectDatabase',
         )
