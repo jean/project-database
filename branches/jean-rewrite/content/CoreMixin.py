@@ -324,6 +324,12 @@ class CoreMixin:
         """
         return self.getProject().getProjectCoordinator()
 
+    security.declarePublic('getProjectTitle')
+    def getProjectTitle(self):
+        """
+        """
+        return self.getProject().getProjectTitle()
+
 
 # end of class CoreMixin
 

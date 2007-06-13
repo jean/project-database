@@ -285,7 +285,7 @@ schema = Schema((
     MoneyField(
         name='UNEPImplentingAgencyFee',
         widget=MoneyField._properties['widget'](
-            label='Unepimplentingagencyfee',
+            label="UNEP Implementing Agency Fee",
             label_msgid='ProjectDatabase_label_UNEPImplentingAgencyFee',
             i18n_domain='ProjectDatabase',
         )
