@@ -343,6 +343,24 @@ schema = Schema((
         schemata="Budget"
     ),
 
+    ComputedField(
+        name='TotalCostOfProjectStagePlanned',
+        widget=ComputedField._properties['widget'](
+            label="Total Cost of Project Stage (Planned)",
+            label_msgid='ProjectDatabase_label_TotalCostOfProjectStagePlanned',
+            i18n_domain='ProjectDatabase',
+        )
+    ),
+
+    ComputedField(
+        name='TotalCostOfProjectStageActual',
+        widget=ComputedField._properties['widget'](
+            label="Total Cost of Project Stage (Actual)",
+            label_msgid='ProjectDatabase_label_TotalCostOfProjectStageActual',
+            i18n_domain='ProjectDatabase',
+        )
+    ),
+
 ),
 )
 
@@ -453,6 +471,34 @@ class FinancialsMixin:
         """
         cash_values = self.getIMISExpenditures()
         return self.computeDataGridAmount([v['imis_expenditure_amount'] for v in cash_values])
+
+    security.declarePublic('getTotalCostOfProjectStagePlanned')
+    def getTotalCostOfProjectStagePlanned(self):
+        """
+        """
+        total = self.getCashUNEPAllocation()
+        if self.getSupplementaryUNEPAllocation():
+            total += self.getSupplementaryUNEPAllocation()
+        if self.getSumCofinCashPlanned():
+            total += self.getSumCofinCashPlanned()
+        if self.getSumCofinInKindPlanned():
+            total += self.getSumCofinInKindPlanned()
+
+        return total
+
+    security.declarePublic('getTotalCostOfProjectStageActual')
+    def getTotalCostOfProjectStageActual(self):
+        """
+        """
+        total = self.getCashUNEPAllocation()
+        if self.getSupplementaryUNEPAllocation():
+            total += self.getSupplementaryUNEPAllocation()
+        if self.getSumCofinCashActual():
+            total += self.getSumCofinCashActual()
+        if self.getSumCofinInKindActual():
+            total += self.getSumCofinInKindActual()
+
+        return total
 
     # Manually created methods
 

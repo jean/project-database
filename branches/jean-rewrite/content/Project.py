@@ -38,6 +38,7 @@ from Products.ProjectDatabase.config import *
 
 # additional imports from tagged value 'import'
 from Products.ProjectDatabase.content import permissions
+from Products.DataGridField import CalendarColumn
 from Products.FinanceFields.MoneyField import MoneyField
 from Products.FinanceFields.MoneyWidget import MoneyWidget
 from Products.DataGridField import DataGridField, DataGridWidget, Column, SelectColumn
@@ -61,64 +62,6 @@ schema = Schema((
             i18n_domain='ProjectDatabase',
         ),
         searchable=1
-    ),
-
-    LinesField(
-        name='Country',
-        index="FieldIndex:brains",
-        widget=MultiSelectionWidget(
-            label='Country',
-            label_msgid='ProjectDatabase_label_Country',
-            i18n_domain='ProjectDatabase',
-        ),
-        schemata="Location",
-        multiValued=1,
-        vocabulary=NamedVocabulary("""Country""")
-    ),
-
-    LinesField(
-        name='OtherNonGEFEligibleCountries',
-        widget=LinesField._properties['widget'](
-            label="Other Non-GEF Eligible Project Participating Countries",
-            label_msgid='ProjectDatabase_label_OtherNonGEFEligibleCountries',
-            i18n_domain='ProjectDatabase',
-        )
-    ),
-
-    LinesField(
-        name='Scope',
-        index="FieldIndex:brains",
-        widget=MultiSelectionWidget(
-            label="Geographic Scope",
-            label_msgid='ProjectDatabase_label_Scope',
-            i18n_domain='ProjectDatabase',
-        ),
-        multiValued=1,
-        vocabulary=NamedVocabulary("""Scope"""),
-        schemata="Location"
-    ),
-
-    StringField(
-        name='ScopeOther',
-        widget=StringWidget(
-            label="Geographic Scope - Other",
-            label_msgid='ProjectDatabase_label_ScopeOther',
-            i18n_domain='ProjectDatabase',
-        ),
-        schemata="Location"
-    ),
-
-    LinesField(
-        name='Region',
-        index="FieldIndex:brains",
-        widget=MultiSelectionWidget(
-            label='Region',
-            label_msgid='ProjectDatabase_label_Region',
-            i18n_domain='ProjectDatabase',
-        ),
-        multiValued=1,
-        vocabulary=NamedVocabulary("""Region"""),
-        schemata="Location"
     ),
 
     LinesField(
@@ -266,6 +209,124 @@ schema = Schema((
         vocabulary=NamedVocabulary("""PipelineNumber""")
     ),
 
+    LinesField(
+        name='Scope',
+        index="FieldIndex:brains",
+        widget=MultiSelectionWidget(
+            label="Geographic Scope",
+            label_msgid='ProjectDatabase_label_Scope',
+            i18n_domain='ProjectDatabase',
+        ),
+        multiValued=1,
+        vocabulary=NamedVocabulary("""Scope"""),
+        schemata="Location"
+    ),
+
+    StringField(
+        name='ScopeOther',
+        widget=StringWidget(
+            label="Geographic Scope - Other",
+            label_msgid='ProjectDatabase_label_ScopeOther',
+            i18n_domain='ProjectDatabase',
+        ),
+        schemata="Location"
+    ),
+
+    LinesField(
+        name='Region',
+        index="FieldIndex:brains",
+        widget=MultiSelectionWidget(
+            label='Region',
+            label_msgid='ProjectDatabase_label_Region',
+            i18n_domain='ProjectDatabase',
+        ),
+        multiValued=1,
+        vocabulary=NamedVocabulary("""Region"""),
+        schemata="Location"
+    ),
+
+    LinesField(
+        name='Country',
+        index="FieldIndex:brains",
+        widget=MultiSelectionWidget(
+            label='Country',
+            label_msgid='ProjectDatabase_label_Country',
+            i18n_domain='ProjectDatabase',
+        ),
+        schemata="Location",
+        multiValued=1,
+        vocabulary=NamedVocabulary("""Country""")
+    ),
+
+    LinesField(
+        name='OtherNonGEFEligibleCountries',
+        widget=MultiSelectionWidget(
+            label="Other Non-GEF Eligible Project Participating Countries",
+            label_msgid='ProjectDatabase_label_OtherNonGEFEligibleCountries',
+            i18n_domain='ProjectDatabase',
+        ),
+        multiValued=1,
+        vocabulary=NamedVocabulary("""Country""")
+    ),
+
+    StringField(
+        name='LeadAgency',
+        widget=SelectionWidget(
+            label="Lead Agency",
+            label_msgid='ProjectDatabase_label_LeadAgency',
+            i18n_domain='ProjectDatabase',
+        ),
+        vocabulary=NamedVocabulary("""LeadAgency""")
+    ),
+
+    ReferenceField(
+        name='LeadAgencyContact',
+        index="FieldIndex:brains",
+        widget=ReferenceField._properties['widget'](
+            label="Lead GEF Agency",
+            label_msgid='ProjectDatabase_label_LeadAgencyContact',
+            i18n_domain='ProjectDatabase',
+        ),
+        allowed_types=('Agency',),
+        multiValued=0,
+        relationship="Project_LeadAgency"
+    ),
+
+    ReferenceField(
+        name='OtherImplementingAgency',
+        widget=ReferenceField._properties['widget'](
+            label="Other GEF Implementing Agency",
+            label_msgid='ProjectDatabase_label_OtherImplementingAgency',
+            i18n_domain='ProjectDatabase',
+        ),
+        allowed_types=('Agency',),
+        multiValued=0,
+        relationship="Project_OtherImplementingAgency"
+    ),
+
+    DataGridField(
+        name='ProjectExecutingAgency',
+        widget=DataGridField._properties['widget'](
+            label="Project Executing Agency",
+            columns="pyhton:{'executing_agency':Column('Executing Agency'),'executing_agency_category':SelectColumn('Category', vocabulary='Category')}",
+            label_msgid='ProjectDatabase_label_ProjectExecutingAgency',
+            i18n_domain='ProjectDatabase',
+        ),
+        vocabulary=NamedVocabulary("""Category"""),
+        columns=('executing_agency','executing_agency_category')
+    ),
+
+    DataGridField(
+        name='OtherProjectExecutingPartners',
+        widget=DataGridField._properties['widget'](
+            label="Other Project Executing Partners",
+            columns={'partner_name':Column('Partner'),'category':SelectColumn('Category',vocabulary='Category')},
+            label_msgid='ProjectDatabase_label_OtherProjectExecutingPartners',
+            i18n_domain='ProjectDatabase',
+        ),
+        columns=('partner_name','category')
+    ),
+
     TextField(
         name='UnepComponentDescription',
         allowable_content_types=('text/plain', 'text/structured', 'text/html', 'application/msword',),
@@ -293,17 +354,42 @@ schema = Schema((
     StringField(
         name='ImplementationMode',
         widget=SelectionWidget(
-            label="Implementation Mode",
+            label="Mode of Execution",
             label_msgid='ProjectDatabase_label_ImplementationMode',
             i18n_domain='ProjectDatabase',
         ),
         vocabulary=NamedVocabulary("""ImplementationMode""")
     ),
 
+    ReferenceField(
+        name='CurrentTaskManager',
+        widget=ReferenceField._properties['widget'](
+            label="Current Task Manager",
+            label_msgid='ProjectDatabase_label_CurrentTaskManager',
+            i18n_domain='ProjectDatabase',
+        ),
+        allowed_types=('mxmContactsPerson',),
+        schemata="Contacts",
+        relationship="Project_CurrentTaskManager"
+    ),
+
+    ReferenceField(
+        name='PreviousTaskManager',
+        widget=ReferenceField._properties['widget'](
+            label="Previous Task Manager",
+            label_msgid='ProjectDatabase_label_PreviousTaskManager',
+            i18n_domain='ProjectDatabase',
+        ),
+        allowed_types=('mxmContactsPerson',),
+        schemata="Contacts",
+        multiValued=0,
+        relationship="Project_PreviousTaskManager"
+    ),
+
     StringField(
         name='Office',
         widget=StringWidget(
-            label='Office',
+            label="Office of Execution",
             label_msgid='ProjectDatabase_label_Office',
             i18n_domain='ProjectDatabase',
         )
@@ -320,18 +406,6 @@ schema = Schema((
     ),
 
     ReferenceField(
-        name='CurrentTaskManager',
-        widget=ReferenceField._properties['widget'](
-            label="Current Task Manager",
-            label_msgid='ProjectDatabase_label_CurrentTaskManager',
-            i18n_domain='ProjectDatabase',
-        ),
-        allowed_types=('mxmContactsPerson',),
-        schemata="Contacts",
-        relationship="Project_CurrentTaskManager"
-    ),
-
-    ReferenceField(
         name='ProjectCoordinator',
         widget=ReferenceField._properties['widget'](
             label="Project Coordinator",
@@ -342,19 +416,6 @@ schema = Schema((
         schemata="Contacts",
         multiValued=0,
         relationship="Project_ProjectCoordinator"
-    ),
-
-    ReferenceField(
-        name='PreviousTaskManager',
-        widget=ReferenceField._properties['widget'](
-            label="Previous Task Manager",
-            label_msgid='ProjectDatabase_label_PreviousTaskManager',
-            i18n_domain='ProjectDatabase',
-        ),
-        allowed_types=('mxmContactsPerson',),
-        schemata="Contacts",
-        multiValued=0,
-        relationship="Project_PreviousTaskManager"
     ),
 
     DateTimeField(
@@ -437,6 +498,19 @@ schema = Schema((
         schemata="TerminalEvaluation"
     ),
 
+    TextField(
+        name='ProjectResults',
+        allowable_content_types=('text/plain', 'text/structured', 'text/html', 'application/msword',),
+        widget=RichWidget(
+            label="Actual Overall Project Results",
+            description="Enter overall Project Results AFTER Project Terminal Evaluation",
+            label_msgid='ProjectDatabase_label_ProjectResults',
+            description_msgid='ProjectDatabase_help_ProjectResults',
+            i18n_domain='ProjectDatabase',
+        ),
+        default_output_type='text/html'
+    ),
+
     MoneyField(
         name='LeveragedFinancingAmount',
         widget=MoneyField._properties['widget'](
@@ -460,44 +534,6 @@ schema = Schema((
         schemata="Financing",
         vocabulary=NamedVocabulary("""LeadAgency"""),
         default_output_type='text/html'
-    ),
-
-    TextField(
-        name='ProjectResults',
-        allowable_content_types=('text/plain', 'text/structured', 'text/html', 'application/msword',),
-        widget=RichWidget(
-            label="Actual Overall Project Results",
-            description="Enter overall Project Results AFTER Project Terminal Evaluation",
-            label_msgid='ProjectDatabase_label_ProjectResults',
-            description_msgid='ProjectDatabase_help_ProjectResults',
-            i18n_domain='ProjectDatabase',
-        ),
-        default_output_type='text/html'
-    ),
-
-    ReferenceField(
-        name='LeadAgency',
-        index="FieldIndex:brains",
-        widget=ReferenceField._properties['widget'](
-            label="Lead GEF Agency",
-            label_msgid='ProjectDatabase_label_LeadAgency',
-            i18n_domain='ProjectDatabase',
-        ),
-        allowed_types=('Agency',),
-        multiValued=0,
-        relationship="Project_LeadAgency"
-    ),
-
-    ReferenceField(
-        name='OtherImplementingAgency',
-        widget=ReferenceField._properties['widget'](
-            label="Other GEF Implementing Agency",
-            label_msgid='ProjectDatabase_label_OtherImplementingAgency',
-            i18n_domain='ProjectDatabase',
-        ),
-        allowed_types=('Agency',),
-        multiValued=0,
-        relationship="Project_OtherImplementingAgency"
     ),
 
     ComputedField(
@@ -610,15 +646,6 @@ schema = Schema((
     ),
 
     StringField(
-        name='ProjectExecutingAgency',
-        widget=StringWidget(
-            label="Project Executing Agency",
-            label_msgid='ProjectDatabase_label_ProjectExecutingAgency',
-            i18n_domain='ProjectDatabase',
-        )
-    ),
-
-    StringField(
         name='Tranched',
         widget=SelectionWidget(
             description="Is this a Tranched project?",
@@ -701,7 +728,7 @@ class Project(BaseFolder, CurrencyMixin, DocumentLinks):
 
     meta_type = 'Project'
     portal_type = 'Project'
-    allowed_content_types = ['ProjectImplementation', 'Financials', 'Milestone', 'SubProject', 'ProjectExecutingPartner', 'Tranched', 'Phased', 'AddOn'] + list(getattr(DocumentLinks, 'allowed_content_types', []))
+    allowed_content_types = ['ProjectImplementation', 'Financials', 'Milestone', 'SubProject', 'ProjectExecutingPartner', 'Tranched', 'Phased', 'AddOn', 'MonitoringAndEvaluation'] + list(getattr(DocumentLinks, 'allowed_content_types', []))
     filter_content_types = 1
     global_allow = 0
     #content_icon = 'Project.gif'

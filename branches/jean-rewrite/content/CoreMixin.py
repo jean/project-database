@@ -195,8 +195,9 @@ schema = Schema((
 
     StringField(
         name='PMSNumber',
+        dummy="PMS Number",
         widget=StringWidget(
-            label='Pmsnumber',
+            label="PMS Number",
             label_msgid='ProjectDatabase_label_PMSNumber',
             i18n_domain='ProjectDatabase',
         )
@@ -204,8 +205,9 @@ schema = Schema((
 
     StringField(
         name='IMISNumber',
+        dummy="IMIS Number",
         widget=StringWidget(
-            label='Imisnumber',
+            label="IMIS Number",
             label_msgid='ProjectDatabase_label_IMISNumber',
             i18n_domain='ProjectDatabase',
         )

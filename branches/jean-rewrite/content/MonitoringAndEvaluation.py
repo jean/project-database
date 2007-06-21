@@ -46,12 +46,11 @@ from Products.FinanceFields.Money import Money
 ##code-section module-header #fill in your manual code here
 ##/code-section module-header
 
-copied_fields = {}
-copied_fields['GEFAgencyImplementation'] = Project.schema['GEFAgencyImplementation'].copy()
 schema = Schema((
 
     StringField(
         name='IMISNumber',
+        dummy="IMIS Number",
         widget=StringWidget(
             label='Imisnumber',
             label_msgid='ProjectDatabase_label_IMISNumber',
@@ -61,6 +60,7 @@ schema = Schema((
 
     ReferenceField(
         name='CurrentTaskManager',
+        dummy="Current Task Manager",
         widget=ReferenceField._properties['widget'](
             label='Currenttaskmanager',
             label_msgid='ProjectDatabase_label_CurrentTaskManager',
@@ -110,6 +110,7 @@ schema = Schema((
 
     DateTimeField(
         name='RevisedCompletionDate',
+        dummy="Revised Completion Date",
         widget=CalendarWidget(
             label='Revisedcompletiondate',
             label_msgid='ProjectDatabase_label_RevisedCompletionDate',
@@ -119,6 +120,7 @@ schema = Schema((
 
     DateTimeField(
         name='InitialCompletionDate',
+        dummy="Initial Completion Date",
         widget=CalendarWidget(
             label='Initialcompletiondate',
             label_msgid='ProjectDatabase_label_InitialCompletionDate',
@@ -145,8 +147,18 @@ schema = Schema((
         vocabulary=NamedVocabulary("""YesOrNo""")
     ),
 
-    copied_fields['GEFAgencyImplementation'],
-        StringField(
+    StringField(
+        name='GEFAgencyImplementation',
+        dummy="Project.schema",
+        widget=SelectionWidget(
+            label="GEF Agency Implementation",
+            label_msgid='ProjectDatabase_label_GEFAgencyImplementation',
+            i18n_domain='ProjectDatabase',
+        ),
+        vocabulary=NamedVocabulary("""AgencyImplementation""")
+    ),
+
+    StringField(
         name='OtherAgency',
         widget=StringWidget(
             label="Other Agency",

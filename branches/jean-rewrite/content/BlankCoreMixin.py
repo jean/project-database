@@ -71,8 +71,9 @@ schema = Schema((
 
     MoneyField(
         name='ImplementingAgencyFee',
+        dummy="Implementing Agency Fee",
         widget=MoneyField._properties['widget'](
-            label='Implementingagencyfee',
+            label="Implementing Agency Fee",
             label_msgid='ProjectDatabase_label_ImplementingAgencyFee',
             i18n_domain='ProjectDatabase',
         )
@@ -80,8 +81,9 @@ schema = Schema((
 
     MoneyField(
         name='UNEPImplementingAgencyFee',
+        dummy="UNEP Implementing Agency Fee",
         widget=MoneyField._properties['widget'](
-            label='Unepimplementingagencyfee',
+            label="UNEP Implementing Agency Fee",
             label_msgid='ProjectDatabase_label_UNEPImplementingAgencyFee',
             i18n_domain='ProjectDatabase',
         )

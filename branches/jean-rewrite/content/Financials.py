@@ -179,7 +179,7 @@ schema = Schema((
     ComputedField(
         name='CashUNEPAllocation',
         widget=ComputedField._properties['widget'](
-            label="UNEP Allocation (Cash)",
+            label="GEF Allocation to UNEP (Cash)",
             label_msgid='ProjectDatabase_label_CashUNEPAllocation',
             i18n_domain='ProjectDatabase',
         )
@@ -191,18 +191,18 @@ schema = Schema((
 ##code-section after-local-schema #fill in your manual code here
 ##/code-section after-local-schema
 
-Financials_schema = BaseFolderSchema.copy() + \
+Financials_schema = BaseSchema.copy() + \
     getattr(FinancialsMixin, 'schema', Schema(())).copy() + \
     schema.copy()
 
 ##code-section after-schema #fill in your manual code here
 ##/code-section after-schema
 
-class Financials(BaseFolder, CurrencyMixin, FinancialsMixin):
+class Financials(BaseContent, CurrencyMixin, FinancialsMixin):
     """
     """
     security = ClassSecurityInfo()
-    __implements__ = (getattr(BaseFolder,'__implements__',()),) + (getattr(CurrencyMixin,'__implements__',()),) + (getattr(FinancialsMixin,'__implements__',()),)
+    __implements__ = (getattr(BaseContent,'__implements__',()),) + (getattr(CurrencyMixin,'__implements__',()),) + (getattr(FinancialsMixin,'__implements__',()),)
     # zope3 interfaces
     zope.interface.implements(IFinancials)
 
@@ -211,8 +211,8 @@ class Financials(BaseFolder, CurrencyMixin, FinancialsMixin):
 
     meta_type = 'Financials'
     portal_type = 'Financials'
-    allowed_content_types = ['MonitoringAndEvaluation'] + list(getattr(FinancialsMixin, 'allowed_content_types', []))
-    filter_content_types = 1
+    allowed_content_types = [] + list(getattr(FinancialsMixin, 'allowed_content_types', []))
+    filter_content_types = 0
     global_allow = 0
     #content_icon = 'Financials.gif'
     immediate_view = 'base_view'
@@ -226,6 +226,41 @@ class Financials(BaseFolder, CurrencyMixin, FinancialsMixin):
     schema = Financials_schema
 
     ##code-section class-header #fill in your manual code here
+    schema.moveField('FinanceCategory', after='title')
+    schema.moveField('PMSNumber', after='FinanceCategory')
+    schema.moveField('IMISNumber', after='PMSNumber')
+    schema.moveField('GEFProjectAllocation', after='IMISNumber')
+    schema.moveField('CashUNEPAllocation', after='GEFProjectAllocation')
+    schema.moveField('GEFTrustFund', after='CashUNEPAllocation')
+    schema.moveField('LDCFundAllocation', after='GEFTrustFund')
+    schema.moveField('SCCFAllocation', after='LDCFundAllocation')
+    schema.moveField('StrategicPartnership', after='SCCFAllocation')
+    schema.moveField('AdaptationTrustFund', after='StrategicPartnership')
+    schema.moveField('SupplementaryUNEPAllocation', after='AdaptationTrustFund')
+    schema.moveField('SupplementaryUNEPAllocationRemark', after='SupplementaryUNEPAllocation')
+    schema.moveField('CofinancingCash', after='SupplementaryUNEPAllocationRemark')
+    schema.moveField('CofinancingInKind', after='CofinancingCash')
+    schema.moveField('SumCofinCashPlanned', after='CofinancingInKind')
+    schema.moveField('SumCofinCashActual', after='SumCofinCashPlanned')
+    schema.moveField('SumCofinInKindPlanned', after='SumCofinCashActual')
+    schema.moveField('SumCofinInKindActual', after='SumCofinCashPlanned')
+    schema.moveField('TotalCostOfProjectStagePlanned', after='SumCofinInKindActual')
+    schema.moveField('TotalCostOfProjectStageActual', after='SumCofinInKindActual')
+    schema.moveField('ApprovedUNEPBudget', after='SumCofinInKindActual')
+    schema.moveField('CashDisbursements', after='ApprovedUNEPBudget')
+    schema.moveField('SumCashDisbursements', after='CashDisbursements')
+    schema.moveField('IMISExpenditures', after='SumCashDisbursements')
+    schema.moveField('Status', after='IMISExpenditures')
+    schema.moveField('SumIMISExpenditures', after='Status')
+    schema.moveField('PlannedDuration', after='SumIMISExpenditures')
+    schema.moveField('InitialCompletionDate', after='PlannedDuration')
+    schema.moveField('RevisedCompletionDate', after='InitialCompletionDate')
+    schema.moveField('DelayReason', after='RevisedCompletionDate')
+    schema.moveField('Reports', after='DelayReason')
+    schema.moveField('LeadExecutingAgency', after='Reports')
+    schema.moveField('OtherLeadExecutingAgency', after='LeadExecutingAgency')
+    schema.moveField('FundManagementOfficer', after='OtherLeadExecutingAgency')
+    schema.moveField('FinancialStatusRemarks', after='FundManagementOfficer')
     ##/code-section class-header
 
     # Methods
@@ -247,6 +282,12 @@ class Financials(BaseFolder, CurrencyMixin, FinancialsMixin):
             total = total + self.getAdaptationTrustFund()
         return total
         return self.getGEFTrustFund() + self.getIDCFundAllocation() + self.getSCCFAllocation() + self.getStrategicPartnership() + self.getAdaptationTrustFund()
+
+    # Manually created methods
+
+    def __init__(self, *args, **kwargs):
+        BaseContent.__init__(self, *args, **kwargs)
+
 
 
 registerType(Financials, PROJECTNAME)
