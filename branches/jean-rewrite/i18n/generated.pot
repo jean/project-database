@@ -107,6 +107,11 @@ msgstr ""
 msgid "ProjectDatabase_help_UnepComponentDescription"
 msgstr ""
 
+#. Default: "Project Website Address"
+#: content/SubProject.py
+msgid "ProjectDatabase_help_Website"
+msgstr ""
+
 #: content/Project.py
 #: content/SubProject.py
 #: content/Financials.py
@@ -405,6 +410,7 @@ msgstr ""
 
 #. Default: "GEF Agency Implementation"
 #: content/Project.py
+#: content/MonitoringAndEvaluation.py
 msgid "ProjectDatabase_label_GEFAgencyImplementation"
 msgstr ""
 
@@ -532,6 +538,11 @@ msgstr ""
 #. Default: "Leadagency"
 #: content/Project.py
 msgid "ProjectDatabase_label_LeadAgency"
+msgstr ""
+
+#. Default: "Lead GEF Agency"
+#: content/Project.py
+msgid "ProjectDatabase_label_LeadAgencyContact"
 msgstr ""
 
 #. Default: "Leadexecutingagency"
@@ -717,6 +728,11 @@ msgstr ""
 msgid "ProjectDatabase_label_OtherNonGEFEligibleCountries"
 msgstr ""
 
+#. Default: "Other Project Executing Partners"
+#: content/Project.py
+msgid "ProjectDatabase_label_OtherProjectExecutingPartners"
+msgstr ""
+
 #. Default: "Overview"
 #: content/Project.py
 msgid "ProjectDatabase_label_Overview"
@@ -831,6 +847,11 @@ msgstr ""
 #. Default: "Project Executing Agency"
 #: content/Project.py
 msgid "ProjectDatabase_label_ProjectExecutingAgency"
+msgstr ""
+
+#. Default: "Project Implementation Status"
+#: content/SubProject.py
+msgid "ProjectDatabase_label_ProjectImplementationStatus"
 msgstr ""
 
 #. Default: "Project Risk Rating at Inception"
@@ -1181,6 +1202,16 @@ msgstr ""
 #: content/Project.py
 #: content/BlankCoreMixin.py
 msgid "ProjectDatabase_label_TotalCofinancingPlanned"
+msgstr ""
+
+#. Default: "Total Cost of Project Stage (Actual)"
+#: content/FinancialsMixin.py
+msgid "ProjectDatabase_label_TotalCostOfProjectStageActual"
+msgstr ""
+
+#. Default: "Total Cost of Project Stage (Planned)"
+#: content/FinancialsMixin.py
+msgid "ProjectDatabase_label_TotalCostOfProjectStagePlanned"
 msgstr ""
 
 #. Default: "Totaldisbursement"

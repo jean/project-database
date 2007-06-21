@@ -37,6 +37,7 @@ from Products.ATVocabularyManager.namedvocabulary import NamedVocabulary
 from Products.ProjectDatabase.config import *
 
 # additional imports from tagged value 'import'
+from Products.DataGridField import CalendarColumn
 from Products.FinanceFields.MoneyField import MoneyField
 from Products.FinanceFields.MoneyWidget import MoneyWidget
 from Products.DataGridField import DataGridField, DataGridWidget, Column, SelectColumn
@@ -59,9 +60,8 @@ copied_fields['Office'] = Project.schema['Office'].copy()
 copied_fields['ProjectCoordinator'] = Project.schema['ProjectCoordinator'].copy()
 copied_fields['ProjectCoordinator'].relationship = "SubProject_ProjectCoordinator"
 copied_fields['LeadExecutingAgency'] = Financials.schema['LeadExecutingAgency'].copy()
+copied_fields['LeadExecutingAgency'].dummy = "Financials.schema"
 copied_fields['LeadExecutingAgency'].relationship = "SubProject_LeadExecutingAgency"
-copied_fields['OtherLeadExecutingAgency'] = Financials.schema['OtherLeadExecutingAgency'].copy()
-copied_fields['OtherLeadExecutingAgency'].relationship = "SubProject_OtherLeadExecutingAgency"
 schema = Schema((
 
     copied_fields['SummaryDescription'],
@@ -72,6 +72,7 @@ schema = Schema((
         copied_fields['Office'],
         StringField(
         name='Website',
+        dummy="Website",
         widget=StringWidget(
             label='Website',
             label_msgid='ProjectDatabase_label_Website',
@@ -81,12 +82,46 @@ schema = Schema((
 
     copied_fields['ProjectCoordinator'],
         copied_fields['LeadExecutingAgency'],
-        copied_fields['OtherLeadExecutingAgency'],
-        StringField(
+        ReferenceField(
+        name='OtherLeadExecutingAgency',
+        dummy="Financials.schema",
+        widget=ReferenceField._properties['widget'](
+            label="Other Project Executing Partners",
+            label_msgid='ProjectDatabase_label_OtherLeadExecutingAgency',
+            i18n_domain='ProjectDatabase',
+        ),
+        allowed_types=('Agency',),
+        schemata="Agency",
+        relationship="SubProject_OtherLeadExecutingAgency"
+    ),
+
+    StringField(
         name='AccountCode',
         widget=StringWidget(
             label="Account Code",
             label_msgid='ProjectDatabase_label_AccountCode',
+            i18n_domain='ProjectDatabase',
+        )
+    ),
+
+    DataGridField(
+        name='ProjectImplementationStatus',
+        widget=DataGridField._properties['widget'](
+            label="Project Implementation Status",
+            columns={'status_date':CalendarColumn('Date'), 'status_remark':Column('Remark')},
+            label_msgid='ProjectDatabase_label_ProjectImplementationStatus',
+            i18n_domain='ProjectDatabase',
+        ),
+        columns=('status_date','status_remark')
+    ),
+
+    StringField(
+        name='Website',
+        widget=StringWidget(
+            description="Project Website Address",
+            label='Website',
+            label_msgid='ProjectDatabase_label_Website',
+            description_msgid='ProjectDatabase_help_Website',
             i18n_domain='ProjectDatabase',
         )
     ),

@@ -74,8 +74,8 @@ def install(self, reinstall=False):
     # Create vocabularies in vocabulary lib
     from Products.ATVocabularyManager.config import TOOL_NAME as ATVOCABULARYTOOL
     atvm = getToolByName(self, ATVOCABULARYTOOL)
-    vocabmap = {'ProjectStatusses': ('VdexVocabulary', 'SimpleVocabularyTerm'),
-         'Category': ('VdexVocabulary', 'SimpleVocabularyTerm'),
+    vocabmap = {'Category': ('VdexVocabulary', 'SimpleVocabularyTerm'),
+         'ProjectStatusses': ('VdexVocabulary', 'SimpleVocabularyTerm'),
          'StrategicPriority': ('VdexVocabulary', 'SimpleVocabularyTerm'),
          'GEFPhase': ('VdexVocabulary', 'SimpleVocabularyTerm'),
          'ProjectCycleStage': ('VdexVocabulary', 'SimpleVocabularyTerm'),

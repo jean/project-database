@@ -106,6 +106,14 @@ class testSubProject(PortalDatabaseTestCase):
     def test_getSumIMISExpenditures(self):
         pass
 
+    # from class FinancialsMixin:
+    def test_getTotalCostOfProjectStagePlanned(self):
+        pass
+
+    # from class FinancialsMixin:
+    def test_getTotalCostOfProjectStageActual(self):
+        pass
+
     # Manually created methods
 
     def test_getSubProjectCofinCashActual(self):
