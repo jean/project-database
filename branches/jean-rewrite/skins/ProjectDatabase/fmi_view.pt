@@ -28,8 +28,8 @@
             </tal:entry>
        
        </h1>
-       <a href="#" tal:attributes="href python:here.absolute_url()+'/createObject?type_name=Financials';">
-        <img SRC="add_fmi.jpg"></a>
+       <!--a href="#" tal:condition="python:not fmiresults" tal:attributes="href python:here.absolute_url()+'/createObject?type_name=Financials';">
+        Add FMI<img SRC="add_fmi.jpg"></a-->
        <div metal:use-macro="here/document_actions/macros/document_actions" >
                                 Document actions (print, sendto etc)
        </div>

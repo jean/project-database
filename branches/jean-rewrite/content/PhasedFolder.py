@@ -89,6 +89,7 @@ class PhasedFolder(BaseFolder):
 
     # Methods
 
+
 registerType(PhasedFolder, PROJECTNAME)
 # end of class PhasedFolder
 
