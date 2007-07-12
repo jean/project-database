@@ -769,6 +769,33 @@ class Project(BaseFolder, CurrencyMixin, DocumentLinks):
        },
 
 
+       {'action': "string:${object_url}/phase_projects",
+        'category': "object_tabs",
+        'id': 'phase',
+        'name': 'phase',
+        'permissions': (permissions.ViewProjects,),
+        'condition': 'python:1'
+       },
+
+
+       {'action': "string:${object_url}/tranched_projects",
+        'category': "object_tabs",
+        'id': 'tranched',
+        'name': 'tranched',
+        'permissions': (permissions.ViewProjects,),
+        'condition': 'python:1'
+       },
+
+
+       {'action': "string:${object_url}/addon_projects",
+        'category': "object_tabs",
+        'id': 'addon',
+        'name': 'addon',
+        'permissions': (permissions.ViewProjects,),
+        'condition': 'python:1'
+       },
+
+
     )
 
     _at_rename_after_creation = True
@@ -989,7 +1016,7 @@ class Project(BaseFolder, CurrencyMixin, DocumentLinks):
     def manage_afterAdd(self, item, container):
         """
         """
-        if 'financials' not in self.objectIds(): 
+        if 'financials' not in self.objectIds():
             self.invokeFactory('Financials', 'financials')
         BaseFolder.manage_afterAdd(self, item, container)
 
