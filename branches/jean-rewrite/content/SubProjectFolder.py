@@ -89,6 +89,7 @@ class SubProjectFolder(BaseFolder):
 
     # Methods
 
+
 registerType(SubProjectFolder, PROJECTNAME)
 # end of class SubProjectFolder
 

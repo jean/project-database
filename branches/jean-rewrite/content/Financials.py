@@ -228,10 +228,10 @@ class Financials(BaseContent, CurrencyMixin, FinancialsMixin):
 
        {'action': "string:${object_url}/fmi_view",
         'category': "object_tabs",
-        'id': 'view',
+        'id': 'fmi_view',
         'name': 'fmi view',
         'permissions': (permissions.ViewProjects,),
-        'condition': 'python:1'
+        'condition': 'python:0'
        },
 
 

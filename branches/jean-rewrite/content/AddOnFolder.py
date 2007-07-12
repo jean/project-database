@@ -89,6 +89,7 @@ class AddOnFolder(BaseFolder):
 
     # Methods
 
+
 registerType(AddOnFolder, PROJECTNAME)
 # end of class AddOnFolder
 

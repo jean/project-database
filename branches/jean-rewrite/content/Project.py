@@ -753,10 +753,10 @@ class Project(BaseFolder, CurrencyMixin, DocumentLinks):
 
        {'action': "string:${object_url}/project_general_information",
         'category': "object_tabs",
-        'id': 'view',
+        'id': 'pgi',
         'name': 'Project General Information',
         'permissions': (permissions.ViewProjects,),
-        'condition': 'python:1'
+        'condition': 'python:0'
        },
 
 
@@ -765,7 +765,7 @@ class Project(BaseFolder, CurrencyMixin, DocumentLinks):
         'id': 'fmi_view',
         'name': 'FMI View',
         'permissions': (permissions.ViewProjects,),
-        'condition': 'python:1'
+        'condition': 'python:0'
        },
 
 
@@ -991,21 +991,38 @@ class Project(BaseFolder, CurrencyMixin, DocumentLinks):
         """
         if 'financials' not in self.objectIds():
             self.invokeFactory('Financials', 'financials')
+            self['financials'].setTitle('Financial Management Information')
         if 'tranchedfolder' not in self.objectIds():
             self.invokeFactory('TranchedFolder', 'tranchedfolder')
+            self['tranchedfolder'].setTitle('Tranched Projects')
         if 'phasedfolder' not in self.objectIds():
             self.invokeFactory('PhasedFolder', 'phasedfolder')
+            self['phasedfolder'].setTitle('Phased Projects')
         if 'addonfolder' not in self.objectIds():
             self.invokeFactory('AddOnFolder', 'addonfolder')
+            self['addonfolder'].setTitle('Add On Projects')
         if 'subprojectfolder' not in self.objectIds():
             self.invokeFactory('SubProjectFolder', 'subprojectfolder')
+            self['subprojectfolder'].setTitle('Sub-Projects')
         BaseFolder.manage_afterAdd(self, item, container)
+
+    security.declarePublic('displayContentsTab')
+    def displayContentsTab(self):
+        """ Don't display the contents tab
+        """
+        return False
 
 
 registerType(Project, PROJECTNAME)
 # end of class Project
 
 ##code-section module-footer #fill in your manual code here
+def modify_fti(fti):
+    for a in fti['actions']:
+        if a['id'] in ('metadata', 'references'):
+            a['visible'] = 0
+    return fti
+
 ##/code-section module-footer
 
 

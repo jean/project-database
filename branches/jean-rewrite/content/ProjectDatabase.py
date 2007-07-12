@@ -258,6 +258,13 @@ registerType(ProjectDatabase, PROJECTNAME)
 # end of class ProjectDatabase
 
 ##code-section module-footer #fill in your manual code here
+def modify_fti(fti):
+    for a in fti['actions']:
+        print str(a)
+        if a['id'] in ('metadata', 'references'):
+            a['visible'] = False
+        print str(a)
+    return fti
 ##/code-section module-footer
 
 
