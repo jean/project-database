@@ -126,6 +126,14 @@ class testProject(PortalDatabaseTestCase):
     def test_getProject(self):
         pass
 
+    # from class Project:
+    def test_getCategoryVocab(self):
+        pass
+
+    # from class Project:
+    def test_manage_afterAdd(self):
+        pass
+
     # from class CurrencyMixin:
     def test_getZeroMoneyInstance(self):
         pass
@@ -143,6 +151,9 @@ class testProject(PortalDatabaseTestCase):
         pass
 
     def test_export_project_data(self):
+        pass
+
+    def test_getCatagoryVocab(self):
         pass
 
 

@@ -63,6 +63,10 @@ class testFinancials(PortalDatabaseTestCase):
     def test_getCashUNEPAllocation(self):
         pass
 
+    # from class Financials:
+    def test_fmi_view(self):
+        pass
+
     # from class CurrencyMixin:
     def test_getZeroMoneyInstance(self):
         pass

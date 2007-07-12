@@ -52,9 +52,10 @@ from Products.FinanceFields.Money import Money
 
 schema = Schema((
 
-    SelectedLinesField(
+    LinesField(
         name='ProjectType',
-        widget=SelectedLinesField._properties['widget'](
+        widget=InAndOutWidget
+        (
             label="Project Type",
             label_msgid='ProjectDatabase_label_ProjectType',
             i18n_domain='ProjectDatabase',
@@ -62,9 +63,10 @@ schema = Schema((
         vocabulary=NamedVocabulary("""ProjectType""")
     ),
 
-    SelectedLinesField(
+    LinesField(
         name='FocalArea',
-        widget=SelectedLinesField._properties['widget'](
+        widget=InAndOutWidget
+        (
             label="Focal Area",
             label_msgid='ProjectDatabase_label_FocalArea',
             i18n_domain='ProjectDatabase',
@@ -72,9 +74,10 @@ schema = Schema((
         vocabulary=NamedVocabulary("""FocalArea""")
     ),
 
-    SelectedLinesField(
+    LinesField(
         name='Country',
-        widget=SelectedLinesField._properties['widget'](
+        widget=InAndOutWidget
+        (
             label='Country',
             label_msgid='ProjectDatabase_label_Country',
             i18n_domain='ProjectDatabase',
@@ -82,9 +85,10 @@ schema = Schema((
         vocabulary=NamedVocabulary("""Country""")
     ),
 
-    SelectedLinesField(
+    LinesField(
         name='OperationalProgramme',
-        widget=SelectedLinesField._properties['widget'](
+        widget=InAndOutWidget
+        (
             label="Operational Programme",
             label_msgid='ProjectDatabase_label_OperationalProgramme',
             i18n_domain='ProjectDatabase',
@@ -92,9 +96,10 @@ schema = Schema((
         vocabulary=NamedVocabulary("""OperationalProgramme""")
     ),
 
-    SelectedLinesField(
+    LinesField(
         name='Region',
-        widget=SelectedLinesField._properties['widget'](
+        widget=InAndOutWidget
+        (
             label='Region',
             label_msgid='ProjectDatabase_label_Region',
             i18n_domain='ProjectDatabase',
@@ -102,9 +107,10 @@ schema = Schema((
         vocabulary=NamedVocabulary("""Region""")
     ),
 
-    SelectedLinesField(
+    LinesField(
         name='ProjectStatus',
-        widget=SelectedLinesField._properties['widget'](
+        widget=InAndOutWidget
+        (
             label="Project Status",
             label_msgid='ProjectDatabase_label_ProjectStatus',
             i18n_domain='ProjectDatabase',
@@ -112,9 +118,10 @@ schema = Schema((
         vocabulary=NamedVocabulary("""ProjectStatus""")
     ),
 
-    SelectedLinesField(
+    LinesField(
         name='StrategicPriority',
-        widget=SelectedLinesField._properties['widget'](
+        widget=InAndOutWidget
+        (
             label="Strategic Priority",
             label_msgid='ProjectDatabase_label_StrategicPriority',
             i18n_domain='ProjectDatabase',
@@ -122,9 +129,10 @@ schema = Schema((
         vocabulary=NamedVocabulary("""StrategicPriority""")
     ),
 
-    SelectedLinesField(
+    LinesField(
         name='Scope',
-        widget=SelectedLinesField._properties['widget'](
+        widget=InAndOutWidget
+        (
             label='Scope',
             label_msgid='ProjectDatabase_label_Scope',
             i18n_domain='ProjectDatabase',
@@ -132,9 +140,10 @@ schema = Schema((
         vocabulary=NamedVocabulary("""Scope""")
     ),
 
-    SelectedLinesField(
+    LinesField(
         name='GEFPhase',
-        widget=SelectedLinesField._properties['widget'](
+        widget=InAndOutWidget
+        (
             label="GEF Phase",
             label_msgid='ProjectDatabase_label_GEFPhase',
             i18n_domain='ProjectDatabase',

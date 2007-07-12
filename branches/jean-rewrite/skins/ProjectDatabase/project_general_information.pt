@@ -30,6 +30,9 @@
         </b>
       </tal:redirect>
             
+        <form tal:attributes="action string:${context/absolute_url}/base_edit" method="link">
+            <input type="submit" value="Edit"/>
+        </form>
                        
            
 	   <!--h4 tal:content="title_string | here/title_or_id" /-->
@@ -47,11 +50,16 @@
                </form--> 
 	   <table>
 	   	
+        <tr><td colspan="2" 
+                align="center" 
+                bgcolor="#56732E"><b>Project General Information</b></td>
+        </tr>
+
         <tr tal:on-error="nothing" 
             tal:define="field python:here.Schema()['id']; 
                         accessor python:getattr(here, field.accessor)" 
             tal:condition="python:not accessor()==''">
-            <td bgcolor='#F1F1F1' width='30%'>
+            <td bgcolor='#C5D5A9' width='30%'>
                 <b>Internal Id:</b>
             </td>
             <td><span tal:replace="structure accessor"/> 
@@ -61,12 +69,745 @@
             tal:define="field python:here.Schema()['title']; 
                         accessor python:getattr(here, field.accessor)" 
             tal:condition="python:not accessor()==''">
-            <td bgcolor='#F1F1F1' width='30%'><b>GEF Project Id:</b>
+            <td bgcolor='#C5D5A9' width='30%'><b>GEF Project Id:</b>
             </td>
             <td><span tal:replace="structure accessor"/> 
             </td>
         </tr>
-	   	<tr tal:on-error="nothing" 
+	   	<tr 
+            tal:define="field python:here.Schema()['SummaryDescription']; 
+                        accessor python:getattr(here, field.accessor);
+                        mode string:view;
+                        widget_view python:here.widget(field.getName(), mode=mode, use_label=1);" 
+                        >
+            <td bgcolor='#C5D5A9' width='30%'>
+            <b> <span tal:replace="field/widget/label|field/name"/></b>
+            </td>
+            <td><metal:block use-macro="widget_view"/></td>
+        </tr>
+
+	   	<tr 
+            tal:define="field python:here.Schema()['FocalArea']; 
+                        accessor python:getattr(here, field.accessor);
+                        mode string:view;
+                        widget_view python:here.widget(field.getName(), mode=mode, use_label=1);" 
+                        >
+            <td bgcolor='#C5D5A9' width='30%'>
+            <b> <span tal:replace="field/widget/label|field/name"/></b>
+            </td>
+            <td><metal:block use-macro="widget_view"/></td>
+        </tr>
+
+	   	<tr 
+            tal:define="field python:here.Schema()['OperationalProgramme']; 
+                        accessor python:getattr(here, field.accessor);
+                        mode string:view;
+                        widget_view python:here.widget(field.getName(), mode=mode, use_label=1);" 
+                        >
+            <td bgcolor='#C5D5A9' width='30%'>
+            <b> <span tal:replace="field/widget/label|field/name"/></b>
+            </td>
+            <td><metal:block use-macro="widget_view"/></td>
+        </tr>
+
+	   	<tr 
+            tal:define="field python:here.Schema()['EABiodiversity']; 
+                        accessor python:getattr(here, field.accessor);
+                        mode string:view;
+                        widget_view python:here.widget(field.getName(), mode=mode, use_label=1);" 
+                        >
+            <td bgcolor='#C5D5A9' width='30%'>
+            <b> <span tal:replace="field/widget/label|field/name"/></b>
+            </td>
+            <td><metal:block use-macro="widget_view"/></td>
+        </tr>
+
+	   	<tr 
+            tal:define="field python:here.Schema()['EABiodiversityOther']; 
+                        accessor python:getattr(here, field.accessor);
+                        mode string:view;
+                        widget_view python:here.widget(field.getName(), mode=mode, use_label=1);" 
+                        >
+            <td bgcolor='#C5D5A9' width='30%'>
+            <b> <span tal:replace="field/widget/label|field/name"/></b>
+            </td>
+            <td><metal:block use-macro="widget_view"/></td>
+        </tr>
+
+	   	<tr 
+            tal:define="field python:here.Schema()['EAClimateChange']; 
+                        accessor python:getattr(here, field.accessor);
+                        mode string:view;
+                        widget_view python:here.widget(field.getName(), mode=mode, use_label=1);" 
+                        >
+            <td bgcolor='#C5D5A9' width='30%'>
+            <b> <span tal:replace="field/widget/label|field/name"/></b>
+            </td>
+            <td><metal:block use-macro="widget_view"/></td>
+        </tr>
+
+	   	<tr 
+            tal:define="field python:here.Schema()['EAClimateChangeOther']; 
+                        accessor python:getattr(here, field.accessor);
+                        mode string:view;
+                        widget_view python:here.widget(field.getName(), mode=mode, use_label=1);" 
+                        >
+            <td bgcolor='#C5D5A9' width='30%'>
+            <b> <span tal:replace="field/widget/label|field/name"/></b>
+            </td>
+            <td><metal:block use-macro="widget_view"/></td>
+        </tr>
+
+	   	<tr 
+            tal:define="field python:here.Schema()['EAPOP']; 
+                        accessor python:getattr(here, field.accessor);
+                        mode string:view;
+                        widget_view python:here.widget(field.getName(), mode=mode, use_label=1);" 
+                        >
+            <td bgcolor='#C5D5A9' width='30%'>
+            <b> <span tal:replace="field/widget/label|field/name"/></b>
+            </td>
+            <td><metal:block use-macro="widget_view"/></td>
+        </tr>
+
+	   	<tr 
+            tal:define="field python:here.Schema()['EAPOPOther']; 
+                        accessor python:getattr(here, field.accessor);
+                        mode string:view;
+                        widget_view python:here.widget(field.getName(), mode=mode, use_label=1);" 
+                        >
+            <td bgcolor='#C5D5A9' width='30%'>
+            <b> <span tal:replace="field/widget/label|field/name"/></b>
+            </td>
+            <td><metal:block use-macro="widget_view"/></td>
+        </tr>
+
+	   	<tr 
+            tal:define="field python:here.Schema()['MultipleFocalAreas']; 
+                        accessor python:getattr(here, field.accessor);
+                        mode string:view;
+                        widget_view python:here.widget(field.getName(), mode=mode, use_label=1);" 
+                        >
+            <td bgcolor='#C5D5A9' width='30%'>
+            <b> <span tal:replace="field/widget/label|field/name"/></b>
+            </td>
+            <td><metal:block use-macro="widget_view"/></td>
+        </tr>
+
+	   	<tr 
+            tal:define="field python:here.Schema()['MultipleFocalAreasOther']; 
+                        accessor python:getattr(here, field.accessor);
+                        mode string:view;
+                        widget_view python:here.widget(field.getName(), mode=mode, use_label=1);" 
+                        >
+            <td bgcolor='#C5D5A9' width='30%'>
+            <b> <span tal:replace="field/widget/label|field/name"/></b>
+            </td>
+            <td><metal:block use-macro="widget_view"/></td>
+        </tr>
+
+	   	<tr 
+            tal:define="field python:here.Schema()['StrategicPriority']; 
+                        accessor python:getattr(here, field.accessor);
+                        mode string:view;
+                        widget_view python:here.widget(field.getName(), mode=mode, use_label=1);" 
+                        >
+            <td bgcolor='#C5D5A9' width='30%'>
+            <b> <span tal:replace="field/widget/label|field/name"/></b>
+            </td>
+            <td><metal:block use-macro="widget_view"/></td>
+        </tr>
+
+	   	<tr 
+            tal:define="field python:here.Schema()['StrategicObjectives']; 
+                        accessor python:getattr(here, field.accessor);
+                        mode string:view;
+                        widget_view python:here.widget(field.getName(), mode=mode, use_label=1);" 
+                        >
+            <td bgcolor='#C5D5A9' width='30%'>
+            <b> <span tal:replace="field/widget/label|field/name"/></b>
+            </td>
+            <td><metal:block use-macro="widget_view"/></td>
+        </tr>
+
+	   	<tr 
+            tal:define="field python:here.Schema()['ProjectType']; 
+                        accessor python:getattr(here, field.accessor);
+                        mode string:view;
+                        widget_view python:here.widget(field.getName(), mode=mode, use_label=1);" 
+                        >
+            <td bgcolor='#C5D5A9' width='30%'>
+            <b> <span tal:replace="field/widget/label|field/name"/></b>
+            </td>
+            <td><metal:block use-macro="widget_view"/></td>
+        </tr>
+
+	   	<tr 
+            tal:define="field python:here.Schema()['PipelineNumber']; 
+                        accessor python:getattr(here, field.accessor);
+                        mode string:view;
+                        widget_view python:here.widget(field.getName(), mode=mode, use_label=1);" 
+                        >
+            <td bgcolor='#C5D5A9' width='30%'>
+            <b> <span tal:replace="field/widget/label|field/name"/></b>
+            </td>
+            <td><metal:block use-macro="widget_view"/></td>
+        </tr>
+
+	   	<tr 
+            tal:define="field python:here.Schema()['Scope']; 
+                        accessor python:getattr(here, field.accessor);
+                        mode string:view;
+                        widget_view python:here.widget(field.getName(), mode=mode, use_label=1);" 
+                        >
+            <td bgcolor='#C5D5A9' width='30%'>
+            <b> <span tal:replace="field/widget/label|field/name"/></b>
+            </td>
+            <td><metal:block use-macro="widget_view"/></td>
+        </tr>
+
+	   	<tr 
+            tal:define="field python:here.Schema()['ScopeOther']; 
+                        accessor python:getattr(here, field.accessor);
+                        mode string:view;
+                        widget_view python:here.widget(field.getName(), mode=mode, use_label=1);" 
+                        >
+            <td bgcolor='#C5D5A9' width='30%'>
+            <b> <span tal:replace="field/widget/label|field/name"/></b>
+            </td>
+            <td><metal:block use-macro="widget_view"/></td>
+        </tr>
+
+	   	<tr 
+            tal:define="field python:here.Schema()['Region']; 
+                        accessor python:getattr(here, field.accessor);
+                        mode string:view;
+                        widget_view python:here.widget(field.getName(), mode=mode, use_label=1);" 
+                        >
+            <td bgcolor='#C5D5A9' width='30%'>
+            <b> <span tal:replace="field/widget/label|field/name"/></b>
+            </td>
+            <td><metal:block use-macro="widget_view"/></td>
+        </tr>
+
+	   	<tr 
+            tal:define="field python:here.Schema()['Country']; 
+                        accessor python:getattr(here, field.accessor);
+                        mode string:view;
+                        widget_view python:here.widget(field.getName(), mode=mode, use_label=1);" 
+                        >
+            <td bgcolor='#C5D5A9' width='30%'>
+            <b> <span tal:replace="field/widget/label|field/name"/></b>
+            </td>
+            <td><metal:block use-macro="widget_view"/></td>
+        </tr>
+
+	   	<tr 
+            tal:define="field python:here.Schema()['OtherNonGEFEligibleCountries']; 
+                        accessor python:getattr(here, field.accessor);
+                        mode string:view;
+                        widget_view python:here.widget(field.getName(), mode=mode, use_label=1);" 
+                        >
+            <td bgcolor='#C5D5A9' width='30%'>
+            <b> <span tal:replace="field/widget/label|field/name"/></b>
+            </td>
+            <td><metal:block use-macro="widget_view"/></td>
+        </tr>
+
+	   	<tr 
+            tal:define="field python:here.Schema()['LeadAgency']; 
+                        accessor python:getattr(here, field.accessor);
+                        mode string:view;
+                        widget_view python:here.widget(field.getName(), mode=mode, use_label=1);" 
+                        >
+            <td bgcolor='#C5D5A9' width='30%'>
+            <b> <span tal:replace="field/widget/label|field/name"/></b>
+            </td>
+            <td><metal:block use-macro="widget_view"/></td>
+        </tr>
+
+	   	<tr 
+            tal:define="field python:here.Schema()['LeadAgencyContact']; 
+                        accessor python:getattr(here, field.accessor);
+                        mode string:view;
+                        widget_view python:here.widget(field.getName(), mode=mode, use_label=1);" 
+                        >
+            <td bgcolor='#C5D5A9' width='30%'>
+            <b> <span tal:replace="field/widget/label|field/name"/></b>
+            </td>
+            <td><metal:block use-macro="widget_view"/></td>
+        </tr>
+
+	   	<tr 
+            tal:define="field python:here.Schema()['OtherImplementingAgency']; 
+                        accessor python:getattr(here, field.accessor);
+                        mode string:view;
+                        widget_view python:here.widget(field.getName(), mode=mode, use_label=1);" 
+                        >
+            <td bgcolor='#C5D5A9' width='30%'>
+            <b> <span tal:replace="field/widget/label|field/name"/></b>
+            </td>
+            <td><metal:block use-macro="widget_view"/></td>
+        </tr>
+
+	   	<tr 
+            tal:define="field python:here.Schema()['ProjectExecutingAgency']; 
+                        accessor python:getattr(here, field.accessor);
+                        mode string:view;
+                        widget_view python:here.widget(field.getName(), mode=mode, use_label=1);" 
+                        >
+            <td bgcolor='#C5D5A9' width='30%'>
+            <b> <span tal:replace="field/widget/label|field/name"/></b>
+            </td>
+            <td><metal:block use-macro="widget_view"/></td>
+        </tr>
+
+	   	<tr 
+            tal:define="field python:here.Schema()['OtherProjectExecutingPartners']; 
+                        accessor python:getattr(here, field.accessor);
+                        mode string:view;
+                        widget_view python:here.widget(field.getName(), mode=mode, use_label=1);" 
+                        >
+            <td bgcolor='#C5D5A9' width='30%'>
+            <b> <span tal:replace="field/widget/label|field/name"/></b>
+            </td>
+            <td><metal:block use-macro="widget_view"/></td>
+        </tr>
+
+	   	<tr 
+            tal:define="field python:here.Schema()['UnepComponentDescription']; 
+                        accessor python:getattr(here, field.accessor);
+                        mode string:view;
+                        widget_view python:here.widget(field.getName(), mode=mode, use_label=1);" 
+                        >
+            <td bgcolor='#C5D5A9' width='30%'>
+            <b> <span tal:replace="field/widget/label|field/name"/></b>
+            </td>
+            <td><metal:block use-macro="widget_view"/></td>
+        </tr>
+
+	   	<tr 
+            tal:define="field python:here.Schema()['GEFPhase']; 
+                        accessor python:getattr(here, field.accessor);
+                        mode string:view;
+                        widget_view python:here.widget(field.getName(), mode=mode, use_label=1);" 
+                        >
+            <td bgcolor='#C5D5A9' width='30%'>
+            <b> <span tal:replace="field/widget/label|field/name"/></b>
+            </td>
+            <td><metal:block use-macro="widget_view"/></td>
+        </tr>
+
+	   	<tr 
+            tal:define="field python:here.Schema()['ImplementationMode']; 
+                        accessor python:getattr(here, field.accessor);
+                        mode string:view;
+                        widget_view python:here.widget(field.getName(), mode=mode, use_label=1);" 
+                        >
+            <td bgcolor='#C5D5A9' width='30%'>
+            <b> <span tal:replace="field/widget/label|field/name"/></b>
+            </td>
+            <td><metal:block use-macro="widget_view"/></td>
+        </tr>
+
+	   	<tr 
+            tal:define="field python:here.Schema()['CurrentTaskManager']; 
+                        accessor python:getattr(here, field.accessor);
+                        mode string:view;
+                        widget_view python:here.widget(field.getName(), mode=mode, use_label=1);" 
+                        >
+            <td bgcolor='#C5D5A9' width='30%'>
+            <b> <span tal:replace="field/widget/label|field/name"/></b>
+            </td>
+            <td><metal:block use-macro="widget_view"/></td>
+        </tr>
+
+	   	<tr 
+            tal:define="field python:here.Schema()['PreviousTaskManager']; 
+                        accessor python:getattr(here, field.accessor);
+                        mode string:view;
+                        widget_view python:here.widget(field.getName(), mode=mode, use_label=1);" 
+                        >
+            <td bgcolor='#C5D5A9' width='30%'>
+            <b> <span tal:replace="field/widget/label|field/name"/></b>
+            </td>
+            <td><metal:block use-macro="widget_view"/></td>
+        </tr>
+
+	   	<tr 
+            tal:define="field python:here.Schema()['Office']; 
+                        accessor python:getattr(here, field.accessor);
+                        mode string:view;
+                        widget_view python:here.widget(field.getName(), mode=mode, use_label=1);" 
+                        >
+            <td bgcolor='#C5D5A9' width='30%'>
+            <b> <span tal:replace="field/widget/label|field/name"/></b>
+            </td>
+            <td><metal:block use-macro="widget_view"/></td>
+        </tr>
+
+	   	<tr 
+            tal:define="field python:here.Schema()['Website']; 
+                        accessor python:getattr(here, field.accessor);
+                        mode string:view;
+                        widget_view python:here.widget(field.getName(), mode=mode, use_label=1);" 
+                        >
+            <td bgcolor='#C5D5A9' width='30%'>
+            <b> <span tal:replace="field/widget/label|field/name"/></b>
+            </td>
+            <td><metal:block use-macro="widget_view"/></td>
+        </tr>
+
+	   	<tr 
+            tal:define="field python:here.Schema()['ProjectCoordinator']; 
+                        accessor python:getattr(here, field.accessor);
+                        mode string:view;
+                        widget_view python:here.widget(field.getName(), mode=mode, use_label=1);" 
+                        >
+            <td bgcolor='#C5D5A9' width='30%'>
+            <b> <span tal:replace="field/widget/label|field/name"/></b>
+            </td>
+            <td><metal:block use-macro="widget_view"/></td>
+        </tr>
+
+	   	<tr 
+            tal:define="field python:here.Schema()['MidtermReviewReportDate']; 
+                        accessor python:getattr(here, field.accessor);
+                        mode string:view;
+                        widget_view python:here.widget(field.getName(), mode=mode, use_label=1);" 
+                        >
+            <td bgcolor='#C5D5A9' width='30%'>
+            <b> <span tal:replace="field/widget/label|field/name"/></b>
+            </td>
+            <td><metal:block use-macro="widget_view"/></td>
+        </tr>
+
+	   	<tr 
+            tal:define="field python:here.Schema()['MidtermReviewEvaluatorName']; 
+                        accessor python:getattr(here, field.accessor);
+                        mode string:view;
+                        widget_view python:here.widget(field.getName(), mode=mode, use_label=1);" 
+                        >
+            <td bgcolor='#C5D5A9' width='30%'>
+            <b> <span tal:replace="field/widget/label|field/name"/></b>
+            </td>
+            <td><metal:block use-macro="widget_view"/></td>
+        </tr>
+
+	   	<tr 
+            tal:define="field python:here.Schema()['MidtermReviewPlannedDate']; 
+                        accessor python:getattr(here, field.accessor);
+                        mode string:view;
+                        widget_view python:here.widget(field.getName(), mode=mode, use_label=1);" 
+                        >
+            <td bgcolor='#C5D5A9' width='30%'>
+            <b> <span tal:replace="field/widget/label|field/name"/></b>
+            </td>
+            <td><metal:block use-macro="widget_view"/></td>
+        </tr>
+
+	   	<tr 
+            tal:define="field python:here.Schema()['MidtermReviewActualDate']; 
+                        accessor python:getattr(here, field.accessor);
+                        mode string:view;
+                        widget_view python:here.widget(field.getName(), mode=mode, use_label=1);" 
+                        >
+            <td bgcolor='#C5D5A9' width='30%'>
+            <b> <span tal:replace="field/widget/label|field/name"/></b>
+            </td>
+            <td><metal:block use-macro="widget_view"/></td>
+        </tr>
+
+	   	<tr 
+            tal:define="field python:here.Schema()['TerminalEvaluationReportDate']; 
+                        accessor python:getattr(here, field.accessor);
+                        mode string:view;
+                        widget_view python:here.widget(field.getName(), mode=mode, use_label=1);" 
+                        >
+            <td bgcolor='#C5D5A9' width='30%'>
+            <b> <span tal:replace="field/widget/label|field/name"/></b>
+            </td>
+            <td><metal:block use-macro="widget_view"/></td>
+        </tr>
+
+	   	<tr 
+            tal:define="field python:here.Schema()['TerminalReportEvaluatorName']; 
+                        accessor python:getattr(here, field.accessor);
+                        mode string:view;
+                        widget_view python:here.widget(field.getName(), mode=mode, use_label=1);" 
+                        >
+            <td bgcolor='#C5D5A9' width='30%'>
+            <b> <span tal:replace="field/widget/label|field/name"/></b>
+            </td>
+            <td><metal:block use-macro="widget_view"/></td>
+        </tr>
+
+	   	<tr 
+            tal:define="field python:here.Schema()['TerminalReportPlannedEvaluationDate']; 
+                        accessor python:getattr(here, field.accessor);
+                        mode string:view;
+                        widget_view python:here.widget(field.getName(), mode=mode, use_label=1);" 
+                        >
+            <td bgcolor='#C5D5A9' width='30%'>
+            <b> <span tal:replace="field/widget/label|field/name"/></b>
+            </td>
+            <td><metal:block use-macro="widget_view"/></td>
+        </tr>
+
+	   	<tr 
+            tal:define="field python:here.Schema()['TerminalReportActualEvaluationDate']; 
+                        accessor python:getattr(here, field.accessor);
+                        mode string:view;
+                        widget_view python:here.widget(field.getName(), mode=mode, use_label=1);" 
+                        >
+            <td bgcolor='#C5D5A9' width='30%'>
+            <b> <span tal:replace="field/widget/label|field/name"/></b>
+            </td>
+            <td><metal:block use-macro="widget_view"/></td>
+        </tr>
+
+	   	<tr 
+            tal:define="field python:here.Schema()['ProjectResults']; 
+                        accessor python:getattr(here, field.accessor);
+                        mode string:view;
+                        widget_view python:here.widget(field.getName(), mode=mode, use_label=1);" 
+                        >
+            <td bgcolor='#C5D5A9' width='30%'>
+            <b> <span tal:replace="field/widget/label|field/name"/></b>
+            </td>
+            <td><metal:block use-macro="widget_view"/></td>
+        </tr>
+
+	   	<tr 
+            tal:define="field python:here.Schema()['LeveragedFinancingAmount']; 
+                        accessor python:getattr(here, field.accessor);
+                        mode string:view;
+                        widget_view python:here.widget(field.getName(), mode=mode, use_label=1);" 
+                        >
+            <td bgcolor='#C5D5A9' width='30%'>
+            <b> <span tal:replace="field/widget/label|field/name"/></b>
+            </td>
+            <td><metal:block use-macro="widget_view"/></td>
+        </tr>
+
+	   	<tr 
+            tal:define="field python:here.Schema()['LeveragedFinancingRemark']; 
+                        accessor python:getattr(here, field.accessor);
+                        mode string:view;
+                        widget_view python:here.widget(field.getName(), mode=mode, use_label=1);" 
+                        >
+            <td bgcolor='#C5D5A9' width='30%'>
+            <b> <span tal:replace="field/widget/label|field/name"/></b>
+            </td>
+            <td><metal:block use-macro="widget_view"/></td>
+        </tr>
+
+	   	<tr 
+            tal:define="field python:here.Schema()['TotalGEFAllocation']; 
+                        accessor python:getattr(here, field.accessor);
+                        mode string:view;
+                        widget_view python:here.widget(field.getName(), mode=mode, use_label=1);" 
+                        >
+            <td bgcolor='#C5D5A9' width='30%'>
+            <b> <span tal:replace="field/widget/label|field/name"/></b>
+            </td>
+            <td><metal:block use-macro="widget_view"/></td>
+        </tr>
+
+	   	<tr 
+            tal:define="field python:here.Schema()['TotalUNEPAllocation']; 
+                        accessor python:getattr(here, field.accessor);
+                        mode string:view;
+                        widget_view python:here.widget(field.getName(), mode=mode, use_label=1);" 
+                        >
+            <td bgcolor='#C5D5A9' width='30%'>
+            <b> <span tal:replace="field/widget/label|field/name"/></b>
+            </td>
+            <td><metal:block use-macro="widget_view"/></td>
+        </tr>
+
+	   	<tr 
+            tal:define="field python:here.Schema()['TotalCofinancingPlanned']; 
+                        accessor python:getattr(here, field.accessor);
+                        mode string:view;
+                        widget_view python:here.widget(field.getName(), mode=mode, use_label=1);" 
+                        >
+            <td bgcolor='#C5D5A9' width='30%'>
+            <b> <span tal:replace="field/widget/label|field/name"/></b>
+            </td>
+            <td><metal:block use-macro="widget_view"/></td>
+        </tr>
+
+	   	<tr 
+            tal:define="field python:here.Schema()['TotalCofinancingActual']; 
+                        accessor python:getattr(here, field.accessor);
+                        mode string:view;
+                        widget_view python:here.widget(field.getName(), mode=mode, use_label=1);" 
+                        >
+            <td bgcolor='#C5D5A9' width='30%'>
+            <b> <span tal:replace="field/widget/label|field/name"/></b>
+            </td>
+            <td><metal:block use-macro="widget_view"/></td>
+        </tr>
+
+	   	<tr 
+            tal:define="field python:here.Schema()['TotalCashDisbursements']; 
+                        accessor python:getattr(here, field.accessor);
+                        mode string:view;
+                        widget_view python:here.widget(field.getName(), mode=mode, use_label=1);" 
+                        >
+            <td bgcolor='#C5D5A9' width='30%'>
+            <b> <span tal:replace="field/widget/label|field/name"/></b>
+            </td>
+            <td><metal:block use-macro="widget_view"/></td>
+        </tr>
+
+	   	<tr 
+            tal:define="field python:here.Schema()['TotalIMISExpenditures']; 
+                        accessor python:getattr(here, field.accessor);
+                        mode string:view;
+                        widget_view python:here.widget(field.getName(), mode=mode, use_label=1);" 
+                        >
+            <td bgcolor='#C5D5A9' width='30%'>
+            <b> <span tal:replace="field/widget/label|field/name"/></b>
+            </td>
+            <td><metal:block use-macro="widget_view"/></td>
+        </tr>
+
+	   	<tr 
+            tal:define="field python:here.Schema()['PDFAStatus']; 
+                        accessor python:getattr(here, field.accessor);
+                        mode string:view;
+                        widget_view python:here.widget(field.getName(), mode=mode, use_label=1);" 
+                        >
+            <td bgcolor='#C5D5A9' width='30%'>
+            <b> <span tal:replace="field/widget/label|field/name"/></b>
+            </td>
+            <td><metal:block use-macro="widget_view"/></td>
+        </tr>
+
+	   	<tr 
+            tal:define="field python:here.Schema()['PDFBStatus']; 
+                        accessor python:getattr(here, field.accessor);
+                        mode string:view;
+                        widget_view python:here.widget(field.getName(), mode=mode, use_label=1);" 
+                        >
+            <td bgcolor='#C5D5A9' width='30%'>
+            <b> <span tal:replace="field/widget/label|field/name"/></b>
+            </td>
+            <td><metal:block use-macro="widget_view"/></td>
+        </tr>
+
+	   	<tr 
+            tal:define="field python:here.Schema()['MSPStatus']; 
+                        accessor python:getattr(here, field.accessor);
+                        mode string:view;
+                        widget_view python:here.widget(field.getName(), mode=mode, use_label=1);" 
+                        >
+            <td bgcolor='#C5D5A9' width='30%'>
+            <b> <span tal:replace="field/widget/label|field/name"/></b>
+            </td>
+            <td><metal:block use-macro="widget_view"/></td>
+        </tr>
+
+	   	<tr 
+            tal:define="field python:here.Schema()['FSPStatus']; 
+                        accessor python:getattr(here, field.accessor);
+                        mode string:view;
+                        widget_view python:here.widget(field.getName(), mode=mode, use_label=1);" 
+                        >
+            <td bgcolor='#C5D5A9' width='30%'>
+            <b> <span tal:replace="field/widget/label|field/name"/></b>
+            </td>
+            <td><metal:block use-macro="widget_view"/></td>
+        </tr>
+
+	   	<tr 
+            tal:define="field python:here.Schema()['ProjectTitle']; 
+                        accessor python:getattr(here, field.accessor);
+                        mode string:view;
+                        widget_view python:here.widget(field.getName(), mode=mode, use_label=1);" 
+                        >
+            <td bgcolor='#C5D5A9' width='30%'>
+            <b> <span tal:replace="field/widget/label|field/name"/></b>
+            </td>
+            <td><metal:block use-macro="widget_view"/></td>
+        </tr>
+
+	   	<tr 
+            tal:define="field python:here.Schema()['GEFAgencyImplementation']; 
+                        accessor python:getattr(here, field.accessor);
+                        mode string:view;
+                        widget_view python:here.widget(field.getName(), mode=mode, use_label=1);" 
+                        >
+            <td bgcolor='#C5D5A9' width='30%'>
+            <b> <span tal:replace="field/widget/label|field/name"/></b>
+            </td>
+            <td><metal:block use-macro="widget_view"/></td>
+        </tr>
+
+	   	<tr 
+            tal:define="field python:here.Schema()['Tranched']; 
+                        accessor python:getattr(here, field.accessor);
+                        mode string:view;
+                        widget_view python:here.widget(field.getName(), mode=mode, use_label=1);" 
+                        >
+            <td bgcolor='#C5D5A9' width='30%'>
+            <b> <span tal:replace="field/widget/label|field/name"/></b>
+            </td>
+            <td><metal:block use-macro="widget_view"/></td>
+        </tr>
+
+	   	<tr 
+            tal:define="field python:here.Schema()['TranchedNumber']; 
+                        accessor python:getattr(here, field.accessor);
+                        mode string:view;
+                        widget_view python:here.widget(field.getName(), mode=mode, use_label=1);" 
+                        >
+            <td bgcolor='#C5D5A9' width='30%'>
+            <b> <span tal:replace="field/widget/label|field/name"/></b>
+            </td>
+            <td><metal:block use-macro="widget_view"/></td>
+        </tr>
+
+	   	<tr 
+            tal:define="field python:here.Schema()['Phased']; 
+                        accessor python:getattr(here, field.accessor);
+                        mode string:view;
+                        widget_view python:here.widget(field.getName(), mode=mode, use_label=1);" 
+                        >
+            <td bgcolor='#C5D5A9' width='30%'>
+            <b> <span tal:replace="field/widget/label|field/name"/></b>
+            </td>
+            <td><metal:block use-macro="widget_view"/></td>
+        </tr>
+
+	   	<tr 
+            tal:define="field python:here.Schema()['PhasedNumber']; 
+                        accessor python:getattr(here, field.accessor);
+                        mode string:view;
+                        widget_view python:here.widget(field.getName(), mode=mode, use_label=1);" 
+                        >
+            <td bgcolor='#C5D5A9' width='30%'>
+            <b> <span tal:replace="field/widget/label|field/name"/></b>
+            </td>
+            <td><metal:block use-macro="widget_view"/></td>
+        </tr>
+
+	   	<tr 
+            tal:define="field python:here.Schema()['AddOn']; 
+                        accessor python:getattr(here, field.accessor);
+                        mode string:view;
+                        widget_view python:here.widget(field.getName(), mode=mode, use_label=1);" 
+                        >
+            <td bgcolor='#C5D5A9' width='30%'>
+            <b> <span tal:replace="field/widget/label|field/name"/></b>
+            </td>
+            <td><metal:block use-macro="widget_view"/></td>
+        </tr>
+
+        
+	   	<!--tr tal:on-error="nothing" 
             tal:define="field python:here.Schema()['Website']; 
                         accessor python:getattr(here, field.accessor)">
             <td bgcolor='#F1F1F1' width='30%'><b>Web Address:</b>
@@ -124,7 +865,7 @@
                         accessor python:getattr(here, field.accessor)" >
             <td bgcolor='#F1F1F1'><b>Project Results:</b></td> 
             <td><span tal:replace="structure accessor"/> </td>
-        </tr>  
+        </tr-->  
         </table>
     </td>       	   	 
 	 

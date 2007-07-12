@@ -1,6 +1,7 @@
 from StringIO import StringIO
 from Products.ATVocabularyManager.config import TOOL_NAME as ATVOCABULARYTOOL
 from Products.CMFCore.utils import getToolByName
+from Products.CMFPlone.migrations.migration_util import safeEditProperty
 
 def install(self):
     """ Do stuff that GS will do for us soon ..
@@ -32,6 +33,21 @@ def install(self):
                 ):
             portal.contacts.invokeFactory('Agency', id.lower(), title=title)
         out.write('Added agencies.')
+
+    if 'projectdatabases' not in portal.contentIds():
+        portal.invokeFactory('Folder', 'projectdatabases', title='Project Databases')
+
+    # hide unnecessary portal tabs from users
+    portal.Members.setExcludeFromNav(True)
+    portal.Members.reindexObject()
+    portal.news.setExcludeFromNav(True)
+    portal.news.reindexObject()
+    portal.events.setExcludeFromNav(True)
+    portal.events.reindexObject()
+
+    # remove portlets
+    safeEditProperty(portal, 'left_slots', (), 'lines')
+    safeEditProperty(portal, 'right_slots', (), 'lines')
 
     return out
 

@@ -167,6 +167,28 @@ class SubProject(BaseFolder, CurrencyMixin, FinancialsMixin):
     schema = SubProject_schema
 
     ##code-section class-header #fill in your manual code here
+    schema.moveField('FinanceCategory', after='title')
+    schema.moveField('PMSNumber', after='FinanceCategory')
+    schema.moveField('IMISNumber', after='PMSNumber')
+    schema.moveField('GEFProjectAllocation', after='IMISNumber')
+    schema.moveField('CofinancingCash', after='IMISNumber')
+    schema.moveField('CofinancingInKind', after='CofinancingCash')
+    schema.moveField('ApprovedUNEPBudget', after='CofinancingCash')
+    schema.moveField('CashDisbursements', after='ApprovedUNEPBudget')
+    schema.moveField('SumCashDisbursements', after='CashDisbursements')
+    schema.moveField('IMISExpenditures', after='SumCashDisbursements')
+    schema.moveField('Status', after='IMISExpenditures')
+    schema.moveField('SumIMISExpenditures', after='Status')
+    schema.moveField('PlannedDuration', after='SumIMISExpenditures')
+    schema.moveField('InitialCompletionDate', after='PlannedDuration')
+    schema.moveField('RevisedCompletionDate', after='InitialCompletionDate')
+    schema.moveField('DelayReason', after='RevisedCompletionDate')
+    schema.moveField('Reports', after='DelayReason')
+    schema.moveField('LeadExecutingAgency', after='Reports')
+    schema.moveField('OtherLeadExecutingAgency', after='LeadExecutingAgency')
+
+
+
     ##/code-section class-header
 
     # Methods

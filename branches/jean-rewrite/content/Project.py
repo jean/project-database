@@ -308,7 +308,7 @@ schema = Schema((
         name='ProjectExecutingAgency',
         widget=DataGridField._properties['widget'](
             label="Project Executing Agency",
-            columns="pyhton:{'executing_agency':Column('Executing Agency'),'executing_agency_category':SelectColumn('Category', vocabulary='Category')}",
+            columns={'executing_agency':Column('Executing Agency'),'executing_agency_category':SelectColumn('Category', vocabulary='getCategoryVocab')},
             label_msgid='ProjectDatabase_label_ProjectExecutingAgency',
             i18n_domain='ProjectDatabase',
         ),
@@ -320,7 +320,7 @@ schema = Schema((
         name='OtherProjectExecutingPartners',
         widget=DataGridField._properties['widget'](
             label="Other Project Executing Partners",
-            columns={'partner_name':Column('Partner'),'category':SelectColumn('Category',vocabulary='Category')},
+            columns={'partner_name':Column('Partner'),'category':SelectColumn('Category',vocabulary='getCategoryVocab')},
             label_msgid='ProjectDatabase_label_OtherProjectExecutingPartners',
             i18n_domain='ProjectDatabase',
         ),
@@ -976,6 +976,22 @@ class Project(BaseFolder, CurrencyMixin, DocumentLinks):
     security.declarePublic('getProject')
     def getProject(self):
         return self.aq_inner
+
+    security.declarePublic('getCategoryVocab')
+    def getCategoryVocab(self):
+        """
+        """
+        atvm = self.portal_vocabularies
+        vocab = atvm.getVocabularyByName('Category')
+        return vocab.getDisplayList(self)
+
+    security.declarePrivate('manage_afterAdd')
+    def manage_afterAdd(self, item, container):
+        """
+        """
+        if 'financials' not in self.objectIds(): 
+            self.invokeFactory('Financials', 'financials')
+        BaseFolder.manage_afterAdd(self, item, container)
 
 
 registerType(Project, PROJECTNAME)

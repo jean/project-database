@@ -38,6 +38,7 @@ from Products.ProjectDatabase.config import *
 
 # additional imports from tagged value 'import'
 from Products.ProjectDatabase.widgets.SelectedLinesField import SelectedLinesField
+from Products.ProjectDatabase.content import permissions
 from Products.FinanceFields.MoneyField import MoneyField
 from Products.FinanceFields.MoneyWidget import MoneyWidget
 from Products.DataGridField import DataGridField, DataGridWidget, Column, SelectColumn
@@ -220,6 +221,21 @@ class Financials(BaseContent, CurrencyMixin, FinancialsMixin):
     suppl_views = ()
     typeDescription = "Project Financial Information"
     typeDescMsgId = 'description_edit_financials'
+
+
+    actions =  (
+
+
+       {'action': "string:${object_url}/fmi_view",
+        'category': "object_tabs",
+        'id': 'view',
+        'name': 'fmi view',
+        'permissions': (permissions.ViewProjects,),
+        'condition': 'python:1'
+       },
+
+
+    )
 
     _at_rename_after_creation = True
 
