@@ -64,6 +64,10 @@ import EvaluationMilestone
 import RatingTrackingSystem
 import select
 import EvaluatorsInformation
+import TranchedFolder
+import PhasedFolder
+import AddOnFolder
+import SubProjectFolder
 
 ##code-section init-module-footer #fill in your manual code here
 ##/code-section init-module-footer
