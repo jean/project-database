@@ -134,18 +134,6 @@ class testProject(PortalDatabaseTestCase):
     def test_manage_afterAdd(self):
         pass
 
-    # from class Project:
-    def test_phase_projects(self):
-        pass
-
-    # from class Project:
-    def test_tranched_projects(self):
-        pass
-
-    # from class Project:
-    def test_addon_projects(self):
-        pass
-
     # from class CurrencyMixin:
     def test_getZeroMoneyInstance(self):
         pass
@@ -155,6 +143,15 @@ class testProject(PortalDatabaseTestCase):
         pass
 
     # Manually created methods
+
+    def test_tranched_projects(self):
+        pass
+
+    def test_phase_projects(self):
+        pass
+
+    def test_addon_projects(self):
+        pass
 
     def test___init__(self):
         pass

@@ -728,7 +728,7 @@ class Project(BaseFolder, CurrencyMixin, DocumentLinks):
 
     meta_type = 'Project'
     portal_type = 'Project'
-    allowed_content_types = ['ProjectImplementation', 'Financials', 'Milestone', 'SubProject', 'ProjectExecutingPartner', 'Tranched', 'Phased', 'AddOn', 'MonitoringAndEvaluation'] + list(getattr(DocumentLinks, 'allowed_content_types', []))
+    allowed_content_types = ['ProjectImplementation', 'Financials', 'Milestone', 'ProjectExecutingPartner', 'MonitoringAndEvaluation', 'SubProjectFolder', 'AddOnFolder', 'PhasedFolder', 'TranchedFolder'] + list(getattr(DocumentLinks, 'allowed_content_types', []))
     filter_content_types = 1
     global_allow = 0
     #content_icon = 'Project.gif'
@@ -764,33 +764,6 @@ class Project(BaseFolder, CurrencyMixin, DocumentLinks):
         'category': "object_tabs",
         'id': 'fmi_view',
         'name': 'FMI View',
-        'permissions': (permissions.ViewProjects,),
-        'condition': 'python:1'
-       },
-
-
-       {'action': "string:${object_url}/phase_projects",
-        'category': "object_tabs",
-        'id': 'phase',
-        'name': 'phase',
-        'permissions': (permissions.ViewProjects,),
-        'condition': 'python:1'
-       },
-
-
-       {'action': "string:${object_url}/tranched_projects",
-        'category': "object_tabs",
-        'id': 'tranched',
-        'name': 'tranched',
-        'permissions': (permissions.ViewProjects,),
-        'condition': 'python:1'
-       },
-
-
-       {'action': "string:${object_url}/addon_projects",
-        'category': "object_tabs",
-        'id': 'addon',
-        'name': 'addon',
         'permissions': (permissions.ViewProjects,),
         'condition': 'python:1'
        },
@@ -1018,6 +991,14 @@ class Project(BaseFolder, CurrencyMixin, DocumentLinks):
         """
         if 'financials' not in self.objectIds():
             self.invokeFactory('Financials', 'financials')
+        if 'tranchedfolder' not in self.objectIds():
+            self.invokeFactory('TranchedFolder', 'tranchedfolder')
+        if 'phasedfolder' not in self.objectIds():
+            self.invokeFactory('PhasedFolder', 'phasedfolder')
+        if 'addonfolder' not in self.objectIds():
+            self.invokeFactory('AddOnFolder', 'addonfolder')
+        if 'subprojectfolder' not in self.objectIds():
+            self.invokeFactory('SubProjectFolder', 'subprojectfolder')
         BaseFolder.manage_afterAdd(self, item, container)
 
 
