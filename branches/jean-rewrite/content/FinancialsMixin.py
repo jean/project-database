@@ -506,7 +506,6 @@ class FinancialsMixin:
     def getTotalCostOfProjectStageActual(self):
         """
         """
-        import pdb;pdb.set_trace()
         projObj = self.getProject()
         finObj = None
         if 'financials' in projObj.objectIds():
