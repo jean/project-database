@@ -295,7 +295,7 @@ class MonitoringAndEvaluation(BaseFolder):
 
     meta_type = 'MonitoringAndEvaluation'
     portal_type = 'MonitoringAndEvaluation'
-    allowed_content_types = ['EvaluationMilestone', 'RatingTrackingSystem', 'EvaluatorsInformation']
+    allowed_content_types = ['EvaluationMilestoneFolder', 'RTSFolder', 'EvaluatorsInformationFolder']
     filter_content_types = 1
     global_allow = 0
     #content_icon = 'MonitoringAndEvaluation.gif'
@@ -314,7 +314,7 @@ class MonitoringAndEvaluation(BaseFolder):
         'id': 'project_ratings_disconnect_view',
         'name': 'Project Ratings Disconnect',
         'permissions': (permissions.ViewProjects,),
-        'condition': 'python:1'
+        'condition': 'python:0'
        },
 
 
@@ -323,7 +323,7 @@ class MonitoringAndEvaluation(BaseFolder):
         'id': 'evaluation_process_progress_view',
         'name': 'Evaluation Process Progress',
         'permissions': (permissions.ViewProjects,),
-        'condition': 'python:1'
+        'condition': 'python:0'
        },
 
 
@@ -337,6 +337,25 @@ class MonitoringAndEvaluation(BaseFolder):
     ##/code-section class-header
 
     # Methods
+    security.declarePrivate('manage_afterAdd')
+    def manage_afterAdd(self, item, container):
+        """
+        """
+        me = self
+        if 'evaluation_milestone_folder' not in me.objectIds():
+            me.invokeFactory('EvaluationMilestoneFolder', 'evaluation_milestone_folder', title='Evaluation Milestones')
+            #me['evaluation_milestone_folder'].setTitle('Evaluation Milestones')
+        if 'rtsfolder' not in me.objectIds():
+            me.invokeFactory('RTSFolder', 'rtsfolder')
+            me['rtsfolder'].setTitle('Rating Tracking Systems')
+#        if 'rtsfolder' in me.objectIds():
+#            if 'ratingtrackingsystem' not in me['rtsfolder'].objectIds():
+#                me['rtsfolder'].invokeFactory('RatingTrackingSystem', 'rating_tracking_system')
+#                me['rtsfolder']['rating_tracking_system'].setTitle('Rating Tracking System')
+        if 'evaluators_information_folder' not in me.objectIds():
+            me.invokeFactory('EvaluatorsInformationFolder', 'evaluators_information_folder')
+            me['evaluators_information_folder'].setTitle('Evaluators Information')
+        BaseFolder.manage_afterAdd(self, item, container)
 
 
 registerType(MonitoringAndEvaluation, PROJECTNAME)
