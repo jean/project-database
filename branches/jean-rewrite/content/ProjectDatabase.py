@@ -213,14 +213,23 @@ class ProjectDatabase(BaseFolder):
         'id': 'export_project_data',
         'name': 'Export Project Data (csv)',
         'permissions': (permissions.ViewProjects,),
+        'condition': 'python:0'
+       },
+
+
+       {'action': "string:${object_url}/reports_view",
+        'category': "object_tabs",
+        'id': 'reports',
+        'name': 'reports',
+        'permissions': (permissions.ViewProjects,),
         'condition': 'python:1'
        },
 
 
-       {'action': "string:${object_url}/project_view",
+       {'action': "string:${object_url}/export_view",
         'category': "object_tabs",
-        'id': 'view',
-        'name': 'project view',
+        'id': 'export',
+        'name': 'export',
         'permissions': (permissions.ViewProjects,),
         'condition': 'python:1'
        },
@@ -243,7 +252,7 @@ class ProjectDatabase(BaseFolder):
         """
         catalog = getToolByName(self, 'portal_catalog')
         proxies = catalog(portal_type='Agency')
-        return [p.getObject() for p in proxies]
+        return [p.getObject().Title() for p in proxies]
 
     security.declarePublic('getVocabulary')
     def getVocabulary(self,vocabName):
