@@ -476,29 +476,62 @@ class FinancialsMixin:
     def getTotalCostOfProjectStagePlanned(self):
         """
         """
-        total = self.getCashUNEPAllocation()
-        if self.getSupplementaryUNEPAllocation():
-            total += self.getSupplementaryUNEPAllocation()
-        if self.getSumCofinCashPlanned():
-            total += self.getSumCofinCashPlanned()
-        if self.getSumCofinInKindPlanned():
-            total += self.getSumCofinInKindPlanned()
+        projObj = self.getProject()
+        finObj = None
+        if 'financials' in projObj.objectIds():
+            finObj = projObj['financials']
+        if finObj:
+            total = finObj.getCashUNEPAllocation()
+            if finObj.getSupplementaryUNEPAllocation():
+                total += finObj.getSupplementaryUNEPAllocation()
+            if finObj.getSumCofinCashPlanned():
+                total += finObj.getSumCofinCashPlanned()
+            if finObj.getSumCofinInKindPlanned():
+                total += finObj.getSumCofinInKindPlanned()
 
-        return total
+            return total
+        else:
+            return self.getZeroMoneyInstance()
+#        total = self.getCashUNEPAllocation()
+#        if self.getSupplementaryUNEPAllocation():
+#            total += self.getSupplementaryUNEPAllocation()
+#        if self.getSumCofinCashPlanned():
+#            total += self.getSumCofinCashPlanned()
+#        if self.getSumCofinInKindPlanned():
+#            total += self.getSumCofinInKindPlanned()
+#
+#        return total
 
     security.declarePublic('getTotalCostOfProjectStageActual')
     def getTotalCostOfProjectStageActual(self):
         """
         """
-        total = self.getCashUNEPAllocation()
-        if self.getSupplementaryUNEPAllocation():
-            total += self.getSupplementaryUNEPAllocation()
-        if self.getSumCofinCashActual():
-            total += self.getSumCofinCashActual()
-        if self.getSumCofinInKindActual():
-            total += self.getSumCofinInKindActual()
+        import pdb;pdb.set_trace()
+        projObj = self.getProject()
+        finObj = None
+        if 'financials' in projObj.objectIds():
+            finObj = projObj['financials']
+        if finObj:
+            total = finObj.getCashUNEPAllocation()
+            if finObj.getSupplementaryUNEPAllocation():
+                total += finObj.getSupplementaryUNEPAllocation()
+            if finObj.getSumCofinCashActual():
+                total += finObj.getSumCofinCashActual()
+            if finObj.getSumCofinInKindActual():
+                total += finObj.getSumCofinInKindActual()
 
-        return total
+            return total
+        else:
+            return self.getZeroMoneyInstance()
+#        total = self.getCashUNEPAllocation()
+#        if self.getSupplementaryUNEPAllocation():
+#            total += self.getSupplementaryUNEPAllocation()
+#        if self.getSumCofinCashActual():
+#            total += self.getSumCofinCashActual()
+#        if self.getSumCofinInKindActual():
+#            total += self.getSumCofinInKindActual()
+#
+#        return total
 
     # Manually created methods
 
