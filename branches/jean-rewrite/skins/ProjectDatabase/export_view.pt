@@ -15,7 +15,7 @@
 <body>
 
 <metal:main fill-slot="main">
-            <h1 tal:content="python:'%s - %s'% (here.title_or_id(), 'Export')" class="documentFirstHeading">
+            <h1 tal:content="python:'%s - %s'% (here.title_or_id(), 'export')" class="documentFirstHeading">
               Title or id
             </h1>
         
