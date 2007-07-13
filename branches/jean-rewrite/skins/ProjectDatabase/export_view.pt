@@ -15,9 +15,7 @@
 <body>
 
 <metal:main fill-slot="main">
-    <tal:main-macro metal:define-macro="main"
-                    tal:define="my_path python: '/'.join(here.getPhysicalPath());">
-            <h1 tal:content="here/title_or_id" class="documentFirstHeading">
+            <h1 tal:content="python:'%s - %s'% (here.title_or_id(), 'Export')" class="documentFirstHeading">
               Title or id
             </h1>
         
@@ -31,76 +29,27 @@
                  tal:content="here/Description">
                 description
             </div>
-        
-            
+                    <ul>
+                            <li>
+                                <a href=""
+                                tal:attributes="href string:${here/absolute_url}/export_project_data;">Project General Information
+                                </a>
+                            </li>
+                            <li>
+                                <a href=""
+                                tal:attributes="href string:${here/absolute_url}/project_implementation_status;">Project Implementation Status.
+                                </a>
+                            </li>
 
-          
+                            <li>
+                                <a href=""
+                                tal:attributes="href string:${here/absolute_url}/fmi_export;">Financial Management Data.
+                                </a>
+                            </li>
 
-            <div class="visualClear"></div>
-            
-                     
-                     <div>
-			     <h6>
-			     <a tal:attributes="href string:${here/absolute_url}/Project_search;">
-				<span i18n:translate="">
-					Export Project Data to MS Excel
-				</span>
-			     </a>
-			     </h6>
-		     
-		                             <div class="portletBody">
-		                               <BR>  
-		                                 
-		     			    
-		     			    <fieldset>
-		     				
-		     				<legend i18n:translate="legend_search_terms"></legend>
-		     
-		     				<div class="field">
-		     				    
-		     				    <div>
-		     				    <a href=""
-							tal:attributes="href string:${here/absolute_url}/export_project_data;">Project General Information
-						    </a>
-						   </div>
-
-		     				    <div>
-		     				    <a href=""
-							tal:attributes="href string:${here/absolute_url}/project_implementation_status;">Project Implementation Status.
-						    </a>
-						   </div>
-
-		     				    <div>
-		     				    <a href=""
-							tal:attributes="href string:${here/absolute_url}/fmi_export;">Financial Management Data.
-						    </a>
-						   </div>
-
-
-		     				    <BR><BR><BR>
-		     				    <BR><BR><BR>
-		     				</div>
-		     				
-		     				<BR>
-		     				            
-		     			      </fieldset>
-		     				    
-		         			   
-		     				
-		     			</div>
-                     </div>
-                     
-               
-         
-        <div class="visualClear"> <br/> </div>
-        
-           
+                    </ul>
+                            
       
-        </tal:main-macro>
-
-        <div class="visualClear"/>
-
-       
 
     </metal:main>
 

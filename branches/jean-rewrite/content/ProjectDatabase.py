@@ -252,7 +252,8 @@ class ProjectDatabase(BaseFolder):
         """
         catalog = getToolByName(self, 'portal_catalog')
         proxies = catalog(portal_type='Agency')
-        return [p.getObject().Title() for p in proxies]
+        pl = [p.getObject().Title() for p in proxies]
+        return ','.join(pl)
 
     security.declarePublic('getVocabulary')
     def getVocabulary(self,vocabName):
