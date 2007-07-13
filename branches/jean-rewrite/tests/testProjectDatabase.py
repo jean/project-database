@@ -75,10 +75,18 @@ class testProjectDatabase(PortalDatabaseTestCase):
         pass
 
     # from class ProjectDatabase:
-    def test_project_view(self):
+    def test_reports(self):
+        pass
+
+    # from class ProjectDatabase:
+    def test_export(self):
         pass
 
     # Manually created methods
+
+    def test_types(self):
+        ids = self.portal.portal_types.objectIds()
+        self.failUnless('Document' in ids)
 
     def test_skins(self):
         ids = self.portal.portal_skins.objectIds()
@@ -88,9 +96,8 @@ class testProjectDatabase(PortalDatabaseTestCase):
         getChain = self.portal.portal_workflow.getChainForPortalType
         self.failUnless('plone_workflow' in getChain('Document'))
 
-    def test_types(self):
-        ids = self.portal.portal_types.objectIds()
-        self.failUnless('Document' in ids)
+    def test_project_view(self):
+        pass
 
     def test_workflows(self):
         ids = self.portal.portal_workflow.objectIds()

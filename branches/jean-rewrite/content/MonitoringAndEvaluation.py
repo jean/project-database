@@ -337,6 +337,7 @@ class MonitoringAndEvaluation(BaseFolder):
     ##/code-section class-header
 
     # Methods
+
     security.declarePrivate('manage_afterAdd')
     def manage_afterAdd(self, item, container):
         """
@@ -348,10 +349,6 @@ class MonitoringAndEvaluation(BaseFolder):
         if 'rtsfolder' not in me.objectIds():
             me.invokeFactory('RTSFolder', 'rtsfolder')
             me['rtsfolder'].setTitle('Rating Tracking Systems')
-#        if 'rtsfolder' in me.objectIds():
-#            if 'ratingtrackingsystem' not in me['rtsfolder'].objectIds():
-#                me['rtsfolder'].invokeFactory('RatingTrackingSystem', 'rating_tracking_system')
-#                me['rtsfolder']['rating_tracking_system'].setTitle('Rating Tracking System')
         if 'evaluators_information_folder' not in me.objectIds():
             me.invokeFactory('EvaluatorsInformationFolder', 'evaluators_information_folder')
             me['evaluators_information_folder'].setTitle('Evaluators Information')
