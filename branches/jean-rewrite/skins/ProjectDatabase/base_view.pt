@@ -81,7 +81,7 @@
         <metal:use_header use-macro="header_macro" />
 
             <div tal:condition="python:here.objectIds() and (here.portal_type == 'ProjectDatabase' or here.portal_type == 'Project' or here.portal_type == 'MonitoringAndEvaluation')" class="documentContent" style="float:right;">
-                <div ><h3><b>Contents<b></h3></div>
+                <h4>Contents</h4>
                 <metal:use_body use-macro="folderlisting_macro" />
             </div>
 
