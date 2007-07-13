@@ -80,7 +80,7 @@
 
         <metal:use_header use-macro="header_macro" />
 
-            <div tal:condition="python:here.objectIds()" style="float:right; border-width:1px;border-style:solid; border-color:green;">
+            <div tal:condition="python:here.objectIds()" class="documentContent" style="float:right;">
                 <div ><h3><b>Contents<b></h3></div>
                 <metal:use_body use-macro="folderlisting_macro" />
             </div>
