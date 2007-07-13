@@ -68,6 +68,9 @@ import TranchedFolder
 import PhasedFolder
 import AddOnFolder
 import SubProjectFolder
+import EvaluationMilestoneFolder
+import RTSFolder
+import EvaluatorsInformationFolder
 
 ##code-section init-module-footer #fill in your manual code here
 ##/code-section init-module-footer

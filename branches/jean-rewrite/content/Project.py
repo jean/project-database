@@ -1004,7 +1004,25 @@ class Project(BaseFolder, CurrencyMixin, DocumentLinks):
         if 'subprojectfolder' not in self.objectIds():
             self.invokeFactory('SubProjectFolder', 'subprojectfolder')
             self['subprojectfolder'].setTitle('Sub-Projects')
+        if 'monitoring_and_evaluation' not in self.objectIds():
+            self.invokeFactory('MonitoringAndEvaluation', 'monitoring_and_evaluation')
+            self['monitoring_and_evaluation'].setTitle('Monitoring and Evaluation')
         BaseFolder.manage_afterAdd(self, item, container)
+#        if 'monitoring_and_evaluation' in self.objectIds():
+#            me = self['monitoring_and_evaluation']
+#            #if 'evaluation_milestone_folder' not in me.objectIds():
+#            #    me.invokeFactory('EvaluationMilestoneFolder', 'evaluation_milestone_folder', title='Evaluation Milestones')
+#                #me['evaluation_milestone_folder'].setTitle('Evaluation Milestones')
+#            if 'rtsfolder' not in me.objectIds():
+#                me.invokeFactory('RTSFolder', 'rtsfolder')
+#                me['rtsfolder'].setTitle('Rating Tracking Systems')
+#            if 'rtsfolder' in me.objectIds():
+#                if 'ratingtrackingsystem' not in me['rtsfolder'].objectIds():
+#                    me['rtsfolder'].invokeFactory('RatingTrackingSystem', 'rating_tracking_system')
+#                    me['rtsfolder']['rating_tracking_system'].setTitle('Rating Tracking System')
+#            if 'evaluators_information_folder' not in me.objectIds():
+#                me.invokeFactory('EvaluatorsInformationFolder', 'evaluators_information_folder')
+#                me['evaluators_information_folder'].setTitle('Evaluators Information')
 
     security.declarePublic('displayContentsTab')
     def displayContentsTab(self):
