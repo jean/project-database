@@ -52,7 +52,7 @@ schema = Schema((
         name='IMISNumber',
         dummy="IMIS Number",
         widget=StringWidget(
-            label='Imisnumber',
+            label="IMIS Number",
             label_msgid='ProjectDatabase_label_IMISNumber',
             i18n_domain='ProjectDatabase',
         )
@@ -85,6 +85,7 @@ schema = Schema((
         name='CEOApproval',
         widget=CalendarWidget(
             label="CEO Approval Date",
+            show_hm=False,
             label_msgid='ProjectDatabase_label_CEOApproval',
             i18n_domain='ProjectDatabase',
         )
@@ -94,6 +95,7 @@ schema = Schema((
         name='CEOEndorsement',
         widget=CalendarWidget(
             label="CEO Endorsement",
+            show_hm=False,
             label_msgid='ProjectDatabase_label_CEOEndorsement',
             i18n_domain='ProjectDatabase',
         )
@@ -103,6 +105,7 @@ schema = Schema((
         name='FirstDisbursement',
         widget=CalendarWidget(
             label="First Disbursement",
+            show_hm=False,
             label_msgid='ProjectDatabase_label_FirstDisbursement',
             i18n_domain='ProjectDatabase',
         )
@@ -112,7 +115,8 @@ schema = Schema((
         name='RevisedCompletionDate',
         dummy="Revised Completion Date",
         widget=CalendarWidget(
-            label='Revisedcompletiondate',
+            label="Revised Completion Date",
+            show_hm=False,
             label_msgid='ProjectDatabase_label_RevisedCompletionDate',
             i18n_domain='ProjectDatabase',
         )
@@ -122,7 +126,8 @@ schema = Schema((
         name='InitialCompletionDate',
         dummy="Initial Completion Date",
         widget=CalendarWidget(
-            label='Initialcompletiondate',
+            label="Initial Completion Date",
+            show_hm=False,
             label_msgid='ProjectDatabase_label_InitialCompletionDate',
             i18n_domain='ProjectDatabase',
         )
@@ -132,6 +137,7 @@ schema = Schema((
         name='FinancialClosure',
         widget=CalendarWidget(
             label="Financial Closure",
+            show_hm=False,
             label_msgid='ProjectDatabase_label_FinancialClosure',
             i18n_domain='ProjectDatabase',
         )
@@ -240,6 +246,7 @@ schema = Schema((
         name='TerminalEvaluationPlanned',
         widget=CalendarWidget(
             label="Terminal Evaluation Planned",
+            show_hm=False,
             label_msgid='ProjectDatabase_label_TerminalEvaluationPlanned',
             i18n_domain='ProjectDatabase',
         )
@@ -268,6 +275,84 @@ schema = Schema((
         widget=MoneyField._properties['widget'](
             label="Actual Cost TE",
             label_msgid='ProjectDatabase_label_TEActualCost',
+            i18n_domain='ProjectDatabase',
+        )
+    ),
+
+    DateTimeField(
+        name='MidtermReviewReportDate',
+        widget=CalendarWidget(
+            label="Midterm Review Report Date",
+            show_hm=False,
+            label_msgid='ProjectDatabase_label_MidtermReviewReportDate',
+            i18n_domain='ProjectDatabase',
+        )
+    ),
+
+    StringField(
+        name='MidtermReviewEvaluatorName',
+        widget=StringWidget(
+            label="Midterm Review Evaluator Name",
+            label_msgid='ProjectDatabase_label_MidtermReviewEvaluatorName',
+            i18n_domain='ProjectDatabase',
+        )
+    ),
+
+    DateTimeField(
+        name='MidtermReviewPlannedDate',
+        widget=CalendarWidget(
+            label="Midterm Review Planned Date",
+            show_hm=False,
+            label_msgid='ProjectDatabase_label_MidtermReviewPlannedDate',
+            i18n_domain='ProjectDatabase',
+        )
+    ),
+
+    DateTimeField(
+        name='MidtermReviewActualDate',
+        widget=CalendarWidget(
+            label="Midterm Review Actual Date",
+            show_hm=False,
+            label_msgid='ProjectDatabase_label_MidtermReviewActualDate',
+            i18n_domain='ProjectDatabase',
+        )
+    ),
+
+    DateTimeField(
+        name='TerminalEvaluationReportDate',
+        widget=CalendarWidget(
+            label="Terminal Evaluation Report Date",
+            show_hm=False,
+            label_msgid='ProjectDatabase_label_TerminalEvaluationReportDate',
+            i18n_domain='ProjectDatabase',
+        )
+    ),
+
+    StringField(
+        name='TerminalReportEvaluatorName',
+        widget=StringWidget(
+            label="Terminal Report Evaluator Name",
+            label_msgid='ProjectDatabase_label_TerminalReportEvaluatorName',
+            i18n_domain='ProjectDatabase',
+        )
+    ),
+
+    DateTimeField(
+        name='TerminalReportPlannedEvaluationDate',
+        widget=CalendarWidget(
+            label="Terminal Report Planned Evaluation Date",
+            show_hm=False,
+            label_msgid='ProjectDatabase_label_TerminalReportPlannedEvaluationDate',
+            i18n_domain='ProjectDatabase',
+        )
+    ),
+
+    DateTimeField(
+        name='TerminalReportActualEvaluationDate',
+        widget=CalendarWidget(
+            label="Terminal Report Actual Evaluation Date",
+            show_hm=False,
+            label_msgid='ProjectDatabase_label_TerminalReportActualEvaluationDate',
             i18n_domain='ProjectDatabase',
         )
     ),

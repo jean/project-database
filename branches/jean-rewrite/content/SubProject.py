@@ -38,6 +38,7 @@ from Products.ProjectDatabase.config import *
 
 # additional imports from tagged value 'import'
 from Products.DataGridField import CalendarColumn
+import ProjectGeneralInformation
 from Products.FinanceFields.MoneyField import MoneyField
 from Products.FinanceFields.MoneyWidget import MoneyWidget
 from Products.DataGridField import DataGridField, DataGridWidget, Column, SelectColumn
@@ -51,13 +52,13 @@ from Products.FinanceFields.Money import Money
 ##/code-section module-header
 
 copied_fields = {}
-copied_fields['SummaryDescription'] = Project.schema['SummaryDescription'].copy()
-copied_fields['Country'] = Project.schema['Country'].copy()
-copied_fields['Scope'] = Project.schema['Scope'].copy()
-copied_fields['Region'] = Project.schema['Region'].copy()
-copied_fields['ImplementationMode'] = Project.schema['ImplementationMode'].copy()
-copied_fields['Office'] = Project.schema['Office'].copy()
-copied_fields['ProjectCoordinator'] = Project.schema['ProjectCoordinator'].copy()
+copied_fields['SummaryDescription'] = ProjectGeneralInformation.schema['SummaryDescription'].copy()
+copied_fields['Country'] = ProjectGeneralInformation.schema['Country'].copy()
+copied_fields['Scope'] = ProjectGeneralInformation.schema['Scope'].copy()
+copied_fields['Region'] = ProjectGeneralInformation.schema['Region'].copy()
+copied_fields['ImplementationMode'] = ProjectGeneralInformation.schema['ImplementationMode'].copy()
+copied_fields['Office'] = ProjectGeneralInformation.schema['Office'].copy()
+copied_fields['ProjectCoordinator'] = ProjectGeneralInformation.schema['ProjectCoordinator'].copy()
 copied_fields['ProjectCoordinator'].relationship = "SubProject_ProjectCoordinator"
 copied_fields['LeadExecutingAgency'] = Financials.schema['LeadExecutingAgency'].copy()
 copied_fields['LeadExecutingAgency'].dummy = "Financials.schema"
