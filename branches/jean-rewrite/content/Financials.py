@@ -59,8 +59,7 @@ schema = Schema((
             label="GEF Trust Fund",
             label_msgid='ProjectDatabase_label_GEFTrustFund',
             i18n_domain='ProjectDatabase',
-        ),
-        schemata="SupplementalFinance"
+        )
     ),
 
     MoneyField(
@@ -69,8 +68,7 @@ schema = Schema((
             label="LDC Fund Allocation",
             label_msgid='ProjectDatabase_label_LDCFundAllocation',
             i18n_domain='ProjectDatabase',
-        ),
-        schemata="SupplementalFinance"
+        )
     ),
 
     MoneyField(
@@ -79,8 +77,7 @@ schema = Schema((
             label="SCCF Allocation",
             label_msgid='ProjectDatabase_label_SCCFAllocation',
             i18n_domain='ProjectDatabase',
-        ),
-        schemata="SupplementalFinance"
+        )
     ),
 
     MoneyField(
@@ -89,8 +86,7 @@ schema = Schema((
             label="Strategic Partnership",
             label_msgid='ProjectDatabase_label_StrategicPartnership',
             i18n_domain='ProjectDatabase',
-        ),
-        schemata="SupplementalFinance"
+        )
     ),
 
     MoneyField(
@@ -99,30 +95,36 @@ schema = Schema((
             label="Adaptation Trust Fund",
             label_msgid='ProjectDatabase_label_AdaptationTrustFund',
             i18n_domain='ProjectDatabase',
-        ),
-        schemata="SupplementalFinance"
+        )
     ),
 
     MoneyField(
         name='SupplementaryUNEPAllocation',
         widget=MoneyField._properties['widget'](
-            label="Supplementary UNEP Allocation",
+            label="Supplementary Allocation to UNEP",
             label_msgid='ProjectDatabase_label_SupplementaryUNEPAllocation',
             i18n_domain='ProjectDatabase',
-        ),
-        schemata="SupplementalFinance"
+        )
     ),
 
     TextField(
         name='SupplementaryUNEPAllocationRemark',
-        allowable_content_types=('text/plain', 'text/structured', 'text/html', 'application/msword',),
-        widget=RichWidget(
-            label="Supplementary UNEP Allocation: remark",
+        widget=TextAreaWidget(
+            label="Supplementary Allocation to UNEP: remark",
             label_msgid='ProjectDatabase_label_SupplementaryUNEPAllocationRemark',
             i18n_domain='ProjectDatabase',
-        ),
-        default_output_type='text/html',
-        schemata="SupplementalFinance"
+        )
+    ),
+
+    MoneyField(
+        name='ActualTotalExpenditures',
+        widget=MoneyField._properties['widget'](
+            label="Actual Total Expenditures",
+            description="The total actual expenditures against the GEF trust fund once project is completed",
+            label_msgid='ProjectDatabase_label_ActualTotalExpenditures',
+            description_msgid='ProjectDatabase_help_ActualTotalExpenditures',
+            i18n_domain='ProjectDatabase',
+        )
     ),
 
     ReferenceField(
@@ -133,7 +135,6 @@ schema = Schema((
             i18n_domain='ProjectDatabase',
         ),
         allowed_types=('Agency',),
-        schemata="Agency",
         multiValued=0,
         relationship="Financials_LeadExecutingAgency"
     ),
@@ -146,7 +147,6 @@ schema = Schema((
             i18n_domain='ProjectDatabase',
         ),
         allowed_types=('Agency',),
-        schemata="Agency",
         multiValued=0,
         relationship="Financials_OtherLeadExecutingAgency"
     ),
@@ -159,10 +159,9 @@ schema = Schema((
             label_msgid='ProjectDatabase_label_FundManagementOfficer',
             i18n_domain='ProjectDatabase',
         ),
-        schemata="Final",
+        allowed_types=('mxmContactsPerson',),
         multiValued=0,
-        relationship="Financials_FundManagementOfficer",
-        allowed_types=('mxmContactsPerson',)
+        relationship="Financials_FundManagementOfficer"
     ),
 
     TextField(
@@ -173,15 +172,23 @@ schema = Schema((
             label_msgid='ProjectDatabase_label_PDFResults',
             i18n_domain='ProjectDatabase',
         ),
-        default_output_type='text/html',
-        schemata="Final"
+        default_output_type='text/html'
     ),
 
     ComputedField(
         name='CashUNEPAllocation',
         widget=ComputedField._properties['widget'](
-            label="GEF Allocation to UNEP (Cash)",
+            label="GEF Allocation to UNEP",
             label_msgid='ProjectDatabase_label_CashUNEPAllocation',
+            i18n_domain='ProjectDatabase',
+        )
+    ),
+
+    StringField(
+        name='AccountCode',
+        widget=StringWidget(
+            label='Accountcode',
+            label_msgid='ProjectDatabase_label_AccountCode',
             i18n_domain='ProjectDatabase',
         )
     ),
@@ -192,18 +199,18 @@ schema = Schema((
 ##code-section after-local-schema #fill in your manual code here
 ##/code-section after-local-schema
 
-Financials_schema = BaseSchema.copy() + \
+Financials_schema = BaseFolderSchema.copy() + \
     getattr(FinancialsMixin, 'schema', Schema(())).copy() + \
     schema.copy()
 
 ##code-section after-schema #fill in your manual code here
 ##/code-section after-schema
 
-class Financials(BaseContent, CurrencyMixin, FinancialsMixin):
+class Financials(BaseFolder, CurrencyMixin, FinancialsMixin):
     """
     """
     security = ClassSecurityInfo()
-    __implements__ = (getattr(BaseContent,'__implements__',()),) + (getattr(CurrencyMixin,'__implements__',()),) + (getattr(FinancialsMixin,'__implements__',()),)
+    __implements__ = (getattr(BaseFolder,'__implements__',()),) + (getattr(CurrencyMixin,'__implements__',()),) + (getattr(FinancialsMixin,'__implements__',()),)
     # zope3 interfaces
     zope.interface.implements(IFinancials)
 
@@ -212,8 +219,8 @@ class Financials(BaseContent, CurrencyMixin, FinancialsMixin):
 
     meta_type = 'Financials'
     portal_type = 'Financials'
-    allowed_content_types = [] + list(getattr(FinancialsMixin, 'allowed_content_types', []))
-    filter_content_types = 0
+    allowed_content_types = ['SubProjectFolder'] + list(getattr(FinancialsMixin, 'allowed_content_types', []))
+    filter_content_types = 1
     global_allow = 0
     #content_icon = 'Financials.gif'
     immediate_view = 'base_view'
@@ -254,7 +261,8 @@ class Financials(BaseContent, CurrencyMixin, FinancialsMixin):
     schema.moveField('AdaptationTrustFund', after='StrategicPartnership')
     schema.moveField('SupplementaryUNEPAllocation', after='AdaptationTrustFund')
     schema.moveField('SupplementaryUNEPAllocationRemark', after='SupplementaryUNEPAllocation')
-    schema.moveField('CofinancingCash', after='SupplementaryUNEPAllocationRemark')
+    schema.moveField('ActualTotalExpenditures', after='SupplementaryUNEPAllocationRemark')
+    schema.moveField('CofinancingCash', after='ActualTotalExpenditures')
     schema.moveField('CofinancingInKind', after='CofinancingCash')
     schema.moveField('SumCofinCashPlanned', after='CofinancingInKind')
     schema.moveField('SumCofinCashActual', after='SumCofinCashPlanned')
@@ -296,14 +304,9 @@ class Financials(BaseContent, CurrencyMixin, FinancialsMixin):
             total = total + self.getStrategicPartnership()
         if self.getAdaptationTrustFund():
             total = total + self.getAdaptationTrustFund()
+        if self.getSupplementaryUNEPAllocation():
+            total = total + self.getSupplementaryUNEPAllocation()
         return total
-        return self.getGEFTrustFund() + self.getIDCFundAllocation() + self.getSCCFAllocation() + self.getStrategicPartnership() + self.getAdaptationTrustFund()
-
-    # Manually created methods
-
-    def __init__(self, *args, **kwargs):
-        BaseContent.__init__(self, *args, **kwargs)
-
 
 
 registerType(Financials, PROJECTNAME)

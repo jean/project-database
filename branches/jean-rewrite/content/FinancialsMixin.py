@@ -33,6 +33,7 @@ from Products.ATVocabularyManager.namedvocabulary import NamedVocabulary
 from Products.ProjectDatabase.config import *
 
 # additional imports from tagged value 'import'
+from Products.DataGridField import CalendarColumn
 from Products.FinanceFields.MoneyField import MoneyField
 from Products.FinanceFields.MoneyWidget import MoneyWidget
 from Products.DataGridField import DataGridField, DataGridWidget, Column, SelectColumn
@@ -49,14 +50,13 @@ schema = Schema((
 
     StringField(
         name='FinanceCategory',
+        index="FieldIndex:brains",
         widget=SelectionWidget(
             label="Finance Category",
             label_msgid='ProjectDatabase_label_FinanceCategory',
             i18n_domain='ProjectDatabase',
         ),
-        schemata="Supplemental",
-        vocabulary=NamedVocabulary("""FinanceCategory"""),
-        index="FieldIndex:brains"
+        vocabulary=NamedVocabulary("""FinanceCategory""")
     ),
 
     StringField(
@@ -83,11 +83,12 @@ schema = Schema((
         name='GEFProjectAllocation',
         index="FieldIndex:brains",
         widget=MoneyField._properties['widget'](
-            label="GEF Project Allocation",
+            label="Total GEF Allocation",
+            description="Enter the total amount of GEF resources approved for this project",
             label_msgid='ProjectDatabase_label_GEFProjectAllocation',
+            description_msgid='ProjectDatabase_help_GEFProjectAllocation',
             i18n_domain='ProjectDatabase',
-        ),
-        schemata="Supplemental"
+        )
     ),
 
     DataGridField(
@@ -98,7 +99,6 @@ schema = Schema((
             label_msgid='ProjectDatabase_label_CofinancingCash',
             i18n_domain='ProjectDatabase',
         ),
-        schemata="Budget",
         columns=("cofinancing_cash_source", "cofinancing_cash_donor_name", "cofinancing_cash_planned_amount", "cofinancing_cash_actual_amount")
     ),
 
@@ -110,7 +110,6 @@ schema = Schema((
             label_msgid='ProjectDatabase_label_CofinancingInKind',
             i18n_domain='ProjectDatabase',
         ),
-        schemata="Budget",
         columns=("cofinancing_inkind_source", "cofinancing_inkind_donor_name", "cofinancing_inkind_planned_amount", "cofinancing_inkind_actual_amount")
     ),
 
@@ -118,33 +117,32 @@ schema = Schema((
         name='ApprovedUNEPBudget',
         widget=MoneyField._properties['widget'](
             label="Approved UNEP Budget",
+            description="Enter GEF amount to be directly used by UNEP",
             label_msgid='ProjectDatabase_label_ApprovedUNEPBudget',
+            description_msgid='ProjectDatabase_help_ApprovedUNEPBudget',
             i18n_domain='ProjectDatabase',
-        ),
-        schemata="Budget"
+        )
     ),
 
     DataGridField(
         name='CashDisbursements',
         widget=DataGridField._properties['widget'](
-            columns={ 'cash_disbursements_date' : Column("Date"), 'cash_disbursements_amount' : Column("Amount"), 'cash_disbursements_bank_ref_number' : Column("Bank Reference Number") },
+            columns={ 'cash_disbursements_date' : CalendarColumn("Date"), 'cash_disbursements_amount' : Column("Amount"), 'cash_disbursements_bank_ref_number' : Column("Bank Reference Number") },
             label="Cash Disbursements",
             label_msgid='ProjectDatabase_label_CashDisbursements',
             i18n_domain='ProjectDatabase',
         ),
-        schemata="Budget",
         columns=("cash_disbursements_date", "cash_disbursements_amount", "cash_disbursements_bank_ref_number")
     ),
 
     DataGridField(
         name='IMISExpenditures',
         widget=DataGridField._properties['widget'](
-            columns={ 'imis_expenditure_year' : Column("Date"), 'imis_expenditure_amount' : Column("Amount") },
+            columns={ 'imis_expenditure_year' : CalendarColumn("Date"), 'imis_expenditure_amount' : Column("Amount") },
             label="IMIS Expenditures",
             label_msgid='ProjectDatabase_label_IMISExpenditures',
             i18n_domain='ProjectDatabase',
         ),
-        schemata="Budget",
         columns=("imis_expenditure_year", "imis_expenditure_amount")
     ),
 
@@ -155,7 +153,6 @@ schema = Schema((
             label_msgid='ProjectDatabase_label_Status',
             i18n_domain='ProjectDatabase',
         ),
-        schemata="Budget",
         vocabulary=NamedVocabulary("""Status""")
     ),
 
@@ -164,10 +161,10 @@ schema = Schema((
         widget=CalendarWidget
         (
             label="Initial Completion Date",
+            show_hm=False,
             label_msgid='ProjectDatabase_label_InitialCompletionDate',
             i18n_domain='ProjectDatabase',
-        ),
-        schemata="Budget"
+        )
     ),
 
     DateTimeField(
@@ -176,11 +173,11 @@ schema = Schema((
         (
             label="Revised Completion Date",
             description="As per last revision",
+            show_hm=False,
             label_msgid='ProjectDatabase_label_RevisedCompletionDate',
             description_msgid='ProjectDatabase_help_RevisedCompletionDate',
             i18n_domain='ProjectDatabase',
-        ),
-        schemata="Budget"
+        )
     ),
 
     TextField(
@@ -189,19 +186,17 @@ schema = Schema((
             label="Reasons for delay",
             label_msgid='ProjectDatabase_label_DelayReason',
             i18n_domain='ProjectDatabase',
-        ),
-        schemata="Budget"
+        )
     ),
 
     DataGridField(
         name='Reports',
         widget=DataGridField._properties['widget'](
-            columns={ 'report_type' : SelectColumn("Report Type", vocabulary="getReportTypesVocabulary"), 'report_period' : Column("Report Period"), 'report_received_date' : Column("Report Received Date") },
+            columns={ 'report_type' : SelectColumn("Report Type", vocabulary="getReportTypesVocabulary"), 'report_period' : Column("Report Period"), 'report_received_date' : CalendarColumn("Report Received Date") },
             label="Reports",
             label_msgid='ProjectDatabase_label_Reports',
             i18n_domain='ProjectDatabase',
         ),
-        schemata="Budget",
         vocabulary=NamedVocabulary("""ReportType"""),
         columns=("report_type", "report_period", "report_received_date")
     ),
@@ -325,22 +320,10 @@ schema = Schema((
         name='RevisionDate',
         widget=CalendarWidget(
             label="Date of Revision",
+            show_hm=False,
             label_msgid='ProjectDatabase_label_RevisionDate',
             i18n_domain='ProjectDatabase',
         )
-    ),
-
-    DateTimeField(
-        name='StartDate',
-        index="FieldIndex:brains",
-        widget=CalendarWidget(
-            label="Start Date",
-            description="Select project start date",
-            label_msgid='ProjectDatabase_label_StartDate',
-            description_msgid='ProjectDatabase_help_StartDate',
-            i18n_domain='ProjectDatabase',
-        ),
-        schemata="Budget"
     ),
 
     ComputedField(
@@ -482,8 +465,6 @@ class FinancialsMixin:
             finObj = projObj['financials']
         if finObj:
             total = finObj.getCashUNEPAllocation()
-            if finObj.getSupplementaryUNEPAllocation():
-                total += finObj.getSupplementaryUNEPAllocation()
             if finObj.getSumCofinCashPlanned():
                 total += finObj.getSumCofinCashPlanned()
             if finObj.getSumCofinInKindPlanned():
@@ -493,15 +474,6 @@ class FinancialsMixin:
         else:
             return self.getZeroMoneyInstance()
 #        total = self.getCashUNEPAllocation()
-#        if self.getSupplementaryUNEPAllocation():
-#            total += self.getSupplementaryUNEPAllocation()
-#        if self.getSumCofinCashPlanned():
-#            total += self.getSumCofinCashPlanned()
-#        if self.getSumCofinInKindPlanned():
-#            total += self.getSumCofinInKindPlanned()
-#
-#        return total
-
     security.declarePublic('getTotalCostOfProjectStageActual')
     def getTotalCostOfProjectStageActual(self):
         """
@@ -523,16 +495,31 @@ class FinancialsMixin:
         else:
             return self.getZeroMoneyInstance()
 #        total = self.getCashUNEPAllocation()
-#        if self.getSupplementaryUNEPAllocation():
-#            total += self.getSupplementaryUNEPAllocation()
-#        if self.getSumCofinCashActual():
-#            total += self.getSumCofinCashActual()
-#        if self.getSumCofinInKindActual():
-#            total += self.getSumCofinInKindActual()
-#
-#        return total
-
     # Manually created methods
+
+    security.declarePublic('validate_CashDisbursements')
+    def validate_CashDisbursements(self, value):
+        """
+        """
+        request = self.REQUEST
+        total_cost = self.computeDataGridAmount([v['cash_disbursements_amount'] for v in value])
+        total = self.getZeroMoneyInstance()
+        if request.get('GEFTrustFund'):
+            total = total + request.get('GEFTrustFund')
+        if request.get('LDCFundAllocation'):
+            total = total + request.get('LDCFundAllocation')
+        if request.get('SCCFAllocation'):
+            total = total + request.get('SCCFAllocation')
+        if request.get('StrategicPartnership'):
+            total = total + request.get('StrategicPartnership')
+        if request.get('AdaptationTrustFund'):
+            total = total + request.get('AdaptationTrustFund')
+        if request.get('SupplementaryUNEPAllocation'):
+            total = total + request.get('SupplementaryUNEPAllocation')
+
+        if total_cost > total:
+            return 'Total disbursements cannot exceed total allocation'
+        return
 
     security.declarePublic('getSumCofinCashActual')
     def getSumCofinCashActual(self):

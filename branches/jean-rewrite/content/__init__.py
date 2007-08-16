@@ -44,10 +44,10 @@ from Products.CMFCore.utils import getToolByName
 from Products.FinanceFields.Money import Money
 # Classes
 import Agency
-import Project
+import ProjectGeneralInformation
 import Milestone
 import ProjectImplementation
-import ProjectDatabase
+import AProject
 import Financials
 import SubProject
 import FinancialsMixin
@@ -71,6 +71,7 @@ import SubProjectFolder
 import EvaluationMilestoneFolder
 import RTSFolder
 import EvaluatorsInformationFolder
+import MilestoneFolder
 
 ##code-section init-module-footer #fill in your manual code here
 ##/code-section init-module-footer
