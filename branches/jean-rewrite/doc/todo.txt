@@ -1,0 +1,114 @@
+- (Documentlinks schemata) Document links should be upload file.
+
+Project General Information:
+
+ - Remove title
+  Done
+ - Project Description must be richtext
+  Done
+ - If Operational Programme value "EA" is selected, the following EA
+   fields should be visible, otherwise not.
+  Done
+ - Other EA Biodiversity, EA Climate Change Other, EA-POP Other, Multiple Focal Areas Other:  string field
+  Done
+ * Strategic Objectives and Strategic Programs - interface? (Roche)
+   Desktop/C.31.10. Focal Area Strategies.pdf
+ - Geographic scope should be in default schemata
+   Make it a InOut widget list
+  Done
+ - Region - make it an InOut list, should be in default schemata
+  Done
+ * Country - move to default schemata, make it an InOut list
+ - OtherImplementingAgency (Label: Other GEF Agency(ies))
+   change to a list (not a reference), and InOut widget
+  Done
+ - After Other project Executing Partners add a field called  Joint
+   Implementation.  Checkbox.
+  Done
+ - Add Project Implementation Status, call year "Fiscal Year", call
+   remark "Narrative"; description: "Describe project activities and objectives met during the fiscal year";
+   needs to be datagridfield
+ - Move fields in section PGI to M&E.  
+ - Remove current GEF Agency Implementation. Will be Joint
+   Implementation (see above)
+ - Add Leveraged Financing Amount (MoneyField)
+ - Add Leveraged Financing Memo (text). Description: "Describe how
+   resources were leveraged"
+ - Tranched should be checkbox
+ - Phased should be a checkbox
+ - Phase/Tranche Number in place of PhaseNumber and TranchedNumber
+ - AddOn should be a checkbox
+ - LeadAgencyContact should be a person and should reference from GEF Agencies
+
+Financial Management Information:
+
+ * "The Edit View" in the table the columns should be "Category",
+   "Status", "Planned Project Cost", "Actual Project Cost" with totals
+
+ - FinanceCategory: add PPG, Phase
+ - Rename GEF Project Allocation to Total GEF Allocation.
+   Add description: "Enter the total amount of GEF resources approved
+   for this project"
+ - CashUNEPAllocation: Remove (Cash)
+   Total is the total of GEF Trust Fund, LDC Fund, SCCF, Strategic
+   Partnership, Adpatation Trust Fund, SupplementaryAllocationToUNEP
+ - SupplementaryUNEPAllocationRemark, make it a text field
+   Rename to "Supplementary Allocation To UNEP: Remark"
+ - Rename "Supplementary UNEP Allocation" to: "Supplementary Allocation To UNEP"
+ - Add field after "Supplementary Allocation To UNEP":
+   "ActualTotalExpenditures : MoneyField"; description: "Enter the total
+   actual expenditures against the GEF Trust Fund once project is
+   completed"
+ - Confinancing Cash: make the amount fields moneyFields in the Datagridfield
+   Add computed field: Co-financing Actual Total(cash) (after Planned Total (cash))
+   Add computed field: Co-financing Planned Total (in kind) (before Total in kind)
+ - Add description to Approved UNEP Budget: "Enter GEF amount to be
+   directly used by UNEP"
+ - Cash Disbursements: Add calendar widget to the Date; make the amount a MoneyField.
+ - Date fields must be without hour and minute fields
+ - Total Cash Disbursements:  If this exceeds the amount in the GEF
+   Allocation to UNEP field, (validate) warn user that disbursements
+   exceeds the available amount.
+ - IMIS Expenditures: Make date a calendar widget
+ - Move ProjectStatus down one position (after Total IMIS Expenditures)
+ - Delete Start Date
+ - Reports: Leave Report Period as string, make Report Received date a
+   calendar widget.
+ - Add AccountCode to FMI AND Subproject (string)
+
+Project Cycle Milestones:
+
+ - Carmen will send a revised list. Make it look like the ppt (talk it
+   over with roche)
+
+Monitoring and Evaluation"
+
+ - View Information for  Planning Evaluation Work on M&E page
+ - Replace Midterm review planned and budget and midterm evaluation*
+   with radio button Midterm Review or Midterm Evaluation
+ - Add field planned date (calendar widget)
+ - Add field Budget (MoneyField)
+ 
+ Information on evaluators:
+  - Allow inplace addition of contacts for both fields
+
+ Rating Tracking System
+  - Remove "project-at-risk self-ratings"
+  - Remove extra fiscal year
+  - Remove Cost overrun risk rating
+  - Remove Revision Number
+  - Remove Consultant/MTE/MTR rating elements
+  - Remove 
+  - Create a PIR Rating Folder inside Rating Tracking System
+    Create multiple of the following:
+    * First field is Fiscal Year (string); validate to a number
+    * Add fields Achievement of Results, Implementation Progress, Monitoring
+      and Evaluation (replaces Datagridfield PIR Rating), Rating must be
+      Highly satisfactory .. Highly Unsatisfactory.
+    * Add Risk Rating field, with values low risk, ..., to be determined
+  - Create another folder called Other Project Ratings
+    * Add field called Other Ratings with values "MTR/MTE Rating", "TE
+      Rating", "UNEP EOU Rating", "GEF OE Rating"
+    * Add fields from "Project Ratings Disconnect", except Risk.  All
+     fields have values "Highly Satisfactory" ... "Highly Unsatisfactory"
+   
