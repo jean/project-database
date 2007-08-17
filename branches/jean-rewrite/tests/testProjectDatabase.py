@@ -35,7 +35,7 @@ if __name__ == '__main__':
 ##/code-section module-header
 
 #
-# Test-cases for class(es) ProjectDatabase
+# Test-cases for class(es) AProject
 #
 
 from Testing import ZopeTestCase
@@ -43,7 +43,7 @@ from Products.ProjectDatabase.config import *
 from Products.ProjectDatabase.tests.PortalDatabaseTestCase import PortalDatabaseTestCase
 
 # Import the tested classes
-from Products.ProjectDatabase.content.ProjectDatabase import ProjectDatabase
+from Products.ProjectDatabase.content.AProject import AProject
 
 ##code-section module-beforeclass #fill in your manual code here
 ##/code-section module-beforeclass
@@ -58,28 +58,32 @@ class testProjectDatabase(PortalDatabaseTestCase):
     def afterSetUp(self):
         ids = self.portal.objectIds()
 
-    # from class ProjectDatabase:
+    # from class AProject:
     def test_getLeadAgencies(self):
         pass
 
-    # from class ProjectDatabase:
+    # from class AProject:
     def test_getVocabulary(self):
         pass
 
-    # from class ProjectDatabase:
+    # from class AProject:
     def test_project_search(self):
         pass
 
-    # from class ProjectDatabase:
+    # from class AProject:
     def test_export_project_data(self):
         pass
 
-    # from class ProjectDatabase:
+    # from class AProject:
     def test_reports(self):
         pass
 
-    # from class ProjectDatabase:
+    # from class AProject:
     def test_export(self):
+        pass
+
+    # from class AProject:
+    def test_manage_afterAdd(self):
         pass
 
     # Manually created methods
@@ -96,16 +100,16 @@ class testProjectDatabase(PortalDatabaseTestCase):
         getChain = self.portal.portal_workflow.getChainForPortalType
         self.failUnless('plone_workflow' in getChain('Document'))
 
+    def test_tools(self):
+        ids = self.portal.objectIds()
+        self.failUnless('archetype_tool' in ids)
+
     def test_project_view(self):
         pass
 
     def test_workflows(self):
         ids = self.portal.portal_workflow.objectIds()
         self.failUnless('plone_workflow' in ids)
-
-    def test_tools(self):
-        ids = self.portal.objectIds()
-        self.failUnless('archetype_tool' in ids)
 
 
 def test_suite():

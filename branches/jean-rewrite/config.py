@@ -80,6 +80,7 @@ STYLESHEETS = []
 JAVASCRIPTS = []
 
 ##code-section config-bottom #fill in your manual code here
+JAVASCRIPTS.append({'id':'project_general_information.js'})
 ##/code-section config-bottom
 
 

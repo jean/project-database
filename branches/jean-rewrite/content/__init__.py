@@ -72,6 +72,10 @@ import EvaluationMilestoneFolder
 import RTSFolder
 import EvaluatorsInformationFolder
 import MilestoneFolder
+import PIRRatingFolder
+import OtherProjectRatingsFolder
+import OtherProjectRatings
+import PIRRating
 
 ##code-section init-module-footer #fill in your manual code here
 ##/code-section init-module-footer

@@ -47,29 +47,6 @@ from Products.FinanceFields.Money import Money
 
 schema = Schema((
 
-    DataGridField(
-        name='PIRRating',
-        widget=DataGridField._properties['widget'](
-            columns={'pir_rating_category':SelectColumn('PIR Rating Category', vocabulary='getPIRRatingCategory'), 'rating':SelectColumn('Rating', vocabulary='getRatingList')},
-            label="PIR Rating",
-            label_msgid='ProjectDatabase_label_PIRRating',
-            i18n_domain='ProjectDatabase',
-        ),
-        vocabulary=NamedVocabulary("""PIRRatingCategory"""),
-        columns=('pir_rating_category','rating')
-    ),
-
-    StringField(
-        name='FiscalYear',
-        widget=StringWidget(
-            label="Fiscal Year",
-            description="Eg FY06, where the FY refers to the date of the PIR",
-            label_msgid='ProjectDatabase_label_FiscalYear',
-            description_msgid='ProjectDatabase_help_FiscalYear',
-            i18n_domain='ProjectDatabase',
-        )
-    ),
-
     StringField(
         name='ProjectInceptionRiskRating',
         widget=SelectionWidget(
@@ -81,16 +58,6 @@ schema = Schema((
     ),
 
     StringField(
-        name='ProjectAtRiskSelfRatings',
-        widget=SelectionWidget(
-            label="Project-at-risk self-ratings",
-            label_msgid='ProjectDatabase_label_ProjectAtRiskSelfRatings',
-            i18n_domain='ProjectDatabase',
-        ),
-        vocabulary=NamedVocabulary("""PARSelfRatings""")
-    ),
-
-    StringField(
         name='ProjectRiskRatingForEachPIR',
         widget=SelectionWidget(
             label="Project Risk Rating for each PIR",
@@ -98,26 +65,6 @@ schema = Schema((
             i18n_domain='ProjectDatabase',
         ),
         vocabulary=NamedVocabulary("""InceptionRiskRating""")
-    ),
-
-    StringField(
-        name='CostOverrunRiskRating',
-        widget=SelectionWidget(
-            label="Cost Overrun Risk Rating",
-            label_msgid='ProjectDatabase_label_CostOverrunRiskRating',
-            i18n_domain='ProjectDatabase',
-        ),
-        vocabulary=NamedVocabulary("""InceptionRiskRating""")
-    ),
-
-    StringField(
-        name='RevisionNumber',
-        widget=SelectionWidget(
-            label="Revision Number",
-            label_msgid='ProjectDatabase_label_RevisionNumber',
-            i18n_domain='ProjectDatabase',
-        ),
-        vocabulary=NamedVocabulary("""RevisionNumber""")
     ),
 
     TextField(
@@ -132,16 +79,6 @@ schema = Schema((
     ),
 
     StringField(
-        name='ConsultantMTEMTRRatingElements',
-        widget=SelectionWidget(
-            label="Consultant MTE/MTR Rating Elements",
-            label_msgid='ProjectDatabase_label_ConsultantMTEMTRRatingElements',
-            i18n_domain='ProjectDatabase',
-        ),
-        vocabulary=NamedVocabulary("""ConsultantRatingElements""")
-    ),
-
-    StringField(
         name='MTEMTRRating',
         widget=SelectionWidget(
             label="MTE/MTR Rating",
@@ -149,46 +86,6 @@ schema = Schema((
             i18n_domain='ProjectDatabase',
         ),
         vocabulary=NamedVocabulary("""Rating""")
-    ),
-
-    StringField(
-        name='ConsultantMTEMTRRiskRating',
-        widget=SelectionWidget(
-            label="Consultant MTE/ MTR Risk Rating",
-            label_msgid='ProjectDatabase_label_ConsultantMTEMTRRiskRating',
-            i18n_domain='ProjectDatabase',
-        ),
-        vocabulary=NamedVocabulary("""InceptionRiskRating""")
-    ),
-
-    StringField(
-        name='ConsultantTERatingElements',
-        widget=SelectionWidget(
-            label="Consultant TE Rating Elements",
-            label_msgid='ProjectDatabase_label_ConsultantTERatingElements',
-            i18n_domain='ProjectDatabase',
-        ),
-        vocabulary=NamedVocabulary("""ConsultantRatingElements""")
-    ),
-
-    StringField(
-        name='TERating',
-        widget=SelectionWidget(
-            label="TE Rating",
-            label_msgid='ProjectDatabase_label_TERating',
-            i18n_domain='ProjectDatabase',
-        ),
-        vocabulary=NamedVocabulary("""Rating""")
-    ),
-
-    StringField(
-        name='EORatingElements',
-        widget=SelectionWidget(
-            label="EO Rating Elements",
-            label_msgid='ProjectDatabase_label_EORatingElements',
-            i18n_domain='ProjectDatabase',
-        ),
-        vocabulary=NamedVocabulary("""EORatingElements""")
     ),
 
     StringField(
@@ -237,25 +134,25 @@ schema = Schema((
 ##code-section after-local-schema #fill in your manual code here
 ##/code-section after-local-schema
 
-RatingTrackingSystem_schema = BaseSchema.copy() + \
+RatingTrackingSystem_schema = BaseFolderSchema.copy() + \
     schema.copy()
 
 ##code-section after-schema #fill in your manual code here
 ##/code-section after-schema
 
-class RatingTrackingSystem(BaseContent):
+class RatingTrackingSystem(BaseFolder):
     """
     """
     security = ClassSecurityInfo()
-    __implements__ = (getattr(BaseContent,'__implements__',()),)
+    __implements__ = (getattr(BaseFolder,'__implements__',()),)
 
     # This name appears in the 'add' box
     archetype_name = 'Rating Tracking System'
 
     meta_type = 'RatingTrackingSystem'
     portal_type = 'RatingTrackingSystem'
-    allowed_content_types = []
-    filter_content_types = 0
+    allowed_content_types = ['OtherProjectRatingsFolder', 'PIRRatingFolder']
+    filter_content_types = 1
     global_allow = 0
     #content_icon = 'RatingTrackingSystem.gif'
     immediate_view = 'base_view'
@@ -288,6 +185,19 @@ class RatingTrackingSystem(BaseContent):
         atvm = self.portal_vocabularies
         vocab = atvm.getVocabularyByName('Rating')
         return vocab.getDisplayList(self)
+
+    security.declarePrivate('manage_afterAdd')
+    def manage_afterAdd(self, item, container):
+        """
+        """
+
+        if 'other_project_ratings' not in self.objectIds():
+            self.invokeFactory('OtherProjectRatingsFolder', 'other_project_ratings_folder')
+            self['other_project_ratings_folder'].setTitle('Other Project Ratings')
+        if 'pir_ratings' not in self.objectIds():
+            self.invokeFactory('PIRRatingFolder', 'pir_ratings')
+            self['pir_ratings'].setTitle('PIR Ratings')
+        BaseFolder.manage_afterAdd(self, item, container)
 
 
 registerType(RatingTrackingSystem, PROJECTNAME)

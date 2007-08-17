@@ -41,4 +41,18 @@
   </caption>
   <description />
 </term>
+<term>
+  <termIdentifier>PPG</termIdentifier>
+  <caption>
+    <langstring language="en">PPG</langstring>
+  </caption>
+  <description />
+</term>
+<term>
+  <termIdentifier>Phase</termIdentifier>
+  <caption>
+    <langstring language="en">Phase</langstring>
+  </caption>
+  <description />
+</term>
 </vdex>

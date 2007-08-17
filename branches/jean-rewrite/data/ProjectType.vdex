@@ -9,15 +9,7 @@
 <term>
   <termIdentifier>EA</termIdentifier>
   <caption>
-    <langstring language="en">Expedited Enabling Activity</langstring>
-  </caption>
-  <description />
-</term>
-
-<term>
-  <termIdentifier>FSP</termIdentifier>
-  <caption>
-    <langstring language="en">FSP</langstring>
+    <langstring language="en">Expedited Enabling Activity(EA)</langstring>
   </caption>
   <description />
 </term>
@@ -25,7 +17,15 @@
 <term>
   <termIdentifier>MSP</termIdentifier>
   <caption>
-    <langstring language="en">MSP</langstring>
+    <langstring language="en">Medium-sized Project(MSP)</langstring>
+  </caption>
+  <description />
+</term>
+
+<term>
+  <termIdentifier>FSP</termIdentifier>
+  <caption>
+    <langstring language="en">Full Size Project(FSP)</langstring>
   </caption>
   <description />
 </term>

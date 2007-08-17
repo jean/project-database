@@ -7,7 +7,7 @@
   <langstring language="en">Operational Programme</langstring>
 </vocabName>
 <term>
-  <termIdentifier>1</termIdentifier>
+  <termIdentifier>OP1</termIdentifier>
   <caption>
     <langstring language="en">OP1 - Arid and Semi-Arid Zones Ecosystems</langstring>
   </caption>
@@ -15,7 +15,7 @@
 </term>
 
 <term>
-  <termIdentifier>2</termIdentifier>
+  <termIdentifier>OP2</termIdentifier>
   <caption>
     <langstring language="en">OP2 - Coastal Marine and Freshwater Ecosystems</langstring>
   </caption>
@@ -23,7 +23,7 @@
 </term>
 
 <term>
-  <termIdentifier>3</termIdentifier>
+  <termIdentifier>OP3</termIdentifier>
   <caption>
     <langstring language="en">OP3 - Forest Ecosystems</langstring>
   </caption>
@@ -31,7 +31,7 @@
 </term>
 
 <term>
-  <termIdentifier>4</termIdentifier>
+  <termIdentifier>OP4</termIdentifier>
   <caption>
     <langstring language="en">OP4 - Mountain Ecosystems</langstring>
   </caption>
@@ -39,7 +39,7 @@
 </term>
 
 <term>
-  <termIdentifier>5</termIdentifier>
+  <termIdentifier>OP5</termIdentifier>
   <caption>
     <langstring language="en">OP5 - Removal of Barriers to Energy Efficiency and Energy Conservation</langstring>
   </caption>
@@ -47,7 +47,7 @@
 </term>
 
 <term>
-  <termIdentifier>6</termIdentifier>
+  <termIdentifier>OP6</termIdentifier>
   <caption>
     <langstring language="en">OP6 - Promoting the Adoption of Renewable Energy by Removing Barriers and Reducing Implementation Costs</langstring>
   </caption>
@@ -55,15 +55,15 @@
 </term>
 
 <term>
-  <termIdentifier>7</termIdentifier>
+  <termIdentifier>OP7</termIdentifier>
   <caption>
-    <langstring language="en">OP7 - Reducing long term costs of low greenhouse gas-emitting energy technologies</langstring>
+    <langstring language="en">OP7 - Reducing Long Term Costs of Low Greenhouse Gas-Emitting Energy Technologies</langstring>
   </caption>
   <description />
 </term>
 
 <term>
-  <termIdentifier>8</termIdentifier>
+  <termIdentifier>OP8</termIdentifier>
   <caption>
     <langstring language="en">OP8 - Water Body-based Operational Program</langstring>
   </caption>
@@ -71,7 +71,7 @@
 </term>
 
 <term>
-  <termIdentifier>9</termIdentifier>
+  <termIdentifier>OP9</termIdentifier>
   <caption>
     <langstring language="en">OP9 - Integrated Land and Water Multiple
     Focal Area Program</langstring>
@@ -80,7 +80,7 @@
 </term>
 
 <term>
-  <termIdentifier>10</termIdentifier>
+  <termIdentifier>OP10</termIdentifier>
   <caption>
     <langstring language="en">OP10 - Contaminant-Based Program</langstring>
   </caption>
@@ -88,7 +88,7 @@
 </term>
 
 <term>
-  <termIdentifier>11</termIdentifier>
+  <termIdentifier>OP11</termIdentifier>
   <caption>
     <langstring language="en">OP11 - Promoting Environmentally Sustainable Transport</langstring>
   </caption>
@@ -96,7 +96,7 @@
 </term>
 
 <term>
-  <termIdentifier>12</termIdentifier>
+  <termIdentifier>OP12</termIdentifier>
   <caption>
     <langstring language="en">OP12 - Integrated Ecosystem Management</langstring>
   </caption>
@@ -104,7 +104,7 @@
 </term>
 
 <term>
-  <termIdentifier>13</termIdentifier>
+  <termIdentifier>OP13</termIdentifier>
   <caption>
     <langstring language="en">OP13 - Conservation and Sustainable Use of Biological Diversity Important to Agriculture</langstring>
   </caption>
@@ -112,7 +112,7 @@
 </term>
 
 <term>
-  <termIdentifier>14</termIdentifier>
+  <termIdentifier>OP14</termIdentifier>
   <caption>
     <langstring language="en">OP14 - Program for Reducing and
     Eliminating Releases of Persistent Organic Pollutants</langstring>
@@ -121,7 +121,7 @@
 </term>
 
 <term>
-  <termIdentifier>15</termIdentifier>
+  <termIdentifier>OP15</termIdentifier>
   <caption>
     <langstring language="en">OP15 - Sustainable Land Management
     Operational Program</langstring>
@@ -130,7 +130,7 @@
 </term>
 
 <term>
-  <termIdentifier>-EA</termIdentifier>
+  <termIdentifier>EA</termIdentifier>
   <caption>
     <langstring language="en">EA - Enabling Activities</langstring>
   </caption>

@@ -38,12 +38,15 @@ def install(self):
         portal.invokeFactory('Folder', 'projectdatabases', title='Project Databases')
 
     # hide unnecessary portal tabs from users
-    portal.Members.setExcludeFromNav(True)
-    portal.Members.reindexObject()
-    portal.news.setExcludeFromNav(True)
-    portal.news.reindexObject()
-    portal.events.setExcludeFromNav(True)
-    portal.events.reindexObject()
+    if 'Members' in portal.objectIds():
+        portal.Members.setExcludeFromNav(True)
+        portal.Members.reindexObject()
+    if 'news' in portal.objectIds():
+        portal.news.setExcludeFromNav(True)
+        portal.news.reindexObject()
+    if 'events' in portal.objectIds():
+        portal.events.setExcludeFromNav(True)
+        portal.events.reindexObject()
 
     # remove portlets
     safeEditProperty(portal, 'left_slots', (), 'lines')

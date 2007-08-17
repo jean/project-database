@@ -7,72 +7,72 @@
   <langstring language="en">LeadAgency</langstring>
 </vocabName>
 <term>
-  <termIdentifier>AFDB</termIdentifier>
+  <termIdentifier>AfDB</termIdentifier>
   <caption>
-    <langstring language="en">African Development Bank</langstring>
+    <langstring language="en">African Development Bank (AfDB)</langstring>
   </caption>
   <description />
 </term>
 <term>
   <termIdentifier>ADB</termIdentifier>
   <caption>
-    <langstring language="en">Asian Development Bank</langstring>
+    <langstring language="en">Asian Development Bank (ADB)</langstring>
   </caption>
   <description />
 </term>
 <term>
   <termIdentifier>EBRD</termIdentifier>
   <caption>
-    <langstring language="en">European Bank for Reconstruction and Development</langstring>
+    <langstring language="en">European Bank for Reconstruction and Development (EBRD)</langstring>
   </caption>
   <description />
 </term>
 <term>
   <termIdentifier>FAO</termIdentifier>
   <caption>
-    <langstring language="en">Food and Agriculture Organization</langstring>
+    <langstring language="en">UN Food and Agriculture Organization (FAO)</langstring>
   </caption>
   <description />
 </term>
 <term>
   <termIdentifier>IADB</termIdentifier>
   <caption>
-    <langstring language="en">Inter-American Development Bank</langstring>
+    <langstring language="en">Inter-American Development Bank (IADB)</langstring>
   </caption>
   <description />
 </term>
 <term>
   <termIdentifier>IFAD</termIdentifier>
   <caption>
-    <langstring language="en">International Fund for Agriculture and Development</langstring>
+    <langstring language="en">International Fund for Agriculture and Development (IFAD)</langstring>
   </caption>
   <description />
 </term>
 <term>
   <termIdentifier>UNDP</termIdentifier>
   <caption>
-    <langstring language="en">United Nations Development Programme</langstring>
+    <langstring language="en">United Nations Development Programme (UNDP)</langstring>
   </caption>
   <description />
 </term>
 <term>
   <termIdentifier>UNEP</termIdentifier>
   <caption>
-    <langstring language="en">United Nations Environment Programme</langstring>
+    <langstring language="en">United Nations Environment Programme (UNEP)</langstring>
   </caption>
   <description />
 </term>
 <term>
   <termIdentifier>IBRD</termIdentifier>
   <caption>
-    <langstring language="en">World Bank</langstring>
+    <langstring language="en">The World Bank (IBRD)</langstring>
   </caption>
   <description />
 </term>
 <term>
   <termIdentifier>UNIDO</termIdentifier>
   <caption>
-    <langstring language="en">UNIDO</langstring>
+    <langstring language="en">UN Industrial Development Organization(UNIDO)</langstring>
   </caption>
   <description />
 </term>
