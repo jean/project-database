@@ -35,7 +35,7 @@ if __name__ == '__main__':
 ##/code-section module-header
 
 #
-# Test-cases for class(es) Project
+# Test-cases for class(es) ProjectGeneralInformation
 #
 
 from Testing import ZopeTestCase
@@ -43,7 +43,7 @@ from Products.ProjectDatabase.config import *
 from Products.ProjectDatabase.tests.PortalDatabaseTestCase import PortalDatabaseTestCase
 
 # Import the tested classes
-from Products.ProjectDatabase.content.Project import Project
+from Products.ProjectDatabase.content.ProjectGeneralInformation import ProjectGeneralInformation
 
 ##code-section module-beforeclass #fill in your manual code here
 ##/code-section module-beforeclass
@@ -58,83 +58,75 @@ class testProject(PortalDatabaseTestCase):
     def afterSetUp(self):
         pass
 
-    # from class Project:
+    # from class ProjectGeneralInformation:
     def test_getTotalGEFAllocation(self):
         pass
 
-    # from class Project:
+    # from class ProjectGeneralInformation:
     def test_getTotalUNEPAllocation(self):
         pass
 
-    # from class Project:
+    # from class ProjectGeneralInformation:
     def test_getTotalCofinancingPlanned(self):
         pass
 
-    # from class Project:
+    # from class ProjectGeneralInformation:
     def test_getTotalCofinancingActual(self):
         pass
 
-    # from class Project:
+    # from class ProjectGeneralInformation:
     def test_getTotalCashDisbursements(self):
         pass
 
-    # from class Project:
+    # from class ProjectGeneralInformation:
     def test_getTotalIMISExpenditures(self):
         pass
 
-    # from class Project:
+    # from class ProjectGeneralInformation:
     def test_getPDFAStatus(self):
         pass
 
-    # from class Project:
+    # from class ProjectGeneralInformation:
     def test_getPDFBStatus(self):
         pass
 
-    # from class Project:
+    # from class ProjectGeneralInformation:
     def test_getMSPStatus(self):
         pass
 
-    # from class Project:
+    # from class ProjectGeneralInformation:
     def test_getFSPStatus(self):
         pass
 
-    # from class Project:
+    # from class ProjectGeneralInformation:
     def test_getProjectTitle(self):
         pass
 
-    # from class Project:
+    # from class ProjectGeneralInformation:
     def test_Overview(self):
         pass
 
-    # from class Project:
+    # from class ProjectGeneralInformation:
     def test_project_general_information(self):
         pass
 
-    # from class Project:
-    def test_validate_TranchedNumber(self):
+    # from class ProjectGeneralInformation:
+    def test_validate_PhasedTrancheNumber(self):
         pass
 
-    # from class Project:
-    def test_validate_PhasedNumber(self):
-        pass
-
-    # from class Project:
+    # from class ProjectGeneralInformation:
     def test_fmi_view(self):
         pass
 
-    # from class Project:
-    def test_getProject(self):
-        pass
-
-    # from class Project:
+    # from class ProjectGeneralInformation:
     def test_getCategoryVocab(self):
         pass
 
-    # from class Project:
+    # from class ProjectGeneralInformation:
     def test_manage_afterAdd(self):
         pass
 
-    # from class Project:
+    # from class ProjectGeneralInformation:
     def test_displayContentsTab(self):
         pass
 
@@ -151,6 +143,9 @@ class testProject(PortalDatabaseTestCase):
     def test_tranched_projects(self):
         pass
 
+    def test_validate_TranchedNumber(self):
+        pass
+
     def test_phase_projects(self):
         pass
 
@@ -163,7 +158,13 @@ class testProject(PortalDatabaseTestCase):
     def test_project_ratings_disconnect(self):
         pass
 
+    def test_getProject(self):
+        pass
+
     def test_export_project_data(self):
+        pass
+
+    def test_validate_PhasedNumber(self):
         pass
 
     def test_contents_view(self):

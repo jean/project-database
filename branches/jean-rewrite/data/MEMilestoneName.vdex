@@ -24,6 +24,14 @@
 </term>
 
 <term>
+  <termIdentifier>Approval of TOR</termIdentifier>
+  <caption>
+    <langstring language="en">Approval of TOR</langstring>
+  </caption>
+  <description />
+</term>
+
+<term>
   <termIdentifier>Collation of Project Information</termIdentifier>
   <caption>
     <langstring language="en">Collation of Project Information</langstring>
@@ -32,9 +40,9 @@
 </term>
 
 <term>
-  <termIdentifier>Selection of Evaluation consultant/team</termIdentifier>
+  <termIdentifier>Selection of Evaluation Consultant/team</termIdentifier>
   <caption>
-    <langstring language="en">Selection of Evaluation consultant/team</langstring>
+    <langstring language="en">Selection of Evaluation Consultant/team</langstring>
   </caption>
   <description />
 </term>
@@ -96,9 +104,9 @@
 </term>
 
 <term>
-  <termIdentifier>Submission to project partners</termIdentifier>
+  <termIdentifier>Submission to Project Partners</termIdentifier>
   <caption>
-    <langstring language="en">Submission to project partners</langstring>
+    <langstring language="en">Submission to Project Partners</langstring>
   </caption>
   <description />
 </term>
@@ -112,9 +120,9 @@
 </term>
 
 <term>
-  <termIdentifier>Final Payment</termIdentifier>
+  <termIdentifier>Final Payment of Consultant</termIdentifier>
   <caption>
-    <langstring language="en">Final Payment</langstring>
+    <langstring language="en">Final Payment of Consultant</langstring>
   </caption>
   <description />
 </term>

@@ -48,7 +48,7 @@ def installWorkflows(self, package, out):
         print >> out, 'ProjectWorkflow already in workflows.'
     else:
         workflowTool._setObject('ProjectWorkflow', workflow)
-    workflowTool.setChainForPortalTypes(['Project', 'ProjectImplementation', 'SubProject'], workflow.getId())
+    workflowTool.setChainForPortalTypes(['ProjectGeneralInformation', 'ProjectImplementation', 'SubProject'], workflow.getId())
 
     ourProductWorkflow = ExternalMethod('temp', 'temp',
                                         productname+'.'+'MilestoneWorkflow',

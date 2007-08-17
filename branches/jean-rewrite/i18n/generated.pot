@@ -21,9 +21,24 @@ msgstr ""
 msgid "ProjectDatabase_help_ActualDate"
 msgstr ""
 
+#. Default: "The total actual expenditures against the GEF trust fund once project is completed"
+#: content/Financials.py
+msgid "ProjectDatabase_help_ActualTotalExpenditures"
+msgstr ""
+
+#. Default: "Enter GEF amount to be directly used by UNEP"
+#: content/FinancialsMixin.py
+msgid "ProjectDatabase_help_ApprovedUNEPBudget"
+msgstr ""
+
 #. Default: "Eg FY06, where the FY refers to the date of the PIR"
 #: content/RatingTrackingSystem.py
 msgid "ProjectDatabase_help_FiscalYear"
+msgstr ""
+
+#. Default: "Enter the total amount of GEF resources approved for this project"
+#: content/FinancialsMixin.py
+msgid "ProjectDatabase_help_GEFProjectAllocation"
 msgstr ""
 
 #. Default: "Enter the Full implementing agency fee"
@@ -36,13 +51,22 @@ msgstr ""
 msgid "ProjectDatabase_help_JointEvaluationAgencyContact"
 msgstr ""
 
+#. Default: "Describe hoe the resources were leveraged"
+#: content/ProjectGeneralInformation.py
+msgid "ProjectDatabase_help_LeveragedFinancingMemo"
+msgstr ""
+
 #. Default: "Enter sources and Purposes"
 #: content/Project.py
+#: content/ProjectGeneralInfromation.py
+#: content/ProjectGeneralInformation.py
 msgid "ProjectDatabase_help_LeveragedFinancingRemark"
 msgstr ""
 
 #. Default: "Is this a Phased project?"
 #: content/Project.py
+#: content/ProjectGeneralInfromation.py
+#: content/ProjectGeneralInformation.py
 msgid "ProjectDatabase_help_Phased"
 msgstr ""
 
@@ -63,6 +87,8 @@ msgstr ""
 
 #. Default: "Enter overall Project Results AFTER Project Terminal Evaluation"
 #: content/Project.py
+#: content/ProjectGeneralInfromation.py
+#: content/ProjectGeneralInformation.py
 msgid "ProjectDatabase_help_ProjectResults"
 msgstr ""
 
@@ -99,11 +125,15 @@ msgstr ""
 
 #. Default: "Is this a Tranched project?"
 #: content/Project.py
+#: content/ProjectGeneralInfromation.py
+#: content/ProjectGeneralInformation.py
 msgid "ProjectDatabase_help_Tranched"
 msgstr ""
 
 #. Default: "Enter a description of UNEP components only in the case of jointly implemented projects"
 #: content/Project.py
+#: content/ProjectGeneralInfromation.py
+#: content/ProjectGeneralInformation.py
 msgid "ProjectDatabase_help_UnepComponentDescription"
 msgstr ""
 
@@ -120,12 +150,23 @@ msgstr ""
 
 #. Default: "Account Code"
 #: content/SubProject.py
+#: content/Financials.py
 msgid "ProjectDatabase_label_AccountCode"
+msgstr ""
+
+#. Default: "Achievement of Results"
+#: content/PIRRating.py
+msgid "ProjectDatabase_label_AchievementOfResults"
 msgstr ""
 
 #. Default: "Actual Date"
 #: content/EvaluationMilestone.py
 msgid "ProjectDatabase_label_ActualDate"
+msgstr ""
+
+#. Default: "Actual Total Expenditures"
+#: content/Financials.py
+msgid "ProjectDatabase_label_ActualTotalExpenditures"
 msgstr ""
 
 #. Default: "Adaptationtrustfund"
@@ -135,6 +176,8 @@ msgstr ""
 
 #. Default: "Addon"
 #: content/Project.py
+#: content/ProjectGeneralInfromation.py
+#: content/ProjectGeneralInformation.py
 msgid "ProjectDatabase_label_AddOn"
 msgstr ""
 
@@ -231,6 +274,11 @@ msgstr ""
 msgid "ProjectDatabase_label_ConsultantTERatingElements"
 msgstr ""
 
+#. Default: "Cost Effectiveness"
+#: content/OtherProjectRatings.py
+msgid "ProjectDatabase_label_CostEffectiveness"
+msgstr ""
+
 #. Default: "Cost Overrun Risk Rating"
 #: content/RatingTrackingSystem.py
 msgid "ProjectDatabase_label_CostOverrunRiskRating"
@@ -246,6 +294,11 @@ msgstr ""
 #: content/CountrySchema.py
 #: content/SubProject.py
 msgid "ProjectDatabase_label_Country"
+msgstr ""
+
+#. Default: "Country Ownership"
+#: content/OtherProjectRatings.py
+msgid "ProjectDatabase_label_CountryOwnership"
 msgstr ""
 
 #. Default: "Currenttaskmanager"
@@ -270,31 +323,43 @@ msgstr ""
 
 #. Default: "EA-Biodiversity"
 #: content/Project.py
+#: content/ProjectGeneralInfromation.py
+#: content/ProjectGeneralInformation.py
 msgid "ProjectDatabase_label_EABiodiversity"
 msgstr ""
 
 #. Default: "Other EA Biodiversity"
 #: content/Project.py
+#: content/ProjectGeneralInfromation.py
+#: content/ProjectGeneralInformation.py
 msgid "ProjectDatabase_label_EABiodiversityOther"
 msgstr ""
 
 #. Default: "EA-Climate Change"
 #: content/Project.py
+#: content/ProjectGeneralInfromation.py
+#: content/ProjectGeneralInformation.py
 msgid "ProjectDatabase_label_EAClimateChange"
 msgstr ""
 
 #. Default: "EA Climate Change Other"
 #: content/Project.py
+#: content/ProjectGeneralInfromation.py
+#: content/ProjectGeneralInformation.py
 msgid "ProjectDatabase_label_EAClimateChangeOther"
 msgstr ""
 
 #. Default: "EA-POP"
 #: content/Project.py
+#: content/ProjectGeneralInfromation.py
+#: content/ProjectGeneralInformation.py
 msgid "ProjectDatabase_label_EAPOP"
 msgstr ""
 
 #. Default: "EA-POP Other"
 #: content/Project.py
+#: content/ProjectGeneralInfromation.py
+#: content/ProjectGeneralInformation.py
 msgid "ProjectDatabase_label_EAPOPOther"
 msgstr ""
 
@@ -335,6 +400,8 @@ msgstr ""
 
 #. Default: "Fspstatus"
 #: content/Project.py
+#: content/ProjectGeneralInfromation.py
+#: content/ProjectGeneralInformation.py
 msgid "ProjectDatabase_label_FSPStatus"
 msgstr ""
 
@@ -348,6 +415,11 @@ msgstr ""
 #. Default: "Financial Closure"
 #: content/MonitoringAndEvaluation.py
 msgid "ProjectDatabase_label_FinancialClosure"
+msgstr ""
+
+#. Default: "Financial Planning"
+#: content/OtherProjectRatings.py
+msgid "ProjectDatabase_label_FinancialPlanning"
 msgstr ""
 
 #. Default: "Financialreport1"
@@ -382,6 +454,7 @@ msgstr ""
 
 #. Default: "Fiscal Year"
 #: content/RatingTrackingSystem.py
+#: content/PIRRating.py
 msgid "ProjectDatabase_label_FiscalYear"
 msgstr ""
 
@@ -411,6 +484,7 @@ msgstr ""
 #. Default: "GEF Agency Implementation"
 #: content/Project.py
 #: content/MonitoringAndEvaluation.py
+#: content/ProjectGeneralInfromation.py
 msgid "ProjectDatabase_label_GEFAgencyImplementation"
 msgstr ""
 
@@ -483,11 +557,22 @@ msgstr ""
 msgid "ProjectDatabase_label_IMISNumber"
 msgstr ""
 
+#. Default: "Implementation Approach"
+#: content/OtherProjectRatings.py
+msgid "ProjectDatabase_label_ImplementationApproach"
+msgstr ""
+
 #. Default: "Implementationmode"
 #: content/Project.py
 #: content/SubProject.py
 #: content/BlankCoreMixin.py
 msgid "ProjectDatabase_label_ImplementationMode"
+msgstr ""
+
+#. Default: "Implementation Progress"
+#: content/OtherProjectRatings.py
+#: content/PIRRating.py
+msgid "ProjectDatabase_label_ImplementationProgress"
 msgstr ""
 
 #. Default: "Implementationstatus"
@@ -525,6 +610,11 @@ msgstr ""
 msgid "ProjectDatabase_label_JointEvaluationAgencyContact"
 msgstr ""
 
+#. Default: "Joint Implementation"
+#: content/ProjectGeneralInformation.py
+msgid "ProjectDatabase_label_JointImplementation"
+msgstr ""
+
 #. Default: "IDC Fund Allocation"
 #: content/Financials.py
 msgid "ProjectDatabase_label_LDCFundAllocation"
@@ -537,11 +627,15 @@ msgstr ""
 
 #. Default: "Leadagency"
 #: content/Project.py
+#: content/ProjectGeneralInfromation.py
+#: content/ProjectGeneralInformation.py
 msgid "ProjectDatabase_label_LeadAgency"
 msgstr ""
 
 #. Default: "Lead GEF Agency"
 #: content/Project.py
+#: content/ProjectGeneralInfromation.py
+#: content/ProjectGeneralInformation.py
 msgid "ProjectDatabase_label_LeadAgencyContact"
 msgstr ""
 
@@ -554,11 +648,19 @@ msgstr ""
 #. Default: "Leveragedfinancingamount"
 #: content/Project.py
 #: content/BlankCoreMixin.py
+#: content/ProjectGeneralInfromation.py
 msgid "ProjectDatabase_label_LeveragedFinancingAmount"
+msgstr ""
+
+#. Default: "Leveraged Financing Memo"
+#: content/ProjectGeneralInformation.py
+msgid "ProjectDatabase_label_LeveragedFinancingMemo"
 msgstr ""
 
 #. Default: "Leveragedfinancingremark"
 #: content/Project.py
+#: content/ProjectGeneralInfromation.py
+#: content/ProjectGeneralInformation.py
 msgid "ProjectDatabase_label_LeveragedFinancingRemark"
 msgstr ""
 
@@ -574,6 +676,8 @@ msgstr ""
 
 #. Default: "Mspstatus"
 #: content/Project.py
+#: content/ProjectGeneralInfromation.py
+#: content/ProjectGeneralInformation.py
 msgid "ProjectDatabase_label_MSPStatus"
 msgstr ""
 
@@ -614,6 +718,8 @@ msgstr ""
 
 #. Default: "Midtermreviewactualdate"
 #: content/Project.py
+#: content/ProjectGeneralInfromation.py
+#: content/ProjectGeneralInformation.py
 msgid "ProjectDatabase_label_MidtermReviewActualDate"
 msgstr ""
 
@@ -624,6 +730,8 @@ msgstr ""
 
 #. Default: "Midtermreviewevaluatorname"
 #: content/Project.py
+#: content/ProjectGeneralInfromation.py
+#: content/ProjectGeneralInformation.py
 msgid "ProjectDatabase_label_MidtermReviewEvaluatorName"
 msgstr ""
 
@@ -634,12 +742,15 @@ msgstr ""
 
 #. Default: "Midtermreviewplanneddate"
 #: content/Project.py
+#: content/ProjectGeneralInfromation.py
+#: content/ProjectGeneralInformation.py
 msgid "ProjectDatabase_label_MidtermReviewPlannedDate"
 msgstr ""
 
 #. Default: "Midtermreviewreportdate"
 #: content/Project.py
 #: content/BlankCoreMixin.py
+#: content/ProjectGeneralInfromation.py
 msgid "ProjectDatabase_label_MidtermReviewReportDate"
 msgstr ""
 
@@ -663,13 +774,23 @@ msgstr ""
 msgid "ProjectDatabase_label_MissionReports"
 msgstr ""
 
+#. Default: "Monitoring and Evaluation"
+#: content/OtherProjectRatings.py
+#: content/PIRRating.py
+msgid "ProjectDatabase_label_MonitoringAndEvaluation"
+msgstr ""
+
 #. Default: "Multiple Focal Areas"
 #: content/Project.py
+#: content/ProjectGeneralInfromation.py
+#: content/ProjectGeneralInformation.py
 msgid "ProjectDatabase_label_MultipleFocalAreas"
 msgstr ""
 
 #. Default: "Multiple Focal Areas Other"
 #: content/Project.py
+#: content/ProjectGeneralInfromation.py
+#: content/ProjectGeneralInformation.py
 msgid "ProjectDatabase_label_MultipleFocalAreasOther"
 msgstr ""
 
@@ -714,6 +835,8 @@ msgstr ""
 
 #. Default: "Other Implementing Agency"
 #: content/Project.py
+#: content/ProjectGeneralInfromation.py
+#: content/ProjectGeneralInformation.py
 msgid "ProjectDatabase_label_OtherImplementingAgency"
 msgstr ""
 
@@ -725,12 +848,26 @@ msgstr ""
 
 #. Default: "Other Non-GEF Eligible Project Participating Countries"
 #: content/Project.py
+#: content/ProjectGeneralInfromation.py
+#: content/ProjectGeneralInformation.py
 msgid "ProjectDatabase_label_OtherNonGEFEligibleCountries"
 msgstr ""
 
 #. Default: "Other Project Executing Partners"
 #: content/Project.py
+#: content/ProjectGeneralInfromation.py
+#: content/ProjectGeneralInformation.py
 msgid "ProjectDatabase_label_OtherProjectExecutingPartners"
+msgstr ""
+
+#. Default: "Other Rating"
+#: content/OtherProjectRatings.py
+msgid "ProjectDatabase_label_OtherRating"
+msgstr ""
+
+#. Default: "Overall Rating"
+#: content/OtherProjectRatings.py
+msgid "ProjectDatabase_label_OverallRating"
 msgstr ""
 
 #. Default: "Overview"
@@ -740,11 +877,15 @@ msgstr ""
 
 #. Default: "Pdfastatus"
 #: content/Project.py
+#: content/ProjectGeneralInfromation.py
+#: content/ProjectGeneralInformation.py
 msgid "ProjectDatabase_label_PDFAStatus"
 msgstr ""
 
 #. Default: "Pdfbstatus"
 #: content/Project.py
+#: content/ProjectGeneralInfromation.py
+#: content/ProjectGeneralInformation.py
 msgid "ProjectDatabase_label_PDFBStatus"
 msgstr ""
 
@@ -777,17 +918,27 @@ msgstr ""
 
 #. Default: "Phased"
 #: content/Project.py
+#: content/ProjectGeneralInfromation.py
+#: content/ProjectGeneralInformation.py
 msgid "ProjectDatabase_label_Phased"
 msgstr ""
 
 #. Default: "Phasednumber"
 #: content/Project.py
+#: content/ProjectGeneralInfromation.py
+#: content/ProjectGeneralInformation.py
 msgid "ProjectDatabase_label_PhasedNumber"
+msgstr ""
+
+#. Default: "Phased/Tranche Number"
+#: content/ProjectGeneralInformation.py
+msgid "ProjectDatabase_label_PhasedTrancheNumber"
 msgstr ""
 
 #. Default: "Pipelinenumber"
 #: content/Project.py
 #: content/CoreMixin.py
+#: content/ProjectGeneralInfromation.py
 msgid "ProjectDatabase_label_PipelineNumber"
 msgstr ""
 
@@ -804,6 +955,7 @@ msgstr ""
 #. Default: "Previoustaskmanager"
 #: content/Project.py
 #: content/CoreMixin.py
+#: content/ProjectGeneralInfromation.py
 msgid "ProjectDatabase_label_PreviousTaskManager"
 msgstr ""
 
@@ -846,17 +998,30 @@ msgstr ""
 
 #. Default: "Project Executing Agency"
 #: content/Project.py
+#: content/ProjectGeneralInfromation.py
+#: content/ProjectGeneralInformation.py
 msgid "ProjectDatabase_label_ProjectExecutingAgency"
 msgstr ""
 
 #. Default: "Project Implementation Status"
 #: content/SubProject.py
+#: content/ProjectGeneralInformation.py
 msgid "ProjectDatabase_label_ProjectImplementationStatus"
 msgstr ""
 
 #. Default: "Project Risk Rating at Inception"
 #: content/RatingTrackingSystem.py
 msgid "ProjectDatabase_label_ProjectInceptionRiskRating"
+msgstr ""
+
+#. Default: "Project Objectives"
+#: content/OtherProjectRatings.py
+msgid "ProjectDatabase_label_ProjectObjectives"
+msgstr ""
+
+#. Default: "Project Outputs and Actvities"
+#: content/OtherProjectRatings.py
+msgid "ProjectDatabase_label_ProjectOutputsAndActivities"
 msgstr ""
 
 #. Default: "Projectprocess"
@@ -867,6 +1032,7 @@ msgstr ""
 #. Default: "Projectresults"
 #: content/Project.py
 #: content/BlankCoreMixin.py
+#: content/ProjectGeneralInfromation.py
 msgid "ProjectDatabase_label_ProjectResults"
 msgstr ""
 
@@ -895,15 +1061,22 @@ msgstr ""
 msgid "ProjectDatabase_label_ProjectStatuses"
 msgstr ""
 
+#. Default: "Project Sustainability"
+#: content/OtherProjectRatings.py
+msgid "ProjectDatabase_label_ProjectSustainability"
+msgstr ""
+
 #. Default: "Projecttitle"
 #: content/Project.py
 #: content/CoreMixin.py
+#: content/ProjectGeneralInfromation.py
 msgid "ProjectDatabase_label_ProjectTitle"
 msgstr ""
 
 #. Default: "Projecttype"
 #: content/Project.py
 #: content/ProjectDatabase.py
+#: content/ProjectGeneralInfromation.py
 msgid "ProjectDatabase_label_ProjectType"
 msgstr ""
 
@@ -960,6 +1133,11 @@ msgstr ""
 msgid "ProjectDatabase_label_Remarls"
 msgstr ""
 
+#. Default: "Replicability"
+#: content/OtherProjectRatings.py
+msgid "ProjectDatabase_label_Replicability"
+msgstr ""
+
 #. Default: "Reports"
 #: content/SubProject.py
 #: content/Financials.py
@@ -984,6 +1162,11 @@ msgstr ""
 msgid "ProjectDatabase_label_RevisionNumber"
 msgstr ""
 
+#. Default: "Risk"
+#: content/PIRRating.py
+msgid "ProjectDatabase_label_Risk"
+msgstr ""
+
 #. Default: "Sccfallocation"
 #: content/Financials.py
 msgid "ProjectDatabase_label_SCCFAllocation"
@@ -998,7 +1181,14 @@ msgstr ""
 
 #. Default: "Geographic Scope - Other"
 #: content/Project.py
+#: content/ProjectGeneralInfromation.py
+#: content/ProjectGeneralInformation.py
 msgid "ProjectDatabase_label_ScopeOther"
+msgstr ""
+
+#. Default: "Stakeholder Participation"
+#: content/OtherProjectRatings.py
+msgid "ProjectDatabase_label_StakeholderParticipation"
 msgstr ""
 
 #. Default: "Startdate"
@@ -1023,6 +1213,7 @@ msgstr ""
 #. Default: "Strategic Objectives"
 #: content/Project.py
 #: content/CoreMixin.py
+#: content/ProjectGeneralInfromation.py
 msgid "ProjectDatabase_label_StrategicObjectives"
 msgstr ""
 
@@ -1039,6 +1230,7 @@ msgstr ""
 #. Default: "Strategicpriority"
 #: content/Project.py
 #: content/ProjectDatabase.py
+#: content/ProjectGeneralInfromation.py
 msgid "ProjectDatabase_label_StrategicPriority"
 msgstr ""
 
@@ -1169,38 +1361,49 @@ msgstr ""
 #. Default: "Terminalevaluationreportdate"
 #: content/Project.py
 #: content/BlankCoreMixin.py
+#: content/ProjectGeneralInfromation.py
 msgid "ProjectDatabase_label_TerminalEvaluationReportDate"
 msgstr ""
 
 #. Default: "Terminalreportactualevaluationdate"
 #: content/Project.py
+#: content/ProjectGeneralInfromation.py
+#: content/ProjectGeneralInformation.py
 msgid "ProjectDatabase_label_TerminalReportActualEvaluationDate"
 msgstr ""
 
 #. Default: "Terminalreportevaluatorname"
 #: content/Project.py
+#: content/ProjectGeneralInfromation.py
+#: content/ProjectGeneralInformation.py
 msgid "ProjectDatabase_label_TerminalReportEvaluatorName"
 msgstr ""
 
 #. Default: "Terminalreportplannedevaluationdate"
 #: content/Project.py
+#: content/ProjectGeneralInfromation.py
+#: content/ProjectGeneralInformation.py
 msgid "ProjectDatabase_label_TerminalReportPlannedEvaluationDate"
 msgstr ""
 
 #. Default: "Totalcashdisbursements"
 #: content/Project.py
+#: content/ProjectGeneralInfromation.py
+#: content/ProjectGeneralInformation.py
 msgid "ProjectDatabase_label_TotalCashDisbursements"
 msgstr ""
 
 #. Default: "Totalcofinancingactual"
 #: content/Project.py
 #: content/BlankCoreMixin.py
+#: content/ProjectGeneralInfromation.py
 msgid "ProjectDatabase_label_TotalCofinancingActual"
 msgstr ""
 
 #. Default: "Totalcofinancingplanned"
 #: content/Project.py
 #: content/BlankCoreMixin.py
+#: content/ProjectGeneralInfromation.py
 msgid "ProjectDatabase_label_TotalCofinancingPlanned"
 msgstr ""
 
@@ -1222,12 +1425,14 @@ msgstr ""
 #. Default: "Totalgefallocation"
 #: content/Project.py
 #: content/BlankCoreMixin.py
+#: content/ProjectGeneralInfromation.py
 msgid "ProjectDatabase_label_TotalGEFAllocation"
 msgstr ""
 
 #. Default: "Totalimisexpenditures"
 #: content/Project.py
 #: content/BlankCoreMixin.py
+#: content/ProjectGeneralInfromation.py
 msgid "ProjectDatabase_label_TotalIMISExpenditures"
 msgstr ""
 
@@ -1244,16 +1449,21 @@ msgstr ""
 #. Default: "Totalunepallocation"
 #: content/Project.py
 #: content/BlankCoreMixin.py
+#: content/ProjectGeneralInfromation.py
 msgid "ProjectDatabase_label_TotalUNEPAllocation"
 msgstr ""
 
 #. Default: "Tranched"
 #: content/Project.py
+#: content/ProjectGeneralInfromation.py
+#: content/ProjectGeneralInformation.py
 msgid "ProjectDatabase_label_Tranched"
 msgstr ""
 
 #. Default: "Tranchednumber"
 #: content/Project.py
+#: content/ProjectGeneralInfromation.py
+#: content/ProjectGeneralInformation.py
 msgid "ProjectDatabase_label_TranchedNumber"
 msgstr ""
 
@@ -1290,6 +1500,8 @@ msgstr ""
 
 #. Default: "Unepcomponentdescription"
 #: content/Project.py
+#: content/ProjectGeneralInfromation.py
+#: content/ProjectGeneralInformation.py
 msgid "ProjectDatabase_label_UnepComponentDescription"
 msgstr ""
 
@@ -1315,6 +1527,11 @@ msgstr ""
 #. Default: "Mxmcontactspersons"
 #: content/Project.py
 msgid "ProjectDatabase_label_mxmcontactspersons"
+msgstr ""
+
+#. Default: "Title"
+#: content/ProjectGeneralInformation.py
+msgid "ProjectDatabase_label_title"
 msgstr ""
 
 #. Default: "Vocab"
