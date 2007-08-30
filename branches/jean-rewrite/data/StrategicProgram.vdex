@@ -1,0 +1,343 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vdex xmlns="http://www.imsglobal.org/xsd/imsvdex_v1p0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.imsglobal.org/xsd/imsvdex_v1p0 imsvdex_v1p0.xsd http://www.imsglobal.org/xsd/imsmd_rootv1p2p1 imsmd_rootv1p2p1.xsd"
+    language="en" orderSignificant="true" profileType="flatTokenTerms">
+<vocabName>
+  <langstring language="en">YesOrNo</langstring>
+</vocabName>
+
+<term>
+  <termIdentifier>BD-1.1</termIdentifier>
+  <caption>
+    <langstring language="en"> Sustainable financing of PA systems at
+    the national level 
+    </langstring>
+  </caption>
+  <description />
+</term>
+
+<term>
+  <termIdentifier>BD-1.2</termIdentifier>
+  <caption>
+    <langstring language="en">Increasing representation of effectively
+    managed marine PA areas in PA systems
+    </langstring>
+  </caption>
+  <description />
+</term>
+
+<term>
+  <termIdentifier>BD-1.1</termIdentifier>
+  <caption>
+    <langstring language="en">
+    Strengthening terrestrial PA networks 
+    </langstring>
+  </caption>
+  <description />
+</term>
+
+<term>
+  <termIdentifier>BD-2.4</termIdentifier>
+  <caption>
+    <langstring language="en"> Strengthening the policy and regulatory
+    framework for mainstreaming biodiversity
+    </langstring>
+  </caption>
+  <description />
+</term>
+
+<term>
+  <termIdentifier>BD-2.5</termIdentifier>
+  <caption>
+    <langstring language="en"> Fostering markets for biodiversity goods
+    and services
+    </langstring>
+  </caption>
+  <description />
+</term>
+
+<term>
+  <termIdentifier>BD-3.6</termIdentifier>
+  <caption>
+    <langstring language="en">Building capacity for the implementation
+    of the Cartagena Protocol on Biosafety
+    </langstring>
+  </caption>
+  <description />
+</term>
+
+<term>
+  <termIdentifier>BD-3.7</termIdentifier>
+  <caption>
+    <langstring language="en">Prevention, control and management of
+    invasive alien species
+    </langstring>
+  </caption>
+  <description />
+</term>
+
+<term>
+  <termIdentifier>BD-4.8</termIdentifier>
+  <caption>
+    <langstring language="en"> Building capacity on access and benefit
+    sharing
+    </langstring>
+  </caption>
+  <description />
+</term>
+
+<term>
+  <termIdentifier>CC-1.1</termIdentifier>
+  <caption>
+    <langstring language="en"> Promoting energy efficiency in
+    residential and commercial buildings
+    </langstring>
+  </caption>
+  <description />
+</term>
+
+<term>
+  <termIdentifier>CC-2.2</termIdentifier>
+  <caption>
+    <langstring language="en"> Promoting energy efficiency in the
+    industrial sector
+    </langstring>
+  </caption>
+  <description />
+</term>
+
+<term>
+  <termIdentifier>CC-4.3</termIdentifier>
+  <caption>
+    <langstring language="en"> Promoting market approaches for renewable
+    energy
+    </langstring>
+  </caption>
+  <description />
+</term>
+
+<term>
+  <termIdentifier>CC-6.4</termIdentifier>
+  <caption>
+    <langstring language="en"> Promoting sustainable energy production
+    from biomass
+    </langstring>
+  </caption>
+  <description />
+</term>
+
+<term>
+  <termIdentifier>CC-7.5</termIdentifier>
+  <caption>
+    <langstring language="en"> Promoting sustainable innovative systems
+    for urban transport
+    </langstring>
+  </caption>
+  <description />
+</term>
+
+<term>
+  <termIdentifier>LD-1.1</termIdentifier>
+  <caption>
+    <langstring language="en">
+    Supporting sustainable agriculture and rangeland management
+    </langstring>
+  </caption>
+  <description />
+</term>
+
+<term>
+  <termIdentifier>LD-1.2</termIdentifier>
+  <caption>
+    <langstring language="en">
+    Supporting sustainable forest management in production landscapes
+    </langstring>
+  </caption>
+  <description />
+</term>
+
+<term>
+  <termIdentifier>LD-1.3</termIdentifier>
+  <caption>
+    <langstring language="en">
+    Investing in innovative approaches in SLM
+    </langstring>
+  </caption>
+  <description />
+</term>
+
+<term>
+  <termIdentifier>IW-1.1</termIdentifier>
+  <caption>
+    <langstring language="en"> Restoring and sustaining coastal and
+    marine fish stocks and associated biological diversity 
+    </langstring>
+  </caption>
+  <description />
+</term>
+
+<term>
+  <termIdentifier>IW-1.2</termIdentifier>
+  <caption>
+    <langstring language="en"> Reducing nutrient over-enrichment and
+    oxygen depletion from land-based pollution of coastal waters in LMEs
+    consistent with the GPA
+    </langstring>
+  </caption>
+  <description />
+</term>
+
+<term>
+  <termIdentifier>IW-1.3</termIdentifier>
+  <caption>
+    <langstring language="en"> Balancing overuse and conflicting uses of
+    water resources in transboundary surface and groundwater basins
+    </langstring>
+  </caption>
+  <description />
+</term>
+
+<term>
+  <termIdentifier>IW-1.4</termIdentifier>
+  <caption>
+    <langstring language="en">Adapting to melting ice in high-altitude
+    basins and polar systems
+    </langstring>
+  </caption>
+  <description />
+</term>
+
+<term>
+  <termIdentifier>POP-1.1</termIdentifier>
+  <caption>
+    <langstring language="en">Strengthening capacity for NIP development
+    and implementation
+    </langstring>
+  </caption>
+  <description />
+</term>
+
+<term>
+  <termIdentifier>POP-1.2</termIdentifier>
+  <caption>
+    <langstring language="en">Partnering in investments for NIP
+    implementation
+    </langstring>
+  </caption>
+  <description />
+</term>
+
+<term>
+  <termIdentifier>POP-1.3</termIdentifier>
+  <caption>
+    <langstring language="en">Generating and disseminating knowledge to
+    address future challenges in implementing the Stockholm Convention
+    </langstring>
+  </caption>
+  <description />
+</term>
+
+<term>
+  <termIdentifier>ODS-1.1</termIdentifier>
+  <caption>
+    <langstring language="en">Phasing out HCFC and strengthening of
+    capacities and institutions
+    </langstring>
+  </caption>
+  <description />
+</term>
+
+<term>
+  <termIdentifier>SFM-1.1</termIdentifier>
+  <caption>
+    <langstring language="en">Sustainable financing of protected area
+    systems at national level 
+    </langstring>
+  </caption>
+  <description />
+</term>
+
+<term>
+  <termIdentifier>SFM-1.2</termIdentifier>
+  <caption>
+    <langstring language="en">Strengthening terrestrial protected area
+    networks
+    </langstring>
+  </caption>
+  <description />
+</term>
+
+<term>
+  <termIdentifier>SFM-1.3</termIdentifier>
+  <caption>
+    <langstring language="en">New: Forest conservation as a means to
+    protect carbon stocks and avoid CO2 emissions (cross-cutting
+    BD/CC/LD)
+    </langstring>
+  </caption>
+  <description />
+</term>
+
+<term>
+  <termIdentifier>SFM-1.4</termIdentifier>
+  <caption>
+    <langstring language="en">Strengthening the policy and regulatory
+    framework for mainstreaming biodiversity
+    </langstring>
+  </caption>
+  <description />
+</term>
+
+<term>
+  <termIdentifier>SFM-1.5</termIdentifier>
+  <caption>
+    <langstring language="en">Fostering markets for biodiversity goods
+    and services
+    </langstring>
+  </caption>
+  <description />
+</term>
+
+<term>
+  <termIdentifier>SFM-1.6</termIdentifier>
+  <caption>
+    <langstring language="en">New: Promoting sustainable energy
+    production from biomass (cross-cutting CC#4/BD/LD)
+    </langstring>
+  </caption>
+  <description />
+</term>
+
+<term>
+  <termIdentifier>SFM-1.7</termIdentifier>
+  <caption>
+    <langstring language="en">Supporting sustainable forest management
+    in production landscapes
+    </langstring>
+  </caption>
+  <description />
+</term>
+
+<term>
+  <termIdentifier>SCM-1.1</termIdentifier>
+  <caption>
+    <langstring language="en">Integrating sound chemicals management in
+    GEF projects
+    </langstring>
+  </caption>
+  <description />
+</term>
+
+<term>
+  <termIdentifier>SCM-1.2</termIdentifier>
+  <caption>
+    <langstring language="en">Articulating the chemicals-related
+    interventions supported by the GEF within countries' frameworks for
+    chemicals management
+    </langstring>
+  </caption>
+  <description />
+</term>
+
+</vdex>
