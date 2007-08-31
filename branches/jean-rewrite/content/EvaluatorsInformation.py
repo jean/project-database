@@ -47,32 +47,30 @@ from Products.FinanceFields.Money import Money
 
 schema = Schema((
 
-    ReferenceField(
+    DataGridField(
         name='TeamLeader',
-        widget=ReferenceField._properties['widget'](
-            label="Team Leader",
-            description="Name of evaluation team leader",
+        widget=DataGridField._properties['widget'](
+            label="Team Lead",
+            description="Name of Evaluation Team Leader",
+            columns={'team_leader':Column('Team Leader')},
             label_msgid='ProjectDatabase_label_TeamLeader',
             description_msgid='ProjectDatabase_help_TeamLeader',
             i18n_domain='ProjectDatabase',
         ),
-        allowed_types=('mxmContactsPerson',),
-        multiValued=0,
-        relationship="Evaluators_TeamLeader"
+        columns=('team_leader',)
     ),
 
-    ReferenceField(
+    DataGridField(
         name='TeamMembers',
-        widget=ReferenceField._properties['widget'](
+        widget=DataGridField._properties['widget'](
             label="Team Members",
-            description="Names of other evaluation team members",
+            description="Names of other evaluation Team Members",
+            columns={'team_member':Column('Team Member')},
             label_msgid='ProjectDatabase_label_TeamMembers',
             description_msgid='ProjectDatabase_help_TeamMembers',
             i18n_domain='ProjectDatabase',
         ),
-        allowed_types=('mxmContactsPerson',),
-        multiValued=1,
-        relationship="Evaluators_TeamMembers"
+        columns=('team_member',)
     ),
 
 ),

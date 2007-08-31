@@ -48,6 +48,18 @@ from Products.FinanceFields.Money import Money
 
 schema = Schema((
 
+    ComputedField(
+        name='ProjectTitle',
+        widget=ComputedField._properties['widget'](
+            label="Joint Evaluation Agency Contact",
+            description="Name of evaluation officer in the other agency",
+            label_msgid='ProjectDatabase_label_ProjectTitle',
+            description_msgid='ProjectDatabase_help_ProjectTitle',
+            i18n_domain='ProjectDatabase',
+        ),
+        relationship="EvaluationAgencyContact"
+    ),
+
     StringField(
         name='IMISNumber',
         dummy="IMIS Number",
@@ -60,18 +72,20 @@ schema = Schema((
 
     ReferenceField(
         name='CurrentTaskManager',
-        dummy="Current Task Manager",
+        dummy="""Current Task Manager
+        python:('mxmContacstPerson',)""",
         widget=ReferenceField._properties['widget'](
-            label='Currenttaskmanager',
+            label="Current Task Manager",
             label_msgid='ProjectDatabase_label_CurrentTaskManager',
             i18n_domain='ProjectDatabase',
         ),
-        allowed_types=('mxmContacstPerson',),
+        allowed_types=('mxmContactsPerson',),
         relationship="MandE_TaskManager"
     ),
 
     ReferenceField(
         name='FundManagementOfficer',
+        dummy=('mxmContactsPerson',),
         widget=ReferenceField._properties['widget'](
             label="Fund Manager Officer",
             label_msgid='ProjectDatabase_label_FundManagementOfficer',
@@ -144,10 +158,10 @@ schema = Schema((
     ),
 
     StringField(
-        name='JointEvaluation',
+        name='JointImplementation',
         widget=SelectionWidget(
-            label="Joint Evaluation",
-            label_msgid='ProjectDatabase_label_JointEvaluation',
+            label="Joint Implementation",
+            label_msgid='ProjectDatabase_label_JointImplementation',
             i18n_domain='ProjectDatabase',
         ),
         vocabulary=NamedVocabulary("""YesOrNo""")
@@ -165,61 +179,38 @@ schema = Schema((
     ),
 
     StringField(
-        name='OtherAgency',
+        name='LeadExecutingAgency',
         widget=StringWidget(
-            label="Other Agency",
-            label_msgid='ProjectDatabase_label_OtherAgency',
+            label="Lead Executing Agency",
+            label_msgid='ProjectDatabase_label_LeadExecutingAgency',
             i18n_domain='ProjectDatabase',
         )
     ),
 
-    ReferenceField(
-        name='JointEvaluationAgencyContact',
-        widget=ReferenceField._properties['widget'](
-            label="Joint Evaluation Agency Contact",
-            description="Name of evaluation officer in the other agency",
-            label_msgid='ProjectDatabase_label_JointEvaluationAgencyContact',
-            description_msgid='ProjectDatabase_help_JointEvaluationAgencyContact',
-            i18n_domain='ProjectDatabase',
-        ),
-        allowed_types=('mxmContactsPerson',),
-        relationship="EvaluationAgencyContact"
-    ),
-
     StringField(
-        name='MidtermReviewPlanned',
+        name='MidtermReview',
         widget=SelectionWidget(
             label="Mid-Term Review Planned",
-            label_msgid='ProjectDatabase_label_MidtermReviewPlanned',
+            label_msgid='ProjectDatabase_label_MidtermReview',
             i18n_domain='ProjectDatabase',
         ),
-        vocabulary=NamedVocabulary("""YesOrNo""")
+        vocabulary=NamedVocabulary("""ReviewEvaluation""")
     ),
 
-    MoneyField(
-        name='MidtermReviewBudget',
-        widget=MoneyField._properties['widget'](
-            label="Mid-Term Review Budget",
-            label_msgid='ProjectDatabase_label_MidtermReviewBudget',
+    DateTimeField(
+        name='PlannedDate',
+        widget=CalendarWidget(
+            label="Planned Date",
+            label_msgid='ProjectDatabase_label_PlannedDate',
             i18n_domain='ProjectDatabase',
         )
     ),
 
-    StringField(
-        name='MidtermEvaluationPlanned',
-        widget=SelectionWidget(
-            label="Mid-Term Evaluation Planned",
-            label_msgid='ProjectDatabase_label_MidtermEvaluationPlanned',
-            i18n_domain='ProjectDatabase',
-        ),
-        vocabulary=NamedVocabulary("""YesOrNo""")
-    ),
-
     MoneyField(
-        name='MidtermEvaluationBudget',
+        name='Budget',
         widget=MoneyField._properties['widget'](
-            label="Mid-Term Evaluation Budget",
-            label_msgid='ProjectDatabase_label_MidtermEvaluationBudget',
+            label="Budget",
+            label_msgid='ProjectDatabase_label_Budget',
             i18n_domain='ProjectDatabase',
         )
     ),
@@ -438,6 +429,12 @@ class MonitoringAndEvaluation(BaseFolder):
             me.invokeFactory('EvaluatorsInformationFolder', 'evaluators_information_folder')
             me['evaluators_information_folder'].setTitle('Evaluators Information')
         BaseFolder.manage_afterAdd(self, item, container)
+
+    security.declarePublic('getProjectTitle')
+    def getProjectTitle(self):
+        """
+        """
+        return self.getProject().Title()
 
 
 registerType(MonitoringAndEvaluation, PROJECTNAME)

@@ -219,6 +219,7 @@ class OtherProjectRatings(BaseContent):
 
     # Methods
 
+
 registerType(OtherProjectRatings, PROJECTNAME)
 # end of class OtherProjectRatings
 

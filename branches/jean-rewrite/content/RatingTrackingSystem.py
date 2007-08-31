@@ -191,7 +191,7 @@ class RatingTrackingSystem(BaseFolder):
         """
         """
 
-        if 'other_project_ratings' not in self.objectIds():
+        if 'other_project_ratings_folder' not in self.objectIds():
             self.invokeFactory('OtherProjectRatingsFolder', 'other_project_ratings_folder')
             self['other_project_ratings_folder'].setTitle('Other Project Ratings')
         if 'pir_ratings' not in self.objectIds():

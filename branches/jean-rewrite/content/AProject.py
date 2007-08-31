@@ -77,7 +77,7 @@ class AProject(BaseFolder):
 
     meta_type = 'AProject'
     portal_type = 'AProject'
-    allowed_content_types = ['ATFolder', 'Financials', 'MonitoringAndEvaluation', 'MilestoneFolder', 'ProjectGeneralInformation']
+    allowed_content_types = ['ATFolder', 'MonitoringAndEvaluation', 'MilestoneFolder', 'ProjectGeneralInformation', 'FMIFolder']
     filter_content_types = 1
     global_allow = 1
     #content_icon = 'AProject.gif'
@@ -154,9 +154,9 @@ class AProject(BaseFolder):
     def manage_afterAdd(self, item, container):
         """
         """
-        if 'financials' not in self.objectIds():
-            self.invokeFactory('Financials', 'financials')
-            self['financials'].setTitle('Financial Management Information')
+#        if 'financials' not in self.objectIds():
+#            self.invokeFactory('Financials', 'financials')
+#            self['financials'].setTitle('Financial Management Information')
 #        if 'tranchedfolder' not in self.objectIds():
 #            self.invokeFactory('TranchedFolder', 'tranchedfolder')
 #            self['tranchedfolder'].setTitle('Tranched Projects')
@@ -166,25 +166,31 @@ class AProject(BaseFolder):
 #        if 'addonfolder' not in self.objectIds():
 #            self.invokeFactory('AddOnFolder', 'addonfolder')
 #            self['addonfolder'].setTitle('Add On Projects')
+        if 'fmi_folder' not in self.objectIds():
+            self.invokeFactory('FMIFolder', 'fmi_folder')
+            self['fmi_folder'].setTitle('Financial Management Information Folder')
         if 'monitoring_and_evaluation' not in self.objectIds():
             self.invokeFactory('MonitoringAndEvaluation', 'monitoring_and_evaluation')
             self['monitoring_and_evaluation'].setTitle('Monitoring and Evaluation')
         if 'project_general_information' not in self.objectIds():
-            self.invokeFactory('ProjectGeneralInformation', 'project-general-information')
+            self.invokeFactory('ProjectGeneralInformation', 'project_general_information')
             self['project_general_information'].setTitle('Project General Information')
         if 'milestonesfolder' not in self.objectIds():
             self.invokeFactory('MilestoneFolder', 'milestonesfolder')
             self['milestonesfolder'].setTitle('Milestones Folder')
         BaseFolder.manage_afterAdd(self, item, container)
 #        if 'monitoring_and_evaluation' in self.objectIds():
-    # Manually created methods
-
     security.declarePublic('getProjectGeneralInformation')
-    def getProject(self):
+    def getProjectGeneralInformation(self):
         """
         """
         return self['project-general-information']
 
+    security.declarePublic('getAProject')
+    def getAProject(self):
+        """
+        """
+        return self
 
 
 registerType(AProject, PROJECTNAME)

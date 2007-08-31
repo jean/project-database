@@ -83,16 +83,15 @@ schema = Schema((
 
     copied_fields['ProjectCoordinator'],
         copied_fields['LeadExecutingAgency'],
-        ReferenceField(
+        StringField(
         name='OtherLeadExecutingAgency',
-        dummy="Financials.schema",
-        widget=ReferenceField._properties['widget'](
+        dummy="""Financials.schema
+        LeadAgency""",
+        widget=SelectionWidget(
             label="Other Project Executing Partners",
             label_msgid='ProjectDatabase_label_OtherLeadExecutingAgency',
             i18n_domain='ProjectDatabase',
         ),
-        allowed_types=('Agency',),
-        schemata="Agency",
         relationship="SubProject_OtherLeadExecutingAgency"
     ),
 

@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #
-# File: OtherProjectRatingsFolder.py
+# File: MilestoneFolder.py
 #
 # Copyright (c) 2007 by []
 # Generator: ArchGenXML Version 1.5.2
@@ -53,36 +53,36 @@ schema = Schema((
 ##code-section after-local-schema #fill in your manual code here
 ##/code-section after-local-schema
 
-OtherProjectRatingsFolder_schema = BaseFolderSchema.copy() + \
+MilestoneFolder_schema = BaseFolderSchema.copy() + \
     schema.copy()
 
 ##code-section after-schema #fill in your manual code here
 ##/code-section after-schema
 
-class OtherProjectRatingsFolder(BaseFolder):
+class MilestoneFolder(BaseFolder):
     """
     """
     security = ClassSecurityInfo()
     __implements__ = (getattr(BaseFolder,'__implements__',()),)
 
     # This name appears in the 'add' box
-    archetype_name = 'OtherProjectRatingsFolder'
+    archetype_name = 'MilestoneFolder'
 
-    meta_type = 'OtherProjectRatingsFolder'
-    portal_type = 'OtherProjectRatingsFolder'
-    allowed_content_types = ['OtherProjectRatings']
+    meta_type = 'MilestoneFolder'
+    portal_type = 'MilestoneFolder'
+    allowed_content_types = ['Milestone']
     filter_content_types = 1
     global_allow = 0
-    #content_icon = 'OtherProjectRatingsFolder.gif'
+    #content_icon = 'MilestoneFolder.gif'
     immediate_view = 'base_view'
     default_view = 'base_view'
     suppl_views = ()
-    typeDescription = "OtherProjectRatingsFolder"
-    typeDescMsgId = 'description_edit_otherprojectratingsfolder'
+    typeDescription = "MilestoneFolder"
+    typeDescMsgId = 'description_edit_milestonefolder'
 
     _at_rename_after_creation = True
 
-    schema = OtherProjectRatingsFolder_schema
+    schema = MilestoneFolder_schema
 
     ##code-section class-header #fill in your manual code here
     ##/code-section class-header
@@ -90,8 +90,8 @@ class OtherProjectRatingsFolder(BaseFolder):
     # Methods
 
 
-registerType(OtherProjectRatingsFolder, PROJECTNAME)
-# end of class OtherProjectRatingsFolder
+registerType(MilestoneFolder, PROJECTNAME)
+# end of class MilestoneFolder
 
 ##code-section module-footer #fill in your manual code here
 ##/code-section module-footer
