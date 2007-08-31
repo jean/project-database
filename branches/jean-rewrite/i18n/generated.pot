@@ -92,6 +92,11 @@ msgstr ""
 msgid "ProjectDatabase_help_ProjectResults"
 msgstr ""
 
+#. Default: "Name of evaluation officer in the other agency"
+#: content/MonitoringAndEvaluation.py
+msgid "ProjectDatabase_help_ProjectTitle"
+msgstr ""
+
 #. Default: "Refers to significant changes within specific budget lines as compared to the originally approved budget"
 #: content/RatingTrackingSystem.py
 #: content/EvaluationMilestone.py
@@ -206,6 +211,11 @@ msgstr ""
 #. Default: "Auditedcertificateofaccounts"
 #: content/DocumentLinks.py
 msgid "ProjectDatabase_label_AuditedCertificateOfAccounts"
+msgstr ""
+
+#. Default: "Budget"
+#: content/MonitoringAndEvaluation.py
+msgid "ProjectDatabase_label_Budget"
 msgstr ""
 
 #. Default: "CEO Approval Date"
@@ -612,6 +622,7 @@ msgstr ""
 
 #. Default: "Joint Implementation"
 #: content/ProjectGeneralInformation.py
+#: content/MonitoringAndEvaluation.py
 msgid "ProjectDatabase_label_JointImplementation"
 msgstr ""
 
@@ -642,6 +653,7 @@ msgstr ""
 #. Default: "Leadexecutingagency"
 #: content/SubProject.py
 #: content/Financials.py
+#: content/MonitoringAndEvaluation.py
 msgid "ProjectDatabase_label_LeadExecutingAgency"
 msgstr ""
 
@@ -713,6 +725,7 @@ msgstr ""
 
 #. Default: "Midtermreview"
 #: content/DocumentLinks.py
+#: content/MonitoringAndEvaluation.py
 msgid "ProjectDatabase_label_MidtermReview"
 msgstr ""
 
@@ -944,6 +957,7 @@ msgstr ""
 
 #. Default: "Planned Date"
 #: content/EvaluationMilestone.py
+#: content/MonitoringAndEvaluation.py
 msgid "ProjectDatabase_label_PlannedDate"
 msgstr ""
 
@@ -1232,6 +1246,11 @@ msgstr ""
 #: content/ProjectDatabase.py
 #: content/ProjectGeneralInfromation.py
 msgid "ProjectDatabase_label_StrategicPriority"
+msgstr ""
+
+#. Default: "Strategic Program"
+#: content/ProjectGeneralInformation.py
+msgid "ProjectDatabase_label_StrategicProgram"
 msgstr ""
 
 #. Default: "Subprojectcofincashactual"

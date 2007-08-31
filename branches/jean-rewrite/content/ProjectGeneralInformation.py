@@ -48,6 +48,7 @@ from Products.CMFCore.utils import getToolByName
 from Products.FinanceFields.Money import Money
 
 ##code-section module-header #fill in your manual code here
+from Products.ProjectDatabase.content.SubProjectFolder import SubProjectFolder
 ##/code-section module-header
 
 schema = Schema((
@@ -940,8 +941,10 @@ class ProjectGeneralInformation(BaseFolder, CurrencyMixin):
         #    self.invokeFactory('AddOnFolder', 'addonfolder')
         #    self['addonfolder'].setTitle('Add On Projects')
         if 'subprojectsfolder' not in self.objectIds():
-            self.invokeFactory('SubProjectFolder', 'subprojectsfolder')
-            self['subprojectsfolder'].setTitle('SubProjects')
+            self._setObject('subprojectsfolder', SubProjectFolder('subprojectsfolder'))
+            self.edit(title='SubProjects')
+            #self.invokeFactory('SubProjectFolder', 'subprojectsfolder')
+            #self['subprojectsfolder'].setTitle('SubProjects')
 
     security.declarePublic('displayContentsTab')
     def displayContentsTab(self):
