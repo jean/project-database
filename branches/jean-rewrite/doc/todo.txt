@@ -1,5 +1,8 @@
 - (Documentlinks schemata) Document links should be upload file.
 
+  Make vdex vocab for Agencies
+ Done
+
 Project General Information:
 
  - Remove title
@@ -19,6 +22,7 @@ Project General Information:
  - Region - make it an InOut list, should be in default schemata
   Done
  * Country - move to default schemata, make it an InOut list
+  Done
  - OtherImplementingAgency (Label: Other GEF Agency(ies))
    change to a list (not a reference), and InOut widget
   Done
@@ -109,11 +113,15 @@ Monitoring and Evaluation"
  - View Information for  Planning Evaluation Work on M&E page
  - Replace Midterm review planned and budget and midterm evaluation*
    with radio button Midterm Review or Midterm Evaluation
+  Done
  - Add field planned date (calendar widget)
+  Done
  - Add field Budget (MoneyField)
- 
+  Done
+  
  Information on evaluators:
   - Allow inplace addition of contacts for both fields
+   Done
 
  Rating Tracking System
   - Remove "project-at-risk self-ratings"
