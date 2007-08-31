@@ -189,6 +189,16 @@ schema = Schema((
     ),
 
     StringField(
+        name='StrategicProgram',
+        widget=SelectionWidget(
+            label="Strategic Program",
+            label_msgid='ProjectDatabase_label_StrategicProgram',
+            i18n_domain='ProjectDatabase',
+        ),
+        vocabulary=NamedVocabulary("""StrategicProgram""")
+    ),
+
+    StringField(
         name='ProjectType',
         index="FieldIndex:brains",
         widget=SelectionWidget(
@@ -247,19 +257,20 @@ schema = Schema((
     LinesField(
         name='Country',
         index="FieldIndex:brains",
-        widget=MultiSelectionWidget(
+        widget=InAndOutWidget
+        (
             label='Country',
             label_msgid='ProjectDatabase_label_Country',
             i18n_domain='ProjectDatabase',
         ),
-        schemata="Location",
         multiValued=1,
         vocabulary=NamedVocabulary("""Country""")
     ),
 
     LinesField(
         name='OtherNonGEFEligibleCountries',
-        widget=MultiSelectionWidget(
+        widget=InAndOutWidget
+        (
             label="Other Non-GEF Eligible Project Participating Countries",
             label_msgid='ProjectDatabase_label_OtherNonGEFEligibleCountries',
             i18n_domain='ProjectDatabase',
@@ -280,15 +291,16 @@ schema = Schema((
 
     ReferenceField(
         name='LeadAgencyContact',
-        index="FieldIndex:brains",
+        dummy=('mxmContactsPerson',),
         widget=ReferenceField._properties['widget'](
             label="Lead GEF Agency Contact",
             label_msgid='ProjectDatabase_label_LeadAgencyContact',
             i18n_domain='ProjectDatabase',
         ),
-        allowed_types=('mxmContactsPerson',),
         multiValued=0,
-        relationship="Project_LeadAgency"
+        relationship="Project_LeadAgency",
+        index="FieldIndex:brains",
+        allowed_types=('mxmContactsPerson',)
     ),
 
     StringField(
@@ -371,25 +383,25 @@ schema = Schema((
 
     ReferenceField(
         name='CurrentTaskManager',
+        dummy=('mxmContactsPerson',),
         widget=ReferenceField._properties['widget'](
             label="Current Task Manager",
             label_msgid='ProjectDatabase_label_CurrentTaskManager',
             i18n_domain='ProjectDatabase',
         ),
         allowed_types=('mxmContactsPerson',),
-        schemata="Contacts",
         relationship="Project_CurrentTaskManager"
     ),
 
     ReferenceField(
         name='PreviousTaskManager',
+        dummy=('mxmContactsPerson',),
         widget=ReferenceField._properties['widget'](
             label="Previous Task Manager",
             label_msgid='ProjectDatabase_label_PreviousTaskManager',
             i18n_domain='ProjectDatabase',
         ),
         allowed_types=('mxmContactsPerson',),
-        schemata="Contacts",
         multiValued=0,
         relationship="Project_PreviousTaskManager"
     ),
@@ -421,7 +433,6 @@ schema = Schema((
             i18n_domain='ProjectDatabase',
         ),
         allowed_types=('mxmContactsPerson',),
-        schemata="Contacts",
         multiValued=0,
         relationship="Project_ProjectCoordinator"
     ),
@@ -445,8 +456,7 @@ schema = Schema((
             label="Leveraged Financing Amount",
             label_msgid='ProjectDatabase_label_LeveragedFinancingAmount',
             i18n_domain='ProjectDatabase',
-        ),
-        schemata="Financing"
+        )
     ),
 
     TextField(
@@ -459,9 +469,8 @@ schema = Schema((
             description_msgid='ProjectDatabase_help_LeveragedFinancingRemark',
             i18n_domain='ProjectDatabase',
         ),
-        schemata="Financing",
-        vocabulary=NamedVocabulary("""LeadAgency"""),
-        default_output_type='text/html'
+        default_output_type='text/html',
+        vocabulary=NamedVocabulary("""LeadAgency""")
     ),
 
     ComputedField(
@@ -670,7 +679,7 @@ class ProjectGeneralInformation(BaseFolder, CurrencyMixin):
 
     meta_type = 'ProjectGeneralInformation'
     portal_type = 'ProjectGeneralInformation'
-    allowed_content_types = ['ProjectImplementation', 'ProjectExecutingPartner', 'AddOnFolder', 'PhasedFolder', 'TranchedFolder']
+    allowed_content_types = ['ProjectImplementation', 'ProjectExecutingPartner', 'SubProjectFolder']
     filter_content_types = 1
     global_allow = 0
     #content_icon = 'ProjectGeneralInformation.gif'
@@ -726,8 +735,10 @@ class ProjectGeneralInformation(BaseFolder, CurrencyMixin):
     def getTotalGEFAllocation(self):
         """
         """
-        fmi_cash_objs = self.contentValues('Financials')
-        subproject_objs = self.contentValues('SubProject')
+        #fmi_cash_objs = self.contentValues('Financials')
+        #subproject_objs = self.contentValues('SubProject')
+        fmi_cash_objs = self.getAProject()['fmi_folder'].contentValues('Financials')
+        subproject_objs = self['subprojectsfolder'].contentValues('SubProject')
         total = self.getZeroMoneyInstance()
         for fmi_obj in fmi_cash_objs:
             if fmi_obj.getGEFProjectAllocation():
@@ -741,7 +752,8 @@ class ProjectGeneralInformation(BaseFolder, CurrencyMixin):
     def getTotalUNEPAllocation(self):
         """
         """
-        fmi_cash_objs = self.contentValues('Financials')
+        #fmi_cash_objs = self.contentValues('Financials')
+        fmi_cash_objs = self.getAProject()['fmi_folder'].contentValues('Financials')
         total = self.getZeroMoneyInstance()
         for fmi_obj in fmi_cash_objs:
             if fmi_obj.getCashUNEPAllocation():
@@ -752,8 +764,10 @@ class ProjectGeneralInformation(BaseFolder, CurrencyMixin):
     def getTotalCofinancingPlanned(self):
         """
         """
-        fmi_cash_objs = self.contentValues('Financials')
-        subproject_objs = self.contentValues('SubProject')
+        #fmi_cash_objs = self.contentValues('Financials')
+        #subproject_objs = self.contentValues('SubProject')
+        fmi_cash_objs = self.getAProject()['fmi_folder'].contentValues('Financials')
+        subproject_objs = self['subprojectsfolder'].contentValues('SubProject')
         total = self.getZeroMoneyInstance()
         for fmi_obj in fmi_cash_objs:
             if fmi_obj.getSumCofinCashPlanned():
@@ -771,8 +785,10 @@ class ProjectGeneralInformation(BaseFolder, CurrencyMixin):
     def getTotalCofinancingActual(self):
         """
         """
-        fmi_cash_objs = self.contentValues('Financials')
-        subproject_objs = self.contentValues('SubProject')
+        #fmi_cash_objs = self.contentValues('Financials')
+        #subproject_objs = self.contentValues('SubProject')
+        fmi_cash_objs = self.getAProject()['fmi_folder'].contentValues('Financials')
+        subproject_objs = self['subprojectsfolder'].contentValues('SubProject')
         total = self.getZeroMoneyInstance()
         for fmi_obj in fmi_cash_objs:
             if fmi_obj.getSumCofinCashActual():
@@ -790,8 +806,10 @@ class ProjectGeneralInformation(BaseFolder, CurrencyMixin):
     def getTotalCashDisbursements(self):
         """
         """
-        fmi_cash_objs = self.contentValues('Financials')
-        subproject_objs = self.contentValues('SubProject')
+        #fmi_cash_objs = self.contentValues('Financials')
+        #subproject_objs = self.contentValues('SubProject')
+        fmi_cash_objs = self.getAProject()['fmi_folder'].contentValues('Financials')
+        subproject_objs = self['subprojectsfolder'].contentValues('SubProject')
         total = self.getZeroMoneyInstance()
         for fmi_obj in fmi_cash_objs:
             if fmi_obj.getSumCashDisbursements():
@@ -805,8 +823,10 @@ class ProjectGeneralInformation(BaseFolder, CurrencyMixin):
     def getTotalIMISExpenditures(self):
         """
         """
-        fmi_cash_objs = self.contentValues('Financials')
-        subproject_objs = self.contentValues('SubProject')
+        #fmi_cash_objs = self.contentValues('Financials')
+        #subproject_objs = self.contentValues('SubProject')
+        fmi_cash_objs = self.getAProject()['fmi_folder'].contentValues('Financials')
+        subproject_objs = self['subprojectsfolder'].contentValues('SubProject')
         total = self.getZeroMoneyInstance()
         for fmi_obj in fmi_cash_objs:
             if fmi_obj.getSumIMISExpenditures():
@@ -820,7 +840,8 @@ class ProjectGeneralInformation(BaseFolder, CurrencyMixin):
     def getPDFAStatus(self):
         """
         """
-        fmi_objs = self.contentValues('Financials')
+        #fmi_objs = self.contentValues('Financials')
+        fmi_objs = self.getAProject()['fmi_folder'].contentValues('Financials')
         status = ''
         for fmi_obj in fmi_objs:
             if fmi_obj.getFinanceCategory() == 'PDF A':
@@ -831,7 +852,8 @@ class ProjectGeneralInformation(BaseFolder, CurrencyMixin):
     def getPDFBStatus(self):
         """
         """
-        fmi_objs = self.contentValues('Financials')
+        #fmi_objs = self.contentValues('Financials')
+        fmi_objs = self.getAProject()['fmi_folder'].contentValues('Financials')
         status = ''
         for fmi_obj in fmi_objs:
             if fmi_obj.getFinanceCategory() == 'PDF B':
@@ -842,7 +864,8 @@ class ProjectGeneralInformation(BaseFolder, CurrencyMixin):
     def getMSPStatus(self):
         """
         """
-        fmi_objs = self.contentValues('Financials')
+        #fmi_objs = self.contentValues('Financials')
+        fmi_objs = self.getAProject()['fmi_folder'].contentValues('Financials')
         status = ''
         for fmi_obj in fmi_objs:
             if fmi_obj.getFinanceCategory() == 'MSP':
@@ -853,7 +876,8 @@ class ProjectGeneralInformation(BaseFolder, CurrencyMixin):
     def getFSPStatus(self):
         """
         """
-        fmi_objs = self.contentValues('Financials')
+        #fmi_objs = self.contentValues('Financials')
+        fmi_objs = self.getAProject()['fmi_folder'].contentValues('Financials')
         status = ''
         for fmi_obj in fmi_objs:
             if fmi_obj.getFinanceCategory() == 'FSP':
@@ -864,6 +888,9 @@ class ProjectGeneralInformation(BaseFolder, CurrencyMixin):
     def getProjectTitle(self):
         """ Code copied from previous project; dunno what it means...
         """
+
+        return self.getAProject().Title()
+
         start_date_val = ''
         start_date_val_comp = ''
         r_str = ''
@@ -903,15 +930,18 @@ class ProjectGeneralInformation(BaseFolder, CurrencyMixin):
     def manage_afterAdd(self, item, container):
         """
         """
-        if 'tranchedfolder' not in self.objectIds():
-            self.invokeFactory('TranchedFolder', 'tranchedfolder')
-            self['tranchedfolder'].setTitle('Tranched Projects')
-        if 'phasedfolder' not in self.objectIds():
-            self.invokeFactory('PhasedFolder', 'phasedfolder')
-            self['phasedfolder'].setTitle('Phased Projects')
-        if 'addonfolder' not in self.objectIds():
-            self.invokeFactory('AddOnFolder', 'addonfolder')
-            self['addonfolder'].setTitle('Add On Projects')
+        #if 'tranchedfolder' not in self.objectIds():
+        #    self.invokeFactory('TranchedFolder', 'tranchedfolder')
+        #    self['tranchedfolder'].setTitle('Tranched Projects')
+        #if 'phasedfolder' not in self.objectIds():
+        #    self.invokeFactory('PhasedFolder', 'phasedfolder')
+        #    self['phasedfolder'].setTitle('Phased Projects')
+        #if 'addonfolder' not in self.objectIds():
+        #    self.invokeFactory('AddOnFolder', 'addonfolder')
+        #    self['addonfolder'].setTitle('Add On Projects')
+        if 'subprojectsfolder' not in self.objectIds():
+            self.invokeFactory('SubProjectFolder', 'subprojectsfolder')
+            self['subprojectsfolder'].setTitle('SubProjects')
 
     security.declarePublic('displayContentsTab')
     def displayContentsTab(self):

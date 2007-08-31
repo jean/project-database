@@ -127,41 +127,40 @@ schema = Schema((
         )
     ),
 
-    ReferenceField(
+    StringField(
         name='LeadExecutingAgency',
-        widget=ReferenceField._properties['widget'](
+        widget=SelectionWidget(
             label="Lead Executing Agency",
             label_msgid='ProjectDatabase_label_LeadExecutingAgency',
             i18n_domain='ProjectDatabase',
         ),
-        allowed_types=('Agency',),
-        multiValued=0,
+        vocabulary=NamedVocabulary("""LeadAgency"""),
         relationship="Financials_LeadExecutingAgency"
     ),
 
-    ReferenceField(
+    StringField(
         name='OtherLeadExecutingAgency',
-        widget=ReferenceField._properties['widget'](
+        widget=SelectionWidget(
             label="Other Project Executing Partners",
             label_msgid='ProjectDatabase_label_OtherLeadExecutingAgency',
             i18n_domain='ProjectDatabase',
         ),
-        allowed_types=('Agency',),
-        multiValued=0,
+        vocabulary=NamedVocabulary("""LeadAgency"""),
         relationship="Financials_OtherLeadExecutingAgency"
     ),
 
     ReferenceField(
         name='FundManagementOfficer',
-        index="FieldIndex:brains",
+        dummy=('mxmContactsPerson',),
         widget=ReferenceField._properties['widget'](
             label="Fund Management Officer",
             label_msgid='ProjectDatabase_label_FundManagementOfficer',
             i18n_domain='ProjectDatabase',
         ),
-        allowed_types=('mxmContactsPerson',),
         multiValued=0,
-        relationship="Financials_FundManagementOfficer"
+        relationship="Financials_FundManagementOfficer",
+        index="FieldIndex:brains",
+        allowed_types=('mxmContactsPerson',)
     ),
 
     TextField(

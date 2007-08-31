@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #
-# File: OtherProjectRatingsFolder.py
+# File: FMIFolder.py
 #
 # Copyright (c) 2007 by []
 # Generator: ArchGenXML Version 1.5.2
@@ -53,36 +53,51 @@ schema = Schema((
 ##code-section after-local-schema #fill in your manual code here
 ##/code-section after-local-schema
 
-OtherProjectRatingsFolder_schema = BaseFolderSchema.copy() + \
+FMIFolder_schema = BaseFolderSchema.copy() + \
     schema.copy()
 
 ##code-section after-schema #fill in your manual code here
 ##/code-section after-schema
 
-class OtherProjectRatingsFolder(BaseFolder):
+class FMIFolder(BaseFolder):
     """
     """
     security = ClassSecurityInfo()
     __implements__ = (getattr(BaseFolder,'__implements__',()),)
 
     # This name appears in the 'add' box
-    archetype_name = 'OtherProjectRatingsFolder'
+    archetype_name = 'FMIFolder'
 
-    meta_type = 'OtherProjectRatingsFolder'
-    portal_type = 'OtherProjectRatingsFolder'
-    allowed_content_types = ['OtherProjectRatings']
+    meta_type = 'FMIFolder'
+    portal_type = 'FMIFolder'
+    allowed_content_types = ['Financials']
     filter_content_types = 1
     global_allow = 0
-    #content_icon = 'OtherProjectRatingsFolder.gif'
+    #content_icon = 'FMIFolder.gif'
     immediate_view = 'base_view'
     default_view = 'base_view'
     suppl_views = ()
-    typeDescription = "OtherProjectRatingsFolder"
-    typeDescMsgId = 'description_edit_otherprojectratingsfolder'
+    typeDescription = "FMIFolder"
+    typeDescMsgId = 'description_edit_fmifolder'
+
+
+    actions =  (
+
+
+       {'action': "string:${object_url}/fmi_summary",
+        'category': "object",
+        'id': 'fmi_summary',
+        'name': 'fmi_summary',
+        'permissions': ("View",),
+        'condition': 'python:1'
+       },
+
+
+    )
 
     _at_rename_after_creation = True
 
-    schema = OtherProjectRatingsFolder_schema
+    schema = FMIFolder_schema
 
     ##code-section class-header #fill in your manual code here
     ##/code-section class-header
@@ -90,8 +105,8 @@ class OtherProjectRatingsFolder(BaseFolder):
     # Methods
 
 
-registerType(OtherProjectRatingsFolder, PROJECTNAME)
-# end of class OtherProjectRatingsFolder
+registerType(FMIFolder, PROJECTNAME)
+# end of class FMIFolder
 
 ##code-section module-footer #fill in your manual code here
 ##/code-section module-footer

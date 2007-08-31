@@ -89,6 +89,7 @@ class PIRRatingFolder(BaseFolder):
 
     # Methods
 
+
 registerType(PIRRatingFolder, PROJECTNAME)
 # end of class PIRRatingFolder
 

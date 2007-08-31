@@ -150,36 +150,36 @@ schema = Schema((
 
     ReferenceField(
         name='CurrentTaskManager',
+        dummy=('mxmContactsPerson',),
         widget=ReferenceField._properties['widget'](
             label="Current Task Manager",
             label_msgid='ProjectDatabase_label_CurrentTaskManager',
             i18n_domain='ProjectDatabase',
         ),
-        allowed_types=('mxmContactsPerson',),
         relationship="Project_CurrentTaskManager",
         default_method="getDefaultCurrentTaskManager"
     ),
 
     ReferenceField(
         name='PreviousTaskManager',
+        dummy=('mxmContactsPerson',),
         widget=ReferenceField._properties['widget'](
             label="Previous Task Manager",
             label_msgid='ProjectDatabase_label_PreviousTaskManager',
             i18n_domain='ProjectDatabase',
         ),
-        allowed_types=('mxmContactsPerson',),
         relationship="Project_PreviousTaskManager",
         default_method="getDefaultPreviousTaskManager"
     ),
 
     ReferenceField(
         name='ProjectCoordinator',
+        dummy=('mxmContactsPerson',),
         widget=ReferenceField._properties['widget'](
             label="Project Coordinator",
             label_msgid='ProjectDatabase_label_ProjectCoordinator',
             i18n_domain='ProjectDatabase',
         ),
-        allowed_types=('mxmContactsPerson',),
         relationship="Project_ProjectCoordinator",
         default_method="getDefaultProjectCoordinator"
     ),
@@ -258,79 +258,79 @@ class CoreMixin:
     def getDefaultFocalArea(self):
         """
         """
-        return self.getProject().getFocalArea()
+        return self.getProjectGeneralInformation().getFocalArea()
 
     security.declarePublic('getDefaultOperationalProgramme')
     def getDefaultOperationalProgramme(self):
         """
         """
-        return self.getProject().getOperationalProgramme()
+        return self.getProjectGeneralInformation().getOperationalProgramme()
 
     security.declarePublic('getDefaultStrategicObjectives')
     def getDefaultStrategicObjectives(self):
         """
         """
-        return self.getProject().getStrategicObjectives()
+        return self.getProjectGeneralInformation().getStrategicObjectives()
 
     security.declarePublic('getDefaultPipelineNumber')
     def getDefaultPipelineNumber(self):
         """
         """
-        return self.getProject().getPipelineNumber()
+        return self.getProjectGeneralInformation().getPipelineNumber()
 
     security.declarePublic('getDefaultCountry')
     def getDefaultCountry(self):
         """
         """
-        return self.getProject().getCountry()
+        return self.getProjectGeneralInformation().getCountry()
 
     security.declarePublic('getDefaultRegion')
     def getDefaultRegion(self):
         """
         """
-        return self.getProject().getRegion()
+        return self.getProjectGeneralInformation().getRegion()
 
     security.declarePublic('getDefaultScope')
     def getDefaultScope(self):
         """
         """
-        return self.getProject().getScope()
+        return self.getProjectGeneralInformation().getScope()
 
     security.declarePublic('getDefaultGEFPhase')
     def getDefaultGEFPhase(self):
         """
         """
-        return self.getProject().getGEFPhase()
+        return self.getProjectGeneralInformation().getGEFPhase()
 
     security.declarePublic('getDefaultWebsite')
     def getDefaultWebsite(self):
         """
         """
-        return self.getProject().getWebsite()
+        return self.getProjectGeneralInformation().getWebsite()
 
     security.declarePublic('getDefaultCurrentTaskManager')
     def getDefaultCurrentTaskManager(self):
         """
         """
-        return self.getProject().getCurrentTaskManager()
+        return self.getProjectGeneralInformation().getCurrentTaskManager()
 
     security.declarePublic('getDefaultPreviousTaskManager')
     def getDefaultPreviousTaskManager(self):
         """
         """
-        return self.getProject().getPreviousTaskManager()
+        return self.getProjectGeneralInformation().getPreviousTaskManager()
 
     security.declarePublic('getDefaultProjectCoordinator')
     def getDefaultProjectCoordinator(self):
         """
         """
-        return self.getProject().getProjectCoordinator()
+        return self.getProjectGeneralInformation().getProjectCoordinator()
 
     security.declarePublic('getProjectTitle')
     def getProjectTitle(self):
         """
         """
-        return self.getProject().getProjectTitle()
+        return self.getProjectGeneralInformation().getProjectTitle()
 
 
 # end of class CoreMixin

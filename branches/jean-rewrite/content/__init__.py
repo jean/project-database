@@ -64,9 +64,6 @@ import EvaluationMilestone
 import RatingTrackingSystem
 import select
 import EvaluatorsInformation
-import TranchedFolder
-import PhasedFolder
-import AddOnFolder
 import SubProjectFolder
 import EvaluationMilestoneFolder
 import RTSFolder
@@ -76,6 +73,7 @@ import PIRRatingFolder
 import OtherProjectRatingsFolder
 import OtherProjectRatings
 import PIRRating
+import FMIFolder
 
 ##code-section init-module-footer #fill in your manual code here
 ##/code-section init-module-footer

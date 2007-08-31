@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #
-# File: OtherProjectRatingsFolder.py
+# File: PIRRating.py
 #
 # Copyright (c) 2007 by []
 # Generator: ArchGenXML Version 1.5.2
@@ -47,42 +47,91 @@ from Products.FinanceFields.Money import Money
 
 schema = Schema((
 
+    StringField(
+        name='FiscalYear',
+        widget=StringWidget(
+            label="Fiscal Year",
+            label_msgid='ProjectDatabase_label_FiscalYear',
+            i18n_domain='ProjectDatabase',
+        )
+    ),
+
+    StringField(
+        name='AchievementOfResults',
+        widget=SelectionWidget(
+            label="Achievement of Results",
+            label_msgid='ProjectDatabase_label_AchievementOfResults',
+            i18n_domain='ProjectDatabase',
+        ),
+        vocabulary=NamedVocabulary("""Rating""")
+    ),
+
+    StringField(
+        name='ImplementationProgress',
+        widget=SelectionWidget(
+            label="Implementation Progress",
+            label_msgid='ProjectDatabase_label_ImplementationProgress',
+            i18n_domain='ProjectDatabase',
+        ),
+        vocabulary=NamedVocabulary("""Rating""")
+    ),
+
+    StringField(
+        name='MonitoringAndEvaluation',
+        widget=SelectionWidget(
+            label="Monitoring and Evaluation",
+            label_msgid='ProjectDatabase_label_MonitoringAndEvaluation',
+            i18n_domain='ProjectDatabase',
+        ),
+        vocabulary=NamedVocabulary("""Rating""")
+    ),
+
+    StringField(
+        name='Risk',
+        widget=SelectionWidget(
+            label='Risk',
+            label_msgid='ProjectDatabase_label_Risk',
+            i18n_domain='ProjectDatabase',
+        ),
+        vocabulary=NamedVocabulary("""InceptionRiskRating""")
+    ),
+
 ),
 )
 
 ##code-section after-local-schema #fill in your manual code here
 ##/code-section after-local-schema
 
-OtherProjectRatingsFolder_schema = BaseFolderSchema.copy() + \
+PIRRating_schema = BaseSchema.copy() + \
     schema.copy()
 
 ##code-section after-schema #fill in your manual code here
 ##/code-section after-schema
 
-class OtherProjectRatingsFolder(BaseFolder):
+class PIRRating(BaseContent):
     """
     """
     security = ClassSecurityInfo()
-    __implements__ = (getattr(BaseFolder,'__implements__',()),)
+    __implements__ = (getattr(BaseContent,'__implements__',()),)
 
     # This name appears in the 'add' box
-    archetype_name = 'OtherProjectRatingsFolder'
+    archetype_name = 'PIRRating'
 
-    meta_type = 'OtherProjectRatingsFolder'
-    portal_type = 'OtherProjectRatingsFolder'
-    allowed_content_types = ['OtherProjectRatings']
-    filter_content_types = 1
+    meta_type = 'PIRRating'
+    portal_type = 'PIRRating'
+    allowed_content_types = []
+    filter_content_types = 0
     global_allow = 0
-    #content_icon = 'OtherProjectRatingsFolder.gif'
+    #content_icon = 'PIRRating.gif'
     immediate_view = 'base_view'
     default_view = 'base_view'
     suppl_views = ()
-    typeDescription = "OtherProjectRatingsFolder"
-    typeDescMsgId = 'description_edit_otherprojectratingsfolder'
+    typeDescription = "PIRRating"
+    typeDescMsgId = 'description_edit_pirrating'
 
     _at_rename_after_creation = True
 
-    schema = OtherProjectRatingsFolder_schema
+    schema = PIRRating_schema
 
     ##code-section class-header #fill in your manual code here
     ##/code-section class-header
@@ -90,8 +139,8 @@ class OtherProjectRatingsFolder(BaseFolder):
     # Methods
 
 
-registerType(OtherProjectRatingsFolder, PROJECTNAME)
-# end of class OtherProjectRatingsFolder
+registerType(PIRRating, PROJECTNAME)
+# end of class PIRRating
 
 ##code-section module-footer #fill in your manual code here
 ##/code-section module-footer

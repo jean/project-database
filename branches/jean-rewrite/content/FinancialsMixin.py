@@ -459,42 +459,47 @@ class FinancialsMixin:
     def getTotalCostOfProjectStagePlanned(self):
         """
         """
-        projObj = self.getProject()
-        finObj = None
-        if 'financials' in projObj.objectIds():
-            finObj = projObj['financials']
-        if finObj:
-            total = finObj.getCashUNEPAllocation()
-            if finObj.getSumCofinCashPlanned():
-                total += finObj.getSumCofinCashPlanned()
-            if finObj.getSumCofinInKindPlanned():
-                total += finObj.getSumCofinInKindPlanned()
-
+        #projObj = self.getProject()
+        if self.portal_type == 'Financials':
+            total = self.getCashUNEPAllocation()
+            if self.getSumCofinCashPlanned():
+                total += self.getSumCofinCashPlanned()
+            if self.getSumCofinInKindPlanned():
+                total += self.getSumCofinInKindPlanned()
             return total
+        elif self.portal_type == 'SubProject':
+            total = self.getZeroMoneyInstance()
+            if self.getSumCofinCashPlanned():
+                total += self.getSumCofinCashPlanned()
+            if self.getSumCofinInKindPlanned():
+                total += self.getSumCofinInKindPlanned()
+
         else:
             return self.getZeroMoneyInstance()
-#        total = self.getCashUNEPAllocation()
+
     security.declarePublic('getTotalCostOfProjectStageActual')
     def getTotalCostOfProjectStageActual(self):
         """
         """
-        projObj = self.getProject()
-        finObj = None
-        if 'financials' in projObj.objectIds():
-            finObj = projObj['financials']
-        if finObj:
-            total = finObj.getCashUNEPAllocation()
-            if finObj.getSupplementaryUNEPAllocation():
-                total += finObj.getSupplementaryUNEPAllocation()
-            if finObj.getSumCofinCashActual():
-                total += finObj.getSumCofinCashActual()
-            if finObj.getSumCofinInKindActual():
-                total += finObj.getSumCofinInKindActual()
-
+        if self.portal_type == 'Financials':
+            total = self.getCashUNEPAllocation()
+            if self.getSupplementaryUNEPAllocation():
+                total += self.getSupplementaryUNEPAllocation()
+            if self.getSumCofinCashActual():
+                total += self.getSumCofinCashActual()
+            if self.getSumCofinInKindActual():
+                total += self.getSumCofinInKindActual()
+            return total
+        elif self.portal_type == 'SubProject':
+            total = self.getZeroMoneyInstance()
+            if self.getSumCofinCashActual():
+                total += self.getSumCofinCashActual()
+            if self.getSumCofinInKindActual():
+                total += self.getSumCofinInKindActual()
             return total
         else:
             return self.getZeroMoneyInstance()
-#        total = self.getCashUNEPAllocation()
+
     # Manually created methods
 
     security.declarePublic('validate_CashDisbursements')
@@ -502,7 +507,7 @@ class FinancialsMixin:
         """
         """
         request = self.REQUEST
-        total_cost = self.computeDataGridAmount([v['cash_disbursements_amount'] for v in value])
+        total_cost = self.computeDataGridAmount([v['cash_disbursements_amount'] for v in value if v['cash_disbursements_amount']])
         total = self.getZeroMoneyInstance()
         if request.get('GEFTrustFund'):
             total = total + request.get('GEFTrustFund')
