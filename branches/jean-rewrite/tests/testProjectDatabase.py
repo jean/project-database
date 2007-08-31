@@ -35,7 +35,7 @@ if __name__ == '__main__':
 ##/code-section module-header
 
 #
-# Test-cases for class(es) AProject
+# Test-cases for class(es) Project
 #
 
 from Testing import ZopeTestCase
@@ -43,7 +43,7 @@ from Products.ProjectDatabase.config import *
 from Products.ProjectDatabase.tests.PortalDatabaseTestCase import PortalDatabaseTestCase
 
 # Import the tested classes
-from Products.ProjectDatabase.content.AProject import AProject
+from Products.ProjectDatabase.content.Project import Project
 
 ##code-section module-beforeclass #fill in your manual code here
 ##/code-section module-beforeclass
@@ -58,32 +58,40 @@ class testProjectDatabase(PortalDatabaseTestCase):
     def afterSetUp(self):
         ids = self.portal.objectIds()
 
-    # from class AProject:
+    # from class Project:
     def test_getLeadAgencies(self):
         pass
 
-    # from class AProject:
+    # from class Project:
     def test_getVocabulary(self):
         pass
 
-    # from class AProject:
+    # from class Project:
     def test_project_search(self):
         pass
 
-    # from class AProject:
+    # from class Project:
     def test_export_project_data(self):
         pass
 
-    # from class AProject:
+    # from class Project:
     def test_reports(self):
         pass
 
-    # from class AProject:
+    # from class Project:
     def test_export(self):
         pass
 
-    # from class AProject:
+    # from class Project:
     def test_manage_afterAdd(self):
+        pass
+
+    # from class Project:
+    def test_getProjectGeneralInformation(self):
+        pass
+
+    # from class Project:
+    def test_getAProject(self):
         pass
 
     # Manually created methods
@@ -96,6 +104,9 @@ class testProjectDatabase(PortalDatabaseTestCase):
         ids = self.portal.portal_skins.objectIds()
         self.failUnless('plone_templates' in ids)
 
+    def test_project_view(self):
+        pass
+
     def test_workflowChains(self):
         getChain = self.portal.portal_workflow.getChainForPortalType
         self.failUnless('plone_workflow' in getChain('Document'))
@@ -103,9 +114,6 @@ class testProjectDatabase(PortalDatabaseTestCase):
     def test_tools(self):
         ids = self.portal.objectIds()
         self.failUnless('archetype_tool' in ids)
-
-    def test_project_view(self):
-        pass
 
     def test_workflows(self):
         ids = self.portal.portal_workflow.objectIds()
