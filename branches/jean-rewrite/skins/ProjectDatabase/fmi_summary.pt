@@ -1,0 +1,93 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      lang="en"
+      metal:use-macro="here/main_template/macros/master"
+      i18n:domain="plone">
+<body>
+
+<div metal:fill-slot="main">
+
+<fieldset>
+
+<tal:fmilisting tal:define="fmiresults python:container.portal_catalog(portal_type = ['Financials'],review_state=['published','visible'],path='/'.join(here.getPhysicalPath()));">
+
+    <tal:entry tal:repeat="fmi fmiresults">
+        <table tal:define="fmi_obj python:fmi.getObject()">
+        <th>Finance Category</th>
+        <th>Project Status</th>
+        <th>Total GEF Allocation</th>
+        <th>Total Cost of Project Stage Planned</th>
+        <th>Total Cost of Project Stage Actual</th>
+        <th>Approved UNEP Budget</th>
+        <th>Total Cash Disbursements</th>
+        <th>Total IMIS Expenditures</th>
+        <tr>
+            <td tal:define="field python:fmi_obj.Schema()['FinanceCategory'];
+                    widget_view python:fmi_obj.widget(field.getName(), mode='view', use_label=0);">
+                <metal:block use-macro="widget_view" />
+            </td>
+            <td tal:define="field python:fmi_obj.Schema()['Status'];
+                    widget_view python:fmi_obj.widget(field.getName(), mode='view', use_label=0);">
+                <metal:block use-macro="widget_view" />
+            </td>
+            <td tal:define="field python:fmi_obj.Schema()['GEFProjectAllocation'];
+                    widget_view python:fmi_obj.widget(field.getName(), mode='view', use_label=0);">
+                <metal:block use-macro="widget_view" />
+            </td>
+            <td tal:define="field python:fmi_obj.Schema()['TotalCostOfProjectStagePlanned'];
+                    widget_view python:fmi_obj.widget(field.getName(), mode='view', use_label=0);">
+                <metal:block use-macro="widget_view" />
+            </td>
+            <td tal:define="field python:fmi_obj.Schema()['TotalCostOfProjectStageActual'];
+                    widget_view python:fmi_obj.widget(field.getName(), mode='view', use_label=0);">
+                <metal:block use-macro="widget_view" />
+            </td>
+            <td tal:define="field python:fmi_obj.Schema()['ApprovedUNEPBudget'];
+                    widget_view python:fmi_obj.widget(field.getName(), mode='view', use_label=0);">
+                <metal:block use-macro="widget_view" />
+            </td>
+            <td tal:define="field python:fmi_obj.Schema()['SumCashDisbursements'];
+                    widget_view python:fmi_obj.widget(field.getName(), mode='view', use_label=0);">
+                <metal:block use-macro="widget_view" />
+            </td>
+            <td tal:define="field python:fmi_obj.Schema()['SumIMISExpenditures'];
+                    widget_view python:fmi_obj.widget(field.getName(), mode='view', use_label=0);">
+                <metal:block use-macro="widget_view" />
+            </td>
+        </tr>
+        </table>
+    </tal:entry>
+
+</tal:fmilisting>
+
+
+<a href="#" tal:attributes="href python:here.absolute_url()+'/createObject?type_name=Financials';"> Add FMI</a>
+
+</fieldset>
+
+<tal:fmilisting tal:define="fmiresults python:container.portal_catalog(portal_type = ['Financials'],review_state=['published','visible'],path='/'.join(here.getPhysicalPath()));">
+    <tal:entry tal:repeat="fmi fmiresults">
+    <fieldset>
+    <div>
+        <tal:block
+                tal:define="
+                            fmi_obj python:fmi.getObject();
+                            here nocall:fmi_obj;
+                            context nocall:fmi_obj;
+                            field_macro field_macro | fmi_obj/widgets/field/macros/view;
+                            "
+                tal:repeat="field python:fmi_obj.Schema().filterFields(isMetadata=0)">
+          <tal:if_visible define="mode string:view;
+                                  visState python:field.widget.isVisible(fmi_obj, mode);
+                                  visCondition python:field.widget.testCondition(fmi_obj.aq_inner.aq_parent, portal, fmi_obj);"
+                          condition="python:visState == 'visible' and visCondition">
+            <metal:use_field use-macro="field_macro" />
+          </tal:if_visible>
+        </tal:block>
+    </div>
+    </fieldset>
+    </tal:entry>
+</tal:fmilisting>
+</div>
+
+</body>
+</html>
