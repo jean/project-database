@@ -3,6 +3,15 @@
   Make vdex vocab for Agencies
  Done
 
+Milestone - remove 'Folder'
+ Done
+Remove subprojects from PGI and from manage_afterAdd
+ Done
+PGI: remove overview
+ Done
+Remove title from Financials
+ Done
+
 Project General Information:
 
  - Remove title
@@ -149,3 +158,6 @@ Monitoring and Evaluation"
     * Add fields from "Project Ratings Disconnect", except Risk.  All
      fields have values "Highly Satisfactory" ... "Highly Unsatisfactory"
    Done
+
+
+

@@ -35,11 +35,11 @@
                                 tal:attributes="href string:${here/absolute_url}/export_project_data;">Project General Information
                                 </a>
                             </li>
-                            <li>
+                            <!--li>
                                 <a href=""
                                 tal:attributes="href string:${here/absolute_url}/project_implementation_status;">Project Implementation Status.
                                 </a>
-                            </li>
+                            </li-->
 
                             <li>
                                 <a href=""

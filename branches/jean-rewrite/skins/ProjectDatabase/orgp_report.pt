@@ -53,7 +53,7 @@
              </tr>
           </thead>
           <tbody>
-           <tal:projectcore tal:define="results python:here.portal_catalog(portal_type='Project', review_state=['published','visible'], path='/'.join(here.getPhysicalPath()));">
+           <tal:projectcore tal:define="results python:here.portal_catalog(portal_type='ProjectGeneralInformation', review_state=['published','visible'], path='/'.join(here.getPhysicalPath()));">
             <tal:coreloop tal:repeat="core results">
              <tal:fmi tal:define="co core/getObject;
                                   fmiresult python:here.getFMI4ORGP();">

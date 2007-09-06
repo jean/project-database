@@ -10,7 +10,7 @@ RESPONSE.setHeader('Content-Disposition','filename=projectdata.csv')
 
 # Return a string identifying this script.
 results = context.portal_catalog(
-                                 portal_type='Project',
+                                 portal_type='ProjectGeneralInformation',
                                  review_state='visible',
                                  path= '/'.join(context.getPhysicalPath())
                               )
