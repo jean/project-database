@@ -18,21 +18,21 @@ def install(self):
     # Create 'Agency' objects for us, until we have an Agency type that
     # supports import/export.
     if 'contacts' not in portal.contentIds():
-        portal.invokeFactory('Folder', 'contacts', title='Contacts')
-        for id, title in (
-                ('AFDB', 'African Development Bank'),
-                ('ADB', 'Asian Development Bank'),
-                ('EBRD', 'European Bank for Reconstruction and Development'),
-                ('FAO', 'Food and Agriculture Organization'),
-                ('IADB', 'Inter-American Development Bank'),
-                ('IFAD', 'International Fund for Agriculture and Development'),
-                ('UNDP', 'United Nations Development Programme'),
-                ('UNEP', 'United Nations Environment Programme'),
-                ('IBRD', 'World Bank'),
-                ('UNIDO', 'UNIDO'),
-                ):
-            portal.contacts.invokeFactory('Agency', id.lower(), title=title)
-        out.write('Added agencies.')
+        portal.invokeFactory('mxmContacts', 'contacts', title='Contacts')
+        #for id, title in (
+        #        ('AFDB', 'African Development Bank'),
+        #        ('ADB', 'Asian Development Bank'),
+        #        ('EBRD', 'European Bank for Reconstruction and Development'),
+        #        ('FAO', 'Food and Agriculture Organization'),
+        #        ('IADB', 'Inter-American Development Bank'),
+        #        ('IFAD', 'International Fund for Agriculture and Development'),
+        #        ('UNDP', 'United Nations Development Programme'),
+        #        ('UNEP', 'United Nations Environment Programme'),
+        #        ('IBRD', 'World Bank'),
+        #        ('UNIDO', 'UNIDO'),
+        #        ):
+        #    portal.contacts.invokeFactory('Agency', id.lower(), title=title)
+        #out.write('Added agencies.')
 
     if 'projectdatabases' not in portal.contentIds():
         portal.invokeFactory('Folder', 'projectdatabases', title='Project Databases')

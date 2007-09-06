@@ -74,6 +74,9 @@ import OtherProjectRatingsFolder
 import OtherProjectRatings
 import PIRRating
 import FMIFolder
+import self
+import item
+import container
 
 ##code-section init-module-footer #fill in your manual code here
 ##/code-section init-module-footer

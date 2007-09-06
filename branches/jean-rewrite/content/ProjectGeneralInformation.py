@@ -372,6 +372,17 @@ schema = Schema((
         vocabulary=NamedVocabulary("""GEFPhase""")
     ),
 
+    DataGridField(
+        name='ProjectImplementationStatus',
+        widget=DataGridField._properties['widget'](
+            label="Project Implementation Status",
+            columns={'fiscal_year':Column('Fiscal Year'),'narrative':Column('Narrative'),'description':Column('Project activities and objectives met')},
+            label_msgid='ProjectDatabase_label_ProjectImplementationStatus',
+            i18n_domain='ProjectDatabase',
+        ),
+        columns=('fiscal_year','narrative','description')
+    ),
+
     StringField(
         name='ImplementationMode',
         widget=SelectionWidget(
@@ -380,6 +391,25 @@ schema = Schema((
             i18n_domain='ProjectDatabase',
         ),
         vocabulary=NamedVocabulary("""ImplementationMode""")
+    ),
+
+    StringField(
+        name='Office',
+        widget=StringWidget(
+            label="Office of Execution",
+            label_msgid='ProjectDatabase_label_Office',
+            i18n_domain='ProjectDatabase',
+        )
+    ),
+
+    StringField(
+        name='Website',
+        widget=StringWidget(
+            label="Project Website Address",
+            label_msgid='ProjectDatabase_label_Website',
+            i18n_domain='ProjectDatabase',
+        ),
+        validators=('isUrl',)
     ),
 
     ReferenceField(
@@ -405,25 +435,6 @@ schema = Schema((
         allowed_types=('mxmContactsPerson',),
         multiValued=0,
         relationship="Project_PreviousTaskManager"
-    ),
-
-    StringField(
-        name='Office',
-        widget=StringWidget(
-            label="Office of Execution",
-            label_msgid='ProjectDatabase_label_Office',
-            i18n_domain='ProjectDatabase',
-        )
-    ),
-
-    StringField(
-        name='Website',
-        widget=StringWidget(
-            label='Website',
-            label_msgid='ProjectDatabase_label_Website',
-            i18n_domain='ProjectDatabase',
-        ),
-        validators=('isUrl',)
     ),
 
     ReferenceField(
@@ -464,7 +475,7 @@ schema = Schema((
         name='LeveragedFinancingRemark',
         allowable_content_types=('text/plain', 'text/structured', 'text/html', 'application/msword',),
         widget=RichWidget(
-            label="Leveraged Financial Amount Description",
+            label="Leveraged Financing Description",
             description="Enter sources and Purposes",
             label_msgid='ProjectDatabase_label_LeveragedFinancingRemark',
             description_msgid='ProjectDatabase_help_LeveragedFinancingRemark',
@@ -599,7 +610,7 @@ schema = Schema((
         name='PhasedTrancheNumber',
         default=0,
         widget=IntegerField._properties['widget'](
-            label="Phased/Tranche Number",
+            label="Phase/Tranche Number",
             label_msgid='ProjectDatabase_label_PhasedTrancheNumber',
             i18n_domain='ProjectDatabase',
         )
@@ -616,23 +627,12 @@ schema = Schema((
 
     StringField(
         name='title',
-        visible={'edit':'hidden','view':'invisible'},
         widget=StringWidget(
+            visible={'edit':'hidden','view':'invisible'},
             label='Title',
             label_msgid='ProjectDatabase_label_title',
             i18n_domain='ProjectDatabase',
         )
-    ),
-
-    DataGridField(
-        name='ProjectImplementationStatus',
-        widget=DataGridField._properties['widget'](
-            label="Project Implementation Status",
-            columns={'fiscal_year':Column('Fiscal Year'),'narrative':Column('Narrative'),'description':Column('Project activities and objectives met')},
-            label_msgid='ProjectDatabase_label_ProjectImplementationStatus',
-            i18n_domain='ProjectDatabase',
-        ),
-        columns=('fiscal_year','narrative','description')
     ),
 
     MoneyField(
@@ -640,17 +640,6 @@ schema = Schema((
         widget=MoneyField._properties['widget'](
             label="Leveraged Financing Amount",
             label_msgid='ProjectDatabase_label_LeveragedFinancingAmount',
-            i18n_domain='ProjectDatabase',
-        )
-    ),
-
-    TextField(
-        name='LeveragedFinancingMemo',
-        widget=TextAreaWidget(
-            label="Leveraged Financing Memo",
-            description="Describe hoe the resources were leveraged",
-            label_msgid='ProjectDatabase_label_LeveragedFinancingMemo',
-            description_msgid='ProjectDatabase_help_LeveragedFinancingMemo',
             i18n_domain='ProjectDatabase',
         )
     ),
@@ -668,6 +657,16 @@ ProjectGeneralInformation_schema = BaseFolderSchema.copy() + \
 title_field = ProjectGeneralInformation_schema['title']
 title_field.required=0
 title_field.widget.visible = {'edit':'hidden', 'view':'invisible'}
+ProjectGeneralInformation_schema['TotalGEFAllocation'].widget.visible = {'edit':'hidden', 'view':'invisible'}
+ProjectGeneralInformation_schema['TotalUNEPAllocation'].widget.visible = {'edit':'hidden', 'view':'invisible'}
+ProjectGeneralInformation_schema['TotalCofinancingPlanned'].widget.visible = {'edit':'hidden', 'view':'invisible'}
+ProjectGeneralInformation_schema['TotalCofinancingActual'].widget.visible = {'edit':'hidden', 'view':'invisible'}
+ProjectGeneralInformation_schema['TotalCashDisbursements'].widget.visible = {'edit':'hidden', 'view':'invisible'}
+ProjectGeneralInformation_schema['TotalIMISExpenditures'].widget.visible = {'edit':'hidden', 'view':'invisible'}
+ProjectGeneralInformation_schema['PDFAStatus'].widget.visible = {'edit':'hidden', 'view':'invisible'}
+ProjectGeneralInformation_schema['PDFBStatus'].widget.visible = {'edit':'hidden', 'view':'invisible'}
+ProjectGeneralInformation_schema['MSPStatus'].widget.visible = {'edit':'hidden', 'view':'invisible'}
+ProjectGeneralInformation_schema['FSPStatus'].widget.visible = {'edit':'hidden', 'view':'invisible'}
 ##/code-section after-schema
 
 class ProjectGeneralInformation(BaseFolder, CurrencyMixin):
@@ -683,7 +682,7 @@ class ProjectGeneralInformation(BaseFolder, CurrencyMixin):
 
     meta_type = 'ProjectGeneralInformation'
     portal_type = 'ProjectGeneralInformation'
-    allowed_content_types = ['ProjectImplementation', 'ProjectExecutingPartner', 'SubProjectFolder']
+    allowed_content_types = ['ProjectImplementation', 'ProjectExecutingPartner']
     filter_content_types = 1
     global_allow = 0
     #content_icon = 'ProjectGeneralInformation.gif'
@@ -695,15 +694,6 @@ class ProjectGeneralInformation(BaseFolder, CurrencyMixin):
 
 
     actions =  (
-
-
-       {'action': "string:${object_url}/Overview",
-        'category': "object_tabs",
-        'id': 'overview',
-        'name': 'Overview',
-        'permissions': (permissions.ViewProjects,),
-        'condition': 'python:1'
-       },
 
 
        {'action': "string:${object_url}/project_general_information",
@@ -731,6 +721,15 @@ class ProjectGeneralInformation(BaseFolder, CurrencyMixin):
     schema = ProjectGeneralInformation_schema
 
     ##code-section class-header #fill in your manual code here
+    security.declarePublic('Title')
+    def Title(self):
+        """
+        """
+        if hasattr(self, 'getAProject'):
+            return 'Project General Information: ' + str(self.getAProject().Title())
+        else:
+            return 'Project General Information'
+
     ##/code-section class-header
 
     # Methods
@@ -937,6 +936,15 @@ class ProjectGeneralInformation(BaseFolder, CurrencyMixin):
         return False
 
     # Manually created methods
+
+    security.declarePublic('Title')
+    def Title(self):
+        """
+        """
+        if hasattr(self, 'getAProject'):
+            return 'Project General Information: ' + str(self.getAProject().Title())
+        else:
+            return 'Project General Information'
 
     security.declarePublic('validate_TranchedNumber')
     def validate_TranchedNumber(self, value):
