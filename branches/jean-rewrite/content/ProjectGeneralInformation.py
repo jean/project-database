@@ -667,6 +667,7 @@ ProjectGeneralInformation_schema['PDFAStatus'].widget.visible = {'edit':'hidden'
 ProjectGeneralInformation_schema['PDFBStatus'].widget.visible = {'edit':'hidden', 'view':'invisible'}
 ProjectGeneralInformation_schema['MSPStatus'].widget.visible = {'edit':'hidden', 'view':'invisible'}
 ProjectGeneralInformation_schema['FSPStatus'].widget.visible = {'edit':'hidden', 'view':'invisible'}
+ProjectGeneralInformation_schema['ProjectTitle'].widget.visible = {'edit':'hidden', 'view':'invisible'}
 ##/code-section after-schema
 
 class ProjectGeneralInformation(BaseFolder, CurrencyMixin):
