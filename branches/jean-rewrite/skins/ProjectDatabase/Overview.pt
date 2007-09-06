@@ -90,16 +90,18 @@
        </tr>
 	   <tr tal:on-error="nothing"  
             tal:define="field python:here.Schema()['Scope']; 
+                        widget_view python:here.widget(field.getName(), mode='view', use_label=0); 
                         accessor python:getattr(here, field.accessor)">
             <td bgcolor="#F1F1F1" width="30%"><b>Scope:</b></td>
-            <td><span tal:replace="structure accessor"/> </td>
+            <td><metal:block use-macro="widget_view"/></td>
         </tr>
 		<tr tal:on-error="nothing"  
             tal:define="field python:here.Schema()['Region']; 
+                        widget_view python:here.widget(field.getName(), mode='view', use_label=0); 
                         accessor python:getattr(here, field.accessor)" 
             tal:condition="python:not accessor()==''">
             <td bgcolor="#F1F1F1" width="30%"><b>Region:</b></td>
-            <td><span tal:replace="structure accessor"/> </td>
+            <td><metal:block use-macro="widget_view"/></td>
 		</tr>
 
 	   	<tr tal:on-error="nothing" 
@@ -167,9 +169,6 @@
                     <td bgcolor='#F1F1F1' width=30%><b>Tranched:</b></td>
                     <td> <span tal:replace="structure accessor"/> 
                         &nbsp; &nbsp;
-                        <span tal:define="field_tn python:here.Schema()['TranchedNumber'];
-                                          tn_accessor python:getattr(here, field_tn.accessor)"
-                            tal:replace="structure tn_accessor"/>
                     </td>
                  </tr>
 
@@ -179,7 +178,7 @@
                     <td bgcolor='#F1F1F1' width=30%><b>Phased:</b></td>
                     <td> <span tal:replace="structure accessor"/> 
                         &nbsp; &nbsp;
-                        <span tal:define="field_pn python:here.Schema()['PhasedNumber'];
+                        <span tal:define="field_pn python:here.Schema()['PhasedTrancheNumber'];
                                           pn_accessor python:getattr(here, field_pn.accessor)"
                             tal:replace="structure pn_accessor"/>
                     </td>
@@ -334,7 +333,7 @@
           
         <tr>
             <td>
-                <table tal:define="finobjs python:here.objectValues(spec='Financials');" 
+                <table tal:define="finobjs python:here.getAProject()['fmi_folder'].objectValues(spec='Financials');" 
                         border="1" 
                         cellpadding="0" 
                         cellspacing="3" 
@@ -348,7 +347,7 @@
                 </table>
             </td>
             <td>
-                <table tal:define="milestoneObjs python:here.objectValues(spec='Milestone');" 
+                <table tal:define="milestoneObjs python:here.getAProject()['milestonesfolder'].objectValues(spec='Milestone');" 
                         border="1" 
                         cellpadding="0" 
                         cellspacing="3" 
@@ -368,7 +367,7 @@
 
         <tr> 
             <td>
-            <table border="1"
+            <!--table border="1"
                     cellpadding="0" 
                     cellspacing="3" 
                     style="border-collapse: collapse">
@@ -410,11 +409,11 @@
                         tal:attributes="href here/getGEFFocalPointEndorsementLetters">GEF Focal Point Endorsement Letter</a>
                 </td>
             </tr>
-            </table>
+            </table-->
             </td>
             
             <td>
-            <table border="1"
+            <!--table border="1"
                     cellpadding="0" 
                     cellspacing="3" 
                     style="border-collapse: collapse">
@@ -431,12 +430,12 @@
                         tal:attributes="href here/getUNEPProjectAnnexes">UNEP Project Annexes</a>
                 </td>
             </tr>
-            </table>
+            </table-->
             </td>
             </tr>
             <tr>
             <td>
-            <table border="1"
+            <!--table border="1"
                     cellpadding="0" 
                     cellspacing="3" 
                     style="border-collapse: collapse">
@@ -507,11 +506,11 @@
                         tal:attributes="href here/getInventoryOfNonExpendableEquipment">Inventory of Nonexpendable Equipment</a>
                 </td>
             </tr>
-            </table>
+            </table-->
             </td>
 
             <td>
-            <table border="1"
+            <!--table border="1"
                     cellpadding="0" 
                     cellspacing="3" 
                     style="border-collapse: collapse">
@@ -565,12 +564,12 @@
                         tal:attributes="href here/getSubstantivePublication">Substantive Publication</a>
                 </td>
             </tr>
-            </table>
+            </table-->
             </td>
             </tr>
             <tr>
             <td>
-            <table border="1"
+            <!--table border="1"
                     cellpadding="0" 
                     cellspacing="3" 
                     style="border-collapse: collapse">
@@ -581,7 +580,7 @@
                         tal:attributes="href here/getPDFDocument">PDF Documents</a>
                 </td>
             </tr>
-            </table>
+            </table-->
             </td>
 
         </tr>

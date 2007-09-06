@@ -665,6 +665,9 @@ ProjectGeneralInformation_schema = BaseFolderSchema.copy() + \
     schema.copy()
 
 ##code-section after-schema #fill in your manual code here
+title_field = ProjectGeneralInformation_schema['title']
+title_field.required=0
+title_field.widget.visible = {'edit':'hidden', 'view':'invisible'}
 ##/code-section after-schema
 
 class ProjectGeneralInformation(BaseFolder, CurrencyMixin):
@@ -739,14 +742,14 @@ class ProjectGeneralInformation(BaseFolder, CurrencyMixin):
         #fmi_cash_objs = self.contentValues('Financials')
         #subproject_objs = self.contentValues('SubProject')
         fmi_cash_objs = self.getAProject()['fmi_folder'].contentValues('Financials')
-        subproject_objs = self['subprojectsfolder'].contentValues('SubProject')
+        #subproject_objs = self['subprojectsfolder'].contentValues('SubProject')
         total = self.getZeroMoneyInstance()
         for fmi_obj in fmi_cash_objs:
             if fmi_obj.getGEFProjectAllocation():
                 total += fmi_obj.getGEFProjectAllocation()
-        for sp_obj in subproject_objs:
-            if sp_obj.getGEFProjectAllocation():
-                total += sp_obj.getGEFProjectAllocation()
+        # for sp_obj in subproject_objs:
+        #     if sp_obj.getGEFProjectAllocation():
+        #         total += sp_obj.getGEFProjectAllocation()
         return total
 
     security.declarePublic('getTotalUNEPAllocation')
@@ -768,18 +771,18 @@ class ProjectGeneralInformation(BaseFolder, CurrencyMixin):
         #fmi_cash_objs = self.contentValues('Financials')
         #subproject_objs = self.contentValues('SubProject')
         fmi_cash_objs = self.getAProject()['fmi_folder'].contentValues('Financials')
-        subproject_objs = self['subprojectsfolder'].contentValues('SubProject')
+        #subproject_objs = self['subprojectsfolder'].contentValues('SubProject')
         total = self.getZeroMoneyInstance()
         for fmi_obj in fmi_cash_objs:
             if fmi_obj.getSumCofinCashPlanned():
                 total += fmi_obj.getSumCofinCashPlanned()
             if fmi_obj.getSumCofinInKindPlanned():
                 total += fmi_obj.getSumCofinInKindPlanned()
-        for sp_obj in subproject_objs:
-            if sp_obj.getSumCofinCashPlanned():
-                total += sp_obj.getSumCofinCashPlanned()
-            if sp_obj.getSumCofinInKindPlanned():
-                total += sp_obj.getSumCofinInKindPlanned()
+        #for sp_obj in subproject_objs:
+        #    if sp_obj.getSumCofinCashPlanned():
+        #        total += sp_obj.getSumCofinCashPlanned()
+        #    if sp_obj.getSumCofinInKindPlanned():
+        #        total += sp_obj.getSumCofinInKindPlanned()
         return total
 
     security.declarePublic('getTotalCofinancingActual')
@@ -789,18 +792,18 @@ class ProjectGeneralInformation(BaseFolder, CurrencyMixin):
         #fmi_cash_objs = self.contentValues('Financials')
         #subproject_objs = self.contentValues('SubProject')
         fmi_cash_objs = self.getAProject()['fmi_folder'].contentValues('Financials')
-        subproject_objs = self['subprojectsfolder'].contentValues('SubProject')
+        #subproject_objs = self['subprojectsfolder'].contentValues('SubProject')
         total = self.getZeroMoneyInstance()
         for fmi_obj in fmi_cash_objs:
             if fmi_obj.getSumCofinCashActual():
                 total += fmi_obj.getSumCofinCashActual()
             if fmi_obj.getSumCofinInKindActual():
                 total += fmi_obj.getSumCofinInKindActual()
-        for sp_obj in subproject_objs:
-            if sp_obj.getSumCofinCashActual():
-                total += sp_obj.getSumCofinCashActual()
-            if sp_obj.getSumCofinInKindActual():
-                total += sp_obj.getSumCofinInKindActual()
+        #for sp_obj in subproject_objs:
+        #    if sp_obj.getSumCofinCashActual():
+        #        total += sp_obj.getSumCofinCashActual()
+        #    if sp_obj.getSumCofinInKindActual():
+        #        total += sp_obj.getSumCofinInKindActual()
         return total
 
     security.declarePublic('getTotalCashDisbursements')
@@ -810,14 +813,14 @@ class ProjectGeneralInformation(BaseFolder, CurrencyMixin):
         #fmi_cash_objs = self.contentValues('Financials')
         #subproject_objs = self.contentValues('SubProject')
         fmi_cash_objs = self.getAProject()['fmi_folder'].contentValues('Financials')
-        subproject_objs = self['subprojectsfolder'].contentValues('SubProject')
+        #subproject_objs = self['subprojectsfolder'].contentValues('SubProject')
         total = self.getZeroMoneyInstance()
         for fmi_obj in fmi_cash_objs:
             if fmi_obj.getSumCashDisbursements():
                 total += fmi_obj.getSumCashDisbursements()
-        for sp_obj in subproject_objs:
-            if sp_obj.getSumCashDisbursements():
-                total += sp_obj.getSumCashDisbursements()
+        #for sp_obj in subproject_objs:
+        #    if sp_obj.getSumCashDisbursements():
+        #        total += sp_obj.getSumCashDisbursements()
         return total
 
     security.declarePublic('getTotalIMISExpenditures')
@@ -827,14 +830,14 @@ class ProjectGeneralInformation(BaseFolder, CurrencyMixin):
         #fmi_cash_objs = self.contentValues('Financials')
         #subproject_objs = self.contentValues('SubProject')
         fmi_cash_objs = self.getAProject()['fmi_folder'].contentValues('Financials')
-        subproject_objs = self['subprojectsfolder'].contentValues('SubProject')
+        #subproject_objs = self['subprojectsfolder'].contentValues('SubProject')
         total = self.getZeroMoneyInstance()
         for fmi_obj in fmi_cash_objs:
             if fmi_obj.getSumIMISExpenditures():
                 total += fmi_obj.getSumIMISExpenditures()
-        for sp_obj in subproject_objs:
-            if sp_obj.getSumIMISExpenditures():
-                total += sp_obj.getSumIMISExpenditures()
+        #for sp_obj in subproject_objs:
+        #    if sp_obj.getSumIMISExpenditures():
+        #        total += sp_obj.getSumIMISExpenditures()
         return total
 
     security.declarePublic('getPDFAStatus')
@@ -926,25 +929,6 @@ class ProjectGeneralInformation(BaseFolder, CurrencyMixin):
         atvm = self.portal_vocabularies
         vocab = atvm.getVocabularyByName('Category')
         return vocab.getDisplayList(self)
-
-    security.declarePrivate('manage_afterAdd')
-    def manage_afterAdd(self, item, container):
-        """
-        """
-        #if 'tranchedfolder' not in self.objectIds():
-        #    self.invokeFactory('TranchedFolder', 'tranchedfolder')
-        #    self['tranchedfolder'].setTitle('Tranched Projects')
-        #if 'phasedfolder' not in self.objectIds():
-        #    self.invokeFactory('PhasedFolder', 'phasedfolder')
-        #    self['phasedfolder'].setTitle('Phased Projects')
-        #if 'addonfolder' not in self.objectIds():
-        #    self.invokeFactory('AddOnFolder', 'addonfolder')
-        #    self['addonfolder'].setTitle('Add On Projects')
-        if 'subprojectsfolder' not in self.objectIds():
-            self._setObject('subprojectsfolder', SubProjectFolder('subprojectsfolder'))
-            self.edit(title='SubProjects')
-            #self.invokeFactory('SubProjectFolder', 'subprojectsfolder')
-            #self['subprojectsfolder'].setTitle('SubProjects')
 
     security.declarePublic('displayContentsTab')
     def displayContentsTab(self):

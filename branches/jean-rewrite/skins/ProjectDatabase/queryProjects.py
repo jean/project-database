@@ -203,7 +203,7 @@ else:
 
 q={}
 q['path']=alist
-q['portal_type']='Project'
+q['portal_type']='ProjectGeneralInformation'
 if alist:
     try:
         results = catalog(q, show_inactive=False, sort_on='sortable_title')

@@ -203,6 +203,9 @@ Financials_schema = BaseFolderSchema.copy() + \
     schema.copy()
 
 ##code-section after-schema #fill in your manual code here
+title_field = Financials_schema['title']
+title_field.required=0
+title_field.widget.visible = {'edit':'hidden', 'view':'invisible'}
 ##/code-section after-schema
 
 class Financials(BaseFolder, CurrencyMixin, FinancialsMixin):
@@ -284,6 +287,13 @@ class Financials(BaseFolder, CurrencyMixin, FinancialsMixin):
     schema.moveField('OtherLeadExecutingAgency', after='LeadExecutingAgency')
     schema.moveField('FundManagementOfficer', after='OtherLeadExecutingAgency')
     schema.moveField('FinancialStatusRemarks', after='FundManagementOfficer')
+
+    security.declarePublic('Title')
+    def Title(self):
+        """
+        """
+        return 'Financial Management Information: ' + str(self.getAProject().Title())
+
     ##/code-section class-header
 
     # Methods

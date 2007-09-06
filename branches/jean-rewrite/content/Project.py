@@ -140,11 +140,6 @@ class Project(BaseFolder):
     schema = Project_schema
 
     ##code-section class-header #fill in your manual code here
-    def getAllowedTypes(self):
-        """
-        """
-        return []
-
     ##/code-section class-header
 
     # Methods
@@ -153,13 +148,18 @@ class Project(BaseFolder):
     def getLeadAgencies(self):
         """
         """
-        pass
+        catalog = getToolByName(self, 'portal_catalog')
+        proxies = catalog(portal_type='Agency')
+        pl = [p.getObject().Title() for p in proxies]
+        return ','.join(pl)
 
     security.declarePublic('getVocabulary')
-    def getVocabulary(self):
+    def getVocabulary(self, vocabName):
         """
         """
-        pass
+        pv_tool = getToolByName(self, 'portal_vocabularies')
+        vocab = pv_tool.getVocabularyByName(vocabName)
+        return vocab.getDisplayList(vocab)
 
     security.declarePrivate('manage_afterAdd')
     def manage_afterAdd(self, item, container):
@@ -178,7 +178,7 @@ class Project(BaseFolder):
             self['monitoring_and_evaluation'].edit(title='Monitoring and Evaluation')
         if 'milestonesfolder' not in self.objectIds():
             self._setObject('milestonesfolder', MilestoneFolder('milestonesfolder'))
-            self['milestonesfolder'].edit(title='Milestones Folder')
+            self['milestonesfolder'].edit(title='Milestones')
         BaseFolder.manage_afterAdd(self, item, container)
 
     security.declarePublic('getProjectGeneralInformation')

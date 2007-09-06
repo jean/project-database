@@ -358,6 +358,7 @@ MonitoringAndEvaluation_schema = BaseFolderSchema.copy() + \
     schema.copy()
 
 ##code-section after-schema #fill in your manual code here
+MonitoringAndEvaluation_schema['ProjectTitle'].widget.label = "Project Title"
 ##/code-section after-schema
 
 class MonitoringAndEvaluation(BaseFolder):
@@ -434,7 +435,7 @@ class MonitoringAndEvaluation(BaseFolder):
     def getProjectTitle(self):
         """
         """
-        return self.getProject().Title()
+        return self.getAProject().Title()
 
 
 registerType(MonitoringAndEvaluation, PROJECTNAME)
