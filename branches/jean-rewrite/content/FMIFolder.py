@@ -86,8 +86,8 @@ class FMIFolder(BaseFolder):
 
        {'action': "string:${object_url}/fmi_summary",
         'category': "object",
-        'id': 'fmi_summary',
-        'name': 'fmi_summary',
+        'id': 'view',
+        'name': 'view',
         'permissions': ("View",),
         'condition': 'python:1'
        },
@@ -100,9 +100,35 @@ class FMIFolder(BaseFolder):
     schema = FMIFolder_schema
 
     ##code-section class-header #fill in your manual code here
+    security.declarePublic('sumTotalStageActual')
+    def sumTotalStageActual(self):
+        """
+        """
+        from Products.FinanceFields.Money import Money
+        total = Money(0, 'USD')
+        for actual in self.objectValues('Financials'):
+            if actual.getTotalCostOfProjectStageActual():
+                total += actual.getTotalCostOfProjectStageActual()
+        return total.amount()
+
+
     ##/code-section class-header
 
     # Methods
+
+    # Manually created methods
+
+    security.declarePublic('sumTotalStageActual')
+    def sumTotalStageActual(self):
+        """
+        """
+        from Products.FinanceFields.Money import Money
+        total = Money(0, 'USD')
+        for actual in self.objectValues('Financials'):
+            if actual.getTotalCostOfProjectStageActual():
+                total += actual.getTotalCostOfProjectStageActual()
+        return total.amount()
+
 
 
 registerType(FMIFolder, PROJECTNAME)

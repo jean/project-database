@@ -288,12 +288,6 @@ class Financials(BaseFolder, CurrencyMixin, FinancialsMixin):
     schema.moveField('FundManagementOfficer', after='OtherLeadExecutingAgency')
     schema.moveField('FinancialStatusRemarks', after='FundManagementOfficer')
 
-    security.declarePublic('Title')
-    def Title(self):
-        """
-        """
-        return 'Financial Management Information: ' + str(self.getAProject().Title())
-
     ##/code-section class-header
 
     # Methods
@@ -316,6 +310,18 @@ class Financials(BaseFolder, CurrencyMixin, FinancialsMixin):
         if self.getSupplementaryUNEPAllocation():
             total = total + self.getSupplementaryUNEPAllocation()
         return total
+
+    # Manually created methods
+
+    security.declarePublic('Title')
+    def Title(self):
+        """
+        """
+        if hasattr(self, 'getAProject'):
+            return 'Financial Management Information: ' + str(self.getAProject().Title())
+        else:
+            return 'Financial Management Information'
+
 
 
 registerType(Financials, PROJECTNAME)

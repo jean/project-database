@@ -103,10 +103,6 @@ class testProject(PortalDatabaseTestCase):
         pass
 
     # from class ProjectGeneralInformation:
-    def test_Overview(self):
-        pass
-
-    # from class ProjectGeneralInformation:
     def test_project_general_information(self):
         pass
 
@@ -120,10 +116,6 @@ class testProject(PortalDatabaseTestCase):
 
     # from class ProjectGeneralInformation:
     def test_getCategoryVocab(self):
-        pass
-
-    # from class ProjectGeneralInformation:
-    def test_manage_afterAdd(self):
         pass
 
     # from class ProjectGeneralInformation:
@@ -143,6 +135,9 @@ class testProject(PortalDatabaseTestCase):
     def test_tranched_projects(self):
         pass
 
+    def test_Overview(self):
+        pass
+
     def test_validate_TranchedNumber(self):
         pass
 
@@ -156,6 +151,9 @@ class testProject(PortalDatabaseTestCase):
         pass
 
     def test_project_ratings_disconnect(self):
+        pass
+
+    def test_manage_afterAdd(self):
         pass
 
     def test_getProject(self):

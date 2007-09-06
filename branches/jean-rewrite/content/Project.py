@@ -193,6 +193,7 @@ class Project(BaseFolder):
         """
         return self
 
+
 registerType(Project, PROJECTNAME)
 # end of class Project
 

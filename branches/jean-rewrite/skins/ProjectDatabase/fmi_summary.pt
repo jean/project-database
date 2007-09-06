@@ -6,30 +6,27 @@
 
 <div metal:fill-slot="main">
 
-<fieldset>
+<form method="get" tal:attributes="action python:here.absolute_url()+'/createObject';">
+        <input type="hidden" name="type_name" value="Financials"/>
+        <input type="submit" class="context" name="submit"
+        value="Add Financial Management Information"/>
+</form>
+
 
 <tal:fmilisting tal:define="fmiresults python:container.portal_catalog(portal_type = ['Financials'],review_state=['published','visible'],path='/'.join(here.getPhysicalPath()));">
 
     <tal:entry tal:repeat="fmi fmiresults">
-        <table tal:define="fmi_obj python:fmi.getObject()">
+        <table class="listing" tal:define="fmi_obj python:fmi.getObject()">
         <th>Finance Category</th>
         <th>Project Status</th>
-        <th>Total GEF Allocation</th>
-        <th>Total Cost of Project Stage Planned</th>
-        <th>Total Cost of Project Stage Actual</th>
-        <th>Approved UNEP Budget</th>
-        <th>Total Cash Disbursements</th>
-        <th>Total IMIS Expenditures</th>
+        <th>Planned Total Cost</th>
+        <th>Actual Total Cost</th>
         <tr>
             <td tal:define="field python:fmi_obj.Schema()['FinanceCategory'];
                     widget_view python:fmi_obj.widget(field.getName(), mode='view', use_label=0);">
                 <metal:block use-macro="widget_view" />
             </td>
             <td tal:define="field python:fmi_obj.Schema()['Status'];
-                    widget_view python:fmi_obj.widget(field.getName(), mode='view', use_label=0);">
-                <metal:block use-macro="widget_view" />
-            </td>
-            <td tal:define="field python:fmi_obj.Schema()['GEFProjectAllocation'];
                     widget_view python:fmi_obj.widget(field.getName(), mode='view', use_label=0);">
                 <metal:block use-macro="widget_view" />
             </td>
@@ -41,32 +38,19 @@
                     widget_view python:fmi_obj.widget(field.getName(), mode='view', use_label=0);">
                 <metal:block use-macro="widget_view" />
             </td>
-            <td tal:define="field python:fmi_obj.Schema()['ApprovedUNEPBudget'];
-                    widget_view python:fmi_obj.widget(field.getName(), mode='view', use_label=0);">
-                <metal:block use-macro="widget_view" />
-            </td>
-            <td tal:define="field python:fmi_obj.Schema()['SumCashDisbursements'];
-                    widget_view python:fmi_obj.widget(field.getName(), mode='view', use_label=0);">
-                <metal:block use-macro="widget_view" />
-            </td>
-            <td tal:define="field python:fmi_obj.Schema()['SumIMISExpenditures'];
-                    widget_view python:fmi_obj.widget(field.getName(), mode='view', use_label=0);">
-                <metal:block use-macro="widget_view" />
-            </td>
         </tr>
         </table>
     </tal:entry>
+    Total Cost: $<tal:bl tal:replace="python:context.sumTotalStageActual()"/>
 
 </tal:fmilisting>
 
 
-<a href="#" tal:attributes="href python:here.absolute_url()+'/createObject?type_name=Financials';"> Add FMI</a>
-
-</fieldset>
 
 <tal:fmilisting tal:define="fmiresults python:container.portal_catalog(portal_type = ['Financials'],review_state=['published','visible'],path='/'.join(here.getPhysicalPath()));">
     <tal:entry tal:repeat="fmi fmiresults">
     <fieldset>
+    <legend tal:content="python:fmi.getObject().getFinanceCategory()"/>
     <div>
         <tal:block
                 tal:define="

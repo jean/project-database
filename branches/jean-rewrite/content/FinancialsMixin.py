@@ -203,7 +203,8 @@ schema = Schema((
 
     LinesField(
         name='DonorTypes',
-        widget=MultiSelectionWidget(
+        widget=InAndOutWidget
+        (
             label="Donor Type",
             label_msgid='ProjectDatabase_label_DonorTypes',
             i18n_domain='ProjectDatabase',
@@ -405,7 +406,8 @@ class FinancialsMixin:
         default_currency = properties.financial_properties.default_currency
         amount = Money(0, default_currency)
         for v in column:
-            amount += v
+            if v:
+                amount += v
         return amount
 
     security.declarePublic('getMoneyFieldDefault')
@@ -419,7 +421,7 @@ class FinancialsMixin:
         """
         """
         cash_values = self.getCofinancingCash()
-        return self.computeDataGridAmount([v['cofinancing_cash_planned_amount'] for v in cash_values])
+        return self.computeDataGridAmount([v['cofinancing_cash_planned_amount'] for v in cash_values if v['cofinancing_cash_planned_amount']])
 
     security.declarePublic('getSumCofinActual')
     def getSumCofinActual(self):
@@ -432,28 +434,28 @@ class FinancialsMixin:
         """
         """
         cash_values = self.getCofinancingInKind()
-        return self.computeDataGridAmount([v['cofinancing_inkind_planned_amount'] for v in cash_values])
+        return self.computeDataGridAmount([v['cofinancing_inkind_planned_amount'] for v in cash_values if v['cofinancing_inkind_planned_amount']])
 
     security.declarePublic('getSumCofinInKindActual')
     def getSumCofinInKindActual(self):
         """
         """
         cash_values = self.getCofinancingInKind()
-        return self.computeDataGridAmount([v['cofinancing_inkind_actual_amount'] for v in cash_values])
+        return self.computeDataGridAmount([v['cofinancing_inkind_actual_amount'] for v in cash_values if v['cofinancing_inkind_actual_amount']])
 
     security.declarePublic('getSumCashDisbursements')
     def getSumCashDisbursements(self):
         """
         """
         cash_values = self.getCashDisbursements()
-        return self.computeDataGridAmount([v['cash_disbursements_amount'] for v in cash_values])
+        return self.computeDataGridAmount([v['cash_disbursements_amount'] for v in cash_values if v['cash_disbursements_amount']])
 
     security.declarePublic('getSumIMISExpenditures')
     def getSumIMISExpenditures(self):
         """
         """
         cash_values = self.getIMISExpenditures()
-        return self.computeDataGridAmount([v['imis_expenditure_amount'] for v in cash_values])
+        return self.computeDataGridAmount([v['imis_expenditure_amount'] for v in cash_values if v['imis_expenditure_amount']])
 
     security.declarePublic('getTotalCostOfProjectStagePlanned')
     def getTotalCostOfProjectStagePlanned(self):
@@ -531,7 +533,7 @@ class FinancialsMixin:
         """
         """
         cash_values = self.getCofinancingCash()
-        return self.computeDataGridAmount([v['cofinancing_cash_actual_amount'] for v in cash_values])
+        return self.computeDataGridAmount([v['cofinancing_cash_actual_amount'] for v in cash_values if v['cofinancing_cash_actual_amount']])
 
 
 
