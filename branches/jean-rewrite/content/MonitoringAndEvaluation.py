@@ -359,6 +359,9 @@ MonitoringAndEvaluation_schema = BaseFolderSchema.copy() + \
 
 ##code-section after-schema #fill in your manual code here
 MonitoringAndEvaluation_schema['ProjectTitle'].widget.label = "Project Title"
+title_field = MonitoringAndEvaluation_schema['title']
+title_field.required=0
+title_field.widget.visible = {'edit':'hidden', 'view':'invisible'}
 ##/code-section after-schema
 
 class MonitoringAndEvaluation(BaseFolder):

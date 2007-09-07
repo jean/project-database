@@ -68,7 +68,8 @@ schema = Schema((
     LinesField(
         name='FocalArea',
         index="FieldIndex:brains",
-        widget=MultiSelectionWidget(
+        widget=InAndOutWidget
+        (
             label="Focal Area",
             label_msgid='ProjectDatabase_label_FocalArea',
             i18n_domain='ProjectDatabase',
@@ -110,7 +111,8 @@ schema = Schema((
 
     LinesField(
         name='EAClimateChange',
-        widget=MultiSelectionWidget(
+        widget=InAndOutWidget
+        (
             label="EA-Climate Change",
             label_msgid='ProjectDatabase_label_EAClimateChange',
             i18n_domain='ProjectDatabase',
@@ -130,7 +132,8 @@ schema = Schema((
 
     LinesField(
         name='EAPOP',
-        widget=MultiSelectionWidget(
+        widget=InAndOutWidget
+        (
             label="EA-POP",
             label_msgid='ProjectDatabase_label_EAPOP',
             i18n_domain='ProjectDatabase',
@@ -150,7 +153,8 @@ schema = Schema((
 
     LinesField(
         name='MultipleFocalAreas',
-        widget=MultiSelectionWidget(
+        widget=InAndOutWidget
+        (
             label="Multiple Focal Areas",
             label_msgid='ProjectDatabase_label_MultipleFocalAreas',
             i18n_domain='ProjectDatabase',
@@ -295,6 +299,7 @@ schema = Schema((
         dummy=('mxmContactsPerson',),
         widget=ReferenceField._properties['widget'](
             label="Lead GEF Agency Contact",
+            checkbox_bound=0,
             label_msgid='ProjectDatabase_label_LeadAgencyContact',
             i18n_domain='ProjectDatabase',
         ),
@@ -417,6 +422,7 @@ schema = Schema((
         dummy=('mxmContactsPerson',),
         widget=ReferenceField._properties['widget'](
             label="Current Task Manager",
+            checkbox_bound=0,
             label_msgid='ProjectDatabase_label_CurrentTaskManager',
             i18n_domain='ProjectDatabase',
         ),
@@ -942,10 +948,11 @@ class ProjectGeneralInformation(BaseFolder, CurrencyMixin):
     def Title(self):
         """
         """
-        if hasattr(self, 'getAProject'):
-            return 'Project General Information: ' + str(self.getAProject().Title())
-        else:
-            return 'Project General Information'
+        #if hasattr(self, 'getAProject'):
+        #    return 'Project General Information: ' + str(self.getAProject().Title())
+        #else:
+        #    return 'Project General Information'
+        return 'Project General Information'
 
     security.declarePublic('validate_TranchedNumber')
     def validate_TranchedNumber(self, value):
