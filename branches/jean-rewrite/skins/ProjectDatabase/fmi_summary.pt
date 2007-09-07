@@ -21,6 +21,7 @@
         <th>Project Status</th>
         <th>Planned Total Cost</th>
         <th>Actual Total Cost</th>
+        <th>Edit</th>
         <tr>
             <td tal:define="field python:fmi_obj.Schema()['FinanceCategory'];
                     widget_view python:fmi_obj.widget(field.getName(), mode='view', use_label=0);">
@@ -37,6 +38,9 @@
             <td tal:define="field python:fmi_obj.Schema()['TotalCostOfProjectStageActual'];
                     widget_view python:fmi_obj.widget(field.getName(), mode='view', use_label=0);">
                 <metal:block use-macro="widget_view" />
+            </td>
+            <td>
+                <a tal:attributes="href python:fmi_obj.absolute_url()+'/edit'">edit</a>
             </td>
         </tr>
         </table>
