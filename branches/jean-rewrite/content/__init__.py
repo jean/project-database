@@ -58,11 +58,9 @@ import CoreMixin
 import Phased
 import AddOn
 import BlankCoreMixin
-import calendar
 import MonitoringAndEvaluation
 import EvaluationMilestone
 import RatingTrackingSystem
-import select
 import EvaluatorsInformation
 import SubProjectFolder
 import EvaluationMilestoneFolder
@@ -73,9 +71,6 @@ import OtherProjectRatingsFolder
 import OtherProjectRatings
 import PIRRating
 import FMIFolder
-import self
-import item
-import container
 
 ##code-section init-module-footer #fill in your manual code here
 ##/code-section init-module-footer
