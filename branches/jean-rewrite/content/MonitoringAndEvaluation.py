@@ -205,6 +205,7 @@ schema = Schema((
         name='PlannedDate',
         widget=CalendarWidget(
             label="Planned Date",
+            show_hm=False,
             label_msgid='ProjectDatabase_label_PlannedDate',
             i18n_domain='ProjectDatabase',
         )
