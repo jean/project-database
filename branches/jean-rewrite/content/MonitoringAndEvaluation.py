@@ -76,11 +76,13 @@ schema = Schema((
         python:('mxmContacstPerson',)""",
         widget=ReferenceField._properties['widget'](
             label="Current Task Manager",
+            checkbox_bound=0,
             label_msgid='ProjectDatabase_label_CurrentTaskManager',
             i18n_domain='ProjectDatabase',
         ),
         allowed_types=('mxmContactsPerson',),
-        relationship="MandE_TaskManager"
+        relationship="MandE_TaskManager",
+        vocabulary='contactsVocab'
     ),
 
     ReferenceField(
@@ -88,11 +90,13 @@ schema = Schema((
         dummy=('mxmContactsPerson',),
         widget=ReferenceField._properties['widget'](
             label="Fund Manager Officer",
+            checkbox_bound=0,
             label_msgid='ProjectDatabase_label_FundManagementOfficer',
             i18n_domain='ProjectDatabase',
         ),
         allowed_types=('mxmContactsPerson',),
-        relationship="MandE_fundmanagerofficer"
+        relationship="MandE_fundmanagerofficer",
+        vocabulary='contactsVocab'
     ),
 
     DateTimeField(
@@ -375,7 +379,7 @@ class MonitoringAndEvaluation(BaseFolder):
 
     meta_type = 'MonitoringAndEvaluation'
     portal_type = 'MonitoringAndEvaluation'
-    allowed_content_types = ['EvaluationMilestoneFolder', 'RTSFolder', 'EvaluatorsInformationFolder']
+    allowed_content_types = ['EvaluationMilestoneFolder', 'RTSFolder', 'EvaluatorsInformation']
     filter_content_types = 1
     global_allow = 0
     #content_icon = 'MonitoringAndEvaluation.gif'
@@ -428,10 +432,10 @@ class MonitoringAndEvaluation(BaseFolder):
             #me['evaluation_milestone_folder'].setTitle('Evaluation Milestones')
         if 'rtsfolder' not in me.objectIds():
             me.invokeFactory('RTSFolder', 'rtsfolder')
-            me['rtsfolder'].setTitle('Rating Tracking Systems')
-        if 'evaluators_information_folder' not in me.objectIds():
-            me.invokeFactory('EvaluatorsInformationFolder', 'evaluators_information_folder')
-            me['evaluators_information_folder'].setTitle('Evaluators Information')
+            me['rtsfolder'].edit(title='Rating Tracking Systems')
+        if 'evaluators_information' not in me.objectIds():
+            me.invokeFactory('EvaluatorsInformation', 'evaluators_information')
+            me['evaluators_information'].edit(title='Evaluators Information')
         BaseFolder.manage_afterAdd(self, item, container)
 
     security.declarePublic('getProjectTitle')

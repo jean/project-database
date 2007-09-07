@@ -154,12 +154,14 @@ schema = Schema((
         dummy=('mxmContactsPerson',),
         widget=ReferenceField._properties['widget'](
             label="Fund Management Officer",
+            checkbox_bound=0,
             label_msgid='ProjectDatabase_label_FundManagementOfficer',
             i18n_domain='ProjectDatabase',
         ),
         multiValued=0,
         relationship="Financials_FundManagementOfficer",
         index="FieldIndex:brains",
+        vocabulary='contactsVocab',
         allowed_types=('mxmContactsPerson',)
     ),
 

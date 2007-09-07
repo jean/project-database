@@ -47,30 +47,36 @@ from Products.FinanceFields.Money import Money
 
 schema = Schema((
 
-    DataGridField(
+    ReferenceField(
         name='TeamLeader',
-        widget=DataGridField._properties['widget'](
+        widget=ReferenceField._properties['widget'](
             label="Team Lead",
             description="Name of Evaluation Team Leader",
-            columns={'team_leader':Column('Team Leader')},
+            checkbox_bound=0,
             label_msgid='ProjectDatabase_label_TeamLeader',
             description_msgid='ProjectDatabase_help_TeamLeader',
             i18n_domain='ProjectDatabase',
         ),
-        columns=('team_leader',)
+        allowed_types=('mxmContactsPerson',),
+        relationship="EI_team_leader",
+        multiValued=0,
+        vocabulary='contactsVocab'
     ),
 
-    DataGridField(
+    ReferenceField(
         name='TeamMembers',
-        widget=DataGridField._properties['widget'](
+        widget=InAndOutWidget
+        (
             label="Team Members",
             description="Names of other evaluation Team Members",
-            columns={'team_member':Column('Team Member')},
             label_msgid='ProjectDatabase_label_TeamMembers',
             description_msgid='ProjectDatabase_help_TeamMembers',
             i18n_domain='ProjectDatabase',
         ),
-        columns=('team_member',)
+        allowed_types=('mxmContactsPerson',),
+        relationship="EI_team_members",
+        multiValued=1,
+        vocabulary='contactsVocab'
     ),
 
 ),
@@ -114,9 +120,33 @@ class EvaluatorsInformation(BaseContent):
     schema = EvaluatorsInformation_schema
 
     ##code-section class-header #fill in your manual code here
+    def contactsVocab(self):
+        """
+        """
+        path = '/'.join(self.getAProject().getPhysicalPath()) + '/contacts-1'
+        brains = self.portal_catalog(portal_type='mxmContactsPerson', path=path)
+        pairs=[]
+        pairs.append(("", "<no reference>"))
+        for b in brains:
+            pairs.append((b.getObject().UID(), b.getObject().Title()))
+        return DisplayList(pairs)
     ##/code-section class-header
 
     # Methods
+
+    # Manually created methods
+
+    def contactsVocab(self):
+        """
+        """
+        path = '/'.join(self.getAProject().getPhysicalPath()) + '/contacts-1'
+        brains = self.portal_catalog(portal_type='mxmContactsPerson', path=path)
+        pairs=[]
+        pairs.append(("", "<no reference>"))
+        for b in brains:
+            pairs.append((b.getObject().UID(), b.getObject().Title()))
+        return DisplayList(pairs)
+    ##/code-section class-header
 
 
 registerType(EvaluatorsInformation, PROJECTNAME)

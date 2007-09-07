@@ -306,6 +306,7 @@ schema = Schema((
         multiValued=0,
         relationship="Project_LeadAgency",
         index="FieldIndex:brains",
+        vocabulary='contactsVocab',
         allowed_types=('mxmContactsPerson',)
     ),
 
@@ -427,7 +428,8 @@ schema = Schema((
             i18n_domain='ProjectDatabase',
         ),
         allowed_types=('mxmContactsPerson',),
-        relationship="Project_CurrentTaskManager"
+        relationship="Project_CurrentTaskManager",
+        vocabulary='contactsVocab'
     ),
 
     ReferenceField(
@@ -435,24 +437,28 @@ schema = Schema((
         dummy=('mxmContactsPerson',),
         widget=ReferenceField._properties['widget'](
             label="Previous Task Manager",
+            checkbox_bound=0,
             label_msgid='ProjectDatabase_label_PreviousTaskManager',
             i18n_domain='ProjectDatabase',
         ),
-        allowed_types=('mxmContactsPerson',),
         multiValued=0,
-        relationship="Project_PreviousTaskManager"
+        relationship="Project_PreviousTaskManager",
+        vocabulary='contactsVocab',
+        allowed_types=('mxmContactsPerson',)
     ),
 
     ReferenceField(
         name='ProjectCoordinator',
         widget=ReferenceField._properties['widget'](
             label="Project Coordinator",
+            checkbox_bound=0,
             label_msgid='ProjectDatabase_label_ProjectCoordinator',
             i18n_domain='ProjectDatabase',
         ),
         allowed_types=('mxmContactsPerson',),
+        relationship="Project_ProjectCoordinator",
         multiValued=0,
-        relationship="Project_ProjectCoordinator"
+        vocabulary='contactsVocab'
     ),
 
     TextField(

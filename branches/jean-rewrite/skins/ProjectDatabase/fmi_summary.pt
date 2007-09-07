@@ -6,26 +6,30 @@
 
 <div metal:fill-slot="main">
 
+<h1 class="documentFirstHeading">
+<tal:rep tal:replace="python:here.Title()"/>
+</h1>
+
 <form method="get" tal:attributes="action python:here.absolute_url()+'/createObject';">
         <input type="hidden" name="type_name" value="Financials"/>
-        <input type="submit" class="context" name="submit"
+        <input type="submit" class="standalone" name="submit"
         value="Add Financial Management Information"/>
 </form>
 
 
 <tal:fmilisting tal:define="fmiresults python:container.portal_catalog(portal_type = ['Financials'],review_state=['published','visible'],path='/'.join(here.getPhysicalPath()));">
 
+    <table class="listing" tal:condition="fmiresults">
+    <th>Finance Category</th>
+    <th>Project Status</th>
+    <th>Planned Total Cost</th>
+    <th>Actual Total Cost</th>
     <tal:entry tal:repeat="fmi fmiresults">
-        <table class="listing" tal:define="fmi_obj python:fmi.getObject()">
-        <th>Finance Category</th>
-        <th>Project Status</th>
-        <th>Planned Total Cost</th>
-        <th>Actual Total Cost</th>
-        <th>Edit</th>
-        <tr>
+        <tr tal:define="fmi_obj python:fmi.getObject()">
             <td tal:define="field python:fmi_obj.Schema()['FinanceCategory'];
                     widget_view python:fmi_obj.widget(field.getName(), mode='view', use_label=0);">
                 <metal:block use-macro="widget_view" />
+                [<a tal:attributes="href python:fmi_obj.absolute_url()+'/edit'">edit</a>]
             </td>
             <td tal:define="field python:fmi_obj.Schema()['Status'];
                     widget_view python:fmi_obj.widget(field.getName(), mode='view', use_label=0);">
@@ -39,13 +43,12 @@
                     widget_view python:fmi_obj.widget(field.getName(), mode='view', use_label=0);">
                 <metal:block use-macro="widget_view" />
             </td>
-            <td>
-                <a tal:attributes="href python:fmi_obj.absolute_url()+'/edit'">edit</a>
-            </td>
         </tr>
-        </table>
     </tal:entry>
-    Total Cost: $<tal:bl tal:replace="python:context.sumTotalStageActual()"/>
+    </table>
+    <div tal:condition="fmiresults">
+    Total Cost: <tal:bl tal:replace="python:context.sumTotalStageActual()"/>
+    </div>
 
 </tal:fmilisting>
 

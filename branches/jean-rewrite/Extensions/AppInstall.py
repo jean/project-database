@@ -17,8 +17,10 @@ def install(self):
 
     # Create 'Agency' objects for us, until we have an Agency type that
     # supports import/export.
-    if 'contacts' not in portal.contentIds():
-        portal.invokeFactory('mxmContacts', 'contacts', title='Contacts')
+    # if 'contacts' not in portal.contentIds():
+    #     portal.invokeFactory('mxmContacts', 'contacts', title='Contacts')
+    # if 'contacts2' not in portal.objectIds():
+    #     portal.invokeFactory('mxmContacts', 'contacts2', title='Contacts')
         #for id, title in (
         #        ('AFDB', 'African Development Bank'),
         #        ('ADB', 'Asian Development Bank'),

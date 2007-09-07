@@ -100,18 +100,6 @@ class FMIFolder(BaseFolder):
     schema = FMIFolder_schema
 
     ##code-section class-header #fill in your manual code here
-    security.declarePublic('sumTotalStageActual')
-    def sumTotalStageActual(self):
-        """
-        """
-        from Products.FinanceFields.Money import Money
-        total = Money(0, 'USD')
-        for actual in self.objectValues('Financials'):
-            if actual.getTotalCostOfProjectStageActual():
-                total += actual.getTotalCostOfProjectStageActual()
-        return total.amount()
-
-
     ##/code-section class-header
 
     # Methods
@@ -127,7 +115,7 @@ class FMIFolder(BaseFolder):
         for actual in self.objectValues('Financials'):
             if actual.getTotalCostOfProjectStageActual():
                 total += actual.getTotalCostOfProjectStageActual()
-        return total.amount()
+        return str(total)
 
 
 

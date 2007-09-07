@@ -77,6 +77,7 @@ schema = Schema((
         index="FieldIndex:brains",
         widget=CalendarWidget(
             label="Milestone Date",
+            show_hm=False,
             label_msgid='ProjectDatabase_label_MilestoneDate',
             i18n_domain='ProjectDatabase',
         )
@@ -174,6 +175,12 @@ class Milestone(BaseContent):
     schema = Milestone_schema
 
     ##code-section class-header #fill in your manual code here
+    security.declarePublic('Title')
+    def Title(self):
+        """
+        """
+        return self.getMilestoneName()
+
     ##/code-section class-header
 
     # Methods
@@ -209,6 +216,15 @@ class Milestone(BaseContent):
         atvm = self.portal_vocabularies
         vocab = atvm.getVocabularyByName('ApprovalInitiationClosure')
         return vocab.getDisplayList(self)
+
+    # Manually created methods
+
+    security.declarePublic('Title')
+    def Title(self):
+        """
+        """
+        return self.getMilestoneName()
+
 
 
 registerType(Milestone, PROJECTNAME)

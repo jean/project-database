@@ -140,6 +140,16 @@ class Project(BaseFolder):
     schema = Project_schema
 
     ##code-section class-header #fill in your manual code here
+    def contactsVocab(self):
+        """
+        """
+        path = '/'.join(self.getAProject().getPhysicalPath()) + '/contacts-1'
+        brains = self.portal_catalog(portal_type='mxmContactsPerson', path=path)
+        pairs=[]
+        pairs.append(("", "<no reference>"))
+        for b in brains:
+            pairs.append((b.getObject().UID(), b.getObject().Title()))
+        return DisplayList(pairs)
     ##/code-section class-header
 
     # Methods
@@ -179,6 +189,10 @@ class Project(BaseFolder):
         if 'milestonesfolder' not in self.objectIds():
             self._setObject('milestonesfolder', MilestoneFolder('milestonesfolder'))
             self['milestonesfolder'].edit(title='Milestones')
+        if 'contacts-1' not in self.objectIds():
+            from Products.mxmContacts.mxmContacts import mxmContacts
+            self._setObject('contacts-1', mxmContacts('contacts-1'))
+            self['contacts-1'].edit(title='Contacts')
         BaseFolder.manage_afterAdd(self, item, container)
 
     security.declarePublic('getProjectGeneralInformation')
@@ -192,6 +206,20 @@ class Project(BaseFolder):
         """
         """
         return self
+
+    # Manually created methods
+
+    def contactsVocab(self):
+        """
+        """
+        path = '/'.join(self.getAProject().getPhysicalPath()) + '/contacts-1'
+        brains = self.portal_catalog(portal_type='mxmContactsPerson', path=path)
+        pairs=[]
+        pairs.append(("", "<no reference>"))
+        for b in brains:
+            pairs.append((b.getObject().UID(), b.getObject().Title()))
+        return DisplayList(pairs)
+    ##/code-section class-header
 
 
 registerType(Project, PROJECTNAME)
