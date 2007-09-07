@@ -67,7 +67,6 @@ import EvaluatorsInformation
 import SubProjectFolder
 import EvaluationMilestoneFolder
 import RTSFolder
-import EvaluatorsInformationFolder
 import MilestoneFolder
 import PIRRatingFolder
 import OtherProjectRatingsFolder

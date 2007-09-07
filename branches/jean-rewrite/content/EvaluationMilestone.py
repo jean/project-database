@@ -72,6 +72,7 @@ schema = Schema((
         widget=CalendarWidget(
             label="Planned Date",
             description="Planned date for the particular milestone",
+            show_hm=False,
             label_msgid='ProjectDatabase_label_PlannedDate',
             description_msgid='ProjectDatabase_help_PlannedDate',
             i18n_domain='ProjectDatabase',
@@ -83,6 +84,7 @@ schema = Schema((
         widget=CalendarWidget(
             label="Actual Date",
             description="Actual date for the particular milestone",
+            show_hm=False,
             label_msgid='ProjectDatabase_label_ActualDate',
             description_msgid='ProjectDatabase_help_ActualDate',
             i18n_domain='ProjectDatabase',
@@ -141,9 +143,23 @@ class EvaluationMilestone(BaseContent):
     schema = EvaluationMilestone_schema
 
     ##code-section class-header #fill in your manual code here
+    security.declarePublic('Title')
+    def Title(self):
+        """
+        """
+        return self.getMEMilestoneName()
     ##/code-section class-header
 
     # Methods
+
+    # Manually created methods
+
+    security.declarePublic('Title')
+    def Title(self):
+        """
+        """
+        return self.getMEMilestoneName()
+    ##/code-section class-header
 
 
 registerType(EvaluationMilestone, PROJECTNAME)

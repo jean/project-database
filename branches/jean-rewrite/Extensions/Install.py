@@ -186,7 +186,6 @@ def install(self, reinstall=False):
         "SubProjectFolder",
         "EvaluationMilestoneFolder",
         "RTSFolder",
-        "EvaluatorsInformationFolder",
         "MilestoneFolder",
         "PIRRatingFolder",
         "OtherProjectRatingsFolder",
