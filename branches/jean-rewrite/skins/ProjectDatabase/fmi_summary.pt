@@ -24,6 +24,9 @@
     <th>Project Status</th>
     <th>Planned Total Cost</th>
     <th>Actual Total Cost</th>
+    <th>Total GEF Allocation</th>
+    <th>GEF Allocation to UNEP</th>
+    <th>IMIS Number</th>
     <tal:entry tal:repeat="fmi fmiresults">
         <tr tal:define="fmi_obj python:fmi.getObject()">
             <td tal:define="field python:fmi_obj.Schema()['FinanceCategory'];
@@ -40,6 +43,18 @@
                 <metal:block use-macro="widget_view" />
             </td>
             <td tal:define="field python:fmi_obj.Schema()['TotalCostOfProjectStageActual'];
+                    widget_view python:fmi_obj.widget(field.getName(), mode='view', use_label=0);">
+                <metal:block use-macro="widget_view" />
+            </td>
+            <td tal:define="field python:fmi_obj.Schema()['GEFProjectAllocation'];
+                    widget_view python:fmi_obj.widget(field.getName(), mode='view', use_label=0);">
+                <metal:block use-macro="widget_view" />
+            </td>
+            <td tal:define="field python:fmi_obj.Schema()['CashUNEPAllocation'];
+                    widget_view python:fmi_obj.widget(field.getName(), mode='view', use_label=0);">
+                <metal:block use-macro="widget_view" />
+            </td>
+            <td tal:define="field python:fmi_obj.Schema()['IMISNumber'];
                     widget_view python:fmi_obj.widget(field.getName(), mode='view', use_label=0);">
                 <metal:block use-macro="widget_view" />
             </td>
