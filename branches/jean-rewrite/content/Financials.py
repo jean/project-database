@@ -185,15 +185,6 @@ schema = Schema((
         )
     ),
 
-    StringField(
-        name='AccountCode',
-        widget=StringWidget(
-            label='Accountcode',
-            label_msgid='ProjectDatabase_label_AccountCode',
-            i18n_domain='ProjectDatabase',
-        )
-    ),
-
 ),
 )
 
@@ -223,7 +214,7 @@ class Financials(BaseFolder, CurrencyMixin, FinancialsMixin):
 
     meta_type = 'Financials'
     portal_type = 'Financials'
-    allowed_content_types = ['SubProjectFolder'] + list(getattr(FinancialsMixin, 'allowed_content_types', []))
+    allowed_content_types = ['SubProject', 'MOU', 'MOU'] + list(getattr(FinancialsMixin, 'allowed_content_types', []))
     filter_content_types = 1
     global_allow = 0
     #content_icon = 'Financials.gif'
@@ -268,13 +259,14 @@ class Financials(BaseFolder, CurrencyMixin, FinancialsMixin):
     schema.moveField('ActualTotalExpenditures', after='SupplementaryUNEPAllocationRemark')
     schema.moveField('CofinancingCash', after='ActualTotalExpenditures')
     schema.moveField('CofinancingInKind', after='CofinancingCash')
+
     schema.moveField('SumCofinCashPlanned', after='CofinancingInKind')
     schema.moveField('SumCofinCashActual', after='SumCofinCashPlanned')
     schema.moveField('SumCofinInKindPlanned', after='SumCofinCashActual')
-    schema.moveField('SumCofinInKindActual', after='SumCofinCashPlanned')
+    schema.moveField('SumCofinInKindActual', after='SumCofinInKindPlanned')
     schema.moveField('TotalCostOfProjectStagePlanned', after='SumCofinInKindActual')
-    schema.moveField('TotalCostOfProjectStageActual', after='SumCofinInKindActual')
-    schema.moveField('ApprovedUNEPBudget', after='SumCofinInKindActual')
+    schema.moveField('TotalCostOfProjectStageActual', after='TotalCostOfProjectStagePlanned')
+    schema.moveField('ApprovedUNEPBudget', after='TotalCostOfProjectStageActual')
     schema.moveField('CashDisbursements', after='ApprovedUNEPBudget')
     schema.moveField('SumCashDisbursements', after='CashDisbursements')
     schema.moveField('IMISExpenditures', after='SumCashDisbursements')
