@@ -355,6 +355,12 @@ FinancialsMixin_schema = BaseSchema.copy() + \
     schema.copy()
 
 ##code-section after-schema #fill in your manual code here
+FinancialsMixin_schema['GEFProjectAllocation'].widget.size = 15
+FinancialsMixin_schema['ApprovedUNEPBudget'].widget.size = 15
+FinancialsMixin_schema['ApprovedUNEPBudget'].widget.size = 15
+FinancialsMixin_schema['ImplementingAgencyFee'].widget.size = 15
+FinancialsMixin_schema['UNEPImplentingAgencyFee'].widget.size = 15
+FinancialsMixin_schema['UNEPImplentingAgencyFee'].widget.label = 'UNEP Implementing Agency Fee'
 ##/code-section after-schema
 
 class FinancialsMixin:

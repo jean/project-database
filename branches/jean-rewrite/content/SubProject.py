@@ -187,6 +187,29 @@ class SubProject(BaseFolder, CurrencyMixin, FinancialsMixin):
     schema.moveField('LeadExecutingAgency', after='Reports')
     schema.moveField('OtherLeadExecutingAgency', after='LeadExecutingAgency')
 
+    security.declarePublic('validate_GEFProjectAllocation')
+    def validate_GEFProjectAllocation(self, value):
+        """
+        """
+        if not value:
+            value = self.getZeroMoneyInstance()
+        fmi = self.aq_parent
+        maxtotal = fmi.getGEFProjectAllocation()
+        if maxtotal is None:
+            maxtotal = self.getZeroMoneyInstance()
+                
+        total =  self.getZeroMoneyInstance()
+        for subProject in fmi.contentValues():
+            if subProject.getId() == self.getId():
+                continue
+            val = subProject.getGEFProjectAllocation()
+            if val:
+                total += val
+        if maxtotal < total + value:
+            return 'Total may not exceed allocated FMI value'
+        return
+
+
 
 
     ##/code-section class-header
