@@ -680,6 +680,7 @@ ProjectGeneralInformation_schema['PDFBStatus'].widget.visible = {'edit':'hidden'
 ProjectGeneralInformation_schema['MSPStatus'].widget.visible = {'edit':'hidden', 'view':'invisible'}
 ProjectGeneralInformation_schema['FSPStatus'].widget.visible = {'edit':'hidden', 'view':'invisible'}
 ProjectGeneralInformation_schema['ProjectTitle'].widget.visible = {'edit':'hidden', 'view':'invisible'}
+ProjectGeneralInformation_schema['LeveragedFinancingAmount'].widget.size = 15
 ##/code-section after-schema
 
 class ProjectGeneralInformation(BaseFolder, CurrencyMixin):

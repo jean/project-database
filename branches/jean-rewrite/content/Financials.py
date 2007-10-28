@@ -199,6 +199,14 @@ Financials_schema = BaseFolderSchema.copy() + \
 title_field = Financials_schema['title']
 title_field.required=0
 title_field.widget.visible = {'edit':'hidden', 'view':'invisible'}
+Financials_schema['GEFTrustFund'].widget.size=15
+Financials_schema['LDCFundAllocation'].widget.size=15
+Financials_schema['SCCFAllocation'].widget.size=15
+Financials_schema['StrategicPartnership'].widget.size=15
+Financials_schema['AdaptationTrustFund'].widget.size=15
+Financials_schema['SupplementaryUNEPAllocation'].widget.size=15
+Financials_schema['ActualTotalExpenditures'].widget.size=15
+Financials_schema['DonorTypes'].widget.visible = {'edit':'hidden', 'view':'invisible'}
 ##/code-section after-schema
 
 class Financials(BaseFolder, CurrencyMixin, FinancialsMixin):

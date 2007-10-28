@@ -367,6 +367,10 @@ MonitoringAndEvaluation_schema['ProjectTitle'].widget.label = "Project Title"
 title_field = MonitoringAndEvaluation_schema['title']
 title_field.required=0
 title_field.widget.visible = {'edit':'hidden', 'view':'invisible'}
+MonitoringAndEvaluation_schema['Budget'].widget.size = 15
+MonitoringAndEvaluation_schema['MTRActualCost'].widget.size = 15
+MonitoringAndEvaluation_schema['TerminalEvaluationBudget'].widget.size = 15
+MonitoringAndEvaluation_schema['TEActualCost'].widget.size = 15
 ##/code-section after-schema
 
 class MonitoringAndEvaluation(BaseFolder):

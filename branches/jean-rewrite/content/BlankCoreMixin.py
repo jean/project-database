@@ -277,6 +277,13 @@ BlankCoreMixin_schema = BaseSchema.copy() + \
     schema.copy()
 
 ##code-section after-schema #fill in your manual code here
+BlankCoreMixin_schema['UNEPImplementingAgencyFee'].widget.size = 15
+BlankCoreMixin_schema['LeveragedFinancingAmount'].widget.size = 15
+BlankCoreMixin_schema['TotalProjectCostPlanned'].widget.size = 15
+BlankCoreMixin_schema['TotalProjectCostActual'].widget.size = 15
+BlankCoreMixin_schema['ApprovedUNEPBudget'].widget.size = 15
+BlankCoreMixin_schema['TotalDisbursement'].widget.size = 15
+BlankCoreMixin_schema['TotalIMISExpenditures'].widget.size = 15
 ##/code-section after-schema
 
 class BlankCoreMixin:
