@@ -596,26 +596,16 @@ schema = Schema((
         )
     ),
 
-    BooleanField(
-        name='Tranched',
-        widget=BooleanField._properties['widget'](
-            description="Is this a Tranched project?",
-            label='Tranched',
-            label_msgid='ProjectDatabase_label_Tranched',
-            description_msgid='ProjectDatabase_help_Tranched',
+    StringField(
+        name='Number',
+        widget=SelectionWidget(
+            description="Is this a Tranched/Phased/Addon project?",
+            label='Number',
+            label_msgid='ProjectDatabase_label_Number',
+            description_msgid='ProjectDatabase_help_Number',
             i18n_domain='ProjectDatabase',
-        )
-    ),
-
-    BooleanField(
-        name='Phased',
-        widget=BooleanField._properties['widget'](
-            description="Is this a Phased project?",
-            label='Phased',
-            label_msgid='ProjectDatabase_label_Phased',
-            description_msgid='ProjectDatabase_help_Phased',
-            i18n_domain='ProjectDatabase',
-        )
+        ),
+        vocabulary=NamedVocabulary("""Number""")
     ),
 
     IntegerField(
@@ -624,15 +614,6 @@ schema = Schema((
         widget=IntegerField._properties['widget'](
             label="Phase/Tranche Number",
             label_msgid='ProjectDatabase_label_PhasedTrancheNumber',
-            i18n_domain='ProjectDatabase',
-        )
-    ),
-
-    BooleanField(
-        name='AddOn',
-        widget=BooleanField._properties['widget'](
-            label='Addon',
-            label_msgid='ProjectDatabase_label_AddOn',
             i18n_domain='ProjectDatabase',
         )
     ),

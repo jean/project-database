@@ -191,12 +191,12 @@ class RatingTrackingSystem(BaseFolder):
         """
         """
 
-        if 'other_project_ratings_folder' not in self.objectIds():
-            self.invokeFactory('OtherProjectRatingsFolder', 'other_project_ratings_folder')
-            self['other_project_ratings_folder'].setTitle('Other Project Ratings')
         if 'pir_ratings' not in self.objectIds():
             self.invokeFactory('PIRRatingFolder', 'pir_ratings')
             self['pir_ratings'].setTitle('PIR Ratings')
+        if 'other_project_ratings_folder' not in self.objectIds():
+            self.invokeFactory('OtherProjectRatingsFolder', 'other_project_ratings_folder')
+            self['other_project_ratings_folder'].setTitle('Other Project Ratings')
         BaseFolder.manage_afterAdd(self, item, container)
 
 

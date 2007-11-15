@@ -109,6 +109,7 @@ def install(self, reinstall=False):
          'StrategicObjectives': ('VdexVocabulary', 'SimpleVocabularyTerm'),
          'InceptionRiskRating': ('VdexVocabulary', 'SimpleVocabularyTerm'),
          'EvaluationTypeMilestone': ('VdexVocabulary', 'SimpleVocabularyTerm'),
+         'Number': ('VdexVocabulary', 'SimpleVocabularyTerm'),
          'EAClimateChange': ('VdexVocabulary', 'SimpleVocabularyTerm'),
          'StrategicProgram': ('VdexVocabulary', 'SimpleVocabularyTerm'),
          'LeadAgency': ('VdexVocabulary', 'SimpleVocabularyTerm'),

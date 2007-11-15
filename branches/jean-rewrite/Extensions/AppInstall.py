@@ -15,6 +15,8 @@ def install(self):
 
     portal = getToolByName(self,'portal_url').getPortalObject()
 
+    if 'Evaluators' not in portal.contentIds():
+        portal.invokeFactory('mxmContacts', 'Evaluators', title='Evaluators')
     # Create 'Agency' objects for us, until we have an Agency type that
     # supports import/export.
     # if 'contacts' not in portal.contentIds():

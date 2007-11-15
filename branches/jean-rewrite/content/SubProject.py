@@ -197,7 +197,7 @@ class SubProject(BaseFolder, CurrencyMixin, FinancialsMixin):
         maxtotal = fmi.getGEFProjectAllocation()
         if maxtotal is None:
             maxtotal = self.getZeroMoneyInstance()
-                
+
         total =  self.getZeroMoneyInstance()
         for subProject in fmi.contentValues():
             if subProject.getId() == self.getId():
@@ -215,6 +215,31 @@ class SubProject(BaseFolder, CurrencyMixin, FinancialsMixin):
     ##/code-section class-header
 
     # Methods
+
+    # Manually created methods
+
+    security.declarePublic('validate_GEFProjectAllocation')
+    def validate_GEFProjectAllocation(self, value):
+        """
+        """
+        if not value:
+            value = self.getZeroMoneyInstance()
+        fmi = self.aq_parent
+        maxtotal = fmi.getGEFProjectAllocation()
+        if maxtotal is None:
+            maxtotal = self.getZeroMoneyInstance()
+
+        total =  self.getZeroMoneyInstance()
+        for subProject in fmi.contentValues():
+            if subProject.getId() == self.getId():
+                continue
+            val = subProject.getGEFProjectAllocation()
+            if val:
+                total += val
+        if maxtotal < total + value:
+            return 'Total may not exceed allocated FMI value'
+        return
+
 
 
 registerType(SubProject, PROJECTNAME)
