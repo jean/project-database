@@ -44,6 +44,7 @@ from Products.CMFCore.utils import getToolByName
 from Products.FinanceFields.Money import Money
 
 ##code-section module-header #fill in your manual code here
+from Products.DataGridField import CalendarColumn
 ##/code-section module-header
 
 schema = Schema((
@@ -350,7 +351,20 @@ schema = Schema((
             show_hm=False,
             label_msgid='ProjectDatabase_label_TerminalReportActualEvaluationDate',
             i18n_domain='ProjectDatabase',
-        )
+        ),
+        vocabulary=NamedVocabulary("""MEMilestoneName""")
+    ),
+
+    DataGridField(
+        name='EvaluationMilestones',
+        widget=DataGridField._properties['widget'](
+            columns={'evaluation_type_milestone':SelectColumn("Evaluation Type Milestone", vocabulary="getEvaluationTypeMilestoneVocabulary"),'memilestone_name':SelectColumn("ME Milestone Name", vocabulary="getMEMilestoneNameVocabulary"), 'planned_date':CalendarColumn("Planned Date"), 'actual_date':CalendarColumn("Actual Date"), 'remarks':Column("Remarks")},
+            label='Evaluationmilestones',
+            label_msgid='ProjectDatabase_label_EvaluationMilestones',
+            i18n_domain='ProjectDatabase',
+        ),
+        vocabulary=NamedVocabulary("""EvaluationTypeMilestone"""),
+        columns=('evaluation_type_milestone', 'memilestone_name','planned_date','actual_date','remarks')
     ),
 
 ),
@@ -432,9 +446,9 @@ class MonitoringAndEvaluation(BaseFolder):
         """
         """
         me = self
-        if 'evaluation_milestone_folder' not in me.objectIds():
-            me.invokeFactory('EvaluationMilestoneFolder', 'evaluation_milestone_folder', title='Evaluation Milestones')
-            #me['evaluation_milestone_folder'].setTitle('Evaluation Milestones')
+        #if 'evaluation_milestone_folder' not in me.objectIds():
+        #    me.invokeFactory('EvaluationMilestoneFolder', 'evaluation_milestone_folder', title='Evaluation Milestones')
+        #    #me['evaluation_milestone_folder'].setTitle('Evaluation Milestones')
         if 'rtsfolder' not in me.objectIds():
             me.invokeFactory('RTSFolder', 'rtsfolder')
             me['rtsfolder'].edit(title='Rating Tracking Systems')
@@ -448,6 +462,18 @@ class MonitoringAndEvaluation(BaseFolder):
         """
         """
         return self.getAProject().Title()
+
+    security.declarePublic('getEvaluationTypeMilestoneVocabulary')
+    def getEvaluationTypeMilestoneVocabulary(self):
+        """
+        """
+        return self.getField('EvaluationMilestones').vocabulary.getDisplayList(self)
+
+    security.declarePublic('getMEMilestoneNameVocabulary')
+    def getMEMilestoneNameVocabulary(self):
+        """
+        """
+        return self.getField('TerminalReportActualEvaluationDate').vocabulary.getDisplayList(self)
 
 
 registerType(MonitoringAndEvaluation, PROJECTNAME)
