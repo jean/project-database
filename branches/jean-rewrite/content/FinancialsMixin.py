@@ -308,25 +308,6 @@ schema = Schema((
         )
     ),
 
-    StringField(
-        name='ProjectRevisionNumber',
-        widget=StringWidget(
-            label="Project Revision Number",
-            label_msgid='ProjectDatabase_label_ProjectRevisionNumber',
-            i18n_domain='ProjectDatabase',
-        )
-    ),
-
-    DateTimeField(
-        name='RevisionDate',
-        widget=CalendarWidget(
-            label="Date of Revision",
-            show_hm=False,
-            label_msgid='ProjectDatabase_label_RevisionDate',
-            i18n_domain='ProjectDatabase',
-        )
-    ),
-
     ComputedField(
         name='TotalCostOfProjectStagePlanned',
         widget=ComputedField._properties['widget'](
@@ -343,6 +324,18 @@ schema = Schema((
             label_msgid='ProjectDatabase_label_TotalCostOfProjectStageActual',
             i18n_domain='ProjectDatabase',
         )
+    ),
+
+    DataGridField(
+        name='ProjectRevision',
+        widget=DataGridField._properties['widget'](
+            columns={"revision_number":Column("Revision Number"), "revision_type":SelectColumn("Revision Type", vocabulary="getRevisionTypeVocabulary"),"revision_date":CalendarColumn("Revision Date")},
+            label="Project Revision",
+            label_msgid='ProjectDatabase_label_ProjectRevision',
+            i18n_domain='ProjectDatabase',
+        ),
+        vocabulary=NamedVocabulary("""ProjectRevisionType"""),
+        columns=("revision_number", "revision_type","revision_date")
     ),
 
 ),
@@ -507,6 +500,12 @@ class FinancialsMixin:
             return total
         else:
             return self.getZeroMoneyInstance()
+
+    security.declarePublic('getRevisionTypeVocabulary')
+    def getRevisionTypeVocabulary(self):
+        """
+        """
+        return self.getField('ProjectRevision').vocabulary.getDisplayList(self)
 
     # Manually created methods
 

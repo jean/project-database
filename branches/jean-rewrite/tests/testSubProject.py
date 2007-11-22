@@ -114,6 +114,10 @@ class testSubProject(PortalDatabaseTestCase):
     def test_getTotalCostOfProjectStageActual(self):
         pass
 
+    # from class FinancialsMixin:
+    def test_getRevisionTypeVocabulary(self):
+        pass
+
     # Manually created methods
 
     def test_getSubProjectCofinCashActual(self):

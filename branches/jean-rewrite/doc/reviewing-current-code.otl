@@ -1,0 +1,17 @@
+Notes while reviewing & modeling current codebase
+Opportunities for refactoring
+	Put countries in regions (now they're independent lists)
+	Instead of overloaded Project, have subobjects 
+		Subobjects should be automatically added
+		Types
+			Reviews
+			Financials
+			Contacts
+	SubProject
+		Make CashDisbursements, IMISExpenditures subobjects with Money fields.
+Todo
+	Make vocabularies sorted
+	Investigate VDEX vocabularies
+		http://www.imsglobal.org/vdex/
+Errors
+	Don't put a FieldIndex on a TextField

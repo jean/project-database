@@ -1,0 +1,130 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html><head><title>Responses to Finalnp_DB.doc</title>
+<!--  $Revision: 1.43 $ -->
+<!--  $Date: 2005/06/07 13:16:40 $ -->
+<!--  $Author: noel $ -->
+<link href="nnnnnn.css" rel="stylesheet" type="text/css">
+<body>
+<div class="DocTitle">
+<h1>Responses to Finalnp_DB.doc</h1>
+</div>
+<div class="MainPage">
+<ol>
+<li  class="L1" >Automatic logout <ol>
+<p  class="P2" >make sure that it is necessary to log-in even after you have closed PLONE
+without Logging Out.
+</p>
+<li  class="L2" >Use SessionCrumbler http://plone.org/products/sessioncrumbler <ol>
+<p  class="P3" >The web is stateless. The server doesn't know when you close a
+browser window. The best we can do is letting sessions time out after
+a certain period. There is a product called SessionCrumbler which
+facilitates this. It should be possible to swap out Plone's existing
+CookieCrumbler with SessionCrumbler. </p>
+</ol>
+</ol>
+<li  class="L1" >Undo <ol>
+<p  class="P2" >After adding a new project, I could not UNDO the changes I made and
+neither can Eric
+</p>
+<li  class="L2" >Use versioning <ol>
+<p  class="P3" >Don't depend on "Undo" functionality in an application context. It's
+database-level functionality that is frequently unusable and
+sometimes dangerous (undoing a change in one object might render the
+application state as a whole inconsistent). If it is necessary to be
+able to revert to older versions of objects, use versioning instead.
+For the current state of the art, see
+http://plone.org/events/conferences/seattle-2006/presentations/versioning-at-last.pdf/view </p>
+</ol>
+</ol>
+<li  class="L1" >Google search <ol>
+<p  class="P2" >We need to be able to search within a page with GOOGLE. Possible?
+</p>
+<li  class="L2" >Clarification needed <ol>
+<p  class="P3" >It's certainly possible to use Google to search the site. It doesn't
+really make sense to use it to search one single page, so this can't
+be what is meant. What's lacking with Plone's search? Perhaps it's
+something that can be fixed with some configuration. </p>
+</ol>
+</ol>
+<li  class="L1" >CSS & UI work <ol>
+<li  class="L2" >Changes to field labels, field order or templates <ol>
+<li  class="L3" >Rename "UNEP DGEF Projects" to "UNEP GEF Projects"
+<li  class="L3" >Rename: Project core to read Project General Information
+<li  class="L3" >Rename Financial Management Information to Project Financial Information.
+<li  class="L3" >Rename Milestones to Project Cycle Milestones
+<li  class="L3" >When a Project is selected show the title of the latest project
+<li  class="L3" >Fonts for the Project title could be slightly smaller
+<li  class="L3" >The top menu bar should remain fixed when you scroll
+<li  class="L3" >The Project's Status: shown immediately after the project title.
+<li  class="L3" >In addition: Add columns for Milestone and Dates
+<li  class="L3" >.. and elsewhere </ol>
+<li  class="L2" >Templating <ol>
+<p  class="P3" >Templates that need structural reworking
+</p>
+<li  class="L3" >Need to have a function that allows you to view a list of ALL projects
+<li  class="L3" >The search results page
+<li  class="L3" >In the OVERVIEW section, we need links to these documents ... </ol>
+<li  class="L2" >Widgets <ol>
+<li  class="L3" >Change behaviour of country selection widget; see II.5
+<li  class="L3" >Is this a Tranched project? Check boxes for either YES OR NO. If yes .. <ol>
+<p  class="P4" >Alternative implementation: display "Not tranched", and then: "if
+this is a tranched project, enter the number of tranches". If it
+is a tranched project, show a field with the number of tranches
+with "if this is not a tranched project, enter 0 in this field" </p>
+</ol>
+</ol>
+</ol>
+<li  class="L1" >Links <ol>
+<p  class="P2" >Is it possible to add links within the sections
+</p>
+<li  class="L2" >Clarification needed <ol>
+<p  class="P3" >What are links in this context? Plone Link objects, or "related" site
+content? </p>
+</ol>
+</ol>
+<li  class="L1" >Rights & security <ol>
+<p  class="P2" >Audit based on directions in various places in Finalnp_DB
+</p>
+<li  class="L2" >Task Manager <ol>
+<p  class="P3" >This needs to be a role or a group. Consider one of the "group"
+products, e.g. GrufSpaces, TeamSpace (depends on CMFMember),
+PloneWorkspaces, mxmWorkgroups, ... </p>
+</ol>
+</ol>
+<li  class="L1" >Fields & functionality <ol>
+<li  class="L2" >The ADD option should allow the user to enter any other type of EA <ol>
+<p  class="P3" >Should these then be available in the list for future EA selections? </p>
+</ol>
+<li  class="L2" >Add various lookup content types <ol>
+<p  class="P3" >These supply the vocabularies for various dropdowns. Take care of
+referential integrity (if one of these is in use, don't allow
+deletion.) Here are some of the types I have in mind:
+</p>
+<li  class="L3" >UNEP regions
+<li  class="L3" >GEF eligible countries
+<li  class="L3" >GEF 3 Strategic Priorities
+<li  class="L3" >GEF 4 STRATEGIC OBJECTIVES </ol>
+<li  class="L2" >Agencies <ol>
+<li  class="L3" >Use e.g. mxmContacts or UpfrontContacts for this? <ol>
+<p  class="P4" >I think mxmContacts may already be in use. </p>
+</ol>
+</ol>
+<li  class="L2" >Fee <ol>
+<li  class="L3" >Use Upfront's Money type for all financial fields. <ol>
+<p  class="P4" >It handles money arithmetic, currencies, display, widgets .. </p>
+</ol>
+</ol>
+<li  class="L2" >This option should only be available when you choose INTERNAL. <ol>
+<p  class="P3" >Either use schemata, where this field is on the 2nd schemata, or use
+Azax to render this field conditionally, or show both with a warning
+at the 2nd one. </ol>
+</ol>
+</ol>
+</div>
+<div class="Footer">
+<hr>
+
+<br>
+Finalnp_DB.doc--notes.otl&nbsp&nbsp 2006/11/03 16:26
+</div>
+</body></html>
