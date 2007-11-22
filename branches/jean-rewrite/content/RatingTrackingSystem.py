@@ -43,6 +43,7 @@ from Products.CMFCore.utils import getToolByName
 from Products.FinanceFields.Money import Money
 
 ##code-section module-header #fill in your manual code here
+from Products.DataGridField import CalendarColumn
 ##/code-section module-header
 
 schema = Schema((
@@ -128,6 +129,17 @@ schema = Schema((
         vocabulary=NamedVocabulary("""Rating""")
     ),
 
+    DataGridField(
+        name='PIRRating',
+        widget=DataGridField._properties['widget'](
+            columns={'fiscal_year':Column("Fiscal Year"), 'achievement_of_results':SelectColumn("Achievement of Results", vocabulary="getRatingVocabulary"), "implementation_progress":SelectColumn("Implementation Progress", vocabulary="getRatingVocabulary"),'monitoring_and_evaluation':SelectColumn("Monitoring and Evalutation", vocabulary="getRatingVocabulary"),'risk':SelectColumn("Risk", vocabulary="getInceptionRiskRatingVocabulary"),},
+            label="PIR Rating",
+            label_msgid='ProjectDatabase_label_PIRRating',
+            i18n_domain='ProjectDatabase',
+        ),
+        columns=('fiscal_year', 'achievement_of_results','implementation_progress','monitoring_and_evaluation','risk')
+    ),
+
 ),
 )
 
@@ -191,13 +203,25 @@ class RatingTrackingSystem(BaseFolder):
         """
         """
 
-        if 'pir_ratings' not in self.objectIds():
-            self.invokeFactory('PIRRatingFolder', 'pir_ratings')
-            self['pir_ratings'].setTitle('PIR Ratings')
+        #if 'pir_ratings' not in self.objectIds():
+        #    self.invokeFactory('PIRRatingFolder', 'pir_ratings')
+        #    self['pir_ratings'].setTitle('PIR Ratings')
         if 'other_project_ratings_folder' not in self.objectIds():
             self.invokeFactory('OtherProjectRatingsFolder', 'other_project_ratings_folder')
             self['other_project_ratings_folder'].setTitle('Other Project Ratings')
         BaseFolder.manage_afterAdd(self, item, container)
+
+    security.declarePublic('getRatingVocabulary')
+    def getRatingVocabulary(self):
+        """
+        """
+        return self.getField('MTEMTRRating').vocabulary.getDisplayList(self)
+
+    security.declarePublic('getInceptionRiskRatingVocabulary')
+    def getInceptionRiskRatingVocabulary(self):
+        """
+        """
+        return self.getField('ProjectInceptionRiskRating').vocabulary.getDisplayList(self)
 
 
 registerType(RatingTrackingSystem, PROJECTNAME)
