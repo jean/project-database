@@ -101,6 +101,7 @@ def install(self, reinstall=False):
          'Country': ('VdexVocabulary', 'SimpleVocabularyTerm'),
          'Region': ('VdexVocabulary', 'SimpleVocabularyTerm'),
          'EABiodiversity': ('VdexVocabulary', 'SimpleVocabularyTerm'),
+         'ProjectRevisionType': ('VdexVocabulary', 'SimpleVocabularyTerm'),
          'ReportType': ('VdexVocabulary', 'SimpleVocabularyTerm'),
          'MultipleFocalAreas': ('VdexVocabulary', 'SimpleVocabularyTerm'),
          'MEMilestoneName': ('VdexVocabulary', 'SimpleVocabularyTerm'),

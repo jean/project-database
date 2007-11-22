@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="Docutils 0.3.5: http://docutils.sourceforge.net/" />
+<title>Request for help on UNEP Project Database application</title>
+<link rel="stylesheet" href="default.css" type="text/css" />
+</head>
+<body>
+<h1 class="title">Request for help on UNEP Project Database application</h1>
+<h2 class="subtitle" id="id1">Request for help on UNEP Project Database application</h2>
+<div class="document" id="request-for-help-on-unep-project-database-application">
+<p>UNEP has developed a Project Database application, to keep track of and
+manage proposed and running projects. This is a Plone product with
+Archetypes-based content types. There are 7 content types now, with
+22 schemas shared among them, numbering some 66 fields in total, and 3
+workflows.</p>
+<p>The project does not always follow best practices, and some refactoring
+may turn out to be advisable.</p>
+<p>They have now completed an internal review which has resulted in a
+number of change requests. Types of changes include:</p>
+<ul class="simple">
+<li>Addition of functionality. This may involve integration of third-party
+products.</li>
+<li>Adding and editing of page templates for editing and reporting.</li>
+<li>Changes to field labels and field order within templates.</li>
+</ul>
+<div class="section" id="products-to-be-integrated">
+<h1><a name="products-to-be-integrated">Products to be integrated</a></h1>
+<p>An overview of the change requests suggests that the following products
+are candidates for integration:</p>
+<dl>
+<dt>SessionCrumbler</dt>
+<dd>Requirement: enable timed logout.</dd>
+<dt>mxmWorkgroups (or one of the other workgroup implementations)</dt>
+<dd>Enable maintenance of site editing rights by way of group membership.</dd>
+<dt>FinanceFields</dt>
+<dd>Fields implementing proper monetary arithmetic, taking currencies into
+account. Floating point rounding issues are addressed. Widgets are
+provided. This is obtainable from Upfront Systems: contact
+<a class="reference" href="mailto:jean&#64;upfrontsystems.co.za">jean&#64;upfrontsystems.co.za</a></dd>
+</dl>
+</div>
+<div class="section" id="refactoring">
+<h1><a name="refactoring">Refactoring</a></h1>
+<p>Currently a number of vocabularies that need to be managed are defined.
+It may make sense to change these into simple content types that provide
+the vocabulary.</p>
+</div>
+<div class="section" id="templating">
+<h1><a name="templating">Templating</a></h1>
+<p>Various custom view and reporting templates need to be changed regarding
+layout and information presented.</p>
+</div>
+<div class="section" id="security">
+<h1><a name="security">Security</a></h1>
+<p>Edit rights and security needs to be audited.</p>
+</div>
+</div>
+</body>
+</html>
