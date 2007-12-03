@@ -489,7 +489,6 @@ class MonitoringAndEvaluation(BaseFolder):
     def getCurrentTaskManager(self):
         """
         """
-        import pdb; pdb.set_trace()
         if not self['CurrentTaskManager']:
             return self.getAProject().getCurrentTaskManager()
         return self['CurrentTaskManager']
@@ -498,7 +497,6 @@ class MonitoringAndEvaluation(BaseFolder):
     def getFundManagementOfficer(self):
         """
         """
-        import pdb; pdb.set_trace()
         if not self['FundManagementOfficer']:
             fmis = self.getAProject()['fmi_folder'].contentValues()
             return fmis[len(fmis)-1]['FundManagementOfficer']
