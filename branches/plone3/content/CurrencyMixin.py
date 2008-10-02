@@ -19,7 +19,7 @@ __docformat__ = 'plaintext'
 from Products.FinanceFields.Money import Money
 from Products.FinanceFields.MoneyField import MoneyField
 from Products.FinanceFields.MoneyWidget import MoneyWidget
-from Products.DataGridField import DataGridField, DataGridWidget, Column, SelectColumn
+from Products.DataGridField import DataGridField, DataGridWidget, Column, SelectColumn, CalendarColumn
 from Products.ATReferenceBrowserWidget.ATReferenceBrowserWidget import ReferenceBrowserWidget
 import Project
 import Financials
