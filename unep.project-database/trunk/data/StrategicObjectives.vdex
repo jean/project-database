@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vdex xmlns="http://www.imsglobal.org/xsd/imsvdex_v1p0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.imsglobal.org/xsd/imsvdex_v1p0 imsvdex_v1p0.xsd http://www.imsglobal.org/xsd/imsmd_rootv1p2p1 imsmd_rootv1p2p1.xsd"
+    language="en" orderSignificant="true" profileType="flatTokenTerms">
+<vocabName>
+  <langstring language="en">StrategicObjectives</langstring>
+</vocabName>
+
+<term>
+  <termIdentifier>BDrev-1</termIdentifier>
+  <caption>
+    <langstring language="en">Catalyze sustainability of protected area
+    (PA) systems
+    </langstring>
+  </caption>
+  <description />
+</term>
+
+<term>
+  <termIdentifier>BDrev-2</termIdentifier>
+  <caption>
+    <langstring language="en">Mainstream biodiversity in production
+    landscapes, seascapes and sectors
+    </langstring>
+  </caption>
+  <description />
+</term>
+
+<term>
+  <termIdentifier>BDrev-3</termIdentifier>
+  <caption>
+    <langstring language="en">
+    Safeguard biodiversity
+    </langstring>
+  </caption>
+  <description />
+</term>
+
+<term>
+  <termIdentifier>BDrev-4</termIdentifier>
+  <caption>
+    <langstring language="en">
+    Build capacity on access and benefit sharing
+    </langstring>
+  </caption>
+  <description />
+</term>
+
+<term>
+  <termIdentifier>CCrev-1</termIdentifier>
+  <caption>
+    <langstring language="en">Promote energy-efficient technologies and
+    practices in the appliance and building sectors
+    </langstring>
+  </caption>
+  <description />
+</term>
+
+<term>
+  <termIdentifier>CCrev-2</termIdentifier>
+  <caption>
+    <langstring language="en">Promote energy-efficient technologies and
+    practices in industrial production and manufacturing processes
+    </langstring>
+  </caption>
+  <description />
+</term>
+
+<term>
+  <termIdentifier>CCrev-3</termIdentifier>
+  <caption>
+    <langstring language="en">Improve the efficiency and performance of
+    existing power plants
+    </langstring>
+  </caption>
+  <description />
+</term>
+
+<term>
+  <termIdentifier>CCrev-4</termIdentifier>
+  <caption>
+    <langstring language="en">Promote on-grid renewable energy
+    </langstring>
+  </caption>
+  <description />
+</term>
+
+<term>
+  <termIdentifier>CCrev-5</termIdentifier>
+  <caption>
+    <langstring language="en">Promote use of renewable energy for the
+    provision of rural energy services (off-grid)
+    </langstring>
+  </caption>
+  <description />
+</term>
+
+<term>
+  <termIdentifier>CCrev-6</termIdentifier>
+  <caption>
+    <langstring language="en">Support new low-GHG emitting energy
+    technologies
+    </langstring>
+  </caption>
+  <description />
+</term>
+
+<term>
+  <termIdentifier>CCrev-7</termIdentifier>
+  <caption>
+    <langstring language="en">Facilitate market transformation for
+    sustainable mobility in urban areas leading to reduced GHG emissions
+    </langstring>
+  </caption>
+  <description />
+</term>
+
+<term>
+  <termIdentifier>CCrev-8</termIdentifier>
+  <caption>
+    <langstring language="en">Support pilot and demonstration projects
+    for adaptation to climate change
+    </langstring>
+  </caption>
+  <description />
+</term>
+
+<term>
+  <termIdentifier>LDrev-1</termIdentifier>
+  <caption>
+    <langstring language="en">Develop an enabling environment that will
+    place Sustainable Land Management (SLM) in the mainstream of
+    development policy and practices at the regional, national and local
+    levels
+    </langstring>
+  </caption>
+  <description />
+</term>
+
+<term>
+  <termIdentifier>LDrev-2</termIdentifier>
+  <caption>
+    <langstring language="en">Upscale SLM investments that generate
+    mutual benefits for the global environment and local livelihoods
+    </langstring>
+  </caption>
+  <description />
+</term>
+
+<term>
+  <termIdentifier>IWrev-1</termIdentifier>
+  <caption>
+    <langstring language="en">Foster international multi-state
+    cooperation on priority transboundary water concerns
+    </langstring>
+  </caption>
+  <description />
+</term>
+
+<term>
+  <termIdentifier>IWrev-2</termIdentifier>
+  <caption>
+    <langstring language="en">To catalyze transboundary action
+    addressing water concerns
+    </langstring>
+  </caption>
+  <description />
+</term>
+
+<term>
+  <termIdentifier>POP-1</termIdentifier>
+  <caption>
+    <langstring language="en">Reduce and eliminate production, use and
+    releases of POPs
+    </langstring>
+  </caption>
+  <description />
+</term>
+
+<term>
+  <termIdentifier>ODS-1</termIdentifier>
+  <caption>
+    <langstring language="en">Phase out production and consumption of
+    ODS
+    </langstring>
+  </caption>
+  <description />
+</term>
+
+<term>
+  <termIdentifier>SFM-1</termIdentifier>
+  <caption>
+    <langstring language="en">Protect globally significant forest
+    biodiversity
+    </langstring>
+  </caption>
+  <description />
+</term>
+
+<term>
+  <termIdentifier>SFM-2</termIdentifier>
+  <caption>
+    <langstring language="en">Promote sustainable management and use of
+    forest resources
+    </langstring>
+  </caption>
+  <description />
+</term>
+
+<term>
+  <termIdentifier>SCM-1</termIdentifier>
+  <caption>
+    <langstring language="en">Promote sound management of chemicals for
+    the protection of human health and the global environment
+    </langstring>
+  </caption>
+  <description />
+</term>
+
+<term>
+  <termIdentifier>OZrev-1</termIdentifier>
+  <caption>
+    <langstring language="en">Address HCFCs, residual use of MeBr, and
+    strengthen institutions and other non-investment activities
+    </langstring>
+  </caption>
+  <description />
+</term>
+
+</vdex>
