@@ -1,0 +1,64 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xml:lang="en"
+      lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      metal:use-macro="here/main_template/macros/master">
+
+  <head><title></title></head>
+  <body>
+    <metal:fill fill-slot="main">
+      <metal:main_macro define-macro="main">
+
+      <tal:redirect tal:condition="python: context.portal_type =='MilestoneDates'" >
+       <b tal:define="dummy python:container.REQUEST.RESPONSE.redirect(here.aq_parent.absolute_url() + '/Milestone_view')">
+         redirect to parent!
+        </b>
+      </tal:redirect>
+
+       <!--<h1 tal:define="field python:here.Schema()['project_title']; accessor python:getattr(here, field.accessor)" tal:condition="python:not accessor()==''" ><span tal:replace="structure accessor"/> </h1>-->
+       <tal:mlist tal:define="milestones python:container.portal_catalog(portal_type = ['MilestoneDates'], review_state=['published','visible'], sort_on='getMilestone_date', path='/'.join(here.getPhysicalPath()));">
+
+        <a href="#" tal:attributes="href python:here.absolute_url()+'/createObject?type_name=MilestoneDates';">
+        <img SRC="add_milestone.jpg"></a>
+
+
+        
+          <table border="0" cellpadding="3" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="100%">
+            <thead>
+              <tr>
+                <td width="20%" bgcolor="#336699"><font color="#FFFFFF"><b>&nbsp;Current Stage</b></font></td>
+                <td width="20%" bgcolor="#336699"><font color="#FFFFFF"><b>&nbsp;Milestone Name</b></font></td>
+                <td width="10%" bgcolor="#336699"><font color="#FFFFFF"><b>&nbsp;Date</b></font></td>
+                <td width="40%" bgcolor="#336699"><font color="#FFFFFF"><b>&nbsp;Remark</b></font></td>
+                <td width="10%" bgcolor="#336699"></td>
+             </tr>
+           </thead>
+       	   <tbody>               
+       	  	<tr tal:repeat="milestone milestones">       
+                <tal:entry  tal:define="odate milestone/getObject">          
+                    <td tal:content="odate/implementation_status" width='19%' bgcolor='#F7F9FA'>first val</td>
+                    <td tal:content="odate/milestone_name" width='21%' bgcolor='#F7F9FA'>first val</td>
+                    <td tal:content="odate/milestone_date" width='12%' bgcolor='#F7F9FA'>first val</td>
+                    <td tal:content="odate/milestone_description" width='48%' bgcolor='#F7F9FA'>first val</td>
+                    <td> <form tal:attributes="action string:${odate/absolute_url}/base_edit" method="link">
+                            <input type="submit" value="Edit">
+                         </form> 
+                    </td>
+                </tal:entry>
+                </tr>
+           </tbody>
+       
+   
+       </table>
+     
+ 
+     
+ 
+
+        </tal:mlist>
+      </metal:main_macro>
+    </metal:fill>
+  </body>
+</html>
