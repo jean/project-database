@@ -1,0 +1,6 @@
+<?xml version="1.0" ?>
+<site>
+    <property name="title">UNEP Project Database</property>
+    <property name="description">Welcome to the UNEP Project Database.</property>
+    <property name="email_from_address" type="string">jurgen@upfrontsystems.co.za</property>
+</site>

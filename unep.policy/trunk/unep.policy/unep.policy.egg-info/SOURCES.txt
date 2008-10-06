@@ -1,6 +1,10 @@
 README.txt
 setup.cfg
 setup.py
+docs/HISTORY.txt
+docs/INSTALL.txt
+docs/LICENSE.GPL
+docs/LICENSE.txt
 unep/__init__.py
 unep.policy.egg-info/PKG-INFO
 unep.policy.egg-info/SOURCES.txt
@@ -11,4 +15,5 @@ unep.policy.egg-info/not-zip-safe
 unep.policy.egg-info/requires.txt
 unep.policy.egg-info/top_level.txt
 unep/policy/__init__.py
+unep/policy/configure.zcml
 unep/policy/tests.py
