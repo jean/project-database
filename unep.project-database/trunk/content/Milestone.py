@@ -122,6 +122,9 @@ Milestone_schema = BaseSchema.copy() + \
     schema.copy()
 
 ##code-section after-schema #fill in your manual code here
+title_field = Milestone_schema['title']
+title_field.required=0
+title_field.widget.visible = {'edit':'hidden', 'view':'invisible'}
 ##/code-section after-schema
 
 class Milestone(BaseContent, BrowserDefaultMixin):
@@ -144,25 +147,41 @@ class Milestone(BaseContent, BrowserDefaultMixin):
     def getProjectProcesses(self):
         """
         """
-        pass
+        atvm = self.portal_vocabularies
+        vocab = atvm.getVocabularyByName('ProjectProcesses')
+        return vocab.getDisplayList(self)
 
     security.declarePublic('getProjectStatusses')
     def getProjectStatusses(self):
         """
         """
-        pass
+        atvm = self.portal_vocabularies
+        vocab = atvm.getVocabularyByName('ProjectStatusses')
+        return vocab.getDisplayList(self)
 
     security.declarePublic('getCountryNames')
     def getCountryNames(self):
         """
         """
-        pass
+        atvm = self.portal_vocabularies
+        vocab = atvm.getVocabularyByName('Country')
+        return vocab.getDisplayList(self)
 
     security.declarePublic('getApprovalInitiationClosure')
     def getApprovalInitiationClosure(self):
         """
         """
-        pass
+        atvm = self.portal_vocabularies
+        vocab = atvm.getVocabularyByName('ApprovalInitiationClosure')
+        return vocab.getDisplayList(self)
+
+    # Manually created methods
+
+    security.declarePublic('Title')
+    def Title(self):
+        """
+        """
+        return self.getMilestoneName()
 
 
 registerType(Milestone, PROJECTNAME)
