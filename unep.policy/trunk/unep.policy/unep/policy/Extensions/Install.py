@@ -43,3 +43,25 @@ def Install(self, reinstall=False):
         product_name = extension_id.split(':')[0]
         pqi.notifyInstalled(product_name)
         transaction.savepoint()
+
+    portal = getToolByName(self,'portal_url').getPortalObject()
+
+    # # add default contact groups
+    # if 'Evaluators' not in portal.contentIds():
+    #     portal.invokeFactory('UpfrontContacts', 'Evaluators', title='Evaluators')
+
+    # add default project folders
+    if 'projectdatabases' not in portal.contentIds():
+        portal.invokeFactory('Folder', 'projectdatabases', title='Project Databases')
+
+    # # remove unneeded folders
+    # ids=['Members', 'news', 'events', 'front-page']
+    # for id in ids:
+    #     if id in portal.objectIds():
+    #         portal.manage_delObjects(ids=[id])
+
+    # portal.portal_vocabularies.reindexObject()
+ 
+    # # remove portlets
+    # safeEditProperty(portal, 'left_slots', (), 'lines')
+    # safeEditProperty(portal, 'right_slots', (), 'lines')
