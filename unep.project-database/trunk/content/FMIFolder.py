@@ -62,9 +62,38 @@ class FMIFolder(BaseFolder, BrowserDefaultMixin):
     schema = FMIFolder_schema
 
     ##code-section class-header #fill in your manual code here
+    actions = actions + (
+            {   'action': "string:${object_url}/fmi_summary",
+                'category': "object",
+                'id': 'view',
+                'name': 'view',
+                'permissions': ("View",),
+                'condition': 'python:1'
+            },
+            {   'action':"string:${object_url}/edit",
+                'category':"object",
+                'id':'edit',
+                'name':'edit',
+                'permissions':('Modify portal content'),
+                'condition':'python:0',
+            },
+            )
     ##/code-section class-header
 
     # Methods
+
+    # Manually created methods
+
+    security.declarePublic('sumTotalStageActual')
+    def sumTotalStageActual(self):
+        """
+        """
+        from Products.FinanceFields.Money import Money
+        total = Money(0, 'USD')
+        for actual in self.objectValues('Financials'):
+            if actual.getTotalCostOfProjectStageActual():
+                total += actual.getTotalCostOfProjectStageActual()
+        return str(total)
 
 
 registerType(FMIFolder, PROJECTNAME)

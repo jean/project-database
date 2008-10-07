@@ -62,15 +62,26 @@ class RTSFolder(BaseFolder, BrowserDefaultMixin):
     schema = RTSFolder_schema
 
     ##code-section class-header #fill in your manual code here
+    actions = ({  'action':"string:${object_url}/edit",
+                            'category':"object",
+                            'id':'edit',
+                            'name':'edit',
+                            'permissions':('Modify portal content'),
+                            'condition':'python:0',
+                        },)
     ##/code-section class-header
 
     # Methods
 
     security.declarePrivate('manage_afterAdd')
-    def manage_afterAdd(self):
+    def manage_afterAdd(self, item, container):
         """
         """
-        pass
+
+        if 'rating_tracking_system' not in self.objectIds():
+            self.invokeFactory('RatingTrackingSystem', 'rating_tracking_system')
+            self['rating_tracking_system'].setTitle('Rating Tracking System')
+        BaseFolder.manage_afterAdd(self, item, container)
 
 
 registerType(RTSFolder, PROJECTNAME)

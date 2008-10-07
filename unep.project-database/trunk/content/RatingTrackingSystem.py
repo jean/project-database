@@ -153,31 +153,41 @@ class RatingTrackingSystem(BaseFolder, BrowserDefaultMixin):
     def getPIRRatingCategory(self):
         """
         """
-        pass
+        atvm = self.portal_vocabularies
+        vocab = atvm.getVocabularyByName('PIRRatingCategory')
+        return vocab.getDisplayList(self)
 
     security.declarePublic('getRatingList')
     def getRatingList(self):
         """
         """
-        pass
+        atvm = self.portal_vocabularies
+        vocab = atvm.getVocabularyByName('Rating')
+        return vocab.getDisplayList(self)
 
     security.declarePrivate('manage_afterAdd')
-    def manage_afterAdd(self):
+    def manage_afterAdd(self, item, container):
         """
         """
-        pass
+        #if 'pir_ratings' not in self.objectIds():
+        #    self.invokeFactory('PIRRatingFolder', 'pir_ratings')
+        #    self['pir_ratings'].setTitle('PIR Ratings')
+        if 'other_project_ratings_folder' not in self.objectIds():
+            self.invokeFactory('OtherProjectRatingsFolder', 'other_project_ratings_folder')
+            self['other_project_ratings_folder'].setTitle('Other Project Ratings')
+        BaseFolder.manage_afterAdd(self, item, container)
 
     security.declarePublic('getRatingVocabulary')
     def getRatingVocabulary(self):
         """
         """
-        pass
+        return self.getField('MTEMTRRating').vocabulary.getDisplayList(self)
 
     security.declarePublic('getInceptionRiskRatingVocabulary')
     def getInceptionRiskRatingVocabulary(self):
         """
         """
-        pass
+        return self.getField('ProjectInceptionRiskRating').vocabulary.getDisplayList(self)
 
 
 registerType(RatingTrackingSystem, PROJECTNAME)

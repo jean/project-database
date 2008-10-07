@@ -44,11 +44,8 @@ from Products.Archetypes.Widget import MultiSelectionWidget
 from Products.CMFDynamicViewFTI.browserdefault import BrowserDefaultMixin
 
 
-
-
-
 class SelectedLinesField(LinesField):
-    """
+    """A lines field that starts off with all vocabulary items selected
     """
     ##code-section class-header #fill in your manual code here
     ##/code-section class-header
@@ -61,6 +58,7 @@ class SelectedLinesField(LinesField):
         'type': 'selectedlinesfield',
         'widget':MultiSelectionWidget,
         ##code-section field-properties #fill in your manual code here
+        'multiValued': True,
         ##/code-section field-properties
 
         })
@@ -73,7 +71,11 @@ class SelectedLinesField(LinesField):
 
 
     def getDefault(self,instance):
-        pass
+        """Return the default value to be used for initializing this
+        field, defaulting to the field's vocabulary."""
+        default = LinesField.getDefault(self, instance)
+        if not default:
+            return self.vocabulary.getDisplayList(instance)
 
     def getRaw(self, instance, **kwargs):
         return LinesField.getRaw(self, instance, **kwargs)

@@ -140,9 +140,53 @@ class SubProject(BaseFolder, CurrencyMixin, FinancialsMixin, BrowserDefaultMixin
     schema = SubProject_schema
 
     ##code-section class-header #fill in your manual code here
+    schema.moveField('FinanceCategory', after='title')
+    schema.moveField('PMSNumber', after='FinanceCategory')
+    schema.moveField('IMISNumber', after='PMSNumber')
+    schema.moveField('GEFProjectAllocation', after='IMISNumber')
+    schema.moveField('CofinancingCash', after='IMISNumber')
+    schema.moveField('CofinancingInKind', after='CofinancingCash')
+    schema.moveField('ApprovedUNEPBudget', after='CofinancingCash')
+    schema.moveField('CashDisbursements', after='ApprovedUNEPBudget')
+    schema.moveField('SumCashDisbursements', after='CashDisbursements')
+    schema.moveField('IMISExpenditures', after='SumCashDisbursements')
+    schema.moveField('Status', after='IMISExpenditures')
+    schema.moveField('SumIMISExpenditures', after='Status')
+    schema.moveField('PlannedDuration', after='SumIMISExpenditures')
+    schema.moveField('InitialCompletionDate', after='PlannedDuration')
+    schema.moveField('RevisedCompletionDate', after='InitialCompletionDate')
+    schema.moveField('DelayReason', after='RevisedCompletionDate')
+    schema.moveField('Reports', after='DelayReason')
+    schema.moveField('LeadExecutingAgency', after='Reports')
+    schema.moveField('OtherLeadExecutingAgency', after='LeadExecutingAgency')
+
     ##/code-section class-header
 
     # Methods
+
+    # Manually created methods
+
+    security.declarePublic('validate_GEFProjectAllocation')
+    def validate_GEFProjectAllocation(self, value):
+        """
+        """
+        if not value:
+            value = self.getZeroMoneyInstance()
+        fmi = self.aq_parent
+        maxtotal = fmi.getGEFProjectAllocation()
+        if maxtotal is None:
+            maxtotal = self.getZeroMoneyInstance()
+
+        total =  self.getZeroMoneyInstance()
+        for subProject in fmi.contentValues():
+            if subProject.getId() == self.getId():
+                continue
+            val = subProject.getGEFProjectAllocation()
+            if val:
+                total += val
+        if maxtotal < total + value:
+            return 'Total may not exceed allocated FMI value'
+        return
 
 
 registerType(SubProject, PROJECTNAME)

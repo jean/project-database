@@ -37,6 +37,7 @@ from Products.CMFCore.utils import getToolByName
 from Products.FinanceFields.Money import Money
 
 ##code-section module-header #fill in your manual code here
+from Products.ProjectDatabase.content.SubProjectFolder import SubProjectFolder
 ##/code-section module-header
 
 schema = Schema((
@@ -559,6 +560,21 @@ ProjectGeneralInformation_schema = BaseFolderSchema.copy() + \
     schema.copy()
 
 ##code-section after-schema #fill in your manual code here
+title_field = ProjectGeneralInformation_schema['title']
+title_field.required=0
+title_field.widget.visible = {'edit':'hidden', 'view':'invisible'}
+ProjectGeneralInformation_schema['TotalGEFAllocation'].widget.visible = {'edit':'hidden', 'view':'invisible'}
+ProjectGeneralInformation_schema['TotalUNEPAllocation'].widget.visible = {'edit':'hidden', 'view':'invisible'}
+ProjectGeneralInformation_schema['TotalCofinancingPlanned'].widget.visible = {'edit':'hidden', 'view':'invisible'}
+ProjectGeneralInformation_schema['TotalCofinancingActual'].widget.visible = {'edit':'hidden', 'view':'invisible'}
+ProjectGeneralInformation_schema['TotalCashDisbursements'].widget.visible = {'edit':'hidden', 'view':'invisible'}
+ProjectGeneralInformation_schema['TotalIMISExpenditures'].widget.visible = {'edit':'hidden', 'view':'invisible'}
+ProjectGeneralInformation_schema['PDFAStatus'].widget.visible = {'edit':'hidden', 'view':'invisible'}
+ProjectGeneralInformation_schema['PDFBStatus'].widget.visible = {'edit':'hidden', 'view':'invisible'}
+ProjectGeneralInformation_schema['MSPStatus'].widget.visible = {'edit':'hidden', 'view':'invisible'}
+ProjectGeneralInformation_schema['FSPStatus'].widget.visible = {'edit':'hidden', 'view':'invisible'}
+ProjectGeneralInformation_schema['ProjectTitle'].widget.visible = {'edit':'hidden', 'view':'invisible'}
+ProjectGeneralInformation_schema['LeveragedFinancingAmount'].widget.size = 15
 ##/code-section after-schema
 
 class ProjectGeneralInformation(BaseFolder, CurrencyMixin, BrowserDefaultMixin):
@@ -573,6 +589,22 @@ class ProjectGeneralInformation(BaseFolder, CurrencyMixin, BrowserDefaultMixin):
     schema = ProjectGeneralInformation_schema
 
     ##code-section class-header #fill in your manual code here
+    actions =  (
+       {'action': "string:${object_url}/project_general_information",
+        'category': "object_tabs",
+        'id': 'pgi',
+        'name': 'Project General Information',
+        'permissions': (permissions.ViewProjects,),
+        'condition': 'python:0'
+       },
+       {'action': "string:${object_url}/fmi_view",
+        'category': "object_tabs",
+        'id': 'fmi_view',
+        'name': 'FMI View',
+        'permissions': (permissions.ViewProjects,),
+        'condition': 'python:0'
+       },
+    )
     ##/code-section class-header
 
     # Methods
@@ -581,85 +613,231 @@ class ProjectGeneralInformation(BaseFolder, CurrencyMixin, BrowserDefaultMixin):
     def getTotalGEFAllocation(self):
         """
         """
-        pass
+        #fmi_cash_objs = self.contentValues('Financials')
+        #subproject_objs = self.contentValues('SubProject')
+        fmi_cash_objs = self.getAProject()['fmi_folder'].contentValues('Financials')
+        #subproject_objs = self['subprojectsfolder'].contentValues('SubProject')
+        total = self.getZeroMoneyInstance()
+        for fmi_obj in fmi_cash_objs:
+            if fmi_obj.getGEFProjectAllocation():
+                total += fmi_obj.getGEFProjectAllocation()
+        # for sp_obj in subproject_objs:
+        #     if sp_obj.getGEFProjectAllocation():
+        #         total += sp_obj.getGEFProjectAllocation()
+        return total
 
     security.declarePublic('getTotalUNEPAllocation')
     def getTotalUNEPAllocation(self):
         """
         """
-        pass
+        #fmi_cash_objs = self.contentValues('Financials')
+        fmi_cash_objs = self.getAProject()['fmi_folder'].contentValues('Financials')
+        total = self.getZeroMoneyInstance()
+        for fmi_obj in fmi_cash_objs:
+            if fmi_obj.getCashUNEPAllocation():
+                total += fmi_obj.getCashUNEPAllocation()
+        return total
 
     security.declarePublic('getTotalCofinancingPlanned')
     def getTotalCofinancingPlanned(self):
         """
         """
-        pass
+        #fmi_cash_objs = self.contentValues('Financials')
+        #subproject_objs = self.contentValues('SubProject')
+        fmi_cash_objs = self.getAProject()['fmi_folder'].contentValues('Financials')
+        #subproject_objs = self['subprojectsfolder'].contentValues('SubProject')
+        total = self.getZeroMoneyInstance()
+        for fmi_obj in fmi_cash_objs:
+            if fmi_obj.getSumCofinCashPlanned():
+                total += fmi_obj.getSumCofinCashPlanned()
+            if fmi_obj.getSumCofinInKindPlanned():
+                total += fmi_obj.getSumCofinInKindPlanned()
+        #for sp_obj in subproject_objs:
+        #    if sp_obj.getSumCofinCashPlanned():
+        #        total += sp_obj.getSumCofinCashPlanned()
+        #    if sp_obj.getSumCofinInKindPlanned():
+        #        total += sp_obj.getSumCofinInKindPlanned()
+        return total
 
     security.declarePublic('getTotalCofinancingActual')
     def getTotalCofinancingActual(self):
         """
         """
-        pass
+        #fmi_cash_objs = self.contentValues('Financials')
+        #subproject_objs = self.contentValues('SubProject')
+        fmi_cash_objs = self.getAProject()['fmi_folder'].contentValues('Financials')
+        #subproject_objs = self['subprojectsfolder'].contentValues('SubProject')
+        total = self.getZeroMoneyInstance()
+        for fmi_obj in fmi_cash_objs:
+            if fmi_obj.getSumCofinCashActual():
+                total += fmi_obj.getSumCofinCashActual()
+            if fmi_obj.getSumCofinInKindActual():
+                total += fmi_obj.getSumCofinInKindActual()
+        #for sp_obj in subproject_objs:
+        #    if sp_obj.getSumCofinCashActual():
+        #        total += sp_obj.getSumCofinCashActual()
+        #    if sp_obj.getSumCofinInKindActual():
+        #        total += sp_obj.getSumCofinInKindActual()
+        return total
 
     security.declarePublic('getTotalCashDisbursements')
     def getTotalCashDisbursements(self):
         """
         """
-        pass
+        #fmi_cash_objs = self.contentValues('Financials')
+        #subproject_objs = self.contentValues('SubProject')
+        fmi_cash_objs = self.getAProject()['fmi_folder'].contentValues('Financials')
+        #subproject_objs = self['subprojectsfolder'].contentValues('SubProject')
+        total = self.getZeroMoneyInstance()
+        for fmi_obj in fmi_cash_objs:
+            if fmi_obj.getSumCashDisbursements():
+                total += fmi_obj.getSumCashDisbursements()
+        #for sp_obj in subproject_objs:
+        #    if sp_obj.getSumCashDisbursements():
+        #        total += sp_obj.getSumCashDisbursements()
+        return total
 
     security.declarePublic('getTotalIMISExpenditures')
     def getTotalIMISExpenditures(self):
         """
         """
-        pass
+        #fmi_cash_objs = self.contentValues('Financials')
+        #subproject_objs = self.contentValues('SubProject')
+        fmi_cash_objs = self.getAProject()['fmi_folder'].contentValues('Financials')
+        #subproject_objs = self['subprojectsfolder'].contentValues('SubProject')
+        total = self.getZeroMoneyInstance()
+        for fmi_obj in fmi_cash_objs:
+            if fmi_obj.getSumIMISExpenditures():
+                total += fmi_obj.getSumIMISExpenditures()
+        #for sp_obj in subproject_objs:
+        #    if sp_obj.getSumIMISExpenditures():
+        #        total += sp_obj.getSumIMISExpenditures()
+        return total
 
     security.declarePublic('getPDFAStatus')
     def getPDFAStatus(self):
         """
         """
-        pass
+        #fmi_objs = self.contentValues('Financials')
+        fmi_objs = self.getAProject()['fmi_folder'].contentValues('Financials')
+        status = ''
+        for fmi_obj in fmi_objs:
+            if fmi_obj.getFinanceCategory() == 'PDF A':
+                status = fmi_obj.getStatus()
+        return status
 
     security.declarePublic('getPDFBStatus')
     def getPDFBStatus(self):
         """
         """
-        pass
+        #fmi_objs = self.contentValues('Financials')
+        fmi_objs = self.getAProject()['fmi_folder'].contentValues('Financials')
+        status = ''
+        for fmi_obj in fmi_objs:
+            if fmi_obj.getFinanceCategory() == 'PDF B':
+                status = fmi_obj.getStatus()
+        return status
 
     security.declarePublic('getMSPStatus')
     def getMSPStatus(self):
         """
         """
-        pass
+        #fmi_objs = self.contentValues('Financials')
+        fmi_objs = self.getAProject()['fmi_folder'].contentValues('Financials')
+        status = ''
+        for fmi_obj in fmi_objs:
+            if fmi_obj.getFinanceCategory() == 'MSP':
+                status = fmi_obj.getStatus()
+        return status
 
     security.declarePublic('getFSPStatus')
     def getFSPStatus(self):
         """
         """
-        pass
+        #fmi_objs = self.contentValues('Financials')
+        fmi_objs = self.getAProject()['fmi_folder'].contentValues('Financials')
+        status = ''
+        for fmi_obj in fmi_objs:
+            if fmi_obj.getFinanceCategory() == 'FSP':
+                status = fmi_obj.getStatus()
+        return status
 
     security.declarePublic('getProjectTitle')
     def getProjectTitle(self):
+        """ Code copied from previous project; dunno what it means...
         """
-        """
-        pass
+        return self.getAProject().Title()
+
+        start_date_val = ''
+        start_date_val_comp = ''
+        r_str = ''
+
+        for fobj in self.contentValues('Financials'):
+            start_date_val = fobj.getStartDate()
+            if start_date_val_comp == '':
+                start_date_val_comp = fobj.getStartDate()
+                r_str = fobj.Title()
+            else:
+                if start_date_val > start_date_val_comp:
+                    start_date_val_comp = start_date_val
+                    r_str = fobj.Title()
+        return r_str
 
     security.declarePublic('validate_PhasedTrancheNumber')
-    def validate_PhasedTrancheNumber(self):
+    def validate_PhasedTrancheNumber(self, value):
         """
         """
-        pass
+        val=0
+        try:
+            val = int(value)
+        except ValueError:
+            return 'Value must be an integer'
+
+        return
 
     security.declarePublic('getCategoryVocab')
     def getCategoryVocab(self):
         """
         """
-        pass
+        atvm = self.portal_vocabularies
+        vocab = atvm.getVocabularyByName('Category')
+        return vocab.getDisplayList(self)
 
     security.declarePublic('displayContentsTab')
     def displayContentsTab(self):
         """
         """
-        pass
+        return False
+
+    # Manually created methods
+
+    security.declarePublic('Title')
+    def Title(self):
+        """
+        """
+        #if hasattr(self, 'getAProject'):
+        #    return 'Project General Information: ' + str(self.getAProject().Title())
+        #else:
+        #    return 'Project General Information'
+        return 'Project General Information'
+
+    security.declarePublic('validate_TranchedNumber')
+    def validate_TranchedNumber(self, value):
+        """
+        """
+        val=0
+        try:
+            val = int(value)
+        except ValueError:
+            return 'Value must be an integer'
+
+        if self.REQUEST.get('Tranched') == 'Yes':
+            if val <= 0:
+                return 'Value must be bigger than zero if Tranched is Yes'
+        if self.REQUEST.get('Tranched') == 'No':
+            if val != 0:
+                return 'Value must be zero if Tranched is No'
+        return
 
 
 registerType(ProjectGeneralInformation, PROJECTNAME)

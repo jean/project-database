@@ -217,79 +217,79 @@ class CoreMixin(BrowserDefaultMixin):
     def getDefaultFocalArea(self):
         """
         """
-        pass
+        return self.getProjectGeneralInformation().getFocalArea()
 
     security.declarePublic('getDefaultOperationalProgramme')
     def getDefaultOperationalProgramme(self):
         """
         """
-        pass
+        return self.getProjectGeneralInformation().getOperationalProgramme()
 
     security.declarePublic('getDefaultStrategicObjectives')
     def getDefaultStrategicObjectives(self):
         """
         """
-        pass
+        return self.getProjectGeneralInformation().getStrategicObjectives()
 
     security.declarePublic('getDefaultPipelineNumber')
     def getDefaultPipelineNumber(self):
         """
         """
-        pass
+        return self.getProjectGeneralInformation().getPipelineNumber()
 
     security.declarePublic('getDefaultCountry')
     def getDefaultCountry(self):
         """
         """
-        pass
+        return self.getProjectGeneralInformation().getCountry()
 
     security.declarePublic('getDefaultRegion')
     def getDefaultRegion(self):
         """
         """
-        pass
+        return self.getProjectGeneralInformation().getRegion()
 
     security.declarePublic('getDefaultScope')
     def getDefaultScope(self):
         """
         """
-        pass
+        return self.getProjectGeneralInformation().getScope()
 
     security.declarePublic('getDefaultGEFPhase')
     def getDefaultGEFPhase(self):
         """
         """
-        pass
+        return self.getProjectGeneralInformation().getGEFPhase()
 
     security.declarePublic('getDefaultWebsite')
     def getDefaultWebsite(self):
         """
         """
-        pass
+        return self.getProjectGeneralInformation().getWebsite()
 
     security.declarePublic('getDefaultCurrentTaskManager')
     def getDefaultCurrentTaskManager(self):
         """
         """
-        pass
+        return self.getProjectGeneralInformation().getCurrentTaskManager()
 
     security.declarePublic('getDefaultPreviousTaskManager')
     def getDefaultPreviousTaskManager(self):
         """
         """
-        pass
+        return self.getProjectGeneralInformation().getPreviousTaskManager()
 
     security.declarePublic('getDefaultProjectCoordinator')
     def getDefaultProjectCoordinator(self):
         """
         """
-        pass
+        return self.getProjectGeneralInformation().getProjectCoordinator()
 
     security.declarePublic('getProjectTitle')
     def getProjectTitle(self):
         """
         """
-        pass
+        return self.getProjectGeneralInformation().getProjectTitle()
 
 
 # end of class CoreMixin

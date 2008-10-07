@@ -170,6 +170,17 @@ Financials_schema = BaseFolderSchema.copy() + \
     schema.copy()
 
 ##code-section after-schema #fill in your manual code here
+title_field = Financials_schema['title']
+title_field.required=0
+title_field.widget.visible = {'edit':'hidden', 'view':'invisible'}
+Financials_schema['GEFTrustFund'].widget.size=15
+Financials_schema['LDCFundAllocation'].widget.size=15
+Financials_schema['SCCFAllocation'].widget.size=15
+Financials_schema['StrategicPartnership'].widget.size=15
+Financials_schema['AdaptationTrustFund'].widget.size=15
+Financials_schema['SupplementaryUNEPAllocation'].widget.size=15
+Financials_schema['ActualTotalExpenditures'].widget.size=15
+Financials_schema['DonorTypes'].widget.visible = {'edit':'hidden', 'view':'invisible'}
 ##/code-section after-schema
 
 class Financials(BaseFolder, CurrencyMixin, FinancialsMixin, BrowserDefaultMixin):
@@ -184,15 +195,86 @@ class Financials(BaseFolder, CurrencyMixin, FinancialsMixin, BrowserDefaultMixin
     schema = Financials_schema
 
     ##code-section class-header #fill in your manual code here
+    actions = actions +  (
+           {'action': "string:${object_url}/fmi_view",
+            'category': "object_tabs",
+            'id': 'fmi_view',
+            'name': 'fmi view',
+            'permissions': (permissions.ViewProjects,),
+            'condition': 'python:0'
+           },
+           )
+
+    schema.moveField('FinanceCategory', after='title')
+    schema.moveField('PMSNumber', after='FinanceCategory')
+    schema.moveField('IMISNumber', after='PMSNumber')
+    schema.moveField('GEFProjectAllocation', after='IMISNumber')
+    schema.moveField('CashUNEPAllocation', after='GEFProjectAllocation')
+    schema.moveField('GEFTrustFund', after='CashUNEPAllocation')
+    schema.moveField('LDCFundAllocation', after='GEFTrustFund')
+    schema.moveField('SCCFAllocation', after='LDCFundAllocation')
+    schema.moveField('StrategicPartnership', after='SCCFAllocation')
+    schema.moveField('AdaptationTrustFund', after='StrategicPartnership')
+    schema.moveField('SupplementaryUNEPAllocation', after='AdaptationTrustFund')
+    schema.moveField('SupplementaryUNEPAllocationRemark', after='SupplementaryUNEPAllocation')
+    schema.moveField('ActualTotalExpenditures', after='SupplementaryUNEPAllocationRemark')
+    schema.moveField('CofinancingCash', after='ActualTotalExpenditures')
+    schema.moveField('CofinancingInKind', after='CofinancingCash')
+
+    schema.moveField('SumCofinCashPlanned', after='CofinancingInKind')
+    schema.moveField('SumCofinCashActual', after='SumCofinCashPlanned')
+    schema.moveField('SumCofinInKindPlanned', after='SumCofinCashActual')
+    schema.moveField('SumCofinInKindActual', after='SumCofinInKindPlanned')
+    schema.moveField('TotalCostOfProjectStagePlanned', after='SumCofinInKindActual')
+    schema.moveField('TotalCostOfProjectStageActual', after='TotalCostOfProjectStagePlanned')
+    schema.moveField('ApprovedUNEPBudget', after='TotalCostOfProjectStageActual')
+    schema.moveField('CashDisbursements', after='ApprovedUNEPBudget')
+    schema.moveField('SumCashDisbursements', after='CashDisbursements')
+    schema.moveField('IMISExpenditures', after='SumCashDisbursements')
+    schema.moveField('Status', after='IMISExpenditures')
+    schema.moveField('SumIMISExpenditures', after='Status')
+    schema.moveField('PlannedDuration', after='SumIMISExpenditures')
+    schema.moveField('InitialCompletionDate', after='PlannedDuration')
+    schema.moveField('RevisedCompletionDate', after='InitialCompletionDate')
+    schema.moveField('DelayReason', after='RevisedCompletionDate')
+    schema.moveField('Reports', after='DelayReason')
+    schema.moveField('LeadExecutingAgency', after='Reports')
+    schema.moveField('OtherLeadExecutingAgency', after='LeadExecutingAgency')
+    schema.moveField('FundManagementOfficer', after='OtherLeadExecutingAgency')
+    schema.moveField('FinancialStatusRemarks', after='FundManagementOfficer')
     ##/code-section class-header
 
     # Methods
 
     security.declarePublic('getCashUNEPAllocation')
     def getCashUNEPAllocation(self):
+        """Compute the cash allocation for the field
+        """
+        total = self.getZeroMoneyInstance()
+        if self.getGEFTrustFund():
+            total = total + self.getGEFTrustFund()
+        if self.getLDCFundAllocation():
+            total = total + self.getLDCFundAllocation()
+        if self.getSCCFAllocation():
+            total = total + self.getSCCFAllocation()
+        if self.getStrategicPartnership():
+            total = total + self.getStrategicPartnership()
+        if self.getAdaptationTrustFund():
+            total = total + self.getAdaptationTrustFund()
+        if self.getSupplementaryUNEPAllocation():
+            total = total + self.getSupplementaryUNEPAllocation()
+        return total
+
+    # Manually created methods
+
+    security.declarePublic('Title')
+    def Title(self):
         """
         """
-        pass
+        if hasattr(self, 'getAProject'):
+            return 'Financial Management Information: ' + str(self.getAProject().Title())
+        else:
+            return 'Financial Management Information'
 
 
 registerType(Financials, PROJECTNAME)

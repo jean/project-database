@@ -77,6 +77,9 @@ EvaluatorsInformation_schema = BaseSchema.copy() + \
     schema.copy()
 
 ##code-section after-schema #fill in your manual code here
+title_field = EvaluatorsInformation_schema['title']
+title_field.required=0
+title_field.widget.visible = {'edit':'hidden', 'view':'invisible'}
 ##/code-section after-schema
 
 class EvaluatorsInformation(BaseContent, BrowserDefaultMixin):
@@ -94,6 +97,19 @@ class EvaluatorsInformation(BaseContent, BrowserDefaultMixin):
     ##/code-section class-header
 
     # Methods
+
+    # Manually created methods
+
+    def contactsVocab(self):
+        """
+        """
+        path = '/'.join(self.getAProject().getPhysicalPath()) + '/contacts-1'
+        brains = self.portal_catalog(portal_type='Person', path=path)
+        pairs=[]
+        pairs.append(("", "<no reference>"))
+        for b in brains:
+            pairs.append((b.getObject().UID(), b.getObject().Title()))
+        return DisplayList(pairs)
 
 
 registerType(EvaluatorsInformation, PROJECTNAME)

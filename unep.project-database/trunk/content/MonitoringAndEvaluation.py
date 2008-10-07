@@ -328,6 +328,14 @@ MonitoringAndEvaluation_schema = BaseFolderSchema.copy() + \
     schema.copy()
 
 ##code-section after-schema #fill in your manual code here
+MonitoringAndEvaluation_schema['ProjectTitle'].widget.label = "Project Title"
+title_field = MonitoringAndEvaluation_schema['title']
+title_field.required=0
+title_field.widget.visible = {'edit':'hidden', 'view':'invisible'}
+MonitoringAndEvaluation_schema['Budget'].widget.size = 15
+MonitoringAndEvaluation_schema['MTRActualCost'].widget.size = 15
+MonitoringAndEvaluation_schema['TerminalEvaluationBudget'].widget.size = 15
+MonitoringAndEvaluation_schema['TEActualCost'].widget.size = 15
 ##/code-section after-schema
 
 class MonitoringAndEvaluation(BaseFolder, BrowserDefaultMixin):
@@ -342,33 +350,168 @@ class MonitoringAndEvaluation(BaseFolder, BrowserDefaultMixin):
     schema = MonitoringAndEvaluation_schema
 
     ##code-section class-header #fill in your manual code here
+    actions =  (
+       {'action': "string:${object_url}/project_ratings_disconnect_view",
+        'category': "object_tabs",
+        'id': 'project_ratings_disconnect_view',
+        'name': 'Project Ratings Disconnect',
+        'permissions': (permissions.ViewProjects,),
+        'condition': 'python:0'
+       },
+       {'action': "string:${object_url}/evaluation_process_progress",
+        'category': "object_tabs",
+        'id': 'evaluation_process_progress_view',
+        'name': 'Evaluation Process Progress',
+        'permissions': (permissions.ViewProjects,),
+        'condition': 'python:0'
+       },
+    )
     ##/code-section class-header
 
     # Methods
 
     security.declarePrivate('manage_afterAdd')
-    def manage_afterAdd(self):
+    def manage_afterAdd(self, item, container):
         """
         """
-        pass
+        me = self
+        #if 'evaluation_milestone_folder' not in me.objectIds():
+        #    me.invokeFactory('EvaluationMilestoneFolder', 'evaluation_milestone_folder', title='Evaluation Milestones')
+        #    #me['evaluation_milestone_folder'].setTitle('Evaluation Milestones')
+        if 'rtsfolder' not in me.objectIds():
+            me.invokeFactory('RTSFolder', 'rtsfolder')
+            me['rtsfolder'].edit(title='Rating Tracking Systems')
+        if 'evaluators_information' not in me.objectIds():
+            me.invokeFactory('EvaluatorsInformation', 'evaluators_information')
+            me['evaluators_information'].edit(title='Evaluators Information')
+        BaseFolder.manage_afterAdd(self, item, container)
 
     security.declarePublic('getProjectTitle')
     def getProjectTitle(self):
         """
         """
-        pass
+        return self.getAProject().Title()
 
     security.declarePublic('getEvaluationTypeMilestoneVocabulary')
     def getEvaluationTypeMilestoneVocabulary(self):
         """
         """
-        pass
+        return self.getField('EvaluationMilestones').vocabulary.getDisplayList(self)
 
     security.declarePublic('getMEMilestoneNameVocabulary')
     def getMEMilestoneNameVocabulary(self):
         """
         """
-        pass
+        return self.getField('TerminalReportActualEvaluationDate').vocabulary.getDisplayList(self)
+
+    def getIMISNumber(self):
+        """
+        """
+        if self.IMISNumber == '':
+            fmis = self.getAProject()['fmi_folder'].contentValues()
+            if fmis:
+                return fmis[len(fmis)-1]['IMISNumber']
+            else:
+                return ''
+
+    security.declarePublic("getCurrentTaskManager")
+    def getCurrentTaskManager(self):
+        """
+        """
+        if not self['CurrentTaskManager']:
+            return self.getAProject().getCurrentTaskManager()
+        return self['CurrentTaskManager']
+
+    security.declarePublic("getFundManagementOfficer")
+    def getFundManagementOfficer(self):
+        """
+        """
+        if not self['FundManagementOfficer']:
+            fmis = self.getAProject()['fmi_folder'].contentValues()
+            return fmis[len(fmis)-1]['FundManagementOfficer']
+        return self['FundManagementOfficer']
+
+    security.declarePublic("getCEOApproval")
+    def getCEOApproval(self):
+        """
+        """
+        if not self.CEOApproval:
+            milestones = self.getAProject()['milestonesfolder'].contentValues()
+            if milestones:
+                approval = milestones[len(milestones)-1]['ApprovalInitiationAndClosure']
+                if approval:
+                    for appr in approval:
+                        if appr['approval_initiation_closure'] == 'CEO approval (PDFB or MSP or EEA and now PDFA and PIF)':
+                            return appr['actual_date']
+        return self.CEOApproval
+    
+    security.declarePublic("getCEOEndorsement")
+    def getCEOEndorsement(self):
+        """
+        """
+        if not self.CEOEndorsement:
+            milestones = self.getAProject()['milestonesfolder'].contentValues()
+            if milestones:
+                approval = milestones[len(milestones)-1]['ApprovalInitiationAndClosure']
+                if approval:
+                    for appr in approval:
+                        if appr['approval_initiation_closure'] == 'CEO endorsement (for FSP)':
+                            return appr['actual_date']
+        return self.CEOEndorsement
+
+
+    security.declarePublic("FirstDisbursement")
+    def getFirstDisbursement(self):
+        """
+        """
+        if not self.FirstDisbursement:
+            milestones = self.getAProject()['milestonesfolder'].contentValues()
+            if milestones:
+                approval = milestones[len(milestones)-1]['ApprovalInitiationAndClosure']
+                if approval:
+                    for appr in approval:
+                        if appr['approval_initiation_closure'] == 'First disbursement (date)':
+                            return appr['actual_date']
+        return self.FirstDisbursement
+
+    security.declarePublic('getRevisedCompletionDate')
+    def getRevisedCompletionDate(self):
+        """
+        """
+        if not self.RevisedCompletionDate: 
+            fmis = self.getAProject()['fmi_folder'].contentValues()
+            if fmis:
+                return fmis[len(fmis)-1]['RevisedCompletionDate']
+        return self.RevisedCompletionDate
+
+    security.declarePublic('getInitialCompletionDate')
+    def getInitialCompletionDate(self):
+        """
+        """
+        if not self.InitialCompletionDate:
+            milestones = self.getAProject()['milestonesfolder'].contentValues()
+            if milestones:
+                approval = milestones[len(milestones)-1]['ApprovalInitiationAndClosure']
+                if approval:
+                    for appr in approval:
+                        if appr['approval_initiation_closure'] == 'Project completion (date of Completion Revision) ':
+                            return appr['actual_date']
+        return self.InitialCompletionDate
+
+    security.declarePublic('getInitialCompletionDate')
+    def getFinancialClosure(self):
+        """
+        """
+        if not self.FinancialClosure:
+            milestones = self.getAProject()['milestonesfolder'].contentValues()
+            if milestones:
+                approval = milestones[len(milestones)-1]['ApprovalInitiationAndClosure']
+                if approval:
+                    for appr in approval:
+                        if appr['approval_initiation_closure'] == 'Financial closure':
+                            return appr['actual_date']
+        return self.FinancialClosure
+
 
 
 registerType(MonitoringAndEvaluation, PROJECTNAME)

@@ -92,6 +92,8 @@ PIRRating_schema = BaseSchema.copy() + \
     schema.copy()
 
 ##code-section after-schema #fill in your manual code here
+PIRRating_schema['title'].required=0
+PIRRating_schema['title'].widget.visible = {'edit':'hidden', 'view':'invisible'}
 ##/code-section after-schema
 
 class PIRRating(BaseContent, BrowserDefaultMixin):
