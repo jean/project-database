@@ -62,7 +62,7 @@ class FMIFolder(BaseFolder, BrowserDefaultMixin):
     schema = FMIFolder_schema
 
     ##code-section class-header #fill in your manual code here
-    actions = actions + (
+    actions = (
             {   'action': "string:${object_url}/fmi_summary",
                 'category': "object",
                 'id': 'view',

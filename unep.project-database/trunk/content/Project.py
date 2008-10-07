@@ -42,6 +42,7 @@ from Products.ProjectDatabase.content.FMIFolder import FMIFolder
 from Products.ProjectDatabase.content.MonitoringAndEvaluation import MonitoringAndEvaluation
 from Products.ProjectDatabase.content.ProjectGeneralInformation import ProjectGeneralInformation
 from Products.ProjectDatabase.content.MilestoneFolder import MilestoneFolder
+import permissions
 ##/code-section module-header
 
 schema = Schema((
