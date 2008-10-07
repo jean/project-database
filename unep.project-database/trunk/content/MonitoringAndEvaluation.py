@@ -34,6 +34,7 @@ from Products.CMFCore.utils import getToolByName
 from Products.FinanceFields.Money import Money
 
 ##code-section module-header #fill in your manual code here
+import permissions
 ##/code-section module-header
 
 schema = Schema((

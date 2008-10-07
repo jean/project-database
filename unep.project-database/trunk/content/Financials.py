@@ -38,6 +38,7 @@ from Products.CMFCore.utils import getToolByName
 from Products.FinanceFields.Money import Money
 
 ##code-section module-header #fill in your manual code here
+import permissions
 ##/code-section module-header
 
 schema = Schema((
@@ -195,7 +196,7 @@ class Financials(BaseFolder, CurrencyMixin, FinancialsMixin, BrowserDefaultMixin
     schema = Financials_schema
 
     ##code-section class-header #fill in your manual code here
-    actions = actions +  (
+    actions =  (
            {'action': "string:${object_url}/fmi_view",
             'category': "object_tabs",
             'id': 'fmi_view',

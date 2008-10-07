@@ -37,7 +37,8 @@ from Products.CMFCore.utils import getToolByName
 from Products.FinanceFields.Money import Money
 
 ##code-section module-header #fill in your manual code here
-from Products.ProjectDatabase.content.SubProjectFolder import SubProjectFolder
+# from Products.ProjectDatabase.content.SubProjectFolder import SubProjectFolder
+import permissions
 ##/code-section module-header
 
 schema = Schema((
