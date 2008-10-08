@@ -62,13 +62,6 @@ class OtherProjectRatingsFolder(BaseFolder, BrowserDefaultMixin):
     schema = OtherProjectRatingsFolder_schema
 
     ##code-section class-header #fill in your manual code here
-    actions = ({  'action':"string:${object_url}/edit",
-                            'category':"object",
-                            'id':'edit',
-                            'name':'edit',
-                            'permissions':('Modify portal content'),
-                            'condition':'python:0',
-                        },)
     ##/code-section class-header
 
     # Methods
