@@ -5,6 +5,7 @@
   <include file="profiles.zcml" />
 
   <!-- ##code-section configure.zcml -->
+    <include package=".events" />
   <!-- ##/code-section configure.zcml -->
 
 </configure>
