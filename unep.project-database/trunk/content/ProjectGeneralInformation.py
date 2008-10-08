@@ -590,22 +590,6 @@ class ProjectGeneralInformation(BaseFolder, CurrencyMixin, BrowserDefaultMixin):
     schema = ProjectGeneralInformation_schema
 
     ##code-section class-header #fill in your manual code here
-    actions =  (
-       {'action': "string:${object_url}/project_general_information",
-        'category': "object_tabs",
-        'id': 'pgi',
-        'name': 'Project General Information',
-        'permissions': (permissions.ViewProjects,),
-        'condition': 'python:0'
-       },
-       {'action': "string:${object_url}/fmi_view",
-        'category': "object_tabs",
-        'id': 'fmi_view',
-        'name': 'FMI View',
-        'permissions': (permissions.ViewProjects,),
-        'condition': 'python:0'
-       },
-    )
     ##/code-section class-header
 
     # Methods

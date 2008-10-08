@@ -351,22 +351,6 @@ class MonitoringAndEvaluation(BaseFolder, BrowserDefaultMixin):
     schema = MonitoringAndEvaluation_schema
 
     ##code-section class-header #fill in your manual code here
-    actions =  (
-       {'action': "string:${object_url}/project_ratings_disconnect_view",
-        'category': "object_tabs",
-        'id': 'project_ratings_disconnect_view',
-        'name': 'Project Ratings Disconnect',
-        'permissions': (permissions.ViewProjects,),
-        'condition': 'python:0'
-       },
-       {'action': "string:${object_url}/evaluation_process_progress",
-        'category': "object_tabs",
-        'id': 'evaluation_process_progress_view',
-        'name': 'Evaluation Process Progress',
-        'permissions': (permissions.ViewProjects,),
-        'condition': 'python:0'
-       },
-    )
     ##/code-section class-header
 
     # Methods
@@ -408,12 +392,17 @@ class MonitoringAndEvaluation(BaseFolder, BrowserDefaultMixin):
     def getIMISNumber(self):
         """
         """
-        if self.IMISNumber == '':
-            fmis = self.getAProject()['fmi_folder'].contentValues()
-            if fmis:
-                return fmis[len(fmis)-1]['IMISNumber']
-            else:
-                return ''
+        try:
+            if self.IMISNumber == '':
+                fmis = self.getAProject()['fmi_folder'].contentValues()
+                if fmis:
+                    return fmis[len(fmis)-1]['IMISNumber']
+                else:
+                    return ''
+        except AttributeError:
+            return ''
+        except IndexError:
+            return ''
 
     security.declarePublic("getCurrentTaskManager")
     def getCurrentTaskManager(self):
@@ -428,8 +417,14 @@ class MonitoringAndEvaluation(BaseFolder, BrowserDefaultMixin):
         """
         """
         if not self['FundManagementOfficer']:
-            fmis = self.getAProject()['fmi_folder'].contentValues()
-            return fmis[len(fmis)-1]['FundManagementOfficer']
+            try:
+                fmis = self.getAProject()['fmi_folder'].contentValues()
+                return fmis[len(fmis)-1]['FundManagementOfficer']
+            except AttributeError:
+                return ''
+            except IndexError:
+                return ''
+
         return self['FundManagementOfficer']
 
     security.declarePublic("getCEOApproval")

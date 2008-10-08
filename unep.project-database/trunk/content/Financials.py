@@ -196,16 +196,6 @@ class Financials(BaseFolder, CurrencyMixin, FinancialsMixin, BrowserDefaultMixin
     schema = Financials_schema
 
     ##code-section class-header #fill in your manual code here
-    actions =  (
-           {'action': "string:${object_url}/fmi_view",
-            'category': "object_tabs",
-            'id': 'fmi_view',
-            'name': 'fmi view',
-            'permissions': (permissions.ViewProjects,),
-            'condition': 'python:0'
-           },
-           )
-
     schema.moveField('FinanceCategory', after='title')
     schema.moveField('PMSNumber', after='FinanceCategory')
     schema.moveField('IMISNumber', after='PMSNumber')
