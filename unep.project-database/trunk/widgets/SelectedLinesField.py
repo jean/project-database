@@ -43,13 +43,15 @@ from Products.Archetypes.Widget import MultiSelectionWidget
 from Products.CMFDynamicViewFTI.browserdefault import BrowserDefaultMixin
 
 
+
+
+
 class SelectedLinesField(LinesField):
-    """A lines field that starts off with all vocabulary items selected
+    """
     """
     ##code-section class-header #fill in your manual code here
     ##/code-section class-header
 
-    # implements(interfaces.ISelectedLinesField)
 
 
     _properties = LinesField._properties.copy()

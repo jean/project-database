@@ -128,6 +128,7 @@ class EvaluationMilestone(BaseContent, BrowserDefaultMixin):
         return self.getMEMilestoneName()
 
 
+
 registerType(EvaluationMilestone, PROJECTNAME)
 # end of class EvaluationMilestone
 

@@ -15,7 +15,6 @@ __docformat__ = 'plaintext'
 
 from AccessControl import ClassSecurityInfo
 from Products.Archetypes.atapi import *
-from zope import interface
 from zope.interface import implements
 import interfaces
 from Products.ProjectDatabase.content.CurrencyMixin import CurrencyMixin
@@ -265,6 +264,7 @@ class Financials(BaseFolder, CurrencyMixin, FinancialsMixin, BrowserDefaultMixin
             return 'Financial Management Information: ' + str(self.getAProject().Title())
         else:
             return 'Financial Management Information'
+
 
 
 registerType(Financials, PROJECTNAME)

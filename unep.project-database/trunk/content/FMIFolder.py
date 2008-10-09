@@ -80,6 +80,7 @@ class FMIFolder(BaseFolder, BrowserDefaultMixin):
         return str(total)
 
 
+
 registerType(FMIFolder, PROJECTNAME)
 # end of class FMIFolder
 

@@ -112,6 +112,7 @@ class EvaluatorsInformation(BaseContent, BrowserDefaultMixin):
         return DisplayList(pairs)
 
 
+
 registerType(EvaluatorsInformation, PROJECTNAME)
 # end of class EvaluatorsInformation
 
