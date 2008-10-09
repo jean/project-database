@@ -20,7 +20,6 @@ from zope.interface import implements
 import interfaces
 from Products.ProjectDatabase.content.CurrencyMixin import CurrencyMixin
 from Products.ProjectDatabase.content.FinancialsMixin import FinancialsMixin
-from Products.ProjectDatabase.interfaces.ISubProject import ISubProject
 from Products.CMFDynamicViewFTI.browserdefault import BrowserDefaultMixin
 
 from Products.ATVocabularyManager.namedvocabulary import NamedVocabulary
@@ -132,7 +131,7 @@ class SubProject(BaseFolder, CurrencyMixin, FinancialsMixin, BrowserDefaultMixin
     """
     """
     security = ClassSecurityInfo()
-    implements(interfaces.ISubProject, ISubProject)
+    implements(interfaces.ISubProject)
 
     meta_type = 'SubProject'
     _at_rename_after_creation = True

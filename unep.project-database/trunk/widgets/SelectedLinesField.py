@@ -39,7 +39,6 @@ from Products.ProjectDatabase import config
 
 from zope.interface import implements
 from Products.Archetypes.Field import LinesField
-from Products.ProjectDatabase.interfaces.ISelectedLinesField import ISelectedLinesField
 from Products.Archetypes.Widget import MultiSelectionWidget
 from Products.CMFDynamicViewFTI.browserdefault import BrowserDefaultMixin
 
@@ -50,7 +49,7 @@ class SelectedLinesField(LinesField):
     ##code-section class-header #fill in your manual code here
     ##/code-section class-header
 
-    implements(ISelectedLinesField)
+    # implements(interfaces.ISelectedLinesField)
 
 
     _properties = LinesField._properties.copy()

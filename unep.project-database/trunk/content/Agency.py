@@ -19,7 +19,6 @@ from zope import interface
 from zope.interface import implements
 import interfaces
 from Products.UpfrontContacts.Organisation import Organisation
-from Products.ProjectDatabase.interfaces.IAgency import IAgency
 from Products.CMFDynamicViewFTI.browserdefault import BrowserDefaultMixin
 
 from Products.ATVocabularyManager.namedvocabulary import NamedVocabulary
@@ -57,7 +56,7 @@ class Agency(BaseContent, Organisation, BrowserDefaultMixin):
     """
     """
     security = ClassSecurityInfo()
-    implements(interfaces.IAgency, IAgency)
+    implements(interfaces.IAgency)
 
     meta_type = 'Agency'
     _at_rename_after_creation = True

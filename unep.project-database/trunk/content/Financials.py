@@ -20,7 +20,6 @@ from zope.interface import implements
 import interfaces
 from Products.ProjectDatabase.content.CurrencyMixin import CurrencyMixin
 from Products.ProjectDatabase.content.FinancialsMixin import FinancialsMixin
-from Products.ProjectDatabase.interfaces.IFinancials import IFinancials
 from Products.CMFDynamicViewFTI.browserdefault import BrowserDefaultMixin
 
 from Products.ATVocabularyManager.namedvocabulary import NamedVocabulary
@@ -188,7 +187,7 @@ class Financials(BaseFolder, CurrencyMixin, FinancialsMixin, BrowserDefaultMixin
     """
     """
     security = ClassSecurityInfo()
-    implements(interfaces.IFinancials, IFinancials)
+    implements(interfaces.IFinancials)
 
     meta_type = 'Financials'
     _at_rename_after_creation = True
