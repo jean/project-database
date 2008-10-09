@@ -91,12 +91,6 @@ class Project(BaseFolder, BrowserDefaultMixin):
         vocab = pv_tool.getVocabularyByName(vocabName)
         return vocab.getDisplayList(vocab)
 
-    # security.declarePrivate('manage_afterAdd')
-    # def manage_afterAdd(self,item,container):
-    #     """
-    #     """
-    #     pass
-
     security.declarePublic('getProjectGeneralInformation')
     def getProjectGeneralInformation(self):
         """

@@ -355,22 +355,6 @@ class MonitoringAndEvaluation(BaseFolder, BrowserDefaultMixin):
 
     # Methods
 
-    security.declarePrivate('manage_afterAdd')
-    def manage_afterAdd(self, item, container):
-        """
-        """
-        me = self
-        #if 'evaluation_milestone_folder' not in me.objectIds():
-        #    me.invokeFactory('EvaluationMilestoneFolder', 'evaluation_milestone_folder', title='Evaluation Milestones')
-        #    #me['evaluation_milestone_folder'].setTitle('Evaluation Milestones')
-        if 'rtsfolder' not in me.objectIds():
-            me.invokeFactory('RTSFolder', 'rtsfolder')
-            me['rtsfolder'].edit(title='Rating Tracking Systems')
-        if 'evaluators_information' not in me.objectIds():
-            me.invokeFactory('EvaluatorsInformation', 'evaluators_information')
-            me['evaluators_information'].edit(title='Evaluators Information')
-        BaseFolder.manage_afterAdd(self, item, container)
-
     security.declarePublic('getProjectTitle')
     def getProjectTitle(self):
         """

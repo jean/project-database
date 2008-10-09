@@ -66,15 +66,6 @@ class RTSFolder(BaseFolder, BrowserDefaultMixin):
 
     # Methods
 
-    security.declarePrivate('manage_afterAdd')
-    def manage_afterAdd(self, item, container):
-        """
-        """
-
-        if 'rating_tracking_system' not in self.objectIds():
-            self.invokeFactory('RatingTrackingSystem', 'rating_tracking_system')
-            self['rating_tracking_system'].setTitle('Rating Tracking System')
-        BaseFolder.manage_afterAdd(self, item, container)
 
 
 registerType(RTSFolder, PROJECTNAME)

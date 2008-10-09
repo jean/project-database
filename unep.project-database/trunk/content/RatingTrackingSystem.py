@@ -165,18 +165,6 @@ class RatingTrackingSystem(BaseFolder, BrowserDefaultMixin):
         vocab = atvm.getVocabularyByName('Rating')
         return vocab.getDisplayList(self)
 
-    security.declarePrivate('manage_afterAdd')
-    def manage_afterAdd(self, item, container):
-        """
-        """
-        #if 'pir_ratings' not in self.objectIds():
-        #    self.invokeFactory('PIRRatingFolder', 'pir_ratings')
-        #    self['pir_ratings'].setTitle('PIR Ratings')
-        if 'other_project_ratings_folder' not in self.objectIds():
-            self.invokeFactory('OtherProjectRatingsFolder', 'other_project_ratings_folder')
-            self['other_project_ratings_folder'].setTitle('Other Project Ratings')
-        BaseFolder.manage_afterAdd(self, item, container)
-
     security.declarePublic('getRatingVocabulary')
     def getRatingVocabulary(self):
         """
@@ -188,6 +176,8 @@ class RatingTrackingSystem(BaseFolder, BrowserDefaultMixin):
         """
         """
         return self.getField('ProjectInceptionRiskRating').vocabulary.getDisplayList(self)
+
+    # Manually created methods
 
 
 registerType(RatingTrackingSystem, PROJECTNAME)
