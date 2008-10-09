@@ -19,7 +19,6 @@ from zope import interface
 from zope.interface import implements
 import interfaces
 from Products.ProjectDatabase.content.CurrencyMixin import CurrencyMixin
-from Products.ProjectDatabase.interfaces.IProject import IProject
 from Products.CMFDynamicViewFTI.browserdefault import BrowserDefaultMixin
 
 from Products.ATVocabularyManager.namedvocabulary import NamedVocabulary
@@ -582,7 +581,7 @@ class ProjectGeneralInformation(BaseFolder, CurrencyMixin, BrowserDefaultMixin):
     """
     """
     security = ClassSecurityInfo()
-    implements(interfaces.IProjectGeneralInformation, IProject)
+    implements(interfaces.IProjectGeneralInformation)
 
     meta_type = 'ProjectGeneralInformation'
     _at_rename_after_creation = True
@@ -590,6 +589,7 @@ class ProjectGeneralInformation(BaseFolder, CurrencyMixin, BrowserDefaultMixin):
     schema = ProjectGeneralInformation_schema
 
     ##code-section class-header #fill in your manual code here
+    # implements(interfaces.IProject)
     ##/code-section class-header
 
     # Methods

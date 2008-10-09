@@ -18,7 +18,6 @@ from Products.Archetypes.atapi import *
 from zope import interface
 from zope.interface import implements
 import interfaces
-from Products.ProjectDatabase.interfaces.IMilestone import IMilestone
 from Products.CMFDynamicViewFTI.browserdefault import BrowserDefaultMixin
 
 from Products.ATVocabularyManager.namedvocabulary import NamedVocabulary
@@ -131,7 +130,7 @@ class Milestone(BaseContent, BrowserDefaultMixin):
     """
     """
     security = ClassSecurityInfo()
-    implements(interfaces.IMilestone, IMilestone)
+    implements(interfaces.IMilestone)
 
     meta_type = 'Milestone'
     _at_rename_after_creation = True

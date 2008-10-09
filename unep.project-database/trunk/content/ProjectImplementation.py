@@ -18,7 +18,6 @@ from Products.Archetypes.atapi import *
 from zope import interface
 from zope.interface import implements
 import interfaces
-from Products.ProjectDatabase.interfaces.IProjectImplementation import IProjectImplementation
 from Products.CMFDynamicViewFTI.browserdefault import BrowserDefaultMixin
 
 from Products.ATVocabularyManager.namedvocabulary import NamedVocabulary
@@ -65,7 +64,7 @@ class ProjectImplementation(BaseContent, BrowserDefaultMixin):
     """
     """
     security = ClassSecurityInfo()
-    implements(IProjectImplementation)
+    implements(interfaces.IProjectImplementation)
 
     meta_type = 'ProjectImplementation'
     _at_rename_after_creation = True
