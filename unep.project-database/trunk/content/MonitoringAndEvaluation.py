@@ -389,6 +389,8 @@ class MonitoringAndEvaluation(BaseFolder, BrowserDefaultMixin):
         """
         return self.getField('TerminalReportActualEvaluationDate').vocabulary.getDisplayList(self)
 
+    # Manually created methods
+
     def getIMISNumber(self):
         """
         """
@@ -440,7 +442,7 @@ class MonitoringAndEvaluation(BaseFolder, BrowserDefaultMixin):
                         if appr['approval_initiation_closure'] == 'CEO approval (PDFB or MSP or EEA and now PDFA and PIF)':
                             return appr['actual_date']
         return self.CEOApproval
-    
+
     security.declarePublic("getCEOEndorsement")
     def getCEOEndorsement(self):
         """
@@ -455,8 +457,6 @@ class MonitoringAndEvaluation(BaseFolder, BrowserDefaultMixin):
                             return appr['actual_date']
         return self.CEOEndorsement
 
-
-    security.declarePublic("FirstDisbursement")
     def getFirstDisbursement(self):
         """
         """
@@ -474,7 +474,7 @@ class MonitoringAndEvaluation(BaseFolder, BrowserDefaultMixin):
     def getRevisedCompletionDate(self):
         """
         """
-        if not self.RevisedCompletionDate: 
+        if not self.RevisedCompletionDate:
             fmis = self.getAProject()['fmi_folder'].contentValues()
             if fmis:
                 return fmis[len(fmis)-1]['RevisedCompletionDate']
@@ -494,7 +494,6 @@ class MonitoringAndEvaluation(BaseFolder, BrowserDefaultMixin):
                             return appr['actual_date']
         return self.InitialCompletionDate
 
-    security.declarePublic('getInitialCompletionDate')
     def getFinancialClosure(self):
         """
         """

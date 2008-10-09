@@ -3,7 +3,7 @@
            xmlns:five="http://namespaces.zope.org/five">
   
 <subscriber
-    for="zope.lifecycleevent.IObjectCreatedEvent"
-    handler=".projectevents.projectAdded" />
+    for="Products.Archetypes.interfaces.IObjectInitializedEvent"
+    handler=".events.projectInitialized" />
         
 </configure>

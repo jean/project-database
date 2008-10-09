@@ -482,6 +482,8 @@ class FinancialsMixin(BrowserDefaultMixin):
         cash_values = self.getCofinancingCash()
         return self.computeDataGridAmount([v['cofinancing_cash_actual_amount'] for v in cash_values if v['cofinancing_cash_actual_amount']])
 
+
+
 # end of class FinancialsMixin
 
 ##code-section module-footer #fill in your manual code here

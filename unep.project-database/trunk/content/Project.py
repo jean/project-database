@@ -15,9 +15,9 @@ __docformat__ = 'plaintext'
 
 from AccessControl import ClassSecurityInfo
 from Products.Archetypes.atapi import *
-from zope import interface
 from zope.interface import implements
 import interfaces
+
 from Products.CMFDynamicViewFTI.browserdefault import BrowserDefaultMixin
 
 from Products.ATVocabularyManager.namedvocabulary import NamedVocabulary
@@ -92,28 +92,10 @@ class Project(BaseFolder, BrowserDefaultMixin):
         return vocab.getDisplayList(vocab)
 
     # security.declarePrivate('manage_afterAdd')
-    # def manage_afterAdd(self, item, container):
+    # def manage_afterAdd(self,item,container):
     #     """
     #     """
-    #     if 'project_general_information' not in self.objectIds():
-    #         self._setObject('project_general_information', ProjectGeneralInformation('project_general_information'))
-    #         self['project_general_information'].edit(title='Project General Information')
-    #         self['project_general_information'].reindexObject()
-    #     self['project_general_information'].reindexObject()
-    #     if 'fmi_folder' not in self.objectIds():
-    #         self._setObject('fmi_folder', FMIFolder('fmi_folder'))
-    #         self['fmi_folder'].edit(title='Financial Management Information')
-    #     if 'monitoring_and_evaluation' not in self.objectIds():
-    #         self._setObject('monitoring_and_evaluation', MonitoringAndEvaluation('monitoring_and_evaluation'))
-    #         self['monitoring_and_evaluation'].edit(title='Monitoring and Evaluation')
-    #     if 'milestonesfolder' not in self.objectIds():
-    #         self._setObject('milestonesfolder', MilestoneFolder('milestonesfolder'))
-    #         self['milestonesfolder'].edit(title='Milestones')
-    #     if 'contacts-1' not in self.objectIds():
-    #         from Products.UpfrontContacts.Organisation import Organisation
-    #         self._setObject('contacts-1', Organisation('contacts-1'))
-    #         self['contacts-1'].edit(title='Contacts')
-    #     BaseFolder.manage_afterAdd(self, item, container)
+    #     pass
 
     security.declarePublic('getProjectGeneralInformation')
     def getProjectGeneralInformation(self):
@@ -139,6 +121,7 @@ class Project(BaseFolder, BrowserDefaultMixin):
         for b in brains:
             pairs.append((b.getObject().UID(), b.getObject().Title()))
         return DisplayList(pairs)
+
 
 
 registerType(Project, PROJECTNAME)

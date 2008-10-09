@@ -15,7 +15,6 @@ __docformat__ = 'plaintext'
 
 from AccessControl import ClassSecurityInfo
 from Products.Archetypes.atapi import *
-from zope import interface
 from zope.interface import implements
 import interfaces
 from Products.ProjectDatabase.content.CurrencyMixin import CurrencyMixin
@@ -186,6 +185,7 @@ class SubProject(BaseFolder, CurrencyMixin, FinancialsMixin, BrowserDefaultMixin
         if maxtotal < total + value:
             return 'Total may not exceed allocated FMI value'
         return
+
 
 
 registerType(SubProject, PROJECTNAME)

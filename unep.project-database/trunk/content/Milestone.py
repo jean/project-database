@@ -15,9 +15,9 @@ __docformat__ = 'plaintext'
 
 from AccessControl import ClassSecurityInfo
 from Products.Archetypes.atapi import *
-from zope import interface
 from zope.interface import implements
 import interfaces
+
 from Products.CMFDynamicViewFTI.browserdefault import BrowserDefaultMixin
 
 from Products.ATVocabularyManager.namedvocabulary import NamedVocabulary
@@ -181,6 +181,7 @@ class Milestone(BaseContent, BrowserDefaultMixin):
         """
         """
         return self.getMilestoneName()
+
 
 
 registerType(Milestone, PROJECTNAME)

@@ -15,7 +15,6 @@ __docformat__ = 'plaintext'
 
 from AccessControl import ClassSecurityInfo
 from Products.Archetypes.atapi import *
-from zope import interface
 from zope.interface import implements
 import interfaces
 from Products.ProjectDatabase.content.CurrencyMixin import CurrencyMixin
@@ -796,7 +795,7 @@ class ProjectGeneralInformation(BaseFolder, CurrencyMixin, BrowserDefaultMixin):
 
     # Manually created methods
 
-    security.declarePublic('Title')
+    security.declarePublic('getProjectTitle')
     def Title(self):
         """
         """
@@ -823,6 +822,7 @@ class ProjectGeneralInformation(BaseFolder, CurrencyMixin, BrowserDefaultMixin):
             if val != 0:
                 return 'Value must be zero if Tranched is No'
         return
+
 
 
 registerType(ProjectGeneralInformation, PROJECTNAME)
