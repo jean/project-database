@@ -9,13 +9,13 @@ class IAgency(Interface):
     """Marker interface for .Agency.Agency
     """
 
-class IProject(Interface):
-    """Marker interface for .Project.Project
-    """
+# class IProject(Interface):
+#     """Marker interface for .Project.Project
+#     """
 
-class IProjectImplementation(Interface):
-    """Marker interface for .ProjectImplementation.ProjectImplementation
-    """
+# class IProjectImplementation(Interface):
+#     """Marker interface for .ProjectImplementation.ProjectImplementation
+#     """
 
 class IMilestone(Interface):
     """Marker interface for .Milestone.Milestone

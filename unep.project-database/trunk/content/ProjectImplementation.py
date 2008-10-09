@@ -65,7 +65,7 @@ class ProjectImplementation(BaseContent, BrowserDefaultMixin):
     """
     """
     security = ClassSecurityInfo()
-    implements(interfaces.IProjectImplementation, IProjectImplementation)
+    implements(IProjectImplementation)
 
     meta_type = 'ProjectImplementation'
     _at_rename_after_creation = True
