@@ -1,5 +1,5 @@
 includePD = [ 'Project' ]
-includeContacts = [ 'Agency', 'mxmContacts' ]
+includeContacts = [ 'Agency', 'Group' ]
 types = context.sortObjects( context.allowedContentTypes() )
 if context.getId() == 'projectdatabases':
     return [ ctype for ctype in types if ctype.getId() in includePD ] 
