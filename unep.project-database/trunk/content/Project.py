@@ -109,7 +109,7 @@ class Project(BaseFolder, BrowserDefaultMixin):
         """
         """
         path = '/'.join(self.getAProject().getPhysicalPath()) + '/contacts-1'
-        brains = self.portal_catalog(portal_type='mxmContactsPerson', path=path)
+        brains = self.portal_catalog(portal_type='Person', path=path)
         pairs=[]
         pairs.append(("", "<no reference>"))
         for b in brains:
