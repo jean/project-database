@@ -1,0 +1,150 @@
+General Project Information
+---------------------------
+
+1. Add GEF ID field (5 digits?)
+
+2. Operational Programme Field
+    Change to multiselction
+
+
+Finance Management
+------------------
+
+1. Add "GEF ID" as first field
+    Note: same for all finance categories for a project
+
+2. Finance Category Field
+    Add items to dropdown
+        Add-On
+        PDF-C
+        Tranche
+            Side effects?
+            What is a tranched project?
+
+3. Add "Trustee ID" field
+    25 alphanumeric 
+    Each finance category has own Trustee ID
+
+4. Add "Revised allocation to UNEP" field
+    numeric/Money?
+    Description: Revised amount after Project Council or CEO approval.
+
+5. Add "Committed GEF grant" field
+    numeric/Money?
+    Description: Project budget in the internalized project document.
+
+6. Add "Difference" field
+    computed: (GEF Allocation to UNEP) - (Committed GEF grant).
+    Note: Should be 0, otherwise raises a red flag.
+    Follow fields in 4 and 5.
+
+7. CashDisbursement Field
+    Change "Bank Reference Number" column to "IMIS RCPT Number"
+
+8. "Lead Executing agency" field
+    Change to a text field, not a dropdown. (Reason: Not GEF agency)
+
+
+Monitoring and Evaluation
+-------------------------
+
+1. List of fields to be included from other project databases here ????
+
+2. MidtermEvaluationPlannedDate field
+    Business rule: enter at time of project approval by TM
+    Need to pick date from list of milestones. ????
+    Not applicable option ????
+    MTR or MTE selection in the GPI ????
+
+3. Add FMI Fields:
+    Business rule: entered by FMO on project approval
+    Note: Fields to appear in "view" of M&E
+    a. "Project Terminal Evaluation Budget" field
+        Money
+    b. "Project Mid-term Review/Evaluation Budget" field
+        Money
+
+4. Add fields:
+    a. "Cost Estimate for MTR/MTE"
+        Money
+        TM to enter value if MTR is taking place
+    b. "Cost Estimate for TE"
+        Money
+
+5. Add FMI "Cost Difference Field"
+    Computed
+    Indicate difference between estimated and total costs 
+        (MTR/MTE + TE total cost fields) - (MTR/MTE + TE estimated cost fields)
+
+6. Add "View" fields
+    Lead GEF Agency
+    Other GEF Agencies (at implementation level)
+    Lead Executing Organization
+    Geographic Focus    - from GPI class
+    Countries           - from GPI class
+    GEF allocation to UNEP
+
+7. Remove fields:   Remove or Hide ????
+    Joint Implementation
+    GEF Agency Implementation
+
+8. PlannedDate field 
+    Use "Add Row" feature to capture changes for this date
+
+9. Evaluators
+    Select name from "global" contacts list. Up to 5 names.
+
+10. Evaluation Officer Login Screen
+    Display list of projects with evaluation dates due in 6 months.
+
+11. Document uploads
+    Allow upload of MTR, MTE and TE reports
+    Allow upload of cost estimate spreadsheet
+
+12. Delete "Date of evaluation" report
+
+
+Evaluation Milestones
+---------------------
+
+1. Change to the +/- system ????
+
+2. Mid term review
+    If milestone is an MTR, allow "Task Manager" to enter milestone.
+
+3. Milestone names vocabulary
+    Delete "Agreed TOR"
+    Modify "Approval of TOR" to "Approved TOR"
+    Add options:
+        Comments to draft TOR
+        Preparation of budget estimate - where in the sequence????
+
+
+Rating Tracking System
+----------------------
+
+1. ProjectRiskRatingForEachPIR field
+    Change to DataGridField
+
+2. Remarks field
+    Should we keep it?
+
+
+        
+
+
+Terminology
+----------
+    MTR     Mid-term review
+    MTE     Mid-term evaluation
+    TE      Terminal evaluation
+    TOR     Terms of reference?
+
+
+Need explanations for:
+
+    Implementing Agency
+    Executing Agency
+
+    Task Manager
+    Evaluation Officer
