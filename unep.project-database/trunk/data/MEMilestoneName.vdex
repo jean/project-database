@@ -16,17 +16,17 @@
 </term>
 
 <term>
-  <termIdentifier>Agreed TOR</termIdentifier>
+  <termIdentifier>Comments to Draft TOR</termIdentifier>
   <caption>
-    <langstring language="en">Agreed TOR</langstring>
+    <langstring language="en">Comments to Draft TOR</langstring>
   </caption>
   <description />
 </term>
 
 <term>
-  <termIdentifier>Approval of TOR</termIdentifier>
+  <termIdentifier>Approved TOR</termIdentifier>
   <caption>
-    <langstring language="en">Approval of TOR</langstring>
+    <langstring language="en">Approved TOR</langstring>
   </caption>
   <description />
 </term>
@@ -35,6 +35,14 @@
   <termIdentifier>Collation of Project Information</termIdentifier>
   <caption>
     <langstring language="en">Collation of Project Information</langstring>
+  </caption>
+  <description />
+</term>
+
+<term>
+  <termIdentifier>Preparation of Budget Estimate</termIdentifier>
+  <caption>
+    <langstring language="en">Preparation of Budget Estimate</langstring>
   </caption>
   <description />
 </term>
