@@ -10,7 +10,7 @@ from Products.ProjectDatabase.content.OtherProjectRatingsFolder import OtherProj
 from Products.ProjectDatabase.content.RTSFolder import RTSFolder
 from Products.ProjectDatabase.content.EvaluatorsInformation import EvaluatorsInformation
 from Products.ProjectDatabase.content.RatingTrackingSystem import RatingTrackingSystem
-from Products.UpfrontContacts.Organisation import Organisation
+from Products.UpfrontContacts.ContactManager import ContactManager
 
 import logging
 LOG = logging.getLogger('ProjectDatabase.events.events')
@@ -43,7 +43,7 @@ def projectInitialized(event):
         ob._setObject('milestonesfolder', MilestoneFolder('milestonesfolder'))
         ob['milestonesfolder'].edit(title='Milestones')
     if 'contacts-1' not in ob.objectIds():
-        ob._setObject('contacts-1', Organisation('contacts-1'))
+        ob._setObject('contacts-1', ContactManager('contacts-1'))
         ob['contacts-1'].edit(title='Contacts')
 
 def ratingTrackingSystemInitialized(event):
