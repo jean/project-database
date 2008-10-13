@@ -417,7 +417,7 @@ class MonitoringAndEvaluation(BaseFolder, BrowserDefaultMixin):
     def getCEOApproval(self):
         """
         """
-        if not self.CEOApproval:
+        if not self.getField('CEOApproval'):
             milestones = self.getAProject()['milestonesfolder'].contentValues()
             if milestones:
                 approval = milestones[len(milestones)-1]['ApprovalInitiationAndClosure']
@@ -425,13 +425,13 @@ class MonitoringAndEvaluation(BaseFolder, BrowserDefaultMixin):
                     for appr in approval:
                         if appr['approval_initiation_closure'] == 'CEO approval (PDFB or MSP or EEA and now PDFA and PIF)':
                             return appr['actual_date']
-        return self.CEOApproval
+        return self.getField('CEOApproval')
 
     security.declarePublic("getCEOEndorsement")
     def getCEOEndorsement(self):
         """
         """
-        if not self.CEOEndorsement:
+        if not self.getField('CEOEndorsement'):
             milestones = self.getAProject()['milestonesfolder'].contentValues()
             if milestones:
                 approval = milestones[len(milestones)-1]['ApprovalInitiationAndClosure']
@@ -439,12 +439,12 @@ class MonitoringAndEvaluation(BaseFolder, BrowserDefaultMixin):
                     for appr in approval:
                         if appr['approval_initiation_closure'] == 'CEO endorsement (for FSP)':
                             return appr['actual_date']
-        return self.CEOEndorsement
+        return self.getField('CEOEndorsement')
 
     def getFirstDisbursement(self):
         """
         """
-        if not self.FirstDisbursement:
+        if not self.getField('FirstDisbursement'):
             milestones = self.getAProject()['milestonesfolder'].contentValues()
             if milestones:
                 approval = milestones[len(milestones)-1]['ApprovalInitiationAndClosure']
@@ -452,23 +452,23 @@ class MonitoringAndEvaluation(BaseFolder, BrowserDefaultMixin):
                     for appr in approval:
                         if appr['approval_initiation_closure'] == 'First disbursement (date)':
                             return appr['actual_date']
-        return self.FirstDisbursement
+        return self.getField('FirstDisbursement')
 
     security.declarePublic('getRevisedCompletionDate')
     def getRevisedCompletionDate(self):
         """
         """
-        if not self.RevisedCompletionDate:
+        if not self.getField('RevisedCompletionDate'):
             fmis = self.getAProject()['fmi_folder'].contentValues()
             if fmis:
                 return fmis[len(fmis)-1]['RevisedCompletionDate']
-        return self.RevisedCompletionDate
+        return self.getField('RevisedCompletionDate')
 
     security.declarePublic('getInitialCompletionDate')
     def getInitialCompletionDate(self):
         """
         """
-        if not self.InitialCompletionDate:
+        if not self.getField('InitialCompletionDate'):
             milestones = self.getAProject()['milestonesfolder'].contentValues()
             if milestones:
                 approval = milestones[len(milestones)-1]['ApprovalInitiationAndClosure']
@@ -476,12 +476,12 @@ class MonitoringAndEvaluation(BaseFolder, BrowserDefaultMixin):
                     for appr in approval:
                         if appr['approval_initiation_closure'] == 'Project completion (date of Completion Revision) ':
                             return appr['actual_date']
-        return self.InitialCompletionDate
+        return self.getField('InitialCompletionDate')
 
     def getFinancialClosure(self):
         """
         """
-        if not self.FinancialClosure:
+        if not self.getField('FinancialClosure'):
             milestones = self.getAProject()['milestonesfolder'].contentValues()
             if milestones:
                 approval = milestones[len(milestones)-1]['ApprovalInitiationAndClosure']
@@ -489,7 +489,7 @@ class MonitoringAndEvaluation(BaseFolder, BrowserDefaultMixin):
                     for appr in approval:
                         if appr['approval_initiation_closure'] == 'Financial closure':
                             return appr['actual_date']
-        return self.FinancialClosure
+        return self.getField('FinancialClosure')
 
 
 
