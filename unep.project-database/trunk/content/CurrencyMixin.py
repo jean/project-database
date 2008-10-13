@@ -39,10 +39,10 @@ class CurrencyMixin:
     ##/code-section class-header_CurrencyMixin
 
     def getZeroMoneyInstance(self):
-        pass
+        return Money(0, self.getDefaultCurrency())
 
     def getDefaultCurrency(self):
-        pass
+        return 'USD'
 
 
 ##code-section module-footer #fill in your manual code here

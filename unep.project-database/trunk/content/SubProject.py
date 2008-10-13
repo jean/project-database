@@ -49,7 +49,6 @@ copied_fields['Office'] = ProjectGeneralInformation.schema['Office'].copy()
 copied_fields['ProjectCoordinator'] = ProjectGeneralInformation.schema['ProjectCoordinator'].copy()
 copied_fields['ProjectCoordinator'].relationship = "SubProject_ProjectCoordinator"
 copied_fields['LeadExecutingAgency'] = Financials.schema['LeadExecutingAgency'].copy()
-copied_fields['LeadExecutingAgency'].relationship = "SubProject_LeadExecutingAgency"
 schema = Schema((
 
     copied_fields['SummaryDescription'],

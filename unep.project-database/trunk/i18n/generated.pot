@@ -31,9 +31,20 @@ msgstr ""
 msgid "ProjectDatabase_help_ApprovedUNEPBudget"
 msgstr ""
 
+#. Default: "Project budget in the internalized project document"
+#: content/FinancialsMixin.py
+msgid "ProjectDatabase_help_CommittedGEFGrant"
+msgstr ""
+
 #. Default: "Enter the total amount of GEF resources approved for this project"
 #: content/FinancialsMixin.py
 msgid "ProjectDatabase_help_GEFProjectAllocation"
+msgstr ""
+
+#. Default: "Enter the 5 digit GEF ID"
+#: content/ProjectGeneralInformation.py
+#: content/Financials.py
+msgid "ProjectDatabase_help_GEFid"
 msgstr ""
 
 #. Default: "Enter the Full Implementing Agency Fee"
@@ -80,6 +91,11 @@ msgstr ""
 #: content/EvaluationMilestone.py
 #: content/RatingTrackingSystem.py
 msgid "ProjectDatabase_help_Remarks"
+msgstr ""
+
+#. Default: "Revised amount after Project Council or CEO approval"
+#: content/FinancialsMixin.py
+msgid "ProjectDatabase_help_RevisedAllocationToUNEP"
 msgstr ""
 
 #. Default: "As per last revision"
@@ -208,6 +224,11 @@ msgstr ""
 msgid "ProjectDatabase_label_CofinancingInKind"
 msgstr ""
 
+#. Default: "Committed GEF Grant"
+#: content/FinancialsMixin.py
+msgid "ProjectDatabase_label_CommittedGEFGrant"
+msgstr ""
+
 #. Default: "Cost Effectiveness"
 #: content/OtherProjectRatings.py
 msgid "ProjectDatabase_label_CostEffectiveness"
@@ -234,6 +255,11 @@ msgstr ""
 #. Default: "Reasons for delay"
 #: content/FinancialsMixin.py
 msgid "ProjectDatabase_label_DelayReason"
+msgstr ""
+
+#. Default: "Difference"
+#: content/FinancialsMixin.py
+msgid "ProjectDatabase_label_Difference"
 msgstr ""
 
 #. Default: "Donor Type"
@@ -397,6 +423,12 @@ msgstr ""
 #. Default: "GEF Trust Fund"
 #: content/Financials.py
 msgid "ProjectDatabase_label_GEFTrustFund"
+msgstr ""
+
+#. Default: "Gefid"
+#: content/ProjectGeneralInformation.py
+#: content/Financials.py
+msgid "ProjectDatabase_label_GEFid"
 msgstr ""
 
 #. Default: "IMIS Expenditures"
@@ -845,6 +877,11 @@ msgstr ""
 msgid "ProjectDatabase_label_Reports"
 msgstr ""
 
+#. Default: "Revised allocation to UNEP"
+#: content/FinancialsMixin.py
+msgid "ProjectDatabase_label_RevisedAllocationToUNEP"
+msgstr ""
+
 #. Default: "Revised Completion Date"
 #: content/FinancialsMixin.py
 #: content/MonitoringAndEvaluation.py
@@ -1080,6 +1117,11 @@ msgstr ""
 #: content/ProjectGeneralInformation.py
 #: content/BlankCoreMixin.py
 msgid "ProjectDatabase_label_TotalUNEPAllocation"
+msgstr ""
+
+#. Default: "Trustee ID"
+#: content/FinancialsMixin.py
+msgid "ProjectDatabase_label_TrusteeID"
 msgstr ""
 
 #. Default: "UNEP Component Description"

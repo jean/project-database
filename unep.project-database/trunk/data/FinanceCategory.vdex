@@ -56,9 +56,23 @@
   <description />
 </term>
 <term>
-  <termIdentifier>PDFC</termIdentifier>
+  <termIdentifier>PDF C</termIdentifier>
   <caption>
-    <langstring language="en">PDFC</langstring>
+    <langstring language="en">PDF C</langstring>
+  </caption>
+  <description />
+</term>
+<term>
+  <termIdentifier>Add-On</termIdentifier>
+  <caption>
+    <langstring language="en">Add-On</langstring>
+  </caption>
+  <description />
+</term>
+<term>
+  <termIdentifier>Tranche</termIdentifier>
+  <caption>
+    <langstring language="en">Tranche</langstring>
   </caption>
   <description />
 </term>

@@ -107,12 +107,12 @@ schema = Schema((
     DataGridField(
         name='CashDisbursements',
         widget=DataGridField._properties['widget'](
-            columns={ 'cash_disbursements_date' : CalendarColumn("Date"), 'cash_disbursements_amount' : Column("Amount"), 'cash_disbursements_bank_ref_number' : Column("Bank Reference Number") },
+            columns={ 'cash_disbursements_date' : CalendarColumn("Date"), 'cash_disbursements_amount' : Column("Amount"), 'cash_disbursements_imis_rcpt_number' : Column("IMIS RCPT Number") },
             label="Cash Disbursements",
             label_msgid='ProjectDatabase_label_CashDisbursements',
             i18n_domain='ProjectDatabase',
         ),
-        columns=("cash_disbursements_date", "cash_disbursements_amount", "cash_disbursements_bank_ref_number"),
+        columns=("cash_disbursements_date", "cash_disbursements_amount", "cash_disbursements_imis_rcpt_number"),
     ),
     DataGridField(
         name='IMISExpenditures',
@@ -153,9 +153,9 @@ schema = Schema((
             i18n_domain='ProjectDatabase',
         ),
     ),
-    StringField(
+    TextField(
         name='DelayReason',
-        widget=StringField._properties['widget'](
+        widget=TextAreaWidget(
             label="Reasons for delay",
             label_msgid='ProjectDatabase_label_DelayReason',
             i18n_domain='ProjectDatabase',
@@ -258,9 +258,9 @@ schema = Schema((
             i18n_domain='ProjectDatabase',
         ),
     ),
-    StringField(
+    TextField(
         name='FinancialStatusRemarks',
-        widget=StringField._properties['widget'](
+        widget=TextAreaWidget(
             label="Project Financial Status - Remarks",
             label_msgid='ProjectDatabase_label_FinancialStatusRemarks',
             i18n_domain='ProjectDatabase',
@@ -292,6 +292,42 @@ schema = Schema((
         ),
         vocabulary=NamedVocabulary("""ProjectRevisionType"""),
         columns=("revision_number", "revision_type","revision_date"),
+    ),
+    StringField(
+        name='TrusteeID',
+        widget=StringField._properties['widget'](
+            label="Trustee ID",
+            label_msgid='ProjectDatabase_label_TrusteeID',
+            i18n_domain='ProjectDatabase',
+        ),
+    ),
+    MoneyField(
+        name='RevisedAllocationToUNEP',
+        widget=MoneyField._properties['widget'](
+            label="Revised allocation to UNEP",
+            description="Revised amount after Project Council or CEO approval",
+            label_msgid='ProjectDatabase_label_RevisedAllocationToUNEP',
+            description_msgid='ProjectDatabase_help_RevisedAllocationToUNEP',
+            i18n_domain='ProjectDatabase',
+        ),
+    ),
+    MoneyField(
+        name='CommittedGEFGrant',
+        widget=MoneyField._properties['widget'](
+            label="Committed GEF Grant",
+            description="Project budget in the internalized project document",
+            label_msgid='ProjectDatabase_label_CommittedGEFGrant',
+            description_msgid='ProjectDatabase_help_CommittedGEFGrant',
+            i18n_domain='ProjectDatabase',
+        ),
+    ),
+    ComputedField(
+        name='Difference',
+        widget=ComputedField._properties['widget'](
+            label='Difference',
+            label_msgid='ProjectDatabase_label_Difference',
+            i18n_domain='ProjectDatabase',
+        ),
     ),
 ),
 )
@@ -448,6 +484,12 @@ class FinancialsMixin(BrowserDefaultMixin):
         """
         """
         return self.getField('ProjectRevision').vocabulary.getDisplayList(self)
+
+    security.declarePublic('getDifference')
+    def getDifference(self):
+        """ calculate the difference between the committed and allocated GEF grant
+        """
+        return self.getField('RevisedAllocationToUNEP') - self.getField('CommittedGEFGrant')
 
     # Manually created methods
 

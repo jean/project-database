@@ -177,8 +177,6 @@ class RatingTrackingSystem(BaseFolder, BrowserDefaultMixin):
         """
         return self.getField('ProjectInceptionRiskRating').vocabulary.getDisplayList(self)
 
-    # Manually created methods
-
 
 registerType(RatingTrackingSystem, PROJECTNAME)
 # end of class RatingTrackingSystem
