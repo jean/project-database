@@ -62,13 +62,14 @@ schema = Schema((
         multiValued=1,
         vocabulary=NamedVocabulary("""FocalArea"""),
     ),
-    StringField(
+    LinesField(
         name='OperationalProgramme',
-        widget=SelectionWidget(
+        widget=MultiSelectionWidget(
             label="Operational Programme",
             label_msgid='ProjectDatabase_label_OperationalProgramme',
             i18n_domain='ProjectDatabase',
         ),
+        multiValued=1,
         vocabulary=NamedVocabulary("""OperationalProgramme"""),
     ),
     LinesField(
@@ -549,6 +550,16 @@ schema = Schema((
             i18n_domain='ProjectDatabase',
         ),
     ),
+    StringField(
+        name='GEFid',
+        widget=StringField._properties['widget'](
+            label="GEF ID",
+            description="Enter the 5 digit GEF ID",
+            label_msgid='ProjectDatabase_label_GEFid',
+            description_msgid='ProjectDatabase_help_GEFid',
+            i18n_domain='ProjectDatabase',
+        ),
+    ),
 ),
 )
 
@@ -588,7 +599,7 @@ class ProjectGeneralInformation(BaseFolder, CurrencyMixin, BrowserDefaultMixin):
     schema = ProjectGeneralInformation_schema
 
     ##code-section class-header #fill in your manual code here
-    # implements(interfaces.IProject)
+    schema.moveField('GEFid', after='title')
     ##/code-section class-header
 
     # Methods
@@ -792,6 +803,20 @@ class ProjectGeneralInformation(BaseFolder, CurrencyMixin, BrowserDefaultMixin):
         """
         """
         return False
+
+    security.declarePublic('validate_GEFid')
+    def validate_GEFid(self, value):
+        """
+        Check that the GEF id consists of 5 digits
+        """
+        if len(value) != 5:
+            return 'The GEF ID must be 5 digits in length'
+
+        for char in value:
+            if char not in ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']:
+                return 'Only digits are allowed in the GEF ID'
+
+        return None
 
     # Manually created methods
 

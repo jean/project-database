@@ -109,13 +109,11 @@ schema = Schema((
     ),
     StringField(
         name='LeadExecutingAgency',
-        widget=SelectionWidget(
+        widget=StringField._properties['widget'](
             label="Lead Executing Agency",
             label_msgid='ProjectDatabase_label_LeadExecutingAgency',
             i18n_domain='ProjectDatabase',
         ),
-        vocabulary=NamedVocabulary("""LeadAgency"""),
-        relationship="Financials_LeadExecutingAgency",
     ),
     StringField(
         name='OtherLeadExecutingAgency',
@@ -158,6 +156,16 @@ schema = Schema((
             i18n_domain='ProjectDatabase',
         ),
     ),
+    StringField(
+        name='GEFid',
+        widget=StringField._properties['widget'](
+            label="GEF ID",
+            description="Enter the 5 digit GEF ID",
+            label_msgid='ProjectDatabase_label_GEFid',
+            description_msgid='ProjectDatabase_help_GEFid',
+            i18n_domain='ProjectDatabase',
+        ),
+    ),
 ),
 )
 
@@ -194,8 +202,10 @@ class Financials(BaseFolder, CurrencyMixin, FinancialsMixin, BrowserDefaultMixin
     schema = Financials_schema
 
     ##code-section class-header #fill in your manual code here
-    schema.moveField('FinanceCategory', after='title')
-    schema.moveField('PMSNumber', after='FinanceCategory')
+    schema.moveField('GEFid', after='title')
+    schema.moveField('FinanceCategory', after='GEFid')
+    schema.moveField('TrusteeID', after='FinanceCategory')
+    schema.moveField('PMSNumber', after='TrusteeID')
     schema.moveField('IMISNumber', after='PMSNumber')
     schema.moveField('GEFProjectAllocation', after='IMISNumber')
     schema.moveField('CashUNEPAllocation', after='GEFProjectAllocation')
@@ -253,6 +263,18 @@ class Financials(BaseFolder, CurrencyMixin, FinancialsMixin, BrowserDefaultMixin
         if self.getSupplementaryUNEPAllocation():
             total = total + self.getSupplementaryUNEPAllocation()
         return total
+
+    security.declarePublic('validate_GEFid')
+    def validate_GEFid(self, value):
+        """
+        Check that the GEF id consists of 5 digits
+        """
+        if len(value) != 5:
+            return 'The GEF ID must be 5 digits in length'
+
+        for char in value:
+            if char not in ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']:
+                return 'Only digits are allowed in the GEF ID'
 
     # Manually created methods
 

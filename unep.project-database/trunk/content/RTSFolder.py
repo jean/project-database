@@ -67,7 +67,6 @@ class RTSFolder(BaseFolder, BrowserDefaultMixin):
     # Methods
 
 
-
 registerType(RTSFolder, PROJECTNAME)
 # end of class RTSFolder
 
