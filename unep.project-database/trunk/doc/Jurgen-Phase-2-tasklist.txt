@@ -13,47 +13,48 @@ TASKS
 General Project Information
 ---------------------------
 
-1. Add GEF ID field (5 digits?)
+1. Add GEF ID field (5 digits?)                                                 Done
 
-2. Operational Programme Field
+2. Operational Programme Field                                                  Done
     Change to multiselction
 
 
 Finance Management
 ------------------
 
-1. Add "GEF ID" as first field
+1. Add "GEF ID" as first field                                                  Done
     Note: same for all finance categories for a project
 
-2. Finance Category Field
+2. Finance Category Field                                                       Done
     Add items to dropdown
         Add-On
         PDF-C
         Tranche
-            Side effects?
-            What is a tranched project?
 
-3. Add "Trustee ID" field
+3. Add "Trustee ID" field                                                       Done
     25 alphanumeric 
     Each finance category has own Trustee ID
 
-4. Add "Revised allocation to UNEP" field
+4. Add "Revised allocation to UNEP" field                                       Done
     numeric/Money?
     Description: Revised amount after Project Council or CEO approval.
+        Must this be in FinancialsMixin or just Financials ?????
 
-5. Add "Committed GEF grant" field
+5. Add "Committed GEF grant" field                                              Done
     numeric/Money?
     Description: Project budget in the internalized project document.
+        Must this be in FinancialsMixin or just Financials ?????
 
-6. Add "Difference" field
+6. Add "Difference" field                                                       Done
     computed: (GEF Allocation to UNEP) - (Committed GEF grant).
     Note: Should be 0, otherwise raises a red flag.
     Follow fields in 4 and 5.
+        Must this be in FinancialsMixin or just Financials ?????
 
 7. CashDisbursement Field
-    Change "Bank Reference Number" column to "IMIS RCPT Number"
+    Change "Bank Reference Number" column to "IMIS RCPT Number"                 Done
 
-8. "Lead Executing agency" field
+8. "Lead Executing agency" field                                                Done
     Change to a text field, not a dropdown. (Reason: Not GEF agency)
 
 
