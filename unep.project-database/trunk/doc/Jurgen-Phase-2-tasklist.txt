@@ -1,3 +1,15 @@
+ISSUES
+======
+
+1. parts/plone/Archetypes/utils.py
+    DisplayList.getMsgId() gets a key 'None' when clicking on a ProjectGeneralInformation item inside a Project folder.
+
+
+
+
+TASKS
+=====
+
 General Project Information
 ---------------------------
 
@@ -125,12 +137,18 @@ Rating Tracking System
 
 1. ProjectRiskRatingForEachPIR field
     Change to DataGridField
+        Columns:
+            Fiscal Year
+            DO Rating
+            IP Rating
+            M&E Rating
+            Risk Rating
+        Note: See drop-down lists????
 
 2. Remarks field
     Should we keep it?
 
-
-        
+3. Evaluation Ratings ????
 
 
 Terminology
@@ -140,7 +158,6 @@ Terminology
     TE      Terminal evaluation
     TOR     Terms of reference?
 
-
 Need explanations for:
 
     Implementing Agency
@@ -148,3 +165,9 @@ Need explanations for:
 
     Task Manager
     Evaluation Officer
+
+    IMIS Number
+    EOU Rating
+    PIR Ratings
+
+    Tranched
