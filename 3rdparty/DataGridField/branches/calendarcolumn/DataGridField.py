@@ -14,10 +14,13 @@ import logging
 from AccessControl import ClassSecurityInfo
 from Products.Archetypes.atapi import DisplayList
 from Products.Archetypes.Field import ObjectField
-from Products.Archetypes.Field import encode
+from Products.Archetypes.Field import encode, decode
 from Products.Archetypes.Field import registerField
+from Products.validation.config import validation as validationService
 from Products.DataGridField import DataGridWidget
+from Products.DataGridField.Column import Column
 from Products.DataGridField.interfaces import IDataGridField
+from Products.DataGridField.ValidatedColumn import ValidatedColumn
 
 # Our logger object
 logger = logging.getLogger('DataGridField')
@@ -82,20 +85,53 @@ class DataGridField(ObjectField):
     def __init__(self, name=None, **kwargs):
         """ Create DataGridField instance
         """
-
         # call super constructor
         ObjectField.__init__(self, name, **kwargs)
+
 
     def getColumnIds(self):
         """ Return list of column ids """
         return self.columns
+
+
+    security.declarePublic('validate')
+    def validate(self, value, instance, errors=None, **kw):
+        """ Overwriting default validator because we need to validate each row according
+        to the defined type if there is one. """
+
+        if errors is None:
+            errors = {}
+
+        newvalue = self._prepareValue(value)
+
+        # validating against the defined validators if any
+        for item in newvalue:
+            colname = item.keys()[0]
+            columnob = self.widget.columns[colname]
+
+            if isinstance(columnob, ValidatedColumn):
+                validator = columnob.getValidator()
+
+                if validator == 'isNotEmpty' and not item[colname]:
+                    return 'Validation failed (isNotEmpty): No empty fields allowed for column %s!' % columnob.label
+
+                elif validator =='isNotEmpty' and item[colname]:
+                    continue
+
+                # continue for empty stuff - we're ignoring this here
+                elif not item[colname]: continue
+
+                v = validationService.validatorFor(validator)
+                validated = v(item[colname])
+                if validated not in [1, True]:
+                    return validated
+
+        return ObjectField.validate(self, value, instance, errors, **kw)
     
-    security.declarePrivate('set')
-    def set(self, instance, value, **kwargs):
-        """
-        The passed in object should be a records object, or a sequence of dictionaries
-        """
-        
+
+    def _prepareValue(self, value):
+        """ Here we prepare value for saving and validation """
+
         # Help to localize problems in Zope trace back
         __traceback_info__ = value, type(value)
 
@@ -103,9 +139,7 @@ class DataGridField(ObjectField):
         cleaned = []
         doSort = False
         
-        logging.debug("Setting DGF value to " + str(value))
-        
-        if value == ({},):
+        if value == ({},) or value == '({},)' or not value:
             # With some Plone versions, it looks like that AT init
             # causes DGF to get one empty dictionary as the base value
             # and later, it will be appended as a cleaned row below if 
@@ -117,8 +151,6 @@ class DataGridField(ObjectField):
             # In the field mutator (set) the
             # passed value is not always a record, but sometimes a string.
             # In fact the RFC822Marshaller passes a string. 
-            
-            logging.debug("Doing string marshalling")
             
             records = []
             dict = {}
@@ -180,7 +212,16 @@ class DataGridField(ObjectField):
             # remove order keys when sorting is complete
             value = tuple([x for (throwaway, x) in cleaned])
 
-        # fill in data
+        return value
+
+    security.declarePrivate('set')
+    def set(self, instance, value, **kwargs):
+        """
+        The passed in object should be a records object, or a sequence of dictionaries
+        """
+        
+        logging.debug("Setting DGF value to " + str(value))
+        value = self._prepareValue(value)
         ObjectField.set(self, instance, value, **kwargs)
 
     security.declarePrivate('get')
