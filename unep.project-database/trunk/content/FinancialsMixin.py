@@ -35,6 +35,8 @@ from Products.CMFCore.utils import getToolByName
 from Products.FinanceFields.Money import Money
 
 ##code-section module-header #fill in your manual code here
+import logging
+logger = logging.getLogger('products/ProjectDatabase/content/FinancialsMixin.py')
 ##/code-section module-header
 
 schema = Schema((
@@ -489,7 +491,14 @@ class FinancialsMixin(BrowserDefaultMixin):
     def getDifference(self):
         """ calculate the difference between the committed and allocated GEF grant
         """
-        return self.getField('RevisedAllocationToUNEP') - self.getField('CommittedGEFGrant')
+        # import pdb; pdb.set_trace()
+        revAllocUNEP = self.getField('RevisedAllocationToUNEP')
+        committedGEFgrant = self.getField('CommittedGEFGrant')
+        try:
+            return revAllocUNEP - committedGEFgrant
+        except TypeError:
+            logger.error('Could not retrieve revisedAllocationToUNEP or committedGEFGrant value')
+            return 0
 
     # Manually created methods
 
