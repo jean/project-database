@@ -3,7 +3,12 @@ ISSUES
 
 1. parts/plone/Archetypes/utils.py
     DisplayList.getMsgId() gets a key 'None' when clicking on a ProjectGeneralInformation item inside a Project folder.
+    Plone Boolean field widget template bug?
 
+2. Datagrid row does not save.
+3. Datagrid calendar column looks like #$%^
+4. Datagrid cannot add new rows
+5. Datagrid calendar popup does not work
 
 
 
@@ -125,7 +130,7 @@ Evaluation Milestones
 2. Mid term review
     If milestone is an MTR, allow "Task Manager" to enter milestone.
 
-3. Milestone names vocabulary
+3. Milestone names vocabulary                                                   Done
     Delete "Agreed TOR"
     Modify "Approval of TOR" to "Approved TOR"
     Add options:
