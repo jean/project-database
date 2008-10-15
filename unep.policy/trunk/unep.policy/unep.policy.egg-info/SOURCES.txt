@@ -16,4 +16,12 @@ unep.policy.egg-info/requires.txt
 unep.policy.egg-info/top_level.txt
 unep/policy/__init__.py
 unep/policy/configure.zcml
-unep/policy/tests.py
+unep/policy/setuphandlers.py
+unep/policy/version.txt
+unep/policy/Extensions/Install.py
+unep/policy/profiles/default/import_steps.xml
+unep/policy/profiles/default/mailhost.xml
+unep/policy/profiles/default/properties.xml
+unep/policy/tests/__init__.py
+unep/policy/tests/base.py
+unep/policy/tests/test_setup.py
