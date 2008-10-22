@@ -67,6 +67,19 @@ Monitoring and Evaluation
 -------------------------
 
 1. List of fields to be included from other project databases here ????
+    IMIS Number                                 from Financials Mixin
+    Current Task Manager                        from General Project Information
+    Fund Management Officer                     from Financials
+    CEO Approval Date                           Only in M&E
+    CEO Endorsement Date                        Only in M&E
+    First Disbursement Date                     Only in M&E
+    Revised Completion Date                     from Financials
+    Initial Completion Date                     from Financials
+    Financial Closure Date                      Only in M&E
+    Join Implementation Yes/No                  from ProjectGeneralInformation
+    GEF Agency Implementation Single/Joint      ????
+    Lead Executing Agency                       from ProjectGeneralInformation (ProjectExecutingAgency)
+                                                from Financials (LeadExecutingAgency)
 
 2. MidtermEvaluationPlannedDate field
     Business rule: enter at time of project approval by TM
