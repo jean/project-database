@@ -137,24 +137,6 @@ schema = Schema((
         ),
     ),
     StringField(
-        name='JointImplementation',
-        widget=SelectionWidget(
-            label="Joint Implementation",
-            label_msgid='ProjectDatabase_label_JointImplementation',
-            i18n_domain='ProjectDatabase',
-        ),
-        vocabulary=NamedVocabulary("""YesOrNo"""),
-    ),
-    StringField(
-        name='GEFAgencyImplementation',
-        widget=SelectionWidget(
-            label="GEF Agency Implementation",
-            label_msgid='ProjectDatabase_label_GEFAgencyImplementation',
-            i18n_domain='ProjectDatabase',
-        ),
-        vocabulary=NamedVocabulary("""AgencyImplementation"""),
-    ),
-    StringField(
         name='LeadExecutingAgency',
         widget=StringField._properties['widget'](
             label="Lead Executing Agency",
@@ -171,14 +153,15 @@ schema = Schema((
         ),
         vocabulary=NamedVocabulary("""ReviewEvaluation"""),
     ),
-    DateTimeField(
+    DataGridField(
         name='PlannedDate',
-        widget=DateTimeField._properties['widget'](
+        widget=DataGridField._properties['widget'](
             label="Planned Date",
-            show_hm=False,
+            columns={'planned_date':CalendarColumn("Planned Date"),},
             label_msgid='ProjectDatabase_label_PlannedDate',
             i18n_domain='ProjectDatabase',
         ),
+        columns=('planned_date',),
     ),
     MoneyField(
         name='Budget',
@@ -246,13 +229,17 @@ schema = Schema((
             i18n_domain='ProjectDatabase',
         ),
     ),
-    StringField(
+    ReferenceField(
         name='MidtermReviewEvaluatorName',
-        widget=StringField._properties['widget'](
+        widget=ReferenceBrowserWidget(
             label="Midterm Review Evaluator Name",
+            checkbox_bound=0,
             label_msgid='ProjectDatabase_label_MidtermReviewEvaluatorName',
             i18n_domain='ProjectDatabase',
         ),
+        allowed_types=('Person',),
+        relationship="MandE_MTREvaluator",
+        vocabulary='contactsVocab',
     ),
     DateTimeField(
         name='MidtermReviewPlannedDate',
@@ -281,13 +268,17 @@ schema = Schema((
             i18n_domain='ProjectDatabase',
         ),
     ),
-    StringField(
+    ReferenceField(
         name='TerminalReportEvaluatorName',
-        widget=StringField._properties['widget'](
+        widget=ReferenceBrowserWidget(
             label="Terminal Report Evaluator Name",
+            checkbox_bound=0,
             label_msgid='ProjectDatabase_label_TerminalReportEvaluatorName',
             i18n_domain='ProjectDatabase',
         ),
+        allowed_types=('Person',),
+        relationship="MandE_TEEvaluator",
+        vocabulary='contactsVocab',
     ),
     DateTimeField(
         name='TerminalReportPlannedEvaluationDate',
@@ -318,6 +309,30 @@ schema = Schema((
         ),
         vocabulary=NamedVocabulary("""EvaluationTypeMilestone"""),
         columns=('evaluation_type_milestone', 'memilestone_name','planned_date','actual_date','remarks'),
+    ),
+    MoneyField(
+        name='TEEstimatedCost',
+        widget=MoneyField._properties['widget'](
+            label="Cost Estimate for the TE",
+            label_msgid='ProjectDatabase_label_TEEstimatedCost',
+            i18n_domain='ProjectDatabase',
+        ),
+    ),
+    MoneyField(
+        name='MTREstimatedCost',
+        widget=MoneyField._properties['widget'](
+            label="Cost Estimate for the MTR/MTE",
+            label_msgid='ProjectDatabase_label_MTREstimatedCost',
+            i18n_domain='ProjectDatabase',
+        ),
+    ),
+    ComputedField(
+        name='EvaluationActualEstimateDifference',
+        widget=ComputedField._properties['widget'](
+            label='Evaluationactualestimatedifference',
+            label_msgid='ProjectDatabase_label_EvaluationActualEstimateDifference',
+            i18n_domain='ProjectDatabase',
+        ),
     ),
 ),
 )
@@ -372,6 +387,12 @@ class MonitoringAndEvaluation(BaseFolder, BrowserDefaultMixin):
         """
         """
         return self.getField('TerminalReportActualEvaluationDate').vocabulary.getDisplayList(self)
+
+    security.declarePublic('getEvaluationActualEstimateDifference')
+    def getEvaluationActualEstimateDifference(self):
+        """
+        """
+        pass
 
     # Manually created methods
 

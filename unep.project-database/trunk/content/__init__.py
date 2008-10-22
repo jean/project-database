@@ -60,19 +60,15 @@ import Phased
 import AddOn
 import BlankCoreMixin
 import MonitoringAndEvaluation
-import EvaluationMilestone
 import RatingTrackingSystem
 import EvaluatorsInformation
-import EvaluationMilestoneFolder
 import RTSFolder
 import MilestoneFolder
-import PIRRatingFolder
 import OtherProjectRatingsFolder
 import OtherProjectRatings
 import FMIFolder
 import MOU
 import CurrencyMixin
-import PIRRating
 
 ##code-section init-module-footer #fill in your manual code here
 ##/code-section init-module-footer

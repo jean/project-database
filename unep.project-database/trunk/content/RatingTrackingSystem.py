@@ -47,15 +47,6 @@ schema = Schema((
         ),
         vocabulary=NamedVocabulary("""InceptionRiskRating"""),
     ),
-    StringField(
-        name='ProjectRiskRatingForEachPIR',
-        widget=SelectionWidget(
-            label="Project Risk Rating for each PIR",
-            label_msgid='ProjectDatabase_label_ProjectRiskRatingForEachPIR',
-            i18n_domain='ProjectDatabase',
-        ),
-        vocabulary=NamedVocabulary("""InceptionRiskRating"""),
-    ),
     TextField(
         name='Remarks',
         widget=TextAreaWidget(
@@ -67,15 +58,6 @@ schema = Schema((
         ),
     ),
     StringField(
-        name='MTEMTRRating',
-        widget=SelectionWidget(
-            label="MTE/MTR Rating",
-            label_msgid='ProjectDatabase_label_MTEMTRRating',
-            i18n_domain='ProjectDatabase',
-        ),
-        vocabulary=NamedVocabulary("""Rating"""),
-    ),
-    StringField(
         name='Assessment',
         widget=SelectionWidget(
             label="Assessment (if applicable)",
@@ -83,15 +65,6 @@ schema = Schema((
             i18n_domain='ProjectDatabase',
         ),
         vocabulary=NamedVocabulary("""Assessment"""),
-    ),
-    StringField(
-        name='EOURatingElements',
-        widget=SelectionWidget(
-            label="EOU Rating Elements",
-            label_msgid='ProjectDatabase_label_EOURatingElements',
-            i18n_domain='ProjectDatabase',
-        ),
-        vocabulary=NamedVocabulary("""EORatingElements"""),
     ),
     StringField(
         name='EOUAssessment',
@@ -102,24 +75,45 @@ schema = Schema((
         ),
         vocabulary=NamedVocabulary("""Assessment"""),
     ),
-    StringField(
-        name='EOURating',
-        widget=SelectionWidget(
-            label="EOU Rating",
-            label_msgid='ProjectDatabase_label_EOURating',
-            i18n_domain='ProjectDatabase',
-        ),
-        vocabulary=NamedVocabulary("""Rating"""),
-    ),
     DataGridField(
         name='PIRRating',
         widget=DataGridField._properties['widget'](
-            columns={'fiscal_year':Column("Fiscal Year"), 'achievement_of_results':SelectColumn("Achievement of Results", vocabulary="getRatingVocabulary"), "implementation_progress":SelectColumn("Implementation Progress", vocabulary="getRatingVocabulary"),'monitoring_and_evaluation':SelectColumn("Monitoring and Evalutation", vocabulary="getRatingVocabulary"),'risk':SelectColumn("Risk", vocabulary="getInceptionRiskRatingVocabulary"),},
+            columns={'fiscal_year':Column("Fiscal Year"), 'achievement_of_results':SelectColumn("Achievement of Results", vocabulary="getRatingList"), "implementation_progress":SelectColumn("Implementation Progress", vocabulary="getRatingList"),'monitoring_and_evaluation':SelectColumn("Monitoring and Evalutation", vocabulary="getRatingList"),'risk':SelectColumn("Risk", vocabulary="getInceptionRiskRatingVocabulary"),},
             label="PIR Rating",
             label_msgid='ProjectDatabase_label_PIRRating',
             i18n_domain='ProjectDatabase',
         ),
         columns=('fiscal_year', 'achievement_of_results','implementation_progress','monitoring_and_evaluation','risk'),
+    ),
+    DataGridField(
+        name='MTERating',
+        widget=DataGridField._properties['widget'](
+            label="Midterm Evaluation Rating",
+            columns={'evaluation_elements':SelectColumn("Evaluation Elements", vocabulary="getEORatingElements"), 'evaluator_rating':SelectColumn("Evaluator Rating", vocabulary="getRatingList"), 'eou_rating':SelectColumn("EOU Rating", vocabulary="getRatingList")},
+            label_msgid='ProjectDatabase_label_MTERating',
+            i18n_domain='ProjectDatabase',
+        ),
+        columns=('evaluation_elements', 'evaluator_rating', 'eou_rating',),
+    ),
+    DataGridField(
+        name='MTRRating',
+        widget=DataGridField._properties['widget'](
+            label="Midterm Review Rating",
+            columns={'review_elements':SelectColumn("Review Elements", vocabulary="getEORatingElements"), 'mtr_rating':SelectColumn("MTR Rating", vocabulary="getRatingList")},
+            label_msgid='ProjectDatabase_label_MTRRating',
+            i18n_domain='ProjectDatabase',
+        ),
+        columns=('review_elements', 'mtr_rating',),
+    ),
+    DataGridField(
+        name='TERating',
+        widget=DataGridField._properties['widget'](
+            label="Terminal Evaluation Rating",
+            columns={'evaluation_elements':SelectColumn("Evaluation Elements", vocabulary="getEORatingElements"), 'evaluator_rating':SelectColumn("Evaluator Rating", vocabulary="getRatingList"), 'eou_rating':SelectColumn("EOU Rating", vocabulary="getRatingList"), 'eo_rating':SelectColumn("EO Rating", vocabulary="getRatingList")},
+            label_msgid='ProjectDatabase_label_TERating',
+            i18n_domain='ProjectDatabase',
+        ),
+        columns=('evaluation_elements', 'evaluator_rating', 'eou_rating', 'eo_rating',),
     ),
 ),
 )
@@ -153,7 +147,7 @@ class RatingTrackingSystem(BaseFolder, BrowserDefaultMixin):
     def getPIRRatingCategory(self):
         """
         """
-        atvm = self.portal_vocabularies
+        atvm = getToolByName(self, 'portal_vocabularies')
         vocab = atvm.getVocabularyByName('PIRRatingCategory')
         return vocab.getDisplayList(self)
 
@@ -161,21 +155,17 @@ class RatingTrackingSystem(BaseFolder, BrowserDefaultMixin):
     def getRatingList(self):
         """
         """
-        atvm = self.portal_vocabularies
+        atvm = getToolByName(self, 'portal_vocabularies')
         vocab = atvm.getVocabularyByName('Rating')
         return vocab.getDisplayList(self)
-
-    security.declarePublic('getRatingVocabulary')
-    def getRatingVocabulary(self):
-        """
-        """
-        return self.getField('MTEMTRRating').vocabulary.getDisplayList(self)
 
     security.declarePublic('getInceptionRiskRatingVocabulary')
     def getInceptionRiskRatingVocabulary(self):
         """
         """
-        return self.getField('ProjectInceptionRiskRating').vocabulary.getDisplayList(self)
+        atvm = getToolByName(self, 'portal_vocabularies')
+        vocab = atvm.getVocabularyByName('InceptionRiskRating')
+        return vocab.getDisplayList(self)
 
 
 registerType(RatingTrackingSystem, PROJECTNAME)

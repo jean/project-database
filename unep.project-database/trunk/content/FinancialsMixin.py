@@ -51,6 +51,14 @@ schema = Schema((
         vocabulary=NamedVocabulary("""FinanceCategory"""),
     ),
     StringField(
+        name='TrusteeID',
+        widget=StringField._properties['widget'](
+            label="Trustee ID",
+            label_msgid='ProjectDatabase_label_TrusteeID',
+            i18n_domain='ProjectDatabase',
+        ),
+    ),
+    StringField(
         name='PMSNumber',
         widget=StringField._properties['widget'](
             label="PMS Number",
@@ -96,6 +104,54 @@ schema = Schema((
         ),
         columns=("cofinancing_inkind_source", "cofinancing_inkind_donor_name", "cofinancing_inkind_planned_amount", "cofinancing_inkind_actual_amount"),
     ),
+    ComputedField(
+        name='SumCofinCashPlanned',
+        widget=ComputedField._properties['widget'](
+            label="Total Cofinancing: Cash (Planned)",
+            label_msgid='ProjectDatabase_label_SumCofinCashPlanned',
+            i18n_domain='ProjectDatabase',
+        ),
+    ),
+    ComputedField(
+        name='SumCofinCashActual',
+        widget=ComputedField._properties['widget'](
+            label="Total Cofinancing: Cash (Actual)",
+            label_msgid='ProjectDatabase_label_SumCofinCashActual',
+            i18n_domain='ProjectDatabase',
+        ),
+    ),
+    ComputedField(
+        name='SumCofinInKindPlanned',
+        widget=ComputedField._properties['widget'](
+            label="Total Cofinancing: In Kind (Planned)",
+            label_msgid='ProjectDatabase_label_SumCofinInKindPlanned',
+            i18n_domain='ProjectDatabase',
+        ),
+    ),
+    ComputedField(
+        name='SumCofinInKindActual',
+        widget=ComputedField._properties['widget'](
+            label="Total Cofinancing: In Kind (Actual)",
+            label_msgid='ProjectDatabase_label_SumCofinInKindActual',
+            i18n_domain='ProjectDatabase',
+        ),
+    ),
+    ComputedField(
+        name='TotalCostOfProjectStagePlanned',
+        widget=ComputedField._properties['widget'](
+            label="Total Cost of Project Stage (Planned)",
+            label_msgid='ProjectDatabase_label_TotalCostOfProjectStagePlanned',
+            i18n_domain='ProjectDatabase',
+        ),
+    ),
+    ComputedField(
+        name='TotalCostOfProjectStageActual',
+        widget=ComputedField._properties['widget'](
+            label="Total Cost of Project Stage (Actual)",
+            label_msgid='ProjectDatabase_label_TotalCostOfProjectStageActual',
+            i18n_domain='ProjectDatabase',
+        ),
+    ),
     MoneyField(
         name='ApprovedUNEPBudget',
         widget=MoneyField._properties['widget'](
@@ -116,15 +172,31 @@ schema = Schema((
         ),
         columns=("cash_disbursements_date", "cash_disbursements_amount", "cash_disbursements_imis_rcpt_number"),
     ),
+    ComputedField(
+        name='SumCashDisbursements',
+        widget=ComputedField._properties['widget'](
+            label="Total Cash Disbursements",
+            label_msgid='ProjectDatabase_label_SumCashDisbursements',
+            i18n_domain='ProjectDatabase',
+        ),
+    ),
     DataGridField(
         name='IMISExpenditures',
         widget=DataGridField._properties['widget'](
             columns={ 'imis_expenditure_year' : CalendarColumn("Date"), 'imis_expenditure_amount' : Column("Amount") },
-            label="IMIS Expenditures",
+            label="Yearly Expenditures",
             label_msgid='ProjectDatabase_label_IMISExpenditures',
             i18n_domain='ProjectDatabase',
         ),
         columns=("imis_expenditure_year", "imis_expenditure_amount"),
+    ),
+    ComputedField(
+        name='SumIMISExpenditures',
+        widget=ComputedField._properties['widget'](
+            label="Total Yearly Expenditures",
+            label_msgid='ProjectDatabase_label_SumIMISExpenditures',
+            i18n_domain='ProjectDatabase',
+        ),
     ),
     StringField(
         name='Status',
@@ -134,6 +206,16 @@ schema = Schema((
             i18n_domain='ProjectDatabase',
         ),
         vocabulary=NamedVocabulary("""Status"""),
+    ),
+    IntegerField(
+        name='PlannedDuration',
+        widget=IntegerField._properties['widget'](
+            label="Planned Duration",
+            description="The number of months",
+            label_msgid='ProjectDatabase_label_PlannedDuration',
+            description_msgid='ProjectDatabase_help_PlannedDuration',
+            i18n_domain='ProjectDatabase',
+        ),
     ),
     DateTimeField(
         name='InitialCompletionDate',
@@ -174,6 +256,14 @@ schema = Schema((
         vocabulary=NamedVocabulary("""ReportType"""),
         columns=("report_type", "report_period", "report_received_date"),
     ),
+    TextField(
+        name='FinancialStatusRemarks',
+        widget=TextAreaWidget(
+            label="Project Financial Status - Remarks",
+            label_msgid='ProjectDatabase_label_FinancialStatusRemarks',
+            i18n_domain='ProjectDatabase',
+        ),
+    ),
     LinesField(
         name='DonorTypes',
         widget=MultiSelectionWidget(
@@ -183,54 +273,6 @@ schema = Schema((
         ),
         multiValued=1,
         vocabulary=NamedVocabulary("""DonorType"""),
-    ),
-    ComputedField(
-        name='SumCofinCashPlanned',
-        widget=ComputedField._properties['widget'](
-            label="Total Cofinancing: Cash (Planned)",
-            label_msgid='ProjectDatabase_label_SumCofinCashPlanned',
-            i18n_domain='ProjectDatabase',
-        ),
-    ),
-    ComputedField(
-        name='SumCofinCashActual',
-        widget=ComputedField._properties['widget'](
-            label="Total Cofinancing: Cash (Actual)",
-            label_msgid='ProjectDatabase_label_SumCofinCashActual',
-            i18n_domain='ProjectDatabase',
-        ),
-    ),
-    ComputedField(
-        name='SumCofinInKindPlanned',
-        widget=ComputedField._properties['widget'](
-            label="Total Cofinancing: In Kind (Planned)",
-            label_msgid='ProjectDatabase_label_SumCofinInKindPlanned',
-            i18n_domain='ProjectDatabase',
-        ),
-    ),
-    ComputedField(
-        name='SumCofinInKindActual',
-        widget=ComputedField._properties['widget'](
-            label="Total Cofinancing: In Kind (Actual)",
-            label_msgid='ProjectDatabase_label_SumCofinInKindActual',
-            i18n_domain='ProjectDatabase',
-        ),
-    ),
-    ComputedField(
-        name='SumCashDisbursements',
-        widget=ComputedField._properties['widget'](
-            label="Total Cash Disbursements",
-            label_msgid='ProjectDatabase_label_SumCashDisbursements',
-            i18n_domain='ProjectDatabase',
-        ),
-    ),
-    ComputedField(
-        name='SumIMISExpenditures',
-        widget=ComputedField._properties['widget'](
-            label="Total IMIS Expenditures",
-            label_msgid='ProjectDatabase_label_SumIMISExpenditures',
-            i18n_domain='ProjectDatabase',
-        ),
     ),
     MoneyField(
         name='ImplementingAgencyFee',
@@ -250,40 +292,6 @@ schema = Schema((
             i18n_domain='ProjectDatabase',
         ),
     ),
-    IntegerField(
-        name='PlannedDuration',
-        widget=IntegerField._properties['widget'](
-            label="Planned Duration",
-            description="The number of months",
-            label_msgid='ProjectDatabase_label_PlannedDuration',
-            description_msgid='ProjectDatabase_help_PlannedDuration',
-            i18n_domain='ProjectDatabase',
-        ),
-    ),
-    TextField(
-        name='FinancialStatusRemarks',
-        widget=TextAreaWidget(
-            label="Project Financial Status - Remarks",
-            label_msgid='ProjectDatabase_label_FinancialStatusRemarks',
-            i18n_domain='ProjectDatabase',
-        ),
-    ),
-    ComputedField(
-        name='TotalCostOfProjectStagePlanned',
-        widget=ComputedField._properties['widget'](
-            label="Total Cost of Project Stage (Planned)",
-            label_msgid='ProjectDatabase_label_TotalCostOfProjectStagePlanned',
-            i18n_domain='ProjectDatabase',
-        ),
-    ),
-    ComputedField(
-        name='TotalCostOfProjectStageActual',
-        widget=ComputedField._properties['widget'](
-            label="Total Cost of Project Stage (Actual)",
-            label_msgid='ProjectDatabase_label_TotalCostOfProjectStageActual',
-            i18n_domain='ProjectDatabase',
-        ),
-    ),
     DataGridField(
         name='ProjectRevision',
         widget=DataGridField._properties['widget'](
@@ -294,14 +302,6 @@ schema = Schema((
         ),
         vocabulary=NamedVocabulary("""ProjectRevisionType"""),
         columns=("revision_number", "revision_type","revision_date"),
-    ),
-    StringField(
-        name='TrusteeID',
-        widget=StringField._properties['widget'](
-            label="Trustee ID",
-            label_msgid='ProjectDatabase_label_TrusteeID',
-            i18n_domain='ProjectDatabase',
-        ),
     ),
     MoneyField(
         name='RevisedAllocationToUNEP',

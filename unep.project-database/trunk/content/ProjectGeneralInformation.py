@@ -41,6 +41,25 @@ import permissions
 
 schema = Schema((
 
+    StringField(
+        name='title',
+        widget=StringField._properties['widget'](
+            visible={'edit':'hidden','view':'invisible'},
+            label='Title',
+            label_msgid='ProjectDatabase_label_title',
+            i18n_domain='ProjectDatabase',
+        ),
+    ),
+    StringField(
+        name='GEFid',
+        widget=StringField._properties['widget'](
+            label="GEF ID",
+            description="Enter the 5 digit GEF ID",
+            label_msgid='ProjectDatabase_label_GEFid',
+            description_msgid='ProjectDatabase_help_GEFid',
+            i18n_domain='ProjectDatabase',
+        ),
+    ),
     TextField(
         name='SummaryDescription',
         allowable_content_types=('text/plain', 'text/structured', 'text/html', 'application/msword',),
@@ -189,14 +208,13 @@ schema = Schema((
         ),
         vocabulary=NamedVocabulary("""PipelineNumber"""),
     ),
-    LinesField(
+    StringField(
         name='Scope',
-        widget=MultiSelectionWidget(
+        widget=SelectionWidget(
             label="Geographic Scope",
             label_msgid='ProjectDatabase_label_Scope',
             i18n_domain='ProjectDatabase',
         ),
-        multiValued=1,
         vocabulary=NamedVocabulary("""Scope"""),
     ),
     StringField(
@@ -236,6 +254,15 @@ schema = Schema((
         ),
         multiValued=1,
         vocabulary=NamedVocabulary("""Country"""),
+    ),
+    StringField(
+        name='ImplementationMode',
+        widget=SelectionWidget(
+            label="Mode of Execution",
+            label_msgid='ProjectDatabase_label_ImplementationMode',
+            i18n_domain='ProjectDatabase',
+        ),
+        vocabulary=NamedVocabulary("""ImplementationMode"""),
     ),
     StringField(
         name='LeadAgency',
@@ -327,15 +354,6 @@ schema = Schema((
             i18n_domain='ProjectDatabase',
         ),
         columns=('fiscal_year','narrative','description'),
-    ),
-    StringField(
-        name='ImplementationMode',
-        widget=SelectionWidget(
-            label="Mode of Execution",
-            label_msgid='ProjectDatabase_label_ImplementationMode',
-            i18n_domain='ProjectDatabase',
-        ),
-        vocabulary=NamedVocabulary("""ImplementationMode"""),
     ),
     StringField(
         name='Office',
@@ -533,30 +551,11 @@ schema = Schema((
             i18n_domain='ProjectDatabase',
         ),
     ),
-    StringField(
-        name='title',
-        widget=StringField._properties['widget'](
-            visible={'edit':'hidden','view':'invisible'},
-            label='Title',
-            label_msgid='ProjectDatabase_label_title',
-            i18n_domain='ProjectDatabase',
-        ),
-    ),
     MoneyField(
         name='LeveragedFinancingAmount',
         widget=MoneyField._properties['widget'](
             label="Leveraged Financing Amount",
             label_msgid='ProjectDatabase_label_LeveragedFinancingAmount',
-            i18n_domain='ProjectDatabase',
-        ),
-    ),
-    StringField(
-        name='GEFid',
-        widget=StringField._properties['widget'](
-            label="GEF ID",
-            description="Enter the 5 digit GEF ID",
-            label_msgid='ProjectDatabase_label_GEFid',
-            description_msgid='ProjectDatabase_help_GEFid',
             i18n_domain='ProjectDatabase',
         ),
     ),

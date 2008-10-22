@@ -312,6 +312,11 @@ msgstr ""
 msgid "ProjectDatabase_label_EOURatingElements"
 msgstr ""
 
+#. Default: "Evaluationactualestimatedifference"
+#: content/MonitoringAndEvaluation.py
+msgid "ProjectDatabase_label_EvaluationActualEstimateDifference"
+msgstr ""
+
 #. Default: "Evaluationmilestones"
 #: content/MonitoringAndEvaluation.py
 msgid "ProjectDatabase_label_EvaluationMilestones"
@@ -540,9 +545,31 @@ msgstr ""
 msgid "ProjectDatabase_label_MTEMTRRating"
 msgstr ""
 
+#. Default: "Midterm Evaluation Rating"
+#: content/RatingTrackingSystem.py
+#: content/OtherProjectRatings.py
+msgid "ProjectDatabase_label_MTERating"
+msgstr ""
+
 #. Default: "Actual Cost MTR/MTE"
 #: content/MonitoringAndEvaluation.py
 msgid "ProjectDatabase_label_MTRActualCost"
+msgstr ""
+
+#. Default: "Cost Estimate for the MTR/MTE"
+#: content/MonitoringAndEvaluation.py
+msgid "ProjectDatabase_label_MTREstimatedCost"
+msgstr ""
+
+#. Default: "Midterm Review Rating"
+#: content/RatingTrackingSystem.py
+#: content/OtherProjectRatings.py
+msgid "ProjectDatabase_label_MTRRating"
+msgstr ""
+
+#. Default: "Project Mid-term Review Budget"
+#: content/Financials.py
+msgid "ProjectDatabase_label_MidTermEvaluationBudget"
 msgstr ""
 
 #. Default: "Midterm Evaluation"
@@ -1013,6 +1040,17 @@ msgstr ""
 msgid "ProjectDatabase_label_TEActualCost"
 msgstr ""
 
+#. Default: "Cost Estimate for the TE"
+#: content/MonitoringAndEvaluation.py
+msgid "ProjectDatabase_label_TEEstimatedCost"
+msgstr ""
+
+#. Default: "Terminal Evaluation Rating"
+#: content/RatingTrackingSystem.py
+#: content/OtherProjectRatings.py
+msgid "ProjectDatabase_label_TERating"
+msgstr ""
+
 #. Default: "Team Lead"
 #: content/EvaluatorsInformation.py
 msgid "ProjectDatabase_label_TeamLeader"
@@ -1030,6 +1068,7 @@ msgstr ""
 
 #. Default: "Terminal Evaluation Budget"
 #: content/MonitoringAndEvaluation.py
+#: content/Financials.py
 msgid "ProjectDatabase_label_TerminalEvaluationBudget"
 msgstr ""
 

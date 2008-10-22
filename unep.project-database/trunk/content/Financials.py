@@ -41,6 +41,24 @@ import permissions
 
 schema = Schema((
 
+    StringField(
+        name='GEFid',
+        widget=StringField._properties['widget'](
+            label="GEF ID",
+            description="Enter the 5 digit GEF ID",
+            label_msgid='ProjectDatabase_label_GEFid',
+            description_msgid='ProjectDatabase_help_GEFid',
+            i18n_domain='ProjectDatabase',
+        ),
+    ),
+    ComputedField(
+        name='CashUNEPAllocation',
+        widget=ComputedField._properties['widget'](
+            label="GEF Allocation to UNEP",
+            label_msgid='ProjectDatabase_label_CashUNEPAllocation',
+            i18n_domain='ProjectDatabase',
+        ),
+    ),
     MoneyField(
         name='GEFTrustFund',
         widget=MoneyField._properties['widget'](
@@ -148,21 +166,19 @@ schema = Schema((
         ),
         default_output_type='text/html',
     ),
-    ComputedField(
-        name='CashUNEPAllocation',
-        widget=ComputedField._properties['widget'](
-            label="GEF Allocation to UNEP",
-            label_msgid='ProjectDatabase_label_CashUNEPAllocation',
+    MoneyField(
+        name='TerminalEvaluationBudget',
+        widget=MoneyField._properties['widget'](
+            label="Project Terminal Evaluation Budget",
+            label_msgid='ProjectDatabase_label_TerminalEvaluationBudget',
             i18n_domain='ProjectDatabase',
         ),
     ),
-    StringField(
-        name='GEFid',
-        widget=StringField._properties['widget'](
-            label="GEF ID",
-            description="Enter the 5 digit GEF ID",
-            label_msgid='ProjectDatabase_label_GEFid',
-            description_msgid='ProjectDatabase_help_GEFid',
+    MoneyField(
+        name='MidTermEvaluationBudget',
+        widget=MoneyField._properties['widget'](
+            label="Project Mid-term Review Budget",
+            label_msgid='ProjectDatabase_label_MidTermEvaluationBudget',
             i18n_domain='ProjectDatabase',
         ),
     ),
@@ -216,10 +232,8 @@ class Financials(BaseFolder, CurrencyMixin, FinancialsMixin, BrowserDefaultMixin
     schema.moveField('AdaptationTrustFund', after='StrategicPartnership')
     schema.moveField('SupplementaryUNEPAllocation', after='AdaptationTrustFund')
     schema.moveField('SupplementaryUNEPAllocationRemark', after='SupplementaryUNEPAllocation')
-    schema.moveField('ActualTotalExpenditures', after='SupplementaryUNEPAllocationRemark')
-    schema.moveField('CofinancingCash', after='ActualTotalExpenditures')
+    schema.moveField('CofinancingCash', after='SupplementaryUNEPAllocationRemark')
     schema.moveField('CofinancingInKind', after='CofinancingCash')
-
     schema.moveField('SumCofinCashPlanned', after='CofinancingInKind')
     schema.moveField('SumCofinCashActual', after='SumCofinCashPlanned')
     schema.moveField('SumCofinInKindPlanned', after='SumCofinCashActual')
@@ -230,9 +244,10 @@ class Financials(BaseFolder, CurrencyMixin, FinancialsMixin, BrowserDefaultMixin
     schema.moveField('CashDisbursements', after='ApprovedUNEPBudget')
     schema.moveField('SumCashDisbursements', after='CashDisbursements')
     schema.moveField('IMISExpenditures', after='SumCashDisbursements')
-    schema.moveField('Status', after='IMISExpenditures')
-    schema.moveField('SumIMISExpenditures', after='Status')
-    schema.moveField('PlannedDuration', after='SumIMISExpenditures')
+    schema.moveField('SumIMISExpenditures', after='IMISExpenditures')
+    schema.moveField('ActualTotalExpenditures', after='SumIMISExpenditures')
+    schema.moveField('Status', after='ActualTotalExpenditures')
+    schema.moveField('PlannedDuration', after='Status')
     schema.moveField('InitialCompletionDate', after='PlannedDuration')
     schema.moveField('RevisedCompletionDate', after='InitialCompletionDate')
     schema.moveField('DelayReason', after='RevisedCompletionDate')

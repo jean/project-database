@@ -17,18 +17,14 @@
   <type portal_type="AddOn"/>
   <type portal_type="BlankCoreMixin"/>
   <type portal_type="MonitoringAndEvaluation"/>
-  <type portal_type="EvaluationMilestone"/>
   <type portal_type="RatingTrackingSystem"/>
   <type portal_type="EvaluatorsInformation"/>
-  <type portal_type="EvaluationMilestoneFolder"/>
   <type portal_type="RTSFolder"/>
   <type portal_type="MilestoneFolder"/>
-  <type portal_type="PIRRatingFolder"/>
   <type portal_type="OtherProjectRatingsFolder"/>
   <type portal_type="OtherProjectRatings"/>
   <type portal_type="FMIFolder"/>
   <type portal_type="MOU"/>
   <type portal_type="CurrencyMixin"/>
-  <type portal_type="PIRRating"/>
  </factorytypes>
 </object>

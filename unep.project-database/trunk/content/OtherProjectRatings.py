@@ -38,122 +38,35 @@ from Products.FinanceFields.Money import Money
 
 schema = Schema((
 
-    StringField(
-        name='OtherRating',
-        widget=SelectionWidget(
-            label="Other Rating",
-            label_msgid='ProjectDatabase_label_OtherRating',
+    DataGridField(
+        name='MTERating',
+        widget=DataGridField._properties['widget'](
+            label="Midterm Evaluation Rating",
+            columns={'evaluation_elements':SelectColumn("Evaluation Elements", vocabulary="getOtherProjectRatingElements"), 'evaluator_rating':SelectColumn("Evaluator Rating", vocabulary="getRatingList"), 'eou_rating':SelectColumn("EOU Rating", vocabulary="getRatingList")},
+            label_msgid='ProjectDatabase_label_MTERating',
             i18n_domain='ProjectDatabase',
         ),
-        vocabulary=NamedVocabulary("""OtherRatings"""),
+        columns=('evaluation_elements', 'evaluator_rating', 'eou_rating',),
     ),
-    StringField(
-        name='ProjectObjectives',
-        widget=SelectionWidget(
-            label="Project Objectives",
-            label_msgid='ProjectDatabase_label_ProjectObjectives',
+    DataGridField(
+        name='MTRRating',
+        widget=DataGridField._properties['widget'](
+            label="Midterm Review Rating",
+            columns={'review_elements':SelectColumn("Review Elements", vocabulary="getOtherProjectRatingElements"), 'mtr_rating':SelectColumn("MTR Rating", vocabulary="getRatingList")},
+            label_msgid='ProjectDatabase_label_MTRRating',
             i18n_domain='ProjectDatabase',
         ),
-        vocabulary=NamedVocabulary("""Rating"""),
+        columns=('review_elements', 'mtr_rating',),
     ),
-    StringField(
-        name='ImplementationProgress',
-        widget=SelectionWidget(
-            label="Implementation Progress",
-            label_msgid='ProjectDatabase_label_ImplementationProgress',
+    DataGridField(
+        name='TERating',
+        widget=DataGridField._properties['widget'](
+            label="Terminal Evaluation Rating",
+            columns={'evaluation_elements':SelectColumn("Evaluation Elements", vocabulary="getOtherProjectRatingElements"), 'evaluator_rating':SelectColumn("Evaluator Rating", vocabulary="getRatingList"), 'eou_rating':SelectColumn("EOU Rating", vocabulary="getRatingList"), 'eo_rating':SelectColumn("EO Rating", vocabulary="getRatingList")},
+            label_msgid='ProjectDatabase_label_TERating',
             i18n_domain='ProjectDatabase',
         ),
-        vocabulary=NamedVocabulary("""Rating"""),
-    ),
-    StringField(
-        name='MonitoringAndEvaluation',
-        widget=SelectionWidget(
-            label="Monitoring and Evaluation",
-            label_msgid='ProjectDatabase_label_MonitoringAndEvaluation',
-            i18n_domain='ProjectDatabase',
-        ),
-        vocabulary=NamedVocabulary("""Rating"""),
-    ),
-    StringField(
-        name='ProjectOutputsAndActivities',
-        widget=SelectionWidget(
-            label="Project Outputs and Actvities",
-            label_msgid='ProjectDatabase_label_ProjectOutputsAndActivities',
-            i18n_domain='ProjectDatabase',
-        ),
-        vocabulary=NamedVocabulary("""Rating"""),
-    ),
-    StringField(
-        name='CostEffectiveness',
-        widget=SelectionWidget(
-            label="Cost Effectiveness",
-            label_msgid='ProjectDatabase_label_CostEffectiveness',
-            i18n_domain='ProjectDatabase',
-        ),
-        vocabulary=NamedVocabulary("""Rating"""),
-    ),
-    StringField(
-        name='ProjectSustainability',
-        widget=SelectionWidget(
-            label="Project Sustainability",
-            label_msgid='ProjectDatabase_label_ProjectSustainability',
-            i18n_domain='ProjectDatabase',
-        ),
-        vocabulary=NamedVocabulary("""Rating"""),
-    ),
-    StringField(
-        name='StakeholderParticipation',
-        widget=SelectionWidget(
-            label="Stakeholder Participation",
-            label_msgid='ProjectDatabase_label_StakeholderParticipation',
-            i18n_domain='ProjectDatabase',
-        ),
-        vocabulary=NamedVocabulary("""Rating"""),
-    ),
-    StringField(
-        name='CountryOwnership',
-        widget=SelectionWidget(
-            label="Country Ownership",
-            label_msgid='ProjectDatabase_label_CountryOwnership',
-            i18n_domain='ProjectDatabase',
-        ),
-        vocabulary=NamedVocabulary("""Rating"""),
-    ),
-    StringField(
-        name='ImplementationApproach',
-        widget=SelectionWidget(
-            label="Implementation Approach",
-            label_msgid='ProjectDatabase_label_ImplementationApproach',
-            i18n_domain='ProjectDatabase',
-        ),
-        vocabulary=NamedVocabulary("""Rating"""),
-    ),
-    StringField(
-        name='FinancialPlanning',
-        widget=SelectionWidget(
-            label="Financial Planning",
-            label_msgid='ProjectDatabase_label_FinancialPlanning',
-            i18n_domain='ProjectDatabase',
-        ),
-        vocabulary=NamedVocabulary("""Rating"""),
-    ),
-    StringField(
-        name='Replicability',
-        widget=SelectionWidget(
-            label='Replicability',
-            label_msgid='ProjectDatabase_label_Replicability',
-            i18n_domain='ProjectDatabase',
-        ),
-        vocabulary=NamedVocabulary("""Rating"""),
-    ),
-    StringField(
-        name='OverallRating',
-        widget=SelectionWidget(
-            label="Overall Rating",
-            label_msgid='ProjectDatabase_label_OverallRating',
-            i18n_domain='ProjectDatabase',
-        ),
-        vocabulary=NamedVocabulary("""Rating"""),
+        columns=('evaluation_elements', 'evaluator_rating', 'eou_rating', 'eo_rating',),
     ),
 ),
 )
@@ -182,6 +95,12 @@ class OtherProjectRatings(BaseContent, BrowserDefaultMixin):
     ##/code-section class-header
 
     # Methods
+
+    security.declarePublic('getOtherProjectRatingElements')
+    def getOtherProjectRatingElements(self):
+        """
+        """
+        pass
 
 
 registerType(OtherProjectRatings, PROJECTNAME)

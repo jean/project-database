@@ -50,25 +50,16 @@
  <object name="MonitoringAndEvaluation"
          meta_type="Factory-based Type Information with dynamic views"/>
 
- <object name="EvaluationMilestone"
-         meta_type="Factory-based Type Information with dynamic views"/>
-
  <object name="RatingTrackingSystem"
          meta_type="Factory-based Type Information with dynamic views"/>
 
  <object name="EvaluatorsInformation"
          meta_type="Factory-based Type Information with dynamic views"/>
 
- <object name="EvaluationMilestoneFolder"
-         meta_type="Factory-based Type Information with dynamic views"/>
-
  <object name="RTSFolder"
          meta_type="Factory-based Type Information with dynamic views"/>
 
  <object name="MilestoneFolder"
-         meta_type="Factory-based Type Information with dynamic views"/>
-
- <object name="PIRRatingFolder"
          meta_type="Factory-based Type Information with dynamic views"/>
 
  <object name="OtherProjectRatingsFolder"
@@ -81,9 +72,6 @@
          meta_type="Factory-based Type Information with dynamic views"/>
 
  <object name="MOU"
-         meta_type="Factory-based Type Information with dynamic views"/>
-
- <object name="PIRRating"
          meta_type="Factory-based Type Information with dynamic views"/>
 
 </object>
