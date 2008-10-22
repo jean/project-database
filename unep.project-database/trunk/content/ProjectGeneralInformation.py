@@ -320,6 +320,7 @@ schema = Schema((
         name='JointImplementation',
         widget=BooleanWidget(
             label="Joint Implementation",
+            macro="pd_boolean",
             label_msgid='ProjectDatabase_label_JointImplementation',
             i18n_domain='ProjectDatabase',
         ),
@@ -598,7 +599,7 @@ class ProjectGeneralInformation(BaseFolder, CurrencyMixin, BrowserDefaultMixin):
     schema = ProjectGeneralInformation_schema
 
     ##code-section class-header #fill in your manual code here
-    schema.moveField('GEFid', after='title')
+    # schema.moveField('GEFid', after='title')
     ##/code-section class-header
 
     # Methods

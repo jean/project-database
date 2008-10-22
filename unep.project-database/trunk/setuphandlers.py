@@ -122,6 +122,7 @@ def postInstall(context):
     site = context.getSite()
 
 
+
 ##code-section FOOT
 def installDataGridVocabularies(context):
     """ Install additional vocabularies needed by datagrid fields
