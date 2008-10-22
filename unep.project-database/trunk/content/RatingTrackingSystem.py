@@ -167,6 +167,14 @@ class RatingTrackingSystem(BaseFolder, BrowserDefaultMixin):
         vocab = atvm.getVocabularyByName('InceptionRiskRating')
         return vocab.getDisplayList(self)
 
+    security.declarePublic('getEORatingElements')
+    def getEORatingElements(self):
+        """
+        """
+        atvm = getToolByName(self, 'portal_vocabularies')
+        vocab = atvm.getVocabularyByName('EORatingElements')
+        return vocab.getDisplayList(self)
+
 
 registerType(RatingTrackingSystem, PROJECTNAME)
 # end of class RatingTrackingSystem

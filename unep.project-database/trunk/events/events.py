@@ -42,9 +42,9 @@ def projectInitialized(event):
     if 'milestonesfolder' not in ob.objectIds():
         ob._setObject('milestonesfolder', MilestoneFolder('milestonesfolder'))
         ob['milestonesfolder'].edit(title='Milestones')
-    if 'contacts-1' not in ob.objectIds():
-        ob._setObject('contacts-1', ContactManager('contacts-1'))
-        ob['contacts-1'].edit(title='Contacts')
+    # if 'contacts-1' not in ob.objectIds():
+    #     ob._setObject('contacts-1', ContactManager('contacts-1'))
+    #     ob['contacts-1'].edit(title='Contacts')
 
 def ratingTrackingSystemInitialized(event):
     """ We are handling the object created event for 
