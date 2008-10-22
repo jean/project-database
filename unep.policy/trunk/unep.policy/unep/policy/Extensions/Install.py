@@ -1,5 +1,7 @@
 import transaction
 from Products.CMFCore.utils import getToolByName
+from Products.CMFPlone.migrations.migration_util import safeEditProperty
+
 PRODUCT_DEPENDENCIES = (
         'ATExtensions', 
         'ATSchemaEditorNG', 
@@ -53,15 +55,18 @@ def Install(self, reinstall=False):
     # add default project folders
     if 'projectdatabases' not in portal.contentIds():
         portal.invokeFactory('Folder', 'projectdatabases', title='Project Databases')
+    # add global contact manager
+    if 'contacts-1' not in portal.contentIds():
+        portal.invokeFactory('ContactManager', 'contacts-1', title='Global Contacts')
 
-    # # remove unneeded folders
-    # ids=['Members', 'news', 'events', 'front-page']
-    # for id in ids:
-    #     if id in portal.objectIds():
-    #         portal.manage_delObjects(ids=[id])
+    # remove unneeded folders
+    ids=['Members', 'news', 'events', 'front-page']
+    for id in ids:
+        if id in portal.objectIds():
+            portal.manage_delObjects(ids=[id])
 
-    # portal.portal_vocabularies.reindexObject()
+    portal.portal_vocabularies.reindexObject()
  
-    # # remove portlets
-    # safeEditProperty(portal, 'left_slots', (), 'lines')
-    # safeEditProperty(portal, 'right_slots', (), 'lines')
+    # remove portlets
+    safeEditProperty(portal, 'left_slots', (), 'lines')
+    safeEditProperty(portal, 'right_slots', (), 'lines')
