@@ -42,12 +42,9 @@ def installVocabularies(context):
     vocabmap = {'ProjectStatusses': ('VdexVocabulary', 'SimpleVocabularyTerm'),
          'Category': ('VdexVocabulary', 'SimpleVocabularyTerm'),
          'ApprovalInitiationClosure': ('VdexVocabulary', 'SimpleVocabularyTerm'),
-         'OtherRatings': ('VdexVocabulary', 'SimpleVocabularyTerm'),
          'GEFPhase': ('VdexVocabulary', 'SimpleVocabularyTerm'),
          'ProjectCycleStage': ('VdexVocabulary', 'SimpleVocabularyTerm'),
          'StrategicPriority': ('VdexVocabulary', 'SimpleVocabularyTerm'),
-         'YesOrNo': ('VdexVocabulary', 'SimpleVocabularyTerm'),
-         'Rating': ('VdexVocabulary', 'SimpleVocabularyTerm'),
          'Scope': ('VdexVocabulary', 'SimpleVocabularyTerm'),
          'ReviewEvaluation': ('VdexVocabulary', 'SimpleVocabularyTerm'),
          'Assessment': ('VdexVocabulary', 'SimpleVocabularyTerm'),
@@ -60,7 +57,6 @@ def installVocabularies(context):
          'EAPOP': ('VdexVocabulary', 'SimpleVocabularyTerm'),
          'DonorType': ('VdexVocabulary', 'SimpleVocabularyTerm'),
          'OperationalProgramme': ('VdexVocabulary', 'SimpleVocabularyTerm'),
-         'EORatingElements': ('VdexVocabulary', 'SimpleVocabularyTerm'),
          'FinanceCategory': ('VdexVocabulary', 'SimpleVocabularyTerm'),
          'PipelineNumber': ('VdexVocabulary', 'SimpleVocabularyTerm'),
          'Country': ('VdexVocabulary', 'SimpleVocabularyTerm'),
@@ -71,7 +67,6 @@ def installVocabularies(context):
          'MultipleFocalAreas': ('VdexVocabulary', 'SimpleVocabularyTerm'),
          'MEMilestoneName': ('VdexVocabulary', 'SimpleVocabularyTerm'),
          'FocalArea': ('VdexVocabulary', 'SimpleVocabularyTerm'),
-         'AgencyImplementation': ('VdexVocabulary', 'SimpleVocabularyTerm'),
          'StrategicObjectives': ('VdexVocabulary', 'SimpleVocabularyTerm'),
          'InceptionRiskRating': ('VdexVocabulary', 'SimpleVocabularyTerm'),
          'EvaluationTypeMilestone': ('VdexVocabulary', 'SimpleVocabularyTerm'),
@@ -127,6 +122,46 @@ def postInstall(context):
     site = context.getSite()
 
 
-
 ##code-section FOOT
+def installDataGridVocabularies(context):
+    """ Install additional vocabularies needed by datagrid fields
+        but that ArchenGenXML does not know about. """
+    if isNotProjectDatabaseProfile(context): return 
+    shortContext = context._profile_path.split(os.path.sep)[-3]
+    if shortContext != 'ProjectDatabase': # avoid infinite recursions
+        return
+    site = context.getSite()
+    # Create vocabularies in vocabulary lib
+    atvm = getToolByName(site, ATVOCABULARYTOOL)
+    vocabmap = {
+        'OtherRatings': ('VdexVocabulary', 'SimpleVocabularyTerm'),
+        'YesOrNo': ('VdexVocabulary', 'SimpleVocabularyTerm'),
+        'Rating': ('VdexVocabulary', 'SimpleVocabularyTerm'),
+        'EORatingElements': ('VdexVocabulary', 'SimpleVocabularyTerm'),
+        'AgencyImplementation': ('VdexVocabulary', 'SimpleVocabularyTerm'),
+        }
+    for vocabname in vocabmap.keys():
+        if not vocabname in atvm.contentIds():
+            atvm.invokeFactory(vocabmap[vocabname][0], vocabname)
+
+        if len(atvm[vocabname].contentIds()) < 1:
+            if vocabmap[vocabname][0] == "VdexVocabulary":
+                vdexpath = os.path.join(
+                    package_home(product_globals), 'data', '%s.vdex' % vocabname)
+                if not (os.path.exists(vdexpath) and os.path.isfile(vdexpath)):
+                    logger.warn('No VDEX import file provided at %s.' % vdexpath)
+                    continue
+                try:
+                    #read data
+                    f = open(vdexpath, 'r')
+                    data = f.read()
+                    f.close()
+                except:
+                    logger.warn("Problems while reading VDEX import file "+\
+                                "provided at %s." % vdexpath)
+                    continue
+                # this might take some time!
+                atvm[vocabname].importXMLBinding(data)
+            else:
+                pass
 ##/code-section FOOT

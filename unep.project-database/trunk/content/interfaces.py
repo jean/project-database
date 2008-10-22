@@ -69,10 +69,6 @@ class IMonitoringAndEvaluation(Interface):
     """Marker interface for .MonitoringAndEvaluation.MonitoringAndEvaluation
     """
 
-class IEvaluationMilestone(Interface):
-    """Marker interface for .EvaluationMilestone.EvaluationMilestone
-    """
-
 class IRatingTrackingSystem(Interface):
     """Marker interface for .RatingTrackingSystem.RatingTrackingSystem
     """
@@ -81,20 +77,12 @@ class IEvaluatorsInformation(Interface):
     """Marker interface for .EvaluatorsInformation.EvaluatorsInformation
     """
 
-class IEvaluationMilestoneFolder(Interface):
-    """Marker interface for .EvaluationMilestoneFolder.EvaluationMilestoneFolder
-    """
-
 class IRTSFolder(Interface):
     """Marker interface for .RTSFolder.RTSFolder
     """
 
 class IMilestoneFolder(Interface):
     """Marker interface for .MilestoneFolder.MilestoneFolder
-    """
-
-class IPIRRatingFolder(Interface):
-    """Marker interface for .PIRRatingFolder.PIRRatingFolder
     """
 
 class IOtherProjectRatingsFolder(Interface):
@@ -111,10 +99,6 @@ class IFMIFolder(Interface):
 
 class IMOU(Interface):
     """Marker interface for .MOU.MOU
-    """
-
-class IPIRRating(Interface):
-    """Marker interface for .PIRRating.PIRRating
     """
 
 ##code-section FOOT
