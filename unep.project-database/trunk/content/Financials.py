@@ -141,7 +141,6 @@ schema = Schema((
             i18n_domain='ProjectDatabase',
         ),
         vocabulary=NamedVocabulary("""LeadAgency"""),
-        relationship="Financials_OtherLeadExecutingAgency",
     ),
     ReferenceField(
         name='FundManagementOfficer',
@@ -203,7 +202,6 @@ Financials_schema['StrategicPartnership'].widget.size=15
 Financials_schema['AdaptationTrustFund'].widget.size=15
 Financials_schema['SupplementaryUNEPAllocation'].widget.size=15
 Financials_schema['ActualTotalExpenditures'].widget.size=15
-Financials_schema['DonorTypes'].widget.visible = {'edit':'hidden', 'view':'invisible'}
 ##/code-section after-schema
 
 class Financials(BaseFolder, CurrencyMixin, FinancialsMixin, BrowserDefaultMixin):
