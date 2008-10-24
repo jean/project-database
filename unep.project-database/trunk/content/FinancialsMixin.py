@@ -369,13 +369,17 @@ class FinancialsMixin(BrowserDefaultMixin):
     def getDonorTypesVocabulary(self):
         """
         """
-        return self.getField('DonorTypes').vocabulary.getDisplayList(self)
+        pvt = getToolByName(self, 'portal_vocabularies')
+        vocab = pvt.getVocabularyByName('DonorType')
+        return vocab.getDisplayList(self)
 
     security.declarePublic('getReportTypesVocabulary')
     def getReportTypesVocabulary(self):
         """
         """
-        return self.getField('Reports').vocabulary.getDisplayList(self)
+        pvt = getToolByName(self, 'portal_vocabularies')
+        vocab = pvt.getVocabularyByName('ReportType')
+        return vocab.getDisplayList(self)
 
     security.declarePublic('computeDataGridAmount')
     def computeDataGridAmount(self,column):
@@ -491,6 +495,7 @@ class FinancialsMixin(BrowserDefaultMixin):
     def getDifference(self):
         """ calculate the difference between the committed and allocated GEF grant
         """
+        # TODO: get working properly
         # import pdb; pdb.set_trace()
         revAllocUNEP = self.getField('RevisedAllocationToUNEP')
         committedGEFgrant = self.getField('CommittedGEFGrant')
