@@ -10,7 +10,7 @@
 <term>
   <termIdentifier>HS</termIdentifier>
   <caption>
-    <langstring language="en">Highly Satifactory</langstring>
+    <langstring language="en">Highly Satisfactory</langstring>
   </caption>
   <description />
 </term>
@@ -18,7 +18,7 @@
 <term>
   <termIdentifier>S</termIdentifier>
   <caption>
-    <langstring language="en">Satifactory</langstring>
+    <langstring language="en">Satisfactory</langstring>
   </caption>
   <description />
 </term>
@@ -26,7 +26,7 @@
 <term>
   <termIdentifier>MS</termIdentifier>
   <caption>
-    <langstring language="en">Marginally Satifactory</langstring>
+    <langstring language="en">Marginally Satisfactory</langstring>
   </caption>
   <description />
 </term>
