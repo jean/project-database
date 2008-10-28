@@ -10,8 +10,7 @@
 <term>
   <termIdentifier>Pipeline entry date (approval by CEO to GEF pipeline)</termIdentifier>
   <caption>
-    <langstring language="en">Pipeline entry date (approval by CEO to
-    GEF pipeline)</langstring>
+    <langstring language="en">Pipeline entry date (approval by CEO to GEF pipeline)</langstring>
   </caption>
   <description />
 </term>
@@ -19,8 +18,7 @@
 <term>
   <termIdentifier>CEO approval (PDFB or MSP or EEA and now PDFA and PIF)</termIdentifier>
   <caption>
-    <langstring language="en">CEO approval (PDFB or MSP or EEA and now
-    PDFA and PIF)</langstring>
+    <langstring language="en">CEO approval (PDFB or MSP or EEA and now PDFA and PIF)</langstring>
   </caption>
   <description />
 </term>
@@ -64,7 +62,7 @@
 <term>
   <termIdentifier>Project Coordinator Entry on Duty (date)</termIdentifier>
   <caption>
-    <langstring language="en"> Project Coordinator Entry on Duty (date)</langstring>
+    <langstring language="en">Project Coordinator Entry on Duty (date)</langstring>
   </caption>
   <description />
 </term>
@@ -73,8 +71,7 @@
 <term>
   <termIdentifier>Project completion (date of Completion Revision) </termIdentifier>
   <caption>
-    <langstring language="en">Project completion (date of Completion
-    Revision) </langstring>
+    <langstring language="en">Project completion (date of Completion Revision)</langstring>
   </caption>
   <description />
 </term>

@@ -4,13 +4,13 @@
     xsi:schemaLocation="http://www.imsglobal.org/xsd/imsvdex_v1p0 imsvdex_v1p0.xsd http://www.imsglobal.org/xsd/imsmd_rootv1p2p1 imsmd_rootv1p2p1.xsd"
     language="en" orderSignificant="true" profileType="flatTokenTerms">
 <vocabName>
-  <langstring language="en">YesOrNo</langstring>
+  <langstring language="en">Strategic Program</langstring>
 </vocabName>
 
 <term>
   <termIdentifier>BD-1.1</termIdentifier>
   <caption>
-    <langstring language="en"> Sustainable financing of PA systems at the national level</langstring>
+    <langstring language="en">Sustainable financing of PA systems at the national level</langstring>
   </caption>
   <description />
 </term>
@@ -34,7 +34,7 @@
 <term>
   <termIdentifier>BD-2.4</termIdentifier>
   <caption>
-    <langstring language="en"> Strengthening the policy and regulatory framework for mainstreaming biodiversity</langstring>
+    <langstring language="en">Strengthening the policy and regulatory framework for mainstreaming biodiversity</langstring>
   </caption>
   <description />
 </term>
@@ -42,7 +42,7 @@
 <term>
   <termIdentifier>BD-2.5</termIdentifier>
   <caption>
-    <langstring language="en"> Fostering markets for biodiversity goods and services</langstring>
+    <langstring language="en">Fostering markets for biodiversity goods and services</langstring>
   </caption>
   <description />
 </term>
