@@ -489,7 +489,9 @@ class FinancialsMixin(BrowserDefaultMixin):
     def getRevisionTypeVocabulary(self):
         """
         """
-        return self.getField('ProjectRevision').vocabulary.getDisplayList(self)
+        pvt = getToolByName(self, 'portal_vocabularies')
+        vocab = pvt.getVocabularyByName('ProjectRevisionType')
+        return vocab.getDisplayList(self)
 
     security.declarePublic('getDifference')
     def getDifference(self):

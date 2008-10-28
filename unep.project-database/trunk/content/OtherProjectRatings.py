@@ -100,7 +100,9 @@ class OtherProjectRatings(BaseContent, BrowserDefaultMixin):
     def getOtherProjectRatingElements(self):
         """
         """
-        pass
+        atvm = getToolByName(self, 'portal_vocabularies')
+        vocab = atvm.getVocabularyByName('OtherRatings')
+        return vocab.getDisplayList(self)
 
 
 registerType(OtherProjectRatings, PROJECTNAME)
