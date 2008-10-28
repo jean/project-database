@@ -75,7 +75,6 @@ schema = Schema((
             i18n_domain='ProjectDatabase',
         ),
         default_output_type='text/html',
-        vocabulary=NamedVocabulary("""ProjectStatusses"""),
     ),
     DataGridField(
         name='ProjectProcess',
@@ -87,7 +86,6 @@ schema = Schema((
             description_msgid='ProjectDatabase_help_ProjectProcess',
             i18n_domain='ProjectDatabase',
         ),
-        vocabulary=NamedVocabulary("""ProjectProcesses"""),
         columns=('project_process', 'project_status'),
     ),
     DataGridField(
@@ -108,7 +106,6 @@ schema = Schema((
             label_msgid='ProjectDatabase_label_ApprovalInitiationAndClosure',
             i18n_domain='ProjectDatabase',
         ),
-        vocabulary=NamedVocabulary("""ApprovalInitiationClosure"""),
         columns=('approval_initiation_closure','actual_date'),
     ),
 ),

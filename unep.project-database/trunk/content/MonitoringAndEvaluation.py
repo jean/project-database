@@ -68,7 +68,6 @@ schema = Schema((
         ),
         allowed_types=('Person',),
         relationship="MandE_TaskManager",
-        vocabulary='contactsVocab',
     ),
     ReferenceField(
         name='FundManagementOfficer',
@@ -80,7 +79,6 @@ schema = Schema((
         ),
         allowed_types=('Person',),
         relationship="MandE_fundmanagerofficer",
-        vocabulary='contactsVocab',
     ),
     DateTimeField(
         name='CEOApproval',
@@ -239,7 +237,6 @@ schema = Schema((
         ),
         allowed_types=('Person',),
         relationship="MandE_MTREvaluator",
-        vocabulary='contactsVocab',
     ),
     DateTimeField(
         name='MidtermReviewPlannedDate',
@@ -278,7 +275,6 @@ schema = Schema((
         ),
         allowed_types=('Person',),
         relationship="MandE_TEEvaluator",
-        vocabulary='contactsVocab',
     ),
     DateTimeField(
         name='TerminalReportPlannedEvaluationDate',
@@ -297,7 +293,6 @@ schema = Schema((
             label_msgid='ProjectDatabase_label_TerminalReportActualEvaluationDate',
             i18n_domain='ProjectDatabase',
         ),
-        vocabulary=NamedVocabulary("""MEMilestoneName"""),
     ),
     DataGridField(
         name='EvaluationMilestones',
@@ -307,7 +302,6 @@ schema = Schema((
             label_msgid='ProjectDatabase_label_EvaluationMilestones',
             i18n_domain='ProjectDatabase',
         ),
-        vocabulary=NamedVocabulary("""EvaluationTypeMilestone"""),
         columns=('evaluation_type_milestone', 'memilestone_name','planned_date','actual_date','remarks'),
     ),
     MoneyField(
@@ -380,18 +374,24 @@ class MonitoringAndEvaluation(BaseFolder, BrowserDefaultMixin):
     def getEvaluationTypeMilestoneVocabulary(self):
         """
         """
-        return self.getField('EvaluationMilestones').vocabulary.getDisplayList(self)
+        atvm = self.portal_vocabularies
+        # vocab = atvm.getVocabularyByName('EvaluationMilestones')
+        vocab = atvm.getVocabularyByName('EvaluationTypeMilestone')
+        return vocab.getDisplayList(self)
 
     security.declarePublic('getMEMilestoneNameVocabulary')
     def getMEMilestoneNameVocabulary(self):
         """
         """
-        return self.getField('TerminalReportActualEvaluationDate').vocabulary.getDisplayList(self)
+        atvm = self.portal_vocabularies
+        vocab = atvm.getVocabularyByName('MEMilestoneName')
+        return vocab.getDisplayList(self)
 
     security.declarePublic('getEvaluationActualEstimateDifference')
     def getEvaluationActualEstimateDifference(self):
         """
         """
+        # TODO: Implement method
         pass
 
     # Manually created methods
