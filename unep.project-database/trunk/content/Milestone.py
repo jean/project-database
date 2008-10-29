@@ -75,6 +75,7 @@ schema = Schema((
             i18n_domain='ProjectDatabase',
         ),
         default_output_type='text/html',
+        vocabulary=NamedVocabulary("""ProjectStatusses"""),
     ),
     DataGridField(
         name='ProjectProcess',

@@ -8,7 +8,6 @@
   <type portal_type="ProjectGeneralInformation"/>
   <type portal_type="SubProject"/>
   <type portal_type="Financials"/>
-  <type portal_type="FinancialsMixin"/>
   <type portal_type="DocumentLinks"/>
   <type portal_type="ProjectExecutingPartner"/>
   <type portal_type="Tranched"/>
@@ -26,5 +25,6 @@
   <type portal_type="FMIFolder"/>
   <type portal_type="MOU"/>
   <type portal_type="CurrencyMixin"/>
+  <type portal_type="FinancialsMixin"/>
  </factorytypes>
 </object>

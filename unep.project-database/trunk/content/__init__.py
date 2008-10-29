@@ -51,7 +51,6 @@ import Milestone
 import ProjectGeneralInformation
 import SubProject
 import Financials
-import FinancialsMixin
 import DocumentLinks
 import ProjectExecutingPartner
 import Tranched
@@ -69,6 +68,7 @@ import OtherProjectRatings
 import FMIFolder
 import MOU
 import CurrencyMixin
+import FinancialsMixin
 
 ##code-section init-module-footer #fill in your manual code here
 ##/code-section init-module-footer

@@ -66,8 +66,10 @@ schema = Schema((
     StringField(
         name='Website',
         widget=StringField._properties['widget'](
+            description="Project Website Address",
             label='Website',
             label_msgid='ProjectDatabase_label_Website',
+            description_msgid='ProjectDatabase_help_Website',
             i18n_domain='ProjectDatabase',
         ),
     ),
@@ -82,7 +84,7 @@ schema = Schema((
             label_msgid='ProjectDatabase_label_OtherLeadExecutingAgency',
             i18n_domain='ProjectDatabase',
         ),
-        relationship="SubProject_OtherLeadExecutingAgency",
+        vocabulary=NamedVocabulary("""LeadAgency"""),
     ),
     StringField(
         name='AccountCode',
@@ -101,16 +103,6 @@ schema = Schema((
             i18n_domain='ProjectDatabase',
         ),
         columns=('status_date','status_remark'),
-    ),
-    StringField(
-        name='Website',
-        widget=StringField._properties['widget'](
-            description="Project Website Address",
-            label='Website',
-            label_msgid='ProjectDatabase_label_Website',
-            description_msgid='ProjectDatabase_help_Website',
-            i18n_domain='ProjectDatabase',
-        ),
     ),
 ),
 )

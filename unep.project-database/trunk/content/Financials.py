@@ -146,13 +146,11 @@ schema = Schema((
         name='FundManagementOfficer',
         widget=ReferenceBrowserWidget(
             label="Fund Management Officer",
-            checkbox_bound=0,
             label_msgid='ProjectDatabase_label_FundManagementOfficer',
             i18n_domain='ProjectDatabase',
         ),
-        vocabulary='contactsVocab',
-        relationship="Financials_FundManagementOfficer",
         multiValued=0,
+        relationship="Financials_FundManagementOfficer",
         allowed_types=('Person',),
     ),
     TextField(
