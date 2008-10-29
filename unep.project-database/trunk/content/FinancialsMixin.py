@@ -183,7 +183,7 @@ schema = Schema((
     DataGridField(
         name='IMISExpenditures',
         widget=DataGridField._properties['widget'](
-            columns={ 'imis_expenditure_year' : CalendarColumn("Date"), 'imis_expenditure_amount' : Column("Amount") },
+            columns={ 'imis_expenditure_year' : Column("Date"), 'imis_expenditure_amount' : Column("Amount") },
             label="Yearly Expenditures",
             label_msgid='ProjectDatabase_label_IMISExpenditures',
             i18n_domain='ProjectDatabase',
@@ -253,26 +253,7 @@ schema = Schema((
             label_msgid='ProjectDatabase_label_Reports',
             i18n_domain='ProjectDatabase',
         ),
-        vocabulary=NamedVocabulary("""ReportType"""),
         columns=("report_type", "report_period", "report_received_date"),
-    ),
-    TextField(
-        name='FinancialStatusRemarks',
-        widget=TextAreaWidget(
-            label="Project Financial Status - Remarks",
-            label_msgid='ProjectDatabase_label_FinancialStatusRemarks',
-            i18n_domain='ProjectDatabase',
-        ),
-    ),
-    LinesField(
-        name='DonorTypes',
-        widget=MultiSelectionWidget(
-            label="Donor Type",
-            label_msgid='ProjectDatabase_label_DonorTypes',
-            i18n_domain='ProjectDatabase',
-        ),
-        multiValued=1,
-        vocabulary=NamedVocabulary("""DonorType"""),
     ),
     MoneyField(
         name='ImplementingAgencyFee',
@@ -328,6 +309,14 @@ schema = Schema((
         widget=ComputedField._properties['widget'](
             label='Difference',
             label_msgid='ProjectDatabase_label_Difference',
+            i18n_domain='ProjectDatabase',
+        ),
+    ),
+    TextField(
+        name='FinancialStatusRemarks',
+        widget=TextAreaWidget(
+            label="Project Financial Status - Remarks",
+            label_msgid='ProjectDatabase_label_FinancialStatusRemarks',
             i18n_domain='ProjectDatabase',
         ),
     ),

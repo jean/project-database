@@ -33,10 +33,6 @@ class IFinancials(Interface):
     """Marker interface for .Financials.Financials
     """
 
-class IFinancialsMixin(Interface):
-    """Marker interface for .FinancialsMixin.FinancialsMixin
-    """
-
 class IDocumentLinks(Interface):
     """Marker interface for .DocumentLinks.DocumentLinks
     """
@@ -99,6 +95,10 @@ class IFMIFolder(Interface):
 
 class IMOU(Interface):
     """Marker interface for .MOU.MOU
+    """
+
+class IFinancialsMixin(Interface):
+    """Marker interface for .FinancialsMixin.FinancialsMixin
     """
 
 ##code-section FOOT

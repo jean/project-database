@@ -23,9 +23,6 @@
  <object name="Financials"
          meta_type="Factory-based Type Information with dynamic views"/>
 
- <object name="FinancialsMixin"
-         meta_type="Factory-based Type Information with dynamic views"/>
-
  <object name="DocumentLinks"
          meta_type="Factory-based Type Information with dynamic views"/>
 
@@ -72,6 +69,9 @@
          meta_type="Factory-based Type Information with dynamic views"/>
 
  <object name="MOU"
+         meta_type="Factory-based Type Information with dynamic views"/>
+
+ <object name="FinancialsMixin"
          meta_type="Factory-based Type Information with dynamic views"/>
 
 </object>

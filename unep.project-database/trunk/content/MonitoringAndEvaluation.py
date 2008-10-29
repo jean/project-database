@@ -42,13 +42,10 @@ schema = Schema((
     ComputedField(
         name='ProjectTitle',
         widget=ComputedField._properties['widget'](
-            label="Joint Evaluation Agency Contact",
-            description="Name of evaluation officer in the other agency",
+            label='Projecttitle',
             label_msgid='ProjectDatabase_label_ProjectTitle',
-            description_msgid='ProjectDatabase_help_ProjectTitle',
             i18n_domain='ProjectDatabase',
         ),
-        relationship="EvaluationAgencyContact",
     ),
     StringField(
         name='IMISNumber',
@@ -392,8 +389,6 @@ class MonitoringAndEvaluation(BaseFolder, BrowserDefaultMixin):
         """
         """
         # TODO: Implement method
-        pass
-
     # Manually created methods
 
     def getIMISNumber(self):

@@ -94,7 +94,7 @@ schema = Schema((
     LinesField(
         name='EABiodiversity',
         widget=MultiSelectionWidget(
-            label="EA-Biodiversity",
+            label="EA Biodiversity",
             label_msgid='ProjectDatabase_label_EABiodiversity',
             i18n_domain='ProjectDatabase',
         ),
@@ -112,7 +112,7 @@ schema = Schema((
     LinesField(
         name='EAClimateChange',
         widget=MultiSelectionWidget(
-            label="EA-Climate Change",
+            label="EA Climate Change",
             label_msgid='ProjectDatabase_label_EAClimateChange',
             i18n_domain='ProjectDatabase',
         ),
@@ -122,7 +122,7 @@ schema = Schema((
     StringField(
         name='EAClimateChangeOther',
         widget=StringField._properties['widget'](
-            label="EA Climate Change Other",
+            label="Other EA Climate Change",
             label_msgid='ProjectDatabase_label_EAClimateChangeOther',
             i18n_domain='ProjectDatabase',
         ),
@@ -130,7 +130,7 @@ schema = Schema((
     LinesField(
         name='EAPOP',
         widget=MultiSelectionWidget(
-            label="EA-POP",
+            label="EA POP",
             label_msgid='ProjectDatabase_label_EAPOP',
             i18n_domain='ProjectDatabase',
         ),
@@ -140,7 +140,7 @@ schema = Schema((
     StringField(
         name='EAPOPOther',
         widget=StringField._properties['widget'](
-            label="EA-POP Other",
+            label="Other EA POP",
             label_msgid='ProjectDatabase_label_EAPOPOther',
             i18n_domain='ProjectDatabase',
         ),
@@ -158,7 +158,7 @@ schema = Schema((
     StringField(
         name='MultipleFocalAreasOther',
         widget=StringField._properties['widget'](
-            label="Multiple Focal Areas Other",
+            label="Other Multiple Focal Area",
             label_msgid='ProjectDatabase_label_MultipleFocalAreasOther',
             i18n_domain='ProjectDatabase',
         ),
@@ -220,7 +220,7 @@ schema = Schema((
     StringField(
         name='ScopeOther',
         widget=StringField._properties['widget'](
-            label="Geographic Scope - Other",
+            label="Other Geographic Scope",
             label_msgid='ProjectDatabase_label_ScopeOther',
             i18n_domain='ProjectDatabase',
         ),
@@ -436,7 +436,7 @@ schema = Schema((
         allowable_content_types=('text/plain', 'text/structured', 'text/html', 'application/msword',),
         widget=RichWidget(
             label="Leveraged Financing Description",
-            description="Enter sources and Purposes",
+            description="Enter Sources and Purposes",
             label_msgid='ProjectDatabase_label_LeveragedFinancingRemark',
             description_msgid='ProjectDatabase_help_LeveragedFinancingRemark',
             i18n_domain='ProjectDatabase',
@@ -548,14 +548,6 @@ schema = Schema((
         widget=IntegerField._properties['widget'](
             label="Phase/Tranche Number",
             label_msgid='ProjectDatabase_label_PhasedTrancheNumber',
-            i18n_domain='ProjectDatabase',
-        ),
-    ),
-    MoneyField(
-        name='LeveragedFinancingAmount',
-        widget=MoneyField._properties['widget'](
-            label="Leveraged Financing Amount",
-            label_msgid='ProjectDatabase_label_LeveragedFinancingAmount',
             i18n_domain='ProjectDatabase',
         ),
     ),
