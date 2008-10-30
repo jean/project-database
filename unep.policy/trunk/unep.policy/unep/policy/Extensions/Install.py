@@ -10,6 +10,7 @@ PRODUCT_DEPENDENCIES = (
         'ATVocabularyManager',
         'UpfrontContacts', 
         'ProjectDatabase', 
+        'unep.theme',
         )
 DEPENDENT_EXTENSION_PROFILES = (
         'membrane:default', 
