@@ -84,7 +84,7 @@ class Project(BaseFolder, BrowserDefaultMixin):
         return ','.join(pl)
 
     security.declarePublic('getVocabulary')
-    def getVocabulary(self):
+    def getVocabulary(self, vocabName):
         """
         """
         pv_tool = getToolByName(self, 'portal_vocabularies')
@@ -105,16 +105,16 @@ class Project(BaseFolder, BrowserDefaultMixin):
 
     # Manually created methods
 
-    def contactsVocab(self):
-        """
-        """
-        path = '/'.join(self.getAProject().getPhysicalPath()) + '/contacts-1'
-        brains = self.portal_catalog(portal_type='Person', path=path)
-        pairs=[]
-        pairs.append(("", "<no reference>"))
-        for b in brains:
-            pairs.append((b.getObject().UID(), b.getObject().Title()))
-        return DisplayList(pairs)
+    # def contactsVocab(self):
+    #     """
+    #     """
+    #     path = '/'.join(self.getAProject().getPhysicalPath()) + '/contacts-1'
+    #     brains = self.portal_catalog(portal_type='Person', path=path)
+    #     pairs=[]
+    #     pairs.append(("", "<no reference>"))
+    #     for b in brains:
+    #         pairs.append((b.getObject().UID(), b.getObject().Title()))
+    #     return DisplayList(pairs)
 
 
 

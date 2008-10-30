@@ -387,8 +387,15 @@ class MonitoringAndEvaluation(BaseFolder, BrowserDefaultMixin):
     security.declarePublic('getEvaluationActualEstimateDifference')
     def getEvaluationActualEstimateDifference(self):
         """
+        calculate the difference between estimated and actual cost
         """
-        # TODO: Implement method
+        import pdb; pdb.set_trace()
+        budgetCost = getBudget() + getTerminalEvaluationBudget()
+        estimatedCost = getMTREstimatedCost() + getTEEstimatedCost()
+        # actualCost = getTEActualCost() + getMTRActualCost()
+        # return estimatedCost = actualCost
+        return budgetCost - estimatedCost
+
     # Manually created methods
 
     def getIMISNumber(self):

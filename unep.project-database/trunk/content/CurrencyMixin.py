@@ -42,7 +42,9 @@ class CurrencyMixin:
         return Money(0, self.getDefaultCurrency())
 
     def getDefaultCurrency(self):
-        return 'USD'
+        pt = getToolByName(self, 'portal_properties')
+        return pt.financial_properties.default_currency
+        # return 'USD'
 
 
 ##code-section module-footer #fill in your manual code here

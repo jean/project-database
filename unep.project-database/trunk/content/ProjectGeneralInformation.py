@@ -281,7 +281,7 @@ schema = Schema((
             label_msgid='ProjectDatabase_label_LeadAgencyContact',
             i18n_domain='ProjectDatabase',
         ),
-        vocabulary='contactsVocab',
+        # vocabulary='contactsVocab',
         relationship="Project_LeadAgency",
         multiValued=0,
         allowed_types=('Person',),
@@ -383,7 +383,7 @@ schema = Schema((
         ),
         allowed_types=('Person',),
         relationship="Project_CurrentTaskManager",
-        vocabulary='contactsVocab',
+        # vocabulary='contactsVocab',
     ),
     ReferenceField(
         name='PreviousTaskManager',
@@ -396,7 +396,7 @@ schema = Schema((
         allowed_types=('Person',),
         relationship="Project_PreviousTaskManager",
         multiValued=0,
-        vocabulary='contactsVocab',
+        # vocabulary='contactsVocab',
     ),
     ReferenceField(
         name='ProjectCoordinator',
@@ -409,7 +409,7 @@ schema = Schema((
         allowed_types=('Person',),
         relationship="Project_ProjectCoordinator",
         multiValued=0,
-        vocabulary='contactsVocab',
+        # vocabulary='contactsVocab',
     ),
     TextField(
         name='ProjectResults',
@@ -754,20 +754,20 @@ class ProjectGeneralInformation(BaseFolder, CurrencyMixin, BrowserDefaultMixin):
         """
         return self.getAProject().Title()
 
-        start_date_val = ''
-        start_date_val_comp = ''
-        r_str = ''
+        # start_date_val = ''
+        # start_date_val_comp = ''
+        # r_str = ''
 
-        for fobj in self.contentValues('Financials'):
-            start_date_val = fobj.getStartDate()
-            if start_date_val_comp == '':
-                start_date_val_comp = fobj.getStartDate()
-                r_str = fobj.Title()
-            else:
-                if start_date_val > start_date_val_comp:
-                    start_date_val_comp = start_date_val
-                    r_str = fobj.Title()
-        return r_str
+        # for fobj in self.contentValues('Financials'):
+        #     start_date_val = fobj.getStartDate()
+        #     if start_date_val_comp == '':
+        #         start_date_val_comp = fobj.getStartDate()
+        #         r_str = fobj.Title()
+        #     else:
+        #         if start_date_val > start_date_val_comp:
+        #             start_date_val_comp = start_date_val
+        #             r_str = fobj.Title()
+        # return r_str
 
     security.declarePublic('validate_PhasedTrancheNumber')
     def validate_PhasedTrancheNumber(self, value):
