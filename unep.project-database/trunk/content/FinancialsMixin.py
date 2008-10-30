@@ -374,9 +374,7 @@ class FinancialsMixin(BrowserDefaultMixin):
     def computeDataGridAmount(self,column):
         """
         """
-        properties = getToolByName(self, 'portal_properties')
-        default_currency = properties.financial_properties.default_currency
-        amount = Money(0, default_currency)
+        amount = self.getMoneyFieldDefault()
         for v in column:
             if v:
                 amount += v
@@ -386,7 +384,10 @@ class FinancialsMixin(BrowserDefaultMixin):
     def getMoneyFieldDefault(self):
         """
         """
-        return self.getZeroMoneyInstance()
+        properties = getToolByName(self, 'portal_properties')
+        default_currency = properties.financial_properties.default_currency
+        return Money(0, default_currency)
+        #return self.getZeroMoneyInstance()
 
     security.declarePublic('getSumCofinCashPlanned')
     def getSumCofinCashPlanned(self):
@@ -442,14 +443,16 @@ class FinancialsMixin(BrowserDefaultMixin):
                 total += self.getSumCofinInKindPlanned()
             return total
         elif self.portal_type == 'SubProject':
-            total = self.getZeroMoneyInstance()
+            # total = self.getZeroMoneyInstance()
+            total = self.getMoneyFieldDefault()
             if self.getSumCofinCashPlanned():
                 total += self.getSumCofinCashPlanned()
             if self.getSumCofinInKindPlanned():
                 total += self.getSumCofinInKindPlanned()
 
         else:
-            return self.getZeroMoneyInstance()
+            # return self.getZeroMoneyInstance()
+            return self.getMoneyFieldDefault()
 
     security.declarePublic('getTotalCostOfProjectStageActual')
     def getTotalCostOfProjectStageActual(self):
@@ -465,14 +468,16 @@ class FinancialsMixin(BrowserDefaultMixin):
                 total += self.getSumCofinInKindActual()
             return total
         elif self.portal_type == 'SubProject':
-            total = self.getZeroMoneyInstance()
+            # total = self.getZeroMoneyInstance()
+            total = self.getMoneyFieldDefault()
             if self.getSumCofinCashActual():
                 total += self.getSumCofinCashActual()
             if self.getSumCofinInKindActual():
                 total += self.getSumCofinInKindActual()
             return total
         else:
-            return self.getZeroMoneyInstance()
+            # return self.getZeroMoneyInstance()
+            return self.getMoneyFieldDefault()
 
     security.declarePublic('getRevisionTypeVocabulary')
     def getRevisionTypeVocabulary(self):
@@ -487,12 +492,12 @@ class FinancialsMixin(BrowserDefaultMixin):
         """ calculate the difference between the committed and allocated GEF grant
         """
         # TODO: get working properly
-        # import pdb; pdb.set_trace()
-        revAllocUNEP = self.getField('RevisedAllocationToUNEP')
-        committedGEFgrant = self.getField('CommittedGEFGrant')
+        import pdb; pdb.set_trace()
         try:
+            revAllocUNEP = self.getRevisedAllocationToUNEP()
+            committedGEFgrant = self.getCommittedGEFGrant()
             return revAllocUNEP - committedGEFgrant
-        except TypeError:
+        except AttributeError:
             logger.error('Could not retrieve revisedAllocationToUNEP or committedGEFGrant value')
             return 0
 
@@ -504,7 +509,8 @@ class FinancialsMixin(BrowserDefaultMixin):
         """
         request = self.REQUEST
         total_cost = self.computeDataGridAmount([v['cash_disbursements_amount'] for v in value if v['cash_disbursements_amount']])
-        total = self.getZeroMoneyInstance()
+        # total = self.getZeroMoneyInstance()
+        total = self.getMoneyFieldDefault()
         if request.get('GEFTrustFund'):
             total = total + request.get('GEFTrustFund')
         if request.get('LDCFundAllocation'):

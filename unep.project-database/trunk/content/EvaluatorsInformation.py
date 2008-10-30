@@ -51,7 +51,7 @@ schema = Schema((
         allowed_types=('Person',),
         relationship="EI_team_leader",
         multiValued=0,
-        vocabulary='contactsVocab',
+        # vocabulary='contactsVocab',
     ),
     ReferenceField(
         name='TeamMembers',
@@ -65,7 +65,7 @@ schema = Schema((
         allowed_types=('Person',),
         relationship="EI_team_members",
         multiValued=1,
-        vocabulary='contactsVocab',
+        # vocabulary='contactsVocab',
     ),
 ),
 )
@@ -100,16 +100,16 @@ class EvaluatorsInformation(BaseContent, BrowserDefaultMixin):
 
     # Manually created methods
 
-    def contactsVocab(self):
-        """
-        """
-        path = '/'.join(self.getAProject().getPhysicalPath()) + '/contacts-1'
-        brains = self.portal_catalog(portal_type='Person', path=path)
-        pairs=[]
-        pairs.append(("", "<no reference>"))
-        for b in brains:
-            pairs.append((b.getObject().UID(), b.getObject().Title()))
-        return DisplayList(pairs)
+#    def contactsVocab(self):
+#        """
+#        """
+#        path = '/'.join(self.getAProject().getPhysicalPath()) + '/contacts-1'
+#        brains = self.portal_catalog(portal_type='Person', path=path)
+#        pairs=[]
+#        pairs.append(("", "<no reference>"))
+#        for b in brains:
+#            pairs.append((b.getObject().UID(), b.getObject().Title()))
+#        return DisplayList(pairs)
 
 
 
