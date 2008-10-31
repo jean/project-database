@@ -1,3 +1,16 @@
+From the model
+==============
+
+Where do the following classes get used or fit in?
+    CoreMixin, BlankCoreMixin
+    Phased,
+    Tranched
+    Addon
+    Agency
+    DocumentLinks
+
+
+
 From the Data Dictionary
 ========================
 
