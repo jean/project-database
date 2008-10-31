@@ -389,12 +389,21 @@ class MonitoringAndEvaluation(BaseFolder, BrowserDefaultMixin):
         """
         calculate the difference between estimated and actual cost
         """
-        import pdb; pdb.set_trace()
-        budgetCost = getBudget() + getTerminalEvaluationBudget()
-        estimatedCost = getMTREstimatedCost() + getTEEstimatedCost()
-        # actualCost = getTEActualCost() + getMTRActualCost()
-        # return estimatedCost = actualCost
-        return budgetCost - estimatedCost
+        # import pdb; pdb.set_trace()
+        budget = self.getBudget()
+        teBudget = self.getTerminalEvaluationBudget()
+        mtrEstimate = self.getMTREstimatedCost()
+        teEstimate = self.getTEEstimatedCost()
+        if (budget is not None) and \
+                (teBudget is not None) and \
+                (mtrEstimate is not None) and  \
+                (teEstimate is not None):
+            budgetCost = budget + teBudget
+            estimatedCost = mtrEstimate + teEstimate
+            # actualCost = getTEActualCost() + getMTRActualCost()
+            # return estimatedCost = actualCost
+            return budgetCost - estimatedCost
+        return 0
 
     # Manually created methods
 
