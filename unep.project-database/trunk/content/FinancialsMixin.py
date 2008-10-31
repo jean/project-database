@@ -396,11 +396,12 @@ class FinancialsMixin(BrowserDefaultMixin):
         cash_values = self.getCofinancingCash()
         return self.computeDataGridAmount([v['cofinancing_cash_planned_amount'] for v in cash_values if v['cofinancing_cash_planned_amount']])
 
-    security.declarePublic('getSumCofinActual')
-    def getSumCofinActual(self):
-        """
-        """
-        pass
+    # security.declarePublic('getSumCofinActual')
+    # def getSumCofinActual(self):
+    #     """
+    #     """
+    #     cash_values = self.getCofinancingCash()
+    #     return self.computeDataGridAmount([v['cofinancing_cash_actual_amount'] for v in cash_values if v['cofinancing_cash_actual_amount']])
 
     security.declarePublic('getSumCofinInKindPlanned')
     def getSumCofinInKindPlanned(self):
@@ -491,15 +492,11 @@ class FinancialsMixin(BrowserDefaultMixin):
     def getDifference(self):
         """ calculate the difference between the committed and allocated GEF grant
         """
-        # TODO: get working properly
-        import pdb; pdb.set_trace()
-        try:
-            revAllocUNEP = self.getRevisedAllocationToUNEP()
-            committedGEFgrant = self.getCommittedGEFGrant()
+        revAllocUNEP = self.getRevisedAllocationToUNEP()
+        committedGEFgrant = self.getCommittedGEFGrant()
+        if (revAllocUNEP is not None) and (committedGEFgrant is not None):
             return revAllocUNEP - committedGEFgrant
-        except AttributeError:
-            logger.error('Could not retrieve revisedAllocationToUNEP or committedGEFGrant value')
-            return 0
+        return self.getMoneyFieldDefault()
 
     # Manually created methods
 
