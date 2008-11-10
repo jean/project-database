@@ -63,13 +63,10 @@
     <tal:comment replace="nothing"> A slot where you can insert javascript in the header from a template </tal:comment>
     <metal:javascriptslot define-slot="javascript_head_slot" />
 
-  <title>UNEP GEF Project Office</title>
-
-  <!-- <link rel="StyleSheet" href="new_unep.css" type="text/css" media="all" /> -->
-
 </head>
 
-<body>
+<body tal:attributes="class string:${here/getSectionFromURL} template-${template/id};
+                        dir python:test(isRTL, 'rtl', 'ltr')">
 
 <!-- page container -->
 <div style="position: relative; left: 40px; width: 896px; height: auto;">
@@ -77,9 +74,10 @@
     <!-- logged in bar -->
     <div class="bar logged-in-bar">
         <div style="float:right;">
-            <span class="greytext">You are logged in as Johanna Smith</span>
+            <span class="greytext" i18n:translate="you_are_logged_in_as">You are logged in as</span>
+            <span class="greytext" tal:content="member/title_or_id">Johanna Smith</span>
             &nbsp;
-            <span><a href="#">Logout</a></span>
+            <span><a href="#" tal:attributes="href string:${context/portal_url}/logout">Logout</a></span>
             &nbsp;
             &nbsp;
         </div>
@@ -89,19 +87,37 @@
     <div class="bar">
         <div style="float: left; width: 40px; height: 105px;"></div>
         <div style="height: 105px;">
-            <a href="#"><img style="float: left;" src="logo.jpg" /></a>
-            <div class="page-heading"><br />GEF Project Office</div>
+            <a href="#" tal:attributes="href string:${context/portal_url}"><img style="float: left;" src="logo.jpg" /></a>
+            <div class="page-heading">
+                <br />
+                <span i18n:translate="gef_project_office">GEF Project Office</span>
+            </div>
         </div>
     </div>
 
     <!-- top menu and search bar -->
     <div class="bar top-menubar">
         <div class="top-menuitem" style="width: 40px; height: 100%;">&nbsp;</div>
-        <div class="top-menuitem"><a href="#">HOME</a></div>
-        <div class="top-menuitem"><a href="#">PROJECTS A-Z</a></div>
-        <div class="top-menuitem"><a href="#">FILTERED SEARCH</a></div>
-        <div class="top-menuitem"><a href="#">STAFF AND CONTACTS</a></div>
-        <div class="top-menuitem"><a href="#">ABOUT</a></div>
+        <div class="top-menuitem">
+            <a href="#" 
+                tal:attributes="href string:${context/portal_url}">
+                <span i18n:translate="home">HOME</span></a></div>
+        <div class="top-menuitem">
+            <a href="#" tal:attributes="href string:${context/portal_url}/projects_a2z">
+                <span i18n:translate="projects_a2z">PROJECTS A-Z</span>
+            </a></div>
+        <div class="top-menuitem">
+            <a href="#" tal:attributes="href string:${context/portal_url}/filtered_search">
+                <span i18n:translate="filtered_search">FILTERED SEARCH</span>
+            </a></div>
+        <div class="top-menuitem">
+            <a href="#" tal:attributes="href string:${context/portal_url}/staff_and_contacts">
+                <span i18n:translate="staff_and_contacts">STAFF AND CONTACTS</span>
+            </a></div>
+        <div class="top-menuitem">
+            <a href="#" tal:attributes="href string:${context/portal_url}/about">
+                <span i18n:translate="about">ABOUT</span>
+            </a></div>
         <div class="top-menuitem" style="padding: 6px 20px 6px 20px;">
             <form>
                 <input style="width: 100px;" type="text" />
@@ -111,7 +127,9 @@
     </div>
 
     <!-- top links bar -->
-    <div class="bar">
+    <metal:context-toplinks define-slot="context-toplinks" 
+        tal:condition="python: not isAnon and member.getId() != 'admin'">
+    <div class="bar" metal:define-macro="toplinks-macro">
         <div class="links-row">&nbsp;</div>
         <div class="links-row">
             <span style="padding-left: 40px;">Events:</span>
@@ -153,98 +171,89 @@
         </div>
         <div class="links-row">&nbsp;</div>
     </div>
+    </metal:context-toplinks>
 
-    <!-- user info bar -->
-    <div class="user-info">
-        <span>Johanna Smith,</span>
+    <!-- member info bar -->
+    <div class="user-info" tal:condition="python: not isAnon and member.getId() != 'admin'">
+        <span tal:content="member/title_or_id">Johanna Smith,</span>
         <span class="greytext">General Project Manager,</span>
-        <span><a href="#">johnasmith@unep.org</a></span>
+        <span>
+            <a href="#" tal:attributes="href string:mailto:${member/getEmail}">
+                <span tal:content="member/getEmail">johnasmith@unep.org</span>
+            </a>
+        </span>
         <span class="greytext">&raquo;</span>
         <span class="greytext">NAIROBI, Phone +27 (0)21 887 4183</span>
         <span class="greytext">-</span>
-        <span><a href="#">update profile</a></span>
+        <span><a href="#" tal:attributes="href string:${member/absolute_url}/edit">update profile</a></span>
     </div>
+
 
     <!-- main page content -->
     <div class="main-content">
 
         <!-- left column -->
-        <div class="left-column">
-            <div class="column-heading">
-                <div class="column-title">Project Lorem Ipsum</div>
-                <div class="column-heading-link">
-                    <a href="#">Add to My Projects</a>
-                </div>
-            </div>
+        <div class="left-column"
+            id="portal-content">
 
-            <!-- left column content -->
-            <div style="width: 100%; height: auto;">
-                <div style="float: left; width: 100%; height: 30px;">&nbsp;</div>
-                <div class="green-block">
-                    <h4>Project General Information</h4>
-                    <p>Essential General Information, Essential General Information</p>
-                    <p>&nbsp;</p>
-                    <p>&nbsp;</p>
-                    <span class="block-anchor">
-                        <a href="#">Full Project Information</a>,
-                        <a href="#">Edit</a>
-                    </span>
+            <metal:content-slot define-slot="content">
+            <metal:content-macro define-macro="content">
+
+                <div tal:replace="structure provider:plone.contentviews" />
+
+                <div id="region-content" >
+
+                    <a name="documentContent"></a>
+
+                    <div metal:use-macro="here/global_statusmessage/macros/portal_message">
+                        Portal status message
+                    </div>
+
+                    <div id="viewlet-above-content" tal:content="structure provider:plone.abovecontent" />
+
+                    <metal:slot metal:define-slot="body">
+                        <div id="content"
+                            tal:omit-tag="not:context/@@plone_context_state/is_view_template">
+
+                            <div class="column-heading" metal:define-slot="header" tal:content="nothing">
+                                <div class="column-title" tal:content="context/title">Project Lorem Ipsum</div>
+                            </div>
+
+                            <metal:bodytext metal:define-slot="main" tal:content="nothing">
+
+                                <!-- left column content -->
+                                <div style="width: 100%; height: auto;">
+                                    <div style="float: left; width: 100%; height: 30px;">&nbsp;</div>
+                                    <div class="green-block">
+                                        <h4 i18n:translate="content_overview">Content Overview</h4>
+
+                                        <p>Content for the current context goes here</p>
+                                        <p>&nbsp;</p>
+                                        <p>&nbsp;</p>
+                                        <span class="block-anchor">
+                                            <a href="#"><span i18n:translate="edit">Edit</span></a>
+                                        </span>
+                                </div>
+                                <div style="float: left; width: 100%; height: 20px;">&nbsp;</div>
+                            </metal:bodytext>
+                        </div>
+                    </metal:slot>
+
+                    <metal:sub metal:define-slot="sub">
+                        <div tal:replace="structure provider:plone.belowcontent" />
+                    </metal:sub>
+
                 </div>
-                <div class="pink-block">
-                    <h4>Project Financial Information</h4>
-                    <p>Essential Financial Information, Essential Financial Information</p>
-                    <p>&nbsp;</p>
-                    <p>&nbsp;</p>
-                    <span class="block-anchor">
-                        <a href="#">Full Financial Information</a>,
-                        <a href="#">Edit</a>
-                    </span>
-                </div>
-                <div class="green-block">
-                    <h4>Project Document Links</h4>
-                    <p>Links for the latest uploaded documents for the project.</p>
-                    <p>&nbsp;</p>
-                    <p>&nbsp;</p>
-                    <span class="block-anchor">
-                        <a href="#">All Document Links</a>,
-                        <a href="#">Edit</a>
-                    </span>
-                </div>
-                <div class="pink-block">
-                    <h4>Monitoring and Evaluation</h4>
-                    <p>Essential Monitoring and Evaluation, Essential Monitoring and Evaluation</p>
-                    <p>&nbsp;</p>
-                    <p>&nbsp;</p>
-                    <span class="block-anchor">
-                        <a href="#">Full Monitoring and Evaluation</a>,
-                        <a href="#">Edit</a>
-                    </span>
-                </div>
-                <div class="green-block">
-                    <h4>Project Milestones</h4>
-                    <p>Essential Milestone Information, Essential Milestone Information</p>
-                    <p>&nbsp;</p>
-                    <p>&nbsp;</p>
-                    <span class="block-anchor">
-                        <a href="#">Full Milestone Information</a>,
-                        <a href="#">Edit</a>
-                    </span>
-                </div>
-                <div class="pink-block">
-                    <h4>Personnel and Contacts</h4>
-                    <p><a href="#">Global Contacts</a>, <a href="#">Project Personnel</a></p>
-                    <p>&nbsp;</p>
-                    <p>&nbsp;</p>
-                    <span class="block-anchor">
-                        <a href="#">Add/Remove Contacts</a>,
-                    </span>
-                </div>
-                <div style="float: left; width: 100%; height: 20px;">&nbsp;</div>
-            </div>
+
+            </metal:content-macro>
+            </metal:content-slot>
         </div>
 
         <!-- right column -->
-        <div class="right-column">
+        <div class="right-column" 
+                id="portal-col-two"
+                metal:define-slot="column_two_slot">
+
             <div class="column-heading">
                 <div class="column-title">View by</div>
             </div>
@@ -279,6 +288,12 @@
                 <div class="overview-item"><a href="#">Monitoring &amp; Evaluation</a></div>
                 <div class="overview-item"><a href="#">Personnel &amp; Contacts</a></div>
                 <div style="float: left; width: 100%; height: 30px;">&nbsp;</div>
+            </div>
+
+            <div style="width: 100%; height: auto;">
+                <metal:portlets define-slot="portlets_two_slot">
+                    <tal:block replace="structure provider:plone.rightcolumn" />
+                </metal:portlets>
             </div>
         </div>
 
