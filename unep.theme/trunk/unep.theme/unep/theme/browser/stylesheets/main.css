@@ -106,6 +106,18 @@ div.column-heading {
     color: white;
 }
 
+.documentFirstHeading {
+    display: block;
+    width: 465px;
+    float: left; 
+    background: #24a1d1; 
+    color: white; 
+    font-size: large; 
+    padding: 10px; 
+    padding-left: 25px; 
+    font-weight: bold;
+}
+
 div.column-title {
     float: left; 
     background: #24a1d1; 
