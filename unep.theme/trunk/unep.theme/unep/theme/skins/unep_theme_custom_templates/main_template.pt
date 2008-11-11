@@ -73,11 +73,16 @@
 
     <!-- logged in bar -->
     <div class="bar logged-in-bar">
-        <div style="float:right;">
+        <div style="float:right;" tal:condition="not:isAnon">
             <span class="greytext" i18n:translate="you_are_logged_in_as">You are logged in as</span>
             <span class="greytext" tal:content="member/title_or_id">Johanna Smith</span>
             &nbsp;
-            <span><a href="#" tal:attributes="href string:${context/portal_url}/logout">Logout</a></span>
+            <a href="#" tal:attributes="href string:${context/portal_url}/logout"><span i18n:translate="logout">Logout</span></a>
+            &nbsp;
+            &nbsp;
+        </div>
+        <div style="float:right;" tal:condition="isAnon">
+            <a href="#" tal:attributes="href string:${context/portal_url}/login"><span i18n:translate="login">Login</span></a>
             &nbsp;
             &nbsp;
         </div>
@@ -98,32 +103,35 @@
     <!-- top menu and search bar -->
     <div class="bar top-menubar">
         <div class="top-menuitem" style="width: 40px; height: 100%;">&nbsp;</div>
+        <!--
         <div class="top-menuitem">
             <a href="#" 
-                tal:attributes="href string:${context/portal_url}">
+                tal:attributes="href string:${portal_url}">
                 <span i18n:translate="home">HOME</span></a></div>
         <div class="top-menuitem">
-            <a href="#" tal:attributes="href string:${context/portal_url}/projects_a2z">
+            <a href="#" tal:attributes="href context/@@unep_utils/projectDatabasesURL">
                 <span i18n:translate="projects_a2z">PROJECTS A-Z</span>
             </a></div>
         <div class="top-menuitem">
-            <a href="#" tal:attributes="href string:${context/portal_url}/filtered_search">
+            <a href="#" tal:attributes="href string:${portal_url}/search_form">
                 <span i18n:translate="filtered_search">FILTERED SEARCH</span>
             </a></div>
         <div class="top-menuitem">
-            <a href="#" tal:attributes="href string:${context/portal_url}/staff_and_contacts">
+            <a href="#" tal:attributes="href context/@@unep_utils/contactsURL">
                 <span i18n:translate="staff_and_contacts">STAFF AND CONTACTS</span>
             </a></div>
         <div class="top-menuitem">
-            <a href="#" tal:attributes="href string:${context/portal_url}/about">
+            <a href="#" tal:attributes="href string:${portal_url}/about">
                 <span i18n:translate="about">ABOUT</span>
             </a></div>
         <div class="top-menuitem" style="padding: 6px 20px 6px 20px;">
-            <form>
-                <input style="width: 100px;" type="text" />
-                <input class="searchButton" type="button" value="search" />
+            <form name="searchForm" method="post" tal:attributes="action string:${portal_url}/search">
+                <input style="width: 100px;" type="text" name="SearchableText" />
+                <input name="searchButton" class="searchButton" type="submit" value="search" i18n:attributes="value search" />
             </form>
         </div>
+        -->
+        <div tal:replace="structure provider:unep.portaltop" />
     </div>
 
     <!-- top links bar -->
@@ -134,39 +142,39 @@
         <div class="links-row">
             <span style="padding-left: 40px;">Events:</span>
             <span class="links-item">&raquo;</span>
-            <span class="links-item"><a href="#">Conference on Lorem Ipsum</a></span>
+            <a href="#"><span class="links-item">Conference on Lorem Ipsum</span></a>
             <span class="links-item greytext">&#149;</span>
-            <span class="links-item"><a href="#">International Meeting of Lorem</a></span>
+            <a href="#"><span class="links-item">International Meeting of Lorem</span></a>
             <span class="links-item greytext">&#149;</span>
-            <span class="links-item"><a href="#">Environmental Impact of Ipsum</a></span>
+            <a href="#"><span class="links-item">Environmental Impact of Ipsum</span></a>
             <span class="links-item greytext">&#149;</span>
-            <span class="links-item" style="font-weight: normal;"><a href="#">more events</a></span>
+            <a href="#"><span class="links-item" style="font-weight: normal;" i18n:translate="more_events">more events</span></a>
             <span class="links-item">&raquo;</span>
         </div>
         <div class="links-row">
             <span style="padding-left: 40px;">Policies:</span>
             <span class="links-item">&raquo;</span>
-            <span class="links-item"><a href="#">Policy on Lorem Ipsum</a></span>
+            <a href="#"><span class="links-item">Policy on Lorem Ipsum</span></a>
             <span class="links-item greytext">&#149;</span>
-            <span class="links-item"><a href="#">International Agreement of Lorem</a></span>
+            <a href="#"><span class="links-item">International Agreement of Lorem</span></a>
             <span class="links-item greytext">&#149;</span>
-            <span class="links-item"><a href="#">Environmental Treaty of Ipsum</a></span>
+            <a href="#"><span class="links-item">Environmental Treaty of Ipsum</span></a>
             <span class="links-item greytext">&#149;</span>
-            <span class="links-item" style="font-weight: normal;"><a href="#">more policies</a></span>
+            <a href="#"><span class="links-item" style="font-weight: normal;" i18n:translate="more_policies">more policies</span></a>
             <span class="links-item">&raquo;</span>
         </div>
         <div class="links-row">
             <span style="padding-left: 40px;">Publications:</span>
             <span class="links-item">&raquo;</span>
-            <span class="links-item"><a href="#">Annual Reports</a></span>
+            <a href="#"><span class="links-item">Annual Reports</span></a>
             <span class="links-item greytext">&#149;</span>
-            <span class="links-item"><a href="#">Operational Info</a></span>
+            <a href="#"><span class="links-item">Operational Info</span></a>
             <span class="links-item greytext">&#149;</span>
-            <span class="links-item"><a href="#">Focal Areas</a></span>
+            <a href="#"><span class="links-item">Focal Areas</span></a>
             <span class="links-item greytext">&#149;</span>
-            <span class="links-item"><a href="#">Project Manuals</a></span>
+            <a href="#"><span class="links-item">Project Manuals</span></a>
             <span class="links-item greytext">&#149;</span>
-            <span class="links-item" style="font-weight: normal;"><a href="#">more publications</a></span>
+            <a href="#"><span class="links-item" style="font-weight: normal;" i18n:translate="more_publications">more publications</span></a>
             <span class="links-item">&raquo;</span>
         </div>
         <div class="links-row">&nbsp;</div>
@@ -219,7 +227,7 @@
                                 <div class="column-title" tal:content="context/title">Project Lorem Ipsum</div>
                             </div>
 
-                            <metal:bodytext metal:define-slot="main" tal:content="nothing">
+                            <metal:main-slot metal:define-slot="main" tal:content="nothing">
 
                                 <!-- left column content -->
                                 <div style="width: 100%; height: auto;">
@@ -233,9 +241,11 @@
                                         <span class="block-anchor">
                                             <a href="#"><span i18n:translate="edit">Edit</span></a>
                                         </span>
+                                    </div>
                                 </div>
                                 <div style="float: left; width: 100%; height: 20px;">&nbsp;</div>
-                            </metal:bodytext>
+                            </metal:main-slot>
+
                         </div>
                     </metal:slot>
 
@@ -255,14 +265,14 @@
                 metal:define-slot="column_two_slot">
 
             <div class="column-heading">
-                <div class="column-title">View by</div>
+                <div class="column-title" i18n:translate="view_by">View by</div>
             </div>
 
             <!-- right column content -->
             <div style="width: 100%; height: auto;">
                 <div style="float: left; width: 100%; height: 30px;">&nbsp;</div>
                 <div class="overview-heading">
-                    <span class="greytext">Overview</span>
+                    <span class="greytext" i18n:translate="overview">Overview</span>
                 </div>
                 <div style="float: left; width: 100%; height: 15px;">&nbsp;</div>
                 <div class="overview-item"><a href="#">General</a></div>
@@ -277,7 +287,7 @@
             <div style="width: 100%; height: auto;">
                 <div style="float: left; width: 100%; height: 15px;">&nbsp;</div>
                 <div class="myprojects-heading">
-                    <span>My Project List - Views</span>
+                    <span i18n:translate="my_projects_list">My Project List - Views</span>
                 </div>
                 <div style="float: left; width: 100%; height: 15px;">&nbsp;</div>
                 <div class="overview-item"><a href="#">Projects A-Z</a></div>
@@ -301,10 +311,15 @@
 
     <!-- Colophon -->
     <div class="column-heading" style="font-weight: 100; padding-top: 5px; padding-bottom: 5px;">
-        <span style="margin-left: 40px;">&copy;UNEP 2008</span>&nbsp;&nbsp;&nbsp;&nbsp;
-        <span>Powered by <a href="http://www.plone.org">Plone</a></span>&nbsp;&nbsp;&nbsp;&nbsp;
-        <span>Created by <a href="http://wwww.upfrontsystems.co.za">Upfront Systems</a></span>&nbsp;&nbsp;&nbsp;&nbsp;
-        <span>Designed by <a href="http://theflyingdutchman.co.za">The Flying Dutchman</a></span>
+        <span style="margin-left: 40px;" i18n:translate="copyright_unep_2008">&copy;UNEP 2008</span>&nbsp;&nbsp;&nbsp;&nbsp;
+        <span i18n:translate="powered_by">Powered by</span>
+        <a href="http://www.plone.org"><span i18n:translate="Plone">Plone</span></a>
+        &nbsp;&nbsp;&nbsp;&nbsp;
+        <span i18n:translate="created_by">Created by</span>
+        <a href="http://wwww.upfrontsystems.co.za"><span i18n:translate="upfront_systems">Upfront Systems</span></a>
+        &nbsp;&nbsp;&nbsp;&nbsp;
+        <span i18n:translate="designed_by">Designed by</span>
+        <a href="http://theflyingdutchman.co.za"><span i18n:translate="the_flying_dutchman">The Flying Dutchman</span></a>
     </div>
 
 </div>
