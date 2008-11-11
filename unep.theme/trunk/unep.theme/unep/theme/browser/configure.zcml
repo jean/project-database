@@ -27,4 +27,12 @@
         layer=".interfaces.IThemeSpecific"
         />
 
+    <!-- Page Views -->
+    <browser:page
+        for="*"
+        name="unep_utils"
+        class=".uneputils.UnepViewUtils"
+        permission="zope2.View"
+        />
+
 </configure>

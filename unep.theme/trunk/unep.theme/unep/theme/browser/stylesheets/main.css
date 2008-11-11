@@ -257,3 +257,14 @@ input.searchButton {
     border: 1px solid #24a1d1;
 }
 
+iframe.kupu-editor-iframe {
+    height: 200px;
+}
+
+select {
+    max-width: 465px;
+}
+
+fieldset {
+    float: left;
+}
