@@ -55,10 +55,10 @@ def Install(self, reinstall=False):
 
     # add default project folders
     if 'projectdatabases' not in portal.contentIds():
-        portal.invokeFactory('Folder', 'projectdatabases', title='Project Databases')
+        portal.invokeFactory('Folder', 'projectdatabases', title='PROJECTS A-Z')
     # add global contact manager
-    if 'contacts-1' not in portal.contentIds():
-        portal.invokeFactory('ContactManager', 'contacts-1', title='Global Contacts')
+    if 'contacts' not in portal.contentIds():
+        portal.invokeFactory('ContactManager', 'contacts', title='STAFF &amp; CONTACTS')
 
     # remove unneeded folders
     ids=['Members', 'news', 'events', 'front-page']
