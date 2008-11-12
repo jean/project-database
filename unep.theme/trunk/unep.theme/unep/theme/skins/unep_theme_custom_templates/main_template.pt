@@ -101,37 +101,15 @@
     </div>
 
     <!-- top menu and search bar -->
-    <div class="bar top-menubar">
+    <div class="top-menubar bar">
         <div class="top-menuitem" style="width: 40px; height: 100%;">&nbsp;</div>
-        <!--
-        <div class="top-menuitem">
-            <a href="#" 
-                tal:attributes="href string:${portal_url}">
-                <span i18n:translate="home">HOME</span></a></div>
-        <div class="top-menuitem">
-            <a href="#" tal:attributes="href context/@@unep_utils/projectDatabasesURL">
-                <span i18n:translate="projects_a2z">PROJECTS A-Z</span>
-            </a></div>
-        <div class="top-menuitem">
-            <a href="#" tal:attributes="href string:${portal_url}/search_form">
-                <span i18n:translate="filtered_search">FILTERED SEARCH</span>
-            </a></div>
-        <div class="top-menuitem">
-            <a href="#" tal:attributes="href context/@@unep_utils/contactsURL">
-                <span i18n:translate="staff_and_contacts">STAFF AND CONTACTS</span>
-            </a></div>
-        <div class="top-menuitem">
-            <a href="#" tal:attributes="href string:${portal_url}/about">
-                <span i18n:translate="about">ABOUT</span>
-            </a></div>
+        <div tal:replace="structure provider:unep.portaltop" />
         <div class="top-menuitem" style="padding: 6px 20px 6px 20px;">
             <form name="searchForm" method="post" tal:attributes="action string:${portal_url}/search">
                 <input style="width: 100px;" type="text" name="SearchableText" />
                 <input name="searchButton" class="searchButton" type="submit" value="search" i18n:attributes="value search" />
             </form>
         </div>
-        -->
-        <div tal:replace="structure provider:unep.portaltop" />
     </div>
 
     <!-- top links bar -->
