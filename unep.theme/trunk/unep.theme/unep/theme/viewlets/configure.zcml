@@ -7,7 +7,7 @@
     <!-- Viewlet Manager for the top menu viewlet-->
     <browser:viewletManager
         name="unep.portaltop"
-        provides=".interfaces.IPortalTop"
+        provides="plone.app.layout.viewlets.interfaces.IPortalTop"
         permission="zope2.View"
         class="plone.app.viewletmanager.manager.OrderedViewletManager"
         />
@@ -15,7 +15,7 @@
     <!-- The portal top menu viewlet-->
     <browser:viewlet
         name="unep.unep_tabs"
-        manager=".interfaces.IUNEPHeader"
+        manager="plone.app.layout.viewlets.interfaces.IPortalTop"
         class=".unep_viewlets.UnepTabsViewlet"
         permission="zope2.View" 
         />
