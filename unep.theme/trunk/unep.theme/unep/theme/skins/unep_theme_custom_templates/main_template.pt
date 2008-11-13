@@ -101,10 +101,10 @@
     </div>
 
     <!-- top menu and search bar -->
-    <div class="top-menubar bar">
-        <div class="top-menuitem" style="width: 40px; height: 100%;">&nbsp;</div>
-        <div tal:replace="structure provider:unep.portaltop" />
-        <div class="top-menuitem" style="padding: 6px 20px 6px 20px;">
+    <div class="unep-menubar">
+        <div class="unep-menuitem" style="width: 40px; height: 100%;">&nbsp;</div>
+        <tal:tabs tal:replace="structure provider:unep.portaltop" />
+        <div class="unep-menuitem" style="padding: 6px 20px 6px 20px;">
             <form name="searchForm" method="post" tal:attributes="action string:${portal_url}/search">
                 <input style="width: 100px;" type="text" name="SearchableText" />
                 <input name="searchButton" class="searchButton" type="submit" value="search" i18n:attributes="value search" />
@@ -161,80 +161,88 @@
 
     <!-- member info bar -->
     <div class="user-info" tal:condition="python: not isAnon and member.getId() != 'admin'">
-        <span tal:content="member/title_or_id">Johanna Smith,</span>
-        <span class="greytext">General Project Manager,</span>
+        <span tal:content="member/title_or_id" class="greytext">Johanna Smith,</span>
+        <span class="greytext">&raquo;</span>
+        <!-- <span class="greytext">General Project Manager,</span> -->
         <span>
             <a href="#" tal:attributes="href string:mailto:${member/getEmail}">
                 <span tal:content="member/getEmail">johnasmith@unep.org</span>
             </a>
         </span>
-        <span class="greytext">&raquo;</span>
-        <span class="greytext">NAIROBI, Phone +27 (0)21 887 4183</span>
+        <tal:office>
+            <span class="greytext">&raquo;</span>
+            <span class="greytext" tal:content="python:member.getCompany().getName()">NAIROBI</span>
+        </tal:office>
+        <tal:phone tal:condition="member/getBusinessPhone">
+            <span class="greytext">&raquo;</span>
+            <span class="greytext">Phone</span>
+            <span class="greytext" tal:content="member/getBusinessPhone">+27 (0)21 887 4183</span>
+        </tal:phone>
         <span class="greytext">-</span>
         <span><a href="#" tal:attributes="href string:${member/absolute_url}/edit">update profile</a></span>
     </div>
 
 
     <!-- main page content -->
+
     <div class="main-content">
 
         <!-- left column -->
-        <div class="left-column"
-            id="portal-content">
+        <div class="left-column">
 
-            <metal:content-slot define-slot="content">
-            <metal:content-macro define-macro="content">
+            <div id="portal-content" style="width: 100%; height: auto;">
 
-                <div tal:replace="structure provider:plone.contentviews" />
+                <metal:content-slot define-slot="content">
+                <metal:content-macro define-macro="content">
 
-                <div id="region-content" >
+                <!-- left column content -->
+                <div style="width: 100%; height: auto;">
 
-                    <a name="documentContent"></a>
+                    <div class="page-block">
 
-                    <div metal:use-macro="here/global_statusmessage/macros/portal_message">
-                        Portal status message
-                    </div>
+                        <div tal:content="structure provider:plone.contentviews" />
 
-                    <div id="viewlet-above-content" tal:content="structure provider:plone.abovecontent" />
+                        <div id="region-content">
 
-                    <metal:slot metal:define-slot="body">
-                        <div id="content"
-                            tal:omit-tag="not:context/@@plone_context_state/is_view_template">
+                            <a name="documentContent"></a>
 
-                            <div class="column-heading" metal:define-slot="header" tal:content="nothing">
-                                <div class="column-title" tal:content="context/title">Project Lorem Ipsum</div>
+                            <div metal:use-macro="here/global_statusmessage/macros/portal_message">
+                                Portal status message
                             </div>
 
-                            <metal:main-slot metal:define-slot="main" tal:content="nothing">
+                            <div id="viewlet-above-content" tal:content="structure provider:plone.abovecontent" />
 
-                                <!-- left column content -->
-                                <div style="width: 100%; height: auto;">
-                                    <div style="float: left; width: 100%; height: 30px;">&nbsp;</div>
-                                    <div class="green-block">
-                                        <h4 i18n:translate="content_overview">Content Overview</h4>
+                            <metal:slot metal:define-slot="body">
+                                <div id="content"
+                                    tal:omit-tag="not:context/@@plone_context_state/is_view_template">
 
-                                        <p>Content for the current context goes here</p>
-                                        <p>&nbsp;</p>
-                                        <p>&nbsp;</p>
-                                        <span class="block-anchor">
-                                            <a href="#"><span i18n:translate="edit">Edit</span></a>
-                                        </span>
-                                    </div>
+
+                                            <metal:main-slot metal:define-slot="main" tal:content="nothing">
+                                                <h4 i18n:translate="content_overview">Content Overview</h4>
+                                                <p>Content for the current context goes here</p>
+                                                <p>&nbsp;</p>
+                                                <p>&nbsp;</p>
+                                                <span class="block-anchor">
+                                                    <a href="#"><span i18n:translate="edit">Edit</span></a>
+                                                </span>
+                                            </metal:main-slot>
                                 </div>
-                                <div style="float: left; width: 100%; height: 20px;">&nbsp;</div>
-                            </metal:main-slot>
+                            </metal:slot>
+
+                            <metal:sub metal:define-slot="sub">
+                                <div tal:replace="structure provider:plone.belowcontent" />
+                            </metal:sub>
 
                         </div>
-                    </metal:slot>
 
-                    <metal:sub metal:define-slot="sub">
-                        <div tal:replace="structure provider:plone.belowcontent" />
-                    </metal:sub>
+                    </div>
 
-                </div>
+                </metal:content-macro>
+                </metal:content-slot>
 
-            </metal:content-macro>
-            </metal:content-slot>
+            </div>
+            <div style="float: left; width: 100%; height: 20px;">&nbsp;</div>
+
         </div>
 
         <!-- right column -->
@@ -247,6 +255,7 @@
             </div>
 
             <!-- right column content -->
+            <!--
             <div style="width: 100%; height: auto;">
                 <div style="float: left; width: 100%; height: 30px;">&nbsp;</div>
                 <div class="overview-heading">
@@ -261,6 +270,7 @@
                 <div class="overview-item"><a href="#">Personnel &amp; Contacts</a></div>
                 <div style="float: left; width: 100%; height: 15px;">&nbsp;</div>
             </div>
+            -->
 
             <div style="width: 100%; height: auto;">
                 <div style="float: left; width: 100%; height: 15px;">&nbsp;</div>

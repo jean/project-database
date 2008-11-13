@@ -33,25 +33,44 @@ div.page-heading {
 }
 
 /* ------------------ Top Menu Styles ----------------------------------- */
-div.top-menubar {
+div.unep-menubar {
+    width: 100%; 
+    border-bottom: 1px solid #e7e7e7;
     font-size: x-small; 
     height: 34px; 
 }
 
-div.top-menuitem {
+div.unep-menuitem {
     float:left; 
     border-right: 1px solid #e7e7e7; 
     text-align: center;
 }
 
-div.top-menuitem a {
+div.unep-menuitem a {
     display: block;
     padding: 10px 20px 10px 20px; 
 }
 
-div.top-menuitem a:hover {
+div.unep-menuitem a:hover {
+    background: #d8d8d8; 
+}
+
+div.unep-menuselected {
+    float:left; 
+    border-right: 1px solid #e7e7e7; 
+    text-align: center;
+}
+
+div.unep-menuselected a {
+    display: block;
+    padding: 10px 20px 10px 20px; 
     background: #24a1d1; 
     color: white; 
+}
+
+div.unep-menuselected a:hover {
+    color: white; 
+    background: #24a1d1; 
 }
 
 /* ------------------ Top Links Styles ---------------------------------- */
@@ -108,14 +127,16 @@ div.column-heading {
 
 .documentFirstHeading {
     display: block;
-    width: 465px;
+    width: 450px;
     float: left; 
     background: #24a1d1; 
     color: white; 
     font-size: large; 
     padding: 10px; 
-    padding-left: 25px; 
+    padding-left: 30px; 
     font-weight: bold;
+    margin-left: -30px;
+    margin-top: -1px;
 }
 
 div.column-title {
@@ -142,26 +163,13 @@ div.column-heading-link {
     background: #24a1d1;
 }
 
-div.green-block {
+div.page-block {
     float: left; 
     margin: 6%; 
-    margin-top: 0; 
-    margin-bottom: 7px; 
+    margin-top: 1px; 
+    margin-bottom: 8px; 
     width: 88%; 
     height: auto; 
-    border: 1px solid #c4e2fd; 
-    background: #e5f3fe;
-}
-
-div.pink-block {
-    float: left; 
-    margin: 6%; 
-    margin-top: 0; 
-    margin-bottom: 7px; 
-    width: 88%; 
-    height: auto; 
-    border: 1px solid #fecbfb; 
-    background: #fee8fd;
 }
 
 span.block-anchor {
