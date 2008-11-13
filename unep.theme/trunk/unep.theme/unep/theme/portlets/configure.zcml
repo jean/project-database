@@ -1,0 +1,15 @@
+<configure xmlns="http://namespaces.zope.org/zope"
+           xmlns:plone="http://namespaces.plone.org/plone">
+
+    <include package="plone.app.portlets" />
+
+    <plone:portlet
+        name="portlets.Overview"
+        interface=".overview.IOverviewPortlet"
+        assignment=".overview.Assignment"
+        renderer=".overview.Renderer"
+        addview=".overview.AddForm"
+        editview=".overview.EditForm"
+        />
+
+</configure>
