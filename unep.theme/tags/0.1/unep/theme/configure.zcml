@@ -1,0 +1,15 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:five="http://namespaces.zope.org/five"
+    i18n_domain="unep.theme">
+
+   <five:registerPackage package="." initialize=".initialize" />
+
+   <include package=".browser" />
+   <include package=".viewlets" />
+   <include package=".portlets" />
+
+   <include file="skins.zcml" />
+   <include file="profiles.zcml" />
+
+</configure>
