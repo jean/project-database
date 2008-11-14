@@ -4,6 +4,17 @@
     i18n:domain="plone">
   
  <!-- Assign the standard portlets -->
+ <portlet
+     addview="unep.Overview"
+     title="Projects Overview"
+     description="A portler that displays the overview menu"
+     />
+
+ <portlet
+     addview="unep.MyProjects"
+     title="My Projects"
+     description="A portlet that displays my projects menu"
+     />
      
  <assignment
      manager="plone.rightcolumn"
@@ -12,6 +23,22 @@
      type="portlets.Calendar"
      name="calendar"
      remove="True"
+     />
+     
+ <assignment
+     manager="plone.rightcolumn"
+     category="context"
+     key="/"
+     type="unep.Overview"
+     name="Overview"
+     />
+
+ <assignment
+     manager="plone.rightcolumn"
+     category="context"
+     key="/"
+     type="unep.MyProjects"
+     name="My Projects"
      />
 
 </portlets>
