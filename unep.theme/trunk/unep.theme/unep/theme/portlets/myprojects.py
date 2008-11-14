@@ -5,19 +5,20 @@ from zope.formlib import form
 from zope.interface import implements
 from Products.CMFPlone import PloneMessageFactory as _
 
-class IOverviewPortlet(IPortletDataProvider):
+class IMyProjectsView(IPortletDataProvider):
     """Provides the overview menu on a site"""
 
 
 class Assignment(base.Assignment):
-    implements(IOverviewPortlet)
-    title = _(u'Projects Overview')
+    implements(IMyProjectsView)
+    title = _(u'My Projects')
 
 class Renderer(base.Renderer):
     available = True
-    render = ViewPageTemplateFile('overview.pt')
+    render = ViewPageTemplateFile('myprojects.pt')
 
 class AddForm(base.NullAddForm):
 
     def create(self):
         return Assignment()
+
