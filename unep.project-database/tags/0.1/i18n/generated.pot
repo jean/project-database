@@ -1,0 +1,1207 @@
+# archgenxml generated POT File
+# Jean Jordaan, Jurgen Blignaut <jean.jordaan@gmail.com, jurgen.blignaut@gmail.com>, 2008.
+msgid ""
+msgstr ""
+"Project-Id-Version: ProjectDatabase\n"
+"POT-Creation-Date: Thu Oct  2 14:18:21 2008\n"
+"PO-Revision-Date: Thu Oct  2 14:18:21 2008\n"
+"Last-Translator: Jean Jordaan, Jurgen Blignaut <jean.jordaan@gmail.com, jurgen.blignaut@gmail.com>\n"
+"Language-Team: Jean Jordaan, Jurgen Blignaut <jean.jordaan@gmail.com, jurgen.blignaut@gmail.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0\n"
+"Language-Code: en\n"
+"Language-Name: English\n"
+"Preferred-Encodings: latin1 utf-8\n"
+"Domain: ProjectDatabase\n"
+
+#. Default: "Actual date for the particular milestone"
+#: content/EvaluationMilestone.py
+msgid "ProjectDatabase_help_ActualDate"
+msgstr ""
+
+#. Default: "The total actual expenditures against the GEF trust fund once project is completed"
+#: content/Financials.py
+msgid "ProjectDatabase_help_ActualTotalExpenditures"
+msgstr ""
+
+#. Default: "Enter GEF amount to be directly used by UNEP"
+#: content/FinancialsMixin.py
+msgid "ProjectDatabase_help_ApprovedUNEPBudget"
+msgstr ""
+
+#. Default: "Project budget in the internalized project document"
+#: content/FinancialsMixin.py
+msgid "ProjectDatabase_help_CommittedGEFGrant"
+msgstr ""
+
+#. Default: "Enter the total amount of GEF resources approved for this project"
+#: content/FinancialsMixin.py
+msgid "ProjectDatabase_help_GEFProjectAllocation"
+msgstr ""
+
+#. Default: "Enter the 5 digit GEF ID"
+#: content/ProjectGeneralInformation.py
+#: content/Financials.py
+msgid "ProjectDatabase_help_GEFid"
+msgstr ""
+
+#. Default: "Enter the Full Implementing Agency Fee"
+#: content/FinancialsMixin.py
+msgid "ProjectDatabase_help_ImplementingAgencyFee"
+msgstr ""
+
+#. Default: "Enter sources and Purposes"
+#: content/ProjectGeneralInformation.py
+msgid "ProjectDatabase_help_LeveragedFinancingRemark"
+msgstr ""
+
+#. Default: "Is this a Tranched/Phased/Addon project?"
+#: content/ProjectGeneralInformation.py
+msgid "ProjectDatabase_help_Number"
+msgstr ""
+
+#. Default: "Planned date for the particular milestone"
+#: content/EvaluationMilestone.py
+msgid "ProjectDatabase_help_PlannedDate"
+msgstr ""
+
+#. Default: "The number of months"
+#: content/FinancialsMixin.py
+msgid "ProjectDatabase_help_PlannedDuration"
+msgstr ""
+
+#. Default: "Project Process and Review Dates"
+#: content/Milestone.py
+msgid "ProjectDatabase_help_ProjectProcess"
+msgstr ""
+
+#. Default: "Enter overall Project Results AFTER Project Terminal Evaluation"
+#: content/ProjectGeneralInformation.py
+msgid "ProjectDatabase_help_ProjectResults"
+msgstr ""
+
+#. Default: "Name of evaluation officer in the other agency"
+#: content/MonitoringAndEvaluation.py
+msgid "ProjectDatabase_help_ProjectTitle"
+msgstr ""
+
+#. Default: "To track changes related to evaluation planning"
+#: content/EvaluationMilestone.py
+#: content/RatingTrackingSystem.py
+msgid "ProjectDatabase_help_Remarks"
+msgstr ""
+
+#. Default: "Revised amount after Project Council or CEO approval"
+#: content/FinancialsMixin.py
+msgid "ProjectDatabase_help_RevisedAllocationToUNEP"
+msgstr ""
+
+#. Default: "As per last revision"
+#: content/FinancialsMixin.py
+msgid "ProjectDatabase_help_RevisedCompletionDate"
+msgstr ""
+
+#. Default: "Name of Evaluation Team Leader"
+#: content/EvaluatorsInformation.py
+msgid "ProjectDatabase_help_TeamLeader"
+msgstr ""
+
+#. Default: "Names of other evaluation Team Members"
+#: content/EvaluatorsInformation.py
+msgid "ProjectDatabase_help_TeamMembers"
+msgstr ""
+
+#. Default: "Enter a description of UNEP components only in the case of jointly implemented projects"
+#: content/ProjectGeneralInformation.py
+msgid "ProjectDatabase_help_UnepComponentDescription"
+msgstr ""
+
+#. Default: "Project Website Address"
+#: content/SubProject.py
+msgid "ProjectDatabase_help_Website"
+msgstr ""
+
+#. Default: "Account Code"
+#: content/SubProject.py
+msgid "ProjectDatabase_label_AccountCode"
+msgstr ""
+
+#. Default: "Achievement of Results"
+#: content/PIRRating.py
+msgid "ProjectDatabase_label_AchievementOfResults"
+msgstr ""
+
+#. Default: "Actual Date"
+#: content/EvaluationMilestone.py
+msgid "ProjectDatabase_label_ActualDate"
+msgstr ""
+
+#. Default: "Actual Total Expenditures"
+#: content/Financials.py
+msgid "ProjectDatabase_label_ActualTotalExpenditures"
+msgstr ""
+
+#. Default: "Adaptation Trust Fund"
+#: content/Financials.py
+msgid "ProjectDatabase_label_AdaptationTrustFund"
+msgstr ""
+
+#. Default: "Annexes To Project Brief"
+#: content/DocumentLinks.py
+msgid "ProjectDatabase_label_AnnexesToProjectBrief"
+msgstr ""
+
+#. Default: "Project Approval, Initiation and Closure"
+#: content/Milestone.py
+msgid "ProjectDatabase_label_ApprovalInitiationAndClosure"
+msgstr ""
+
+#. Default: "Approved UNEP Budget"
+#: content/FinancialsMixin.py
+#: content/BlankCoreMixin.py
+msgid "ProjectDatabase_label_ApprovedUNEPBudget"
+msgstr ""
+
+#. Default: "Assessment (if applicable)"
+#: content/RatingTrackingSystem.py
+msgid "ProjectDatabase_label_Assessment"
+msgstr ""
+
+#. Default: "Audited Certificate of Accounts"
+#: content/DocumentLinks.py
+msgid "ProjectDatabase_label_AuditedCertificateOfAccounts"
+msgstr ""
+
+#. Default: "Budget"
+#: content/MonitoringAndEvaluation.py
+msgid "ProjectDatabase_label_Budget"
+msgstr ""
+
+#. Default: "CEO Approval Date"
+#: content/MonitoringAndEvaluation.py
+msgid "ProjectDatabase_label_CEOApproval"
+msgstr ""
+
+#. Default: "CEO Endorsement"
+#: content/MonitoringAndEvaluation.py
+msgid "ProjectDatabase_label_CEOEndorsement"
+msgstr ""
+
+#. Default: "CEO Endorsement Letter"
+#: content/DocumentLinks.py
+msgid "ProjectDatabase_label_CEOEndorsementLetter"
+msgstr ""
+
+#. Default: "Cash Disbursement"
+#: content/BlankCoreMixin.py
+msgid "ProjectDatabase_label_CashDisbursement"
+msgstr ""
+
+#. Default: "Cash Disbursements"
+#: content/FinancialsMixin.py
+msgid "ProjectDatabase_label_CashDisbursements"
+msgstr ""
+
+#. Default: "GEF Allocation to UNEP"
+#: content/Financials.py
+msgid "ProjectDatabase_label_CashUNEPAllocation"
+msgstr ""
+
+#. Default: "Category"
+#: content/ProjectExecutingPartner.py
+msgid "ProjectDatabase_label_Category"
+msgstr ""
+
+#. Default: "Cofinancing: Cash"
+#: content/FinancialsMixin.py
+msgid "ProjectDatabase_label_CofinancingCash"
+msgstr ""
+
+#. Default: "Cofinancing: In Kind"
+#: content/FinancialsMixin.py
+msgid "ProjectDatabase_label_CofinancingInKind"
+msgstr ""
+
+#. Default: "Committed GEF Grant"
+#: content/FinancialsMixin.py
+msgid "ProjectDatabase_label_CommittedGEFGrant"
+msgstr ""
+
+#. Default: "Cost Effectiveness"
+#: content/OtherProjectRatings.py
+msgid "ProjectDatabase_label_CostEffectiveness"
+msgstr ""
+
+#. Default: "Country"
+#: content/ProjectGeneralInformation.py
+#: content/CoreMixin.py
+msgid "ProjectDatabase_label_Country"
+msgstr ""
+
+#. Default: "Country Ownership"
+#: content/OtherProjectRatings.py
+msgid "ProjectDatabase_label_CountryOwnership"
+msgstr ""
+
+#. Default: "Current Task Manager"
+#: content/ProjectGeneralInformation.py
+#: content/CoreMixin.py
+#: content/MonitoringAndEvaluation.py
+msgid "ProjectDatabase_label_CurrentTaskManager"
+msgstr ""
+
+#. Default: "Reasons for delay"
+#: content/FinancialsMixin.py
+msgid "ProjectDatabase_label_DelayReason"
+msgstr ""
+
+#. Default: "Difference"
+#: content/FinancialsMixin.py
+msgid "ProjectDatabase_label_Difference"
+msgstr ""
+
+#. Default: "Donor Type"
+#: content/FinancialsMixin.py
+msgid "ProjectDatabase_label_DonorTypes"
+msgstr ""
+
+#. Default: "EA-Biodiversity"
+#: content/ProjectGeneralInformation.py
+msgid "ProjectDatabase_label_EABiodiversity"
+msgstr ""
+
+#. Default: "Other EA Biodiversity"
+#: content/ProjectGeneralInformation.py
+msgid "ProjectDatabase_label_EABiodiversityOther"
+msgstr ""
+
+#. Default: "EA-Climate Change"
+#: content/ProjectGeneralInformation.py
+msgid "ProjectDatabase_label_EAClimateChange"
+msgstr ""
+
+#. Default: "EA Climate Change Other"
+#: content/ProjectGeneralInformation.py
+msgid "ProjectDatabase_label_EAClimateChangeOther"
+msgstr ""
+
+#. Default: "EA-POP"
+#: content/ProjectGeneralInformation.py
+msgid "ProjectDatabase_label_EAPOP"
+msgstr ""
+
+#. Default: "EA-POP Other"
+#: content/ProjectGeneralInformation.py
+msgid "ProjectDatabase_label_EAPOPOther"
+msgstr ""
+
+#. Default: "EOU Assessment"
+#: content/RatingTrackingSystem.py
+msgid "ProjectDatabase_label_EOUAssessment"
+msgstr ""
+
+#. Default: "EOU Rating"
+#: content/RatingTrackingSystem.py
+msgid "ProjectDatabase_label_EOURating"
+msgstr ""
+
+#. Default: "EOU Rating Elements"
+#: content/RatingTrackingSystem.py
+msgid "ProjectDatabase_label_EOURatingElements"
+msgstr ""
+
+#. Default: "Evaluationactualestimatedifference"
+#: content/MonitoringAndEvaluation.py
+msgid "ProjectDatabase_label_EvaluationActualEstimateDifference"
+msgstr ""
+
+#. Default: "Evaluationmilestones"
+#: content/MonitoringAndEvaluation.py
+msgid "ProjectDatabase_label_EvaluationMilestones"
+msgstr ""
+
+#. Default: "Evaluation Type Milestone"
+#: content/EvaluationMilestone.py
+msgid "ProjectDatabase_label_EvaluationTypeMilestone"
+msgstr ""
+
+#. Default: "Executive Summary"
+#: content/DocumentLinks.py
+msgid "ProjectDatabase_label_ExecutiveSummary"
+msgstr ""
+
+#. Default: "FSP Status"
+#: content/ProjectGeneralInformation.py
+msgid "ProjectDatabase_label_FSPStatus"
+msgstr ""
+
+#. Default: "Finance Category"
+#: content/FinancialsMixin.py
+msgid "ProjectDatabase_label_FinanceCategory"
+msgstr ""
+
+#. Default: "Financial Closure"
+#: content/MonitoringAndEvaluation.py
+msgid "ProjectDatabase_label_FinancialClosure"
+msgstr ""
+
+#. Default: "Financial Planning"
+#: content/OtherProjectRatings.py
+msgid "ProjectDatabase_label_FinancialPlanning"
+msgstr ""
+
+#. Default: "Financial Report 1st Quarter"
+#: content/DocumentLinks.py
+msgid "ProjectDatabase_label_FinancialReport1"
+msgstr ""
+
+#. Default: "Financial Report 2nd Quarter"
+#: content/DocumentLinks.py
+msgid "ProjectDatabase_label_FinancialReport2"
+msgstr ""
+
+#. Default: "Financial Report 3rd Quarter"
+#: content/DocumentLinks.py
+msgid "ProjectDatabase_label_FinancialReport3"
+msgstr ""
+
+#. Default: "Financial Report 4th Quarter"
+#: content/DocumentLinks.py
+msgid "ProjectDatabase_label_FinancialReport4"
+msgstr ""
+
+#. Default: "Project Financial Status - Remarks"
+#: content/FinancialsMixin.py
+msgid "ProjectDatabase_label_FinancialStatusRemarks"
+msgstr ""
+
+#. Default: "First Disbursement"
+#: content/MonitoringAndEvaluation.py
+msgid "ProjectDatabase_label_FirstDisbursement"
+msgstr ""
+
+#. Default: "Fiscal Year"
+#: content/PIRRating.py
+msgid "ProjectDatabase_label_FiscalYear"
+msgstr ""
+
+#. Default: "Focal Area"
+#: content/ProjectGeneralInformation.py
+#: content/CoreMixin.py
+msgid "ProjectDatabase_label_FocalArea"
+msgstr ""
+
+#. Default: "Fund Management Officer"
+#: content/Financials.py
+#: content/MonitoringAndEvaluation.py
+msgid "ProjectDatabase_label_FundManagementOfficer"
+msgstr ""
+
+#. Default: "GEF Agency Implementation"
+#: content/MonitoringAndEvaluation.py
+msgid "ProjectDatabase_label_GEFAgencyImplementation"
+msgstr ""
+
+#. Default: "GEF Focal Point Endrosement Letters"
+#: content/DocumentLinks.py
+msgid "ProjectDatabase_label_GEFFocalPointEndorsementLetters"
+msgstr ""
+
+#. Default: "GEF Phase"
+#: content/ProjectGeneralInformation.py
+#: content/CoreMixin.py
+msgid "ProjectDatabase_label_GEFPhase"
+msgstr ""
+
+#. Default: "Total GEF Allocation"
+#: content/FinancialsMixin.py
+msgid "ProjectDatabase_label_GEFProjectAllocation"
+msgstr ""
+
+#. Default: "GEF Review Sheets"
+#: content/DocumentLinks.py
+msgid "ProjectDatabase_label_GEFReviewSheets"
+msgstr ""
+
+#. Default: "GEF Trust Fund"
+#: content/Financials.py
+msgid "ProjectDatabase_label_GEFTrustFund"
+msgstr ""
+
+#. Default: "Gefid"
+#: content/ProjectGeneralInformation.py
+#: content/Financials.py
+msgid "ProjectDatabase_label_GEFid"
+msgstr ""
+
+#. Default: "IMIS Expenditures"
+#: content/FinancialsMixin.py
+msgid "ProjectDatabase_label_IMISExpenditures"
+msgstr ""
+
+#. Default: "IMIS Number"
+#: content/FinancialsMixin.py
+#: content/CoreMixin.py
+#: content/MonitoringAndEvaluation.py
+msgid "ProjectDatabase_label_IMISNumber"
+msgstr ""
+
+#. Default: "Implementation Approach"
+#: content/OtherProjectRatings.py
+msgid "ProjectDatabase_label_ImplementationApproach"
+msgstr ""
+
+#. Default: "Mode of Execution"
+#: content/ProjectGeneralInformation.py
+#: content/BlankCoreMixin.py
+msgid "ProjectDatabase_label_ImplementationMode"
+msgstr ""
+
+#. Default: "Implementation Progress"
+#: content/OtherProjectRatings.py
+#: content/PIRRating.py
+msgid "ProjectDatabase_label_ImplementationProgress"
+msgstr ""
+
+#. Default: "Implementation Status"
+#: content/BlankCoreMixin.py
+msgid "ProjectDatabase_label_ImplementationStatus"
+msgstr ""
+
+#. Default: "Implementing Agency Fee"
+#: content/FinancialsMixin.py
+#: content/BlankCoreMixin.py
+msgid "ProjectDatabase_label_ImplementingAgencyFee"
+msgstr ""
+
+#. Default: "Initial Completion Date"
+#: content/FinancialsMixin.py
+#: content/MonitoringAndEvaluation.py
+msgid "ProjectDatabase_label_InitialCompletionDate"
+msgstr ""
+
+#. Default: "Inventory of Non-expendable Equipment"
+#: content/DocumentLinks.py
+msgid "ProjectDatabase_label_InventoryOfNonExpendableEquipment"
+msgstr ""
+
+#. Default: "Joint Implementation"
+#: content/ProjectGeneralInformation.py
+#: content/MonitoringAndEvaluation.py
+msgid "ProjectDatabase_label_JointImplementation"
+msgstr ""
+
+#. Default: "LDC Fund Allocation"
+#: content/Financials.py
+msgid "ProjectDatabase_label_LDCFundAllocation"
+msgstr ""
+
+#. Default: "Lead GEF Agency"
+#: content/ProjectGeneralInformation.py
+msgid "ProjectDatabase_label_LeadAgency"
+msgstr ""
+
+#. Default: "Lead GEF Agency Contact"
+#: content/ProjectGeneralInformation.py
+msgid "ProjectDatabase_label_LeadAgencyContact"
+msgstr ""
+
+#. Default: "Lead Executing Agency"
+#: content/Financials.py
+#: content/MonitoringAndEvaluation.py
+msgid "ProjectDatabase_label_LeadExecutingAgency"
+msgstr ""
+
+#. Default: "Leveraged Financing Amount"
+#: content/ProjectGeneralInformation.py
+#: content/BlankCoreMixin.py
+msgid "ProjectDatabase_label_LeveragedFinancingAmount"
+msgstr ""
+
+#. Default: "Leveraged Financing Description"
+#: content/ProjectGeneralInformation.py
+msgid "ProjectDatabase_label_LeveragedFinancingRemark"
+msgstr ""
+
+#. Default: "M&E Milestone Name"
+#: content/EvaluationMilestone.py
+msgid "ProjectDatabase_label_MEMilestoneName"
+msgstr ""
+
+#. Default: "MOU"
+#: content/DocumentLinks.py
+msgid "ProjectDatabase_label_MOU"
+msgstr ""
+
+#. Default: "MSP Status"
+#: content/ProjectGeneralInformation.py
+msgid "ProjectDatabase_label_MSPStatus"
+msgstr ""
+
+#. Default: "MTE/MTR Rating"
+#: content/RatingTrackingSystem.py
+msgid "ProjectDatabase_label_MTEMTRRating"
+msgstr ""
+
+#. Default: "Midterm Evaluation Rating"
+#: content/RatingTrackingSystem.py
+#: content/OtherProjectRatings.py
+msgid "ProjectDatabase_label_MTERating"
+msgstr ""
+
+#. Default: "Actual Cost MTR/MTE"
+#: content/MonitoringAndEvaluation.py
+msgid "ProjectDatabase_label_MTRActualCost"
+msgstr ""
+
+#. Default: "Cost Estimate for the MTR/MTE"
+#: content/MonitoringAndEvaluation.py
+msgid "ProjectDatabase_label_MTREstimatedCost"
+msgstr ""
+
+#. Default: "Midterm Review Rating"
+#: content/RatingTrackingSystem.py
+#: content/OtherProjectRatings.py
+msgid "ProjectDatabase_label_MTRRating"
+msgstr ""
+
+#. Default: "Project Mid-term Review Budget"
+#: content/Financials.py
+msgid "ProjectDatabase_label_MidTermEvaluationBudget"
+msgstr ""
+
+#. Default: "Midterm Evaluation"
+#: content/DocumentLinks.py
+msgid "ProjectDatabase_label_MidtermEvaluation"
+msgstr ""
+
+#. Default: "Mid term Reviews/Evaluations"
+#: content/DocumentLinks.py
+#: content/MonitoringAndEvaluation.py
+msgid "ProjectDatabase_label_MidtermReview"
+msgstr ""
+
+#. Default: "Midterm Review Actual Date"
+#: content/MonitoringAndEvaluation.py
+msgid "ProjectDatabase_label_MidtermReviewActualDate"
+msgstr ""
+
+#. Default: "Midterm Review Evaluator Name"
+#: content/MonitoringAndEvaluation.py
+msgid "ProjectDatabase_label_MidtermReviewEvaluatorName"
+msgstr ""
+
+#. Default: "Midterm Review Planned Date"
+#: content/MonitoringAndEvaluation.py
+msgid "ProjectDatabase_label_MidtermReviewPlannedDate"
+msgstr ""
+
+#. Default: "Mid-term Review Report Date"
+#: content/BlankCoreMixin.py
+#: content/MonitoringAndEvaluation.py
+msgid "ProjectDatabase_label_MidtermReviewReportDate"
+msgstr ""
+
+#. Default: "Milestone Date"
+#: content/Milestone.py
+msgid "ProjectDatabase_label_MilestoneDate"
+msgstr ""
+
+#. Default: "Remarks on Decision"
+#: content/Milestone.py
+msgid "ProjectDatabase_label_MilestoneDescription"
+msgstr ""
+
+#. Default: "Milestone Name"
+#: content/Milestone.py
+msgid "ProjectDatabase_label_MilestoneName"
+msgstr ""
+
+#. Default: "Mission Reports"
+#: content/DocumentLinks.py
+msgid "ProjectDatabase_label_MissionReports"
+msgstr ""
+
+#. Default: "Monitoring and Evaluation"
+#: content/OtherProjectRatings.py
+#: content/PIRRating.py
+msgid "ProjectDatabase_label_MonitoringAndEvaluation"
+msgstr ""
+
+#. Default: "Multiple Focal Areas"
+#: content/ProjectGeneralInformation.py
+msgid "ProjectDatabase_label_MultipleFocalAreas"
+msgstr ""
+
+#. Default: "Multiple Focal Areas Other"
+#: content/ProjectGeneralInformation.py
+msgid "ProjectDatabase_label_MultipleFocalAreasOther"
+msgstr ""
+
+#. Default: "National Focal Point Endorsements"
+#: content/Milestone.py
+msgid "ProjectDatabase_label_NationalFocalPointEndorsements"
+msgstr ""
+
+#. Default: "New Tables for Project Revisions"
+#: content/DocumentLinks.py
+msgid "ProjectDatabase_label_NewTablesForProjectRevisions"
+msgstr ""
+
+#. Default: "Number"
+#: content/ProjectGeneralInformation.py
+msgid "ProjectDatabase_label_Number"
+msgstr ""
+
+#. Default: "Office of Execution"
+#: content/ProjectGeneralInformation.py
+#: content/BlankCoreMixin.py
+msgid "ProjectDatabase_label_Office"
+msgstr ""
+
+#. Default: "Operational Programme"
+#: content/ProjectGeneralInformation.py
+#: content/CoreMixin.py
+msgid "ProjectDatabase_label_OperationalProgramme"
+msgstr ""
+
+#. Default: "Other Categories"
+#: content/ProjectExecutingPartner.py
+msgid "ProjectDatabase_label_OtherCategories"
+msgstr ""
+
+#. Default: "Other GEF Agency(ies)"
+#: content/ProjectGeneralInformation.py
+msgid "ProjectDatabase_label_OtherImplementingAgency"
+msgstr ""
+
+#. Default: "Other Project Executing Partners"
+#: content/SubProject.py
+#: content/Financials.py
+msgid "ProjectDatabase_label_OtherLeadExecutingAgency"
+msgstr ""
+
+#. Default: "Other Non-GEF Eligible Project Participating Countries"
+#: content/ProjectGeneralInformation.py
+msgid "ProjectDatabase_label_OtherNonGEFEligibleCountries"
+msgstr ""
+
+#. Default: "Other Project Executing Partners"
+#: content/ProjectGeneralInformation.py
+msgid "ProjectDatabase_label_OtherProjectExecutingPartners"
+msgstr ""
+
+#. Default: "Other Rating"
+#: content/OtherProjectRatings.py
+msgid "ProjectDatabase_label_OtherRating"
+msgstr ""
+
+#. Default: "Overall Rating"
+#: content/OtherProjectRatings.py
+msgid "ProjectDatabase_label_OverallRating"
+msgstr ""
+
+#. Default: "PDFA Status"
+#: content/ProjectGeneralInformation.py
+msgid "ProjectDatabase_label_PDFAStatus"
+msgstr ""
+
+#. Default: "PDFB Status"
+#: content/ProjectGeneralInformation.py
+msgid "ProjectDatabase_label_PDFBStatus"
+msgstr ""
+
+#. Default: "PDF Financial Information Documents"
+#: content/DocumentLinks.py
+msgid "ProjectDatabase_label_PDFDocument"
+msgstr ""
+
+#. Default: "PDF Results"
+#: content/Financials.py
+msgid "ProjectDatabase_label_PDFResults"
+msgstr ""
+
+#. Default: "PIR"
+#: content/DocumentLinks.py
+msgid "ProjectDatabase_label_PIR"
+msgstr ""
+
+#. Default: "PIR Rating"
+#: content/RatingTrackingSystem.py
+msgid "ProjectDatabase_label_PIRRating"
+msgstr ""
+
+#. Default: "PMS Number"
+#: content/FinancialsMixin.py
+#: content/CoreMixin.py
+msgid "ProjectDatabase_label_PMSNumber"
+msgstr ""
+
+#. Default: "Phase/Tranche Number"
+#: content/ProjectGeneralInformation.py
+msgid "ProjectDatabase_label_PhasedTrancheNumber"
+msgstr ""
+
+#. Default: "Pipeline Number"
+#: content/ProjectGeneralInformation.py
+#: content/CoreMixin.py
+msgid "ProjectDatabase_label_PipelineNumber"
+msgstr ""
+
+#. Default: "Planned Date"
+#: content/MonitoringAndEvaluation.py
+#: content/EvaluationMilestone.py
+msgid "ProjectDatabase_label_PlannedDate"
+msgstr ""
+
+#. Default: "Planned Duration"
+#: content/FinancialsMixin.py
+msgid "ProjectDatabase_label_PlannedDuration"
+msgstr ""
+
+#. Default: "Previous Task Manager"
+#: content/ProjectGeneralInformation.py
+#: content/CoreMixin.py
+msgid "ProjectDatabase_label_PreviousTaskManager"
+msgstr ""
+
+#. Default: "Progress Reports"
+#: content/DocumentLinks.py
+msgid "ProjectDatabase_label_ProgressReport"
+msgstr ""
+
+#. Default: "Project Brief"
+#: content/DocumentLinks.py
+msgid "ProjectDatabase_label_ProjectBrief"
+msgstr ""
+
+#. Default: "Project Coordinator"
+#: content/ProjectGeneralInformation.py
+#: content/CoreMixin.py
+msgid "ProjectDatabase_label_ProjectCoordinator"
+msgstr ""
+
+#. Default: "Project Cycle Stage"
+#: content/Milestone.py
+msgid "ProjectDatabase_label_ProjectCycleStage"
+msgstr ""
+
+#. Default: "Project Document"
+#: content/DocumentLinks.py
+msgid "ProjectDatabase_label_ProjectDocument"
+msgstr ""
+
+#. Default: "Lead Executing Agency"
+#: content/ProjectGeneralInformation.py
+msgid "ProjectDatabase_label_ProjectExecutingAgency"
+msgstr ""
+
+#. Default: "Project Implementation Status"
+#: content/ProjectGeneralInformation.py
+#: content/SubProject.py
+msgid "ProjectDatabase_label_ProjectImplementationStatus"
+msgstr ""
+
+#. Default: "Project Risk Rating at Inception"
+#: content/RatingTrackingSystem.py
+msgid "ProjectDatabase_label_ProjectInceptionRiskRating"
+msgstr ""
+
+#. Default: "Project Objectives"
+#: content/OtherProjectRatings.py
+msgid "ProjectDatabase_label_ProjectObjectives"
+msgstr ""
+
+#. Default: "Project Outputs and Actvities"
+#: content/OtherProjectRatings.py
+msgid "ProjectDatabase_label_ProjectOutputsAndActivities"
+msgstr ""
+
+#. Default: "Project Processes"
+#: content/Milestone.py
+msgid "ProjectDatabase_label_ProjectProcess"
+msgstr ""
+
+#. Default: "Actual Overall Project Results"
+#: content/ProjectGeneralInformation.py
+#: content/BlankCoreMixin.py
+msgid "ProjectDatabase_label_ProjectResults"
+msgstr ""
+
+#. Default: "Project Revision"
+#: content/FinancialsMixin.py
+msgid "ProjectDatabase_label_ProjectRevision"
+msgstr ""
+
+#. Default: "Project Revisions"
+#: content/DocumentLinks.py
+msgid "ProjectDatabase_label_ProjectRevisions"
+msgstr ""
+
+#. Default: "Project Risk Rating for each PIR"
+#: content/RatingTrackingSystem.py
+msgid "ProjectDatabase_label_ProjectRiskRatingForEachPIR"
+msgstr ""
+
+#. Default: "Project Sustainability"
+#: content/OtherProjectRatings.py
+msgid "ProjectDatabase_label_ProjectSustainability"
+msgstr ""
+
+#. Default: "Project Title"
+#: content/ProjectGeneralInformation.py
+#: content/CoreMixin.py
+#: content/MonitoringAndEvaluation.py
+msgid "ProjectDatabase_label_ProjectTitle"
+msgstr ""
+
+#. Default: "Project Type"
+#: content/ProjectGeneralInformation.py
+msgid "ProjectDatabase_label_ProjectType"
+msgstr ""
+
+#. Default: "Recommendations Follow-up"
+#: content/DocumentLinks.py
+msgid "ProjectDatabase_label_RecommendationsFollowUp"
+msgstr ""
+
+#. Default: "Region"
+#: content/ProjectGeneralInformation.py
+#: content/CoreMixin.py
+msgid "ProjectDatabase_label_Region"
+msgstr ""
+
+#. Default: "Remark"
+#: content/ProjectImplementation.py
+msgid "ProjectDatabase_label_Remark"
+msgstr ""
+
+#. Default: "Remarks"
+#: content/EvaluationMilestone.py
+#: content/RatingTrackingSystem.py
+msgid "ProjectDatabase_label_Remarks"
+msgstr ""
+
+#. Default: "Remarks on Source of Funds for MTR/MTE"
+#: content/MonitoringAndEvaluation.py
+msgid "ProjectDatabase_label_RemarksOnFundSourceMTR"
+msgstr ""
+
+#. Default: "Remarks on the Source of Funds for TE"
+#: content/MonitoringAndEvaluation.py
+msgid "ProjectDatabase_label_RemarksOnSourceOfFundsTE"
+msgstr ""
+
+#. Default: "Replicability"
+#: content/OtherProjectRatings.py
+msgid "ProjectDatabase_label_Replicability"
+msgstr ""
+
+#. Default: "Reports"
+#: content/FinancialsMixin.py
+msgid "ProjectDatabase_label_Reports"
+msgstr ""
+
+#. Default: "Revised allocation to UNEP"
+#: content/FinancialsMixin.py
+msgid "ProjectDatabase_label_RevisedAllocationToUNEP"
+msgstr ""
+
+#. Default: "Revised Completion Date"
+#: content/FinancialsMixin.py
+#: content/MonitoringAndEvaluation.py
+msgid "ProjectDatabase_label_RevisedCompletionDate"
+msgstr ""
+
+#. Default: "Risk"
+#: content/PIRRating.py
+msgid "ProjectDatabase_label_Risk"
+msgstr ""
+
+#. Default: "SCCF Allocation"
+#: content/Financials.py
+msgid "ProjectDatabase_label_SCCFAllocation"
+msgstr ""
+
+#. Default: "Geographic Scope"
+#: content/ProjectGeneralInformation.py
+#: content/CoreMixin.py
+msgid "ProjectDatabase_label_Scope"
+msgstr ""
+
+#. Default: "Geographic Scope - Other"
+#: content/ProjectGeneralInformation.py
+msgid "ProjectDatabase_label_ScopeOther"
+msgstr ""
+
+#. Default: "Stakeholder Participation"
+#: content/OtherProjectRatings.py
+msgid "ProjectDatabase_label_StakeholderParticipation"
+msgstr ""
+
+#. Default: "Project Status"
+#: content/FinancialsMixin.py
+#: content/BlankCoreMixin.py
+msgid "ProjectDatabase_label_Status"
+msgstr ""
+
+#. Default: "Steering Committee Meeting Minutes"
+#: content/DocumentLinks.py
+msgid "ProjectDatabase_label_SteeringCommitteeMeetingMinutes"
+msgstr ""
+
+#. Default: "Strategic Objectives"
+#: content/ProjectGeneralInformation.py
+#: content/CoreMixin.py
+msgid "ProjectDatabase_label_StrategicObjectives"
+msgstr ""
+
+#. Default: "Strategic Partnership"
+#: content/Financials.py
+msgid "ProjectDatabase_label_StrategicPartnership"
+msgstr ""
+
+#. Default: "Strategic Priority"
+#: content/ProjectGeneralInformation.py
+msgid "ProjectDatabase_label_StrategicPriority"
+msgstr ""
+
+#. Default: "Strategic Program"
+#: content/ProjectGeneralInformation.py
+msgid "ProjectDatabase_label_StrategicProgram"
+msgstr ""
+
+#. Default: "Sub-project Documents"
+#: content/DocumentLinks.py
+msgid "ProjectDatabase_label_SubProjectDocuments"
+msgstr ""
+
+#. Default: "Substantive Publications"
+#: content/DocumentLinks.py
+msgid "ProjectDatabase_label_SubstantivePublication"
+msgstr ""
+
+#. Default: "Substantive Reports"
+#: content/DocumentLinks.py
+msgid "ProjectDatabase_label_SubstantiveReport"
+msgstr ""
+
+#. Default: "Total Cash Disbursements"
+#: content/FinancialsMixin.py
+msgid "ProjectDatabase_label_SumCashDisbursements"
+msgstr ""
+
+#. Default: "Total Cofinancing: Cash (Actual)"
+#: content/FinancialsMixin.py
+msgid "ProjectDatabase_label_SumCofinCashActual"
+msgstr ""
+
+#. Default: "Total Cofinancing: Cash (Planned)"
+#: content/FinancialsMixin.py
+msgid "ProjectDatabase_label_SumCofinCashPlanned"
+msgstr ""
+
+#. Default: "Total Cofinancing: In Kind (Actual)"
+#: content/FinancialsMixin.py
+msgid "ProjectDatabase_label_SumCofinInKindActual"
+msgstr ""
+
+#. Default: "Total Cofinancing: In Kind (Planned)"
+#: content/FinancialsMixin.py
+msgid "ProjectDatabase_label_SumCofinInKindPlanned"
+msgstr ""
+
+#. Default: "Total IMIS Expenditures"
+#: content/FinancialsMixin.py
+#: content/BlankCoreMixin.py
+msgid "ProjectDatabase_label_SumIMISExpenditures"
+msgstr ""
+
+#. Default: "Project Description"
+#: content/ProjectGeneralInformation.py
+#: content/BlankCoreMixin.py
+msgid "ProjectDatabase_label_SummaryDescription"
+msgstr ""
+
+#. Default: "Supplementary Allocation to UNEP"
+#: content/Financials.py
+msgid "ProjectDatabase_label_SupplementaryUNEPAllocation"
+msgstr ""
+
+#. Default: "Supplementary Allocation to UNEP: remark"
+#: content/Financials.py
+msgid "ProjectDatabase_label_SupplementaryUNEPAllocationRemark"
+msgstr ""
+
+#. Default: "Actual Cost TE"
+#: content/MonitoringAndEvaluation.py
+msgid "ProjectDatabase_label_TEActualCost"
+msgstr ""
+
+#. Default: "Cost Estimate for the TE"
+#: content/MonitoringAndEvaluation.py
+msgid "ProjectDatabase_label_TEEstimatedCost"
+msgstr ""
+
+#. Default: "Terminal Evaluation Rating"
+#: content/RatingTrackingSystem.py
+#: content/OtherProjectRatings.py
+msgid "ProjectDatabase_label_TERating"
+msgstr ""
+
+#. Default: "Team Lead"
+#: content/EvaluatorsInformation.py
+msgid "ProjectDatabase_label_TeamLeader"
+msgstr ""
+
+#. Default: "Team Members"
+#: content/EvaluatorsInformation.py
+msgid "ProjectDatabase_label_TeamMembers"
+msgstr ""
+
+#. Default: "Terminal Evaluation"
+#: content/DocumentLinks.py
+msgid "ProjectDatabase_label_TerminalEvaluation"
+msgstr ""
+
+#. Default: "Terminal Evaluation Budget"
+#: content/MonitoringAndEvaluation.py
+#: content/Financials.py
+msgid "ProjectDatabase_label_TerminalEvaluationBudget"
+msgstr ""
+
+#. Default: "Terminal Evaluation Planned"
+#: content/MonitoringAndEvaluation.py
+msgid "ProjectDatabase_label_TerminalEvaluationPlanned"
+msgstr ""
+
+#. Default: "Terminal Evaluation Report Date"
+#: content/BlankCoreMixin.py
+#: content/MonitoringAndEvaluation.py
+msgid "ProjectDatabase_label_TerminalEvaluationReportDate"
+msgstr ""
+
+#. Default: "Terminal Report Actual Evaluation Date"
+#: content/MonitoringAndEvaluation.py
+msgid "ProjectDatabase_label_TerminalReportActualEvaluationDate"
+msgstr ""
+
+#. Default: "Terminal Report Evaluator Name"
+#: content/MonitoringAndEvaluation.py
+msgid "ProjectDatabase_label_TerminalReportEvaluatorName"
+msgstr ""
+
+#. Default: "Terminal Report Planned Evaluation Date"
+#: content/MonitoringAndEvaluation.py
+msgid "ProjectDatabase_label_TerminalReportPlannedEvaluationDate"
+msgstr ""
+
+#. Default: "Total Cash Disbursements"
+#: content/ProjectGeneralInformation.py
+msgid "ProjectDatabase_label_TotalCashDisbursements"
+msgstr ""
+
+#. Default: "Total Co-financing (actual)"
+#: content/ProjectGeneralInformation.py
+#: content/BlankCoreMixin.py
+msgid "ProjectDatabase_label_TotalCofinancingActual"
+msgstr ""
+
+#. Default: "Total Co-financing (planned)"
+#: content/ProjectGeneralInformation.py
+#: content/BlankCoreMixin.py
+msgid "ProjectDatabase_label_TotalCofinancingPlanned"
+msgstr ""
+
+#. Default: "Total Cost of Project Stage (Actual)"
+#: content/FinancialsMixin.py
+msgid "ProjectDatabase_label_TotalCostOfProjectStageActual"
+msgstr ""
+
+#. Default: "Total Cost of Project Stage (Planned)"
+#: content/FinancialsMixin.py
+msgid "ProjectDatabase_label_TotalCostOfProjectStagePlanned"
+msgstr ""
+
+#. Default: "Total Disbursement"
+#: content/BlankCoreMixin.py
+msgid "ProjectDatabase_label_TotalDisbursement"
+msgstr ""
+
+#. Default: "Total GEF Allocation"
+#: content/ProjectGeneralInformation.py
+#: content/BlankCoreMixin.py
+msgid "ProjectDatabase_label_TotalGEFAllocation"
+msgstr ""
+
+#. Default: "Total IMIS Expenditures"
+#: content/ProjectGeneralInformation.py
+#: content/BlankCoreMixin.py
+msgid "ProjectDatabase_label_TotalIMISExpenditures"
+msgstr ""
+
+#. Default: "Total Project Cost Actual"
+#: content/BlankCoreMixin.py
+msgid "ProjectDatabase_label_TotalProjectCostActual"
+msgstr ""
+
+#. Default: "Total Project Cost Planned"
+#: content/BlankCoreMixin.py
+msgid "ProjectDatabase_label_TotalProjectCostPlanned"
+msgstr ""
+
+#. Default: "Total UNEP Allocation"
+#: content/ProjectGeneralInformation.py
+#: content/BlankCoreMixin.py
+msgid "ProjectDatabase_label_TotalUNEPAllocation"
+msgstr ""
+
+#. Default: "Trustee ID"
+#: content/FinancialsMixin.py
+msgid "ProjectDatabase_label_TrusteeID"
+msgstr ""
+
+#. Default: "UNEP Component Description"
+#: content/BlankCoreMixin.py
+msgid "ProjectDatabase_label_UNEPComponentDescription"
+msgstr ""
+
+#. Default: "UNEP Implementing Agency Fee"
+#: content/BlankCoreMixin.py
+msgid "ProjectDatabase_label_UNEPImplementingAgencyFee"
+msgstr ""
+
+#. Default: "UNEP Implementing Agency Fee"
+#: content/FinancialsMixin.py
+msgid "ProjectDatabase_label_UNEPImplentingAgencyFee"
+msgstr ""
+
+#. Default: "UNEP Project Annexes"
+#: content/DocumentLinks.py
+msgid "ProjectDatabase_label_UNEPProjectAnnexes"
+msgstr ""
+
+#. Default: "UNEP Project Document"
+#: content/DocumentLinks.py
+msgid "ProjectDatabase_label_UNEPProjectDocument"
+msgstr ""
+
+#. Default: "UNEP Component Description"
+#: content/ProjectGeneralInformation.py
+msgid "ProjectDatabase_label_UnepComponentDescription"
+msgstr ""
+
+#. Default: "Project Website Address"
+#: content/ProjectGeneralInformation.py
+#: content/SubProject.py
+#: content/CoreMixin.py
+msgid "ProjectDatabase_label_Website"
+msgstr ""
+
+#. Default: "Title"
+#: content/ProjectGeneralInformation.py
+msgid "ProjectDatabase_label_title"
+msgstr ""
+
