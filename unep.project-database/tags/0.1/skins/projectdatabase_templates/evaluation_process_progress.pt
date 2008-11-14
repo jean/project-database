@@ -1,0 +1,232 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xml:lang="en"
+      lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      metal:use-macro="here/main_template/macros/master"
+      i18n:domain="plone">
+
+  <head><title></title></head>
+
+  <metal:head fill-slot="javascript_head_slot"
+              tal:define="fields python:here.Schema().fields();">
+    
+   
+  </metal:head>
+  <body>
+    <metal:fill fill-slot="main">
+      <metal:main_macro define-macro="main"
+            tal:define="portal_type python:here.getPortalTypeName().lower().replace(' ', '_');
+            ">
+
+        <table tal:define="emresults python:here.portal_catalog(portal_type = ['EvaluationMilestone'],review_state=['published','visible'],path='/'.join(here.getPhysicalPath()));
+                           fmiobj python:here.aq_parent;
+                            " 
+            class="financialinfotable" 
+            id="EvaluatorsInformation" 
+            border="1" 
+            cellpadding="0" 
+            cellspacing="3" 
+            style="border-collapse: collapse" bordercolor="#D6D7D9">
+            <thead> 
+                <tr>
+                <th bgcolor="#78a5d1"  colspan="4" >Table Tracking
+                    Evaluation Process Progress</th>
+                </tr>
+            </thead>
+            <tbody  >
+                <tr><td width=30% bgcolor="#DFEAF4">Name</td>
+                    <td width=30% bgcolor="#DFEAF4">Value/Planned Date</td>
+                    <td width=40% bgcolor="#DFEAF4">Actual Date</td>
+                </tr>
+                <tal:entry tal:repeat="em emresults">
+                    <tr tal:define="emo em/getObject">
+                        <td
+                            tal:define="field python:emo.Schema()['MEMilestoneName']; accessor python:getattr(emo, field.accessor);
+                                        mode string:view;
+                                        widget_view python:emo.widget(field.getName(), mode=mode, use_label=1);"
+                            tal:condition="python:not accessor()==''" > 
+                            <metal:block use-macro="widget_view" />
+                        </td>
+                        <td
+                            tal:define="field python:emo.Schema()['PlannedDate']; accessor python:getattr(emo, field.accessor);
+                                        mode string:view;
+                                        widget_view python:emo.widget(field.getName(), mode=mode, use_label=1);"
+                            tal:condition="python:not accessor()==''" > 
+                            <metal:block use-macro="widget_view" />
+                        </td>
+                        <td
+                            tal:define="field python:emo.Schema()['ActualDate']; accessor python:getattr(emo, field.accessor);
+                                        mode string:view;
+                                        widget_view python:emo.widget(field.getName(), mode=mode, use_label=1);"
+                            tal:condition="python:not accessor()==''" > 
+                            <metal:block use-macro="widget_view" />
+                        </td>
+                    </tr>
+                </tal:entry>
+                    <tr>
+                        <td>
+                            GEF Project Allocation
+                        </td>
+                        <td
+                            tal:define="field python:fmiobj.Schema()['GEFProjectAllocation']; accessor python:getattr(fmiobj, field.accessor);
+                                        mode string:view;
+                                        widget_view python:fmiobj.widget(field.getName(), mode=mode, use_label=1);"
+                            tal:condition="python:not accessor()==''" > 
+                            <metal:block use-macro="widget_view" />
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            Source of Funds
+                        </td>
+                        <td
+                            tal:define="field python:here.Schema()['RemarksOnFundSourceMTR']; accessor python:getattr(here, field.accessor);
+                                        mode string:view;
+                                        widget_view python:here.widget(field.getName(), mode=mode, use_label=1);"
+                            tal:condition="python:not accessor()==''" > 
+                            <metal:block use-macro="widget_view" />
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            Teminal Evaluation Budget
+                        </td>
+                        <td
+                            tal:define="field python:here.Schema()['TerminalEvaluationBudget']; accessor python:getattr(here, field.accessor);
+                                        mode string:view;
+                                        widget_view python:here.widget(field.getName(), mode=mode, use_label=1);"
+                            tal:condition="python:not accessor()==''" > 
+                            <metal:block use-macro="widget_view" />
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            Fund Management Officer
+                        </td>
+                        <td
+                            tal:define="field python:here.Schema()['FundManagementOfficer']; accessor python:getattr(here, field.accessor);
+                                        mode string:view;
+                                        widget_view python:here.widget(field.getName(), mode=mode, use_label=1);"
+                            tal:condition="python:not accessor()==''" > 
+                            <metal:block use-macro="widget_view" />
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            Current Task Manager
+                        </td>
+                        <td
+                            tal:define="field python:here.Schema()['CurrentTaskManager']; accessor python:getattr(here, field.accessor);
+                                        mode string:view;
+                                        widget_view python:here.widget(field.getName(), mode=mode, use_label=1);"
+                            tal:condition="python:not accessor()==''" > 
+                            <metal:block use-macro="widget_view" />
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            Terminal Evaluation Planned Date
+                        </td>
+                        <td
+                            tal:define="field python:here.Schema()['TerminalEvaluationPlanned']; accessor python:getattr(here, field.accessor);
+                                        mode string:view;
+                                        widget_view python:here.widget(field.getName(), mode=mode, use_label=1);"
+                            tal:condition="python:not accessor()==''" > 
+                            <metal:block use-macro="widget_view" />
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            Initial Completion Date
+                        </td>
+                        <td
+                            tal:define="field python:here.Schema()['InitialCompletionDate']; accessor python:getattr(here, field.accessor);
+                                        mode string:view;
+                                        widget_view python:here.widget(field.getName(), mode=mode, use_label=1);"
+                            tal:condition="python:not accessor()==''" > 
+                            <metal:block use-macro="widget_view" />
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            IMIS Number
+                        </td>
+                        <td
+                            tal:define="field python:here.Schema()['IMISNumber']; accessor python:getattr(here, field.accessor);
+                                        mode string:view;
+                                        widget_view python:here.widget(field.getName(), mode=mode, use_label=1);"
+                            tal:condition="python:not accessor()==''" > 
+                            <metal:block use-macro="widget_view" />
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            Joint Evaluation Agency Contact Name
+                        </td>
+                        <td
+                            tal:define="field python:here.Schema()['JointEvaluationAgencyContact']; accessor python:getattr(here, field.accessor);
+                                        mode string:view;
+                                        widget_view python:here.widget(field.getName(), mode=mode, use_label=1);"
+                            tal:condition="python:not accessor()==''" > 
+                            <metal:block use-macro="widget_view" />
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            Other Agency
+                        </td>
+                        <td
+                            tal:define="field python:here.Schema()['OtherAgency']; accessor python:getattr(here, field.accessor);
+                                        mode string:view;
+                                        widget_view python:here.widget(field.getName(), mode=mode, use_label=1);"
+                            tal:condition="python:not accessor()==''" > 
+                            <metal:block use-macro="widget_view" />
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            Joint Evaluation
+                        </td>
+                        <td
+                            tal:define="field python:here.Schema()['JointEvaluation']; accessor python:getattr(here, field.accessor);
+                                        mode string:view;
+                                        widget_view python:here.widget(field.getName(), mode=mode, use_label=1);"
+                            tal:condition="python:not accessor()==''" > 
+                            <metal:block use-macro="widget_view" />
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            Project Title
+                        </td>
+                        <td
+                            tal:define="field python:here.getProject().Schema()['title']; accessor python:getattr(here.getProject(), field.accessor);
+                                        mode string:view;
+                                        widget_view python:here.getProject().widget(field.getName(), mode=mode, use_label=1);"
+                            tal:condition="python:not accessor()==''" > 
+                            <metal:block use-macro="widget_view" />
+                        </td>
+                    </tr>
+
+            </tbody>
+        </table>
+         
+      
+
+      </metal:main_macro>
+    </metal:fill>
+  </body>
+</html>
