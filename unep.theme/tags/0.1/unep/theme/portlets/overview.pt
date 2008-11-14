@@ -1,0 +1,15 @@
+<div style="width: 100%; height: auto;">
+    <div style="float: left; width: 100%; height: 30px;">&nbsp;</div>
+    <div class="overview-heading">
+        <span class="greytext" i18n:translate="overview">Overview</span>
+    </div>
+    <div style="float: left; width: 100%; height: 15px;">&nbsp;</div>
+    <div class="overview-item"><a href="">General</a></div>
+    <div class="overview-item"><a href="">Financial</a></div>
+    <div class="overview-item"><a href="">Documents</a></div>
+    <div class="overview-item"><a href="">Milestones</a></div>
+    <div class="overview-item"><a href="">Monitoring &amp; Evaluation</a></div>
+    <div class="overview-item"><a href="" tal:attributes="href string:${context/portal_url}/contacts">Personnel &amp; Contacts</a></div>
+    <div style="float: left; width: 100%; height: 15px;">&nbsp;</div>
+</div>
+
