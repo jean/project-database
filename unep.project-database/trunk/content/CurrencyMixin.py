@@ -46,7 +46,6 @@ class CurrencyMixin:
         return pt.financial_properties.default_currency
         # return 'USD'
 
-
 ##code-section module-footer #fill in your manual code here
 ##/code-section module-footer
 

@@ -101,5 +101,9 @@ class IFinancialsMixin(Interface):
     """Marker interface for .FinancialsMixin.FinancialsMixin
     """
 
+class IProjectDatabase(Interface):
+    """Marker interface for .ProjectDatabase.ProjectDatabase
+    """
+
 ##code-section FOOT
 ##/code-section FOOT
