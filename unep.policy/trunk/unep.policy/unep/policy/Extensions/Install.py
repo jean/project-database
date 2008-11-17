@@ -1,6 +1,7 @@
 import transaction
 from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.migrations.migration_util import safeEditProperty
+from Products.ProjectDatabase.content.ProjectDatabase import ProjectDatabase
 
 PRODUCT_DEPENDENCIES = (
         'ATExtensions', 
@@ -53,9 +54,14 @@ def Install(self, reinstall=False):
     # if 'Evaluators' not in portal.contentIds():
     #     portal.invokeFactory('UpfrontContacts', 'Evaluators', title='Evaluators')
 
-    # add default project folders
+    # add default project databases folder
     if 'projectdatabases' not in portal.contentIds():
-        portal.invokeFactory('Folder', 'projectdatabases', title='PROJECTS A-Z')
+        # portal.invokeFactory('Folder', 'projectdatabases', title='PROJECTS A-Z')
+        projdb = ProjectDatabase('projectdatabases')
+        portal._setObject('projectdatabases', projdb)
+        projdb = portal['projectdatabases']
+        projdb.title='PROJECTS A-Z'
+        projdb.reindexObject()
     # add global contact manager
     if 'contacts' not in portal.contentIds():
         portal.invokeFactory('ContactManager', 'contacts', title='STAFF & CONTACTS')
