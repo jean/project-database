@@ -10,8 +10,9 @@
 
 <div metal:fill-slot="main">
 
-    <h1 i18n:translate="heading_welcome_to">Welcome to
-        <span i18n:name="sitename" tal:omit-tag="" tal:content="here/Title">Portal title</span>
+    <h1 class="documentFirstHeading" 
+        tal:content="here/Title">
+            Portal title
     </h1>
 
     <p tal:content="portal/description">
