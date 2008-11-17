@@ -26,5 +26,6 @@
   <type portal_type="MOU"/>
   <type portal_type="CurrencyMixin"/>
   <type portal_type="FinancialsMixin"/>
+  <type portal_type="ProjectDatabase"/>
  </factorytypes>
 </object>

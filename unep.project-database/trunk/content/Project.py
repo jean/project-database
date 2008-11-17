@@ -103,20 +103,6 @@ class Project(BaseFolder, BrowserDefaultMixin):
         """
         return self
 
-    # Manually created methods
-
-    # def contactsVocab(self):
-    #     """
-    #     """
-    #     path = '/'.join(self.getAProject().getPhysicalPath()) + '/contacts-1'
-    #     brains = self.portal_catalog(portal_type='Person', path=path)
-    #     pairs=[]
-    #     pairs.append(("", "<no reference>"))
-    #     for b in brains:
-    #         pairs.append((b.getObject().UID(), b.getObject().Title()))
-    #     return DisplayList(pairs)
-
-
 
 registerType(Project, PROJECTNAME)
 # end of class Project

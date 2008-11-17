@@ -388,7 +388,6 @@ class FinancialsMixin(BrowserDefaultMixin):
         default_currency = properties.financial_properties.default_currency
         return Money(0, default_currency)
         #return self.getZeroMoneyInstance()
-
     security.declarePublic('getSumCofinCashPlanned')
     def getSumCofinCashPlanned(self):
         """
@@ -396,12 +395,11 @@ class FinancialsMixin(BrowserDefaultMixin):
         cash_values = self.getCofinancingCash()
         return self.computeDataGridAmount([v['cofinancing_cash_planned_amount'] for v in cash_values if v['cofinancing_cash_planned_amount']])
 
-    # security.declarePublic('getSumCofinActual')
-    # def getSumCofinActual(self):
-    #     """
-    #     """
-    #     cash_values = self.getCofinancingCash()
-    #     return self.computeDataGridAmount([v['cofinancing_cash_actual_amount'] for v in cash_values if v['cofinancing_cash_actual_amount']])
+    security.declarePublic('getSumCofinActual')
+    def getSumCofinActual(self):
+        """
+        """
+        pass
 
     security.declarePublic('getSumCofinInKindPlanned')
     def getSumCofinInKindPlanned(self):

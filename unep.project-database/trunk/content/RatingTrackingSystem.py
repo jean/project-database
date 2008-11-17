@@ -143,13 +143,14 @@ class RatingTrackingSystem(BaseFolder, BrowserDefaultMixin):
 
     # Methods
 
-    # security.declarePublic('getPIRRatingCategory')
-    # def getPIRRatingCategory(self):
-    #     """
-    #     """
-    #     atvm = getToolByName(self, 'portal_vocabularies')
-    #     vocab = atvm.getVocabularyByName('PIRRatingCategory')
-    #     return vocab.getDisplayList(self)
+    security.declarePublic('getPIRRatingCategory')
+    def getPIRRatingCategory(self):
+        """
+        """
+        # atvm = getToolByName(self, 'portal_vocabularies')
+        # vocab = atvm.getVocabularyByName('PIRRatingCategory')
+        # return vocab.getDisplayList(self)
+        pass
 
     security.declarePublic('getRatingList')
     def getRatingList(self):

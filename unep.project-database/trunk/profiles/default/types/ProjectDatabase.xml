@@ -1,23 +1,19 @@
 <?xml version="1.0"?>
-<object name="Project"
+<object name="ProjectDatabase"
         meta_type="Factory-based Type Information with dynamic views"
         xmlns:i18n="http://xml.zope.org/namespaces/i18n">
    
- <property name="title">Project</property>
+ <property name="title">ProjectDatabase</property>
  <property name="description"></property>
- <property name="content_icon">Project.gif</property>
- <property name="content_meta_type">Project</property>
+ <property name="content_icon">ProjectDatabase.gif</property>
+ <property name="content_meta_type">ProjectDatabase</property>
  <property name="product">ProjectDatabase</property>
- <property name="factory">addProject</property>
+ <property name="factory">addProjectDatabase</property>
  <property name="immediate_view">base_view</property>
- <property name="global_allow">False</property>
+ <property name="global_allow">True</property>
  <property name="filter_content_types">True</property>
  <property name="allowed_content_types">
-   <element value="ATFolder"/>
-   <element value="MonitoringAndEvaluation"/>
-   <element value="MilestoneFolder"/>
-   <element value="ProjectGeneralInformation"/>
-   <element value="FMIFolder"/>
+   <element value="Project"/>
  </property>
  <property name="allow_discussion">False</property>
  <property name="default_view">base_view</property>
@@ -53,37 +49,5 @@
          url_expr="string:${object_url}/properties" 
          visible="True">
   <permission value="Modify portal content"/>
- </action>
- <action title="export" 
-         action_id="export"
-         category="object_tabs" 
-         condition_expr="python:1"
-         url_expr="string:${object_url}/export_view" 
-         visible="True">
-  <permission value="python:permissions.ViewProjects"/>
- </action>
- <action title="Project Search" 
-         action_id="search"
-         category="object_tabs" 
-         condition_expr="python:1"
-         url_expr="string:${object_url}/project_search" 
-         visible="True">
-  <permission value="python:permissions.ViewProjects"/>
- </action>
- <action title="Export Project Data (csv)" 
-         action_id="export_project_data"
-         category="object_tabs" 
-         condition_expr="python:1"
-         url_expr="string:${object_url}/export_project_data" 
-         visible="True">
-  <permission value="python:permissions.ViewProjects"/>
- </action>
- <action title="reports" 
-         action_id="reports"
-         category="object_tabs" 
-         condition_expr="python:1"
-         url_expr="string:${object_url}/reports_view" 
-         visible="True">
-  <permission value="python:permissions.ViewProjects"/>
  </action>
 </object>
