@@ -95,7 +95,7 @@ class Project(BaseFolder, BrowserDefaultMixin):
     def getProjectGeneralInformation(self):
         """
         """
-        return self['project_general_information']
+        return self['project_general_info']
 
     security.declarePublic('getAProject')
     def getAProject(self):
