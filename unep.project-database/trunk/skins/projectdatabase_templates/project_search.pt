@@ -1,13 +1,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
       lang="en"
-      metal:use-macro="here/main_template/macros/master"
+      metal:use-macro="context/main_template/macros/master"
       i18n:domain="plone">
 
 <head>
 <!--metal:block metal:fill-slot="javascript_head_slot">
       <script type="text/javascript"
             src="http://localhost:8080/tasty/plone_menu.js"
-            tal:attributes="src string: ${here/portal_url}/tasty_js.js">
+            tal:attributes="src string: ${context/portal_url}/tasty_js.js">
       </script>
 </metal:block-->
 </head>
@@ -45,7 +45,7 @@
         }
     </script>
 
-    <h1 tal:content="here/title_or_id"></h1>
+    <h1 tal:content="context/title_or_id"></h1>
 
     <div class="documentDescription">
     Search for project information.
@@ -127,7 +127,7 @@
             </div>
 
            <div class="field"
-                tal:condition="python: user.has_permission('View Projects', here)">
+                tal:condition="python: user.has_permission('View Projects', context)">
                 <label for="GefId" i18n:translate="label_search_gefid">GEF Project ID</label>
 
                 <div class="formHelp">
@@ -157,7 +157,7 @@
 			       tabindex=""
 			       tal:attributes="tabindex tabindex/next;">
             <option value=""/>
-		  <tal:block repeat="focal_area python:here.getVocabulary('FocalArea').items()">
+		  <tal:block repeat="focal_area python:context.portal_vocabularies.getVocabularyByName('FocalArea').getDisplayList(context)">
 				  <option value=""
 				      tal:attributes="value python:focal_area[0]"
 				      tal:content="python:focal_area[1]"> Focal Area </option>
@@ -182,7 +182,7 @@
             tabindex=""
             tal:attributes="tabindex tabindex/next;">
         <option value=""> </option>
-        <tal:block repeat="operational_programme python:here.getVocabulary('OperationalProgramme').items()">
+        <tal:block repeat="operational_programme python:context.portal_vocabularies.getVocabularyByName('OperationalProgramme').getDisplayList(context)">
         <option value="" tal:attributes="value python:operational_programme[0]" tal:content="python:operational_programme[1]"> Operational Programme </option>
         </tal:block>
         </select>
@@ -204,7 +204,7 @@
             tabindex=""
             tal:attributes="tabindex tabindex/next;">
         <option value=""> </option>
-        <tal:block repeat="scope python:here.getVocabulary('Scope').items()">
+        <tal:block repeat="scope python:context.portal_vocabularies.getVocabularyByName('Scope').getDisplayList(context)">
             <option value="" tal:attributes="value python:scope[0]" tal:content="python:scope[1]"> Geographic Scope </option>
         </tal:block>
         </select>
@@ -223,7 +223,7 @@
             id="Region"
             tabindex=""
             tal:attributes="tabindex tabindex/next;"> <option value=""> </option>
-            <tal:block repeat="region python:here.getVocabulary('Region').items()">
+            <tal:block repeat="region python:context.portal_vocabularies.getVocabularyByName('Region').getDisplayList(context)">
                 <option value="" tal:attributes="value python:region[0]" tal:content="python:region[1]"> Region </option>
             </tal:block>
         </select>
@@ -241,7 +241,7 @@
         tabindex=""
         tal:attributes="tabindex tabindex/next;">
             <option value=""/>
-            <tal:block repeat="country python:here.getVocabulary('Country').items()">
+            <tal:block repeat="country python:context.portal_vocabularies.getVocabularyByName('Country').getDisplayList(context)">
                 <option value="" tal:attributes="value python:country[0]" tal:content="python:country[1]"> Country </option>
             </tal:block>
         </select>
@@ -249,7 +249,7 @@
 
 <!-- GEF Strategic priority -->
 			<div class="field" 
-                tal:condition="python: user.has_permission('View Projects', here)">
+                tal:condition="python: user.has_permission('View Projects', context)">
 
 		    	<label for="GEF Strategic priority">GEF Strategic priority</label>
 
@@ -262,7 +262,7 @@
 			       tabindex=""
 			       tal:attributes="tabindex tabindex/next;">
                                         <option value=""> </option>
-		  			<tal:block repeat="strategic_priority python:here.getVocabulary('StrategicPriority').items()">
+		  			<tal:block repeat="strategic_priority python:context.portal_vocabularies.getVocabularyByName('StrategicPriority').getDisplayList(context)">
 				  	<option value=""
 				      tal:attributes="value python:strategic_priority[0]"
 				      tal:content="python:strategic_priority[1]"> Strategic Priority </option>
@@ -272,7 +272,7 @@
             </div>
 
             <div class="field"
-                tal:condition="python: user.has_permission('View Projects', here)">
+                tal:condition="python: user.has_permission('View Projects', context)">
 
 		    <label for="Lead Agency">Lead Agency</label>
 
@@ -285,7 +285,7 @@
 			       tabindex=""
 			       tal:attributes="tabindex tabindex/next;">
             <option value=""/>
-		  <tal:block repeat="lead_agency python:here.getVocabulary('LeadAgency').items()">
+		  <tal:block repeat="lead_agency python:context.portal_vocabularies.getVocabularyByName('LeadAgency').getDisplayList(context)">
 			<option value="" tal:attributes="value python:lead_agency[0]" tal:content="python:lead_agency[1]"> Lead Agency </option>
 		  </tal:block>
 		  </select>
@@ -296,7 +296,7 @@
 
 <!-- GEF Phase -->
 			<div class="field"
-                tal:condition="python: user.has_permission('View Projects', here)">
+                tal:condition="python: user.has_permission('View Projects', context)">
 
 		    <label for="GEF Phase">GEF Phase</label>
 
@@ -308,7 +308,7 @@
 			       id="Gef_phase"
 			       tabindex=""
 			       tal:attributes="tabindex tabindex/next;">
-		  			<tal:block repeat="phase python:here.getVocabulary('GEFPhase').items()">
+		  			<tal:block repeat="phase python:context.portal_vocabularies.getVocabularyByName('GEFPhase').getDisplayList(context)">
 						<option value="" tal:attributes="value python:phase[0]" tal:content="python:phase[1]"> Country </option>
 		  			</tal:block>
 		      	</select>
@@ -325,7 +325,7 @@
             Select specific Project Types
         </div>
 
-        <tal:block repeat="getProject_vals python:here.getVocabulary('ProjectType').items()">
+        <tal:block repeat="getProject_vals python:context.portal_vocabularies.getVocabularyByName('ProjectType').getDisplayList(context)">
 
             <input type="checkbox"
                 name="getProjectType:list"
@@ -343,7 +343,7 @@
 <!-- Pipeline Number -->
 
            <div class="field"
-                tal:condition="python: user.has_permission('View Projects', here)">
+                tal:condition="python: user.has_permission('View Projects', context)">
                 <label for="Pipeline_number" i18n:translate="label_search_ Pipeline_number">Pipeline number</label>
 
                 <div class="formHelp">
@@ -384,7 +384,7 @@
            <!--div tal:attributes="id string:fmi-screen"-->
 
             <div class="field"
-                tal:condition="python: user.has_permission('View Projects', here)">
+                tal:condition="python: user.has_permission('View Projects', context)">
                 <label for="Title" i18n:translate="label_search_text">Project Title</label>
 
                 <div class="formHelp">
@@ -402,7 +402,7 @@
 
 
          <div class="field"
-                tal:condition="python: user.has_permission('View Projects', here)">
+                tal:condition="python: user.has_permission('View Projects', context)">
 
 		    <label for="financial category">Category</label>
 
@@ -414,7 +414,7 @@
 			       id="Finance_category"
 			       tabindex=""
 			       tal:attributes="tabindex tabindex/next;">
-		  			<tal:block repeat="category python:here.getVocabulary('FinanceCategory').items()">
+		  			<tal:block repeat="category python:context.portal_vocabularies.getVocabularyByName('FinanceCategory').getDisplayList(context)">
 						<option value="" tal:attributes="value python:category[0]" tal:content="python:category[1]"> Category </option>
 		  			</tal:block>
 		      	</select>
@@ -424,7 +424,7 @@
 
 
 		     <div class="field"
-                tal:condition="python: user.has_permission('View Projects', here)">
+                tal:condition="python: user.has_permission('View Projects', context)">
                 <label for="PMS Number" i18n:translate="label_search_PMS_number">PMS Number</label>
 
                 <div class="formHelp">
@@ -441,10 +441,10 @@
                        />
             </div>
             <div class="field">
-                <label tal:condition="python: user.has_permission('View Projects', here)"
+                <label tal:condition="python: user.has_permission('View Projects', context)"
                     for="IMIS Number" i18n:translate="label_search_IMIS_number">IMIS number</label>
 
-                <label tal:condition="python: not user.has_permission('View Projects', here)"
+                <label tal:condition="python: not user.has_permission('View Projects', context)"
                     for="IMIS Number" i18n:translate="label_search_IMIS_number">Project No.</label>
 
                 <div class="formHelp">
@@ -476,7 +476,7 @@
                     <option
                         tal:repeat="item python:modules['Products.FinanceFields.config'].CURRENCY_DISPLAY_LIST"
                         tal:attributes="
-                            selected python:test(here.checkSelected(item, item and item[0] or default_currency_symbol), 'selected', None); "
+                            selected python:test(context.checkSelected(item, item and item[0] or default_currency_symbol), 'selected', None); "
                             tal:content="item"
                             i18n:translate=""
                             />
@@ -516,7 +516,7 @@
            <!--div tal:attributes="id string:pcm-screen"-->
 
            <div class="field"
-                tal:condition="python: user.has_permission('View Projects', here)">
+                tal:condition="python: user.has_permission('View Projects', context)">
 
 		    <label for="Stage">Project Cycle Stage</label>
 
@@ -527,7 +527,7 @@
 			       id="ProjecCycleStage"
 			       tabindex=""
 			       tal:attributes="tabindex tabindex/next;"> <option value=""> </option>
-		  			<tal:block repeat="phase python:here.getVocabulary('ProjectCycleStage').items()">
+		  			<tal:block repeat="phase python:context.portal_vocabularies.getVocabularyByName('ProjectCycleStage').getDisplayList(context)">
 						<option value="" tal:attributes="value python:phase[0]" tal:content="python:phase[1]"> Country </option>
 		  			</tal:block>
 		      	</select>
@@ -535,7 +535,7 @@
 
             </div>		
 			<div class="field"
-                tal:condition="python: user.has_permission('View Projects', here)">
+                tal:condition="python: user.has_permission('View Projects', context)">
 
 		    <label for="Milestone name">Milestone</label>
 
@@ -547,7 +547,7 @@
 			       id="MilestoneName"
 			       tabindex=""
 			       tal:attributes="tabindex tabindex/next;"> <option value=""> </option>
-		  			<tal:block repeat="mname python:here.getVocabulary('MilestoneName').items()">
+		  			<tal:block repeat="mname python:context.portal_vocabularies.getVocabularyByName('MilestoneName').getDisplayList(context)">
 						<option value="" tal:attributes="value python:mname[0]" tal:content="python:mname[1]"> Country </option>
 		  			</tal:block>
 		      	</select>
@@ -591,7 +591,7 @@
                 <tal:states define="
                                 navtree_props portal_properties/navtree_properties;
                                 states          python:wtool.listWFStatesByTitle(filter_similar=1);
-                                state_lists     python: here.createMultiColumnList(states, numCols=1, sort_on='self');"
+                                state_lists     python: context.createMultiColumnList(states, numCols=1, sort_on='self');"
                             repeat="sublist state_lists">
                     <tal:items repeat="state sublist">
                     <input class="noborder"
@@ -617,7 +617,7 @@
                        size="25"
                        tabindex=""
                        tal:attributes="tabindex tabindex/next;
-                                       value python: '/'.join(here.getPhysicalPath());
+                                       value python: '/'.join(context.getPhysicalPath());
                        "
                        />
          
