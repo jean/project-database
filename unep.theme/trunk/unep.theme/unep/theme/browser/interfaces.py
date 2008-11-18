@@ -16,3 +16,8 @@ class IUnepViewUtils(Interface):
     def contactsURL(self):
         """ return the URL of the contacts manager
         """
+
+    def projectParentURL(self):
+        """ return the URL of the parent Project object
+            if it exists.
+        """
