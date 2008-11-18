@@ -267,12 +267,14 @@ input.searchButton {
 
 iframe.kupu-editor-iframe {
     height: 200px;
+    max-width: 400px;
 }
 
 select {
-    max-width: 465px;
+    max-width: 400px;
 }
 
 fieldset {
     float: left;
+    width: 400px;
 }
