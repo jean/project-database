@@ -28,11 +28,10 @@ def projectInitialized(event):
     if ob.isTemporary():
         return
 
-    if 'project_general_information' not in ob.objectIds():
-        ob._setObject('project_general_information', ProjectGeneralInformation('project_general_information'))
-        ob['project_general_information'].edit(title='Project General Information')
-        ob['project_general_information'].reindexObject()
-    ob['project_general_information'].reindexObject()
+    if 'project_general_info' not in ob.objectIds():
+        ob._setObject('project_general_info', ProjectGeneralInformation('project_general_info'))
+        ob['project_general_info'].edit(title='Project General Information')
+        ob['project_general_info'].reindexObject()
     if 'fmi_folder' not in ob.objectIds():
         ob._setObject('fmi_folder', FMIFolder('fmi_folder'))
         ob['fmi_folder'].edit(title='Financial Management Information')
