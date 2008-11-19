@@ -572,6 +572,11 @@ ProjectGeneralInformation_schema['MSPStatus'].widget.visible = {'edit':'hidden',
 ProjectGeneralInformation_schema['FSPStatus'].widget.visible = {'edit':'hidden', 'view':'invisible'}
 ProjectGeneralInformation_schema['ProjectTitle'].widget.visible = {'edit':'hidden', 'view':'invisible'}
 ProjectGeneralInformation_schema['LeveragedFinancingAmount'].widget.size = 15
+
+ProjectGeneralInformation_schema['LeadAgencyContact'].widget.startup_directory = '/contacts'
+ProjectGeneralInformation_schema['CurrentTaskManager'].widget.startup_directory = '/contacts'
+ProjectGeneralInformation_schema['PreviousTaskManager'].widget.startup_directory = '/contacts'
+ProjectGeneralInformation_schema['ProjectCoordinator'].widget.startup_directory = '/contacts'
 ##/code-section after-schema
 
 class ProjectGeneralInformation(BaseFolder, CurrencyMixin, BrowserDefaultMixin):

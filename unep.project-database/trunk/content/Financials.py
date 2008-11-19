@@ -200,6 +200,8 @@ Financials_schema['StrategicPartnership'].widget.size=15
 Financials_schema['AdaptationTrustFund'].widget.size=15
 Financials_schema['SupplementaryUNEPAllocation'].widget.size=15
 Financials_schema['ActualTotalExpenditures'].widget.size=15
+
+Financials_schema['FundManagementOfficer'].widget.startup_directory = '/contacts'
 ##/code-section after-schema
 
 class Financials(BaseFolder, CurrencyMixin, FinancialsMixin, BrowserDefaultMixin):
