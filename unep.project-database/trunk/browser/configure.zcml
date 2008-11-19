@@ -1,0 +1,15 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    i18n_domain="ProjectDatabase">
+
+    <!-- Page Views -->
+    <browser:page
+        for="*"
+        name="my-projects-a2z"
+        class=".pd_utils.MyProjectsA2ZlistView"
+        permission="zope2.View"
+        />
+
+</configure>
+
