@@ -2,15 +2,6 @@ from Products.ProjectDatabase.content.interfaces import IProject
 from Products.ProjectDatabase.content.interfaces import IRatingTrackingSystem
 from Products.ProjectDatabase.content.interfaces import IRTSFolder
 from Products.ProjectDatabase.content.interfaces import IMonitoringAndEvaluation
-from Products.ProjectDatabase.content.ProjectGeneralInformation import ProjectGeneralInformation
-from Products.ProjectDatabase.content.MonitoringAndEvaluation import MonitoringAndEvaluation
-from Products.ProjectDatabase.content.MilestoneFolder import MilestoneFolder
-from Products.ProjectDatabase.content.FMIFolder import FMIFolder
-from Products.ProjectDatabase.content.OtherProjectRatingsFolder import OtherProjectRatingsFolder
-from Products.ProjectDatabase.content.RTSFolder import RTSFolder
-from Products.ProjectDatabase.content.EvaluatorsInformation import EvaluatorsInformation
-from Products.ProjectDatabase.content.RatingTrackingSystem import RatingTrackingSystem
-from Products.UpfrontContacts.ContactManager import ContactManager
 
 import logging
 LOG = logging.getLogger('ProjectDatabase.events.events')
@@ -29,21 +20,20 @@ def projectInitialized(event):
         return
 
     if 'project_general_info' not in ob.objectIds():
-        ob._setObject('project_general_info', ProjectGeneralInformation('project_general_info'))
+        ob.invokeFactory('ProjectGeneralInformation', 'project_general_info')
         ob['project_general_info'].edit(title='Project General Information')
-        ob['project_general_info'].reindexObject()
     if 'fmi_folder' not in ob.objectIds():
-        ob._setObject('fmi_folder', FMIFolder('fmi_folder'))
+        ob.invokeFactory('FMIFolder', 'fmi_folder')
         ob['fmi_folder'].edit(title='Financial Management Information')
     if 'monitoring_and_evaluation' not in ob.objectIds():
-        ob._setObject('monitoring_and_evaluation', MonitoringAndEvaluation('monitoring_and_evaluation'))
+        ob.invokeFactory('MonitoringAndEvaluation', 'monitoring_and_evaluation')
         ob['monitoring_and_evaluation'].edit(title='Monitoring and Evaluation')
     if 'milestonesfolder' not in ob.objectIds():
-        ob._setObject('milestonesfolder', MilestoneFolder('milestonesfolder'))
+        ob.invokeFactory('MilestoneFolder', 'milestonesfolder')
         ob['milestonesfolder'].edit(title='Milestones')
-    # if 'contacts-1' not in ob.objectIds():
-    #     ob._setObject('contacts-1', ContactManager('contacts-1'))
-    #     ob['contacts-1'].edit(title='Contacts')
+    if 'documents' not in ob.objectIds():
+        ob.invokeFactory('Folder', 'documents')
+        ob['documents'].edit(title='Documents')
 
 def ratingTrackingSystemInitialized(event):
     """ We are handling the object created event for 
@@ -58,13 +48,9 @@ def ratingTrackingSystemInitialized(event):
     if ob.isTemporary():
         return
 
-    #if 'pir_ratings' not in self.objectIds():
-    #    self.invokeFactory('PIRRatingFolder', 'pir_ratings')
-    #    self['pir_ratings'].setTitle('PIR Ratings')
     if 'other_project_ratings_folder' not in ob.objectIds():
-        ob._setObject('other_project_ratings_folder', OtherProjectRatingsFolder('other_project_ratings_folder'))
+        ob.invokeFactory('OtherProjectRatingsFolder', 'other_project_ratings_folder')
         ob['other_project_ratings_folder'].edit(title='Other Project Ratings')
-        ob['other_project_ratings_folder'].reindexObject()
 
 def rtsFolderInitialized(event):
     """ We are handling the object created event for 
@@ -80,9 +66,8 @@ def rtsFolderInitialized(event):
         return
 
     if 'rating_tracking_system' not in ob.objectIds():
-        ob._setObject('rating_tracking_system', RatingTrackingSystem('rating_tracking_system'))
+        ob.invokeFactory('RatingTrackingSystem', 'rating_tracking_system')
         ob['rating_tracking_system'].edit(title='Rating Tracking System')
-        ob['rating_tracking_system'].reindexObject()
 
 def monitoringAndEvaluationInitialized(event):
     """ We are handling the object created event for 
@@ -98,8 +83,8 @@ def monitoringAndEvaluationInitialized(event):
         return
 
     if 'rtsfolder' not in ob.objectIds():
-        ob._setObject('rtsfolder', RTSFolder('rtsfolder'))
+        ob.invokeFactory('RTSFolder', 'rtsfolder')
         ob['rtsfolder'].edit(title='Rating Tracking Systems')
     if 'evaluators_information' not in ob.objectIds():
-        ob._setObject('evaluators_information', EvaluatorsInformation('evaluators_information'))
+        ob.invokeFactory('EvaluatorsInformation', 'evaluators_information')
         ob['evaluators_information'].edit(title='Evaluators Information')
