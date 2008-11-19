@@ -3,8 +3,10 @@ from Products.CMFCore.utils import getToolByName
 from Acquisition import aq_inner, aq_parent
 from Products.CMFCore.interfaces import ISiteRoot
 from Products.ProjectDatabase.content.interfaces import IProject
+from zope.interface import implements
 
 class UnepViewUtils:
+    implements(IUnepViewUtils)
 
     def projectDatabasesURL(self):
         """ return the URL of the project databases folder

@@ -6,6 +6,7 @@
 
   <!-- ##code-section configure.zcml -->
     <include package=".events" />
+    <include package=".browser" />
   <!-- ##/code-section configure.zcml -->
 
 </configure>
