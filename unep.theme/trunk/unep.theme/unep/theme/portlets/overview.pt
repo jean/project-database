@@ -8,7 +8,7 @@
         <tal:hasproject tal:condition="project">
             <div class="overview-item"><a href="" tal:attributes="href string:${project}/project_general_info">General</a></div>
             <div class="overview-item"><a href="" tal:attributes="href string:${project}/fmi_folder">Financial</a></div>
-            <div class="overview-item"><a href="">Documents</a></div>
+            <div class="overview-item"><a href="" tal:attributes="href string:${project}/documents">Documents</a></div>
             <div class="overview-item"><a href="" tal:attributes="href string:${project}/milestonesfolder">Milestones</a></div>
             <div class="overview-item"><a href="" tal:attributes="href string:${project}/monitoring_and_evaluation">Monitoring &amp; Evaluation</a></div>
         </tal:hasproject>
