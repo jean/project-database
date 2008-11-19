@@ -343,6 +343,11 @@ MonitoringAndEvaluation_schema['Budget'].widget.size = 15
 MonitoringAndEvaluation_schema['MTRActualCost'].widget.size = 15
 MonitoringAndEvaluation_schema['TerminalEvaluationBudget'].widget.size = 15
 MonitoringAndEvaluation_schema['TEActualCost'].widget.size = 15
+
+MonitoringAndEvaluation_schema['CurrentTaskManager'].widget.startup_directory = '/contacts'
+MonitoringAndEvaluation_schema['FundManagementOfficer'].widget.startup_directory = '/contacts'
+MonitoringAndEvaluation_schema['MidtermReviewEvaluatorName'].widget.startup_directory = '/contacts'
+MonitoringAndEvaluation_schema['TerminalReportEvaluatorName'].widget.startup_directory = '/contacts'
 ##/code-section after-schema
 
 class MonitoringAndEvaluation(BaseFolder, BrowserDefaultMixin):

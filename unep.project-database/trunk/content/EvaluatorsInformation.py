@@ -78,6 +78,9 @@ EvaluatorsInformation_schema = BaseSchema.copy() + \
 title_field = EvaluatorsInformation_schema['title']
 title_field.required=0
 title_field.widget.visible = {'edit':'hidden', 'view':'invisible'}
+
+EvaluatorsInformation_schema['TeamLeader'].widget.startup_directory = '/contacts'
+EvaluatorsInformation_schema['TeamMembers'].widget.startup_directory = '/contacts'
 ##/code-section after-schema
 
 class EvaluatorsInformation(BaseContent, BrowserDefaultMixin):

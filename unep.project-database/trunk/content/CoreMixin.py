@@ -195,6 +195,9 @@ CoreMixin_schema = BaseSchema.copy() + \
     schema.copy()
 
 ##code-section after-schema #fill in your manual code here
+CoreMixin_schema['CurrentTaskManager'].widget.startup_directory = '/contacts'
+CoreMixin_schema['PreviousTaskManager'].widget.startup_directory = '/contacts'
+CoreMixin_schema['ProjectCoordinator'].widget.startup_directory = '/contacts'
 ##/code-section after-schema
 
 class CoreMixin(BrowserDefaultMixin):
