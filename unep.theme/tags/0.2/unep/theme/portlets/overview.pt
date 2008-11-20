@@ -1,0 +1,24 @@
+<div style="width: 100%; height: auto;">
+    <div style="float: left; width: 100%; height: 30px;">&nbsp;</div>
+    <div class="overview-heading">
+        <span class="greytext" i18n:translate="overview">Overview</span>
+    </div>
+    <div style="float: left; width: 100%; height: 15px;">&nbsp;</div>
+    <tal:project tal:define="project context/@@unep_utils/projectParentURL | nothing">
+        <tal:hasproject tal:condition="project">
+            <div class="overview-item"><a href="" tal:attributes="href string:${project}/project_general_info">General</a></div>
+            <div class="overview-item"><a href="" tal:attributes="href string:${project}/fmi_folder">Financial</a></div>
+            <div class="overview-item"><a href="" tal:attributes="href string:${project}/documents">Documents</a></div>
+            <div class="overview-item"><a href="" tal:attributes="href string:${project}/milestonesfolder">Milestones</a></div>
+            <div class="overview-item"><a href="" tal:attributes="href string:${project}/monitoring_and_evaluation">Monitoring &amp; Evaluation</a></div>
+        </tal:hasproject>
+        <tal:hasproject tal:condition="not:project">
+            <div class="overview-item"><span class="greytext">General</span></div>
+            <div class="overview-item"><span class="greytext">Financial</span></div>
+            <div class="overview-item"><span class="greytext">Documents</span></div>
+            <div class="overview-item"><span class="greytext">Milestones</span></div>
+            <div class="overview-item"><span class="greytext">Monitoring &amp; Evaluation</span></div>
+        </tal:hasproject>
+    </tal:project>
+    <div style="float: left; width: 100%; height: 15px;">&nbsp;</div>
+</div>
