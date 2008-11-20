@@ -1,0 +1,40 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      lang="en"
+      metal:use-macro="here/main_template/macros/master"
+      i18n:domain="plone">
+
+<body>
+
+<div metal:fill-slot="main">
+
+    <h1 class="documentFirstHeading" 
+        tal:content="here/Title">
+            Portal title
+    </h1>
+
+    <p tal:content="portal/description">
+        Portal description
+    </p>
+    <p i18n:translate="select_below">Click a link below to view the current GEF projects or contacts</p>
+    <ul>
+        <li>
+            <a href="" 
+                tal:attributes="href string:${context/portal_url}/projectdatabases">
+                    <span i18n:translate="gef_projects">GEF Projects</span>
+            </a>
+        </li>
+        <li>
+            <a href="" 
+                tal:attributes="href string:${context/portal_url}/contacts">
+                    <span i18n:translate="gef_contacts">Contacts</span>
+            </a>
+        </li>
+    </ul>
+
+</div>
+
+</body>
+</html>
