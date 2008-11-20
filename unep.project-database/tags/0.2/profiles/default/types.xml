@@ -1,0 +1,80 @@
+<?xml version="1.0"?>
+<object name="portal_types"
+        meta_type="Plone Types Tool">
+
+ <object name="Agency"
+         meta_type="Factory-based Type Information with dynamic views"/>
+
+ <object name="Project"
+         meta_type="Factory-based Type Information with dynamic views"/>
+
+ <object name="ProjectImplementation"
+         meta_type="Factory-based Type Information with dynamic views"/>
+
+ <object name="Milestone"
+         meta_type="Factory-based Type Information with dynamic views"/>
+
+ <object name="ProjectGeneralInformation"
+         meta_type="Factory-based Type Information with dynamic views"/>
+
+ <object name="SubProject"
+         meta_type="Factory-based Type Information with dynamic views"/>
+
+ <object name="Financials"
+         meta_type="Factory-based Type Information with dynamic views"/>
+
+ <object name="DocumentLinks"
+         meta_type="Factory-based Type Information with dynamic views"/>
+
+ <object name="ProjectExecutingPartner"
+         meta_type="Factory-based Type Information with dynamic views"/>
+
+ <object name="Tranched"
+         meta_type="Factory-based Type Information with dynamic views"/>
+
+ <object name="CoreMixin"
+         meta_type="Factory-based Type Information with dynamic views"/>
+
+ <object name="Phased"
+         meta_type="Factory-based Type Information with dynamic views"/>
+
+ <object name="AddOn"
+         meta_type="Factory-based Type Information with dynamic views"/>
+
+ <object name="BlankCoreMixin"
+         meta_type="Factory-based Type Information with dynamic views"/>
+
+ <object name="MonitoringAndEvaluation"
+         meta_type="Factory-based Type Information with dynamic views"/>
+
+ <object name="RatingTrackingSystem"
+         meta_type="Factory-based Type Information with dynamic views"/>
+
+ <object name="EvaluatorsInformation"
+         meta_type="Factory-based Type Information with dynamic views"/>
+
+ <object name="RTSFolder"
+         meta_type="Factory-based Type Information with dynamic views"/>
+
+ <object name="MilestoneFolder"
+         meta_type="Factory-based Type Information with dynamic views"/>
+
+ <object name="OtherProjectRatingsFolder"
+         meta_type="Factory-based Type Information with dynamic views"/>
+
+ <object name="OtherProjectRatings"
+         meta_type="Factory-based Type Information with dynamic views"/>
+
+ <object name="FMIFolder"
+         meta_type="Factory-based Type Information with dynamic views"/>
+
+ <object name="MOU"
+         meta_type="Factory-based Type Information with dynamic views"/>
+
+ <object name="FinancialsMixin"
+         meta_type="Factory-based Type Information with dynamic views"/>
+
+ <object name="ProjectDatabase"
+         meta_type="Factory-based Type Information with dynamic views"/>
+
+</object>
