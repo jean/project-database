@@ -11,5 +11,40 @@
         permission="zope2.View"
         />
 
+    <browser:page
+        for="*"
+        name="my-projects-general"
+        class=".pd_utils.MyProjectsGeneralListView"
+        permission="zope2.View"
+        />
+
+    <browser:page
+        for="*"
+        name="my-projects-financial"
+        class=".pd_utils.MyProjectsFinancialListView"
+        permission="zope2.View"
+        />
+
+    <browser:page
+        for="*"
+        name="my-projects-documents"
+        class=".pd_utils.MyProjectsDocumentsListView"
+        permission="zope2.View"
+        />
+
+    <browser:page
+        for="*"
+        name="my-projects-milestones"
+        class=".pd_utils.MyProjectsMilestonesListView"
+        permission="zope2.View"
+        />
+
+    <browser:page
+        for="*"
+        name="my-projects-monitoring"
+        class=".pd_utils.MyProjectsMonitoringListView"
+        permission="zope2.View"
+        />
+
 </configure>
 
