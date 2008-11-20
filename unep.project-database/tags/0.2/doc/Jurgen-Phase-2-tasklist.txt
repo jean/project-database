@@ -1,0 +1,192 @@
+ISSUES
+======
+
+1. parts/plone/Archetypes/utils.py
+    DisplayList.getMsgId() gets a key 'None' when clicking on a ProjectGeneralInformation item inside a Project folder.
+    Plone Boolean field widget template bug?
+
+2. Datagrid row does not save.
+3. Datagrid calendar column looks like #$%^
+4. Datagrid cannot add new rows
+5. Datagrid calendar popup does not work
+
+
+
+TASKS
+=====
+
+General Project Information
+---------------------------
+
+1. Add GEF ID field (5 digits?)                                                 Done
+
+2. Operational Programme Field                                                  Done
+    Change to multiselction
+
+
+Finance Management
+------------------
+
+1. Add "GEF ID" as first field                                                  Done
+    Note: same for all finance categories for a project
+
+2. Finance Category Field                                                       Done
+    Add items to dropdown
+        Add-On
+        PDF-C
+        Tranche
+
+3. Add "Trustee ID" field                                                       Done
+    25 alphanumeric 
+    Each finance category has own Trustee ID
+
+4. Add "Revised allocation to UNEP" field                                       Done
+    numeric/Money?
+    Description: Revised amount after Project Council or CEO approval.
+        Must this be in FinancialsMixin or just Financials ?????
+
+5. Add "Committed GEF grant" field                                              Done
+    numeric/Money?
+    Description: Project budget in the internalized project document.
+        Must this be in FinancialsMixin or just Financials ?????
+
+6. Add "Difference" field                                                       Done
+    computed: (GEF Allocation to UNEP) - (Committed GEF grant).
+    Note: Should be 0, otherwise raises a red flag.
+    Follow fields in 4 and 5.
+        Must this be in FinancialsMixin or just Financials ?????
+
+7. CashDisbursement Field
+    Change "Bank Reference Number" column to "IMIS RCPT Number"                 Done
+
+8. "Lead Executing agency" field                                                Done
+    Change to a text field, not a dropdown. (Reason: Not GEF agency)
+
+
+Monitoring and Evaluation
+-------------------------
+
+1. List of fields to be included from other project databases here ????
+    IMIS Number                                 from Financials Mixin
+    Current Task Manager                        from General Project Information
+    Fund Management Officer                     from Financials
+    CEO Approval Date                           Only in M&E
+    CEO Endorsement Date                        Only in M&E
+    First Disbursement Date                     Only in M&E
+    Revised Completion Date                     from Financials
+    Initial Completion Date                     from Financials
+    Financial Closure Date                      Only in M&E
+    Join Implementation Yes/No                  from ProjectGeneralInformation
+    GEF Agency Implementation Single/Joint      ????
+    Lead Executing Agency                       from ProjectGeneralInformation (ProjectExecutingAgency)
+                                                from Financials (LeadExecutingAgency)
+
+2. MidtermEvaluationPlannedDate field
+    Business rule: enter at time of project approval by TM
+    Need to pick date from list of milestones. ????
+    Not applicable option ????
+    MTR or MTE selection in the GPI ????
+
+3. Add FMI Fields:
+    Business rule: entered by FMO on project approval
+    Note: Fields to appear in "view" of M&E
+    a. "Project Terminal Evaluation Budget" field
+        Money
+    b. "Project Mid-term Review/Evaluation Budget" field
+        Money
+
+4. Add fields:
+    a. "Cost Estimate for MTR/MTE"
+        Money
+        TM to enter value if MTR is taking place
+    b. "Cost Estimate for TE"
+        Money
+
+5. Add FMI "Cost Difference Field"
+    Computed
+    Indicate difference between estimated and total costs 
+        (MTR/MTE + TE total cost fields) - (MTR/MTE + TE estimated cost fields)
+
+6. Add "View" fields
+    Lead GEF Agency
+    Other GEF Agencies (at implementation level)
+    Lead Executing Organization
+    Geographic Focus    - from GPI class
+    Countries           - from GPI class
+    GEF allocation to UNEP
+
+7. Remove fields:   Remove or Hide ????
+    Joint Implementation
+    GEF Agency Implementation
+
+8. PlannedDate field 
+    Use "Add Row" feature to capture changes for this date
+
+9. Evaluators
+    Select name from "global" contacts list. Up to 5 names.
+
+10. Evaluation Officer Login Screen
+    Display list of projects with evaluation dates due in 6 months.
+
+11. Document uploads
+    Allow upload of MTR, MTE and TE reports
+    Allow upload of cost estimate spreadsheet
+
+12. Delete "Date of evaluation" report
+
+
+Evaluation Milestones
+---------------------
+
+1. Change to the +/- system ????
+
+2. Mid term review
+    If milestone is an MTR, allow "Task Manager" to enter milestone.
+
+3. Milestone names vocabulary                                                   Done
+    Delete "Agreed TOR"
+    Modify "Approval of TOR" to "Approved TOR"
+    Add options:
+        Comments to draft TOR
+        Preparation of budget estimate - where in the sequence????
+
+
+Rating Tracking System
+----------------------
+
+1. ProjectRiskRatingForEachPIR field
+    Change to DataGridField
+        Columns:
+            Fiscal Year
+            DO Rating
+            IP Rating
+            M&E Rating
+            Risk Rating
+        Note: See drop-down lists????
+
+2. Remarks field
+    Should we keep it?
+
+3. Evaluation Ratings ????
+
+
+Terminology
+----------
+    MTR     Mid-term review
+    MTE     Mid-term evaluation
+    TE      Terminal evaluation
+    TOR     Terms of reference?
+
+Need explanations for:
+
+    Implementing Agency
+    Executing Agency
+
+    Task Manager
+    Evaluation Officer
+
+    IMIS Number
+    EOU Rating
+    PIR Ratings
+
+    Tranched
