@@ -1,8 +1,8 @@
 Metadata-Version: 1.0
-Name: unep.theme
-Version: 1.0dev-r189
-Summary: An installable theme for Plone 3.0
-Home-page: http://svn.plone.org/svn/collective/
+Name: unep.policy
+Version: 0.1.build.1dev-r180
+Summary: UNEP Project Database configuration product
+Home-page: https://project-database.googlecode.com/svn/unep.policy/trunk
 Author: Jurgen Blignaut
 Author-email: jurgen@upfrontsystems.co.za
 License: GPL
@@ -14,13 +14,13 @@ Description: Introduction
         Changelog
         =========
         
-        1.0 - Unreleased
+        0.1 build 1 - Unreleased
         ----------------
         
         * Initial release
         
         
-Keywords: web zope plone theme
+Keywords: UNEP project database configuration
 Platform: UNKNOWN
 Classifier: Framework :: Plone
 Classifier: Programming Language :: Python
