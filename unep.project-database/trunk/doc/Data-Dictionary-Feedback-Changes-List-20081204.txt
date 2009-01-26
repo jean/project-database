@@ -1,0 +1,59 @@
+Project General Information
+===========================
+
+1.  FormerProjectTitle              string              New field after ProjectTitle
+2.  UNEPThematicPriority            multiselection      New field after GEFId
+3.  FocalArea and SummaryDescription                    Swop around
+3.  OperationalProgramme                                Change to reference         Move after PhaseTrancheNumber
+    EABiodiversity
+    EAClimateChange
+    EAPOPs
+    MultipleFocalAreas
+    StrategicPriority                                   Change to reference
+    StrategicObjectives                                 Change to reference
+    StrategicProgram                                    Change to reference
+4.  GEFPhase                                            Move after ProjectType
+5.  SubRegion                       string              New field after Region
+6.  JointImplementation                                 Move after OtherNonGEFEligibleCountries
+    UnepComponentDescription
+7.  OtherImplementingAgency                             Change to multiselection type
+8.  ImplementationMode                                  Rename to ExecutionMode
+                                                        Move after OtherImplementingAgency
+9.  LeadDivision                    selection           New field after ImplementationMode
+10. OtherDivisions                  multiselection      New field after LeadDivision
+11. ProjectImplementationStatus                         Combine narrative and description into narrative_description 
+12. Website                                             Move after ProjectCoordinator
+13. CurrentTaskManager                                  Rename to TaskManager
+                                                        Change to DataGridField
+14. LeveragedFinancingRemark                            Change to text type
+15. TotalGEFAllocation                                  Move to end of schema
+    TotalUNEPAllocation
+    TotalCofinancingPlanned
+    TotalCofinancingActual
+    TotalCashDisbursements
+    TotalMISExpenditure
+    PDFAStatus
+    PDFBStatus
+    MSPStatus
+    FSPStatus
+16. PDFCStatus                      computed            New field after PDFBStatus
+
+
+17. Delete fields
+-----------------
+    PipeLineNumber
+    Office (of Execution) / Division
+    PreviousTaskManager
+    EABiodiversityOther
+    EAClimateChangeOther
+    EAPOPOther
+    MultipleFocalAreasOther
+
+
+Milestones
+==========
+Complete revamp
+
+
+FMI
+===
