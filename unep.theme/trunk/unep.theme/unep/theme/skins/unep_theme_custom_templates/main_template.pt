@@ -95,7 +95,7 @@
             <a href="#" tal:attributes="href string:${context/portal_url}"><img style="float: left;" src="logo.jpg" /></a>
             <div class="page-heading">
                 <br />
-                <span i18n:translate="gef_project_office">GEF Project Office</span>
+                <span i18n:translate="gef_project_office">GEF Project Implementation System</span>
             </div>
         </div>
     </div>
@@ -130,13 +130,11 @@
             <span class="links-item">&raquo;</span>
         </div>
         <div class="links-row">
-            <span style="padding-left: 40px;">Policies:</span>
+            <span style="padding-left: 40px;">Policies and Operational Guidelines:</span>
             <span class="links-item">&raquo;</span>
             <a href="#"><span class="links-item">Policy on Lorem Ipsum</span></a>
             <span class="links-item greytext">&#149;</span>
             <a href="#"><span class="links-item">International Agreement of Lorem</span></a>
-            <span class="links-item greytext">&#149;</span>
-            <a href="#"><span class="links-item">Environmental Treaty of Ipsum</span></a>
             <span class="links-item greytext">&#149;</span>
             <a href="#"><span class="links-item" style="font-weight: normal;" i18n:translate="more_policies">more policies</span></a>
             <span class="links-item">&raquo;</span>
