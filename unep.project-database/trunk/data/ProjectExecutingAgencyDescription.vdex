@@ -8,7 +8,7 @@
 </vocabName>
 
 <term>
-  <termIdentifier>National Government Agency</termIdentifier>
+  <termIdentifier>NationalGovernmentAgency</termIdentifier>
   <caption>
     <langstring language="en">National Government Agency</langstring>
   </caption>
@@ -16,7 +16,7 @@
 </term>
 
 <term>
-  <termIdentifier>Local Government</termIdentifier>
+  <termIdentifier>LocalGovernment</termIdentifier>
   <caption>
     <langstring language="en">Local Government</langstring>
   </caption>
@@ -24,7 +24,7 @@
 </term>
 
 <term>
-  <termIdentifier>Multilateral Agency</termIdentifier>
+  <termIdentifier>MultilateralAgency</termIdentifier>
   <caption>
     <langstring language="en">Multilateral Agency</langstring>
   </caption>
@@ -32,7 +32,7 @@
 </term>
 
 <term>
-  <termIdentifier>Bilateral Donor</termIdentifier>
+  <termIdentifier>BilateralDonor</termIdentifier>
   <caption>
     <langstring language="en">Bilateral Donor</langstring>
   </caption>
@@ -40,7 +40,7 @@
 </term>
 
 <term>
-  <termIdentifier>Private Sector</termIdentifier>
+  <termIdentifier>PrivateSector</termIdentifier>
   <caption>
     <langstring language="en">Private Sector</langstring>
   </caption>
@@ -48,7 +48,7 @@
 </term>
 
 <term>
-  <termIdentifier>Commercial Bank</termIdentifier>
+  <termIdentifier>CommercialBank</termIdentifier>
   <caption>
     <langstring language="en">Commercial Bank</langstring>
   </caption>
@@ -56,7 +56,7 @@
 </term>
 
 <term>
-  <termIdentifier>Local Community</termIdentifier>
+  <termIdentifier>LocalCommunity</termIdentifier>
   <caption>
     <langstring language="en">Local Community</langstring>
   </caption>
@@ -64,7 +64,7 @@
 </term>
 
 <term>
-  <termIdentifier>National NGO</termIdentifier>
+  <termIdentifier>NationalNGO</termIdentifier>
   <caption>
     <langstring language="en">National NGO</langstring>
   </caption>
@@ -72,7 +72,7 @@
 </term>
 
 <term>
-  <termIdentifier>International NGO</termIdentifier>
+  <termIdentifier>InternationalNGO</termIdentifier>
   <caption>
     <langstring language="en">International NGO</langstring>
   </caption>
@@ -80,7 +80,7 @@
 </term>
 
 <term>
-  <termIdentifier>Charitable Foundation</termIdentifier>
+  <termIdentifier>CharitableFoundation</termIdentifier>
   <caption>
     <langstring language="en">Charitable Foundation</langstring>
   </caption>
@@ -88,7 +88,7 @@
 </term>
 
 <term>
-  <termIdentifier>Research/Academic Institutions - National</termIdentifier>
+  <termIdentifier>ResearchAcademicInstitutionsNational</termIdentifier>
   <caption>
     <langstring language="en">Research/Academic Institutions - National</langstring>
   </caption>
@@ -96,7 +96,7 @@
 </term>
 
 <term>
-  <termIdentifier>Research/Academic Institutions - International</termIdentifier>
+  <termIdentifier>ResearchAcademicInstitutionsInternational</termIdentifier>
   <caption>
     <langstring language="en">Research/Academic Institutions -
     International</langstring>
@@ -105,7 +105,7 @@
 </term>
 
 <term>
-  <termIdentifier>UNEP Collaborating Centers</termIdentifier>
+  <termIdentifier>UNEPCollaboratingCenters</termIdentifier>
   <caption>
     <langstring language="en">UNEP Collaborating Centers</langstring>
   </caption>
