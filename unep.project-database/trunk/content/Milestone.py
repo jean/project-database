@@ -2,8 +2,8 @@
 #
 # File: Milestone.py
 #
-# Copyright (c) 2008 by []
-# Generator: ArchGenXML Version 2.0
+# Copyright (c) 2009 by []
+# Generator: ArchGenXML Version 2.1
 #            http://plone.org/products/archgenxml
 #
 # GNU General Public License (GPL)
@@ -109,6 +109,7 @@ schema = Schema((
         ),
         columns=('approval_initiation_closure','actual_date'),
     ),
+
 ),
 )
 
@@ -128,6 +129,7 @@ class Milestone(BaseContent, BrowserDefaultMixin):
     """
     """
     security = ClassSecurityInfo()
+
     implements(interfaces.IMilestone)
 
     meta_type = 'Milestone'

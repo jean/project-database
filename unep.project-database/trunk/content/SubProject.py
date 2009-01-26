@@ -2,8 +2,8 @@
 #
 # File: SubProject.py
 #
-# Copyright (c) 2008 by []
-# Generator: ArchGenXML Version 2.0
+# Copyright (c) 2009 by []
+# Generator: ArchGenXML Version 2.1
 #            http://plone.org/products/archgenxml
 #
 # GNU General Public License (GPL)
@@ -44,8 +44,8 @@ copied_fields['SummaryDescription'] = ProjectGeneralInformation.schema['SummaryD
 copied_fields['Country'] = ProjectGeneralInformation.schema['Country'].copy()
 copied_fields['Scope'] = ProjectGeneralInformation.schema['Scope'].copy()
 copied_fields['Region'] = ProjectGeneralInformation.schema['Region'].copy()
-copied_fields['ImplementationMode'] = ProjectGeneralInformation.schema['ImplementationMode'].copy()
-copied_fields['Office'] = ProjectGeneralInformation.schema['Office'].copy()
+#copied_fields['ImplementationMode'] = ProjectGeneralInformation.schema['ImplementationMode'].copy()
+#copied_fields['Office'] = ProjectGeneralInformation.schema['Office'].copy()
 copied_fields['ProjectCoordinator'] = ProjectGeneralInformation.schema['ProjectCoordinator'].copy()
 copied_fields['ProjectCoordinator'].relationship = "SubProject_ProjectCoordinator"
 copied_fields['LeadExecutingAgency'] = Financials.schema['LeadExecutingAgency'].copy()
@@ -59,9 +59,9 @@ schema = Schema((
 
     copied_fields['Region'],
 
-    copied_fields['ImplementationMode'],
+    #copied_fields['ImplementationMode'],
 
-    copied_fields['Office'],
+    #copied_fields['Office'],
 
     StringField(
         name='Website',
@@ -104,6 +104,7 @@ schema = Schema((
         ),
         columns=('status_date','status_remark'),
     ),
+
 ),
 )
 
@@ -121,6 +122,7 @@ class SubProject(BaseFolder, CurrencyMixin, FinancialsMixin, BrowserDefaultMixin
     """
     """
     security = ClassSecurityInfo()
+
     implements(interfaces.ISubProject)
 
     meta_type = 'SubProject'

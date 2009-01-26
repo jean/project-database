@@ -2,8 +2,8 @@
 #
 # File: ProjectImplementation.py
 #
-# Copyright (c) 2008 by []
-# Generator: ArchGenXML Version 2.0
+# Copyright (c) 2009 by []
+# Generator: ArchGenXML Version 2.1
 #            http://plone.org/products/archgenxml
 #
 # GNU General Public License (GPL)
@@ -48,6 +48,7 @@ schema = Schema((
         ),
         default_output_type='text/html',
     ),
+
 ),
 )
 
@@ -64,6 +65,7 @@ class ProjectImplementation(BaseContent, BrowserDefaultMixin):
     """
     """
     security = ClassSecurityInfo()
+
     implements(interfaces.IProjectImplementation)
 
     meta_type = 'ProjectImplementation'

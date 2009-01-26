@@ -2,8 +2,8 @@
 #
 # File: testAgency.py
 #
-# Copyright (c) 2008 by []
-# Generator: ArchGenXML Version 2.0
+# Copyright (c) 2009 by []
+# Generator: ArchGenXML Version 2.1
 #            http://plone.org/products/archgenxml
 #
 # GNU General Public License (GPL)
@@ -29,7 +29,6 @@ from Products.ProjectDatabase.config import *
 from Products.ProjectDatabase.tests.testPortalDatabase import testPortalDatabase
 
 # Import the tested classes
-from Products.ProjectDatabase.content.Agency import Agency
 
 ##code-section module-beforeclass #fill in your manual code here
 ##/code-section module-beforeclass

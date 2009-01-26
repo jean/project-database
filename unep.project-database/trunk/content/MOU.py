@@ -2,8 +2,8 @@
 #
 # File: MOU.py
 #
-# Copyright (c) 2008 by []
-# Generator: ArchGenXML Version 2.0
+# Copyright (c) 2009 by []
+# Generator: ArchGenXML Version 2.1
 #            http://plone.org/products/archgenxml
 #
 # GNU General Public License (GPL)
@@ -38,6 +38,7 @@ from Products.FinanceFields.Money import Money
 
 schema = Schema((
 
+
 ),
 )
 
@@ -55,6 +56,7 @@ class MOU(BaseFolder, SubProject, BrowserDefaultMixin):
     """
     """
     security = ClassSecurityInfo()
+
     implements(interfaces.IMOU)
 
     meta_type = 'MOU'

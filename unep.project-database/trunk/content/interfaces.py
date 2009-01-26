@@ -5,10 +5,6 @@ from zope.interface import Interface
 ##code-section HEAD
 ##/code-section HEAD
 
-class IAgency(Interface):
-    """Marker interface for .Agency.Agency
-    """
-
 class IProject(Interface):
     """Marker interface for .Project.Project
     """
@@ -31,34 +27,6 @@ class ISubProject(Interface):
 
 class IFinancials(Interface):
     """Marker interface for .Financials.Financials
-    """
-
-class IDocumentLinks(Interface):
-    """Marker interface for .DocumentLinks.DocumentLinks
-    """
-
-class IProjectExecutingPartner(Interface):
-    """Marker interface for .ProjectExecutingPartner.ProjectExecutingPartner
-    """
-
-class ITranched(Interface):
-    """Marker interface for .Tranched.Tranched
-    """
-
-class ICoreMixin(Interface):
-    """Marker interface for .CoreMixin.CoreMixin
-    """
-
-class IPhased(Interface):
-    """Marker interface for .Phased.Phased
-    """
-
-class IAddOn(Interface):
-    """Marker interface for .AddOn.AddOn
-    """
-
-class IBlankCoreMixin(Interface):
-    """Marker interface for .BlankCoreMixin.BlankCoreMixin
     """
 
 class IMonitoringAndEvaluation(Interface):
@@ -103,6 +71,10 @@ class IFinancialsMixin(Interface):
 
 class IProjectDatabase(Interface):
     """Marker interface for .ProjectDatabase.ProjectDatabase
+    """
+
+class IProgrammeFramework(Interface):
+    """Marker interface for .ProgrammeFramework.ProgrammeFramework
     """
 
 ##code-section FOOT

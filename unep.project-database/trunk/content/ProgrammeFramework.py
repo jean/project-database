@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #
-# File: EvaluatorsInformation.py
+# File: ProgrammeFramework.py
 #
 # Copyright (c) 2009 by []
 # Generator: ArchGenXML Version 2.1
@@ -38,33 +38,6 @@ from Products.FinanceFields.Money import Money
 
 schema = Schema((
 
-    ReferenceField(
-        name='TeamLeader',
-        widget=ReferenceBrowserWidget(
-            label="Team Lead",
-            description="Name of Evaluation Team Leader",
-            checkbox_bound=0,
-            label_msgid='ProjectDatabase_label_TeamLeader',
-            description_msgid='ProjectDatabase_help_TeamLeader',
-            i18n_domain='ProjectDatabase',
-        ),
-        allowed_types=('Person',),
-        multiValued=0,
-        relationship="EI_team_leader",
-    ),
-    ReferenceField(
-        name='TeamMembers',
-        widget=ReferenceBrowserWidget(
-            label="Team Members",
-            description="Names of other evaluation Team Members",
-            label_msgid='ProjectDatabase_label_TeamMembers',
-            description_msgid='ProjectDatabase_help_TeamMembers',
-            i18n_domain='ProjectDatabase',
-        ),
-        allowed_types=('Person',),
-        multiValued=1,
-        relationship="EI_team_members",
-    ),
 
 ),
 )
@@ -72,29 +45,23 @@ schema = Schema((
 ##code-section after-local-schema #fill in your manual code here
 ##/code-section after-local-schema
 
-EvaluatorsInformation_schema = BaseSchema.copy() + \
+ProgrammeFramework_schema = BaseSchema.copy() + \
     schema.copy()
 
 ##code-section after-schema #fill in your manual code here
-title_field = EvaluatorsInformation_schema['title']
-title_field.required=0
-title_field.widget.visible = {'edit':'hidden', 'view':'invisible'}
-
-EvaluatorsInformation_schema['TeamLeader'].widget.startup_directory = '/contacts'
-EvaluatorsInformation_schema['TeamMembers'].widget.startup_directory = '/contacts'
 ##/code-section after-schema
 
-class EvaluatorsInformation(BaseContent, BrowserDefaultMixin):
+class ProgrammeFramework(BaseContent, BrowserDefaultMixin):
     """
     """
     security = ClassSecurityInfo()
 
-    implements(interfaces.IEvaluatorsInformation)
+    implements(interfaces.IProgrammeFramework)
 
-    meta_type = 'EvaluatorsInformation'
+    meta_type = 'ProgrammeFramework'
     _at_rename_after_creation = True
 
-    schema = EvaluatorsInformation_schema
+    schema = ProgrammeFramework_schema
 
     ##code-section class-header #fill in your manual code here
     ##/code-section class-header
@@ -102,8 +69,8 @@ class EvaluatorsInformation(BaseContent, BrowserDefaultMixin):
     # Methods
 
 
-registerType(EvaluatorsInformation, PROJECTNAME)
-# end of class EvaluatorsInformation
+registerType(ProgrammeFramework, PROJECTNAME)
+# end of class ProgrammeFramework
 
 ##code-section module-footer #fill in your manual code here
 ##/code-section module-footer

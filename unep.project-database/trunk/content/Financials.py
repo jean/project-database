@@ -2,8 +2,8 @@
 #
 # File: Financials.py
 #
-# Copyright (c) 2008 by []
-# Generator: ArchGenXML Version 2.0
+# Copyright (c) 2009 by []
+# Generator: ArchGenXML Version 2.1
 #            http://plone.org/products/archgenxml
 #
 # GNU General Public License (GPL)
@@ -179,6 +179,7 @@ schema = Schema((
             i18n_domain='ProjectDatabase',
         ),
     ),
+
 ),
 )
 
@@ -208,6 +209,7 @@ class Financials(BaseFolder, CurrencyMixin, FinancialsMixin, BrowserDefaultMixin
     """
     """
     security = ClassSecurityInfo()
+
     implements(interfaces.IFinancials)
 
     meta_type = 'Financials'

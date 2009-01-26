@@ -2,8 +2,8 @@
 #
 # File: content.py
 #
-# Copyright (c) 2008 by []
-# Generator: ArchGenXML Version 2.0
+# Copyright (c) 2009 by []
+# Generator: ArchGenXML Version 2.1
 #            http://plone.org/products/archgenxml
 #
 # GNU General Public License (GPL)
@@ -44,20 +44,12 @@ import Financials
 from Products.CMFCore.utils import getToolByName
 from Products.FinanceFields.Money import Money
 # Classes
-import Agency
 import Project
 import ProjectImplementation
 import Milestone
 import ProjectGeneralInformation
 import SubProject
 import Financials
-import DocumentLinks
-import ProjectExecutingPartner
-import Tranched
-import CoreMixin
-import Phased
-import AddOn
-import BlankCoreMixin
 import MonitoringAndEvaluation
 import RatingTrackingSystem
 import EvaluatorsInformation
@@ -70,6 +62,7 @@ import MOU
 import CurrencyMixin
 import FinancialsMixin
 import ProjectDatabase
+import ProgrammeFramework
 
 ##code-section init-module-footer #fill in your manual code here
 ##/code-section init-module-footer
