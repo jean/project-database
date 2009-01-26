@@ -1,20 +1,12 @@
 <?xml version="1.0"?>
 <object name="portal_factory" meta_type="Plone Factory Tool">
  <factorytypes>
-  <type portal_type="Agency"/>
   <type portal_type="Project"/>
   <type portal_type="ProjectImplementation"/>
   <type portal_type="Milestone"/>
   <type portal_type="ProjectGeneralInformation"/>
   <type portal_type="SubProject"/>
   <type portal_type="Financials"/>
-  <type portal_type="DocumentLinks"/>
-  <type portal_type="ProjectExecutingPartner"/>
-  <type portal_type="Tranched"/>
-  <type portal_type="CoreMixin"/>
-  <type portal_type="Phased"/>
-  <type portal_type="AddOn"/>
-  <type portal_type="BlankCoreMixin"/>
   <type portal_type="MonitoringAndEvaluation"/>
   <type portal_type="RatingTrackingSystem"/>
   <type portal_type="EvaluatorsInformation"/>
@@ -27,5 +19,6 @@
   <type portal_type="CurrencyMixin"/>
   <type portal_type="FinancialsMixin"/>
   <type portal_type="ProjectDatabase"/>
+  <type portal_type="ProgrammeFramework"/>
  </factorytypes>
 </object>

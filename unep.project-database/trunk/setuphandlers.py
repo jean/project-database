@@ -2,8 +2,8 @@
 #
 # File: setuphandlers.py
 #
-# Copyright (c) 2008 by []
-# Generator: ArchGenXML Version 2.0
+# Copyright (c) 2009 by []
+# Generator: ArchGenXML Version 2.1
 #            http://plone.org/products/archgenxml
 #
 # GNU General Public License (GPL)
@@ -33,9 +33,6 @@ def isNotProjectDatabaseProfile(context):
 def installVocabularies(context):
     """creates/imports the atvm vocabs."""
     if isNotProjectDatabaseProfile(context): return 
-    shortContext = context._profile_path.split(os.path.sep)[-3]
-    if shortContext != 'ProjectDatabase': # avoid infinite recursions
-        return
     site = context.getSite()
     # Create vocabularies in vocabulary lib
     atvm = getToolByName(site, ATVOCABULARYTOOL)
@@ -48,14 +45,14 @@ def installVocabularies(context):
          'ReviewEvaluation': ('VdexVocabulary', 'SimpleVocabularyTerm'),
          'Assessment': ('VdexVocabulary', 'SimpleVocabularyTerm'),
          'Status': ('VdexVocabulary', 'SimpleVocabularyTerm'),
-         'ImplementationMode': ('VdexVocabulary', 'SimpleVocabularyTerm'),
+         'Division': ('VdexVocabulary', 'SimpleVocabularyTerm'),
          'ProjectType': ('VdexVocabulary', 'SimpleVocabularyTerm'),
          'MilestoneName': ('VdexVocabulary', 'SimpleVocabularyTerm'),
-         'ImplementationStatus': ('VdexVocabulary', 'SimpleVocabularyTerm'),
          'EAPOP': ('VdexVocabulary', 'SimpleVocabularyTerm'),
+         'UNEPThematicPriority': ('VdexVocabulary', 'SimpleVocabularyTerm'),
          'OperationalProgramme': ('VdexVocabulary', 'SimpleVocabularyTerm'),
          'FinanceCategory': ('VdexVocabulary', 'SimpleVocabularyTerm'),
-         'PipelineNumber': ('VdexVocabulary', 'SimpleVocabularyTerm'),
+         'LeadAgency': ('VdexVocabulary', 'SimpleVocabularyTerm'),
          'Country': ('VdexVocabulary', 'SimpleVocabularyTerm'),
          'Region': ('VdexVocabulary', 'SimpleVocabularyTerm'),
          'EABiodiversity': ('VdexVocabulary', 'SimpleVocabularyTerm'),
@@ -64,10 +61,10 @@ def installVocabularies(context):
          'FocalArea': ('VdexVocabulary', 'SimpleVocabularyTerm'),
          'StrategicObjectives': ('VdexVocabulary', 'SimpleVocabularyTerm'),
          'InceptionRiskRating': ('VdexVocabulary', 'SimpleVocabularyTerm'),
-         'Number': ('VdexVocabulary', 'SimpleVocabularyTerm'),
+         'ExecutionMode': ('VdexVocabulary', 'SimpleVocabularyTerm'),
          'EAClimateChange': ('VdexVocabulary', 'SimpleVocabularyTerm'),
          'StrategicProgram': ('VdexVocabulary', 'SimpleVocabularyTerm'),
-         'LeadAgency': ('VdexVocabulary', 'SimpleVocabularyTerm'),
+         'PhasedTranche': ('VdexVocabulary', 'SimpleVocabularyTerm'),
         }
     for vocabname in vocabmap.keys():
         if not vocabname in atvm.contentIds():
@@ -100,9 +97,6 @@ def updateRoleMappings(context):
     """after workflow changed update the roles mapping. this is like pressing
     the button 'Update Security Setting' and portal_workflow"""
     if isNotProjectDatabaseProfile(context): return 
-    shortContext = context._profile_path.split(os.path.sep)[-3]
-    if shortContext != 'ProjectDatabase': # avoid infinite recursions
-        return
     wft = getToolByName(context.getSite(), 'portal_workflow')
     wft.updateRoleMappings()
 

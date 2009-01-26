@@ -2,8 +2,8 @@
 #
 # File: RatingTrackingSystem.py
 #
-# Copyright (c) 2008 by []
-# Generator: ArchGenXML Version 2.0
+# Copyright (c) 2009 by []
+# Generator: ArchGenXML Version 2.1
 #            http://plone.org/products/archgenxml
 #
 # GNU General Public License (GPL)
@@ -115,6 +115,7 @@ schema = Schema((
         ),
         columns=('evaluation_elements', 'evaluator_rating', 'eou_rating', 'eo_rating',),
     ),
+
 ),
 )
 
@@ -131,6 +132,7 @@ class RatingTrackingSystem(BaseFolder, BrowserDefaultMixin):
     """
     """
     security = ClassSecurityInfo()
+
     implements(interfaces.IRatingTrackingSystem)
 
     meta_type = 'RatingTrackingSystem'
@@ -148,10 +150,6 @@ class RatingTrackingSystem(BaseFolder, BrowserDefaultMixin):
         """
         """
         # atvm = getToolByName(self, 'portal_vocabularies')
-        # vocab = atvm.getVocabularyByName('PIRRatingCategory')
-        # return vocab.getDisplayList(self)
-        pass
-
     security.declarePublic('getRatingList')
     def getRatingList(self):
         """

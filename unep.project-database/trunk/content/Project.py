@@ -2,8 +2,8 @@
 #
 # File: Project.py
 #
-# Copyright (c) 2008 by []
-# Generator: ArchGenXML Version 2.0
+# Copyright (c) 2009 by []
+# Generator: ArchGenXML Version 2.1
 #            http://plone.org/products/archgenxml
 #
 # GNU General Public License (GPL)
@@ -46,6 +46,15 @@ import permissions
 
 schema = Schema((
 
+    StringField(
+        name='title',
+        widget=StringField._properties['widget'](
+            label="Project Title",
+            label_msgid='ProjectDatabase_label_title',
+            i18n_domain='ProjectDatabase',
+        ),
+    ),
+
 ),
 )
 
@@ -62,6 +71,7 @@ class Project(BaseFolder, BrowserDefaultMixin):
     """
     """
     security = ClassSecurityInfo()
+
     implements(interfaces.IProject)
 
     meta_type = 'Project'

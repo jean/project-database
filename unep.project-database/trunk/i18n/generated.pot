@@ -252,6 +252,11 @@ msgstr ""
 msgid "ProjectDatabase_label_CurrentTaskManager"
 msgstr ""
 
+#. Default: "Databaseid"
+#: content/ProjectGeneralInformation.py
+msgid "ProjectDatabase_label_DatabaseID"
+msgstr ""
+
 #. Default: "Reasons for delay"
 #: content/FinancialsMixin.py
 msgid "ProjectDatabase_label_DelayReason"
@@ -285,6 +290,11 @@ msgstr ""
 #. Default: "EA Climate Change Other"
 #: content/ProjectGeneralInformation.py
 msgid "ProjectDatabase_label_EAClimateChangeOther"
+msgstr ""
+
+#. Default: "Multiple Focal Areas"
+#: content/ProjectGeneralInformation.py
+msgid "ProjectDatabase_label_EAMultipleFocalAreas"
 msgstr ""
 
 #. Default: "EA-POP"
@@ -325,6 +335,11 @@ msgstr ""
 #. Default: "Evaluation Type Milestone"
 #: content/EvaluationMilestone.py
 msgid "ProjectDatabase_label_EvaluationTypeMilestone"
+msgstr ""
+
+#. Default: "Mode of Execution"
+#: content/ProjectGeneralInformation.py
+msgid "ProjectDatabase_label_ExecutionMode"
 msgstr ""
 
 #. Default: "Executive Summary"
@@ -391,6 +406,11 @@ msgstr ""
 #: content/ProjectGeneralInformation.py
 #: content/CoreMixin.py
 msgid "ProjectDatabase_label_FocalArea"
+msgstr ""
+
+#. Default: "Former Project Title"
+#: content/ProjectGeneralInformation.py
+msgid "ProjectDatabase_label_FormerProjectTitle"
 msgstr ""
 
 #. Default: "Fund Management Officer"
@@ -506,6 +526,11 @@ msgstr ""
 #. Default: "Lead GEF Agency Contact"
 #: content/ProjectGeneralInformation.py
 msgid "ProjectDatabase_label_LeadAgencyContact"
+msgstr ""
+
+#. Default: "Lead Division"
+#: content/ProjectGeneralInformation.py
+msgid "ProjectDatabase_label_LeadDivision"
 msgstr ""
 
 #. Default: "Lead Executing Agency"
@@ -672,6 +697,11 @@ msgstr ""
 msgid "ProjectDatabase_label_OtherCategories"
 msgstr ""
 
+#. Default: "Other Division"
+#: content/ProjectGeneralInformation.py
+msgid "ProjectDatabase_label_OtherDivisions"
+msgstr ""
+
 #. Default: "Other GEF Agency(ies)"
 #: content/ProjectGeneralInformation.py
 msgid "ProjectDatabase_label_OtherImplementingAgency"
@@ -708,9 +738,19 @@ msgstr ""
 msgid "ProjectDatabase_label_PDFAStatus"
 msgstr ""
 
+#. Default: "PDF Amount"
+#: content/ProjectGeneralInformation.py
+msgid "ProjectDatabase_label_PDFAmount"
+msgstr ""
+
 #. Default: "PDFB Status"
 #: content/ProjectGeneralInformation.py
 msgid "ProjectDatabase_label_PDFBStatus"
+msgstr ""
+
+#. Default: "Pdfcstatus"
+#: content/ProjectGeneralInformation.py
+msgid "ProjectDatabase_label_PDFCStatus"
 msgstr ""
 
 #. Default: "PDF Financial Information Documents"
@@ -739,6 +779,36 @@ msgstr ""
 msgid "ProjectDatabase_label_PMSNumber"
 msgstr ""
 
+#. Default: "Ppgotheriaamount"
+#: content/ProjectGeneralInformation.py
+msgid "ProjectDatabase_label_PPGOtherIAAmount"
+msgstr ""
+
+#. Default: "Ppgotheriafeeamount"
+#: content/ProjectGeneralInformation.py
+msgid "ProjectDatabase_label_PPGOtherIAFeeAmount"
+msgstr ""
+
+#. Default: "Ppgstatus"
+#: content/ProjectGeneralInformation.py
+msgid "ProjectDatabase_label_PPGStatus"
+msgstr ""
+
+#. Default: "Ppgunepamount"
+#: content/ProjectGeneralInformation.py
+msgid "ProjectDatabase_label_PPGUNEPAmount"
+msgstr ""
+
+#. Default: "Ppgunepfeeamount"
+#: content/ProjectGeneralInformation.py
+msgid "ProjectDatabase_label_PPGUNEPFeeAmount"
+msgstr ""
+
+#. Default: "Is this a Tranched/Phased/Addon Project?"
+#: content/ProjectGeneralInformation.py
+msgid "ProjectDatabase_label_PhaseTranche"
+msgstr ""
+
 #. Default: "Phase/Tranche Number"
 #: content/ProjectGeneralInformation.py
 msgid "ProjectDatabase_label_PhasedTrancheNumber"
@@ -765,6 +835,16 @@ msgstr ""
 #: content/ProjectGeneralInformation.py
 #: content/CoreMixin.py
 msgid "ProjectDatabase_label_PreviousTaskManager"
+msgstr ""
+
+#. Default: "Is this project in a Programme Framework?"
+#: content/ProjectGeneralInformation.py
+msgid "ProjectDatabase_label_ProgrammeFramework"
+msgstr ""
+
+#. Default: "Programmeframeworktitle"
+#: content/ProjectGeneralInformation.py
+msgid "ProjectDatabase_label_ProgrammeFrameworkTitle"
 msgstr ""
 
 #. Default: "Progress Reports"
@@ -798,6 +878,11 @@ msgstr ""
 msgid "ProjectDatabase_label_ProjectExecutingAgency"
 msgstr ""
 
+#. Default: "Projectgranttotal"
+#: content/ProjectGeneralInformation.py
+msgid "ProjectDatabase_label_ProjectGrantTotal"
+msgstr ""
+
 #. Default: "Project Implementation Status"
 #: content/ProjectGeneralInformation.py
 #: content/SubProject.py
@@ -812,6 +897,16 @@ msgstr ""
 #. Default: "Project Objectives"
 #: content/OtherProjectRatings.py
 msgid "ProjectDatabase_label_ProjectObjectives"
+msgstr ""
+
+#. Default: "Projectotheriaamount"
+#: content/ProjectGeneralInformation.py
+msgid "ProjectDatabase_label_ProjectOtherIAAmount"
+msgstr ""
+
+#. Default: "Projectotheriafeeamount"
+#: content/ProjectGeneralInformation.py
+msgid "ProjectDatabase_label_ProjectOtherIAFeeAmount"
 msgstr ""
 
 #. Default: "Project Outputs and Actvities"
@@ -860,6 +955,16 @@ msgstr ""
 #. Default: "Project Type"
 #: content/ProjectGeneralInformation.py
 msgid "ProjectDatabase_label_ProjectType"
+msgstr ""
+
+#. Default: "Projectunepamount"
+#: content/ProjectGeneralInformation.py
+msgid "ProjectDatabase_label_ProjectUNEPAmount"
+msgstr ""
+
+#. Default: "Projectunepfeeamount"
+#: content/ProjectGeneralInformation.py
+msgid "ProjectDatabase_label_ProjectUNEPFeeAmount"
 msgstr ""
 
 #. Default: "Recommendations Follow-up"
@@ -978,6 +1083,11 @@ msgstr ""
 msgid "ProjectDatabase_label_SubProjectDocuments"
 msgstr ""
 
+#. Default: "Sub-Region"
+#: content/ProjectGeneralInformation.py
+msgid "ProjectDatabase_label_SubRegion"
+msgstr ""
+
 #. Default: "Substantive Publications"
 #: content/DocumentLinks.py
 msgid "ProjectDatabase_label_SubstantivePublication"
@@ -1049,6 +1159,11 @@ msgstr ""
 #: content/RatingTrackingSystem.py
 #: content/OtherProjectRatings.py
 msgid "ProjectDatabase_label_TERating"
+msgstr ""
+
+#. Default: "Task Manager"
+#: content/ProjectGeneralInformation.py
+msgid "ProjectDatabase_label_TaskManager"
 msgstr ""
 
 #. Default: "Team Lead"
@@ -1142,6 +1257,16 @@ msgstr ""
 msgid "ProjectDatabase_label_TotalIMISExpenditures"
 msgstr ""
 
+#. Default: "Totalppgamount"
+#: content/ProjectGeneralInformation.py
+msgid "ProjectDatabase_label_TotalPPGAmount"
+msgstr ""
+
+#. Default: "Totalprojectamount"
+#: content/ProjectGeneralInformation.py
+msgid "ProjectDatabase_label_TotalProjectAmount"
+msgstr ""
+
 #. Default: "Total Project Cost Actual"
 #: content/BlankCoreMixin.py
 msgid "ProjectDatabase_label_TotalProjectCostActual"
@@ -1188,6 +1313,11 @@ msgstr ""
 msgid "ProjectDatabase_label_UNEPProjectDocument"
 msgstr ""
 
+#. Default: "UNEP Thematic Priority"
+#: content/ProjectGeneralInformation.py
+msgid "ProjectDatabase_label_UNEPThematicPriority"
+msgstr ""
+
 #. Default: "UNEP Component Description"
 #: content/ProjectGeneralInformation.py
 msgid "ProjectDatabase_label_UnepComponentDescription"
@@ -1202,6 +1332,7 @@ msgstr ""
 
 #. Default: "Title"
 #: content/ProjectGeneralInformation.py
+#: content/Project.py
 msgid "ProjectDatabase_label_title"
 msgstr ""
 
