@@ -51,77 +51,36 @@ schema = Schema((
             i18n_domain='ProjectDatabase',
         ),
     ),
-    ComputedField(
-        name='CashUNEPAllocation',
-        widget=ComputedField._properties['widget'](
-            label="GEF Allocation to UNEP",
-            label_msgid='ProjectDatabase_label_CashUNEPAllocation',
+    StringField(
+        name='FinanceCategory',
+        widget=SelectionWidget(
+            label="Finance Object",
+            label_msgid='ProjectDatabase_label_FinanceCategory',
+            i18n_domain='ProjectDatabase',
+        ),
+        vocabulary=NamedVocabulary("""FinanceCategory"""),
+    ),
+    StringField(
+        name='TrusteeID',
+        widget=StringField._properties['widget'](
+            label="Trustee ID",
+            label_msgid='ProjectDatabase_label_TrusteeID',
             i18n_domain='ProjectDatabase',
         ),
     ),
-    MoneyField(
-        name='GEFTrustFund',
-        widget=MoneyField._properties['widget'](
-            label="GEF Trust Fund",
-            label_msgid='ProjectDatabase_label_GEFTrustFund',
+    StringField(
+        name='PMSNumber',
+        widget=StringField._properties['widget'](
+            label="PMS Number",
+            label_msgid='ProjectDatabase_label_PMSNumber',
             i18n_domain='ProjectDatabase',
         ),
     ),
-    MoneyField(
-        name='LDCFundAllocation',
-        widget=MoneyField._properties['widget'](
-            label="LDC Fund Allocation",
-            label_msgid='ProjectDatabase_label_LDCFundAllocation',
-            i18n_domain='ProjectDatabase',
-        ),
-    ),
-    MoneyField(
-        name='SCCFAllocation',
-        widget=MoneyField._properties['widget'](
-            label="SCCF Allocation",
-            label_msgid='ProjectDatabase_label_SCCFAllocation',
-            i18n_domain='ProjectDatabase',
-        ),
-    ),
-    MoneyField(
-        name='StrategicPartnership',
-        widget=MoneyField._properties['widget'](
-            label="Strategic Partnership",
-            label_msgid='ProjectDatabase_label_StrategicPartnership',
-            i18n_domain='ProjectDatabase',
-        ),
-    ),
-    MoneyField(
-        name='AdaptationTrustFund',
-        widget=MoneyField._properties['widget'](
-            label="Adaptation Trust Fund",
-            label_msgid='ProjectDatabase_label_AdaptationTrustFund',
-            i18n_domain='ProjectDatabase',
-        ),
-    ),
-    MoneyField(
-        name='SupplementaryUNEPAllocation',
-        widget=MoneyField._properties['widget'](
-            label="Supplementary Allocation to UNEP",
-            label_msgid='ProjectDatabase_label_SupplementaryUNEPAllocation',
-            i18n_domain='ProjectDatabase',
-        ),
-    ),
-    TextField(
-        name='SupplementaryUNEPAllocationRemark',
-        widget=TextAreaWidget(
-            label="Supplementary Allocation to UNEP: remark",
-            label_msgid='ProjectDatabase_label_SupplementaryUNEPAllocationRemark',
-            i18n_domain='ProjectDatabase',
-        ),
-    ),
-    MoneyField(
-        name='ActualTotalExpenditures',
-        widget=MoneyField._properties['widget'](
-            label="Actual Total Expenditures",
-            description="The total actual expenditures against the GEF trust fund once project is completed",
-            label_msgid='ProjectDatabase_label_ActualTotalExpenditures',
-            description_msgid='ProjectDatabase_help_ActualTotalExpenditures',
+    StringField(
+        name='IMISNumber',
+        widget=StringField._properties['widget'](
+            label="IMIS Number",
+            label_msgid='ProjectDatabase_label_IMISNumber',
             i18n_domain='ProjectDatabase',
         ),
     ),
@@ -142,42 +101,277 @@ schema = Schema((
         ),
         vocabulary=NamedVocabulary("""LeadAgency"""),
     ),
-    ReferenceField(
+    StringField(
+        name='Status',
+        widget=SelectionWidget(
+            label="Project Status",
+            label_msgid='ProjectDatabase_label_Status',
+            i18n_domain='ProjectDatabase',
+        ),
+        vocabulary=NamedVocabulary("""Status"""),
+    ),
+    TextField(
+        name='FinancialStatusRemarks',
+        widget=TextAreaWidget(
+            label="Project Financial Status - Remarks",
+            label_msgid='ProjectDatabase_label_FinancialStatusRemarks',
+            i18n_domain='ProjectDatabase',
+        ),
+    ),
+    DataGridField(
+        name='FinanceObjectAmount',
+        widget=DataGridField._properties['widget'](
+            columns={ 'trust_fund' : SelectColumn("Trust Fund"), 'unep_allocation' : Column("UNEP Allocation"), 'other_ia_allocation' : Column("Other IA Alloaction"), 'unep_fee' : Column("UNEP Fee"), 'other_ia_fee' : Column("Other IA Fee") },
+            label="Finance Object Amount",
+            label_msgid='ProjectDatabase_label_FinanceObjectAmount',
+            i18n_domain='ProjectDatabase',
+        ),
+        columns=("trust_fund", "unep_allocation", "other_ia_allocation", "unep_fee", "other_ia_fee"),
+    ),
+    ComputedField(
+        name='TotalFinanceObjectGrant',
+        widget=ComputedField._properties['widget'](
+            label='Totalfinanceobjectgrant',
+            label_msgid='ProjectDatabase_label_TotalFinanceObjectGrant',
+            i18n_domain='ProjectDatabase',
+        ),
+    ),
+    ComputedField(
+        name='TotalFee',
+        widget=ComputedField._properties['widget'](
+            label='Totalfee',
+            label_msgid='ProjectDatabase_label_TotalFee',
+            i18n_domain='ProjectDatabase',
+        ),
+    ),
+    ComputedField(
+        name='TotalFinanceObject',
+        widget=ComputedField._properties['widget'](
+            label='Totalfinanceobject',
+            label_msgid='ProjectDatabase_label_TotalFinanceObject',
+            i18n_domain='ProjectDatabase',
+        ),
+    ),
+    MoneyField(
+        name='CommittedGEFGrant',
+        widget=MoneyField._properties['widget'](
+            label="Committed GEF Grant",
+            description="Project budget in the internalized project document",
+            label_msgid='ProjectDatabase_label_CommittedGEFGrant',
+            description_msgid='ProjectDatabase_help_CommittedGEFGrant',
+            i18n_domain='ProjectDatabase',
+        ),
+    ),
+    ComputedField(
+        name='Difference',
+        widget=ComputedField._properties['widget'](
+            label='Difference',
+            label_msgid='ProjectDatabase_label_Difference',
+            i18n_domain='ProjectDatabase',
+        ),
+    ),
+    DataGridField(
+        name='CofinancingCash',
+        widget=DataGridField._properties['widget'](
+            columns={ 'cofinancing_cash_source' : SelectColumn("Source", vocabulary="getDonorTypesVocabulary"), 'cofinancing_cash_donor_name' : Column("Name of donor"), 'cofinancing_cash_planned_amount' : Column("Planned Amount"), 'cofinancing_cash_actual_amount' : Column("Actual Amount") },
+            label="Cofinancing: Cash",
+            label_msgid='ProjectDatabase_label_CofinancingCash',
+            i18n_domain='ProjectDatabase',
+        ),
+        columns=("cofinancing_cash_source", "cofinancing_cash_donor_name", "cofinancing_cash_planned_amount", "cofinancing_cash_actual_amount"),
+    ),
+    DataGridField(
+        name='CofinancingInKind',
+        widget=DataGridField._properties['widget'](
+            columns={ 'cofinancing_inkind_source' : SelectColumn("Source", vocabulary="getDonorTypesVocabulary"), 'cofinancing_inkind_donor_name' : Column("Name of donor"), 'cofinancing_inkind_planned_amount' : Column("Planned Amount"), 'cofinancing_inkind_actual_amount' : Column("Actual Amount") },
+            label="Cofinancing: In Kind",
+            label_msgid='ProjectDatabase_label_CofinancingInKind',
+            i18n_domain='ProjectDatabase',
+        ),
+        columns=("cofinancing_inkind_source", "cofinancing_inkind_donor_name", "cofinancing_inkind_planned_amount", "cofinancing_inkind_actual_amount"),
+    ),
+    ComputedField(
+        name='SumCofinCashPlanned',
+        widget=ComputedField._properties['widget'](
+            label="Total Cofinancing: Cash (Planned)",
+            label_msgid='ProjectDatabase_label_SumCofinCashPlanned',
+            i18n_domain='ProjectDatabase',
+        ),
+    ),
+    ComputedField(
+        name='SumCofinCashActual',
+        widget=ComputedField._properties['widget'](
+            label="Total Cofinancing: Cash (Actual)",
+            label_msgid='ProjectDatabase_label_SumCofinCashActual',
+            i18n_domain='ProjectDatabase',
+        ),
+    ),
+    ComputedField(
+        name='SumCofinInKindPlanned',
+        widget=ComputedField._properties['widget'](
+            label="Total Cofinancing: In Kind (Planned)",
+            label_msgid='ProjectDatabase_label_SumCofinInKindPlanned',
+            i18n_domain='ProjectDatabase',
+        ),
+    ),
+    ComputedField(
+        name='SumCofinInKindActual',
+        widget=ComputedField._properties['widget'](
+            label="Total Cofinancing: In Kind (Actual)",
+            label_msgid='ProjectDatabase_label_SumCofinInKindActual',
+            i18n_domain='ProjectDatabase',
+        ),
+    ),
+    ComputedField(
+        name='TotalCostOfFinanceObjectPlanned',
+        widget=ComputedField._properties['widget'](
+            label="Total Cost of Finance Object (Planned)",
+            label_msgid='ProjectDatabase_label_TotalCostOfFinanceObjectPlanned',
+            i18n_domain='ProjectDatabase',
+        ),
+    ),
+    ComputedField(
+        name='TotalCostOfFinanceObjectActual',
+        widget=ComputedField._properties['widget'](
+            label="Total Cost of Finance Object (Actual)",
+            label_msgid='ProjectDatabase_label_TotalCostOfFinanceObjectActual',
+            i18n_domain='ProjectDatabase',
+        ),
+    ),
+    DataGridField(
+        name='EvaluationFunds',
+        widget=DataGridField._properties['widget'](
+            columns= { 'EvaluationType':SelectColumn("EvaluationType"), 'Amount':Column('Amount'), 'BAC':Column('BAC') },
+            label="Evaluation Funds",
+            label_msgid='ProjectDatabase_label_EvaluationFunds',
+            i18n_domain='ProjectDatabase',
+        ),
+        columns= ("EvaluationType", "Amount", "BAC"),
+    ),
+    DataGridField(
+        name='CashDisbursements',
+        widget=DataGridField._properties['widget'](
+            columns={ 'cash_disbursements_date' : CalendarColumn("Date"), 'cash_disbursements_amount' : Column("Amount"), 'cash_disbursements_imis_rcpt_number' : Column("IMIS RCPT Number") },
+            label="Cash Disbursements",
+            label_msgid='ProjectDatabase_label_CashDisbursements',
+            i18n_domain='ProjectDatabase',
+        ),
+        columns=("cash_disbursements_date", "cash_disbursements_amount", "cash_disbursements_imis_rcpt_number"),
+    ),
+    ComputedField(
+        name='SumCashDisbursements',
+        widget=ComputedField._properties['widget'](
+            label="Total Cash Disbursements",
+            label_msgid='ProjectDatabase_label_SumCashDisbursements',
+            i18n_domain='ProjectDatabase',
+        ),
+    ),
+    DataGridField(
+        name='YearlyExpenditures',
+        widget=DataGridField._properties['widget'](
+            columns={ 'year' : Column("Amount"), 'amount' : Column("Amount") },
+            label="Yearly Expenditures",
+            label_msgid='ProjectDatabase_label_YearlyExpenditures',
+            i18n_domain='ProjectDatabase',
+        ),
+        columns=("year", "amount"),
+    ),
+    ComputedField(
+        name='SumYearlyExpenditures',
+        widget=ComputedField._properties['widget'](
+            label="Total Yearly Expenditures",
+            label_msgid='ProjectDatabase_label_SumYearlyExpenditures',
+            i18n_domain='ProjectDatabase',
+        ),
+    ),
+    IntegerField(
+        name='PlannedDuration',
+        widget=IntegerField._properties['widget'](
+            label="Planned Duration",
+            description="The number of months",
+            label_msgid='ProjectDatabase_label_PlannedDuration',
+            description_msgid='ProjectDatabase_help_PlannedDuration',
+            i18n_domain='ProjectDatabase',
+        ),
+    ),
+    DateTimeField(
+        name='InitialCompletionDate',
+        widget=CalendarWidget(
+            label="Initial Completion Date",
+            show_hm=False,
+            label_msgid='ProjectDatabase_label_InitialCompletionDate',
+            i18n_domain='ProjectDatabase',
+        ),
+    ),
+    DateTimeField(
+        name='RevisedCompletionDate',
+        widget=CalendarWidget(
+            label="Revised Completion Date",
+            description="As per last revision",
+            show_hm=False,
+            label_msgid='ProjectDatabase_label_RevisedCompletionDate',
+            description_msgid='ProjectDatabase_help_RevisedCompletionDate',
+            i18n_domain='ProjectDatabase',
+        ),
+    ),
+    TextField(
+        name='DelayReason',
+        widget=TextAreaWidget(
+            label="Reasons for delay",
+            label_msgid='ProjectDatabase_label_DelayReason',
+            i18n_domain='ProjectDatabase',
+        ),
+    ),
+    DataGridField(
+        name='Reports',
+        widget=DataGridField._properties['widget'](
+            columns={ 'report_type' : SelectColumn("Report Type", vocabulary="getReportTypesVocabulary"), 'report_period' : Column("Report Period"), 'report_received_date' : CalendarColumn("Report Received Date") },
+            label="Reports",
+            label_msgid='ProjectDatabase_label_Reports',
+            i18n_domain='ProjectDatabase',
+        ),
+        columns=("report_type", "report_period", "report_received_date"),
+    ),
+    DataGridField(
         name='FundManagementOfficer',
-        widget=ReferenceBrowserWidget(
+        widget=DataGridField._properties['widget'](
+            columns= { 'FMO_Name': Column("Name"), "FMO_Type":Column("Type"), "FMO_Period":Column('Period')},
             label="Fund Management Officer",
             label_msgid='ProjectDatabase_label_FundManagementOfficer',
             i18n_domain='ProjectDatabase',
         ),
-        multiValued=0,
-        relationship="Financials_FundManagementOfficer",
-        allowed_types=('Person',),
+        columns= ("FMO_Name", "FMO_Type", "FMO_Period"),
+    ),
+    DataGridField(
+        name='ProjectRevision',
+        widget=DataGridField._properties['widget'](
+            columns={"revision_number":Column("Revision Number"), "revision_type":SelectColumn("Revision Type", vocabulary="getRevisionTypeVocabulary"),"revision_date":CalendarColumn("Revision Date")},
+            label="Project Revision",
+            label_msgid='ProjectDatabase_label_ProjectRevision',
+            i18n_domain='ProjectDatabase',
+        ),
+        vocabulary=NamedVocabulary("""ProjectRevisionType"""),
+        columns=("revision_number", "revision_type","revision_date"),
     ),
     TextField(
-        name='PDFResults',
+        name='FinanceObjectPreparationResults',
         allowable_content_types=('text/plain', 'text/structured', 'text/html', 'application/msword',),
         widget=RichWidget(
-            label="PDF Results",
-            label_msgid='ProjectDatabase_label_PDFResults',
+            label='Financeobjectpreparationresults',
+            label_msgid='ProjectDatabase_label_FinanceObjectPreparationResults',
             i18n_domain='ProjectDatabase',
         ),
         default_output_type='text/html',
     ),
-    MoneyField(
-        name='TerminalEvaluationBudget',
-        widget=MoneyField._properties['widget'](
-            label="Project Terminal Evaluation Budget",
-            label_msgid='ProjectDatabase_label_TerminalEvaluationBudget',
+    DataGridField(
+        name='ExecutingAgencyRiskRating',
+        widget=DataGridField._properties['widget'](
+            columns= {'Risk_Level':Column("Risk Level"), "Assessment_Date":CalendarColumn("Assessment Date"), 'Remarks':Column("Remarks")},
+            label="Executing Agency Risk Rating",
+            label_msgid='ProjectDatabase_label_ExecutingAgencyRiskRating',
             i18n_domain='ProjectDatabase',
         ),
-    ),
-    MoneyField(
-        name='MidTermEvaluationBudget',
-        widget=MoneyField._properties['widget'](
-            label="Project Mid-term Review Budget",
-            label_msgid='ProjectDatabase_label_MidTermEvaluationBudget',
-            i18n_domain='ProjectDatabase',
-        ),
+        columns= ("Risk_Level", "Assessment_Date", "Remarks"),
     ),
 
 ),

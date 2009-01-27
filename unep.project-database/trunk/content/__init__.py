@@ -44,12 +44,12 @@ import Financials
 from Products.CMFCore.utils import getToolByName
 from Products.FinanceFields.Money import Money
 # Classes
+import Financials
 import Project
 import ProjectImplementation
 import Milestone
 import ProjectGeneralInformation
 import SubProject
-import Financials
 import MonitoringAndEvaluation
 import RatingTrackingSystem
 import EvaluatorsInformation

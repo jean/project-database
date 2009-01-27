@@ -44,8 +44,8 @@ copied_fields['SummaryDescription'] = ProjectGeneralInformation.schema['SummaryD
 copied_fields['Country'] = ProjectGeneralInformation.schema['Country'].copy()
 copied_fields['Scope'] = ProjectGeneralInformation.schema['Scope'].copy()
 copied_fields['Region'] = ProjectGeneralInformation.schema['Region'].copy()
-#copied_fields['ImplementationMode'] = ProjectGeneralInformation.schema['ImplementationMode'].copy()
-#copied_fields['Office'] = ProjectGeneralInformation.schema['Office'].copy()
+copied_fields['ImplementationMode'] = ProjectGeneralInformation.schema['ImplementationMode'].copy()
+copied_fields['Office'] = ProjectGeneralInformation.schema['Office'].copy()
 copied_fields['ProjectCoordinator'] = ProjectGeneralInformation.schema['ProjectCoordinator'].copy()
 copied_fields['ProjectCoordinator'].relationship = "SubProject_ProjectCoordinator"
 copied_fields['LeadExecutingAgency'] = Financials.schema['LeadExecutingAgency'].copy()
@@ -59,9 +59,9 @@ schema = Schema((
 
     copied_fields['Region'],
 
-    #copied_fields['ImplementationMode'],
+    copied_fields['ImplementationMode'],
 
-    #copied_fields['Office'],
+    copied_fields['Office'],
 
     StringField(
         name='Website',

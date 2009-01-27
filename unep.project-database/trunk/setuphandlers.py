@@ -36,8 +36,8 @@ def installVocabularies(context):
     site = context.getSite()
     # Create vocabularies in vocabulary lib
     atvm = getToolByName(site, ATVOCABULARYTOOL)
-    vocabmap = {'ProjectStatusses': ('VdexVocabulary', 'SimpleVocabularyTerm'),
-         'Category': ('VdexVocabulary', 'SimpleVocabularyTerm'),
+    vocabmap = {'Category': ('VdexVocabulary', 'SimpleVocabularyTerm'),
+         'ProjectStatusses': ('VdexVocabulary', 'SimpleVocabularyTerm'),
          'StrategicPriority': ('VdexVocabulary', 'SimpleVocabularyTerm'),
          'GEFPhase': ('VdexVocabulary', 'SimpleVocabularyTerm'),
          'ProjectCycleStage': ('VdexVocabulary', 'SimpleVocabularyTerm'),
@@ -52,13 +52,13 @@ def installVocabularies(context):
          'UNEPThematicPriority': ('VdexVocabulary', 'SimpleVocabularyTerm'),
          'OperationalProgramme': ('VdexVocabulary', 'SimpleVocabularyTerm'),
          'FinanceCategory': ('VdexVocabulary', 'SimpleVocabularyTerm'),
-         'LeadAgency': ('VdexVocabulary', 'SimpleVocabularyTerm'),
+         'FocalArea': ('VdexVocabulary', 'SimpleVocabularyTerm'),
          'Country': ('VdexVocabulary', 'SimpleVocabularyTerm'),
          'Region': ('VdexVocabulary', 'SimpleVocabularyTerm'),
          'EABiodiversity': ('VdexVocabulary', 'SimpleVocabularyTerm'),
          'ProjectRevisionType': ('VdexVocabulary', 'SimpleVocabularyTerm'),
          'MultipleFocalAreas': ('VdexVocabulary', 'SimpleVocabularyTerm'),
-         'FocalArea': ('VdexVocabulary', 'SimpleVocabularyTerm'),
+         'LeadAgency': ('VdexVocabulary', 'SimpleVocabularyTerm'),
          'StrategicObjectives': ('VdexVocabulary', 'SimpleVocabularyTerm'),
          'InceptionRiskRating': ('VdexVocabulary', 'SimpleVocabularyTerm'),
          'ExecutionMode': ('VdexVocabulary', 'SimpleVocabularyTerm'),
