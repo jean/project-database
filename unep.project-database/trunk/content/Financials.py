@@ -18,7 +18,6 @@ from Products.Archetypes.atapi import *
 from zope.interface import implements
 import interfaces
 from Products.ProjectDatabase.content.CurrencyMixin import CurrencyMixin
-from Products.ProjectDatabase.content.FinancialsMixin import FinancialsMixin
 from Products.CMFDynamicViewFTI.browserdefault import BrowserDefaultMixin
 
 from Products.ATVocabularyManager.namedvocabulary import NamedVocabulary
@@ -121,7 +120,7 @@ schema = Schema((
     DataGridField(
         name='FinanceObjectAmount',
         widget=DataGridField._properties['widget'](
-            columns={ 'trust_fund' : SelectColumn("Trust Fund"), 'unep_allocation' : Column("UNEP Allocation"), 'other_ia_allocation' : Column("Other IA Alloaction"), 'unep_fee' : Column("UNEP Fee"), 'other_ia_fee' : Column("Other IA Fee") },
+            columns={ 'trust_fund' : Column("Trust Fund"), 'unep_allocation' : Column("UNEP Allocation"), 'other_ia_allocation' : Column("Other IA Alloaction"), 'unep_fee' : Column("UNEP Fee"), 'other_ia_fee' : Column("Other IA Fee") },
             label="Finance Object Amount",
             label_msgid='ProjectDatabase_label_FinanceObjectAmount',
             i18n_domain='ProjectDatabase',
@@ -241,7 +240,7 @@ schema = Schema((
     DataGridField(
         name='EvaluationFunds',
         widget=DataGridField._properties['widget'](
-            columns= { 'EvaluationType':SelectColumn("EvaluationType"), 'Amount':Column('Amount'), 'BAC':Column('BAC') },
+            columns= { 'EvaluationType':Column("EvaluationType"), 'Amount':Column('Amount'), 'BAC':Column('BAC') },
             label="Evaluation Funds",
             label_msgid='ProjectDatabase_label_EvaluationFunds',
             i18n_domain='ProjectDatabase',
@@ -325,12 +324,12 @@ schema = Schema((
     DataGridField(
         name='Reports',
         widget=DataGridField._properties['widget'](
-            columns={ 'report_type' : SelectColumn("Report Type", vocabulary="getReportTypesVocabulary"), 'report_period' : Column("Report Period"), 'report_received_date' : CalendarColumn("Report Received Date") },
+            columns={ 'report_type' : SelectColumn("Report Type", vocabulary="getReportTypesVocabulary"), 'report_period' : Column("Report Period"), 'report_received_date' : CalendarColumn("Report Received Date"), 'amount' : Column("Amount") },
             label="Reports",
             label_msgid='ProjectDatabase_label_Reports',
             i18n_domain='ProjectDatabase',
         ),
-        columns=("report_type", "report_period", "report_received_date"),
+        columns=("report_type", "report_period", "report_received_date", "amount"),
     ),
     DataGridField(
         name='FundManagementOfficer',
@@ -381,25 +380,12 @@ schema = Schema((
 ##/code-section after-local-schema
 
 Financials_schema = BaseFolderSchema.copy() + \
-    getattr(FinancialsMixin, 'schema', Schema(())).copy() + \
     schema.copy()
 
 ##code-section after-schema #fill in your manual code here
-title_field = Financials_schema['title']
-title_field.required=0
-title_field.widget.visible = {'edit':'hidden', 'view':'invisible'}
-Financials_schema['GEFTrustFund'].widget.size=15
-Financials_schema['LDCFundAllocation'].widget.size=15
-Financials_schema['SCCFAllocation'].widget.size=15
-Financials_schema['StrategicPartnership'].widget.size=15
-Financials_schema['AdaptationTrustFund'].widget.size=15
-Financials_schema['SupplementaryUNEPAllocation'].widget.size=15
-Financials_schema['ActualTotalExpenditures'].widget.size=15
-
-Financials_schema['FundManagementOfficer'].widget.startup_directory = '/contacts'
 ##/code-section after-schema
 
-class Financials(BaseFolder, CurrencyMixin, FinancialsMixin, BrowserDefaultMixin):
+class Financials(BaseFolder, CurrencyMixin, BrowserDefaultMixin):
     """
     """
     security = ClassSecurityInfo()
@@ -412,44 +398,6 @@ class Financials(BaseFolder, CurrencyMixin, FinancialsMixin, BrowserDefaultMixin
     schema = Financials_schema
 
     ##code-section class-header #fill in your manual code here
-    schema.moveField('GEFid', after='title')
-    schema.moveField('FinanceCategory', after='GEFid')
-    schema.moveField('TrusteeID', after='FinanceCategory')
-    schema.moveField('PMSNumber', after='TrusteeID')
-    schema.moveField('IMISNumber', after='PMSNumber')
-    schema.moveField('GEFProjectAllocation', after='IMISNumber')
-    schema.moveField('CashUNEPAllocation', after='GEFProjectAllocation')
-    schema.moveField('GEFTrustFund', after='CashUNEPAllocation')
-    schema.moveField('LDCFundAllocation', after='GEFTrustFund')
-    schema.moveField('SCCFAllocation', after='LDCFundAllocation')
-    schema.moveField('StrategicPartnership', after='SCCFAllocation')
-    schema.moveField('AdaptationTrustFund', after='StrategicPartnership')
-    schema.moveField('SupplementaryUNEPAllocation', after='AdaptationTrustFund')
-    schema.moveField('SupplementaryUNEPAllocationRemark', after='SupplementaryUNEPAllocation')
-    schema.moveField('CofinancingCash', after='SupplementaryUNEPAllocationRemark')
-    schema.moveField('CofinancingInKind', after='CofinancingCash')
-    schema.moveField('SumCofinCashPlanned', after='CofinancingInKind')
-    schema.moveField('SumCofinCashActual', after='SumCofinCashPlanned')
-    schema.moveField('SumCofinInKindPlanned', after='SumCofinCashActual')
-    schema.moveField('SumCofinInKindActual', after='SumCofinInKindPlanned')
-    schema.moveField('TotalCostOfProjectStagePlanned', after='SumCofinInKindActual')
-    schema.moveField('TotalCostOfProjectStageActual', after='TotalCostOfProjectStagePlanned')
-    schema.moveField('ApprovedUNEPBudget', after='TotalCostOfProjectStageActual')
-    schema.moveField('CashDisbursements', after='ApprovedUNEPBudget')
-    schema.moveField('SumCashDisbursements', after='CashDisbursements')
-    schema.moveField('IMISExpenditures', after='SumCashDisbursements')
-    schema.moveField('SumIMISExpenditures', after='IMISExpenditures')
-    schema.moveField('ActualTotalExpenditures', after='SumIMISExpenditures')
-    schema.moveField('Status', after='ActualTotalExpenditures')
-    schema.moveField('PlannedDuration', after='Status')
-    schema.moveField('InitialCompletionDate', after='PlannedDuration')
-    schema.moveField('RevisedCompletionDate', after='InitialCompletionDate')
-    schema.moveField('DelayReason', after='RevisedCompletionDate')
-    schema.moveField('Reports', after='DelayReason')
-    schema.moveField('LeadExecutingAgency', after='Reports')
-    schema.moveField('OtherLeadExecutingAgency', after='LeadExecutingAgency')
-    schema.moveField('FundManagementOfficer', after='OtherLeadExecutingAgency')
-    schema.moveField('FinancialStatusRemarks', after='FundManagementOfficer')
     ##/code-section class-header
 
     # Methods
@@ -497,6 +445,182 @@ class Financials(BaseFolder, CurrencyMixin, FinancialsMixin, BrowserDefaultMixin
             return 'Financial Management Information'
 
 
+    security.declarePublic('getDonorTypesVocabulary')
+    def getDonorTypesVocabulary(self):
+        """
+        """
+        pvt = getToolByName(self, 'portal_vocabularies')
+        vocab = pvt.getVocabularyByName('DonorType')
+        return vocab.getDisplayList(self)
+
+    security.declarePublic('getReportTypesVocabulary')
+    def getReportTypesVocabulary(self):
+        """
+        """
+        pvt = getToolByName(self, 'portal_vocabularies')
+        vocab = pvt.getVocabularyByName('ReportType')
+        return vocab.getDisplayList(self)
+
+    security.declarePublic('computeDataGridAmount')
+    def computeDataGridAmount(self,column):
+        """
+        """
+        amount = self.getMoneyFieldDefault()
+        for v in column:
+            if v:
+                amount += v
+        return amount
+
+    security.declarePublic('getMoneyFieldDefault')
+    def getMoneyFieldDefault(self):
+        """
+        """
+        properties = getToolByName(self, 'portal_properties')
+        default_currency = properties.financial_properties.default_currency
+        return Money(0, default_currency)
+        #return self.getZeroMoneyInstance()
+
+    security.declarePublic('getSumCofinCashPlanned')
+    def getSumCofinCashPlanned(self):
+        """
+        """
+        cash_values = self.getCofinancingCash()
+        return self.computeDataGridAmount([v['cofinancing_cash_planned_amount'] for v in cash_values if v['cofinancing_cash_planned_amount']])
+
+    security.declarePublic('getSumCofinActual')
+    def getSumCofinActual(self):
+        """
+        """
+        pass
+
+    security.declarePublic('getSumCofinInKindPlanned')
+    def getSumCofinInKindPlanned(self):
+        """
+        """
+        cash_values = self.getCofinancingInKind()
+        return self.computeDataGridAmount([v['cofinancing_inkind_planned_amount'] for v in cash_values if v['cofinancing_inkind_planned_amount']])
+
+    security.declarePublic('getSumCofinInKindActual')
+    def getSumCofinInKindActual(self):
+        """
+        """
+        cash_values = self.getCofinancingInKind()
+        return self.computeDataGridAmount([v['cofinancing_inkind_actual_amount'] for v in cash_values if v['cofinancing_inkind_actual_amount']])
+
+    security.declarePublic('getSumCashDisbursements')
+    def getSumCashDisbursements(self):
+        """
+        """
+        cash_values = self.getCashDisbursements()
+        return self.computeDataGridAmount([v['cash_disbursements_amount'] for v in cash_values if v['cash_disbursements_amount']])
+
+    security.declarePublic('getSumIMISExpenditures')
+    def getSumIMISExpenditures(self):
+        """
+        """
+        cash_values = self.getIMISExpenditures()
+        return self.computeDataGridAmount([v['imis_expenditure_amount'] for v in cash_values if v['imis_expenditure_amount']])
+
+    security.declarePublic('getTotalCostOfProjectStagePlanned')
+    def getTotalCostOfProjectStagePlanned(self):
+        """
+        """
+        #projObj = self.getProject()
+        if self.portal_type == 'Financials':
+            total = self.getCashUNEPAllocation()
+            if self.getSumCofinCashPlanned():
+                total += self.getSumCofinCashPlanned()
+            if self.getSumCofinInKindPlanned():
+                total += self.getSumCofinInKindPlanned()
+            return total
+        elif self.portal_type == 'SubProject':
+            # total = self.getZeroMoneyInstance()
+            total = self.getMoneyFieldDefault()
+            if self.getSumCofinCashPlanned():
+                total += self.getSumCofinCashPlanned()
+            if self.getSumCofinInKindPlanned():
+                total += self.getSumCofinInKindPlanned()
+
+        else:
+            # return self.getZeroMoneyInstance()
+            return self.getMoneyFieldDefault()
+
+    security.declarePublic('getTotalCostOfProjectStageActual')
+    def getTotalCostOfProjectStageActual(self):
+        """
+        """
+        if self.portal_type == 'Financials':
+            total = self.getCashUNEPAllocation()
+            if self.getSupplementaryUNEPAllocation():
+                total += self.getSupplementaryUNEPAllocation()
+            if self.getSumCofinCashActual():
+                total += self.getSumCofinCashActual()
+            if self.getSumCofinInKindActual():
+                total += self.getSumCofinInKindActual()
+            return total
+        elif self.portal_type == 'SubProject':
+            # total = self.getZeroMoneyInstance()
+            total = self.getMoneyFieldDefault()
+            if self.getSumCofinCashActual():
+                total += self.getSumCofinCashActual()
+            if self.getSumCofinInKindActual():
+                total += self.getSumCofinInKindActual()
+            return total
+        else:
+            # return self.getZeroMoneyInstance()
+            return self.getMoneyFieldDefault()
+
+    security.declarePublic('getRevisionTypeVocabulary')
+    def getRevisionTypeVocabulary(self):
+        """
+        """
+        pvt = getToolByName(self, 'portal_vocabularies')
+        vocab = pvt.getVocabularyByName('ProjectRevisionType')
+        return vocab.getDisplayList(self)
+
+    security.declarePublic('getDifference')
+    def getDifference(self):
+        """ calculate the difference between the committed and allocated GEF grant
+        """
+        revAllocUNEP = self.getRevisedAllocationToUNEP()
+        committedGEFgrant = self.getCommittedGEFGrant()
+        if (revAllocUNEP is not None) and (committedGEFgrant is not None):
+            return revAllocUNEP - committedGEFgrant
+        return self.getMoneyFieldDefault()
+
+    # Manually created methods
+
+    security.declarePublic('validate_CashDisbursements')
+    def validate_CashDisbursements(self, value):
+        """
+        """
+        request = self.REQUEST
+        total_cost = self.computeDataGridAmount([v['cash_disbursements_amount'] for v in value if v['cash_disbursements_amount']])
+        # total = self.getZeroMoneyInstance()
+        total = self.getMoneyFieldDefault()
+        if request.get('GEFTrustFund'):
+            total = total + request.get('GEFTrustFund')
+        if request.get('LDCFundAllocation'):
+            total = total + request.get('LDCFundAllocation')
+        if request.get('SCCFAllocation'):
+            total = total + request.get('SCCFAllocation')
+        if request.get('StrategicPartnership'):
+            total = total + request.get('StrategicPartnership')
+        if request.get('AdaptationTrustFund'):
+            total = total + request.get('AdaptationTrustFund')
+        if request.get('SupplementaryUNEPAllocation'):
+            total = total + request.get('SupplementaryUNEPAllocation')
+
+        if total_cost > total:
+            return 'Total disbursements cannot exceed total allocation'
+        return
+
+    security.declarePublic('getSumCofinCashActual')
+    def getSumCofinCashActual(self):
+        """
+        """
+        cash_values = self.getCofinancingCash()
+        return self.computeDataGridAmount([v['cofinancing_cash_actual_amount'] for v in cash_values if v['cofinancing_cash_actual_amount']])
 
 registerType(Financials, PROJECTNAME)
 # end of class Financials

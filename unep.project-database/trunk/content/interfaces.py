@@ -5,16 +5,8 @@ from zope.interface import Interface
 ##code-section HEAD
 ##/code-section HEAD
 
-class IFinancials(Interface):
-    """Marker interface for .Financials.Financials
-    """
-
 class IProject(Interface):
     """Marker interface for .Project.Project
-    """
-
-class IProjectImplementation(Interface):
-    """Marker interface for .ProjectImplementation.ProjectImplementation
     """
 
 class IMilestone(Interface):
@@ -27,6 +19,10 @@ class IProjectGeneralInformation(Interface):
 
 class ISubProject(Interface):
     """Marker interface for .SubProject.SubProject
+    """
+
+class IFinancials(Interface):
+    """Marker interface for .Financials.Financials
     """
 
 class IMonitoringAndEvaluation(Interface):
@@ -63,10 +59,6 @@ class IFMIFolder(Interface):
 
 class IMOU(Interface):
     """Marker interface for .MOU.MOU
-    """
-
-class IFinancialsMixin(Interface):
-    """Marker interface for .FinancialsMixin.FinancialsMixin
     """
 
 class IProjectDatabase(Interface):

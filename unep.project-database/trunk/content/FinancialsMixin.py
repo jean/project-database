@@ -159,6 +159,7 @@ class FinancialsMixin(BrowserDefaultMixin):
         default_currency = properties.financial_properties.default_currency
         return Money(0, default_currency)
         #return self.getZeroMoneyInstance()
+
     security.declarePublic('getSumCofinCashPlanned')
     def getSumCofinCashPlanned(self):
         """

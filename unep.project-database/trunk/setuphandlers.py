@@ -36,8 +36,8 @@ def installVocabularies(context):
     site = context.getSite()
     # Create vocabularies in vocabulary lib
     atvm = getToolByName(site, ATVOCABULARYTOOL)
-    vocabmap = {'Category': ('VdexVocabulary', 'SimpleVocabularyTerm'),
-         'ProjectStatusses': ('VdexVocabulary', 'SimpleVocabularyTerm'),
+    vocabmap = {'ProjectStatusses': ('VdexVocabulary', 'SimpleVocabularyTerm'),
+         'Category': ('VdexVocabulary', 'SimpleVocabularyTerm'),
          'StrategicPriority': ('VdexVocabulary', 'SimpleVocabularyTerm'),
          'GEFPhase': ('VdexVocabulary', 'SimpleVocabularyTerm'),
          'ProjectCycleStage': ('VdexVocabulary', 'SimpleVocabularyTerm'),
@@ -52,13 +52,13 @@ def installVocabularies(context):
          'UNEPThematicPriority': ('VdexVocabulary', 'SimpleVocabularyTerm'),
          'OperationalProgramme': ('VdexVocabulary', 'SimpleVocabularyTerm'),
          'FinanceCategory': ('VdexVocabulary', 'SimpleVocabularyTerm'),
-         'FocalArea': ('VdexVocabulary', 'SimpleVocabularyTerm'),
+         'LeadAgency': ('VdexVocabulary', 'SimpleVocabularyTerm'),
          'Country': ('VdexVocabulary', 'SimpleVocabularyTerm'),
          'Region': ('VdexVocabulary', 'SimpleVocabularyTerm'),
          'EABiodiversity': ('VdexVocabulary', 'SimpleVocabularyTerm'),
          'ProjectRevisionType': ('VdexVocabulary', 'SimpleVocabularyTerm'),
          'MultipleFocalAreas': ('VdexVocabulary', 'SimpleVocabularyTerm'),
-         'LeadAgency': ('VdexVocabulary', 'SimpleVocabularyTerm'),
+         'FocalArea': ('VdexVocabulary', 'SimpleVocabularyTerm'),
          'StrategicObjectives': ('VdexVocabulary', 'SimpleVocabularyTerm'),
          'InceptionRiskRating': ('VdexVocabulary', 'SimpleVocabularyTerm'),
          'ExecutionMode': ('VdexVocabulary', 'SimpleVocabularyTerm'),
@@ -134,6 +134,7 @@ def installDataGridVocabularies(context):
         'EvaluationTypeMilestone': ('VdexVocabulary', 'SimpleVocabularyTerm'),
         'ApprovalInitiationClosure': ('VdexVocabulary', 'SimpleVocabularyTerm'),
         'ProjectProcesses': ('VdexVocabulary', 'SimpleVocabularyTerm'),
+        'TMCategory': ('VdexVocabulary', 'SimpleVocabularyTerm'),
         }
     for vocabname in vocabmap.keys():
         if not vocabname in atvm.contentIds():

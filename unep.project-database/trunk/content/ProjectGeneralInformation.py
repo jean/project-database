@@ -193,7 +193,6 @@ schema = Schema((
         name='JointImplementation',
         widget=BooleanWidget(
             label="Joint Implementation",
-            macro="pd_boolean",
             label_msgid='ProjectDatabase_label_JointImplementation',
             i18n_domain='ProjectDatabase',
         ),
@@ -294,7 +293,7 @@ schema = Schema((
         name='ProjectImplementationStatus',
         widget=DataGridField._properties['widget'](
             label="Project Implementation Status",
-            columns={'fiscal_year':Column('Fiscal Year'),'narrative':Column('Project activities and objectives met')},
+            columns={'fiscal_year':Column('Fiscal Year'),'narrative_description':Column('Project activities and objectives met')},
             label_msgid='ProjectDatabase_label_ProjectImplementationStatus',
             i18n_domain='ProjectDatabase',
         ),
@@ -675,7 +674,7 @@ schema = Schema((
 ##code-section after-local-schema #fill in your manual code here
 ##/code-section after-local-schema
 
-ProjectGeneralInformation_schema = BaseFolderSchema.copy() + \
+ProjectGeneralInformation_schema = BaseSchema.copy() + \
     schema.copy()
 
 ##code-section after-schema #fill in your manual code here
@@ -701,7 +700,7 @@ ProjectGeneralInformation_schema['LeadAgencyContact'].widget.startup_directory =
 ProjectGeneralInformation_schema['ProjectCoordinator'].widget.startup_directory = '/contacts'
 ##/code-section after-schema
 
-class ProjectGeneralInformation(BaseFolder, CurrencyMixin, BrowserDefaultMixin):
+class ProjectGeneralInformation(BaseContent, CurrencyMixin, BrowserDefaultMixin):
     """
     """
     security = ClassSecurityInfo()
@@ -723,10 +722,7 @@ class ProjectGeneralInformation(BaseFolder, CurrencyMixin, BrowserDefaultMixin):
     def getTotalGEFAllocation(self):
         """
         """
-        #fmi_cash_objs = self.contentValues('Financials')
-        #subproject_objs = self.contentValues('SubProject')
-        fmi_cash_objs = self.getAProject()['fmi_folder'].contentValues('Financials')
-        #subproject_objs = self['subprojectsfolder'].contentValues('SubProject')
+        fmi_cash_objs = self.getAProject()['fmi_folder'].contentValues({'portal_type':'Financials'})
         total = self.getZeroMoneyInstance()
         for fmi_obj in fmi_cash_objs:
             if fmi_obj.getGEFProjectAllocation():
@@ -740,8 +736,7 @@ class ProjectGeneralInformation(BaseFolder, CurrencyMixin, BrowserDefaultMixin):
     def getTotalUNEPAllocation(self):
         """
         """
-        #fmi_cash_objs = self.contentValues('Financials')
-        fmi_cash_objs = self.getAProject()['fmi_folder'].contentValues('Financials')
+        fmi_cash_objs = self.getAProject()['fmi_folder'].contentValues({'portal_type':'Financials'})
         total = self.getZeroMoneyInstance()
         for fmi_obj in fmi_cash_objs:
             if fmi_obj.getCashUNEPAllocation():
@@ -752,10 +747,7 @@ class ProjectGeneralInformation(BaseFolder, CurrencyMixin, BrowserDefaultMixin):
     def getTotalCofinancingPlanned(self):
         """
         """
-        #fmi_cash_objs = self.contentValues('Financials')
-        #subproject_objs = self.contentValues('SubProject')
-        fmi_cash_objs = self.getAProject()['fmi_folder'].contentValues('Financials')
-        #subproject_objs = self['subprojectsfolder'].contentValues('SubProject')
+        fmi_cash_objs = self.getAProject()['fmi_folder'].contentValues({'portal_type':'Financials'})
         total = self.getZeroMoneyInstance()
         for fmi_obj in fmi_cash_objs:
             if fmi_obj.getSumCofinCashPlanned():
@@ -773,10 +765,7 @@ class ProjectGeneralInformation(BaseFolder, CurrencyMixin, BrowserDefaultMixin):
     def getTotalCofinancingActual(self):
         """
         """
-        #fmi_cash_objs = self.contentValues('Financials')
-        #subproject_objs = self.contentValues('SubProject')
-        fmi_cash_objs = self.getAProject()['fmi_folder'].contentValues('Financials')
-        #subproject_objs = self['subprojectsfolder'].contentValues('SubProject')
+        fmi_cash_objs = self.getAProject()['fmi_folder'].contentValues({'portal_type':'Financials'})
         total = self.getZeroMoneyInstance()
         for fmi_obj in fmi_cash_objs:
             if fmi_obj.getSumCofinCashActual():
@@ -794,10 +783,7 @@ class ProjectGeneralInformation(BaseFolder, CurrencyMixin, BrowserDefaultMixin):
     def getTotalCashDisbursements(self):
         """
         """
-        #fmi_cash_objs = self.contentValues('Financials')
-        #subproject_objs = self.contentValues('SubProject')
-        fmi_cash_objs = self.getAProject()['fmi_folder'].contentValues('Financials')
-        #subproject_objs = self['subprojectsfolder'].contentValues('SubProject')
+        fmi_cash_objs = self.getAProject()['fmi_folder'].contentValues({'portal_type':'Financials'})
         total = self.getZeroMoneyInstance()
         for fmi_obj in fmi_cash_objs:
             if fmi_obj.getSumCashDisbursements():
@@ -811,10 +797,7 @@ class ProjectGeneralInformation(BaseFolder, CurrencyMixin, BrowserDefaultMixin):
     def getTotalIMISExpenditures(self):
         """
         """
-        #fmi_cash_objs = self.contentValues('Financials')
-        #subproject_objs = self.contentValues('SubProject')
-        fmi_cash_objs = self.getAProject()['fmi_folder'].contentValues('Financials')
-        #subproject_objs = self['subprojectsfolder'].contentValues('SubProject')
+        fmi_cash_objs = self.getAProject()['fmi_folder'].contentValues({'portal_type':'Financials'})
         total = self.getZeroMoneyInstance()
         for fmi_obj in fmi_cash_objs:
             if fmi_obj.getSumIMISExpenditures():
@@ -828,8 +811,7 @@ class ProjectGeneralInformation(BaseFolder, CurrencyMixin, BrowserDefaultMixin):
     def getPDFAStatus(self):
         """
         """
-        #fmi_objs = self.contentValues('Financials')
-        fmi_objs = self.getAProject()['fmi_folder'].contentValues('Financials')
+        fmi_objs = self.getAProject()['fmi_folder'].contentValues({'portal_type':'Financials'})
         status = ''
         for fmi_obj in fmi_objs:
             if fmi_obj.getFinanceCategory() == 'PDF A':
@@ -840,11 +822,21 @@ class ProjectGeneralInformation(BaseFolder, CurrencyMixin, BrowserDefaultMixin):
     def getPDFBStatus(self):
         """
         """
-        #fmi_objs = self.contentValues('Financials')
-        fmi_objs = self.getAProject()['fmi_folder'].contentValues('Financials')
+        fmi_objs = self.getAProject()['fmi_folder'].contentValues({'portal_type':'Financials'})
         status = ''
         for fmi_obj in fmi_objs:
             if fmi_obj.getFinanceCategory() == 'PDF B':
+                status = fmi_obj.getStatus()
+        return status
+
+    security.declarePublic('getPDFCStatus')
+    def getPDFCStatus(self):
+        """
+        """
+        fmi_objs = self.getAProject()['fmi_folder'].contentValues({'portal_type':'Financials'})
+        status = ''
+        for fmi_obj in fmi_objs:
+            if fmi_obj.getFinanceCategory() == 'PDF C':
                 status = fmi_obj.getStatus()
         return status
 
@@ -852,8 +844,7 @@ class ProjectGeneralInformation(BaseFolder, CurrencyMixin, BrowserDefaultMixin):
     def getMSPStatus(self):
         """
         """
-        #fmi_objs = self.contentValues('Financials')
-        fmi_objs = self.getAProject()['fmi_folder'].contentValues('Financials')
+        fmi_objs = self.getAProject()['fmi_folder'].contentValues({'portal_type':'Financials'})
         status = ''
         for fmi_obj in fmi_objs:
             if fmi_obj.getFinanceCategory() == 'MSP':
@@ -864,11 +855,21 @@ class ProjectGeneralInformation(BaseFolder, CurrencyMixin, BrowserDefaultMixin):
     def getFSPStatus(self):
         """
         """
-        #fmi_objs = self.contentValues('Financials')
-        fmi_objs = self.getAProject()['fmi_folder'].contentValues('Financials')
+        fmi_objs = self.getAProject()['fmi_folder'].contentValues({'portal_type':'Financials'})
         status = ''
         for fmi_obj in fmi_objs:
             if fmi_obj.getFinanceCategory() == 'FSP':
+                status = fmi_obj.getStatus()
+        return status
+
+    security.declarePublic('getPPGStatus')
+    def getPPGStatus(self):
+        """
+        """
+        fmi_objs = self.getAProject()['fmi_folder'].contentValues({'portal_type':'Financials'})
+        status = ''
+        for fmi_obj in fmi_objs:
+            if fmi_obj.getFinanceCategory() == 'PPG':
                 status = fmi_obj.getStatus()
         return status
 
@@ -898,25 +899,34 @@ class ProjectGeneralInformation(BaseFolder, CurrencyMixin, BrowserDefaultMixin):
         vocab = atvm.getVocabularyByName('Category')
         return vocab.getDisplayList(self)
 
+    security.declarePublic('getTMCategoryVocab')
+    def getTMCategoryVocab(self):
+        """
+        """
+        atvm = self.portal_vocabularies
+        vocab = atvm.getVocabularyByName('TMCategory')
+        return vocab.getDisplayList(self)
+
+
     security.declarePublic('displayContentsTab')
     def displayContentsTab(self):
         """
         """
         return False
 
-    security.declarePublic('validate_GEFid')
-    def validate_GEFid(self, value):
-        """
-        Check that the GEF id consists of 5 digits
-        """
-        if len(value) != 5:
-            return 'The GEF ID must be 5 digits in length'
+    # security.declarePublic('validate_GEFid')
+    # def validate_GEFid(self, value):
+    #     """
+    #     Check that the GEF id consists of 5 digits
+    #     """
+    #     if len(value) != 5:
+    #         return 'The GEF ID must be 5 digits in length'
 
-        for char in value:
-            if char not in ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']:
-                return 'Only digits are allowed in the GEF ID'
+    #     for char in value:
+    #         if char not in ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']:
+    #             return 'Only digits are allowed in the GEF ID'
 
-        return None
+    #     return None
 
     # Manually created methods
 
@@ -948,6 +958,24 @@ class ProjectGeneralInformation(BaseFolder, CurrencyMixin, BrowserDefaultMixin):
                 return 'Value must be zero if Tranched is No'
         return
 
+
+    security.declarePublic('getTotalPPGAmount')
+    def getTotalPPGAmount(self):
+        """
+        """
+        return 0.0
+
+    security.declarePublic('getTotalProjectAmount')
+    def getTotalProjectAmount(self):
+        """
+        """
+        return 0.0
+
+    security.declarePublic('getProjectGrantTotal')
+    def getProjectGrantTotal(self):
+        """
+        """
+        return 0.0
 
 
 registerType(ProjectGeneralInformation, PROJECTNAME)

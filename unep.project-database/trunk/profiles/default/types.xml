@@ -2,13 +2,7 @@
 <object name="portal_types"
         meta_type="Plone Types Tool">
 
- <object name="Financials"
-         meta_type="Factory-based Type Information with dynamic views"/>
-
  <object name="Project"
-         meta_type="Factory-based Type Information with dynamic views"/>
-
- <object name="ProjectImplementation"
          meta_type="Factory-based Type Information with dynamic views"/>
 
  <object name="Milestone"
@@ -18,6 +12,9 @@
          meta_type="Factory-based Type Information with dynamic views"/>
 
  <object name="SubProject"
+         meta_type="Factory-based Type Information with dynamic views"/>
+
+ <object name="Financials"
          meta_type="Factory-based Type Information with dynamic views"/>
 
  <object name="MonitoringAndEvaluation"
@@ -45,9 +42,6 @@
          meta_type="Factory-based Type Information with dynamic views"/>
 
  <object name="MOU"
-         meta_type="Factory-based Type Information with dynamic views"/>
-
- <object name="FinancialsMixin"
          meta_type="Factory-based Type Information with dynamic views"/>
 
  <object name="ProjectDatabase"

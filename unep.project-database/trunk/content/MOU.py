@@ -45,14 +45,14 @@ schema = Schema((
 ##code-section after-local-schema #fill in your manual code here
 ##/code-section after-local-schema
 
-MOU_schema = BaseFolderSchema.copy() + \
+MOU_schema = BaseSchema.copy() + \
     getattr(SubProject, 'schema', Schema(())).copy() + \
     schema.copy()
 
 ##code-section after-schema #fill in your manual code here
 ##/code-section after-schema
 
-class MOU(BaseFolder, SubProject, BrowserDefaultMixin):
+class MOU(BaseContent, SubProject, BrowserDefaultMixin):
     """
     """
     security = ClassSecurityInfo()
