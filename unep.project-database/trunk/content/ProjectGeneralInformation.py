@@ -293,11 +293,11 @@ schema = Schema((
         name='ProjectImplementationStatus',
         widget=DataGridField._properties['widget'](
             label="Project Implementation Status",
-            columns={'fiscal_year':Column('Fiscal Year'),'narrative_description':Column('Project activities and objectives met')},
+            columns={'fiscal_year':Column('Fiscal Year'),'narrative':Column('Project activities and objectives met')},
             label_msgid='ProjectDatabase_label_ProjectImplementationStatus',
             i18n_domain='ProjectDatabase',
         ),
-        columns=('fiscal_year','narrative_description'),
+        columns=('fiscal_year','narrative'),
     ),
     DataGridField(
         name='TaskManager',
@@ -829,17 +829,6 @@ class ProjectGeneralInformation(BaseContent, CurrencyMixin, BrowserDefaultMixin)
                 status = fmi_obj.getStatus()
         return status
 
-    security.declarePublic('getPDFCStatus')
-    def getPDFCStatus(self):
-        """
-        """
-        fmi_objs = self.getAProject()['fmi_folder'].contentValues({'portal_type':'Financials'})
-        status = ''
-        for fmi_obj in fmi_objs:
-            if fmi_obj.getFinanceCategory() == 'PDF C':
-                status = fmi_obj.getStatus()
-        return status
-
     security.declarePublic('getMSPStatus')
     def getMSPStatus(self):
         """
@@ -859,17 +848,6 @@ class ProjectGeneralInformation(BaseContent, CurrencyMixin, BrowserDefaultMixin)
         status = ''
         for fmi_obj in fmi_objs:
             if fmi_obj.getFinanceCategory() == 'FSP':
-                status = fmi_obj.getStatus()
-        return status
-
-    security.declarePublic('getPPGStatus')
-    def getPPGStatus(self):
-        """
-        """
-        fmi_objs = self.getAProject()['fmi_folder'].contentValues({'portal_type':'Financials'})
-        status = ''
-        for fmi_obj in fmi_objs:
-            if fmi_obj.getFinanceCategory() == 'PPG':
                 status = fmi_obj.getStatus()
         return status
 
@@ -899,6 +877,36 @@ class ProjectGeneralInformation(BaseContent, CurrencyMixin, BrowserDefaultMixin)
         vocab = atvm.getVocabularyByName('Category')
         return vocab.getDisplayList(self)
 
+    security.declarePublic('displayContentsTab')
+    def displayContentsTab(self):
+        """
+        """
+        return False
+
+    # Manually created methods
+
+    security.declarePublic('getPDFCStatus')
+    def getPDFCStatus(self):
+        """
+        """
+        fmi_objs = self.getAProject()['fmi_folder'].contentValues({'portal_type':'Financials'})
+        status = ''
+        for fmi_obj in fmi_objs:
+            if fmi_obj.getFinanceCategory() == 'PDF C':
+                status = fmi_obj.getStatus()
+        return status
+
+    security.declarePublic('getPPGStatus')
+    def getPPGStatus(self):
+        """
+        """
+        fmi_objs = self.getAProject()['fmi_folder'].contentValues({'portal_type':'Financials'})
+        status = ''
+        for fmi_obj in fmi_objs:
+            if fmi_obj.getFinanceCategory() == 'PPG':
+                status = fmi_obj.getStatus()
+        return status
+
     security.declarePublic('getTMCategoryVocab')
     def getTMCategoryVocab(self):
         """
@@ -906,29 +914,6 @@ class ProjectGeneralInformation(BaseContent, CurrencyMixin, BrowserDefaultMixin)
         atvm = self.portal_vocabularies
         vocab = atvm.getVocabularyByName('TMCategory')
         return vocab.getDisplayList(self)
-
-
-    security.declarePublic('displayContentsTab')
-    def displayContentsTab(self):
-        """
-        """
-        return False
-
-    # security.declarePublic('validate_GEFid')
-    # def validate_GEFid(self, value):
-    #     """
-    #     Check that the GEF id consists of 5 digits
-    #     """
-    #     if len(value) != 5:
-    #         return 'The GEF ID must be 5 digits in length'
-
-    #     for char in value:
-    #         if char not in ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']:
-    #             return 'Only digits are allowed in the GEF ID'
-
-    #     return None
-
-    # Manually created methods
 
     security.declarePublic('getProjectTitle')
     def Title(self):
@@ -958,7 +943,6 @@ class ProjectGeneralInformation(BaseContent, CurrencyMixin, BrowserDefaultMixin)
                 return 'Value must be zero if Tranched is No'
         return
 
-
     security.declarePublic('getTotalPPGAmount')
     def getTotalPPGAmount(self):
         """
@@ -976,6 +960,7 @@ class ProjectGeneralInformation(BaseContent, CurrencyMixin, BrowserDefaultMixin)
         """
         """
         return 0.0
+
 
 
 registerType(ProjectGeneralInformation, PROJECTNAME)

@@ -120,7 +120,7 @@ schema = Schema((
     DataGridField(
         name='FinanceObjectAmount',
         widget=DataGridField._properties['widget'](
-            columns={ 'trust_fund' : Column("Trust Fund"), 'unep_allocation' : Column("UNEP Allocation"), 'other_ia_allocation' : Column("Other IA Alloaction"), 'unep_fee' : Column("UNEP Fee"), 'other_ia_fee' : Column("Other IA Fee") },
+            columns={ 'trust_fund' : SelectColumn("Trust Fund", vocabulary="TrustFund"), 'unep_allocation' : Column("UNEP Allocation"), 'other_ia_allocation' : Column("Other IA Alloaction"), 'unep_fee' : Column("UNEP Fee"), 'other_ia_fee' : Column("Other IA Fee") },
             label="Finance Object Amount",
             label_msgid='ProjectDatabase_label_FinanceObjectAmount',
             i18n_domain='ProjectDatabase',
@@ -240,7 +240,7 @@ schema = Schema((
     DataGridField(
         name='EvaluationFunds',
         widget=DataGridField._properties['widget'](
-            columns= { 'EvaluationType':Column("EvaluationType"), 'Amount':Column('Amount'), 'BAC':Column('BAC') },
+            columns= { 'EvaluationType':SelectColumn("EvaluationType", vocabulary="EvaluationType"), 'Amount':Column('Amount'), 'BAC':Column('BAC') },
             label="Evaluation Funds",
             label_msgid='ProjectDatabase_label_EvaluationFunds',
             i18n_domain='ProjectDatabase',
@@ -421,19 +421,19 @@ class Financials(BaseFolder, CurrencyMixin, BrowserDefaultMixin):
             total = total + self.getSupplementaryUNEPAllocation()
         return total
 
-    security.declarePublic('validate_GEFid')
-    def validate_GEFid(self, value):
-        """
-        Check that the GEF id consists of 5 digits
-        """
-        if len(value) != 5:
-            return 'The GEF ID must be 5 digits in length'
-
-        for char in value:
-            if char not in ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']:
-                return 'Only digits are allowed in the GEF ID'
-
     # Manually created methods
+
+    # security.declarePublic('validate_GEFid')
+    # def validate_GEFid(self, value):
+    #     """
+    #     Check that the GEF id consists of 5 digits
+    #     """
+    #     if len(value) != 5:
+    #         return 'The GEF ID must be 5 digits in length'
+
+    #     for char in value:
+    #         if char not in ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']:
+    #             return 'Only digits are allowed in the GEF ID'
 
     security.declarePublic('Title')
     def Title(self):
@@ -443,7 +443,6 @@ class Financials(BaseFolder, CurrencyMixin, BrowserDefaultMixin):
             return 'Financial Management Information: ' + str(self.getAProject().Title())
         else:
             return 'Financial Management Information'
-
 
     security.declarePublic('getDonorTypesVocabulary')
     def getDonorTypesVocabulary(self):
@@ -479,7 +478,6 @@ class Financials(BaseFolder, CurrencyMixin, BrowserDefaultMixin):
         default_currency = properties.financial_properties.default_currency
         return Money(0, default_currency)
         #return self.getZeroMoneyInstance()
-
     security.declarePublic('getSumCofinCashPlanned')
     def getSumCofinCashPlanned(self):
         """
@@ -492,7 +490,6 @@ class Financials(BaseFolder, CurrencyMixin, BrowserDefaultMixin):
         """
         """
         pass
-
     security.declarePublic('getSumCofinInKindPlanned')
     def getSumCofinInKindPlanned(self):
         """
@@ -588,8 +585,6 @@ class Financials(BaseFolder, CurrencyMixin, BrowserDefaultMixin):
             return revAllocUNEP - committedGEFgrant
         return self.getMoneyFieldDefault()
 
-    # Manually created methods
-
     security.declarePublic('validate_CashDisbursements')
     def validate_CashDisbursements(self, value):
         """
@@ -621,6 +616,8 @@ class Financials(BaseFolder, CurrencyMixin, BrowserDefaultMixin):
         """
         cash_values = self.getCofinancingCash()
         return self.computeDataGridAmount([v['cofinancing_cash_actual_amount'] for v in cash_values if v['cofinancing_cash_actual_amount']])
+
+
 
 registerType(Financials, PROJECTNAME)
 # end of class Financials
