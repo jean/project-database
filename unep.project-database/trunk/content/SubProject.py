@@ -18,7 +18,6 @@ from Products.Archetypes.atapi import *
 from zope.interface import implements
 import interfaces
 from Products.ProjectDatabase.content.CurrencyMixin import CurrencyMixin
-from Products.ProjectDatabase.content.FinancialsMixin import FinancialsMixin
 from Products.CMFDynamicViewFTI.browserdefault import BrowserDefaultMixin
 
 from Products.ATVocabularyManager.namedvocabulary import NamedVocabulary
@@ -39,70 +38,231 @@ from Products.FinanceFields.Money import Money
 ##code-section module-header #fill in your manual code here
 ##/code-section module-header
 
-copied_fields = {}
-copied_fields['SummaryDescription'] = ProjectGeneralInformation.schema['SummaryDescription'].copy()
-copied_fields['Country'] = ProjectGeneralInformation.schema['Country'].copy()
-copied_fields['Scope'] = ProjectGeneralInformation.schema['Scope'].copy()
-copied_fields['Region'] = ProjectGeneralInformation.schema['Region'].copy()
-copied_fields['ImplementationMode'] = ProjectGeneralInformation.schema['ImplementationMode'].copy()
-copied_fields['Office'] = ProjectGeneralInformation.schema['Office'].copy()
-copied_fields['ProjectCoordinator'] = ProjectGeneralInformation.schema['ProjectCoordinator'].copy()
-copied_fields['ProjectCoordinator'].relationship = "SubProject_ProjectCoordinator"
-copied_fields['LeadExecutingAgency'] = Financials.schema['LeadExecutingAgency'].copy()
 schema = Schema((
 
-    copied_fields['SummaryDescription'],
-
-    copied_fields['Country'],
-
-    copied_fields['Scope'],
-
-    copied_fields['Region'],
-
-    copied_fields['ImplementationMode'],
-
-    copied_fields['Office'],
-
-    StringField(
-        name='Website',
-        widget=StringField._properties['widget'](
-            description="Project Website Address",
-            label='Website',
-            label_msgid='ProjectDatabase_label_Website',
-            description_msgid='ProjectDatabase_help_Website',
+    ComputedField(
+        name='FinanceCategory',
+        widget=ComputedField._properties['widget'](
+            label="Financial Category",
+            label_msgid='ProjectDatabase_label_FinanceCategory',
             i18n_domain='ProjectDatabase',
         ),
     ),
-    copied_fields['ProjectCoordinator'],
-
-    copied_fields['LeadExecutingAgency'],
-
     StringField(
-        name='OtherLeadExecutingAgency',
-        widget=SelectionWidget(
-            label="Other Project Executing Partners",
-            label_msgid='ProjectDatabase_label_OtherLeadExecutingAgency',
+        name='PMSNumber',
+        widget=StringField._properties['widget'](
+            label="PMS Number",
+            label_msgid='ProjectDatabase_label_PMSNumber',
             i18n_domain='ProjectDatabase',
         ),
-        vocabulary=NamedVocabulary("""LeadAgency"""),
     ),
     StringField(
-        name='AccountCode',
+        name='IMISNumber',
         widget=StringField._properties['widget'](
-            label="Account Code",
-            label_msgid='ProjectDatabase_label_AccountCode',
+            label="IMIS Number",
             i18n_domain='ProjectDatabase',
         ),
     ),
     DataGridField(
-        name='ProjectImplementationStatus',
+        name='ProjectExecutingAgency',
         widget=DataGridField._properties['widget'](
-            label="Project Implementation Status",
-            columns={'status_date':CalendarColumn('Date'), 'status_remark':Column('Remark')},
-            label_msgid='ProjectDatabase_label_ProjectImplementationStatus',
+            columns={'executing_agency':Column('Executing Agency'),'executing_agency_category':SelectColumn('Category', vocabulary='getCategoryVocab')},
+            label="Lead Executing Agency",
+            label_msgid='ProjectDatabase_label_ProjectExecutingAgency',
             i18n_domain='ProjectDatabase',
         ),
-        columns=('status_date','status_remark'),
+        columns=('executing_agency','executing_agency_category'),
+    ),
+    MoneyField(
+        name='CommittedGEFGrant',
+        widget=MoneyField._properties['widget'](
+            label="Committed GEF Grant",
+            label_msgid='ProjectDatabase_label_CommittedGEFGrant',
+            i18n_domain='ProjectDatabase',
+        ),
+    ),
+    DataGridField(
+        name='CoFinancingCash',
+        widget=DataGridField._properties['widget'](
+            columns={ 'cofinancing_cash_source' : SelectColumn("Source", vocabulary="getDonorTypesVocabulary"), 'cofinancing_cash_donor_name' : Column("Name of donor"), 'cofinancing_cash_planned_amount' : Column("Planned Amount"), 'cofinancing_cash_actual_amount' : Column("Actual Amount") },
+            label="Cofinancing: Cash",
+            label_msgid='ProjectDatabase_label_CoFinancingCash',
+            i18n_domain='ProjectDatabase',
+        ),
+        columns=("cofinancing_cash_source", "cofinancing_cash_donor_name", "cofinancing_cash_planned_amount", "cofinancing_cash_actual_amount"),
+    ),
+    DataGridField(
+        name='CoFinancingInKind',
+        widget=DataGridField._properties['widget'](
+            columns={ 'cofinancing_inkind_source' : SelectColumn("Source", vocabulary="getDonorTypesVocabulary"), 'cofinancing_inkind_donor_name' : Column("Name of donor"), 'cofinancing_inkind_planned_amount' : Column("Planned Amount"), 'cofinancing_inkind_actual_amount' : Column("Actual Amount") },
+            label="Cofinancing: In Kind",
+            label_msgid='ProjectDatabase_label_CoFinancingInKind',
+            i18n_domain='ProjectDatabase',
+        ),
+        columns=("cofinancing_inkind_source", "cofinancing_inkind_donor_name", "cofinancing_inkind_planned_amount", "cofinancing_inkind_actual_amount"),
+    ),
+    ComputedField(
+        name='SumCoFinCashPlanned',
+        widget=ComputedField._properties['widget'](
+            label="Total Cofinancing: Cash (Planned)",
+            label_msgid='ProjectDatabase_label_SumCoFinCashPlanned',
+            i18n_domain='ProjectDatabase',
+        ),
+    ),
+    ComputedField(
+        name='SumCoFinCashActual',
+        widget=ComputedField._properties['widget'](
+            label="Total Cofinancing: Cash (Actual)",
+            label_msgid='ProjectDatabase_label_SumCoFinCashActual',
+            i18n_domain='ProjectDatabase',
+        ),
+    ),
+    ComputedField(
+        name='SumCoFinInKindPlanned',
+        widget=ComputedField._properties['widget'](
+            label="Total Cofinancing: In Kind (Planned)",
+            label_msgid='ProjectDatabase_label_SumCoFinInKindPlanned',
+            i18n_domain='ProjectDatabase',
+        ),
+    ),
+    ComputedField(
+        name='SumCoFinInKindActual',
+        widget=ComputedField._properties['widget'](
+            label="Total Cofinancing: In Kind (Actual)",
+            label_msgid='ProjectDatabase_label_SumCoFinInKindActual',
+            i18n_domain='ProjectDatabase',
+        ),
+    ),
+    ComputedField(
+        name='TotalCostOfSubProjectPlanned',
+        widget=ComputedField._properties['widget'](
+            label="Total Cost of Sub Project (Planned)",
+            label_msgid='ProjectDatabase_label_TotalCostOfSubProjectPlanned',
+            i18n_domain='ProjectDatabase',
+        ),
+    ),
+    ComputedField(
+        name='TotalCostOfSubProjectActual',
+        widget=ComputedField._properties['widget'](
+            label="Total Cost of Sub Project (Actual)",
+            label_msgid='ProjectDatabase_label_TotalCostOfSubProjectActual',
+            i18n_domain='ProjectDatabase',
+        ),
+    ),
+    DataGridField(
+        name='CashDisbursements',
+        widget=DataGridField._properties['widget'](
+            columns={ 'cash_disbursements_date' : CalendarColumn("Date"), 'cash_disbursements_amount' : Column("Amount"), 'cash_disbursements_imis_rcpt_number' : Column("IMIS RCPT Number") },
+            label="Cash Disbursements",
+            label_msgid='ProjectDatabase_label_CashDisbursements',
+            i18n_domain='ProjectDatabase',
+        ),
+        columns=("cash_disbursements_date", "cash_disbursements_amount", "cash_disbursements_imis_rcpt_number"),
+    ),
+    ComputedField(
+        name='SumCashDisbursements',
+        widget=ComputedField._properties['widget'](
+            label="Total Cash Disbursements",
+            label_msgid='ProjectDatabase_label_SumCashDisbursements',
+            i18n_domain='ProjectDatabase',
+        ),
+    ),
+    DataGridField(
+        name='YearlyExpenditures',
+        widget=DataGridField._properties['widget'](
+            columns={ 'year' : Column("Amount"), 'amount' : Column("Amount") },
+            label="Yearly Expenditures",
+            label_msgid='ProjectDatabase_label_YearlyExpenditures',
+            i18n_domain='ProjectDatabase',
+        ),
+        columns=("year", "amount"),
+    ),
+    ComputedField(
+        name='SumYearlyExpenditures',
+        widget=ComputedField._properties['widget'](
+            label="Total Yearly Expenditures",
+            label_msgid='ProjectDatabase_label_SumYearlyExpenditures',
+            i18n_domain='ProjectDatabase',
+        ),
+    ),
+    StringField(
+        name='Status',
+        widget=SelectionWidget(
+            label="Sub Project Status",
+            label_msgid='ProjectDatabase_label_Status',
+            i18n_domain='ProjectDatabase',
+        ),
+        vocabulary=NamedVocabulary("""Status"""),
+    ),
+    TextField(
+        name='FinancialStatusRemarks',
+        widget=TextAreaWidget(
+            label="Sub Project Financial Status – Remarks",
+            label_msgid='ProjectDatabase_label_FinancialStatusRemarks',
+            i18n_domain='ProjectDatabase',
+        ),
+    ),
+    IntegerField(
+        name='PlannedDuration',
+        widget=IntegerField._properties['widget'](
+            label="Planned Duration",
+            label_msgid='ProjectDatabase_label_PlannedDuration',
+            i18n_domain='ProjectDatabase',
+        ),
+    ),
+    DateTimeField(
+        name='InitialCompletionDate',
+        widget=DateTimeField._properties['widget'](
+            label="Initial Completion Date",
+            label_msgid='ProjectDatabase_label_InitialCompletionDate',
+            i18n_domain='ProjectDatabase',
+        ),
+    ),
+    DateTimeField(
+        name='RevisedCompletionDate',
+        widget=DateTimeField._properties['widget'](
+            label="Revised Completion Date",
+            label_msgid='ProjectDatabase_label_RevisedCompletionDate',
+            i18n_domain='ProjectDatabase',
+        ),
+    ),
+    TextField(
+        name='DelayReason',
+        widget=TextAreaWidget(
+            label="Reasons for Delay",
+            label_msgid='ProjectDatabase_label_DelayReason',
+            i18n_domain='ProjectDatabase',
+        ),
+    ),
+    DataGridField(
+        name='Reports',
+        widget=DataGridField._properties['widget'](
+            columns={ 'report_type' : SelectColumn("Report Type", vocabulary="getReportTypesVocabulary"), 'report_period' : Column("Report Period"), 'report_received_date' : CalendarColumn("Report Received Date"), 'amount' : Column("Amount") },
+            label='Reports',
+            label_msgid='ProjectDatabase_label_Reports',
+            i18n_domain='ProjectDatabase',
+        ),
+        columns=("report_type", "report_period", "report_received_date", "amount"),
+    ),
+    DataGridField(
+        name='SubProjectRevision',
+        widget=DataGridField._properties['widget'](
+            columns={"revision_number":Column("Revision Number"), "revision_type":SelectColumn("Revision Type", vocabulary="getRevisionTypeVocabulary"),"revision_date":CalendarColumn("Revision Date")},
+            label="Sub Project Revision",
+            label_msgid='ProjectDatabase_label_SubProjectRevision',
+            i18n_domain='ProjectDatabase',
+        ),
+        columns=("revision_number", "revision_type","revision_date"),
+    ),
+    DataGridField(
+        name='ExecutingAgencyRiskRating',
+        widget=DataGridField._properties['widget'](
+            columns= {'Risk_Level':Column("Risk Level"), "Assessment_Date":CalendarColumn("Assessment Date"), 'Remarks':Column("Remarks")},
+            label="Agency Risk Rating",
+            label_msgid='ProjectDatabase_label_ExecutingAgencyRiskRating',
+            i18n_domain='ProjectDatabase',
+        ),
+        columns= ("Risk_Level", "Assessment_Date", "Remarks"),
     ),
 
 ),
@@ -111,14 +271,13 @@ schema = Schema((
 ##code-section after-local-schema #fill in your manual code here
 ##/code-section after-local-schema
 
-SubProject_schema = BaseFolderSchema.copy() + \
-    getattr(FinancialsMixin, 'schema', Schema(())).copy() + \
+SubProject_schema = BaseSchema.copy() + \
     schema.copy()
 
 ##code-section after-schema #fill in your manual code here
 ##/code-section after-schema
 
-class SubProject(BaseFolder, CurrencyMixin, FinancialsMixin, BrowserDefaultMixin):
+class SubProject(BaseContent, CurrencyMixin, BrowserDefaultMixin):
     """
     """
     security = ClassSecurityInfo()
@@ -131,26 +290,6 @@ class SubProject(BaseFolder, CurrencyMixin, FinancialsMixin, BrowserDefaultMixin
     schema = SubProject_schema
 
     ##code-section class-header #fill in your manual code here
-    schema.moveField('FinanceCategory', after='title')
-    schema.moveField('PMSNumber', after='FinanceCategory')
-    schema.moveField('IMISNumber', after='PMSNumber')
-    schema.moveField('GEFProjectAllocation', after='IMISNumber')
-    schema.moveField('CofinancingCash', after='IMISNumber')
-    schema.moveField('CofinancingInKind', after='CofinancingCash')
-    schema.moveField('ApprovedUNEPBudget', after='CofinancingCash')
-    schema.moveField('CashDisbursements', after='ApprovedUNEPBudget')
-    schema.moveField('SumCashDisbursements', after='CashDisbursements')
-    schema.moveField('IMISExpenditures', after='SumCashDisbursements')
-    schema.moveField('Status', after='IMISExpenditures')
-    schema.moveField('SumIMISExpenditures', after='Status')
-    schema.moveField('PlannedDuration', after='SumIMISExpenditures')
-    schema.moveField('InitialCompletionDate', after='PlannedDuration')
-    schema.moveField('RevisedCompletionDate', after='InitialCompletionDate')
-    schema.moveField('DelayReason', after='RevisedCompletionDate')
-    schema.moveField('Reports', after='DelayReason')
-    schema.moveField('LeadExecutingAgency', after='Reports')
-    schema.moveField('OtherLeadExecutingAgency', after='LeadExecutingAgency')
-
     ##/code-section class-header
 
     # Methods

@@ -33,6 +33,7 @@ msgstr ""
 
 #. Default: "Project budget in the internalized project document"
 #: content/FinancialsMixin.py
+#: content/Financials.py
 msgid "ProjectDatabase_help_CommittedGEFGrant"
 msgstr ""
 
@@ -69,6 +70,7 @@ msgstr ""
 
 #. Default: "The number of months"
 #: content/FinancialsMixin.py
+#: content/Financials.py
 msgid "ProjectDatabase_help_PlannedDuration"
 msgstr ""
 
@@ -100,6 +102,7 @@ msgstr ""
 
 #. Default: "As per last revision"
 #: content/FinancialsMixin.py
+#: content/Financials.py
 msgid "ProjectDatabase_help_RevisedCompletionDate"
 msgstr ""
 
@@ -201,6 +204,8 @@ msgstr ""
 
 #. Default: "Cash Disbursements"
 #: content/FinancialsMixin.py
+#: content/SubProject.py
+#: content/Financials.py
 msgid "ProjectDatabase_label_CashDisbursements"
 msgstr ""
 
@@ -214,18 +219,32 @@ msgstr ""
 msgid "ProjectDatabase_label_Category"
 msgstr ""
 
+#. Default: "Cofinancingcash"
+#: content/SubProject.py
+msgid "ProjectDatabase_label_CoFinancingCash"
+msgstr ""
+
+#. Default: "Cofinancinginkind"
+#: content/SubProject.py
+msgid "ProjectDatabase_label_CoFinancingInKind"
+msgstr ""
+
 #. Default: "Cofinancing: Cash"
 #: content/FinancialsMixin.py
+#: content/Financials.py
 msgid "ProjectDatabase_label_CofinancingCash"
 msgstr ""
 
 #. Default: "Cofinancing: In Kind"
 #: content/FinancialsMixin.py
+#: content/Financials.py
 msgid "ProjectDatabase_label_CofinancingInKind"
 msgstr ""
 
 #. Default: "Committed GEF Grant"
 #: content/FinancialsMixin.py
+#: content/SubProject.py
+#: content/Financials.py
 msgid "ProjectDatabase_label_CommittedGEFGrant"
 msgstr ""
 
@@ -259,11 +278,14 @@ msgstr ""
 
 #. Default: "Reasons for delay"
 #: content/FinancialsMixin.py
+#: content/SubProject.py
+#: content/Financials.py
 msgid "ProjectDatabase_label_DelayReason"
 msgstr ""
 
 #. Default: "Difference"
 #: content/FinancialsMixin.py
+#: content/Financials.py
 msgid "ProjectDatabase_label_Difference"
 msgstr ""
 
@@ -327,6 +349,11 @@ msgstr ""
 msgid "ProjectDatabase_label_EvaluationActualEstimateDifference"
 msgstr ""
 
+#. Default: "Evaluation Funds"
+#: content/Financials.py
+msgid "ProjectDatabase_label_EvaluationFunds"
+msgstr ""
+
 #. Default: "Evaluationmilestones"
 #: content/MonitoringAndEvaluation.py
 msgid "ProjectDatabase_label_EvaluationMilestones"
@@ -335,6 +362,12 @@ msgstr ""
 #. Default: "Evaluation Type Milestone"
 #: content/EvaluationMilestone.py
 msgid "ProjectDatabase_label_EvaluationTypeMilestone"
+msgstr ""
+
+#. Default: "Executingagencyriskrating"
+#: content/SubProject.py
+#: content/Financials.py
+msgid "ProjectDatabase_label_ExecutingAgencyRiskRating"
 msgstr ""
 
 #. Default: "Mode of Execution"
@@ -354,7 +387,19 @@ msgstr ""
 
 #. Default: "Finance Category"
 #: content/FinancialsMixin.py
+#: content/SubProject.py
+#: content/Financials.py
 msgid "ProjectDatabase_label_FinanceCategory"
+msgstr ""
+
+#. Default: "Finance Object Amount"
+#: content/Financials.py
+msgid "ProjectDatabase_label_FinanceObjectAmount"
+msgstr ""
+
+#. Default: "Financeobjectpreparationresults"
+#: content/Financials.py
+msgid "ProjectDatabase_label_FinanceObjectPreparationResults"
 msgstr ""
 
 #. Default: "Financial Closure"
@@ -389,6 +434,8 @@ msgstr ""
 
 #. Default: "Project Financial Status - Remarks"
 #: content/FinancialsMixin.py
+#: content/SubProject.py
+#: content/Financials.py
 msgid "ProjectDatabase_label_FinancialStatusRemarks"
 msgstr ""
 
@@ -499,6 +546,7 @@ msgstr ""
 #. Default: "Initial Completion Date"
 #: content/FinancialsMixin.py
 #: content/MonitoringAndEvaluation.py
+#: content/SubProject.py
 msgid "ProjectDatabase_label_InitialCompletionDate"
 msgstr ""
 
@@ -776,6 +824,7 @@ msgstr ""
 #. Default: "PMS Number"
 #: content/FinancialsMixin.py
 #: content/CoreMixin.py
+#: content/SubProject.py
 msgid "ProjectDatabase_label_PMSNumber"
 msgstr ""
 
@@ -828,6 +877,8 @@ msgstr ""
 
 #. Default: "Planned Duration"
 #: content/FinancialsMixin.py
+#: content/SubProject.py
+#: content/Financials.py
 msgid "ProjectDatabase_label_PlannedDuration"
 msgstr ""
 
@@ -875,6 +926,7 @@ msgstr ""
 
 #. Default: "Lead Executing Agency"
 #: content/ProjectGeneralInformation.py
+#: content/SubProject.py
 msgid "ProjectDatabase_label_ProjectExecutingAgency"
 msgstr ""
 
@@ -927,6 +979,7 @@ msgstr ""
 
 #. Default: "Project Revision"
 #: content/FinancialsMixin.py
+#: content/Financials.py
 msgid "ProjectDatabase_label_ProjectRevision"
 msgstr ""
 
@@ -1006,6 +1059,8 @@ msgstr ""
 
 #. Default: "Reports"
 #: content/FinancialsMixin.py
+#: content/SubProject.py
+#: content/Financials.py
 msgid "ProjectDatabase_label_Reports"
 msgstr ""
 
@@ -1017,6 +1072,7 @@ msgstr ""
 #. Default: "Revised Completion Date"
 #: content/FinancialsMixin.py
 #: content/MonitoringAndEvaluation.py
+#: content/SubProject.py
 msgid "ProjectDatabase_label_RevisedCompletionDate"
 msgstr ""
 
@@ -1049,6 +1105,7 @@ msgstr ""
 #. Default: "Project Status"
 #: content/FinancialsMixin.py
 #: content/BlankCoreMixin.py
+#: content/SubProject.py
 msgid "ProjectDatabase_label_Status"
 msgstr ""
 
@@ -1083,6 +1140,11 @@ msgstr ""
 msgid "ProjectDatabase_label_SubProjectDocuments"
 msgstr ""
 
+#. Default: "Subprojectrevision"
+#: content/SubProject.py
+msgid "ProjectDatabase_label_SubProjectRevision"
+msgstr ""
+
 #. Default: "Sub-Region"
 #: content/ProjectGeneralInformation.py
 msgid "ProjectDatabase_label_SubRegion"
@@ -1100,26 +1162,52 @@ msgstr ""
 
 #. Default: "Total Cash Disbursements"
 #: content/FinancialsMixin.py
+#: content/SubProject.py
+#: content/Financials.py
 msgid "ProjectDatabase_label_SumCashDisbursements"
+msgstr ""
+
+#. Default: "Sumcofincashactual"
+#: content/SubProject.py
+msgid "ProjectDatabase_label_SumCoFinCashActual"
+msgstr ""
+
+#. Default: "Sumcofincashplanned"
+#: content/SubProject.py
+msgid "ProjectDatabase_label_SumCoFinCashPlanned"
+msgstr ""
+
+#. Default: "Sumcofininkindactual"
+#: content/SubProject.py
+msgid "ProjectDatabase_label_SumCoFinInKindActual"
+msgstr ""
+
+#. Default: "Sumcofininkindplanned"
+#: content/SubProject.py
+msgid "ProjectDatabase_label_SumCoFinInKindPlanned"
 msgstr ""
 
 #. Default: "Total Cofinancing: Cash (Actual)"
 #: content/FinancialsMixin.py
+#: content/Financials.py
 msgid "ProjectDatabase_label_SumCofinCashActual"
 msgstr ""
 
 #. Default: "Total Cofinancing: Cash (Planned)"
 #: content/FinancialsMixin.py
+#: content/Financials.py
 msgid "ProjectDatabase_label_SumCofinCashPlanned"
 msgstr ""
 
 #. Default: "Total Cofinancing: In Kind (Actual)"
 #: content/FinancialsMixin.py
+#: content/Financials.py
 msgid "ProjectDatabase_label_SumCofinInKindActual"
 msgstr ""
 
 #. Default: "Total Cofinancing: In Kind (Planned)"
 #: content/FinancialsMixin.py
+#: content/Financials.py
 msgid "ProjectDatabase_label_SumCofinInKindPlanned"
 msgstr ""
 
@@ -1127,6 +1215,12 @@ msgstr ""
 #: content/FinancialsMixin.py
 #: content/BlankCoreMixin.py
 msgid "ProjectDatabase_label_SumIMISExpenditures"
+msgstr ""
+
+#. Default: "Sumyearlyexpenditures"
+#: content/SubProject.py
+#: content/Financials.py
+msgid "ProjectDatabase_label_SumYearlyExpenditures"
 msgstr ""
 
 #. Default: "Project Description"
@@ -1230,6 +1324,16 @@ msgstr ""
 msgid "ProjectDatabase_label_TotalCofinancingPlanned"
 msgstr ""
 
+#. Default: "Total Cost of Finance Object (Actual)"
+#: content/Financials.py
+msgid "ProjectDatabase_label_TotalCostOfFinanceObjectActual"
+msgstr ""
+
+#. Default: "Total Cost of Finance Object (Planned)"
+#: content/Financials.py
+msgid "ProjectDatabase_label_TotalCostOfFinanceObjectPlanned"
+msgstr ""
+
 #. Default: "Total Cost of Project Stage (Actual)"
 #: content/FinancialsMixin.py
 msgid "ProjectDatabase_label_TotalCostOfProjectStageActual"
@@ -1240,9 +1344,34 @@ msgstr ""
 msgid "ProjectDatabase_label_TotalCostOfProjectStagePlanned"
 msgstr ""
 
+#. Default: "Totalcostofsubprojectactual"
+#: content/SubProject.py
+msgid "ProjectDatabase_label_TotalCostOfSubProjectActual"
+msgstr ""
+
+#. Default: "Totalcostofsubprojectplanned"
+#: content/SubProject.py
+msgid "ProjectDatabase_label_TotalCostOfSubProjectPlanned"
+msgstr ""
+
 #. Default: "Total Disbursement"
 #: content/BlankCoreMixin.py
 msgid "ProjectDatabase_label_TotalDisbursement"
+msgstr ""
+
+#. Default: "Totalfee"
+#: content/Financials.py
+msgid "ProjectDatabase_label_TotalFee"
+msgstr ""
+
+#. Default: "Totalfinanceobject"
+#: content/Financials.py
+msgid "ProjectDatabase_label_TotalFinanceObject"
+msgstr ""
+
+#. Default: "Totalfinanceobjectgrant"
+#: content/Financials.py
+msgid "ProjectDatabase_label_TotalFinanceObjectGrant"
 msgstr ""
 
 #. Default: "Total GEF Allocation"
@@ -1285,6 +1414,7 @@ msgstr ""
 
 #. Default: "Trustee ID"
 #: content/FinancialsMixin.py
+#: content/Financials.py
 msgid "ProjectDatabase_label_TrusteeID"
 msgstr ""
 
@@ -1328,6 +1458,12 @@ msgstr ""
 #: content/SubProject.py
 #: content/CoreMixin.py
 msgid "ProjectDatabase_label_Website"
+msgstr ""
+
+#. Default: "Yearlyexpenditures"
+#: content/SubProject.py
+#: content/Financials.py
+msgid "ProjectDatabase_label_YearlyExpenditures"
 msgstr ""
 
 #. Default: "Title"

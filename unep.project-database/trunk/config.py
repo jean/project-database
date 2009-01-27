@@ -34,12 +34,11 @@ PROJECTNAME = "ProjectDatabase"
 DEFAULT_ADD_CONTENT_PERMISSION = "Add portal content"
 setDefaultRoles(DEFAULT_ADD_CONTENT_PERMISSION, ('Manager', 'Owner'))
 ADD_CONTENT_PERMISSIONS = {
-    'Financials': 'ProjectDatabase: Add Financials',
     'Project': 'ProjectDatabase: Add Project',
-    'ProjectImplementation': 'ProjectDatabase: Add ProjectImplementation',
     'Milestone': 'ProjectDatabase: Add Milestone',
     'ProjectGeneralInformation': 'ProjectDatabase: Add ProjectGeneralInformation',
     'SubProject': 'ProjectDatabase: Add SubProject',
+    'Financials': 'ProjectDatabase: Add Financials',
     'MonitoringAndEvaluation': 'ProjectDatabase: Add MonitoringAndEvaluation',
     'RatingTrackingSystem': 'ProjectDatabase: Add RatingTrackingSystem',
     'EvaluatorsInformation': 'ProjectDatabase: Add EvaluatorsInformation',
@@ -49,17 +48,15 @@ ADD_CONTENT_PERMISSIONS = {
     'OtherProjectRatings': 'ProjectDatabase: Add OtherProjectRatings',
     'FMIFolder': 'ProjectDatabase: Add FMIFolder',
     'MOU': 'ProjectDatabase: Add MOU',
-    'FinancialsMixin': 'ProjectDatabase: Add FinancialsMixin',
     'ProjectDatabase': 'ProjectDatabase: Add ProjectDatabase',
     'ProgrammeFramework': 'ProjectDatabase: Add ProgrammeFramework',
 }
 
-setDefaultRoles('ProjectDatabase: Add Financials', ('Manager','Owner'))
 setDefaultRoles('ProjectDatabase: Add Project', ('Manager','Owner'))
-setDefaultRoles('ProjectDatabase: Add ProjectImplementation', ('Manager','Owner'))
 setDefaultRoles('ProjectDatabase: Add Milestone', ('Manager','Owner'))
 setDefaultRoles('ProjectDatabase: Add ProjectGeneralInformation', ('Manager','Owner'))
 setDefaultRoles('ProjectDatabase: Add SubProject', ('Manager','Owner'))
+setDefaultRoles('ProjectDatabase: Add Financials', ('Manager','Owner'))
 setDefaultRoles('ProjectDatabase: Add MonitoringAndEvaluation', ('Manager','Owner'))
 setDefaultRoles('ProjectDatabase: Add RatingTrackingSystem', ('Manager','Owner'))
 setDefaultRoles('ProjectDatabase: Add EvaluatorsInformation', ('Manager','Owner'))
@@ -69,7 +66,6 @@ setDefaultRoles('ProjectDatabase: Add OtherProjectRatingsFolder', ('Manager','Ow
 setDefaultRoles('ProjectDatabase: Add OtherProjectRatings', ('Manager','Owner'))
 setDefaultRoles('ProjectDatabase: Add FMIFolder', ('Manager','Owner'))
 setDefaultRoles('ProjectDatabase: Add MOU', ('Manager','Owner'))
-setDefaultRoles('ProjectDatabase: Add FinancialsMixin', ('Manager','Owner'))
 setDefaultRoles('ProjectDatabase: Add ProjectDatabase', ('Manager','Owner'))
 setDefaultRoles('ProjectDatabase: Add ProgrammeFramework', ('Manager','Owner'))
 
