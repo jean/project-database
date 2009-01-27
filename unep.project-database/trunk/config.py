@@ -34,12 +34,12 @@ PROJECTNAME = "ProjectDatabase"
 DEFAULT_ADD_CONTENT_PERMISSION = "Add portal content"
 setDefaultRoles(DEFAULT_ADD_CONTENT_PERMISSION, ('Manager', 'Owner'))
 ADD_CONTENT_PERMISSIONS = {
+    'Financials': 'ProjectDatabase: Add Financials',
     'Project': 'ProjectDatabase: Add Project',
     'ProjectImplementation': 'ProjectDatabase: Add ProjectImplementation',
     'Milestone': 'ProjectDatabase: Add Milestone',
     'ProjectGeneralInformation': 'ProjectDatabase: Add ProjectGeneralInformation',
     'SubProject': 'ProjectDatabase: Add SubProject',
-    'Financials': 'ProjectDatabase: Add Financials',
     'MonitoringAndEvaluation': 'ProjectDatabase: Add MonitoringAndEvaluation',
     'RatingTrackingSystem': 'ProjectDatabase: Add RatingTrackingSystem',
     'EvaluatorsInformation': 'ProjectDatabase: Add EvaluatorsInformation',
@@ -54,12 +54,12 @@ ADD_CONTENT_PERMISSIONS = {
     'ProgrammeFramework': 'ProjectDatabase: Add ProgrammeFramework',
 }
 
+setDefaultRoles('ProjectDatabase: Add Financials', ('Manager','Owner'))
 setDefaultRoles('ProjectDatabase: Add Project', ('Manager','Owner'))
 setDefaultRoles('ProjectDatabase: Add ProjectImplementation', ('Manager','Owner'))
 setDefaultRoles('ProjectDatabase: Add Milestone', ('Manager','Owner'))
 setDefaultRoles('ProjectDatabase: Add ProjectGeneralInformation', ('Manager','Owner'))
 setDefaultRoles('ProjectDatabase: Add SubProject', ('Manager','Owner'))
-setDefaultRoles('ProjectDatabase: Add Financials', ('Manager','Owner'))
 setDefaultRoles('ProjectDatabase: Add MonitoringAndEvaluation', ('Manager','Owner'))
 setDefaultRoles('ProjectDatabase: Add RatingTrackingSystem', ('Manager','Owner'))
 setDefaultRoles('ProjectDatabase: Add EvaluatorsInformation', ('Manager','Owner'))

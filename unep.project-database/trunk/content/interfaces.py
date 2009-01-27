@@ -5,6 +5,10 @@ from zope.interface import Interface
 ##code-section HEAD
 ##/code-section HEAD
 
+class IFinancials(Interface):
+    """Marker interface for .Financials.Financials
+    """
+
 class IProject(Interface):
     """Marker interface for .Project.Project
     """
@@ -23,10 +27,6 @@ class IProjectGeneralInformation(Interface):
 
 class ISubProject(Interface):
     """Marker interface for .SubProject.SubProject
-    """
-
-class IFinancials(Interface):
-    """Marker interface for .Financials.Financials
     """
 
 class IMonitoringAndEvaluation(Interface):
