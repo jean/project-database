@@ -60,6 +60,7 @@ schema = Schema((
         name='IMISNumber',
         widget=StringField._properties['widget'](
             label="IMIS Number",
+            label_msgid='ProjectDatabase_label_IMISNumber',
             i18n_domain='ProjectDatabase',
         ),
     ),

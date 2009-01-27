@@ -135,6 +135,9 @@ def installDataGridVocabularies(context):
         'ApprovalInitiationClosure': ('VdexVocabulary', 'SimpleVocabularyTerm'),
         'ProjectProcesses': ('VdexVocabulary', 'SimpleVocabularyTerm'),
         'TMCategory': ('VdexVocabulary', 'SimpleVocabularyTerm'),
+        'ProjectExecutingAgencyDescription': ('VdexVocabulary', 'SimpleVocabularyTerm'),
+        'EvaluationType': ('VdexVocabulary', 'SimpleVocabularyTerm'),
+        'TrustFund': ('VdexVocabulary', 'SimpleVocabularyTerm'),
         }
     for vocabname in vocabmap.keys():
         if not vocabname in atvm.contentIds():
