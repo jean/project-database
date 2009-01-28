@@ -35,6 +35,7 @@ from Products.CMFCore.utils import getToolByName
 from Products.FinanceFields.Money import Money
 
 ##code-section module-header #fill in your manual code here
+from Products.Archetypes.utils import DisplayList
 ##/code-section module-header
 
 schema = Schema((
@@ -166,6 +167,42 @@ class Milestone(BaseContent, BrowserDefaultMixin):
     ##/code-section class-header
 
     # Methods
+    def getConceptDevelopmentActionsVocabulary(self):
+        return getVocabulary('ConceptDevelopmentActions')
+
+    def getPIFApprovalActionsVocabulary(self):
+        return getVocabulary('PIFApprovalActions')
+
+    def getPPGApprovalActionsVocabulary(self):
+        return getVocabulary('PPGApprovalActions')
+
+    def getPPGImplementationActionsVocabulary(self):
+        return getVocabulary('PPGImplementationActions')
+
+    def getProjectImplementationActionsVocabulary(self):
+        return getVocabulary('ProjectImplementationActions')
+
+    def getProjectApprovalActionsVocabulary(self):
+        return getVocabulary('ProjectApprovalActions')
+
+    def getNewPhaseApprovalActionsVocabulary(self):
+        return getVocabulary('NewPhaseApprovalActions')
+
+    def getNewPhaseImplementationActionsVocabulary(self):
+        return getVocabulary('NewPhaseImplementationActions')
+
+    def getEvaluationDatesActionsVocabulary(self):
+        return getVocabulary('EvaluationDatesActions')
+
+    def getMilestoneResultVocabulary(self):
+        return getVocabulary('MilestoneResult')
+
+    def getVocabulary(self, vocabularyName):
+        atvm = getToolByName(self.context, 'portal_vocabularies')
+        vocab = atvm.getVocabularyByName(vocabularyName)
+        if vocab:
+            return vocab.getDisplayList(self)
+        return DisplayList()
 
 
 registerType(Milestone, PROJECTNAME)
