@@ -24,24 +24,12 @@ from Products.ATVocabularyManager.namedvocabulary import NamedVocabulary
 from Products.ProjectDatabase.config import *
 
 # additional imports from tagged value 'import'
-from Products.ProjectDatabase.widgets.SelectedLinesField import SelectedLinesField
-from Products.CMFCore.utils import getToolByName
 from Products.FinanceFields.MoneyField import MoneyField
-from Products.FinanceFields.MoneyWidget import MoneyWidget
-from Products.DataGridField import DataGridField, DataGridWidget, Column, SelectColumn, CalendarColumn
-from Products.ATReferenceBrowserWidget.ATReferenceBrowserWidget import ReferenceBrowserWidget
-import Project
-import Financials
+from Products.DataGridField import DataGridField, Column, SelectColumn, CalendarColumn
 from Products.CMFCore.utils import getToolByName
-from Products.FinanceFields.Money import Money
+from Products.ATReferenceBrowserWidget.ATReferenceBrowserWidget import ReferenceBrowserWidget
 
 ##code-section module-header #fill in your manual code here
-del Project
-from Products.ProjectDatabase.content.FMIFolder import FMIFolder
-from Products.ProjectDatabase.content.MonitoringAndEvaluation import MonitoringAndEvaluation
-from Products.ProjectDatabase.content.ProjectGeneralInformation import ProjectGeneralInformation
-from Products.ProjectDatabase.content.MilestoneFolder import MilestoneFolder
-import permissions
 ##/code-section module-header
 
 schema = Schema((
@@ -49,10 +37,12 @@ schema = Schema((
     StringField(
         name='title',
         widget=StringField._properties['widget'](
-            label="Project Title",
+            visible= {'edit':'hidden', 'view':'invisible'},
+            label='Title',
             label_msgid='ProjectDatabase_label_title',
             i18n_domain='ProjectDatabase',
         ),
+        required= False,
     ),
 
 ),

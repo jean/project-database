@@ -24,15 +24,10 @@ from Products.ATVocabularyManager.namedvocabulary import NamedVocabulary
 from Products.ProjectDatabase.config import *
 
 # additional imports from tagged value 'import'
-from Products.DataGridField import CalendarColumn
 from Products.FinanceFields.MoneyField import MoneyField
-from Products.FinanceFields.MoneyWidget import MoneyWidget
-from Products.DataGridField import DataGridField, DataGridWidget, Column, SelectColumn, CalendarColumn
-from Products.ATReferenceBrowserWidget.ATReferenceBrowserWidget import ReferenceBrowserWidget
-import Project
-import Financials
+from Products.DataGridField import DataGridField, Column, SelectColumn, CalendarColumn
 from Products.CMFCore.utils import getToolByName
-from Products.FinanceFields.Money import Money
+from Products.ATReferenceBrowserWidget.ATReferenceBrowserWidget import ReferenceBrowserWidget
 
 ##code-section module-header #fill in your manual code here
 from Products.Archetypes.utils import DisplayList
@@ -111,7 +106,7 @@ schema = Schema((
     DataGridField(
         name='NewPhaseApproval',
         widget=DataGridField._properties['widget'](
-            columns={'milestone_action':SelectColumn('Milestone Action', vocabulary='getNewPhaseApprovalActionsVocabulary'), 'milestone_date':CalendarColumn('Milestone Date'), 'comment':Column('Comment', vocabulary='getMilestoneResultVocabulary')},
+            columns={'milestone_action':SelectColumn('Milestone Action', vocabulary='getNewPhaseApprovalActionsVocabulary'), 'milestone_date':CalendarColumn('Milestone Date'), 'comment':Column('Comment')},
             label="Add-on, Phase or Tranche Approval",
             label_msgid='ProjectDatabase_label_NewPhaseApproval',
             i18n_domain='ProjectDatabase',
@@ -167,6 +162,9 @@ class Milestone(BaseContent, BrowserDefaultMixin):
     ##/code-section class-header
 
     # Methods
+
+    # Manually created methods
+
     def getConceptDevelopmentActionsVocabulary(self):
         return getVocabulary('ConceptDevelopmentActions')
 
@@ -203,6 +201,7 @@ class Milestone(BaseContent, BrowserDefaultMixin):
         if vocab:
             return vocab.getDisplayList(self)
         return DisplayList()
+
 
 
 registerType(Milestone, PROJECTNAME)

@@ -24,16 +24,11 @@ from Products.ATVocabularyManager.namedvocabulary import NamedVocabulary
 from Products.ProjectDatabase.config import *
 
 # additional imports from tagged value 'import'
-from Products.DataGridField import CalendarColumn
 import ProjectGeneralInformation
 from Products.FinanceFields.MoneyField import MoneyField
-from Products.FinanceFields.MoneyWidget import MoneyWidget
-from Products.DataGridField import DataGridField, DataGridWidget, Column, SelectColumn, CalendarColumn
-from Products.ATReferenceBrowserWidget.ATReferenceBrowserWidget import ReferenceBrowserWidget
-import Project
-import Financials
+from Products.DataGridField import DataGridField, Column, SelectColumn, CalendarColumn
 from Products.CMFCore.utils import getToolByName
-from Products.FinanceFields.Money import Money
+from Products.ATReferenceBrowserWidget.ATReferenceBrowserWidget import ReferenceBrowserWidget
 
 ##code-section module-header #fill in your manual code here
 ##/code-section module-header
@@ -67,7 +62,7 @@ schema = Schema((
     DataGridField(
         name='ProjectExecutingAgency',
         widget=DataGridField._properties['widget'](
-            columns={'executing_agency':Column('Executing Agency'),'executing_agency_category':SelectColumn('Category', vocabulary='getCategoryVocab')},
+            columns={'executing_agency':Column('Executing Agency'),'executing_agency_category':SelectColumn('Category', vocabulary='getCategoryVocabulary')},
             label="Lead Executing Agency",
             label_msgid='ProjectDatabase_label_ProjectExecutingAgency',
             i18n_domain='ProjectDatabase',
@@ -299,62 +294,6 @@ class SubProject(BaseContent, CurrencyMixin, BrowserDefaultMixin):
 
     # Manually created methods
 
-    security.declarePublic('validate_GEFProjectAllocation')
-    def validate_GEFProjectAllocation(self, value):
-        """
-        """
-        if not value:
-            value = self.getZeroMoneyInstance()
-        fmi = self.aq_parent
-        maxtotal = fmi.getGEFProjectAllocation()
-        if maxtotal is None:
-            maxtotal = self.getZeroMoneyInstance()
-
-        total =  self.getZeroMoneyInstance()
-        for subProject in fmi.contentValues():
-            if subProject.getId() == self.getId():
-                continue
-            val = subProject.getGEFProjectAllocation()
-            if val:
-                total += val
-        if maxtotal < total + value:
-            return 'Total may not exceed allocated FMI value'
-        return
-
-    def getFinanceCategory(self):
-        return self.aq_parent.getFinanceCategory()
-
-    def getSumCoFinCashPlanned(self):
-        return self.getZeroMoneyInstance()
-
-    def getSumCoFinCashActual(self):
-        return self.getZeroMoneyInstance()
-
-    def getSumCoFinInKindPlanned(self):
-        return self.getZeroMoneyInstance()
-
-    def getSumCoFinInKindActual(self):
-        return self.getZeroMoneyInstance()
-
-    def getTotalCostOfSubProjectPlanned(self):
-        return self.getZeroMoneyInstance()
-
-    def getTotalCostOfSubProjectActual(self):
-        return self.getZeroMoneyInstance()
-
-    security.declarePublic('getSumCashDisbursements')
-    def getSumCashDisbursements(self):
-        """
-        """
-        cash_values = self.getCashDisbursements()
-        return self.computeDataGridAmount( \
-            [v['cash_disbursements_amount'] \
-                for v in cash_values if v['cash_disbursements_amount']])
-    def getSumYearlyExpenditures(self):
-        """
-        """
-        return self.getZeroMoneyInstance()
-
     security.declarePublic('getCategoryVocabulary')
     def getCategoryVocabulary(self):
         """
@@ -362,6 +301,110 @@ class SubProject(BaseContent, CurrencyMixin, BrowserDefaultMixin):
         pvt = getToolByName(self, 'portal_vocabularies')
         vocab = pvt.getVocabularyByName('Category')
         return vocab.getDisplayList(self)
+
+    security.declarePublic('getDonorTypesVocabulary')
+    def getDonorTypesVocabulary(self):
+        """
+        """
+        pvt = getToolByName(self, 'portal_vocabularies')
+        vocab = pvt.getVocabularyByName('DonorType')
+        return vocab.getDisplayList(self)
+
+    security.declarePublic('getReportTypesVocabulary')
+    def getReportTypesVocabulary(self):
+        """
+        """
+        pvt = getToolByName(self, 'portal_vocabularies')
+        vocab = pvt.getVocabularyByName('ReportType')
+        return vocab.getDisplayList(self)
+
+    security.declarePublic('getRevisionTypeVocabulary')
+    def getRevisionTypeVocabulary(self):
+        """
+        """
+        pvt = getToolByName(self, 'portal_vocabularies')
+        vocab = pvt.getVocabularyByName('ProjectRevisionType')
+        return vocab.getDisplayList(self)
+
+    security.declarePublic('getFinanceCategory')
+    def getFinanceCategory(self):
+        return self.aq_parent.getFinanceCategory()
+
+    security.declarePublic('_computeDataGridAmount')
+    def _computeDataGridAmount(self,column):
+        """
+        """
+        amount = self.getZeroMoneyInstance()
+        for v in column:
+            if v:
+                amount += v
+        return amount
+
+    security.declarePublic('getSumCoFinCashPlanned')
+    def getSumCoFinCashPlanned(self):
+        """
+        """
+        values = self.getCoFinancingCash()
+        return self._computeDataGridAmount( \
+            [v['cofinancing_cash_planned_amount']  \
+                for v in values if v['cofinancing_cash_planned_amount']])
+    security.declarePublic('getSumCoFinCashActual')
+    def getSumCoFinCashActual(self):
+        """
+        """
+        values = self.getCoFinancingCash()
+        return self._computeDataGridAmount( \
+            [v['cofinancing_cash_actual_amount'] \
+                for v in values if v['cofinancing_cash_actual_amount']])
+    security.declarePublic('getSumCoFinInKindPlanned')
+    def getSumCoFinInKindPlanned(self):
+        """
+        """
+        values = self.getCoFinancingInKind()
+        return self._computeDataGridAmount( \
+            [v['cofinancing_inkind_planned_amount'] \
+                for v in values if v['cofinancing_inkind_planned_amount']])
+    security.declarePublic('getSumCoFinInKindActual')
+    def getSumCoFinInKindActual(self):
+        """
+        """
+        values = self.getCoFinancingInKind()
+        return self._computeDataGridAmount( \
+            [v['cofinancing_inkind_actual_amount'] \
+                for v in values if v['cofinancing_inkind_actual_amount']])
+    security.declarePublic('getSumCashDisbursements')
+    def getSumCashDisbursements(self):
+        """
+        """
+        values = self.getCashDisbursements()
+        return self._computeDataGridAmount( \
+            [v['cash_disbursements_amount'] \
+                for v in values if v['cash_disbursements_amount']])
+    def getSumYearlyExpenditures(self):
+        """
+        """
+        values = self.getYearlyExpenditure()
+        return self._computeDataGridAmount( \
+            [v['amount'] for v in values if v['amount']])
+    def getTotalCostOfSubProjectPlanned(self):
+        """
+        """
+        total = self.getZeroMoneyInstance()
+        if self.getSumCoFinCashPlanned():
+            total += self.getSumCoFinCashPlanned()
+        if self.getSumCoFinInKindPlanned():
+            total += self.getSumCoFinInKindPlanned()
+        return total
+
+    def getTotalCostOfSubProjectActual(self):
+        """
+        """
+        total = self.getZeroMoneyInstance()
+        if self.getSumCoFinCashActual():
+            total += self.getSumCoFinCashActual()
+        if self.getSumCoFinInKindActual():
+            total += self.getSumCoFinInKindActual()
+        return total
 
 
 
