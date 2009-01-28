@@ -67,7 +67,10 @@ schema = Schema((
     DataGridField(
         name='ProjectExecutingAgency',
         widget=DataGridField._properties['widget'](
-            columns={'executing_agency':Column('Executing Agency'),'executing_agency_category':SelectColumn('Category', vocabulary='getCategoryVocab')},
+            columns={
+              'executing_agency':Column('Executing Agency'),
+              'executing_agency_category':SelectColumn('Category', \
+                                          vocabulary='getCategoryVocabulary')},
             label="Lead Executing Agency",
             label_msgid='ProjectDatabase_label_ProjectExecutingAgency',
             i18n_domain='ProjectDatabase',
@@ -319,7 +322,48 @@ class SubProject(BaseContent, CurrencyMixin, BrowserDefaultMixin):
             return 'Total may not exceed allocated FMI value'
         return
 
+    def getFinanceCategory(self):
+        return self.aq_parent.getFinanceCategory()
 
+    def getSumCoFinCashPlanned(self):
+        return self.getZeroMoneyInstance()
+
+    def getSumCoFinCashActual(self):
+        return self.getZeroMoneyInstance()
+
+    def getSumCoFinInKindPlanned(self):
+        return self.getZeroMoneyInstance()
+
+    def getSumCoFinInKindActual(self):
+        return self.getZeroMoneyInstance()
+
+    def getTotalCostOfSubProjectPlanned(self):
+        return self.getZeroMoneyInstance()
+
+    def getTotalCostOfSubProjectActual(self):
+        return self.getZeroMoneyInstance()
+
+    security.declarePublic('getSumCashDisbursements')
+    def getSumCashDisbursements(self):
+        """
+        """
+        cash_values = self.getCashDisbursements()
+        return self.computeDataGridAmount(\
+          [v['cash_disbursements_amount'] 
+              for v in cash_values if v['cash_disbursements_amount']])
+
+    def getSumYearlyExpenditures(self):
+        """
+        """
+        return self.getZeroMoneyInstance()
+
+    security.declarePublic('getCategoryVocabulary')
+    def getCategoryVocabulary(self):
+        """
+        """
+        pvt = getToolByName(self, 'portal_vocabularies')
+        vocab = pvt.getVocabularyByName('Category')
+        return vocab.getDisplayList(self)
 
 registerType(SubProject, PROJECTNAME)
 # end of class SubProject

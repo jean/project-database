@@ -120,7 +120,8 @@ schema = Schema((
     DataGridField(
         name='FinanceObjectAmount',
         widget=DataGridField._properties['widget'](
-            columns={ 'trust_fund' : SelectColumn("Trust Fund", vocabulary="TrustFund"), 'unep_allocation' : Column("UNEP Allocation"), 'other_ia_allocation' : Column("Other IA Alloaction"), 'unep_fee' : Column("UNEP Fee"), 'other_ia_fee' : Column("Other IA Fee") },
+            columns={ 'trust_fund' : SelectColumn("Trust Fund",
+            vocabulary="getTrustFundVocabulary"), 'unep_allocation' : Column("UNEP Allocation"), 'other_ia_allocation' : Column("Other IA Alloaction"), 'unep_fee' : Column("UNEP Fee"), 'other_ia_fee' : Column("Other IA Fee") },
             label="Finance Object Amount",
             label_msgid='ProjectDatabase_label_FinanceObjectAmount',
             i18n_domain='ProjectDatabase',
@@ -240,7 +241,9 @@ schema = Schema((
     DataGridField(
         name='EvaluationFunds',
         widget=DataGridField._properties['widget'](
-            columns= { 'EvaluationType':SelectColumn("EvaluationType", vocabulary="EvaluationType"), 'Amount':Column('Amount'), 'BAC':Column('BAC') },
+            columns= { 'EvaluationType':SelectColumn("EvaluationType",
+            vocabulary="getEvaluationTypeVocabulary"), 
+            'Amount':Column('Amount'), 'BAC':Column('BAC') },
             label="Evaluation Funds",
             label_msgid='ProjectDatabase_label_EvaluationFunds',
             i18n_domain='ProjectDatabase',
@@ -349,7 +352,6 @@ schema = Schema((
             label_msgid='ProjectDatabase_label_ProjectRevision',
             i18n_domain='ProjectDatabase',
         ),
-        vocabulary=NamedVocabulary("""ProjectRevisionType"""),
         columns=("revision_number", "revision_type","revision_date"),
     ),
     TextField(
@@ -464,20 +466,12 @@ class Financials(BaseFolder, CurrencyMixin, BrowserDefaultMixin):
     def computeDataGridAmount(self,column):
         """
         """
-        amount = self.getMoneyFieldDefault()
+        amount = self.getZeroMoneyInstance()
         for v in column:
             if v:
                 amount += v
         return amount
 
-    security.declarePublic('getMoneyFieldDefault')
-    def getMoneyFieldDefault(self):
-        """
-        """
-        properties = getToolByName(self, 'portal_properties')
-        default_currency = properties.financial_properties.default_currency
-        return Money(0, default_currency)
-        #return self.getZeroMoneyInstance()
     security.declarePublic('getSumCofinCashPlanned')
     def getSumCofinCashPlanned(self):
         """
@@ -509,7 +503,9 @@ class Financials(BaseFolder, CurrencyMixin, BrowserDefaultMixin):
         """
         """
         cash_values = self.getCashDisbursements()
-        return self.computeDataGridAmount([v['cash_disbursements_amount'] for v in cash_values if v['cash_disbursements_amount']])
+        return self.computeDataGridAmount(\
+          [v['cash_disbursements_amount'] 
+              for v in cash_values if v['cash_disbursements_amount']])
 
     security.declarePublic('getSumIMISExpenditures')
     def getSumIMISExpenditures(self):
@@ -531,16 +527,14 @@ class Financials(BaseFolder, CurrencyMixin, BrowserDefaultMixin):
                 total += self.getSumCofinInKindPlanned()
             return total
         elif self.portal_type == 'SubProject':
-            # total = self.getZeroMoneyInstance()
-            total = self.getMoneyFieldDefault()
+            total = self.getZeroMoneyInstance()
             if self.getSumCofinCashPlanned():
                 total += self.getSumCofinCashPlanned()
             if self.getSumCofinInKindPlanned():
                 total += self.getSumCofinInKindPlanned()
 
         else:
-            # return self.getZeroMoneyInstance()
-            return self.getMoneyFieldDefault()
+            return self.getZeroMoneyInstance()
 
     security.declarePublic('getTotalCostOfProjectStageActual')
     def getTotalCostOfProjectStageActual(self):
@@ -556,16 +550,14 @@ class Financials(BaseFolder, CurrencyMixin, BrowserDefaultMixin):
                 total += self.getSumCofinInKindActual()
             return total
         elif self.portal_type == 'SubProject':
-            # total = self.getZeroMoneyInstance()
-            total = self.getMoneyFieldDefault()
+            total = self.getZeroMoneyInstance()
             if self.getSumCofinCashActual():
                 total += self.getSumCofinCashActual()
             if self.getSumCofinInKindActual():
                 total += self.getSumCofinInKindActual()
             return total
         else:
-            # return self.getZeroMoneyInstance()
-            return self.getMoneyFieldDefault()
+            return self.getZeroMoneyInstance()
 
     security.declarePublic('getRevisionTypeVocabulary')
     def getRevisionTypeVocabulary(self):
@@ -575,15 +567,29 @@ class Financials(BaseFolder, CurrencyMixin, BrowserDefaultMixin):
         vocab = pvt.getVocabularyByName('ProjectRevisionType')
         return vocab.getDisplayList(self)
 
+    security.declarePublic('getTrustFundVocabulary')
+    def getTrustFundVocabulary(self):
+        """
+        """
+        pvt = getToolByName(self, 'portal_vocabularies')
+        vocab = pvt.getVocabularyByName('TrustFund')
+        return vocab.getDisplayList(self)
+
+    security.declarePublic('getEvaluationTypeVocabulary')
+    def getEvaluationTypeVocabulary(self):
+        """
+        """
+        pvt = getToolByName(self, 'portal_vocabularies')
+        vocab = pvt.getVocabularyByName('EvaluationType')
+        return vocab.getDisplayList(self)
+
     security.declarePublic('getDifference')
     def getDifference(self):
         """ calculate the difference between the committed and allocated GEF grant
         """
-        revAllocUNEP = self.getRevisedAllocationToUNEP()
+        totalGrant = self.getTotalFinanceObjectGrant()
         committedGEFgrant = self.getCommittedGEFGrant()
-        if (revAllocUNEP is not None) and (committedGEFgrant is not None):
-            return revAllocUNEP - committedGEFgrant
-        return self.getMoneyFieldDefault()
+        return totalGrant - committedGEFgrant
 
     security.declarePublic('validate_CashDisbursements')
     def validate_CashDisbursements(self, value):
@@ -591,8 +597,7 @@ class Financials(BaseFolder, CurrencyMixin, BrowserDefaultMixin):
         """
         request = self.REQUEST
         total_cost = self.computeDataGridAmount([v['cash_disbursements_amount'] for v in value if v['cash_disbursements_amount']])
-        # total = self.getZeroMoneyInstance()
-        total = self.getMoneyFieldDefault()
+        total = self.getZeroMoneyInstance()
         if request.get('GEFTrustFund'):
             total = total + request.get('GEFTrustFund')
         if request.get('LDCFundAllocation'):
@@ -617,6 +622,56 @@ class Financials(BaseFolder, CurrencyMixin, BrowserDefaultMixin):
         cash_values = self.getCofinancingCash()
         return self.computeDataGridAmount([v['cofinancing_cash_actual_amount'] for v in cash_values if v['cofinancing_cash_actual_amount']])
 
+    def getTotalFinanceObjectGrant(self):
+        """
+        """
+        return self.getZeroMoneyInstance()
+
+    def getTotalFee(self):
+        """
+        """
+        return self.getZeroMoneyInstance()
+
+    def getTotalFinanceObject(self):
+        """
+        """
+        return self.getZeroMoneyInstance()
+
+    def getSumConfigCashPlanned(self):
+        """
+        """
+        return self.getZeroMoneyInstance()
+
+    def getSumConfigCashActual(self):
+        """
+        """
+        return self.getZeroMoneyInstance()
+
+    def getSumCofinInKindPlanned(self):
+        """
+        """
+        return self.getZeroMoneyInstance()
+
+    def getSumCofinInKindActual(self):
+        """
+        """
+        return self.getZeroMoneyInstance()
+
+    def getTotalCostOfFinanceObjectPlanned(self):
+        """
+        """
+        return self.getZeroMoneyInstance()
+
+    def getTotalCostOfFinanceObjectActual(self):
+        """
+        """
+        return self.getZeroMoneyInstance()
+
+
+    def getSumYearlyExpenditures(self):
+        """
+        """
+        return self.getZeroMoneyInstance()
 
 
 registerType(Financials, PROJECTNAME)
