@@ -24,15 +24,10 @@ from Products.ATVocabularyManager.namedvocabulary import NamedVocabulary
 from Products.ProjectDatabase.config import *
 
 # additional imports from tagged value 'import'
-from Products.ProjectDatabase.widgets.SelectedLinesField import SelectedLinesField
 from Products.FinanceFields.MoneyField import MoneyField
-from Products.FinanceFields.MoneyWidget import MoneyWidget
-from Products.DataGridField import DataGridField, DataGridWidget, Column, SelectColumn, CalendarColumn
-from Products.ATReferenceBrowserWidget.ATReferenceBrowserWidget import ReferenceBrowserWidget
-import Project
-import Financials
+from Products.DataGridField import DataGridField, Column, SelectColumn, CalendarColumn
 from Products.CMFCore.utils import getToolByName
-from Products.FinanceFields.Money import Money
+from Products.ATReferenceBrowserWidget.ATReferenceBrowserWidget import ReferenceBrowserWidget
 
 ##code-section module-header #fill in your manual code here
 import permissions
@@ -401,25 +396,6 @@ class Financials(BaseFolder, CurrencyMixin, BrowserDefaultMixin):
 
     # Methods
 
-    security.declarePublic('getCashUNEPAllocation')
-    def getCashUNEPAllocation(self):
-        """Compute the cash allocation for the field
-        """
-        total = self.getZeroMoneyInstance()
-        if self.getGEFTrustFund():
-            total = total + self.getGEFTrustFund()
-        if self.getLDCFundAllocation():
-            total = total + self.getLDCFundAllocation()
-        if self.getSCCFAllocation():
-            total = total + self.getSCCFAllocation()
-        if self.getStrategicPartnership():
-            total = total + self.getStrategicPartnership()
-        if self.getAdaptationTrustFund():
-            total = total + self.getAdaptationTrustFund()
-        if self.getSupplementaryUNEPAllocation():
-            total = total + self.getSupplementaryUNEPAllocation()
-        return total
-
     # Manually created methods
 
     security.declarePublic('Title')
@@ -447,88 +423,6 @@ class Financials(BaseFolder, CurrencyMixin, BrowserDefaultMixin):
         vocab = pvt.getVocabularyByName('ReportType')
         return vocab.getDisplayList(self)
 
-    security.declarePublic('computeDataGridAmount')
-    def computeDataGridAmount(self,column):
-        """
-        """
-        amount = self.getZeroMoneyInstance()
-        for v in column:
-            if v:
-                amount += v
-        return amount
-
-    security.declarePublic('getSumCofinCashPlanned')
-    def getSumCofinCashPlanned(self):
-        """
-        """
-        cash_values = self.getCofinancingCash()
-        return self.computeDataGridAmount([v['cofinancing_cash_planned_amount'] for v in cash_values if v['cofinancing_cash_planned_amount']])
-
-    security.declarePublic('getSumCofinActual')
-    def getSumCofinActual(self):
-        """
-        """
-        pass
-    security.declarePublic('getSumCashDisbursements')
-    def getSumCashDisbursements(self):
-        """
-        """
-        cash_values = self.getCashDisbursements()
-        return self.computeDataGridAmount( \
-            [v['cash_disbursements_amount'] \
-                for v in cash_values if v['cash_disbursements_amount']])
-    security.declarePublic('getSumIMISExpenditures')
-    def getSumIMISExpenditures(self):
-        """
-        """
-        cash_values = self.getIMISExpenditures()
-        return self.computeDataGridAmount([v['imis_expenditure_amount'] for v in cash_values if v['imis_expenditure_amount']])
-
-    security.declarePublic('getTotalCostOfProjectStagePlanned')
-    def getTotalCostOfProjectStagePlanned(self):
-        """
-        """
-        #projObj = self.getProject()
-        if self.portal_type == 'Financials':
-            total = self.getCashUNEPAllocation()
-            if self.getSumCofinCashPlanned():
-                total += self.getSumCofinCashPlanned()
-            if self.getSumCofinInKindPlanned():
-                total += self.getSumCofinInKindPlanned()
-            return total
-        elif self.portal_type == 'SubProject':
-            total = self.getZeroMoneyInstance()
-            if self.getSumCofinCashPlanned():
-                total += self.getSumCofinCashPlanned()
-            if self.getSumCofinInKindPlanned():
-                total += self.getSumCofinInKindPlanned()
-
-        else:
-            return self.getZeroMoneyInstance()
-
-    security.declarePublic('getTotalCostOfProjectStageActual')
-    def getTotalCostOfProjectStageActual(self):
-        """
-        """
-        if self.portal_type == 'Financials':
-            total = self.getCashUNEPAllocation()
-            if self.getSupplementaryUNEPAllocation():
-                total += self.getSupplementaryUNEPAllocation()
-            if self.getSumCofinCashActual():
-                total += self.getSumCofinCashActual()
-            if self.getSumCofinInKindActual():
-                total += self.getSumCofinInKindActual()
-            return total
-        elif self.portal_type == 'SubProject':
-            total = self.getZeroMoneyInstance()
-            if self.getSumCofinCashActual():
-                total += self.getSumCofinCashActual()
-            if self.getSumCofinInKindActual():
-                total += self.getSumCofinInKindActual()
-            return total
-        else:
-            return self.getZeroMoneyInstance()
-
     security.declarePublic('getRevisionTypeVocabulary')
     def getRevisionTypeVocabulary(self):
         """
@@ -553,6 +447,56 @@ class Financials(BaseFolder, CurrencyMixin, BrowserDefaultMixin):
         vocab = pvt.getVocabularyByName('EvaluationType')
         return vocab.getDisplayList(self)
 
+    security.declarePublic('_computeDataGridAmount')
+    def _computeDataGridAmount(self,column):
+        """
+        """
+        amount = self.getZeroMoneyInstance()
+        for v in column:
+            if v:
+                amount += v
+        return amount
+
+    security.declarePublic('getSumCoFinCashPlanned')
+    def getSumCoFinCashPlanned(self):
+        """
+        """
+        values = self.getCoFinancingCash()
+        return self._computeDataGridAmount( \
+            [v['cofinancing_cash_planned_amount']  \
+                for v in values if v['cofinancing_cash_planned_amount']])
+    security.declarePublic('getSumCoFinCashActual')
+    def getSumCoFinCashActual(self):
+        """
+        """
+        values = self.getCoFinancingCash()
+        return self._computeDataGridAmount( \
+            [v['cofinancing_cash_actual_amount'] \
+                for v in values if v['cofinancing_cash_actual_amount']])
+    security.declarePublic('getSumCoFinInKindPlanned')
+    def getSumCoFinInKindPlanned(self):
+        """
+        """
+        values = self.getCoFinancingInKind()
+        return self._computeDataGridAmount( \
+            [v['cofinancing_inkind_planned_amount'] \
+                for v in values if v['cofinancing_inkind_planned_amount']])
+    security.declarePublic('getSumCoFinInKindActual')
+    def getSumCoFinInKindActual(self):
+        """
+        """
+        values = self.getCoFinancingInKind()
+        return self._computeDataGridAmount( \
+            [v['cofinancing_inkind_actual_amount'] \
+                for v in values if v['cofinancing_inkind_actual_amount']])
+    security.declarePublic('getSumCashDisbursements')
+    def getSumCashDisbursements(self):
+        """
+        """
+        values = self.getCashDisbursements()
+        return self._computeDataGridAmount( \
+            [v['cash_disbursements_amount'] \
+                for v in values if v['cash_disbursements_amount']])
     security.declarePublic('getDifference')
     def getDifference(self):
         """ calculate the difference between the committed and allocated GEF grant
@@ -561,89 +505,57 @@ class Financials(BaseFolder, CurrencyMixin, BrowserDefaultMixin):
         committedGEFgrant = self.getCommittedGEFGrant()
         return totalGrant - committedGEFgrant
 
-    security.declarePublic('validate_CashDisbursements')
-    def validate_CashDisbursements(self, value):
-        """
-        """
-        request = self.REQUEST
-        total_cost = self.computeDataGridAmount([v['cash_disbursements_amount'] for v in value if v['cash_disbursements_amount']])
-        total = self.getZeroMoneyInstance()
-        if request.get('GEFTrustFund'):
-            total = total + request.get('GEFTrustFund')
-        if request.get('LDCFundAllocation'):
-            total = total + request.get('LDCFundAllocation')
-        if request.get('SCCFAllocation'):
-            total = total + request.get('SCCFAllocation')
-        if request.get('StrategicPartnership'):
-            total = total + request.get('StrategicPartnership')
-        if request.get('AdaptationTrustFund'):
-            total = total + request.get('AdaptationTrustFund')
-        if request.get('SupplementaryUNEPAllocation'):
-            total = total + request.get('SupplementaryUNEPAllocation')
-
-        if total_cost > total:
-            return 'Total disbursements cannot exceed total allocation'
-        return
-
-    security.declarePublic('getSumCofinCashActual')
-    def getSumCofinCashActual(self):
-        """
-        """
-        cash_values = self.getCofinancingCash()
-        return self.computeDataGridAmount([v['cofinancing_cash_actual_amount'] for v in cash_values if v['cofinancing_cash_actual_amount']])
-
     def getTotalFinanceObjectGrant(self):
         """
         """
-        return self.getZeroMoneyInstance()
+        values = self.getFinanceObjectAmount()
+        unep_alloc = self._computeDataGridAmount(
+          [v['unep_allocation'] for v in values if v['unep_allocation']])
+        other_alloc = self._computeDataGridAmount(
+          [v['other_ia_allocation'] for v in values if v['other_ia_allocation']])
+        return unep_alloc + other_alloc
 
     def getTotalFee(self):
         """
         """
-        return self.getZeroMoneyInstance()
+        values = self.getFinanceObjectAmount()
+        unep_fee = self._computeDataGridAmount(
+          [v['unep_fee'] for v in values if v['unep_fee']])
+        other_fee = self._computeDataGridAmount(
+          [v['other_ia_fee'] for v in values if v['other_ia_fee']])
+        return unep_fee + other_fee
 
     def getTotalFinanceObject(self):
         """
         """
-        return self.getZeroMoneyInstance()
-
-    def getSumConfigCashPlanned(self):
-        """
-        """
-        return self.getZeroMoneyInstance()
-
-    def getSumConfigCashActual(self):
-        """
-        """
-        return self.getZeroMoneyInstance()
-
-    security.declarePublic('getSumCofinInKindPlanned')
-    def getSumCofinInKindPlanned(self):
-        """
-        """
-        return self.getZeroMoneyInstance()
-
-    security.declarePublic('getSumCofinInKindActual')
-    def getSumCofinInKindActual(self):
-        """
-        """
-        return self.getZeroMoneyInstance()
+        return self.getTotalFinanceObjectGrant() + self.getTotalFee()
 
     def getTotalCostOfFinanceObjectPlanned(self):
         """
         """
-        return self.getZeroMoneyInstance()
+        total = self.getZeroMoneyInstance()
+        if self.getSumCoFinCashPlanned():
+            total += self.getSumCoFinCashPlanned()
+        if self.getSumCoFinInKindPlanned():
+            total += self.getSumCoFinInKindPlanned()
+        return total
 
     def getTotalCostOfFinanceObjectActual(self):
         """
         """
-        return self.getZeroMoneyInstance()
+        total = self.getZeroMoneyInstance()
+        if self.getSumCoFinCashActual():
+            total += self.getSumCoFinCashActual()
+        if self.getSumCoFinInKindActual():
+            total += self.getSumCoFinInKindActual()
+        return total
 
     def getSumYearlyExpenditures(self):
         """
         """
-        return self.getZeroMoneyInstance()
-
+        values = self.getYearlyExpenditure()
+        return self._computeDataGridAmount( \
+            [v['amount'] for v in values if v['amount']])
 
 
 registerType(Financials, PROJECTNAME)

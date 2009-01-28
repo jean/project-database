@@ -166,6 +166,7 @@ def installDataGridVocabularies(context):
                                 "provided at %s." % vdexpath)
                     continue
                 # this might take some time!
+                print vocabname
                 atvm[vocabname].importXMLBinding(data)
             else:
                 pass

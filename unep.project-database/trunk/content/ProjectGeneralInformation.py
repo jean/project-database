@@ -24,15 +24,10 @@ from Products.ATVocabularyManager.namedvocabulary import NamedVocabulary
 from Products.ProjectDatabase.config import *
 
 # additional imports from tagged value 'import'
-from Products.DataGridField import CalendarColumn
 from Products.FinanceFields.MoneyField import MoneyField
-from Products.FinanceFields.MoneyWidget import MoneyWidget
-from Products.DataGridField import DataGridField, DataGridWidget, Column, SelectColumn, CalendarColumn
-from Products.ATReferenceBrowserWidget.ATReferenceBrowserWidget import ReferenceBrowserWidget
-import Project
-import Financials
+from Products.DataGridField import DataGridField, Column, SelectColumn, CalendarColumn
 from Products.CMFCore.utils import getToolByName
-from Products.FinanceFields.Money import Money
+from Products.ATReferenceBrowserWidget.ATReferenceBrowserWidget import ReferenceBrowserWidget
 
 ##code-section module-header #fill in your manual code here
 # from Products.ProjectDatabase.content.SubProjectFolder import SubProjectFolder
@@ -44,7 +39,6 @@ schema = Schema((
     StringField(
         name='title',
         widget=StringField._properties['widget'](
-            visible={'edit':'hidden','view':'invisible'},
             label="Project Title",
             label_msgid='ProjectDatabase_label_title',
             i18n_domain='ProjectDatabase',
@@ -55,14 +49,6 @@ schema = Schema((
         widget=ComputedField._properties['widget'](
             label="Project Database ID",
             label_msgid='ProjectDatabase_label_DatabaseID',
-            i18n_domain='ProjectDatabase',
-        ),
-    ),
-    ComputedField(
-        name='ProjectTitle',
-        widget=ComputedField._properties['widget'](
-            label="Project Title",
-            label_msgid='ProjectDatabase_label_ProjectTitle',
             i18n_domain='ProjectDatabase',
         ),
     ),
@@ -594,10 +580,10 @@ schema = Schema((
         ),
     ),
     ComputedField(
-        name='TotalIMISExpenditures',
+        name='TotalYearlyExpenditures',
         widget=ComputedField._properties['widget'](
-            label="Total IMIS Expenditures",
-            label_msgid='ProjectDatabase_label_TotalIMISExpenditures',
+            label="Total Yearly Expenditures",
+            label_msgid='ProjectDatabase_label_TotalYearlyExpenditures',
             i18n_domain='ProjectDatabase',
         ),
     ),
@@ -678,26 +664,6 @@ ProjectGeneralInformation_schema = BaseSchema.copy() + \
     schema.copy()
 
 ##code-section after-schema #fill in your manual code here
-title_field = ProjectGeneralInformation_schema['title']
-title_field.required=0
-title_field.widget.visible = {'edit':'hidden', 'view':'invisible'}
-ProjectGeneralInformation_schema['TotalGEFAllocation'].widget.visible = {'edit':'hidden', 'view':'invisible'}
-ProjectGeneralInformation_schema['TotalUNEPAllocation'].widget.visible = {'edit':'hidden', 'view':'invisible'}
-ProjectGeneralInformation_schema['TotalCofinancingPlanned'].widget.visible = {'edit':'hidden', 'view':'invisible'}
-ProjectGeneralInformation_schema['TotalCofinancingActual'].widget.visible = {'edit':'hidden', 'view':'invisible'}
-ProjectGeneralInformation_schema['TotalCashDisbursements'].widget.visible = {'edit':'hidden', 'view':'invisible'}
-ProjectGeneralInformation_schema['TotalIMISExpenditures'].widget.visible = {'edit':'hidden', 'view':'invisible'}
-ProjectGeneralInformation_schema['PDFAStatus'].widget.visible = {'edit':'hidden', 'view':'invisible'}
-ProjectGeneralInformation_schema['PDFBStatus'].widget.visible = {'edit':'hidden', 'view':'invisible'}
-ProjectGeneralInformation_schema['MSPStatus'].widget.visible = {'edit':'hidden', 'view':'invisible'}
-ProjectGeneralInformation_schema['FSPStatus'].widget.visible = {'edit':'hidden', 'view':'invisible'}
-ProjectGeneralInformation_schema['ProjectTitle'].widget.visible = {'edit':'hidden', 'view':'invisible'}
-ProjectGeneralInformation_schema['LeveragedFinancingAmount'].widget.size = 15
-
-ProjectGeneralInformation_schema['LeadAgencyContact'].widget.startup_directory = '/contacts'
-# ProjectGeneralInformation_schema['CurrentTaskManager'].widget.startup_directory = '/contacts'
-# ProjectGeneralInformation_schema['PreviousTaskManager'].widget.startup_directory = '/contacts'
-ProjectGeneralInformation_schema['ProjectCoordinator'].widget.startup_directory = '/contacts'
 ##/code-section after-schema
 
 class ProjectGeneralInformation(BaseContent, CurrencyMixin, BrowserDefaultMixin):
@@ -713,7 +679,6 @@ class ProjectGeneralInformation(BaseContent, CurrencyMixin, BrowserDefaultMixin)
     schema = ProjectGeneralInformation_schema
 
     ##code-section class-header #fill in your manual code here
-    # schema.moveField('GEFid', after='title')
     ##/code-section class-header
 
     # Methods
@@ -725,11 +690,7 @@ class ProjectGeneralInformation(BaseContent, CurrencyMixin, BrowserDefaultMixin)
         fmi_cash_objs = self.getAProject()['fmi_folder'].contentValues({'portal_type':'Financials'})
         total = self.getZeroMoneyInstance()
         for fmi_obj in fmi_cash_objs:
-            if fmi_obj.getGEFProjectAllocation():
-                total += fmi_obj.getGEFProjectAllocation()
-        # for sp_obj in subproject_objs:
-        #     if sp_obj.getGEFProjectAllocation():
-        #         total += sp_obj.getGEFProjectAllocation()
+            total += fmi_obj.getCommittedGEFGrant()
         return total
 
     security.declarePublic('getTotalUNEPAllocation')
@@ -739,27 +700,14 @@ class ProjectGeneralInformation(BaseContent, CurrencyMixin, BrowserDefaultMixin)
         fmi_cash_objs = self.getAProject()['fmi_folder'].contentValues({'portal_type':'Financials'})
         total = self.getZeroMoneyInstance()
         for fmi_obj in fmi_cash_objs:
-            if fmi_obj.getCashUNEPAllocation():
-                total += fmi_obj.getCashUNEPAllocation()
+            total += fmi_obj.getTotalFinanceObject()
         return total
 
     security.declarePublic('getTotalCofinancingPlanned')
     def getTotalCofinancingPlanned(self):
         """
         """
-        fmi_cash_objs = self.getAProject()['fmi_folder'].contentValues({'portal_type':'Financials'})
-        total = self.getZeroMoneyInstance()
-        for fmi_obj in fmi_cash_objs:
-            if fmi_obj.getSumCofinCashPlanned():
-                total += fmi_obj.getSumCofinCashPlanned()
-            if fmi_obj.getSumCofinInKindPlanned():
-                total += fmi_obj.getSumCofinInKindPlanned()
-        #for sp_obj in subproject_objs:
-        #    if sp_obj.getSumCofinCashPlanned():
-        #        total += sp_obj.getSumCofinCashPlanned()
-        #    if sp_obj.getSumCofinInKindPlanned():
-        #        total += sp_obj.getSumCofinInKindPlanned()
-        return total
+        pass
 
     security.declarePublic('getTotalCofinancingActual')
     def getTotalCofinancingActual(self):
@@ -768,15 +716,8 @@ class ProjectGeneralInformation(BaseContent, CurrencyMixin, BrowserDefaultMixin)
         fmi_cash_objs = self.getAProject()['fmi_folder'].contentValues({'portal_type':'Financials'})
         total = self.getZeroMoneyInstance()
         for fmi_obj in fmi_cash_objs:
-            if fmi_obj.getSumCofinCashActual():
-                total += fmi_obj.getSumCofinCashActual()
-            if fmi_obj.getSumCofinInKindActual():
-                total += fmi_obj.getSumCofinInKindActual()
-        #for sp_obj in subproject_objs:
-        #    if sp_obj.getSumCofinCashActual():
-        #        total += sp_obj.getSumCofinCashActual()
-        #    if sp_obj.getSumCofinInKindActual():
-        #        total += sp_obj.getSumCofinInKindActual()
+            total += fmi_obj.getSumCoFinCashActual()
+            total += fmi_obj.getSumCoFinInKindActual()
         return total
 
     security.declarePublic('getTotalCashDisbursements')
@@ -786,25 +727,17 @@ class ProjectGeneralInformation(BaseContent, CurrencyMixin, BrowserDefaultMixin)
         fmi_cash_objs = self.getAProject()['fmi_folder'].contentValues({'portal_type':'Financials'})
         total = self.getZeroMoneyInstance()
         for fmi_obj in fmi_cash_objs:
-            if fmi_obj.getSumCashDisbursements():
-                total += fmi_obj.getSumCashDisbursements()
-        #for sp_obj in subproject_objs:
-        #    if sp_obj.getSumCashDisbursements():
-        #        total += sp_obj.getSumCashDisbursements()
+            total += fmi_obj.getSumCashDisbursements()
         return total
 
-    security.declarePublic('getTotalIMISExpenditures')
-    def getTotalIMISExpenditures(self):
+    security.declarePublic('getTotalYearlyExpenditures')
+    def getTotalYearlyExpenditures(self):
         """
         """
         fmi_cash_objs = self.getAProject()['fmi_folder'].contentValues({'portal_type':'Financials'})
         total = self.getZeroMoneyInstance()
         for fmi_obj in fmi_cash_objs:
-            if fmi_obj.getSumIMISExpenditures():
-                total += fmi_obj.getSumIMISExpenditures()
-        #for sp_obj in subproject_objs:
-        #    if sp_obj.getSumIMISExpenditures():
-        #        total += sp_obj.getSumIMISExpenditures()
+            total += fmi_obj.getSumYearlyExpenditures()
         return total
 
     security.declarePublic('getPDFAStatus')
@@ -853,9 +786,9 @@ class ProjectGeneralInformation(BaseContent, CurrencyMixin, BrowserDefaultMixin)
 
     security.declarePublic('getProjectTitle')
     def getProjectTitle(self):
-        """ Code copied from previous project; dunno what it means...
         """
-        return self.getAProject().Title()
+        """
+        pass
 
     security.declarePublic('validate_PhasedTrancheNumber')
     def validate_PhasedTrancheNumber(self, value):
@@ -884,6 +817,17 @@ class ProjectGeneralInformation(BaseContent, CurrencyMixin, BrowserDefaultMixin)
         return False
 
     # Manually created methods
+
+    security.declarePublic('getTotalCoFinancingPlanned')
+    def getTotalCoFinancingPlanned(self):
+        """
+        """
+        fmi_cash_objs = self.getAProject()['fmi_folder'].contentValues({'portal_type':'Financials'})
+        total = self.getZeroMoneyInstance()
+        for fmi_obj in fmi_cash_objs:
+            total += fmi_obj.getSumCoFinCashPlanned()
+            total += fmi_obj.getSumCoFinInKindPlanned()
+        return total
 
     security.declarePublic('getPDFCStatus')
     def getPDFCStatus(self):
@@ -914,16 +858,6 @@ class ProjectGeneralInformation(BaseContent, CurrencyMixin, BrowserDefaultMixin)
         atvm = self.portal_vocabularies
         vocab = atvm.getVocabularyByName('TMCategory')
         return vocab.getDisplayList(self)
-
-    security.declarePublic('getProjectTitle')
-    def Title(self):
-        """
-        """
-        #if hasattr(self, 'getAProject'):
-        #    return 'Project General Information: ' + str(self.getAProject().Title())
-        #else:
-        #    return 'Project General Information'
-        return 'Project General Information'
 
     security.declarePublic('validate_TranchedNumber')
     def validate_TranchedNumber(self, value):
