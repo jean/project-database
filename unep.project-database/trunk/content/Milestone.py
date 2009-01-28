@@ -39,75 +39,103 @@ from Products.FinanceFields.Money import Money
 
 schema = Schema((
 
-    StringField(
-        name='ProjectCycleStage',
-        widget=SelectionWidget(
-            label="Project Cycle Stage",
-            label_msgid='ProjectDatabase_label_ProjectCycleStage',
+    ComputedField(
+        name='ProjectTitle',
+        widget=ComputedField._properties['widget'](
+            label="Project Title",
+            label_msgid='ProjectDatabase_label_ProjectTitle',
             i18n_domain='ProjectDatabase',
         ),
-        vocabulary=NamedVocabulary("""ProjectCycleStage"""),
-    ),
-    StringField(
-        name='MilestoneName',
-        widget=SelectionWidget(
-            label="Milestone Name",
-            label_msgid='ProjectDatabase_label_MilestoneName',
-            i18n_domain='ProjectDatabase',
-        ),
-        vocabulary=NamedVocabulary("""MilestoneName"""),
-    ),
-    DateTimeField(
-        name='MilestoneDate',
-        widget=CalendarWidget(
-            label="Milestone Date",
-            show_hm=False,
-            label_msgid='ProjectDatabase_label_MilestoneDate',
-            i18n_domain='ProjectDatabase',
-        ),
-    ),
-    TextField(
-        name='MilestoneDescription',
-        allowable_content_types=('text/plain', 'text/structured', 'text/html', 'application/msword',),
-        widget=RichWidget(
-            label="Remarks on Decision",
-            label_msgid='ProjectDatabase_label_MilestoneDescription',
-            i18n_domain='ProjectDatabase',
-        ),
-        default_output_type='text/html',
-        vocabulary=NamedVocabulary("""ProjectStatusses"""),
     ),
     DataGridField(
-        name='ProjectProcess',
+        name='ConceptDevelopment',
         widget=DataGridField._properties['widget'](
-            columns={'project_process':SelectColumn('Project Process',vocabulary='getProjectProcesses'),'project_status':SelectColumn('Status', vocabulary='getProjectStatusses')},
-            label="Project Processes",
-            description="Project Process and Review Dates",
-            label_msgid='ProjectDatabase_label_ProjectProcess',
-            description_msgid='ProjectDatabase_help_ProjectProcess',
+            label="Concept Development (IPI)",
+            columns={'milestone_action':SelectColumn('Milestone Action', vocabulary='getConceptDevelopmentActionsVocabulary'), 'milestone_date':CalendarColumn('Milestone Date'), 'milestone_result':SelectColumn('Milestone Result', vocabulary='getMilestoneResultVocabulary')},
+            label_msgid='ProjectDatabase_label_ConceptDevelopment',
             i18n_domain='ProjectDatabase',
         ),
-        columns=('project_process', 'project_status'),
+        columns=('milestone_action', 'milestone_date', 'milestone_result'),
     ),
     DataGridField(
-        name='NationalFocalPointEndorsements',
+        name='PIFApproval',
         widget=DataGridField._properties['widget'](
-            label="National Focal Point Endorsements",
-            columns={'country':SelectColumn('Country', vocabulary='getCountryNames'),'endorsement_date':CalendarColumn('Endorsement Date')},
-            label_msgid='ProjectDatabase_label_NationalFocalPointEndorsements',
+            columns={'milestone_action':SelectColumn('Milestone Action', vocabulary='getPIFApprovalActionsVocabulary'), 'milestone_date':CalendarColumn('Milestone Date'), 'milestone_result':SelectColumn('Milestone Result', vocabulary='getMilestoneResultVocabulary')},
+            label="PIF Approval",
+            label_msgid='ProjectDatabase_label_PIFApproval',
             i18n_domain='ProjectDatabase',
         ),
-        columns=('country', 'endorsement_date'),
+        columns=('milestone_action', 'milestone_date', 'milestone_result'),
     ),
     DataGridField(
-        name='ApprovalInitiationAndClosure',
+        name='PPGApproval',
         widget=DataGridField._properties['widget'](
-            label="Project Approval, Initiation and Closure",
-            columns={'approval_initiation_closure':SelectColumn('Project Approval, Initiation and Closure', vocabulary='getApprovalInitiationClosure'), 'actual_date':CalendarColumn('Date')},
-            label_msgid='ProjectDatabase_label_ApprovalInitiationAndClosure',
+            columns={'milestone_action':SelectColumn('Milestone Action', vocabulary='getPPGApprovalActionsVocabulary'), 'milestone_date':CalendarColumn('Milestone Date'), 'milestone_result':SelectColumn('Milestone Result', vocabulary='getMilestoneResultVocabulary')},
+            label="PPG Approval",
+            label_msgid='ProjectDatabase_label_PPGApproval',
             i18n_domain='ProjectDatabase',
         ),
-        columns=('approval_initiation_closure','actual_date'),
+        columns=('milestone_action', 'milestone_date', 'milestone_result'),
+    ),
+    DataGridField(
+        name='PPGImplementation',
+        widget=DataGridField._properties['widget'](
+            columns={'milestone_action':SelectColumn('Milestone Action', vocabulary='getPPGImplementationActionsVocabulary'), 'milestone_date':CalendarColumn('Milestone Date')},
+            label="PPG Implementation",
+            label_msgid='ProjectDatabase_label_PPGImplementation',
+            i18n_domain='ProjectDatabase',
+        ),
+        columns=('milestone_action', 'milestone_date'),
+    ),
+    DataGridField(
+        name='ProjectApproval',
+        widget=DataGridField._properties['widget'](
+            columns={'milestone_action':SelectColumn('Milestone Action', vocabulary='getProjectApprovalActionsVocabulary'), 'milestone_date':CalendarColumn('Milestone Date'), 'milestone_result':SelectColumn('Milestone Result', vocabulary='getMilestoneResultVocabulary')},
+            label="Project Approval",
+            label_msgid='ProjectDatabase_label_ProjectApproval',
+            i18n_domain='ProjectDatabase',
+        ),
+        columns=('milestone_action', 'milestone_date', 'milestone_result'),
+    ),
+    DataGridField(
+        name='ProjectImplementation',
+        widget=DataGridField._properties['widget'](
+            columns={'milestone_action':SelectColumn('Milestone Action', vocabulary='getProjectImplementationActionsVocabulary'), 'milestone_date':CalendarColumn('Milestone Date')},
+            label="Project Implementation",
+            label_msgid='ProjectDatabase_label_ProjectImplementation',
+            i18n_domain='ProjectDatabase',
+        ),
+        columns=('milestone_action', 'milestone_date'),
+    ),
+    DataGridField(
+        name='NewPhaseApproval',
+        widget=DataGridField._properties['widget'](
+            columns={'milestone_action':SelectColumn('Milestone Action', vocabulary='getNewPhaseApprovalActionsVocabulary'), 'milestone_date':CalendarColumn('Milestone Date'), 'comment':Column('Comment', vocabulary='getMilestoneResultVocabulary')},
+            label="Add-on, Phase or Tranche Approval",
+            label_msgid='ProjectDatabase_label_NewPhaseApproval',
+            i18n_domain='ProjectDatabase',
+        ),
+        columns=('milestone_action', 'milestone_date', 'comment'),
+    ),
+    DataGridField(
+        name='NewPhaseImplementation',
+        widget=DataGridField._properties['widget'](
+            columns={'milestone_action':SelectColumn('Milestone Action', vocabulary='getNewPhaseImplementationActionsVocabulary'), 'milestone_date':CalendarColumn('Milestone Date')},
+            label="Add-on, Phase or Tranche Implementation",
+            label_msgid='ProjectDatabase_label_NewPhaseImplementation',
+            i18n_domain='ProjectDatabase',
+        ),
+        columns=('milestone_action', 'milestone_date'),
+    ),
+    DataGridField(
+        name='EvaluationDates',
+        widget=DataGridField._properties['widget'](
+            columns={'milestone_action':SelectColumn('Milestone Action', vocabulary='getEvaluationDatesActionsVocabulary'), 'milestone_date':CalendarColumn('Milestone Date')},
+            label="Evaluation Dates",
+            label_msgid='ProjectDatabase_label_EvaluationDates',
+            i18n_domain='ProjectDatabase',
+        ),
+        columns=('milestone_action', 'milestone_date'),
     ),
 
 ),
@@ -120,9 +148,6 @@ Milestone_schema = BaseSchema.copy() + \
     schema.copy()
 
 ##code-section after-schema #fill in your manual code here
-title_field = Milestone_schema['title']
-title_field.required=0
-title_field.widget.visible = {'edit':'hidden', 'view':'invisible'}
 ##/code-section after-schema
 
 class Milestone(BaseContent, BrowserDefaultMixin):
@@ -141,47 +166,6 @@ class Milestone(BaseContent, BrowserDefaultMixin):
     ##/code-section class-header
 
     # Methods
-
-    security.declarePublic('getProjectProcesses')
-    def getProjectProcesses(self):
-        """
-        """
-        atvm = self.portal_vocabularies
-        vocab = atvm.getVocabularyByName('ProjectProcesses')
-        return vocab.getDisplayList(self)
-
-    security.declarePublic('getProjectStatusses')
-    def getProjectStatusses(self):
-        """
-        """
-        atvm = self.portal_vocabularies
-        vocab = atvm.getVocabularyByName('ProjectStatusses')
-        return vocab.getDisplayList(self)
-
-    security.declarePublic('getCountryNames')
-    def getCountryNames(self):
-        """
-        """
-        atvm = self.portal_vocabularies
-        vocab = atvm.getVocabularyByName('Country')
-        return vocab.getDisplayList(self)
-
-    security.declarePublic('getApprovalInitiationClosure')
-    def getApprovalInitiationClosure(self):
-        """
-        """
-        atvm = self.portal_vocabularies
-        vocab = atvm.getVocabularyByName('ApprovalInitiationClosure')
-        return vocab.getDisplayList(self)
-
-    # Manually created methods
-
-    security.declarePublic('Title')
-    def Title(self):
-        """
-        """
-        return self.getMilestoneName()
-
 
 
 registerType(Milestone, PROJECTNAME)

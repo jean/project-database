@@ -50,10 +50,10 @@ schema = Schema((
             i18n_domain='ProjectDatabase',
         ),
     ),
-    StringField(
+    ComputedField(
         name='DatabaseID',
-        widget=StringField._properties['widget'](
-            label='Databaseid',
+        widget=ComputedField._properties['widget'](
+            label="Project Database ID",
             label_msgid='ProjectDatabase_label_DatabaseID',
             i18n_domain='ProjectDatabase',
         ),
@@ -87,7 +87,7 @@ schema = Schema((
     LinesField(
         name='UNEPThematicPriority',
         widget=MultiSelectionWidget(
-            label="UNEP Thematic Priority",
+            label="UNEP Priority",
             label_msgid='ProjectDatabase_label_UNEPThematicPriority',
             i18n_domain='ProjectDatabase',
         ),
@@ -261,7 +261,7 @@ schema = Schema((
     LinesField(
         name='OtherDivisions',
         widget=MultiSelectionWidget(
-            label="Other Division",
+            label="Other Divisions",
             label_msgid='ProjectDatabase_label_OtherDivisions',
             i18n_domain='ProjectDatabase',
         ),
@@ -320,7 +320,7 @@ schema = Schema((
     MoneyField(
         name='PPGUNEPAmount',
         widget=MoneyField._properties['widget'](
-            label='Ppgunepamount',
+            label="PPG UNEP Amount",
             label_msgid='ProjectDatabase_label_PPGUNEPAmount',
             i18n_domain='ProjectDatabase',
         ),
@@ -328,7 +328,7 @@ schema = Schema((
     MoneyField(
         name='PPGUNEPFeeAmount',
         widget=MoneyField._properties['widget'](
-            label='Ppgunepfeeamount',
+            label="PPG UNEP Fee Amount",
             label_msgid='ProjectDatabase_label_PPGUNEPFeeAmount',
             i18n_domain='ProjectDatabase',
         ),
@@ -336,7 +336,7 @@ schema = Schema((
     MoneyField(
         name='PPGOtherIAAmount',
         widget=MoneyField._properties['widget'](
-            label='Ppgotheriaamount',
+            label="PPG Other IA Amount",
             label_msgid='ProjectDatabase_label_PPGOtherIAAmount',
             i18n_domain='ProjectDatabase',
         ),
@@ -344,7 +344,7 @@ schema = Schema((
     MoneyField(
         name='PPGOtherIAFeeAmount',
         widget=MoneyField._properties['widget'](
-            label='Ppgotheriafeeamount',
+            label="PPG Other IA Fee Amount",
             label_msgid='ProjectDatabase_label_PPGOtherIAFeeAmount',
             i18n_domain='ProjectDatabase',
         ),
@@ -352,7 +352,7 @@ schema = Schema((
     MoneyField(
         name='ProjectUNEPAmount',
         widget=MoneyField._properties['widget'](
-            label='Projectunepamount',
+            label="Project UNEP Amount",
             label_msgid='ProjectDatabase_label_ProjectUNEPAmount',
             i18n_domain='ProjectDatabase',
         ),
@@ -360,7 +360,7 @@ schema = Schema((
     MoneyField(
         name='ProjectUNEPFeeAmount',
         widget=MoneyField._properties['widget'](
-            label='Projectunepfeeamount',
+            label="Project UNEP Fee Amount",
             label_msgid='ProjectDatabase_label_ProjectUNEPFeeAmount',
             i18n_domain='ProjectDatabase',
         ),
@@ -368,7 +368,7 @@ schema = Schema((
     MoneyField(
         name='ProjectOtherIAAmount',
         widget=MoneyField._properties['widget'](
-            label='Projectotheriaamount',
+            label="Project Other IA Amount",
             label_msgid='ProjectDatabase_label_ProjectOtherIAAmount',
             i18n_domain='ProjectDatabase',
         ),
@@ -376,7 +376,7 @@ schema = Schema((
     MoneyField(
         name='ProjectOtherIAFeeAmount',
         widget=MoneyField._properties['widget'](
-            label='Projectotheriafeeamount',
+            label="Project Other IA Fee Amount",
             label_msgid='ProjectDatabase_label_ProjectOtherIAFeeAmount',
             i18n_domain='ProjectDatabase',
         ),
@@ -384,7 +384,7 @@ schema = Schema((
     ComputedField(
         name='TotalPPGAmount',
         widget=ComputedField._properties['widget'](
-            label='Totalppgamount',
+            label="Total PPG Amount",
             label_msgid='ProjectDatabase_label_TotalPPGAmount',
             i18n_domain='ProjectDatabase',
         ),
@@ -392,7 +392,7 @@ schema = Schema((
     ComputedField(
         name='TotalProjectAmount',
         widget=ComputedField._properties['widget'](
-            label='Totalprojectamount',
+            label="Total Project Amount",
             label_msgid='ProjectDatabase_label_TotalProjectAmount',
             i18n_domain='ProjectDatabase',
         ),
@@ -400,7 +400,7 @@ schema = Schema((
     ComputedField(
         name='ProjectGrantTotal',
         widget=ComputedField._properties['widget'](
-            label='Projectgranttotal',
+            label="Project Grant Total",
             label_msgid='ProjectDatabase_label_ProjectGrantTotal',
             i18n_domain='ProjectDatabase',
         ),
@@ -430,7 +430,7 @@ schema = Schema((
         name='ProjectResults',
         allowable_content_types=('text/plain', 'text/structured', 'text/html', 'application/msword',),
         widget=RichWidget(
-            label="Actual Overall Project Results",
+            label="Project Results",
             description="Enter overall Project Results AFTER Project Terminal Evaluation",
             label_msgid='ProjectDatabase_label_ProjectResults',
             description_msgid='ProjectDatabase_help_ProjectResults',
@@ -620,7 +620,7 @@ schema = Schema((
     ComputedField(
         name='PDFCStatus',
         widget=ComputedField._properties['widget'](
-            label='Pdfcstatus',
+            label="PDFC Status",
             label_msgid='ProjectDatabase_label_PDFCStatus',
             i18n_domain='ProjectDatabase',
         ),
@@ -628,7 +628,7 @@ schema = Schema((
     ComputedField(
         name='PPGStatus',
         widget=ComputedField._properties['widget'](
-            label='Ppgstatus',
+            label="PPG Status",
             label_msgid='ProjectDatabase_label_PPGStatus',
             i18n_domain='ProjectDatabase',
         ),
@@ -660,7 +660,7 @@ schema = Schema((
     ReferenceField(
         name='ProgrammeFrameworkTitle',
         widget=ReferenceBrowserWidget(
-            label='Programmeframeworktitle',
+            label="Programme Framework Title",
             label_msgid='ProjectDatabase_label_ProgrammeFrameworkTitle',
             i18n_domain='ProjectDatabase',
         ),

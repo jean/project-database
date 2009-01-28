@@ -40,9 +40,9 @@ import permissions
 
 schema = Schema((
 
-    StringField(
+    ComputedField(
         name='GEFid',
-        widget=StringField._properties['widget'](
+        widget=ComputedField._properties['widget'](
             label="GEF ID",
             description="Enter the 5 digit GEF ID",
             label_msgid='ProjectDatabase_label_GEFid',
@@ -83,17 +83,17 @@ schema = Schema((
             i18n_domain='ProjectDatabase',
         ),
     ),
-    StringField(
+    ComputedField(
         name='LeadExecutingAgency',
-        widget=StringField._properties['widget'](
+        widget=ComputedField._properties['widget'](
             label="Lead Executing Agency",
             label_msgid='ProjectDatabase_label_LeadExecutingAgency',
             i18n_domain='ProjectDatabase',
         ),
     ),
-    StringField(
+    ComputedField(
         name='OtherLeadExecutingAgency',
-        widget=SelectionWidget(
+        widget=ComputedField._properties['widget'](
             label="Other Project Executing Partners",
             label_msgid='ProjectDatabase_label_OtherLeadExecutingAgency',
             i18n_domain='ProjectDatabase',
@@ -120,8 +120,7 @@ schema = Schema((
     DataGridField(
         name='FinanceObjectAmount',
         widget=DataGridField._properties['widget'](
-            columns={ 'trust_fund' : SelectColumn("Trust Fund",
-            vocabulary="getTrustFundVocabulary"), 'unep_allocation' : Column("UNEP Allocation"), 'other_ia_allocation' : Column("Other IA Alloaction"), 'unep_fee' : Column("UNEP Fee"), 'other_ia_fee' : Column("Other IA Fee") },
+            columns={ 'trust_fund' : SelectColumn("Trust Fund", vocabulary="getTrustFundVocabulary"), 'unep_allocation' : Column("UNEP Allocation"), 'other_ia_allocation' : Column("Other IA Alloaction"), 'unep_fee' : Column("UNEP Fee"), 'other_ia_fee' : Column("Other IA Fee") },
             label="Finance Object Amount",
             label_msgid='ProjectDatabase_label_FinanceObjectAmount',
             i18n_domain='ProjectDatabase',
@@ -241,9 +240,7 @@ schema = Schema((
     DataGridField(
         name='EvaluationFunds',
         widget=DataGridField._properties['widget'](
-            columns= { 'EvaluationType':SelectColumn("EvaluationType",
-            vocabulary="getEvaluationTypeVocabulary"), 
-            'Amount':Column('Amount'), 'BAC':Column('BAC') },
+            columns= { 'EvaluationType':SelectColumn("EvaluationType", vocabulary="getEvaluationTypeVocabulary"), 'Amount':Column('Amount'), 'BAC':Column('BAC') },
             label="Evaluation Funds",
             label_msgid='ProjectDatabase_label_EvaluationFunds',
             i18n_domain='ProjectDatabase',
@@ -271,7 +268,7 @@ schema = Schema((
     DataGridField(
         name='YearlyExpenditures',
         widget=DataGridField._properties['widget'](
-            columns={ 'year' : Column("Amount"), 'amount' : Column("Amount") },
+            columns={ 'year' : Column("Year"), 'amount' : Column("Amount") },
             label="Yearly Expenditures",
             label_msgid='ProjectDatabase_label_YearlyExpenditures',
             i18n_domain='ProjectDatabase',
@@ -337,7 +334,7 @@ schema = Schema((
     DataGridField(
         name='FundManagementOfficer',
         widget=DataGridField._properties['widget'](
-            columns= { 'FMO_Name': Column("Name"), "FMO_Type":Column("Type"), "FMO_Period":Column('Period')},
+            columns= { 'FMO_Name': Column("Name"), "FMO_Type":SelectColumn("Type", vocabulary="getTMCategoryVocabulary"), "FMO_Period":Column('Period')},
             label="Fund Management Officer",
             label_msgid='ProjectDatabase_label_FundManagementOfficer',
             i18n_domain='ProjectDatabase',
@@ -425,18 +422,6 @@ class Financials(BaseFolder, CurrencyMixin, BrowserDefaultMixin):
 
     # Manually created methods
 
-    # security.declarePublic('validate_GEFid')
-    # def validate_GEFid(self, value):
-    #     """
-    #     Check that the GEF id consists of 5 digits
-    #     """
-    #     if len(value) != 5:
-    #         return 'The GEF ID must be 5 digits in length'
-
-    #     for char in value:
-    #         if char not in ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']:
-    #             return 'Only digits are allowed in the GEF ID'
-
     security.declarePublic('Title')
     def Title(self):
         """
@@ -484,29 +469,14 @@ class Financials(BaseFolder, CurrencyMixin, BrowserDefaultMixin):
         """
         """
         pass
-    security.declarePublic('getSumCofinInKindPlanned')
-    def getSumCofinInKindPlanned(self):
-        """
-        """
-        cash_values = self.getCofinancingInKind()
-        return self.computeDataGridAmount([v['cofinancing_inkind_planned_amount'] for v in cash_values if v['cofinancing_inkind_planned_amount']])
-
-    security.declarePublic('getSumCofinInKindActual')
-    def getSumCofinInKindActual(self):
-        """
-        """
-        cash_values = self.getCofinancingInKind()
-        return self.computeDataGridAmount([v['cofinancing_inkind_actual_amount'] for v in cash_values if v['cofinancing_inkind_actual_amount']])
-
     security.declarePublic('getSumCashDisbursements')
     def getSumCashDisbursements(self):
         """
         """
         cash_values = self.getCashDisbursements()
-        return self.computeDataGridAmount(\
-          [v['cash_disbursements_amount'] 
-              for v in cash_values if v['cash_disbursements_amount']])
-
+        return self.computeDataGridAmount( \
+            [v['cash_disbursements_amount'] \
+                for v in cash_values if v['cash_disbursements_amount']])
     security.declarePublic('getSumIMISExpenditures')
     def getSumIMISExpenditures(self):
         """
@@ -647,11 +617,13 @@ class Financials(BaseFolder, CurrencyMixin, BrowserDefaultMixin):
         """
         return self.getZeroMoneyInstance()
 
+    security.declarePublic('getSumCofinInKindPlanned')
     def getSumCofinInKindPlanned(self):
         """
         """
         return self.getZeroMoneyInstance()
 
+    security.declarePublic('getSumCofinInKindActual')
     def getSumCofinInKindActual(self):
         """
         """
@@ -667,11 +639,11 @@ class Financials(BaseFolder, CurrencyMixin, BrowserDefaultMixin):
         """
         return self.getZeroMoneyInstance()
 
-
     def getSumYearlyExpenditures(self):
         """
         """
         return self.getZeroMoneyInstance()
+
 
 
 registerType(Financials, PROJECTNAME)

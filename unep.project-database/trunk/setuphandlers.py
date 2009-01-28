@@ -36,18 +36,15 @@ def installVocabularies(context):
     site = context.getSite()
     # Create vocabularies in vocabulary lib
     atvm = getToolByName(site, ATVOCABULARYTOOL)
-    vocabmap = {'ProjectStatusses': ('VdexVocabulary', 'SimpleVocabularyTerm'),
-         'Category': ('VdexVocabulary', 'SimpleVocabularyTerm'),
+    vocabmap = {'Category': ('VdexVocabulary', 'SimpleVocabularyTerm'),
          'StrategicPriority': ('VdexVocabulary', 'SimpleVocabularyTerm'),
          'GEFPhase': ('VdexVocabulary', 'SimpleVocabularyTerm'),
-         'ProjectCycleStage': ('VdexVocabulary', 'SimpleVocabularyTerm'),
          'Scope': ('VdexVocabulary', 'SimpleVocabularyTerm'),
          'ReviewEvaluation': ('VdexVocabulary', 'SimpleVocabularyTerm'),
          'Assessment': ('VdexVocabulary', 'SimpleVocabularyTerm'),
          'Status': ('VdexVocabulary', 'SimpleVocabularyTerm'),
          'Division': ('VdexVocabulary', 'SimpleVocabularyTerm'),
          'ProjectType': ('VdexVocabulary', 'SimpleVocabularyTerm'),
-         'MilestoneName': ('VdexVocabulary', 'SimpleVocabularyTerm'),
          'EAPOP': ('VdexVocabulary', 'SimpleVocabularyTerm'),
          'UNEPThematicPriority': ('VdexVocabulary', 'SimpleVocabularyTerm'),
          'OperationalProgramme': ('VdexVocabulary', 'SimpleVocabularyTerm'),
@@ -56,7 +53,6 @@ def installVocabularies(context):
          'Country': ('VdexVocabulary', 'SimpleVocabularyTerm'),
          'Region': ('VdexVocabulary', 'SimpleVocabularyTerm'),
          'EABiodiversity': ('VdexVocabulary', 'SimpleVocabularyTerm'),
-         'ProjectRevisionType': ('VdexVocabulary', 'SimpleVocabularyTerm'),
          'MultipleFocalAreas': ('VdexVocabulary', 'SimpleVocabularyTerm'),
          'FocalArea': ('VdexVocabulary', 'SimpleVocabularyTerm'),
          'StrategicObjectives': ('VdexVocabulary', 'SimpleVocabularyTerm'),
