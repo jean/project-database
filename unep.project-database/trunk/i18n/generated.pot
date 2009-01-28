@@ -248,6 +248,11 @@ msgstr ""
 msgid "ProjectDatabase_label_CommittedGEFGrant"
 msgstr ""
 
+#. Default: "Concept Development (IPI)"
+#: content/Milestone.py
+msgid "ProjectDatabase_label_ConceptDevelopment"
+msgstr ""
+
 #. Default: "Cost Effectiveness"
 #: content/OtherProjectRatings.py
 msgid "ProjectDatabase_label_CostEffectiveness"
@@ -347,6 +352,11 @@ msgstr ""
 #. Default: "Evaluationactualestimatedifference"
 #: content/MonitoringAndEvaluation.py
 msgid "ProjectDatabase_label_EvaluationActualEstimateDifference"
+msgstr ""
+
+#. Default: "Evaluation Dates"
+#: content/Milestone.py
+msgid "ProjectDatabase_label_EvaluationDates"
 msgstr ""
 
 #. Default: "Evaluation Funds"
@@ -718,6 +728,16 @@ msgstr ""
 msgid "ProjectDatabase_label_NationalFocalPointEndorsements"
 msgstr ""
 
+#. Default: "Add-on, Phase or Tranche Approval"
+#: content/Milestone.py
+msgid "ProjectDatabase_label_NewPhaseApproval"
+msgstr ""
+
+#. Default: "Add-on, Phase or Tranche Implementation"
+#: content/Milestone.py
+msgid "ProjectDatabase_label_NewPhaseImplementation"
+msgstr ""
+
 #. Default: "New Tables for Project Revisions"
 #: content/DocumentLinks.py
 msgid "ProjectDatabase_label_NewTablesForProjectRevisions"
@@ -811,6 +831,11 @@ msgstr ""
 msgid "ProjectDatabase_label_PDFResults"
 msgstr ""
 
+#. Default: "PIF Approval"
+#: content/Milestone.py
+msgid "ProjectDatabase_label_PIFApproval"
+msgstr ""
+
 #. Default: "PIR"
 #: content/DocumentLinks.py
 msgid "ProjectDatabase_label_PIR"
@@ -826,6 +851,16 @@ msgstr ""
 #: content/CoreMixin.py
 #: content/SubProject.py
 msgid "ProjectDatabase_label_PMSNumber"
+msgstr ""
+
+#. Default: "PPG Approval"
+#: content/Milestone.py
+msgid "ProjectDatabase_label_PPGApproval"
+msgstr ""
+
+#. Default: "PPG Implementation"
+#: content/Milestone.py
+msgid "ProjectDatabase_label_PPGImplementation"
 msgstr ""
 
 #. Default: "Ppgotheriaamount"
@@ -903,6 +938,11 @@ msgstr ""
 msgid "ProjectDatabase_label_ProgressReport"
 msgstr ""
 
+#. Default: "Project Approval"
+#: content/Milestone.py
+msgid "ProjectDatabase_label_ProjectApproval"
+msgstr ""
+
 #. Default: "Project Brief"
 #: content/DocumentLinks.py
 msgid "ProjectDatabase_label_ProjectBrief"
@@ -933,6 +973,11 @@ msgstr ""
 #. Default: "Projectgranttotal"
 #: content/ProjectGeneralInformation.py
 msgid "ProjectDatabase_label_ProjectGrantTotal"
+msgstr ""
+
+#. Default: "Project Implementation"
+#: content/Milestone.py
+msgid "ProjectDatabase_label_ProjectImplementation"
 msgstr ""
 
 #. Default: "Project Implementation Status"

@@ -67,10 +67,7 @@ schema = Schema((
     DataGridField(
         name='ProjectExecutingAgency',
         widget=DataGridField._properties['widget'](
-            columns={
-              'executing_agency':Column('Executing Agency'),
-              'executing_agency_category':SelectColumn('Category', \
-                                          vocabulary='getCategoryVocabulary')},
+            columns={'executing_agency':Column('Executing Agency'),'executing_agency_category':SelectColumn('Category', vocabulary='getCategoryVocab')},
             label="Lead Executing Agency",
             label_msgid='ProjectDatabase_label_ProjectExecutingAgency',
             i18n_domain='ProjectDatabase',
@@ -174,7 +171,7 @@ schema = Schema((
     DataGridField(
         name='YearlyExpenditures',
         widget=DataGridField._properties['widget'](
-            columns={ 'year' : Column("Amount"), 'amount' : Column("Amount") },
+            columns={ 'year' : Column("Year"), 'amount' : Column("Amount") },
             label="Yearly Expenditures",
             label_msgid='ProjectDatabase_label_YearlyExpenditures',
             i18n_domain='ProjectDatabase',
@@ -218,6 +215,7 @@ schema = Schema((
         name='InitialCompletionDate',
         widget=DateTimeField._properties['widget'](
             label="Initial Completion Date",
+            show_hm=False,
             label_msgid='ProjectDatabase_label_InitialCompletionDate',
             i18n_domain='ProjectDatabase',
         ),
@@ -226,6 +224,7 @@ schema = Schema((
         name='RevisedCompletionDate',
         widget=DateTimeField._properties['widget'](
             label="Revised Completion Date",
+            show_hm=False,
             label_msgid='ProjectDatabase_label_RevisedCompletionDate',
             i18n_domain='ProjectDatabase',
         ),
@@ -348,10 +347,9 @@ class SubProject(BaseContent, CurrencyMixin, BrowserDefaultMixin):
         """
         """
         cash_values = self.getCashDisbursements()
-        return self.computeDataGridAmount(\
-          [v['cash_disbursements_amount'] 
-              for v in cash_values if v['cash_disbursements_amount']])
-
+        return self.computeDataGridAmount( \
+            [v['cash_disbursements_amount'] \
+                for v in cash_values if v['cash_disbursements_amount']])
     def getSumYearlyExpenditures(self):
         """
         """
@@ -364,6 +362,8 @@ class SubProject(BaseContent, CurrencyMixin, BrowserDefaultMixin):
         pvt = getToolByName(self, 'portal_vocabularies')
         vocab = pvt.getVocabularyByName('Category')
         return vocab.getDisplayList(self)
+
+
 
 registerType(SubProject, PROJECTNAME)
 # end of class SubProject
