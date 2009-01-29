@@ -15,4 +15,12 @@
   <description />
 </term>
 
+<term>
+  <termIdentifier>Other</termIdentifier>
+  <caption>
+    <langstring language="en">Other</langstring>
+  </caption>
+  <description />
+</term>
+
 </vdex>
