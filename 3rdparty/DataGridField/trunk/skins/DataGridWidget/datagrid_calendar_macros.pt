@@ -15,6 +15,7 @@
          show_single_year show_single_year | python: 1;
          show_jscal show_jscal | python: 1;
          input_id string:${formname}_${inputname}_${inputIndex};
+         input_id python:hash(inputname);
          use_ampm python: '%p' in site_properties.getProperty('localLongTimeFormat');
          values   python:here.date_components_support(inputvalue, use_ampm, starting_year, ending_year, future_years);
          years values/years;

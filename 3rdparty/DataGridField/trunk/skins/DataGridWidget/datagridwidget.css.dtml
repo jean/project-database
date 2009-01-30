@@ -111,6 +111,8 @@ div.ArchetypesDataGridWidget table td select {
 
 /* Do not subject calendar to 100% width */
 div.datagrid-calendar-wrapper select { width: auto !important; }
+/* Calendar image must display inline */
+div.datagrid-calendar-wrapper img { display: inline !important; }
 
 /* 
   </dtml-with>  (end of loaded base_properties variables)
