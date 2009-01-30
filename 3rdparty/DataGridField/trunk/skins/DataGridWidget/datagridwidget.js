@@ -144,7 +144,16 @@ dataGridFieldFunctions.createNewRow = function(tr) {
 		newtr.appendChild(newchild);
 		child = child.nextSibling;
 	}		
-	    
+
+// Hedley - work in progress
+    // Select all calendar inputs in the cloned row. We must change the id
+    // attribute on each tag since the calendar popup needs an id to set the
+    // values.
+//    var wrapper = jq(newtr).find("input").each(function(i) {
+//
+//        this.id = this.id + "x";
+//    });
+
     return newtr;	 
 }
 
