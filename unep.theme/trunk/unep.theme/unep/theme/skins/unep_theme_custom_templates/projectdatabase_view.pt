@@ -4,7 +4,7 @@
         <metal:folderlisting metal:define-macro="folderlisting" />
         <metal:footer metal:define-macro="footer" />
         <metal:body metal:define-macro="body">
-        <table tal:define="projects python:context.getFolderContents(full_objects=True)">
+        <table class="table-fullwidth" tal:define="projects python:context.getFolderContents(full_objects=True)">
         <tr>
         <th>DBase ID</th>
         <th>GEF ID</th>
@@ -21,7 +21,7 @@
                         areavalue python:geninfo.displayValue(areavocab, geninfo.getFocalArea());
                         countryvocab python:geninfo.getField('Country').Vocabulary(geninfo);
                         countryvalue python:geninfo.displayValue(countryvocab, geninfo.getCountry())"
-            tal:attributes="class python:even and 'even' or 'odd'">
+            tal:attributes="class python:even and 'odd' or 'even'">
         <td tal:content="project/title_or_id">DBase ID</td>
         <td tal:content="geninfo/getGEFid | string:????">GEF ID</td>
         <td tal:content="areavalue | string:????">Focal Area</td>
