@@ -43,7 +43,6 @@ ADD_CONTENT_PERMISSIONS = {
     'RatingTrackingSystem': 'ProjectDatabase: Add RatingTrackingSystem',
     'EvaluatorsInformation': 'ProjectDatabase: Add EvaluatorsInformation',
     'RTSFolder': 'ProjectDatabase: Add RTSFolder',
-    'MilestoneFolder': 'ProjectDatabase: Add MilestoneFolder',
     'OtherProjectRatingsFolder': 'ProjectDatabase: Add OtherProjectRatingsFolder',
     'OtherProjectRatings': 'ProjectDatabase: Add OtherProjectRatings',
     'FMIFolder': 'ProjectDatabase: Add FMIFolder',
@@ -61,7 +60,6 @@ setDefaultRoles('ProjectDatabase: Add MonitoringAndEvaluation', ('Manager','Owne
 setDefaultRoles('ProjectDatabase: Add RatingTrackingSystem', ('Manager','Owner'))
 setDefaultRoles('ProjectDatabase: Add EvaluatorsInformation', ('Manager','Owner'))
 setDefaultRoles('ProjectDatabase: Add RTSFolder', ('Manager','Owner'))
-setDefaultRoles('ProjectDatabase: Add MilestoneFolder', ('Manager','Owner'))
 setDefaultRoles('ProjectDatabase: Add OtherProjectRatingsFolder', ('Manager','Owner'))
 setDefaultRoles('ProjectDatabase: Add OtherProjectRatings', ('Manager','Owner'))
 setDefaultRoles('ProjectDatabase: Add FMIFolder', ('Manager','Owner'))

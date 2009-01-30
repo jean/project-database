@@ -10,7 +10,6 @@
   <type portal_type="RatingTrackingSystem"/>
   <type portal_type="EvaluatorsInformation"/>
   <type portal_type="RTSFolder"/>
-  <type portal_type="MilestoneFolder"/>
   <type portal_type="OtherProjectRatingsFolder"/>
   <type portal_type="OtherProjectRatings"/>
   <type portal_type="FMIFolder"/>

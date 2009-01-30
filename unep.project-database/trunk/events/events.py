@@ -25,12 +25,12 @@ def projectInitialized(event):
     if 'fmi_folder' not in ob.objectIds():
         ob.invokeFactory('FMIFolder', 'fmi_folder')
         ob['fmi_folder'].edit(title='Financial Management Information')
-    if 'monitoring_and_evaluation' not in ob.objectIds():
-        ob.invokeFactory('MonitoringAndEvaluation', 'monitoring_and_evaluation')
-        ob['monitoring_and_evaluation'].edit(title='Monitoring and Evaluation')
-    if 'milestonesfolder' not in ob.objectIds():
-        ob.invokeFactory('MilestoneFolder', 'milestonesfolder')
-        ob['milestonesfolder'].edit(title='Milestones')
+    #if 'monitoring_and_evaluation' not in ob.objectIds():
+    #    ob.invokeFactory('MonitoringAndEvaluation', 'monitoring_and_evaluation')
+    #    ob['monitoring_and_evaluation'].edit(title='Monitoring and Evaluation')
+    if 'milestones' not in ob.objectIds():
+        ob.invokeFactory('Milestone', 'milestones')
+        ob['milestones'].edit(title='Milestones')
     if 'documents' not in ob.objectIds():
         ob.invokeFactory('Folder', 'documents')
         ob['documents'].edit(title='Documents')

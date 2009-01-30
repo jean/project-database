@@ -30,24 +30,14 @@ from Products.CMFCore.utils import getToolByName
 from Products.ATReferenceBrowserWidget.ATReferenceBrowserWidget import ReferenceBrowserWidget
 
 ##code-section module-header #fill in your manual code here
-# from Products.ProjectDatabase.content.SubProjectFolder import SubProjectFolder
-import permissions
 ##/code-section module-header
 
 schema = Schema((
 
-    StringField(
-        name='title',
-        widget=StringField._properties['widget'](
-            label="Project Title",
-            label_msgid='ProjectDatabase_label_title',
-            i18n_domain='ProjectDatabase',
-        ),
-    ),
     ComputedField(
         name='DatabaseID',
         widget=ComputedField._properties['widget'](
-            label="Project Database ID",
+            label='Databaseid',
             label_msgid='ProjectDatabase_label_DatabaseID',
             i18n_domain='ProjectDatabase',
         ),
@@ -664,6 +654,7 @@ ProjectGeneralInformation_schema = BaseSchema.copy() + \
     schema.copy()
 
 ##code-section after-schema #fill in your manual code here
+ProjectGeneralInformation_schema['title'].widget.label = 'Project Title'
 ##/code-section after-schema
 
 class ProjectGeneralInformation(BaseContent, CurrencyMixin, BrowserDefaultMixin):
@@ -784,12 +775,6 @@ class ProjectGeneralInformation(BaseContent, CurrencyMixin, BrowserDefaultMixin)
                 status = fmi_obj.getStatus()
         return status
 
-    security.declarePublic('getProjectTitle')
-    def getProjectTitle(self):
-        """
-        """
-        pass
-
     security.declarePublic('validate_PhasedTrancheNumber')
     def validate_PhasedTrancheNumber(self, value):
         """
@@ -894,6 +879,9 @@ class ProjectGeneralInformation(BaseContent, CurrencyMixin, BrowserDefaultMixin)
         """
         """
         return 0.0
+
+    def getDatabaseID(self):
+        return self.aq_inner.aq_parent.getId()
 
 
 

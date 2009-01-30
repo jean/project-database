@@ -64,6 +64,14 @@ class ProjectDatabase(BaseFolder, BrowserDefaultMixin):
 
     # Methods
 
+    # Manually created methods
+
+    security.declarePublic('getNextProjectId')
+    def getNextProjectId(self):
+        childrenCount = len(self.objectIds(spec='Project'))
+        return 'Prj-%05d' % (childrenCount + 1)
+
+
 
 registerType(ProjectDatabase, PROJECTNAME)
 # end of class ProjectDatabase

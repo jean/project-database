@@ -144,6 +144,8 @@ def installDataGridVocabularies(context):
         'NewPhaseImplementationActions': ('VdexVocabulary', 'SimpleVocabularyterm'),
         'EvaluationDatesActions': ('VdexVocabulary', 'SimpleVocabularyterm'),
         'MilestoneResult': ('VdexVocabulary', 'SimpleVocabularyterm'),
+        'ProjectRevisionType': ('VdexVocabulary', 'SimpleVocabularyterm'),
+        'RiskLevel': ('VdexVocabulary', 'SimpleVocabularyterm'),
         }
     for vocabname in vocabmap.keys():
         if not vocabname in atvm.contentIds():

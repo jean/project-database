@@ -30,7 +30,6 @@ from Products.CMFCore.utils import getToolByName
 from Products.ATReferenceBrowserWidget.ATReferenceBrowserWidget import ReferenceBrowserWidget
 
 ##code-section module-header #fill in your manual code here
-import permissions
 ##/code-section module-header
 
 schema = Schema((
@@ -165,30 +164,30 @@ schema = Schema((
         ),
     ),
     DataGridField(
-        name='CofinancingCash',
+        name='CoFinancingCash',
         widget=DataGridField._properties['widget'](
             columns={ 'cofinancing_cash_source' : SelectColumn("Source", vocabulary="getDonorTypesVocabulary"), 'cofinancing_cash_donor_name' : Column("Name of donor"), 'cofinancing_cash_planned_amount' : Column("Planned Amount"), 'cofinancing_cash_actual_amount' : Column("Actual Amount") },
             label="Cofinancing: Cash",
-            label_msgid='ProjectDatabase_label_CofinancingCash',
+            label_msgid='ProjectDatabase_label_CoFinancingCash',
             i18n_domain='ProjectDatabase',
         ),
         columns=("cofinancing_cash_source", "cofinancing_cash_donor_name", "cofinancing_cash_planned_amount", "cofinancing_cash_actual_amount"),
     ),
     DataGridField(
-        name='CofinancingInKind',
+        name='CoFinancingInKind',
         widget=DataGridField._properties['widget'](
             columns={ 'cofinancing_inkind_source' : SelectColumn("Source", vocabulary="getDonorTypesVocabulary"), 'cofinancing_inkind_donor_name' : Column("Name of donor"), 'cofinancing_inkind_planned_amount' : Column("Planned Amount"), 'cofinancing_inkind_actual_amount' : Column("Actual Amount") },
             label="Cofinancing: In Kind",
-            label_msgid='ProjectDatabase_label_CofinancingInKind',
+            label_msgid='ProjectDatabase_label_CoFinancingInKind',
             i18n_domain='ProjectDatabase',
         ),
         columns=("cofinancing_inkind_source", "cofinancing_inkind_donor_name", "cofinancing_inkind_planned_amount", "cofinancing_inkind_actual_amount"),
     ),
     ComputedField(
-        name='SumCofinCashPlanned',
+        name='SumCoFinCashPlanned',
         widget=ComputedField._properties['widget'](
             label="Total Cofinancing: Cash (Planned)",
-            label_msgid='ProjectDatabase_label_SumCofinCashPlanned',
+            label_msgid='ProjectDatabase_label_SumCoFinCashPlanned',
             i18n_domain='ProjectDatabase',
         ),
     ),
@@ -201,18 +200,18 @@ schema = Schema((
         ),
     ),
     ComputedField(
-        name='SumCofinInKindPlanned',
+        name='SumCoFinInKindPlanned',
         widget=ComputedField._properties['widget'](
             label="Total Cofinancing: In Kind (Planned)",
-            label_msgid='ProjectDatabase_label_SumCofinInKindPlanned',
+            label_msgid='ProjectDatabase_label_SumCoFinInKindPlanned',
             i18n_domain='ProjectDatabase',
         ),
     ),
     ComputedField(
-        name='SumCofinInKindActual',
+        name='SumCoFinInKindActual',
         widget=ComputedField._properties['widget'](
             label="Total Cofinancing: In Kind (Actual)",
-            label_msgid='ProjectDatabase_label_SumCofinInKindActual',
+            label_msgid='ProjectDatabase_label_SumCoFinInKindActual',
             i18n_domain='ProjectDatabase',
         ),
     ),
@@ -350,7 +349,7 @@ schema = Schema((
         name='FinanceObjectPreparationResults',
         allowable_content_types=('text/plain', 'text/structured', 'text/html', 'application/msword',),
         widget=RichWidget(
-            label='Financeobjectpreparationresults',
+            label="Finance Object Preparation Results",
             label_msgid='ProjectDatabase_label_FinanceObjectPreparationResults',
             i18n_domain='ProjectDatabase',
         ),
@@ -359,7 +358,7 @@ schema = Schema((
     DataGridField(
         name='ExecutingAgencyRiskRating',
         widget=DataGridField._properties['widget'](
-            columns= {'Risk_Level':Column("Risk Level"), "Assessment_Date":CalendarColumn("Assessment Date"), 'Remarks':Column("Remarks")},
+            columns= {'Risk_Level':SelectColumn("Risk Level", vocabulary="getRiskLevel"), "Assessment_Date":CalendarColumn("Assessment Date"), 'Remarks':Column("Remarks")},
             label="Executing Agency Risk Rating",
             label_msgid='ProjectDatabase_label_ExecutingAgencyRiskRating',
             i18n_domain='ProjectDatabase',
@@ -398,21 +397,20 @@ class Financials(BaseFolder, CurrencyMixin, BrowserDefaultMixin):
 
     # Manually created methods
 
-    security.declarePublic('Title')
-    def Title(self):
-        """
-        """
-        if hasattr(self, 'getAProject'):
-            return 'Financial Management Information: ' + str(self.getAProject().Title())
-        else:
-            return 'Financial Management Information'
-
     security.declarePublic('getDonorTypesVocabulary')
     def getDonorTypesVocabulary(self):
         """
         """
         pvt = getToolByName(self, 'portal_vocabularies')
         vocab = pvt.getVocabularyByName('DonorType')
+        return vocab.getDisplayList(self)
+
+    security.declarePublic('getRiskLevelVocabulary')
+    def getRiskLevelVocabulary(self):
+        """
+        """
+        pvt = getToolByName(self, 'portal_vocabularies')
+        vocab = pvt.getVocabularyByName('RiskLevel')
         return vocab.getDisplayList(self)
 
     security.declarePublic('getReportTypesVocabulary')
@@ -445,6 +443,14 @@ class Financials(BaseFolder, CurrencyMixin, BrowserDefaultMixin):
         """
         pvt = getToolByName(self, 'portal_vocabularies')
         vocab = pvt.getVocabularyByName('EvaluationType')
+        return vocab.getDisplayList(self)
+
+    security.declarePublic('getTMCategoryVocabulary')
+    def getTMCategoryVocabulary(self):
+        """
+        """
+        pvt = getToolByName(self, 'portal_vocabularies')
+        vocab = pvt.getVocabularyByName('TMCategory')
         return vocab.getDisplayList(self)
 
     security.declarePublic('_computeDataGridAmount')
@@ -553,9 +559,24 @@ class Financials(BaseFolder, CurrencyMixin, BrowserDefaultMixin):
     def getSumYearlyExpenditures(self):
         """
         """
-        values = self.getYearlyExpenditure()
+        values = self.getYearlyExpenditures()
         return self._computeDataGridAmount( \
             [v['amount'] for v in values if v['amount']])
+    def getGEFid(self):
+        """
+        """
+        return self.getAProject()['project_general_info'].getGEFid()
+
+    def getLeadExecutingAgency(self):
+        """
+        """
+        return self.getAProject()['project_general_info'].getLeadAgency()
+
+    def getOtherLeadExecutingAgency(self):
+        """
+        """
+        return self.getAProject()['project_general_info'].getOtherImplementingAgency()[0]
+
 
 
 registerType(Financials, PROJECTNAME)

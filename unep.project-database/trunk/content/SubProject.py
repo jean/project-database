@@ -383,7 +383,7 @@ class SubProject(BaseContent, CurrencyMixin, BrowserDefaultMixin):
     def getSumYearlyExpenditures(self):
         """
         """
-        values = self.getYearlyExpenditure()
+        values = self.getYearlyExpenditures()
         return self._computeDataGridAmount( \
             [v['amount'] for v in values if v['amount']])
     def getTotalCostOfSubProjectPlanned(self):

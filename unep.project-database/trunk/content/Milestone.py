@@ -165,38 +165,41 @@ class Milestone(BaseContent, BrowserDefaultMixin):
 
     # Manually created methods
 
+    def getProjectTitle(self):
+        return self.getAProject()['project_general_info'].Title()
+
     def getConceptDevelopmentActionsVocabulary(self):
-        return getVocabulary('ConceptDevelopmentActions')
+        return self.getVocabulary('ConceptDevelopmentActions')
 
     def getPIFApprovalActionsVocabulary(self):
-        return getVocabulary('PIFApprovalActions')
+        return self.getVocabulary('PIFApprovalActions')
 
     def getPPGApprovalActionsVocabulary(self):
-        return getVocabulary('PPGApprovalActions')
+        return self.getVocabulary('PPGApprovalActions')
 
     def getPPGImplementationActionsVocabulary(self):
-        return getVocabulary('PPGImplementationActions')
+        return self.getVocabulary('PPGImplementationActions')
 
     def getProjectImplementationActionsVocabulary(self):
-        return getVocabulary('ProjectImplementationActions')
+        return self.getVocabulary('ProjectImplementationActions')
 
     def getProjectApprovalActionsVocabulary(self):
-        return getVocabulary('ProjectApprovalActions')
+        return self.getVocabulary('ProjectApprovalActions')
 
     def getNewPhaseApprovalActionsVocabulary(self):
-        return getVocabulary('NewPhaseApprovalActions')
+        return self.getVocabulary('NewPhaseApprovalActions')
 
     def getNewPhaseImplementationActionsVocabulary(self):
-        return getVocabulary('NewPhaseImplementationActions')
+        return self.getVocabulary('NewPhaseImplementationActions')
 
     def getEvaluationDatesActionsVocabulary(self):
-        return getVocabulary('EvaluationDatesActions')
+        return self.getVocabulary('EvaluationDatesActions')
 
     def getMilestoneResultVocabulary(self):
-        return getVocabulary('MilestoneResult')
+        return self.getVocabulary('MilestoneResult')
 
     def getVocabulary(self, vocabularyName):
-        atvm = getToolByName(self.context, 'portal_vocabularies')
+        atvm = getToolByName(self, 'portal_vocabularies')
         vocab = atvm.getVocabularyByName(vocabularyName)
         if vocab:
             return vocab.getDisplayList(self)
