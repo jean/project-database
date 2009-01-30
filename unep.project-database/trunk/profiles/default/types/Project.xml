@@ -15,7 +15,7 @@
  <property name="allowed_content_types">
    <element value="Folder"/>
    <element value="MonitoringAndEvaluation"/>
-   <element value="MilestoneFolder"/>
+   <element value="Milestone"/>
    <element value="ProjectGeneralInformation"/>
    <element value="FMIFolder"/>
  </property>

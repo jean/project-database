@@ -41,10 +41,6 @@ class IRTSFolder(Interface):
     """Marker interface for .RTSFolder.RTSFolder
     """
 
-class IMilestoneFolder(Interface):
-    """Marker interface for .MilestoneFolder.MilestoneFolder
-    """
-
 class IOtherProjectRatingsFolder(Interface):
     """Marker interface for .OtherProjectRatingsFolder.OtherProjectRatingsFolder
     """

@@ -34,17 +34,6 @@ from Products.ATReferenceBrowserWidget.ATReferenceBrowserWidget import Reference
 
 schema = Schema((
 
-    StringField(
-        name='title',
-        widget=StringField._properties['widget'](
-            visible= {'edit':'hidden', 'view':'invisible'},
-            label='Title',
-            label_msgid='ProjectDatabase_label_title',
-            i18n_domain='ProjectDatabase',
-        ),
-        required= False,
-    ),
-
 ),
 )
 
@@ -55,6 +44,8 @@ Project_schema = BaseFolderSchema.copy() + \
     schema.copy()
 
 ##code-section after-schema #fill in your manual code here
+Project_schema['title'].required = False
+Project_schema['title'].widget.visible= {'edit':'hidden', 'view':'invisible'}
 ##/code-section after-schema
 
 class Project(BaseFolder, BrowserDefaultMixin):
@@ -74,14 +65,14 @@ class Project(BaseFolder, BrowserDefaultMixin):
 
     # Methods
 
-    security.declarePublic('getLeadAgencies')
-    def getLeadAgencies(self):
-        """
-        """
-        catalog = getToolByName(self, 'portal_catalog')
-        proxies = catalog(portal_type='Agency')
-        pl = [p.getObject().Title() for p in proxies]
-        return ','.join(pl)
+    # security.declarePublic('getLeadAgencies')
+    # def getLeadAgencies(self):
+    #     """
+    #     """
+    #     catalog = getToolByName(self, 'portal_catalog')
+    #     proxies = catalog(portal_type='Agency')
+    #     pl = [p.getObject().Title() for p in proxies]
+    #     return ','.join(pl)
 
     security.declarePublic('getVocabulary')
     def getVocabulary(self, vocabName):

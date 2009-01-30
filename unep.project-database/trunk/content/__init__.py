@@ -49,7 +49,6 @@ import MonitoringAndEvaluation
 import RatingTrackingSystem
 import EvaluatorsInformation
 import RTSFolder
-import MilestoneFolder
 import OtherProjectRatingsFolder
 import OtherProjectRatings
 import FMIFolder

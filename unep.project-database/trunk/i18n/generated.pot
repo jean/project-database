@@ -221,11 +221,13 @@ msgstr ""
 
 #. Default: "Cofinancingcash"
 #: content/SubProject.py
+#: content/Financials.py
 msgid "ProjectDatabase_label_CoFinancingCash"
 msgstr ""
 
 #. Default: "Cofinancinginkind"
 #: content/SubProject.py
+#: content/Financials.py
 msgid "ProjectDatabase_label_CoFinancingInKind"
 msgstr ""
 
@@ -1219,16 +1221,19 @@ msgstr ""
 
 #. Default: "Sumcofincashplanned"
 #: content/SubProject.py
+#: content/Financials.py
 msgid "ProjectDatabase_label_SumCoFinCashPlanned"
 msgstr ""
 
 #. Default: "Sumcofininkindactual"
 #: content/SubProject.py
+#: content/Financials.py
 msgid "ProjectDatabase_label_SumCoFinInKindActual"
 msgstr ""
 
 #. Default: "Sumcofininkindplanned"
 #: content/SubProject.py
+#: content/Financials.py
 msgid "ProjectDatabase_label_SumCoFinInKindPlanned"
 msgstr ""
 
@@ -1455,6 +1460,11 @@ msgstr ""
 #: content/ProjectGeneralInformation.py
 #: content/BlankCoreMixin.py
 msgid "ProjectDatabase_label_TotalUNEPAllocation"
+msgstr ""
+
+#. Default: "Total Yearly Expenditures"
+#: content/ProjectGeneralInformation.py
+msgid "ProjectDatabase_label_TotalYearlyExpenditures"
 msgstr ""
 
 #. Default: "Trustee ID"
