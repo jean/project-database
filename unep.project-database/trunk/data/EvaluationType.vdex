@@ -6,7 +6,6 @@
 <vocabName>
   <langstring language="en">EvaluationType</langstring>
 </vocabName>
-Mid-term review; Mid-term evaluation; Terminal Evaluation
 <term>
   <termIdentifier>MTR</termIdentifier>
   <caption>
@@ -24,7 +23,14 @@ Mid-term review; Mid-term evaluation; Terminal Evaluation
 <term>
   <termIdentifier>TE</termIdentifier>
   <caption>
-    <langstring language="en">Term Evaluation</langstring>
+    <langstring language="en">Terminal Evaluation</langstring>
+  </caption>
+  <description />
+</term>
+<term>
+  <termIdentifier>EOF</termIdentifier>
+  <caption>
+    <langstring language="en">End-of-Phase Evaluation</langstring>
   </caption>
   <description />
 </term>
