@@ -358,7 +358,7 @@ schema = Schema((
     DataGridField(
         name='ExecutingAgencyRiskRating',
         widget=DataGridField._properties['widget'](
-            columns= {'Risk_Level':SelectColumn("Risk Level", vocabulary="getRiskLevel"), "Assessment_Date":CalendarColumn("Assessment Date"), 'Remarks':Column("Remarks")},
+            columns= {'Risk_Level':SelectColumn("Risk Level", vocabulary="getRiskLevelVocabulary"), "Assessment_Date":CalendarColumn("Assessment Date"), 'Remarks':Column("Remarks")},
             label="Executing Agency Risk Rating",
             label_msgid='ProjectDatabase_label_ExecutingAgencyRiskRating',
             i18n_domain='ProjectDatabase',
