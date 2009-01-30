@@ -25,7 +25,8 @@
          ampm values/ampm;
          yearStart python:years[0]['value'];
          yearEnd python:years[-1]['value'];
-         translation_service nocall:here/translation_service;">
+         translation_service nocall:here/translation_service;"
+         class="datagrid-calendar-wrapper">
 
       <input type="hidden" tal:attributes="name string:$inputname;
 	     id input_id;
