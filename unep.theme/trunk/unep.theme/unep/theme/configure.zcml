@@ -6,7 +6,6 @@
    <five:registerPackage package="." initialize=".initialize" />
 
    <include package=".browser" />
-   <include package=".viewlets" />
    <include package=".portlets" />
 
    <include file="skins.zcml" />
