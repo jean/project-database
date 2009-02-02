@@ -1,0 +1,24 @@
+<metal:header metal:define-macro="header">
+<h1 class="documentFirstHeading" tal:content="context/Title">FMI</h1>
+</metal:header>
+<metal:folderlisting metal:define-macro="folderlisting" />
+<metal:footer metal:define-macro="footer" />
+<metal:body metal:define-macro="body">
+<div>
+<!-- PGI -->
+    <a tal:attributes="href context/aq_parent/project_general_info/absolute_url"
+        tal:content="context/aq_parent/project_general_info/Title"> PGI </a>   
+
+</div>
+<div>
+<!-- FMI -->
+    <div style="width:100%" 
+            tal:repeat="fo python:context.getFolderContents(full_objects=True)">
+        <p>Finance Object: <span tal:content="fo/getFinanceCategory"/></p>
+        <p>IMIS No: <span tal:content="fo/getIMISNumber"/></p>
+        <p>Trustee ID: <span tal:content="fo/getTrusteeID"/></p>
+        <p>Status: <span tal:content="fo/getStatus"/></p>
+        <p>Date of last revision: <span tal:content="fo/getLastestRevisionDate"/></p>
+    </div>
+</div>
+</metal:body>

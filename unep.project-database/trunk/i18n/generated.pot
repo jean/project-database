@@ -504,6 +504,7 @@ msgstr ""
 #. Default: "Focal Area"
 #: content/ProjectGeneralInformation.py
 #: content/CoreMixin.py
+#: content/ProgrammeFramework.py
 msgid "ProjectDatabase_label_FocalArea"
 msgstr ""
 
@@ -625,6 +626,7 @@ msgstr ""
 
 #. Default: "Lead GEF Agency"
 #: content/ProjectGeneralInformation.py
+#: content/ProgrammeFramework.py
 msgid "ProjectDatabase_label_LeadAgency"
 msgstr ""
 
@@ -888,6 +890,16 @@ msgstr ""
 msgid "ProjectDatabase_label_PDFResults"
 msgstr ""
 
+#. Default: "PDF Allocated Amount"
+#: content/ProgrammeFramework.py
+msgid "ProjectDatabase_label_PFDAllocatedAmount"
+msgstr ""
+
+#. Default: "PDF Short Title"
+#: content/ProgrammeFramework.py
+msgid "ProjectDatabase_label_PFDShortTitle"
+msgstr ""
+
 #. Default: "PIF Approval"
 #: content/Milestone.py
 msgid "ProjectDatabase_label_PIFApproval"
@@ -998,6 +1010,11 @@ msgstr ""
 #. Default: "Is this project in a Programme Framework?"
 #: content/ProjectGeneralInformation.py
 msgid "ProjectDatabase_label_ProgrammeFramework"
+msgstr ""
+
+#. Default: "Programme Framework Milestones"
+#: content/ProgrammeFramework.py
+msgid "ProjectDatabase_label_ProgrammeFrameworkMilestones"
 msgstr ""
 
 #. Default: "Programmeframeworktitle"
@@ -1115,6 +1132,11 @@ msgstr ""
 msgid "ProjectDatabase_label_ProjectRiskRatingForEachPIR"
 msgstr ""
 
+#. Default: "Project Submission Deadline"
+#: content/ProgrammeFramework.py
+msgid "ProjectDatabase_label_ProjectSubmissionDeadline"
+msgstr ""
+
 #. Default: "Project Sustainability"
 #: content/OtherProjectRatings.py
 msgid "ProjectDatabase_label_ProjectSustainability"
@@ -1227,6 +1249,11 @@ msgstr ""
 #. Default: "Geographic Scope - Other"
 #: content/ProjectGeneralInformation.py
 msgid "ProjectDatabase_label_ScopeOther"
+msgstr ""
+
+#. Default: "Senior Programme Officer"
+#: content/ProgrammeFramework.py
+msgid "ProjectDatabase_label_SeniorProgrammeOfficer"
 msgstr ""
 
 #. Default: "Stakeholder Participation"

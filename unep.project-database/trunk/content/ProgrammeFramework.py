@@ -17,7 +17,7 @@ from AccessControl import ClassSecurityInfo
 from Products.Archetypes.atapi import *
 from zope.interface import implements
 import interfaces
-
+from Products.ProjectDatabase.content.CurrencyMixin import CurrencyMixin
 from Products.CMFDynamicViewFTI.browserdefault import BrowserDefaultMixin
 
 from Products.ATVocabularyManager.namedvocabulary import NamedVocabulary
@@ -34,6 +34,71 @@ from Products.ATReferenceBrowserWidget.ATReferenceBrowserWidget import Reference
 
 schema = Schema((
 
+    TextField(
+        name='PFDShortTitle',
+        widget=TextAreaWidget(
+            label="PFD Short Title",
+            label_msgid='ProjectDatabase_label_PFDShortTitle',
+            i18n_domain='ProjectDatabase',
+        ),
+        required= True,
+    ),
+    MoneyField(
+        name='PFDAllocatedAmount',
+        widget=MoneyField._properties['widget'](
+            label="PFD Allocated Amount",
+            label_msgid='ProjectDatabase_label_PFDAllocatedAmount',
+            i18n_domain='ProjectDatabase',
+        ),
+    ),
+    StringField(
+        name='LeadAgency',
+        widget=SelectionWidget(
+            label="Lead Agency",
+            label_msgid='ProjectDatabase_label_LeadAgency',
+            i18n_domain='ProjectDatabase',
+        ),
+        vocabulary=NamedVocabulary("""LeadAgency"""),
+    ),
+    LinesField(
+        name='FocalArea',
+        widget=MultiSelectionWidget(
+            label="Focal Area",
+            label_msgid='ProjectDatabase_label_FocalArea',
+            i18n_domain='ProjectDatabase',
+        ),
+        multiValued=1,
+        vocabulary=NamedVocabulary("""FocalArea"""),
+    ),
+    DateTimeField(
+        name='ProjectSubmissionDeadline',
+        widget=DateTimeField._properties['widget'](
+            label="Project Submission Deadline",
+            label_msgid='ProjectDatabase_label_ProjectSubmissionDeadline',
+            i18n_domain='ProjectDatabase',
+        ),
+    ),
+    DataGridField(
+        name='ProgrammeFrameworkMilestones',
+        widget=DataGridField._properties['widget'](
+            label="Programme Framework Milestones",
+            columns={'milestone_action':SelectColumn('Milestone Action', vocabulary='getMilestoneActionVocabulary'), 'milestone_date':Column('Milestone Date'),  'milestone_result':SelectColumn('Milestone Result', vocabulary='getMilestoneResultVocabulary')},
+            label_msgid='ProjectDatabase_label_ProgrammeFrameworkMilestones',
+            i18n_domain='ProjectDatabase',
+        ),
+        columns= ('milestone_action', 'milestone_date',  'milestone_result'),
+    ),
+    ReferenceField(
+        name='SeniorProgrammeOfficer',
+        widget=ReferenceBrowserWidget(
+            label="Senior Programme Officer",
+            label_msgid='ProjectDatabase_label_SeniorProgrammeOfficer',
+            i18n_domain='ProjectDatabase',
+        ),
+        allowed_types=('Person',),
+        multiValued=0,
+        relationship="PFD_Person",
+    ),
 
 ),
 )
@@ -47,7 +112,7 @@ ProgrammeFramework_schema = BaseSchema.copy() + \
 ##code-section after-schema #fill in your manual code here
 ##/code-section after-schema
 
-class ProgrammeFramework(BaseContent, BrowserDefaultMixin):
+class ProgrammeFramework(BaseContent, CurrencyMixin, BrowserDefaultMixin):
     """
     """
     security = ClassSecurityInfo()
@@ -63,6 +128,20 @@ class ProgrammeFramework(BaseContent, BrowserDefaultMixin):
     ##/code-section class-header
 
     # Methods
+
+    # Manually created methods
+
+    def getMilestoneActionVocabulary(self):
+        return self.getVocabulary('MilestoneAction')
+
+    def getMilestoneResultVocabulary(self):
+        return self.getVocabulary('MilestoneResult')
+
+    def getVocabulary(self, vocabName):
+        pvt = getToolByName(self, 'portal_vocabularies')
+        vocab = pvt.getVocabularyByName(vocabName)
+        return vocab.getDisplayList(self)
+
 
 
 registerType(ProgrammeFramework, PROJECTNAME)
