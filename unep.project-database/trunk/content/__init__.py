@@ -45,17 +45,13 @@ import Milestone
 import ProjectGeneralInformation
 import SubProject
 import Financials
-import MonitoringAndEvaluation
-import RatingTrackingSystem
-import EvaluatorsInformation
-import RTSFolder
-import OtherProjectRatingsFolder
-import OtherProjectRatings
 import FMIFolder
 import MOU
 import CurrencyMixin
 import ProjectDatabase
 import ProgrammeFramework
+import MonitoringAndEvaluation
+import MandEfolder
 
 ##code-section init-module-footer #fill in your manual code here
 ##/code-section init-module-footer

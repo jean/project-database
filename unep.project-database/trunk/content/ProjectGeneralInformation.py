@@ -165,6 +165,26 @@ schema = Schema((
         multiValued=1,
         vocabulary=NamedVocabulary("""Country"""),
     ),
+    StringField(
+        name='TrustFund',
+        widget=SelectionWidget(
+            label="Trust Fund",
+            label_msgid='ProjectDatabase_label_TrustFund',
+            i18n_domain='ProjectDatabase',
+        ),
+        required=True,
+        vocabulary=NamedVocabulary("""TrustFund"""),
+    ),
+    DataGridField(
+        name='PIFFinancialData',
+        widget=DataGridField._properties['widget'](
+            columns={'stage':SelectColumn('Stage', vocabulary='getPIFStageVocabulary'), 'grant_to_unep':Column('Grant to UNEP'), 'grant_to_other_ia':Column('Grant to other IA'), 'cofinancing':Column('Co-Financing'), 'unep_fee':Column('UNEP Fee'), 'other_ia_fee':Column('Other IA Fee')},
+            label="Financial Data at PIF",
+            label_msgid='ProjectDatabase_label_PIFFinancialData',
+            i18n_domain='ProjectDatabase',
+        ),
+        columns=('stage', 'grant_to_unep', 'grant_to_other_ia', 'cofinancing', 'unep_fee', 'other_ia_fee'),
+    ),
     BooleanField(
         name='JointImplementation',
         widget=BooleanWidget(
@@ -285,113 +305,34 @@ schema = Schema((
         ),
         columns=('name','category','period'),
     ),
-    MoneyField(
-        name='PDFAmount',
-        widget=MoneyField._properties['widget'](
-            label="PDF Amount",
-            label_msgid='ProjectDatabase_label_PDFAmount',
+    StringField(
+        name='RiskRatingAtInception',
+        widget=SelectionWidget(
+            label="Risk Rating at Inception",
+            label_msgid='ProjectDatabase_label_RiskRatingAtInception',
             i18n_domain='ProjectDatabase',
         ),
+        vocabulary=NamedVocabulary("""InceptionRiskRating"""),
     ),
-    MoneyField(
-        name='PPGUNEPAmount',
-        widget=MoneyField._properties['widget'](
-            label="PPG UNEP Amount",
-            label_msgid='ProjectDatabase_label_PPGUNEPAmount',
-            i18n_domain='ProjectDatabase',
-        ),
-    ),
-    MoneyField(
-        name='PPGUNEPFeeAmount',
-        widget=MoneyField._properties['widget'](
-            label="PPG UNEP Fee Amount",
-            label_msgid='ProjectDatabase_label_PPGUNEPFeeAmount',
-            i18n_domain='ProjectDatabase',
-        ),
-    ),
-    MoneyField(
-        name='PPGOtherIAAmount',
-        widget=MoneyField._properties['widget'](
-            label="PPG Other IA Amount",
-            label_msgid='ProjectDatabase_label_PPGOtherIAAmount',
-            i18n_domain='ProjectDatabase',
-        ),
-    ),
-    MoneyField(
-        name='PPGOtherIAFeeAmount',
-        widget=MoneyField._properties['widget'](
-            label="PPG Other IA Fee Amount",
-            label_msgid='ProjectDatabase_label_PPGOtherIAFeeAmount',
-            i18n_domain='ProjectDatabase',
-        ),
-    ),
-    MoneyField(
-        name='ProjectUNEPAmount',
-        widget=MoneyField._properties['widget'](
-            label="Project UNEP Amount",
-            label_msgid='ProjectDatabase_label_ProjectUNEPAmount',
-            i18n_domain='ProjectDatabase',
-        ),
-    ),
-    MoneyField(
-        name='ProjectUNEPFeeAmount',
-        widget=MoneyField._properties['widget'](
-            label="Project UNEP Fee Amount",
-            label_msgid='ProjectDatabase_label_ProjectUNEPFeeAmount',
-            i18n_domain='ProjectDatabase',
-        ),
-    ),
-    MoneyField(
-        name='ProjectOtherIAAmount',
-        widget=MoneyField._properties['widget'](
-            label="Project Other IA Amount",
-            label_msgid='ProjectDatabase_label_ProjectOtherIAAmount',
-            i18n_domain='ProjectDatabase',
-        ),
-    ),
-    MoneyField(
-        name='ProjectOtherIAFeeAmount',
-        widget=MoneyField._properties['widget'](
-            label="Project Other IA Fee Amount",
-            label_msgid='ProjectDatabase_label_ProjectOtherIAFeeAmount',
-            i18n_domain='ProjectDatabase',
-        ),
-    ),
-    ComputedField(
-        name='TotalPPGAmount',
-        widget=ComputedField._properties['widget'](
-            label="Total PPG Amount",
-            label_msgid='ProjectDatabase_label_TotalPPGAmount',
-            i18n_domain='ProjectDatabase',
-        ),
-    ),
-    ComputedField(
-        name='TotalProjectAmount',
-        widget=ComputedField._properties['widget'](
-            label="Total Project Amount",
-            label_msgid='ProjectDatabase_label_TotalProjectAmount',
-            i18n_domain='ProjectDatabase',
-        ),
-    ),
-    ComputedField(
-        name='ProjectGrantTotal',
-        widget=ComputedField._properties['widget'](
-            label="Project Grant Total",
-            label_msgid='ProjectDatabase_label_ProjectGrantTotal',
+    TextField(
+        name='RiskRatingComments',
+        widget=TextAreaWidget(
+            label="Risk Rating Comments",
+            label_msgid='ProjectDatabase_label_RiskRatingComments',
             i18n_domain='ProjectDatabase',
         ),
     ),
     ReferenceField(
-        name='ProjectCoordinator',
+        name='ProjectManager',
         widget=ReferenceBrowserWidget(
-            label="Project Coordinator",
+            label="Project Manager",
             checkbox_bound=0,
-            label_msgid='ProjectDatabase_label_ProjectCoordinator',
+            label_msgid='ProjectDatabase_label_ProjectManager',
             i18n_domain='ProjectDatabase',
         ),
         allowed_types=('Person',),
         multiValued=0,
-        relationship="Project_ProjectCoordinator",
+        relationship="Project_ProjectManager",
     ),
     StringField(
         name='Website',
@@ -641,6 +582,7 @@ schema = Schema((
             i18n_domain='ProjectDatabase',
         ),
         allowed_types=('ProgrammeFramework',),
+        multiValued=0,
         relationship="project_programmeframework",
     ),
 
@@ -775,6 +717,12 @@ class ProjectGeneralInformation(BaseContent, CurrencyMixin, BrowserDefaultMixin)
                 status = fmi_obj.getStatus()
         return status
 
+    security.declarePublic('getProjectTitle')
+    def getProjectTitle(self):
+        """
+        """
+        pass
+
     security.declarePublic('validate_PhasedTrancheNumber')
     def validate_PhasedTrancheNumber(self, value):
         """
@@ -789,9 +737,7 @@ class ProjectGeneralInformation(BaseContent, CurrencyMixin, BrowserDefaultMixin)
 
     security.declarePublic('getCategoryVocab')
     def getCategoryVocab(self):
-        """
-        """
-        atvm = self.portal_vocabularies
+        atvm = getToolByName(self, 'portal_vocabularies')
         vocab = atvm.getVocabularyByName('Category')
         return vocab.getDisplayList(self)
 
@@ -840,8 +786,13 @@ class ProjectGeneralInformation(BaseContent, CurrencyMixin, BrowserDefaultMixin)
     def getTMCategoryVocab(self):
         """
         """
-        atvm = self.portal_vocabularies
+        atvm = getToolByName(self, 'portal_vocabularies')
         vocab = atvm.getVocabularyByName('TMCategory')
+        return vocab.getDisplayList(self)
+
+    def getPIFStageVocabulary(self):
+        atvm = getToolByName(self, 'portal_vocabularies')
+        vocab = atvm.getVocabularyByName('PIFStage')
         return vocab.getDisplayList(self)
 
     security.declarePublic('validate_TranchedNumber')

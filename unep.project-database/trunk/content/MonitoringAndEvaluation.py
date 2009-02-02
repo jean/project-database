@@ -31,6 +31,7 @@ from Products.ATReferenceBrowserWidget.ATReferenceBrowserWidget import Reference
 
 ##code-section module-header #fill in your manual code here
 import permissions
+from Products.Archetypes.utils import DisplayList
 ##/code-section module-header
 
 schema = Schema((
@@ -38,288 +39,104 @@ schema = Schema((
     ComputedField(
         name='ProjectTitle',
         widget=ComputedField._properties['widget'](
-            label='Projecttitle',
+            label="Project Title",
             label_msgid='ProjectDatabase_label_ProjectTitle',
             i18n_domain='ProjectDatabase',
         ),
     ),
     StringField(
-        name='IMISNumber',
-        widget=StringField._properties['widget'](
-            label="IMIS Number",
-            label_msgid='ProjectDatabase_label_IMISNumber',
-            i18n_domain='ProjectDatabase',
-        ),
-    ),
-    ReferenceField(
-        name='CurrentTaskManager',
-        widget=ReferenceBrowserWidget(
-            label="Current Task Manager",
-            checkbox_bound=0,
-            label_msgid='ProjectDatabase_label_CurrentTaskManager',
-            i18n_domain='ProjectDatabase',
-        ),
-        allowed_types=('Person',),
-        relationship="MandE_TaskManager",
-    ),
-    ReferenceField(
-        name='FundManagementOfficer',
-        widget=ReferenceBrowserWidget(
-            label="Fund Manager Officer",
-            checkbox_bound=0,
-            label_msgid='ProjectDatabase_label_FundManagementOfficer',
-            i18n_domain='ProjectDatabase',
-        ),
-        allowed_types=('Person',),
-        relationship="MandE_fundmanagerofficer",
-    ),
-    DateTimeField(
-        name='CEOApproval',
-        widget=DateTimeField._properties['widget'](
-            label="CEO Approval Date",
-            show_hm=False,
-            label_msgid='ProjectDatabase_label_CEOApproval',
-            i18n_domain='ProjectDatabase',
-        ),
-    ),
-    DateTimeField(
-        name='CEOEndorsement',
-        widget=DateTimeField._properties['widget'](
-            label="CEO Endorsement",
-            show_hm=False,
-            label_msgid='ProjectDatabase_label_CEOEndorsement',
-            i18n_domain='ProjectDatabase',
-        ),
-    ),
-    DateTimeField(
-        name='FirstDisbursement',
-        widget=DateTimeField._properties['widget'](
-            label="First Disbursement",
-            show_hm=False,
-            label_msgid='ProjectDatabase_label_FirstDisbursement',
-            i18n_domain='ProjectDatabase',
-        ),
-    ),
-    DateTimeField(
-        name='RevisedCompletionDate',
-        widget=DateTimeField._properties['widget'](
-            label="Revised Completion Date",
-            show_hm=False,
-            label_msgid='ProjectDatabase_label_RevisedCompletionDate',
-            i18n_domain='ProjectDatabase',
-        ),
-    ),
-    DateTimeField(
-        name='InitialCompletionDate',
-        widget=DateTimeField._properties['widget'](
-            label="Initial Completion Date",
-            show_hm=False,
-            label_msgid='ProjectDatabase_label_InitialCompletionDate',
-            i18n_domain='ProjectDatabase',
-        ),
-    ),
-    DateTimeField(
-        name='FinancialClosure',
-        widget=DateTimeField._properties['widget'](
-            label="Financial Closure",
-            show_hm=False,
-            label_msgid='ProjectDatabase_label_FinancialClosure',
-            i18n_domain='ProjectDatabase',
-        ),
-    ),
-    StringField(
-        name='LeadExecutingAgency',
-        widget=StringField._properties['widget'](
-            label="Lead Executing Agency",
-            label_msgid='ProjectDatabase_label_LeadExecutingAgency',
-            i18n_domain='ProjectDatabase',
-        ),
-    ),
-    StringField(
-        name='MidtermReview',
+        name='EvaluationType',
         widget=SelectionWidget(
-            label="Mid-Term Review Planned",
-            label_msgid='ProjectDatabase_label_MidtermReview',
+            label="Evaluation Type",
+            label_msgid='ProjectDatabase_label_EvaluationType',
             i18n_domain='ProjectDatabase',
         ),
-        vocabulary=NamedVocabulary("""ReviewEvaluation"""),
+        vocabulary=NamedVocabulary("""EvaluationType"""),
     ),
-    DataGridField(
-        name='PlannedDate',
-        widget=DataGridField._properties['widget'](
-            label="Planned Date",
-            columns={'planned_date':CalendarColumn("Planned Date"),},
-            label_msgid='ProjectDatabase_label_PlannedDate',
-            i18n_domain='ProjectDatabase',
-        ),
-        columns=('planned_date',),
-    ),
-    MoneyField(
-        name='Budget',
-        widget=MoneyField._properties['widget'](
-            label="Budget",
-            label_msgid='ProjectDatabase_label_Budget',
+    BooleanField(
+        name='JointEvaluation',
+        widget=BooleanField._properties['widget'](
+            label="Joint Evaluation",
+            label_msgid='ProjectDatabase_label_JointEvaluation',
             i18n_domain='ProjectDatabase',
         ),
     ),
-    TextField(
-        name='RemarksOnFundSourceMTR',
-        widget=TextAreaWidget(
-            label="Remarks on Source of Funds for MTR/MTE",
-            label_msgid='ProjectDatabase_label_RemarksOnFundSourceMTR',
+    StringField(
+        name='OtherAgency',
+        widget=StringField._properties['widget'](
+            label="Other Agency",
+            label_msgid='ProjectDatabase_label_OtherAgency',
             i18n_domain='ProjectDatabase',
         ),
     ),
-    MoneyField(
-        name='MTRActualCost',
-        widget=MoneyField._properties['widget'](
-            label="Actual Cost MTR/MTE",
-            label_msgid='ProjectDatabase_label_MTRActualCost',
+    ReferenceField(
+        name='OtherAgencyEvaluationContact',
+        widget=ReferenceBrowserWidget(
+            label="Other Agency Evaluation Contact",
+            label_msgid='ProjectDatabase_label_OtherAgencyEvaluationContact',
             i18n_domain='ProjectDatabase',
         ),
+        allowed_types=('Person',),
+        multiValued=0,
+        relationship="monitoring_contact",
     ),
     DateTimeField(
-        name='TerminalEvaluationPlanned',
+        name='PlannedStartDate',
         widget=DateTimeField._properties['widget'](
-            label="Terminal Evaluation Planned",
-            show_hm=False,
-            label_msgid='ProjectDatabase_label_TerminalEvaluationPlanned',
-            i18n_domain='ProjectDatabase',
-        ),
-    ),
-    MoneyField(
-        name='TerminalEvaluationBudget',
-        widget=MoneyField._properties['widget'](
-            label="Terminal Evaluation Budget",
-            label_msgid='ProjectDatabase_label_TerminalEvaluationBudget',
-            i18n_domain='ProjectDatabase',
-        ),
-    ),
-    TextField(
-        name='RemarksOnSourceOfFundsTE',
-        widget=TextAreaWidget(
-            label="Remarks on the Source of Funds for TE",
-            label_msgid='ProjectDatabase_label_RemarksOnSourceOfFundsTE',
-            i18n_domain='ProjectDatabase',
-        ),
-    ),
-    MoneyField(
-        name='TEActualCost',
-        widget=MoneyField._properties['widget'](
-            label="Actual Cost TE",
-            label_msgid='ProjectDatabase_label_TEActualCost',
-            i18n_domain='ProjectDatabase',
-        ),
-    ),
-    DateTimeField(
-        name='MidtermReviewReportDate',
-        widget=CalendarWidget(
-            label="Midterm Review Report Date",
-            show_hm=False,
-            label_msgid='ProjectDatabase_label_MidtermReviewReportDate',
-            i18n_domain='ProjectDatabase',
-        ),
-    ),
-    ReferenceField(
-        name='MidtermReviewEvaluatorName',
-        widget=ReferenceBrowserWidget(
-            label="Midterm Review Evaluator Name",
-            checkbox_bound=0,
-            label_msgid='ProjectDatabase_label_MidtermReviewEvaluatorName',
-            i18n_domain='ProjectDatabase',
-        ),
-        allowed_types=('Person',),
-        relationship="MandE_MTREvaluator",
-    ),
-    DateTimeField(
-        name='MidtermReviewPlannedDate',
-        widget=CalendarWidget(
-            label="Midterm Review Planned Date",
-            show_hm=False,
-            label_msgid='ProjectDatabase_label_MidtermReviewPlannedDate',
-            i18n_domain='ProjectDatabase',
-        ),
-    ),
-    DateTimeField(
-        name='MidtermReviewActualDate',
-        widget=CalendarWidget(
-            label="Midterm Review Actual Date",
-            show_hm=False,
-            label_msgid='ProjectDatabase_label_MidtermReviewActualDate',
-            i18n_domain='ProjectDatabase',
-        ),
-    ),
-    DateTimeField(
-        name='TerminalEvaluationReportDate',
-        widget=CalendarWidget(
-            label="Terminal Evaluation Report Date",
-            show_hm=False,
-            label_msgid='ProjectDatabase_label_TerminalEvaluationReportDate',
-            i18n_domain='ProjectDatabase',
-        ),
-    ),
-    ReferenceField(
-        name='TerminalReportEvaluatorName',
-        widget=ReferenceBrowserWidget(
-            label="Terminal Report Evaluator Name",
-            checkbox_bound=0,
-            label_msgid='ProjectDatabase_label_TerminalReportEvaluatorName',
-            i18n_domain='ProjectDatabase',
-        ),
-        allowed_types=('Person',),
-        relationship="MandE_TEEvaluator",
-    ),
-    DateTimeField(
-        name='TerminalReportPlannedEvaluationDate',
-        widget=CalendarWidget(
-            label="Terminal Report Planned Evaluation Date",
-            show_hm=False,
-            label_msgid='ProjectDatabase_label_TerminalReportPlannedEvaluationDate',
-            i18n_domain='ProjectDatabase',
-        ),
-    ),
-    DateTimeField(
-        name='TerminalReportActualEvaluationDate',
-        widget=CalendarWidget(
-            label="Terminal Report Actual Evaluation Date",
-            show_hm=False,
-            label_msgid='ProjectDatabase_label_TerminalReportActualEvaluationDate',
+            label="Planned Start Date",
+            label_msgid='ProjectDatabase_label_PlannedStartDate',
             i18n_domain='ProjectDatabase',
         ),
     ),
     DataGridField(
-        name='EvaluationMilestones',
+        name='EvaluationProcessStatus',
         widget=DataGridField._properties['widget'](
-            columns={'evaluation_type_milestone':SelectColumn("Evaluation Type Milestone", vocabulary="getEvaluationTypeMilestoneVocabulary"),'memilestone_name':SelectColumn("ME Milestone Name", vocabulary="getMEMilestoneNameVocabulary"), 'planned_date':CalendarColumn("Planned Date"), 'actual_date':CalendarColumn("Actual Date"), 'remarks':Column("Remarks")},
-            label='Evaluationmilestones',
-            label_msgid='ProjectDatabase_label_EvaluationMilestones',
+            label="Evaluation Process Status",
+            columns={'process_step':SelectColumn('Process Step', vocabulary='getEvaluationProcessStepVocabulary'), 'step_date':CalendarColumn('Step Date')},
+            label_msgid='ProjectDatabase_label_EvaluationProcessStatus',
             i18n_domain='ProjectDatabase',
         ),
-        columns=('evaluation_type_milestone', 'memilestone_name','planned_date','actual_date','remarks'),
+        columns=('process_step', 'step_date'),
     ),
-    MoneyField(
-        name='TEEstimatedCost',
-        widget=MoneyField._properties['widget'](
-            label="Cost Estimate for the TE",
-            label_msgid='ProjectDatabase_label_TEEstimatedCost',
+    DataGridField(
+        name='EvaluationRatings',
+        widget=DataGridField._properties['widget'](
+            label="Evaluation Ratings",
+            columns={'criterion':SelectColumn('Criterion', vocabulary='getEvaluationCriteria'), 'evaluator_rating':SelectColumn('Evaluator Rating', vocabulary='getRatingVocabulary'), 'EOU_rating':SelectColumn('EOU Rating', vocabulary='getRatingVocabulary'), 'GEF_EO_Rating':SelectColumn('GEF EO Rating', vocabulary='getRatingVocabulary')},
+            label_msgid='ProjectDatabase_label_EvaluationRatings',
             i18n_domain='ProjectDatabase',
         ),
+        columns=('criterion', 'evaluator_rating', 'EOU_rating', 'GEF_EO_Rating'),
     ),
-    MoneyField(
-        name='MTREstimatedCost',
-        widget=MoneyField._properties['widget'](
-            label="Cost Estimate for the MTR/MTE",
-            label_msgid='ProjectDatabase_label_MTREstimatedCost',
+    DataGridField(
+        name='TerminalEvaluationReportQuality',
+        widget=DataGridField._properties['widget'](
+            label="Terminal Evaluation Report Quality",
+            columns={'EOU_rating':SelectColumn('EOU Rating', vocabulary='getRatingVocabulary'), 'GEF_EO_rating':SelectColumn('GEF EO Rating', vocabulary='getRatingVocabulary')},
+            label_msgid='ProjectDatabase_label_TerminalEvaluationReportQuality',
             i18n_domain='ProjectDatabase',
         ),
+        columns=('EOU_rating', 'GEF_EO_rating'),
     ),
-    ComputedField(
-        name='EvaluationActualEstimateDifference',
-        widget=ComputedField._properties['widget'](
-            label='Evaluationactualestimatedifference',
-            label_msgid='ProjectDatabase_label_EvaluationActualEstimateDifference',
+    DataGridField(
+        name='EvaluationTeam',
+        widget=DataGridField._properties['widget'](
+            label="Evaluation Team",
+            columns={'name':Column('Evaluator Name'), 'role':SelectColumn('Role', vocabulary='getEvaluatorRoleVocabulary')},
+            label_msgid='ProjectDatabase_label_EvaluationTeam',
             i18n_domain='ProjectDatabase',
         ),
+        columns=('name', 'role'),
+    ),
+    DataGridField(
+        name='PIRRatings',
+        widget=DataGridField._properties['widget'](
+            label="PIR Ratings",
+            columns={'year':Column('Fiscal Year'), 'dev_obj':SelectColumn('Development Objective', vocabulary='getRatingVocabulary'), 'imp_obj':SelectColumn('Implementation Progress', vocabulary='getRatingVocabulary'), 'm_and_e':SelectColumn('Monitoring and Evaluation', vocabulary='getRatingVocabulary'), 'risk':SelectColumn('Project Risk', vocabulary='getRiskLevelVocabulary')},
+            label_msgid='ProjectDatabase_label_PIRRatings',
+            i18n_domain='ProjectDatabase',
+        ),
+        columns=('year', 'dev_obj', 'imp_obj', 'm_and_e', 'risk'),
     ),
 
 ),
@@ -328,26 +145,16 @@ schema = Schema((
 ##code-section after-local-schema #fill in your manual code here
 ##/code-section after-local-schema
 
-MonitoringAndEvaluation_schema = BaseFolderSchema.copy() + \
+MonitoringAndEvaluation_schema = BaseSchema.copy() + \
     schema.copy()
 
 ##code-section after-schema #fill in your manual code here
-MonitoringAndEvaluation_schema['ProjectTitle'].widget.label = "Project Title"
 title_field = MonitoringAndEvaluation_schema['title']
 title_field.required=0
 title_field.widget.visible = {'edit':'hidden', 'view':'invisible'}
-MonitoringAndEvaluation_schema['Budget'].widget.size = 15
-MonitoringAndEvaluation_schema['MTRActualCost'].widget.size = 15
-MonitoringAndEvaluation_schema['TerminalEvaluationBudget'].widget.size = 15
-MonitoringAndEvaluation_schema['TEActualCost'].widget.size = 15
-
-MonitoringAndEvaluation_schema['CurrentTaskManager'].widget.startup_directory = '/contacts'
-MonitoringAndEvaluation_schema['FundManagementOfficer'].widget.startup_directory = '/contacts'
-MonitoringAndEvaluation_schema['MidtermReviewEvaluatorName'].widget.startup_directory = '/contacts'
-MonitoringAndEvaluation_schema['TerminalReportEvaluatorName'].widget.startup_directory = '/contacts'
 ##/code-section after-schema
 
-class MonitoringAndEvaluation(BaseFolder, BrowserDefaultMixin):
+class MonitoringAndEvaluation(BaseContent, BrowserDefaultMixin):
     """
     """
     security = ClassSecurityInfo()
@@ -370,161 +177,29 @@ class MonitoringAndEvaluation(BaseFolder, BrowserDefaultMixin):
         """
         return self.getAProject().Title()
 
-    security.declarePublic('getEvaluationTypeMilestoneVocabulary')
-    def getEvaluationTypeMilestoneVocabulary(self):
-        """
-        """
-        atvm = self.portal_vocabularies
-        # vocab = atvm.getVocabularyByName('EvaluationMilestones')
-        vocab = atvm.getVocabularyByName('EvaluationTypeMilestone')
-        return vocab.getDisplayList(self)
-
-    security.declarePublic('getMEMilestoneNameVocabulary')
-    def getMEMilestoneNameVocabulary(self):
-        """
-        """
-        atvm = self.portal_vocabularies
-        vocab = atvm.getVocabularyByName('MEMilestoneName')
-        return vocab.getDisplayList(self)
-
-    security.declarePublic('getEvaluationActualEstimateDifference')
-    def getEvaluationActualEstimateDifference(self):
-        """
-        calculate the difference between estimated and actual cost
-        """
-        # import pdb; pdb.set_trace()
-        budget = self.getBudget()
-        teBudget = self.getTerminalEvaluationBudget()
-        mtrEstimate = self.getMTREstimatedCost()
-        teEstimate = self.getTEEstimatedCost()
-        if (budget is not None) and \
-                (teBudget is not None) and \
-                (mtrEstimate is not None) and  \
-                (teEstimate is not None):
-            budgetCost = budget + teBudget
-            estimatedCost = mtrEstimate + teEstimate
-            # actualCost = getTEActualCost() + getMTRActualCost()
-            # return estimatedCost = actualCost
-            return budgetCost - estimatedCost
-        return 0
-
     # Manually created methods
 
-    def getIMISNumber(self):
-        """
-        """
-        try:
-            if self.IMISNumber == '':
-                fmis = self.getAProject()['fmi_folder'].contentValues()
-                if fmis:
-                    return fmis[len(fmis)-1]['IMISNumber']
-                else:
-                    return ''
-        except AttributeError:
-            return ''
-        except IndexError:
-            return ''
+    def getEvaluationProcessStepVocabulary(self):
+        return self.getVocabulary('MEProcessStep')
 
-    security.declarePublic("getCurrentTaskManager")
-    def getCurrentTaskManager(self):
-        """
-        """
-        if not self['CurrentTaskManager']:
-            return self.getAProject().getCurrentTaskManager()
-        return self['CurrentTaskManager']
+    def getEvaluationCriteria(self):
+        return self.getVocabulary('EvaluationCriteria')
 
-    security.declarePublic("getFundManagementOfficer")
-    def getFundManagementOfficer(self):
-        """
-        """
-        if not self['FundManagementOfficer']:
-            try:
-                fmis = self.getAProject()['fmi_folder'].contentValues()
-                return fmis[len(fmis)-1]['FundManagementOfficer']
-            except AttributeError:
-                return ''
-            except IndexError:
-                return ''
+    def getRatingVocabulary(self):
+        return self.getVocabulary('Rating')
 
-        return self['FundManagementOfficer']
+    def getEvaluatorRoleVocabulary(self):
+        return self.getVocabulary('EvaluatorRole')
 
-    security.declarePublic("getCEOApproval")
-    def getCEOApproval(self):
-        """
-        """
-        if not self.getField('CEOApproval'):
-            milestones = self.getAProject()['milestonesfolder'].contentValues()
-            if milestones:
-                approval = milestones[len(milestones)-1]['ApprovalInitiationAndClosure']
-                if approval:
-                    for appr in approval:
-                        if appr['approval_initiation_closure'] == 'CEO approval (PDFB or MSP or EEA and now PDFA and PIF)':
-                            return appr['actual_date']
-        return self.getField('CEOApproval')
+    def getRiskLevelVocabulary(self):
+        return self.getVocabulary('RiskLevel')
 
-    security.declarePublic("getCEOEndorsement")
-    def getCEOEndorsement(self):
-        """
-        """
-        if not self.getField('CEOEndorsement'):
-            milestones = self.getAProject()['milestonesfolder'].contentValues()
-            if milestones:
-                approval = milestones[len(milestones)-1]['ApprovalInitiationAndClosure']
-                if approval:
-                    for appr in approval:
-                        if appr['approval_initiation_closure'] == 'CEO endorsement (for FSP)':
-                            return appr['actual_date']
-        return self.getField('CEOEndorsement')
-
-    def getFirstDisbursement(self):
-        """
-        """
-        if not self.getField('FirstDisbursement'):
-            milestones = self.getAProject()['milestonesfolder'].contentValues()
-            if milestones:
-                approval = milestones[len(milestones)-1]['ApprovalInitiationAndClosure']
-                if approval:
-                    for appr in approval:
-                        if appr['approval_initiation_closure'] == 'First disbursement (date)':
-                            return appr['actual_date']
-        return self.getField('FirstDisbursement')
-
-    security.declarePublic('getRevisedCompletionDate')
-    def getRevisedCompletionDate(self):
-        """
-        """
-        if not self.getField('RevisedCompletionDate'):
-            fmis = self.getAProject()['fmi_folder'].contentValues()
-            if fmis:
-                return fmis[len(fmis)-1]['RevisedCompletionDate']
-        return self.getField('RevisedCompletionDate')
-
-    security.declarePublic('getInitialCompletionDate')
-    def getInitialCompletionDate(self):
-        """
-        """
-        if not self.getField('InitialCompletionDate'):
-            milestones = self.getAProject()['milestonesfolder'].contentValues()
-            if milestones:
-                approval = milestones[len(milestones)-1]['ApprovalInitiationAndClosure']
-                if approval:
-                    for appr in approval:
-                        if appr['approval_initiation_closure'] == 'Project completion (date of Completion Revision) ':
-                            return appr['actual_date']
-        return self.getField('InitialCompletionDate')
-
-    def getFinancialClosure(self):
-        """
-        """
-        if not self.getField('FinancialClosure'):
-            milestones = self.getAProject()['milestonesfolder'].contentValues()
-            if milestones:
-                approval = milestones[len(milestones)-1]['ApprovalInitiationAndClosure']
-                if approval:
-                    for appr in approval:
-                        if appr['approval_initiation_closure'] == 'Financial closure':
-                            return appr['actual_date']
-        return self.getField('FinancialClosure')
+    def getVocabulary(self, vocabName):
+        atvm = getToolByName(self, 'portal_vocabularies')
+        vocab = atvm.getVocabularyByName(vocabName)
+        if vocab:
+            return vocab.getDisplayList(self)
+        return DisplayList()
 
 
 

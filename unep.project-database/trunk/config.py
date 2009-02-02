@@ -39,16 +39,12 @@ ADD_CONTENT_PERMISSIONS = {
     'ProjectGeneralInformation': 'ProjectDatabase: Add ProjectGeneralInformation',
     'SubProject': 'ProjectDatabase: Add SubProject',
     'Financials': 'ProjectDatabase: Add Financials',
-    'MonitoringAndEvaluation': 'ProjectDatabase: Add MonitoringAndEvaluation',
-    'RatingTrackingSystem': 'ProjectDatabase: Add RatingTrackingSystem',
-    'EvaluatorsInformation': 'ProjectDatabase: Add EvaluatorsInformation',
-    'RTSFolder': 'ProjectDatabase: Add RTSFolder',
-    'OtherProjectRatingsFolder': 'ProjectDatabase: Add OtherProjectRatingsFolder',
-    'OtherProjectRatings': 'ProjectDatabase: Add OtherProjectRatings',
     'FMIFolder': 'ProjectDatabase: Add FMIFolder',
     'MOU': 'ProjectDatabase: Add MOU',
     'ProjectDatabase': 'ProjectDatabase: Add ProjectDatabase',
     'ProgrammeFramework': 'ProjectDatabase: Add ProgrammeFramework',
+    'MonitoringAndEvaluation': 'ProjectDatabase: Add MonitoringAndEvaluation',
+    'MandEfolder': 'ProjectDatabase: Add MandEfolder',
 }
 
 setDefaultRoles('ProjectDatabase: Add Project', ('Manager','Owner'))
@@ -56,16 +52,12 @@ setDefaultRoles('ProjectDatabase: Add Milestone', ('Manager','Owner'))
 setDefaultRoles('ProjectDatabase: Add ProjectGeneralInformation', ('Manager','Owner'))
 setDefaultRoles('ProjectDatabase: Add SubProject', ('Manager','Owner'))
 setDefaultRoles('ProjectDatabase: Add Financials', ('Manager','Owner'))
-setDefaultRoles('ProjectDatabase: Add MonitoringAndEvaluation', ('Manager','Owner'))
-setDefaultRoles('ProjectDatabase: Add RatingTrackingSystem', ('Manager','Owner'))
-setDefaultRoles('ProjectDatabase: Add EvaluatorsInformation', ('Manager','Owner'))
-setDefaultRoles('ProjectDatabase: Add RTSFolder', ('Manager','Owner'))
-setDefaultRoles('ProjectDatabase: Add OtherProjectRatingsFolder', ('Manager','Owner'))
-setDefaultRoles('ProjectDatabase: Add OtherProjectRatings', ('Manager','Owner'))
 setDefaultRoles('ProjectDatabase: Add FMIFolder', ('Manager','Owner'))
 setDefaultRoles('ProjectDatabase: Add MOU', ('Manager','Owner'))
 setDefaultRoles('ProjectDatabase: Add ProjectDatabase', ('Manager','Owner'))
 setDefaultRoles('ProjectDatabase: Add ProgrammeFramework', ('Manager','Owner'))
+setDefaultRoles('ProjectDatabase: Add MonitoringAndEvaluation', ('Manager','Owner'))
+setDefaultRoles('ProjectDatabase: Add MandEfolder', ('Manager','Owner'))
 
 product_globals = globals()
 

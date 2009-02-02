@@ -16,6 +16,11 @@ msgstr ""
 "Preferred-Encodings: latin1 utf-8\n"
 "Domain: ProjectDatabase\n"
 
+#. Default: "Otheragencyevaluationcontact"
+#: content/MonitoringAndEvaluation.py
+msgid "Other Agency Evaluation Contact"
+msgstr ""
+
 #. Default: "Actual date for the particular milestone"
 #: content/EvaluationMilestone.py
 msgid "ProjectDatabase_help_ActualDate"
@@ -250,6 +255,11 @@ msgstr ""
 msgid "ProjectDatabase_label_CommittedGEFGrant"
 msgstr ""
 
+#. Default: "Committed Grant"
+#: content/SubProject.py
+msgid "ProjectDatabase_label_CommittedGrant"
+msgstr ""
+
 #. Default: "Concept Development (IPI)"
 #: content/Milestone.py
 msgid "ProjectDatabase_label_ConceptDevelopment"
@@ -371,6 +381,26 @@ msgstr ""
 msgid "ProjectDatabase_label_EvaluationMilestones"
 msgstr ""
 
+#. Default: "Evaluation Process Status"
+#: content/MonitoringAndEvaluation.py
+msgid "ProjectDatabase_label_EvaluationProcessStatus"
+msgstr ""
+
+#. Default: "Evaluation Ratings"
+#: content/MonitoringAndEvaluation.py
+msgid "ProjectDatabase_label_EvaluationRatings"
+msgstr ""
+
+#. Default: "Evaluation Team"
+#: content/MonitoringAndEvaluation.py
+msgid "ProjectDatabase_label_EvaluationTeam"
+msgstr ""
+
+#. Default: "Evaluation Type"
+#: content/MonitoringAndEvaluation.py
+msgid "ProjectDatabase_label_EvaluationType"
+msgstr ""
+
 #. Default: "Evaluation Type Milestone"
 #: content/EvaluationMilestone.py
 msgid "ProjectDatabase_label_EvaluationTypeMilestone"
@@ -392,6 +422,11 @@ msgstr ""
 msgid "ProjectDatabase_label_ExecutiveSummary"
 msgstr ""
 
+#. Default: "Expected Completion Date"
+#: content/Financials.py
+msgid "ProjectDatabase_label_ExpectedCompletionDate"
+msgstr ""
+
 #. Default: "FSP Status"
 #: content/ProjectGeneralInformation.py
 msgid "ProjectDatabase_label_FSPStatus"
@@ -407,6 +442,11 @@ msgstr ""
 #. Default: "Finance Object Amount"
 #: content/Financials.py
 msgid "ProjectDatabase_label_FinanceObjectAmount"
+msgstr ""
+
+#. Default: "Finance Object Fee"
+#: content/Financials.py
+msgid "ProjectDatabase_label_FinanceObjectFee"
 msgstr ""
 
 #. Default: "Financeobjectpreparationresults"
@@ -565,6 +605,11 @@ msgstr ""
 #. Default: "Inventory of Non-expendable Equipment"
 #: content/DocumentLinks.py
 msgid "ProjectDatabase_label_InventoryOfNonExpendableEquipment"
+msgstr ""
+
+#. Default: "Joint Evaluation"
+#: content/MonitoringAndEvaluation.py
+msgid "ProjectDatabase_label_JointEvaluation"
 msgstr ""
 
 #. Default: "Joint Implementation"
@@ -762,6 +807,16 @@ msgstr ""
 msgid "ProjectDatabase_label_OperationalProgramme"
 msgstr ""
 
+#. Default: "Other Agency"
+#: content/MonitoringAndEvaluation.py
+msgid "ProjectDatabase_label_OtherAgency"
+msgstr ""
+
+#. Default: "Other Agency Evaluation Contact"
+#: content/MonitoringAndEvaluation.py
+msgid "ProjectDatabase_label_OtherAgencyEvaluationContact"
+msgstr ""
+
 #. Default: "Other Categories"
 #: content/ProjectExecutingPartner.py
 msgid "ProjectDatabase_label_OtherCategories"
@@ -838,6 +893,11 @@ msgstr ""
 msgid "ProjectDatabase_label_PIFApproval"
 msgstr ""
 
+#. Default: "Financial Data at PIF"
+#: content/ProjectGeneralInformation.py
+msgid "ProjectDatabase_label_PIFFinancialData"
+msgstr ""
+
 #. Default: "PIR"
 #: content/DocumentLinks.py
 msgid "ProjectDatabase_label_PIR"
@@ -846,6 +906,11 @@ msgstr ""
 #. Default: "PIR Rating"
 #: content/RatingTrackingSystem.py
 msgid "ProjectDatabase_label_PIRRating"
+msgstr ""
+
+#. Default: "PIR Ratings"
+#: content/MonitoringAndEvaluation.py
+msgid "ProjectDatabase_label_PIRRatings"
 msgstr ""
 
 #. Default: "PMS Number"
@@ -917,6 +982,11 @@ msgstr ""
 #: content/SubProject.py
 #: content/Financials.py
 msgid "ProjectDatabase_label_PlannedDuration"
+msgstr ""
+
+#. Default: "Planned Start Date"
+#: content/MonitoringAndEvaluation.py
+msgid "ProjectDatabase_label_PlannedStartDate"
 msgstr ""
 
 #. Default: "Previous Task Manager"
@@ -991,6 +1061,11 @@ msgstr ""
 #. Default: "Project Risk Rating at Inception"
 #: content/RatingTrackingSystem.py
 msgid "ProjectDatabase_label_ProjectInceptionRiskRating"
+msgstr ""
+
+#. Default: "Project Manager"
+#: content/ProjectGeneralInformation.py
+msgid "ProjectDatabase_label_ProjectManager"
 msgstr ""
 
 #. Default: "Project Objectives"
@@ -1128,6 +1203,16 @@ msgstr ""
 msgid "ProjectDatabase_label_Risk"
 msgstr ""
 
+#. Default: "Risk Rating at Inception"
+#: content/ProjectGeneralInformation.py
+msgid "ProjectDatabase_label_RiskRatingAtInception"
+msgstr ""
+
+#. Default: "Risk Rating Comments"
+#: content/ProjectGeneralInformation.py
+msgid "ProjectDatabase_label_RiskRatingComments"
+msgstr ""
+
 #. Default: "SCCF Allocation"
 #: content/Financials.py
 msgid "ProjectDatabase_label_SCCFAllocation"
@@ -1187,6 +1272,11 @@ msgstr ""
 msgid "ProjectDatabase_label_SubProjectDocuments"
 msgstr ""
 
+#. Default: "Lead Executing Agency"
+#: content/SubProject.py
+msgid "ProjectDatabase_label_SubProjectExecutingAgency"
+msgstr ""
+
 #. Default: "Subprojectrevision"
 #: content/SubProject.py
 msgid "ProjectDatabase_label_SubProjectRevision"
@@ -1216,6 +1306,7 @@ msgstr ""
 
 #. Default: "Sumcofincashactual"
 #: content/SubProject.py
+#: content/Financials.py
 msgid "ProjectDatabase_label_SumCoFinCashActual"
 msgstr ""
 
@@ -1259,6 +1350,11 @@ msgstr ""
 #: content/FinancialsMixin.py
 #: content/Financials.py
 msgid "ProjectDatabase_label_SumCofinInKindPlanned"
+msgstr ""
+
+#. Default: "Sumfinanceobjectamount"
+#: content/Financials.py
+msgid "ProjectDatabase_label_SumFinanceObjectAmount"
 msgstr ""
 
 #. Default: "Total IMIS Expenditures"
@@ -1342,6 +1438,11 @@ msgstr ""
 msgid "ProjectDatabase_label_TerminalEvaluationReportDate"
 msgstr ""
 
+#. Default: "Terminal Evaluation Report Quality"
+#: content/MonitoringAndEvaluation.py
+msgid "ProjectDatabase_label_TerminalEvaluationReportQuality"
+msgstr ""
+
 #. Default: "Terminal Report Actual Evaluation Date"
 #: content/MonitoringAndEvaluation.py
 msgid "ProjectDatabase_label_TerminalReportActualEvaluationDate"
@@ -1360,6 +1461,26 @@ msgstr ""
 #. Default: "Total Cash Disbursements"
 #: content/ProjectGeneralInformation.py
 msgid "ProjectDatabase_label_TotalCashDisbursements"
+msgstr ""
+
+#. Default: "Totalcofinoffinanceobjectactual"
+#: content/Financials.py
+msgid "ProjectDatabase_label_TotalCoFinOfFinanceObjectActual"
+msgstr ""
+
+#. Default: "Totalcofinoffinanceobjectplanned"
+#: content/Financials.py
+msgid "ProjectDatabase_label_TotalCoFinOfFinanceObjectPlanned"
+msgstr ""
+
+#. Default: "Totalcofinoffinanceobjectactual"
+#: content/Financials.py
+msgid "ProjectDatabase_label_TotalCofinOfFinanceObjectActual"
+msgstr ""
+
+#. Default: "Totalcofinoffinanceobjectplanned"
+#: content/Financials.py
+msgid "ProjectDatabase_label_TotalCofinOfFinanceObjectPlanned"
 msgstr ""
 
 #. Default: "Total Co-financing (actual)"
@@ -1382,6 +1503,11 @@ msgstr ""
 #. Default: "Total Cost of Finance Object (Planned)"
 #: content/Financials.py
 msgid "ProjectDatabase_label_TotalCostOfFinanceObjectPlanned"
+msgstr ""
+
+#. Default: "Totalcostoffinanceobjectvariance"
+#: content/Financials.py
+msgid "ProjectDatabase_label_TotalCostOfFinanceObjectVariance"
 msgstr ""
 
 #. Default: "Total Cost of Project Stage (Actual)"
@@ -1465,6 +1591,11 @@ msgstr ""
 #. Default: "Total Yearly Expenditures"
 #: content/ProjectGeneralInformation.py
 msgid "ProjectDatabase_label_TotalYearlyExpenditures"
+msgstr ""
+
+#. Default: "Trust Fund"
+#: content/ProjectGeneralInformation.py
+msgid "ProjectDatabase_label_TrustFund"
 msgstr ""
 
 #. Default: "Trustee ID"
