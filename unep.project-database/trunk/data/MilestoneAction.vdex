@@ -41,25 +41,25 @@
 
 
 <term>
-  <termIdentifier>PAGApprovalExpected</termIdentifier>
+  <termIdentifier>CEO PFD clearance</termIdentifier>
   <caption>
-    <langstring language="en">PAG approval (expected)</langstring>
+    <langstring language="en">CEO PFD clearance</langstring>
   </caption>
   <description />
 </term>
 
 <term>
-  <termIdentifier>PAGApprovalActual</termIdentifier>
+  <termIdentifier>CouncilApproval</termIdentifier>
   <caption>
-    <langstring language="en">PAG approval (actual)</langstring>
+    <langstring language="en">Council Approval</langstring>
   </caption>
   <description />
 </term>
 
 <term>
-  <termIdentifier>ProjectWithDrawal</termIdentifier>
+  <termIdentifier>PFDWithdrawal</termIdentifier>
   <caption>
-    <langstring language="en">Project withdrawal</langstring>
+    <langstring language="en">PFD withdrawal</langstring>
   </caption>
   <description />
 </term>
