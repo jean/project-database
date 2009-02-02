@@ -117,6 +117,16 @@ div.right-column {
     height: auto;
 }
 
+div.full-column {
+    width: 100%;
+    margin-top: 4px; 
+}
+
+div#content div ul {
+    margin-left: 0.75em;
+    padding-left: 20px;
+}
+
 div.column-heading {
     float: left; 
     width: 100%; 
@@ -126,7 +136,6 @@ div.column-heading {
 
 .documentFirstHeading {
     display: block;
-    width: 640px;
     background: #24a1d1; 
     color: white; 
     font-size: large; 

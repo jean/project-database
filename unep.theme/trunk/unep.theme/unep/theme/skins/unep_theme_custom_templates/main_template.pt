@@ -186,7 +186,7 @@
     <div class="main-content">
 
         <!-- left column -->
-        <div class="left-column">
+        <div class="full-column">
 
             <div id="portal-content" style="width: 100%; height: auto;">
 
@@ -241,23 +241,6 @@
             </div>
             <div style="float: left; width: 100%; height: 20px;">&nbsp;</div>
 
-        </div>
-
-        <!-- right column -->
-        <div class="right-column" 
-                id="portal-col-two"
-                metal:define-slot="column_two_slot">
-
-            <div class="column-heading">
-                <div class="column-title" i18n:translate="view_by">View by</div>
-            </div>
-
-            <!-- right column content -->
-            <div style="width: 100%; height: auto;">
-                <metal:portlets define-slot="portlets_two_slot">
-                    <tal:block replace="structure provider:plone.rightcolumn" />
-                </metal:portlets>
-            </div>
         </div>
 
     </div>
