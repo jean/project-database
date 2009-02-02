@@ -1,5 +1,8 @@
 <div style="width: 100%; height: auto;">
     <div style="float: left; width: 100%; height: 30px;">&nbsp;</div>
+    <div class="column-heading">
+        <div class="column-title" i18n:translate="view_by">View by</div>
+    </div>
     <div class="overview-heading">
         <span class="greytext" i18n:translate="overview">Overview</span>
     </div>
