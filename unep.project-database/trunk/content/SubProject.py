@@ -390,7 +390,7 @@ class SubProject(BaseContent, CurrencyMixin, BrowserDefaultMixin):
     def getTotalCostOfSubProjectPlanned(self):
         """
         """
-        total = self.getZeroMoneyInstance()
+        total = self.getCommittedGrant()
         if self.getSumCoFinCashPlanned():
             total += self.getSumCoFinCashPlanned()
         if self.getSumCoFinInKindPlanned():
@@ -400,7 +400,7 @@ class SubProject(BaseContent, CurrencyMixin, BrowserDefaultMixin):
     def getTotalCostOfSubProjectActual(self):
         """
         """
-        total = self.getZeroMoneyInstance()
+        total = self.getSumYearlyExpenditures()
         if self.getSumCoFinCashActual():
             total += self.getSumCoFinCashActual()
         if self.getSumCoFinInKindActual():
