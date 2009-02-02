@@ -1,5 +1,7 @@
 dataGridFieldFunctions = new Object()
 
+var last_suffix = "x";
+
 dataGridFieldFunctions.getInputOrSelect = function(node) {
     /* Get the (first) input or select form element under the given node */
     
@@ -145,18 +147,51 @@ dataGridFieldFunctions.createNewRow = function(tr) {
 		child = child.nextSibling;
 	}		
 
-// Hedley - work in progress
     // Select all calendar inputs in the cloned row. We must change the id
-    // attribute on each tag since the calendar popup needs an id to set the
+    // attribute on each input since the calendar popup needs an id to set the
     // values.
-//    var wrapper = jq(newtr).find("input").each(function(i) {
-//
-//        this.id = this.id + "x";
-//    });
+    var base_id = '';
+
+    var n = 0;
+    var wrapper = jq(newtr).find(".datagrid-calendar-wrapper input").each(function(i) {        
+        if (n == 0)
+        {
+            base_id = this.id;
+        }
+        this.id = this.id + last_suffix;
+        n = n + 1;
+    });
+
+    var wrapper = jq(newtr).find(".datagrid-calendar-wrapper select").each(function(i) {        
+        this.id = this.id + last_suffix;
+    });
+
+    var wrapper = jq(newtr).find(".datagrid-calendar-wrapper a:first").each(function(i) {
+        // We need a local variable here
+        var xlast_suffix = last_suffix;
+        this.onclick = function(){showJsCalendar(base_id+'_month'+xlast_suffix, 
+            base_id+xlast_suffix, base_id+'_year'+xlast_suffix, base_id+'_month'+xlast_suffix, 
+            base_id+'_day'+xlast_suffix, base_id+'_hour'+xlast_suffix, 
+            base_id+'_minute'+xlast_suffix, 2000, 2014);};
+    });
+
+    // Modify the onChange functions on each select tag. We must use method 
+    // update_date_field_plone25 from Plone 2.5 since there is a problem
+    // when attempting to integrate the older calendar widget with Plone 3.
+    // The current datagrid widget calendar handling must be refactored.
+    var wrapper = jq(newtr).find(".datagrid-calendar-wrapper select").each(function(i) {
+        // We need a local variable here
+        var xlast_suffix = last_suffix;
+        this.onchange = function(){dataGridFieldFunctions.update_date_field_plone25(base_id+xlast_suffix, 
+            base_id+'_year'+xlast_suffix, base_id+'_month'+xlast_suffix, 
+            base_id+'_day'+xlast_suffix, base_id+'_hour'+xlast_suffix, 
+            base_id+'_minute'+xlast_suffix, base_id+'_ampm'+xlast_suffix)};
+    });
+
+    last_suffix = last_suffix + "x";
 
     return newtr;	 
 }
-
 
 dataGridFieldFunctions.removeFieldRow = function(node) {
     /* Remove the row in which the given node is found */
@@ -359,3 +394,38 @@ dataGridFieldFunctions.getParentElementById = function(currnode, id) {
 
     return parent;
 }
+
+// Method *is* update_date_field_plone from Plone 2.5
+dataGridFieldFunctions.update_date_field_plone25 = function(field, year, month, day, hour, minute, ampm) {
+    var field  = document.getElementById(field)
+    var date   = document.getElementById(date)
+    var year   = document.getElementById(year)
+    var month  = document.getElementById(month)
+    var day    = document.getElementById(day)
+    var hour   = document.getElementById(hour)
+    var minute = document.getElementById(minute)
+    var ampm   = document.getElementById(ampm)
+
+    if (0 < year.value)
+    {
+        // Return ISO date string
+        // Note: This relies heavily on what date_components_support.py puts into the form.
+        field.value = year.value + "-" + month.value + "-" + day.value + " " + hour.value + ":" + minute.value
+        // Handle optional AM/PM
+        if (ampm && ampm.value)
+            field.value = field.value + " " + ampm.value
+    } 
+    else 
+    {
+        // Return empty string
+        field.value = ''
+        // Reset widgets
+        month.options[0].selected = 1
+        day.options[0].selected = 1
+        hour.options[0].selected = 1
+        minute.options[0].selected = 1
+        if (ampm && ampm.options)
+            ampm.options[0].selected = 1
+    }
+}
+

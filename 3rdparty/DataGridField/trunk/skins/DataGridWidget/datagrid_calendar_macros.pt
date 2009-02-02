@@ -117,8 +117,13 @@
       </span>
 
       <a tal:condition="show_jscal"
-         tal:attributes="onclick string:return showJsCalendar('${input_id}_month', '$input_id', '${input_id}_year', '${input_id}_month', '${input_id}_day', '${input_id}_hour', '${input_id}_minute', $yearStart, $yearEnd);"><img alt="" src="" tal:replace="structure here/popup_calendar.gif" /></a>
+         tal:attributes="onclick string:return showJsCalendar('${input_id}_month', '$input_id', '${input_id}_year', '${input_id}_month', '${input_id}_day', '${input_id}_hour', '${input_id}_minute', $yearStart, $yearEnd);"><img alt="" src="" tal:replace="structure here/popup_calendar.gif" 
+         name="jscalendar_anchor"/></a>
 
+<!--
+    <a tal:condition="show_jscal"
+         tal:attributes="onclick string:return showJsCalendar('$input_id', $yearStart, $yearEnd);"><img alt="" src="" tal:replace="structure here/popup_calendar.gif" /></a>
+-->
       <span tal:condition="show_hm">
 	<select name="ic_hour"
 		id="ic_hour"
