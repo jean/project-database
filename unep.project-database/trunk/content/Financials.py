@@ -92,7 +92,6 @@ schema = Schema((
             label_msgid='ProjectDatabase_label_OtherLeadExecutingAgency',
             i18n_domain='ProjectDatabase',
         ),
-        vocabulary=NamedVocabulary("""LeadAgency"""),
     ),
     StringField(
         name='Status',
@@ -114,39 +113,32 @@ schema = Schema((
     DataGridField(
         name='FinanceObjectAmount',
         widget=DataGridField._properties['widget'](
-            columns={ 'trust_fund' : SelectColumn("Trust Fund", vocabulary="getTrustFundVocabulary"), 'unep_allocation' : Column("UNEP Allocation"), 'other_ia_allocation' : Column("Other IA Alloaction"), 'unep_fee' : Column("UNEP Fee"), 'other_ia_fee' : Column("Other IA Fee") },
+            columns={ 'trust_fund' : SelectColumn("Trust Fund", vocabulary="getTrustFundVocabulary"), 'grant_to_unep' : Column("Grant to UNEP") },
             label="Finance Object Amount",
             label_msgid='ProjectDatabase_label_FinanceObjectAmount',
             i18n_domain='ProjectDatabase',
         ),
-        columns=("trust_fund", "unep_allocation", "other_ia_allocation", "unep_fee", "other_ia_fee"),
+        columns=("trust_fund", "grant_to_unep"),
     ),
     ComputedField(
-        name='TotalFinanceObjectGrant',
+        name='SumFinanceObjectAmount',
         widget=ComputedField._properties['widget'](
-            label='Totalfinanceobjectgrant',
-            label_msgid='ProjectDatabase_label_TotalFinanceObjectGrant',
+            label='Sumfinanceobjectamount',
+            label_msgid='ProjectDatabase_label_SumFinanceObjectAmount',
             i18n_domain='ProjectDatabase',
         ),
     ),
-    ComputedField(
-        name='TotalFee',
-        widget=ComputedField._properties['widget'](
-            label='Totalfee',
-            label_msgid='ProjectDatabase_label_TotalFee',
-            i18n_domain='ProjectDatabase',
-        ),
-    ),
-    ComputedField(
-        name='TotalFinanceObject',
-        widget=ComputedField._properties['widget'](
-            label='Totalfinanceobject',
-            label_msgid='ProjectDatabase_label_TotalFinanceObject',
+    MoneyField(
+        name='FinanceObjectFee',
+        widget=MoneyField._properties['widget'](
+            label="Finance Object Fee",
+            label_msgid='ProjectDatabase_label_FinanceObjectFee',
             i18n_domain='ProjectDatabase',
         ),
     ),
     MoneyField(
         name='CommittedGEFGrant',
+        default='0.0',
         widget=MoneyField._properties['widget'](
             label="Committed GEF Grant",
             description="Project budget in the internalized project document",
@@ -192,10 +184,10 @@ schema = Schema((
         ),
     ),
     ComputedField(
-        name='SumCofinCashActual',
+        name='SumCoFinCashActual',
         widget=ComputedField._properties['widget'](
             label="Total Cofinancing: Cash (Actual)",
-            label_msgid='ProjectDatabase_label_SumCofinCashActual',
+            label_msgid='ProjectDatabase_label_SumCoFinCashActual',
             i18n_domain='ProjectDatabase',
         ),
     ),
@@ -216,6 +208,22 @@ schema = Schema((
         ),
     ),
     ComputedField(
+        name='TotalCoFinOfFinanceObjectPlanned',
+        widget=ComputedField._properties['widget'](
+            label='Totalcofinoffinanceobjectplanned',
+            label_msgid='ProjectDatabase_label_TotalCoFinOfFinanceObjectPlanned',
+            i18n_domain='ProjectDatabase',
+        ),
+    ),
+    ComputedField(
+        name='TotalCoFinOfFinanceObjectActual',
+        widget=ComputedField._properties['widget'](
+            label='Totalcofinoffinanceobjectactual',
+            label_msgid='ProjectDatabase_label_TotalCoFinOfFinanceObjectActual',
+            i18n_domain='ProjectDatabase',
+        ),
+    ),
+    ComputedField(
         name='TotalCostOfFinanceObjectPlanned',
         widget=ComputedField._properties['widget'](
             label="Total Cost of Finance Object (Planned)",
@@ -228,6 +236,14 @@ schema = Schema((
         widget=ComputedField._properties['widget'](
             label="Total Cost of Finance Object (Actual)",
             label_msgid='ProjectDatabase_label_TotalCostOfFinanceObjectActual',
+            i18n_domain='ProjectDatabase',
+        ),
+    ),
+    ComputedField(
+        name='TotalCostOfFinanceObjectVariance',
+        widget=ComputedField._properties['widget'](
+            label='Totalcostoffinanceobjectvariance',
+            label_msgid='ProjectDatabase_label_TotalCostOfFinanceObjectVariance',
             i18n_domain='ProjectDatabase',
         ),
     ),
@@ -288,11 +304,11 @@ schema = Schema((
         ),
     ),
     DateTimeField(
-        name='InitialCompletionDate',
+        name='ExpectedCompletionDate',
         widget=CalendarWidget(
-            label="Initial Completion Date",
+            label="Expected Completion Date",
             show_hm=False,
-            label_msgid='ProjectDatabase_label_InitialCompletionDate',
+            label_msgid='ProjectDatabase_label_ExpectedCompletionDate',
             i18n_domain='ProjectDatabase',
         ),
     ),
@@ -507,54 +523,22 @@ class Financials(BaseFolder, CurrencyMixin, BrowserDefaultMixin):
     def getDifference(self):
         """ calculate the difference between the committed and allocated GEF grant
         """
-        totalGrant = self.getTotalFinanceObjectGrant()
-        committedGEFgrant = self.getCommittedGEFGrant()
-        return totalGrant - committedGEFgrant
+        totalGrant = self.getSumFinanceObjectAmount()
+        committedGEFGrant = self.getCommittedGEFGrant()
+        return totalGrant - committedGEFGrant
 
-    def getTotalFinanceObjectGrant(self):
+    def getSumFinanceObjectAmount(self):
         """
         """
         values = self.getFinanceObjectAmount()
         unep_alloc = self._computeDataGridAmount(
-          [v['unep_allocation'] for v in values if v['unep_allocation']])
-        other_alloc = self._computeDataGridAmount(
-          [v['other_ia_allocation'] for v in values if v['other_ia_allocation']])
-        return unep_alloc + other_alloc
-
-    def getTotalFee(self):
-        """
-        """
-        values = self.getFinanceObjectAmount()
-        unep_fee = self._computeDataGridAmount(
-          [v['unep_fee'] for v in values if v['unep_fee']])
-        other_fee = self._computeDataGridAmount(
-          [v['other_ia_fee'] for v in values if v['other_ia_fee']])
-        return unep_fee + other_fee
+          [v['grant_to_unep'] for v in values if v['grant_to_unep']])
+        return unep_alloc
 
     def getTotalFinanceObject(self):
         """
         """
-        return self.getTotalFinanceObjectGrant() + self.getTotalFee()
-
-    def getTotalCostOfFinanceObjectPlanned(self):
-        """
-        """
-        total = self.getZeroMoneyInstance()
-        if self.getSumCoFinCashPlanned():
-            total += self.getSumCoFinCashPlanned()
-        if self.getSumCoFinInKindPlanned():
-            total += self.getSumCoFinInKindPlanned()
-        return total
-
-    def getTotalCostOfFinanceObjectActual(self):
-        """
-        """
-        total = self.getZeroMoneyInstance()
-        if self.getSumCoFinCashActual():
-            total += self.getSumCoFinCashActual()
-        if self.getSumCoFinInKindActual():
-            total += self.getSumCoFinInKindActual()
-        return total
+        return self.getSumFinanceObjectAmount() + self.getFinanceObjectFee()
 
     def getSumYearlyExpenditures(self):
         """
@@ -575,9 +559,53 @@ class Financials(BaseFolder, CurrencyMixin, BrowserDefaultMixin):
     def getOtherLeadExecutingAgency(self):
         """
         """
-        return self.getAProject()['project_general_info'].getOtherImplementingAgency()[0]
+        agencies = self.getAProject()['project_general_info'].getOtherImplementingAgency()
+        if agencies:
+            return agencies[0]
+
+    def getTotalCoFinOfFinanceObjectPlanned(self):
+        """
+        """
+        total = self.getZeroMoneyInstance()
+        if self.getSumCoFinCashPlanned():
+            total += self.getSumCoFinCashPlanned()
+        if self.getSumCoFinInKindPlanned():
+            total += self.getSumCoFinInKindPlanned()
+        return total
+
+    def getTotalCoFinOfFinanceObjectActual(self):
+        """
+        """
+        total = self.getZeroMoneyInstance()
+        if self.getSumCoFinCashActual():
+            total += self.getSumCoFinCashActual()
+        if self.getSumCoFinInKindActual():
+            total += self.getSumCoFinInKindActual()
+        return total
 
 
+    def getTotalCostOfFinanceObjectPlanned(self):
+        """
+        """
+        total = self.getSumFinanceObjectAmount()
+        if self.getSumCoFinCashPlanned():
+            total += self.getSumCoFinCashPlanned()
+        if self.getSumCoFinInKindPlanned():
+            total += self.getSumCoFinInKindPlanned()
+        return total
+
+    def getTotalCostOfFinanceObjectActual(self):
+        """
+        """
+        total = self.getSumYearlyExpenditures()
+        if self.getSumCoFinCashActual():
+            total += self.getSumCoFinCashActual()
+        if self.getSumCoFinInKindActual():
+            total += self.getSumCoFinInKindActual()
+        return total
+
+    def getTotalCostOfFinanceObjectVariance(self):
+        return self.getTotalCostOfFinanceObjectActual() - self.getTotalCostOfFinanceObjectPlanned()
 
 registerType(Financials, PROJECTNAME)
 # end of class Financials

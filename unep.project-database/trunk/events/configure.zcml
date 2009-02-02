@@ -5,17 +5,5 @@
 <subscriber
     for="Products.Archetypes.interfaces.IObjectInitializedEvent"
     handler=".events.projectInitialized" />
-  
-<subscriber
-    for="Products.Archetypes.interfaces.IObjectInitializedEvent"
-    handler=".events.ratingTrackingSystemInitialized" />
-  
-<subscriber
-    for="Products.Archetypes.interfaces.IObjectInitializedEvent"
-    handler=".events.rtsFolderInitialized" />
-  
-<subscriber
-    for="Products.Archetypes.interfaces.IObjectInitializedEvent"
-    handler=".events.monitoringAndEvaluationInitialized" />
 
 </configure>

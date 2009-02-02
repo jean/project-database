@@ -17,24 +17,6 @@
  <object name="Financials"
          meta_type="Factory-based Type Information with dynamic views"/>
 
- <object name="MonitoringAndEvaluation"
-         meta_type="Factory-based Type Information with dynamic views"/>
-
- <object name="RatingTrackingSystem"
-         meta_type="Factory-based Type Information with dynamic views"/>
-
- <object name="EvaluatorsInformation"
-         meta_type="Factory-based Type Information with dynamic views"/>
-
- <object name="RTSFolder"
-         meta_type="Factory-based Type Information with dynamic views"/>
-
- <object name="OtherProjectRatingsFolder"
-         meta_type="Factory-based Type Information with dynamic views"/>
-
- <object name="OtherProjectRatings"
-         meta_type="Factory-based Type Information with dynamic views"/>
-
  <object name="FMIFolder"
          meta_type="Factory-based Type Information with dynamic views"/>
 
@@ -45,6 +27,12 @@
          meta_type="Factory-based Type Information with dynamic views"/>
 
  <object name="ProgrammeFramework"
+         meta_type="Factory-based Type Information with dynamic views"/>
+
+ <object name="MonitoringAndEvaluation"
+         meta_type="Factory-based Type Information with dynamic views"/>
+
+ <object name="MandEfolder"
          meta_type="Factory-based Type Information with dynamic views"/>
 
 </object>

@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #
-# File: Project.py
+# File: MandEfolder.py
 #
 # Copyright (c) 2009 by []
 # Generator: ArchGenXML Version 2.1
@@ -41,54 +41,32 @@ schema = Schema((
 ##code-section after-local-schema #fill in your manual code here
 ##/code-section after-local-schema
 
-Project_schema = BaseFolderSchema.copy() + \
+MandEfolder_schema = BaseFolderSchema.copy() + \
     schema.copy()
 
 ##code-section after-schema #fill in your manual code here
-Project_schema['title'].required = False
-Project_schema['title'].widget.visible= {'edit':'hidden', 'view':'invisible'}
 ##/code-section after-schema
 
-class Project(BaseFolder, BrowserDefaultMixin):
+class MandEfolder(BaseFolder, BrowserDefaultMixin):
     """
     """
     security = ClassSecurityInfo()
 
-    implements(interfaces.IProject)
+    implements(interfaces.IMandEfolder)
 
-    meta_type = 'Project'
+    meta_type = 'MandEfolder'
     _at_rename_after_creation = True
 
-    schema = Project_schema
+    schema = MandEfolder_schema
 
     ##code-section class-header #fill in your manual code here
     ##/code-section class-header
 
     # Methods
 
-    security.declarePublic('getVocabulary')
-    def getVocabulary(self, vocabName):
-        """
-        """
-        pv_tool = getToolByName(self, 'portal_vocabularies')
-        vocab = pv_tool.getVocabularyByName(vocabName)
-        return vocab.getDisplayList(vocab)
 
-    security.declarePublic('getProjectGeneralInformation')
-    def getProjectGeneralInformation(self):
-        """
-        """
-        return self['project_general_info']
-
-    security.declarePublic('getAProject')
-    def getAProject(self):
-        """
-        """
-        return self
-
-
-registerType(Project, PROJECTNAME)
-# end of class Project
+registerType(MandEfolder, PROJECTNAME)
+# end of class MandEfolder
 
 ##code-section module-footer #fill in your manual code here
 ##/code-section module-footer

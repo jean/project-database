@@ -60,20 +60,20 @@ schema = Schema((
         ),
     ),
     DataGridField(
-        name='ProjectExecutingAgency',
+        name='SubProjectExecutingAgency',
         widget=DataGridField._properties['widget'](
             columns={'executing_agency':Column('Executing Agency'),'executing_agency_category':SelectColumn('Category', vocabulary='getCategoryVocabulary')},
             label="Lead Executing Agency",
-            label_msgid='ProjectDatabase_label_ProjectExecutingAgency',
+            label_msgid='ProjectDatabase_label_SubProjectExecutingAgency',
             i18n_domain='ProjectDatabase',
         ),
         columns=('executing_agency','executing_agency_category'),
     ),
     MoneyField(
-        name='CommittedGEFGrant',
+        name='CommittedGrant',
         widget=MoneyField._properties['widget'](
-            label="Committed GEF Grant",
-            label_msgid='ProjectDatabase_label_CommittedGEFGrant',
+            label="Committed Grant",
+            label_msgid='ProjectDatabase_label_CommittedGrant',
             i18n_domain='ProjectDatabase',
         ),
     ),
@@ -176,7 +176,7 @@ schema = Schema((
     ComputedField(
         name='SumYearlyExpenditures',
         widget=ComputedField._properties['widget'](
-            label="Total Yearly Expenditures",
+            label="Total Sub-Project Expenditures",
             label_msgid='ProjectDatabase_label_SumYearlyExpenditures',
             i18n_domain='ProjectDatabase',
         ),
@@ -273,6 +273,7 @@ SubProject_schema = BaseSchema.copy() + \
     schema.copy()
 
 ##code-section after-schema #fill in your manual code here
+SubProject_schema['title'].widget.label = 'Sub-Project Title'
 ##/code-section after-schema
 
 class SubProject(BaseContent, CurrencyMixin, BrowserDefaultMixin):

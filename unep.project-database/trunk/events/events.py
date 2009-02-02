@@ -1,6 +1,4 @@
 from Products.ProjectDatabase.content.interfaces import IProject
-from Products.ProjectDatabase.content.interfaces import IRatingTrackingSystem
-from Products.ProjectDatabase.content.interfaces import IRTSFolder
 from Products.ProjectDatabase.content.interfaces import IMonitoringAndEvaluation
 
 import logging
@@ -25,66 +23,15 @@ def projectInitialized(event):
     if 'fmi_folder' not in ob.objectIds():
         ob.invokeFactory('FMIFolder', 'fmi_folder')
         ob['fmi_folder'].edit(title='Financial Management Information')
-    #if 'monitoring_and_evaluation' not in ob.objectIds():
-    #    ob.invokeFactory('MonitoringAndEvaluation', 'monitoring_and_evaluation')
-    #    ob['monitoring_and_evaluation'].edit(title='Monitoring and Evaluation')
+    if 'mne_folder' not in ob.objectIds():
+        ob.invokeFactory('MandEfolder', 'mne_folder')
+        mne_folder = ob['mne_folder']
+        mne_folder.edit(title='Monitoring and Evaluation Folder')
+        mne_folder.invokeFactory('MonitoringAndEvaluation', 'monitoring_and_evaluation')
+        mne_folder['monitoring_and_evaluation'].edit(title='Monitoring and Evaluation')
     if 'milestones' not in ob.objectIds():
         ob.invokeFactory('Milestone', 'milestones')
         ob['milestones'].edit(title='Milestones')
     if 'documents' not in ob.objectIds():
         ob.invokeFactory('Folder', 'documents')
         ob['documents'].edit(title='Documents')
-
-def ratingTrackingSystemInitialized(event):
-    """ We are handling the object created event for 
-        classes implementing the IRatingTrackingSystem interface
-    """
-    LOG.info('Handling ObjectInitialized for RatingTrackingSystem')
-
-    ob = event.object
-    if not IRatingTrackingSystem.providedBy(ob):
-        return
-
-    if ob.isTemporary():
-        return
-
-    if 'other_project_ratings_folder' not in ob.objectIds():
-        ob.invokeFactory('OtherProjectRatingsFolder', 'other_project_ratings_folder')
-        ob['other_project_ratings_folder'].edit(title='Other Project Ratings')
-
-def rtsFolderInitialized(event):
-    """ We are handling the object created event for 
-        classes implementing the IRTSFolder interface
-    """
-    LOG.info('Handling ObjectInitialized for RTSFolder')
-
-    ob = event.object
-    if not IRTSFolder.providedBy(ob):
-        return
-
-    if ob.isTemporary():
-        return
-
-    if 'rating_tracking_system' not in ob.objectIds():
-        ob.invokeFactory('RatingTrackingSystem', 'rating_tracking_system')
-        ob['rating_tracking_system'].edit(title='Rating Tracking System')
-
-def monitoringAndEvaluationInitialized(event):
-    """ We are handling the object created event for 
-        classes implementing the IMonitoringAndEvaluation interface
-    """
-    LOG.info('Handling ObjectInitialized for MonitoringAndEvaluation')
-
-    ob = event.object
-    if not IMonitoringAndEvaluation.providedBy(ob):
-        return
-
-    if ob.isTemporary():
-        return
-
-    if 'rtsfolder' not in ob.objectIds():
-        ob.invokeFactory('RTSFolder', 'rtsfolder')
-        ob['rtsfolder'].edit(title='Rating Tracking Systems')
-    if 'evaluators_information' not in ob.objectIds():
-        ob.invokeFactory('EvaluatorsInformation', 'evaluators_information')
-        ob['evaluators_information'].edit(title='Evaluators Information')

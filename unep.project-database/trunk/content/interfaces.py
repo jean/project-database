@@ -25,30 +25,6 @@ class IFinancials(Interface):
     """Marker interface for .Financials.Financials
     """
 
-class IMonitoringAndEvaluation(Interface):
-    """Marker interface for .MonitoringAndEvaluation.MonitoringAndEvaluation
-    """
-
-class IRatingTrackingSystem(Interface):
-    """Marker interface for .RatingTrackingSystem.RatingTrackingSystem
-    """
-
-class IEvaluatorsInformation(Interface):
-    """Marker interface for .EvaluatorsInformation.EvaluatorsInformation
-    """
-
-class IRTSFolder(Interface):
-    """Marker interface for .RTSFolder.RTSFolder
-    """
-
-class IOtherProjectRatingsFolder(Interface):
-    """Marker interface for .OtherProjectRatingsFolder.OtherProjectRatingsFolder
-    """
-
-class IOtherProjectRatings(Interface):
-    """Marker interface for .OtherProjectRatings.OtherProjectRatings
-    """
-
 class IFMIFolder(Interface):
     """Marker interface for .FMIFolder.FMIFolder
     """
@@ -63,6 +39,14 @@ class IProjectDatabase(Interface):
 
 class IProgrammeFramework(Interface):
     """Marker interface for .ProgrammeFramework.ProgrammeFramework
+    """
+
+class IMonitoringAndEvaluation(Interface):
+    """Marker interface for .MonitoringAndEvaluation.MonitoringAndEvaluation
+    """
+
+class IMandEfolder(Interface):
+    """Marker interface for .MandEfolder.MandEfolder
     """
 
 ##code-section FOOT
