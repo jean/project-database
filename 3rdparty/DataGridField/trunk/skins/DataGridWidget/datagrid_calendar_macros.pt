@@ -15,7 +15,7 @@
          show_single_year show_single_year | python: 1;
          show_jscal show_jscal | python: 1;
          input_id string:${formname}_${inputname}_${inputIndex};
-         input_id python:hash(inputname);
+         input_id python:hash('%s%s' % (inputname, inputIndex));
          use_ampm python: '%p' in site_properties.getProperty('localLongTimeFormat');
          values   python:here.date_components_support(inputvalue, use_ampm, starting_year, ending_year, future_years);
          years values/years;
@@ -42,7 +42,7 @@
 		id string:${input_id}_year;
 		onfocus onfocus|nothing;
 		onblur onblur|nothing;
-		onchange string:update_date_field('${input_id}','${input_id}_year','${input_id}_month','${input_id}_day','${input_id}_hour','${input_id}_minute','${input_id}_ampm');">
+		onchange string:dataGridFieldFunctions.update_date_field_plone25('${input_id}','${input_id}_year','${input_id}_month','${input_id}_day','${input_id}_hour','${input_id}_minute','${input_id}_ampm');">
 
 	  <option value="year"
 		  tal:repeat="year years"
@@ -79,7 +79,7 @@
 		id string:${input_id}_month;
 		onfocus onfocus|nothing;
 		onblur onblur|nothing;
-		onchange string:update_date_field('${input_id}','${input_id}_year','${input_id}_month','${input_id}_day','${input_id}_hour','${input_id}_minute','${input_id}_ampm');">
+		onchange string:dataGridFieldFunctions.update_date_field_plone25('${input_id}','${input_id}_year','${input_id}_month','${input_id}_day','${input_id}_hour','${input_id}_minute','${input_id}_ampm');">
 
 	  <option value="subj"
 		  tal:repeat="month months"
@@ -105,7 +105,7 @@
 		id string:${input_id}_day;
 		onfocus onfocus|nothing;
 		onblur onblur|nothing;
-		onchange string:update_date_field('${input_id}','${input_id}_year','${input_id}_month','${input_id}_day','${input_id}_hour','${input_id}_minute','${input_id}_ampm');">
+		onchange string:dataGridFieldFunctions.update_date_field_plone25('${input_id}','${input_id}_year','${input_id}_month','${input_id}_day','${input_id}_hour','${input_id}_minute','${input_id}_ampm');">
 
 	  <option value="subj"
 		  tal:repeat="day days"
@@ -120,10 +120,6 @@
          tal:attributes="onclick string:return showJsCalendar('${input_id}_month', '$input_id', '${input_id}_year', '${input_id}_month', '${input_id}_day', '${input_id}_hour', '${input_id}_minute', $yearStart, $yearEnd);"><img alt="" src="" tal:replace="structure here/popup_calendar.gif" 
          name="jscalendar_anchor"/></a>
 
-<!--
-    <a tal:condition="show_jscal"
-         tal:attributes="onclick string:return showJsCalendar('$input_id', $yearStart, $yearEnd);"><img alt="" src="" tal:replace="structure here/popup_calendar.gif" /></a>
--->
       <span tal:condition="show_hm">
 	<select name="ic_hour"
 		id="ic_hour"
@@ -133,7 +129,7 @@
 		id string:${input_id}_hour;
 		onfocus onfocus|nothing;
 		onblur onblur|nothing;
-		onchange string:update_date_field('${input_id}','${input_id}_year','${input_id}_month','${input_id}_day','${input_id}_hour','${input_id}_minute','${input_id}_ampm');">
+		onchange string:dataGridFieldFunctions.update_date_field_plone25('${input_id}','${input_id}_year','${input_id}_month','${input_id}_day','${input_id}_hour','${input_id}_minute','${input_id}_ampm');">
 
 	  <option value="subj"
 		  tal:repeat="hour hours"
@@ -167,7 +163,7 @@
 		id string:${input_id}_minute;
 		onfocus onfocus|nothing;
 		onblur onblur|nothing;
-		onchange string:update_date_field('${input_id}','${input_id}_year','${input_id}_month','${input_id}_day','${input_id}_hour','${input_id}_minute','${input_id}_ampm');">
+		onchange string:dataGridFieldFunctions.update_date_field_plone25('${input_id}','${input_id}_year','${input_id}_month','${input_id}_day','${input_id}_hour','${input_id}_minute','${input_id}_ampm');">
 
 	  <option value="subj"
 		  tal:repeat="minute minutes"
@@ -199,7 +195,7 @@
                 id string:${input_id}_ampm;
                 onfocus onfocus|nothing;
                 onblur onblur|nothing;
-                onchange string:update_date_field('${input_id}','${input_id}_year','${input_id}_month','${input_id}_day','${input_id}_hour','${input_id}_minute','${input_id}_ampm');">
+                onchange string:dataGridFieldFunctions.update_date_field_plone25('${input_id}','${input_id}_year','${input_id}_month','${input_id}_day','${input_id}_hour','${input_id}_minute','${input_id}_ampm');">
 
           <option value="subj"
                   tal:repeat="ampm ampm"
