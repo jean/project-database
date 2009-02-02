@@ -12,6 +12,14 @@
         class="plone.app.viewletmanager.manager.OrderedViewletManager"
         />
 
+    <!-- Viewlet Manager for view options at the top -->
+    <browser:viewletManager
+        name="unep.viewoptions"
+        provides=".interfaces.IViewOptions"
+        permission="zope2.View"
+        class="plone.app.viewletmanager.manager.OrderedViewletManager"
+        />
+
     <!-- The portal top menu viewlet-->
     <browser:viewlet
         name="unep.unep_tabs"

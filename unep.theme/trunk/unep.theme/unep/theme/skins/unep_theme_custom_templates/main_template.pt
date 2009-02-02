@@ -187,6 +187,7 @@
 
         <!-- left column -->
         <div class="full-column">
+            <div tal:replace="structure provider:unep.viewoptions" />
 
             <div id="portal-content" style="width: 100%; height: auto;">
 
