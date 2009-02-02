@@ -30,7 +30,6 @@
                               inputvalue python:test(cell_value!='None', cell_value, '');
                               inputIndex string:${fieldId};
                               ">
-            <div tal:replace="structure cell_value"/>
             <metal:box use-macro="here/datagrid_calendar_macros/macros/calendarDatePickerBox|here/calendar_slot/macros/calendarDatePickerBox">
               a calendar, hopefully
             </metal:box>
