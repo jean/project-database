@@ -13,8 +13,6 @@
         provides="Products.GenericSetup.interfaces.EXTENSION"
     />
 
-    <!--
     <include package="unep.theme" />
-    -->
 
 </configure>
