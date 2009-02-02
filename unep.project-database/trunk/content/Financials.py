@@ -30,6 +30,7 @@ from Products.CMFCore.utils import getToolByName
 from Products.ATReferenceBrowserWidget.ATReferenceBrowserWidget import ReferenceBrowserWidget
 
 ##code-section module-header #fill in your manual code here
+from DateTime import DateTime
 ##/code-section module-header
 
 schema = Schema((
@@ -583,7 +584,6 @@ class Financials(BaseFolder, CurrencyMixin, BrowserDefaultMixin):
             total += self.getSumCoFinInKindActual()
         return total
 
-
     def getTotalCostOfFinanceObjectPlanned(self):
         """
         """
@@ -606,6 +606,19 @@ class Financials(BaseFolder, CurrencyMixin, BrowserDefaultMixin):
 
     def getTotalCostOfFinanceObjectVariance(self):
         return self.getTotalCostOfFinanceObjectActual() - self.getTotalCostOfFinanceObjectPlanned()
+
+    def getLastestRevisionDate(self):
+        values = self.getProjectRevision()
+        if values:
+            date = DateTime('1900/01/01')
+            for v in values:
+                if v['revision_date']:
+                    if date < v['revision_date']:
+                        date = v['revision_date']
+            if date != DateTime('1900/01/01'):
+                return date
+
+
 
 registerType(Financials, PROJECTNAME)
 # end of class Financials

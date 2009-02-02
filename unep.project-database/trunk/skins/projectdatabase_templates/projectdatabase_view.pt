@@ -4,7 +4,7 @@
         <metal:folderlisting metal:define-macro="folderlisting" />
         <metal:footer metal:define-macro="footer" />
         <metal:body metal:define-macro="body">
-        <table class="table-fullwidth" tal:define="projects python:context.getFolderContents(full_objects=True)">
+        <table class="table-fullwidth" tal:define="projects python:context.getFolderContents(full_objects=True, contentFilter={'portal_type':'Project'})">
         <tr>
         <th>DBase ID</th>
         <th>GEF ID</th>
@@ -22,13 +22,16 @@
                         countryvocab python:geninfo.getField('Country').Vocabulary(geninfo);
                         countryvalue python:geninfo.displayValue(countryvocab, geninfo.getCountry())"
             tal:attributes="class python:even and 'odd' or 'even'">
-        <td tal:content="project/title_or_id">DBase ID</td>
-        <td tal:content="geninfo/getGEFid | string:????">GEF ID</td>
-        <td tal:content="areavalue | string:????">Focal Area</td>
-        <td tal:content="geninfo/Title | string:????">Project Title</td>
-        <td tal:content="countryvalue | string:????">Country</td>
-        <td tal:content="geninfo/getProjectType | string:????">Project Type</td>
-        <td tal:content="geninfo/getStatus | string:????">Status</td>
+        <td>
+            <a tal:content="project/title_or_id"
+                tal:attributes="href project/absolute_url">DBase ID
+            </a></td>
+        <td tal:content="geninfo/getGEFid | string:Unknown">GEF ID</td>
+        <td tal:content="areavalue | string:Unknown">Focal Area</td>
+        <td tal:content="geninfo/Title | string:Unknown">Project Title</td>
+        <td tal:content="countryvalue | string:Unknown">Country</td>
+        <td tal:content="geninfo/getProjectType | string:Unknown">Project Type</td>
+        <td tal:content="geninfo/getStatus | string:Unknown">Status</td>
         </tr>
         </tal:rep>
         </table>

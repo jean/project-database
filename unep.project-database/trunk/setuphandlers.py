@@ -201,6 +201,7 @@ def installDataGridVocabularies(context):
         'PIFStage': ('VdexVocabulary', 'SimpleVocabularyterm'),
         'EvaluationCriteria': ('VdexVocabulary', 'SimpleVocabularyterm'),
         'EvaluatorRole': ('VdexVocabulary', 'SimpleVocabularyterm'),
+        'MilestoneAction': ('VdexVocabulary', 'SimpleVocabularyterm'),
         }
     for vocabname in vocabmap.keys():
         if not vocabname in atvm.contentIds():
