@@ -1,0 +1,65 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      i18n:domain="plone">
+      
+      
+<!-- View/edit calendar cells -->
+
+<body>
+    <!-- VIEW -->
+    <metal:view_cell_macro define-macro="view_cell"
+       tal:define="d accessor;
+                   d python:test(d and d=='None','',d);
+                   format widget/format;
+                   result python:(d and here.toLocalizedTime(cell_value, long_format=1));">
+       <div tal:replace="structure python:result" />
+    </metal:view_cell_macro>
+
+    <!-- EDIT -->
+    <metal:edit_cell_macro define-macro="edit_cell">       
+          <tal:define define="id string:${column}_${fieldId};
+                              show_hm python:False;
+                              show_ymd python:True;
+                              starting_year widget/starting_year|nothing;
+                              ending_year widget/ending_year|nothing;
+                              future_years widget/future_years|nothing;
+                              formname string:formname;
+                              inputname string:${fieldName}.${column}:records;
+                              inputvalue python:test(cell_value!='None', cell_value, '');
+                              inputIndex string:${fieldId};
+                              ">
+            <metal:box use-macro="here/datagrid_calendar_macros/macros/calendarDatePickerBox|here/calendar_slot/macros/calendarDatePickerBox">
+              a calendar, hopefully
+            </metal:box>
+          </tal:define>
+    </metal:edit_cell_macro>
+
+
+   <!-- EMPTY EDIT -->
+    <metal:edit_cell_macro define-macro="edit_empty_cell">
+		<tal:block>
+          <tal:define define="id string:${column}_${fieldId};
+                              show_hm python:False;
+                              show_ymd python:True;
+                              starting_year widget/starting_year|nothing;
+                              ending_year widget/ending_year|nothing;
+                              future_years widget/future_years|nothing;
+                              formname string:formname;
+                              inputname string:${fieldName}.${column}:records;
+                              inputvalue string:'';
+                              inputIndex string:${fieldId};
+                              ">
+                              <!--inputvalue python:test(value!='None', value, '');"-->
+            <metal:box use-macro="here/datagrid_calendar_macros/macros/calendarDatePickerBox|here/calendar_slot/macros/calendarDatePickerBox">
+              a calendar, hopefully
+            </metal:box>
+          </tal:define>
+		</tal:block>
+    </metal:edit_cell_macro>
+    
+</body>
+
+</html>
+
