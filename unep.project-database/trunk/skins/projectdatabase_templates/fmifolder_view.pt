@@ -49,7 +49,13 @@
         <table width="100%">
             <tr>
                 <td i18n:translate="finace_object" width="30%">Finance Object:</td>
-                <td tal:content="fo/getFinanceCategory"/>
+                <td>
+                    <span tal:content="fo/getFinanceCategory">PPG</span>&nbsp;
+                    <a tal:attributes="href string:${fo/absolute_url}/view">
+                        <span i18n:translate="view">view</span></a>
+                    <a tal:attributes="href string:${fo/absolute_url}/edit">
+                        <span i18n:translate="edit">edit</span></a>
+                </td>
             </tr>
             <tr>
                 <td i18n:translate="imis_no">IMIS No:</td>
@@ -120,6 +126,68 @@
                             <td tal:content="python:fo.getLatestReportData('cofinance', 'report_received_date')" />
                             <td tal:content="python:fo.getLatestReportData('inventory', 'report_received_date')" />
                             <td tal:content="python:fo.getLatestReportData('progress', 'report_period')" />
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            <!-- Sub-Projects -->
+            <tr>
+                <td colspan="2">
+                    <table width="100%">
+                        <tr>
+                            <td colspan="9">&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <th colspan="9">Sub-projects/MOU's<th>
+                        </tr>
+                        <tr>
+                            <th i18n:translate="imis_no">IMIS No</th>
+                            <th i18n:translate="ea">EA</th>
+                            <th i18n:translate="total_cash_disbursed">
+                                Total Cash Disbursed
+                            </th>
+                            <th i18n:translate="total_expenditures">
+                                Total expenditures (IMIS)
+                            </th>
+                            <th i18n:translate="receivable">
+                                Receivable
+                            </th>
+                            <th i18n:translate="last_expenditure_report">
+                                Last Expenditure Report
+                            </th>
+                            <th i18n:translate="last_audit_report">
+                                Last Audit Report
+                            </th>
+                            <th i18n:translate="last_cofinance_report">
+                                Last Co-finance Report
+                            </th>
+                            <th i18n:translate="last_inventory_report">
+                                Last Inventory Report
+                            </th>
+                        </tr>
+                        <tal:block
+                            tal:repeat="so python:fo.getFolderContents(full_objects=True)">
+                        <tr>
+                            <td>
+                                <a tal:attributes="href string:${so/absolute_url}/view"
+                                    tal:content="so/getIMISNumber">sub project</a>
+                            </td>
+                            <td tal:content="so/getExecutingAgencyNames" />
+                            <td tal:content="so/getSumCashDisbursements" />
+                            <td tal:content="so/getSumYearlyExpenditures" />
+                            <td tal:content="so/getAmountReceivable" />
+                            <td tal:content="python:so.getLatestReportData('expenditure', 'report_period')" />
+                            <td tal:content="python:so.getLatestReportData('audit', 'report_received_date')" />
+                            <td tal:content="python:so.getLatestReportData('cofinance', 'report_received_date')" />
+                            <td tal:content="python:so.getLatestReportData('inventory', 'report_received_date')" />
+                        </tr>
+                        </tal:block>
+                        <tr>
+                            <td i18n:translate="total">Total</td>
+                            <td>&nbsp;</td>
+                            <td tal:content="fo/getSubProjectsTotalCashDisbursed" />
+                            <td tal:content="fo/getSubProjectsTotalExpenditures" />
+                            <td tal:content="fo/getSubProjectsTotalReceivable" />
                         </tr>
                     </table>
                 </td>
