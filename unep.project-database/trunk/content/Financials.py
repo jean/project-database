@@ -635,6 +635,27 @@ class Financials(BaseFolder, CurrencyMixin, BrowserDefaultMixin):
                 return result
         return 'Unspecified'
 
+    def getSubProjectsTotalCashDisbursed(self):
+        result = self.getZeroMoneyInstance()
+        subs = self.getFolderContents(full_objects=True)
+        for sub in subs:
+            result += sub.getSumCashDisbursements()
+        return result
+
+    def getSubProjectsTotalExpenditures(self):
+        result = self.getZeroMoneyInstance()
+        subs = self.getFolderContents(full_objects=True)
+        for sub in subs:
+            result += sub.getSumYearlyExpenditures()
+        return result
+
+    def getSubProjectsTotalReceivable(self):
+        result = self.getZeroMoneyInstance()
+        subs = self.getFolderContents(full_objects=True)
+        for sub in subs:
+            result += sub.getAmountReceivable()
+        return result
+
 
 registerType(Financials, PROJECTNAME)
 # end of class Financials

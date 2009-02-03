@@ -31,6 +31,7 @@ from Products.CMFCore.utils import getToolByName
 from Products.ATReferenceBrowserWidget.ATReferenceBrowserWidget import ReferenceBrowserWidget
 
 ##code-section module-header #fill in your manual code here
+from DateTime import DateTime
 ##/code-section module-header
 
 schema = Schema((
@@ -373,6 +374,7 @@ class SubProject(BaseContent, CurrencyMixin, BrowserDefaultMixin):
         return self._computeDataGridAmount( \
             [v['cofinancing_inkind_actual_amount'] \
                 for v in values if v['cofinancing_inkind_actual_amount']])
+
     security.declarePublic('getSumCashDisbursements')
     def getSumCashDisbursements(self):
         """
@@ -381,6 +383,7 @@ class SubProject(BaseContent, CurrencyMixin, BrowserDefaultMixin):
         return self._computeDataGridAmount( \
             [v['cash_disbursements_amount'] \
                 for v in values if v['cash_disbursements_amount']])
+
     def getSumYearlyExpenditures(self):
         """
         """
@@ -407,6 +410,32 @@ class SubProject(BaseContent, CurrencyMixin, BrowserDefaultMixin):
             total += self.getSumCoFinInKindActual()
         return total
 
+    def getAmountReceivable(self):
+        return self.getSumCashDisbursements() - self.getSumYearlyExpenditures()
+
+    def getLatestReportData(self, report, field):
+        values = self.getReports()
+        result = ''
+        if values:
+            date = DateTime('1900/01/01')
+            for v in values:
+                if v['report_received_date'] and v['report_type'] == report:
+                    if date < v['report_received_date']:
+                        date = v['report_received_date']
+                        result = v[field]
+            if date != DateTime('1900/01/01'):
+                return result
+        return 'Unspecified'
+
+    def getExecutingAgencyNames(self):
+        lead = self.getSubProjectExecutingAgency()
+        result = ''
+        if lead:
+            for v in lead:
+                if v['executing_agency']:
+                    result += v['executing_agency'] + ', '
+            return result[:-2]
+        return 'Unspecified'
 
 
 registerType(SubProject, PROJECTNAME)
