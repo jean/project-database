@@ -7,30 +7,44 @@
   <langstring language="en">Report Type</langstring>
 </vocabName>
 <term>
-  <termIdentifier>Expenditure Statements</termIdentifier>
+  <termIdentifier>expenditure</termIdentifier>
   <caption>
     <langstring language="en">Expenditure Statements</langstring>
   </caption>
   <description />
 </term>
 <term>
-  <termIdentifier>Audit Report</termIdentifier>
+  <termIdentifier>audit</termIdentifier>
   <caption>
     <langstring language="en">Audit Report</langstring>
   </caption>
   <description />
 </term>
 <term>
-  <termIdentifier>Co-finance Report</termIdentifier>
+  <termIdentifier>cofinance</termIdentifier>
   <caption>
     <langstring language="en">Co-finance Report</langstring>
   </caption>
   <description />
 </term>
 <term>
-  <termIdentifier>Inventory of non-expendable equipment</termIdentifier>
+  <termIdentifier>inventory</termIdentifier>
   <caption>
     <langstring language="en">Inventory of non-expendable equipment</langstring>
+  </caption>
+  <description />
+</term>
+<term>
+  <termIdentifier>progress</termIdentifier>
+  <caption>
+    <langstring language="en">Progress Report</langstring>
+  </caption>
+  <description />
+</term>
+<term>
+  <termIdentifier>terminal</termIdentifier>
+  <caption>
+    <langstring language="en">Terminal Report</langstring>
   </caption>
   <description />
 </term>
