@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vdex xmlns="http://www.imsglobal.org/xsd/imsvdex_v1p0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.imsglobal.org/xsd/imsvdex_v1p0 imsvdex_v1p0.xsd http://www.imsglobal.org/xsd/imsmd_rootv1p2p1 imsmd_rootv1p2p1.xsd"
+    language="en" orderSignificant="true" profileType="flatTokenTerms">
+<vocabName>
+  <langstring language="en">Project Approval Actions</langstring>
+</vocabName>
+
+<term>
+  <termIdentifier>PRCREview</termIdentifier>
+  <caption>
+    <langstring language="en">PRC REview</langstring>
+  </caption>
+  <description />
+</term>
+
+<term>
+  <termIdentifier>SubmissionToGEFSec</termIdentifier>
+  <caption>
+    <langstring language="en">Submission to GEF Sec</langstring>
+  </caption>
+  <description />
+</term>
+
+<term>
+  <termIdentifier>ReviewSheet</termIdentifier>
+  <caption>
+    <langstring language="en">Review sheet</langstring>
+  </caption>
+  <description />
+</term>
+
+<term>
+  <termIdentifier>CEOApprovalEndorsementExpected</termIdentifier>
+  <caption>
+      <langstring language="en">CEO Approval/Endorsement (Expected)</langstring>
+  </caption>
+  <description />
+</term>
+
+<term>
+  <termIdentifier>CEOApprovalEndorsementActual</termIdentifier>
+  <caption>
+      <langstring language="en">CEO Approval/Endorsement (Actual)</langstring>
+  </caption>
+  <description />
+</term>
+
+<term>
+  <termIdentifier>MilestoneExtensionRequest</termIdentifier>
+  <caption>
+    <langstring language="en">Milestone extension request</langstring>
+  </caption>
+  <description />
+</term>
+
+<term>
+  <termIdentifier>MilestoneExtensionApproval</termIdentifier>
+  <caption>
+    <langstring language="en">Milestone extension approval</langstring>
+  </caption>
+  <description />
+</term>
+
+<term>
+  <termIdentifier>PAGSubmission</termIdentifier>
+  <caption>
+    <langstring language="en">PAG submission</langstring>
+  </caption>
+  <description />
+</term>
+
+<term>
+  <termIdentifier>PAGApprovalExpected</termIdentifier>
+  <caption>
+    <langstring language="en">PAG approval (expected)</langstring>
+  </caption>
+  <description />
+</term>
+
+<term>
+  <termIdentifier>PAGApprovalActual</termIdentifier>
+  <caption>
+    <langstring language="en">PAG approval (actual)</langstring>
+  </caption>
+  <description />
+</term>
+
+<term>
+  <termIdentifier>ProjectWithDrawal</termIdentifier>
+  <caption>
+    <langstring language="en">Project withdrawal</langstring>
+  </caption>
+  <description />
+</term>
+
+</vdex>
