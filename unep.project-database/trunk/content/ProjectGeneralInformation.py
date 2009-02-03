@@ -834,7 +834,11 @@ class ProjectGeneralInformation(BaseContent, CurrencyMixin, BrowserDefaultMixin)
     def getDatabaseID(self):
         return self.aq_inner.aq_parent.getId()
 
-
+    def getFocalAreaName(self):
+        val = self.getFocalArea()
+        atvm = getToolByName(self, 'portal_vocabularies')
+        vocab = atvm.getVocabularyByName('FocalArea')
+        return self.displayValue(vocab, val)
 
 registerType(ProjectGeneralInformation, PROJECTNAME)
 # end of class ProjectGeneralInformation
