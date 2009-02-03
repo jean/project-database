@@ -7,15 +7,20 @@
 
 <metal:body metal:define-macro="body">
 
-<table class="table-fullwidth" 
-    tal:define="projects python:context.getFolderContents(full_objects=True, contentFilter={'portal_type':'Project'})">
+<tal:batch tal:define="brains python:context.getFolderContents(full_objects=False, contentFilter={'portal_type':'Project'});
+                        Batch python:modules['Products.CMFPlone'].Batch;
+                        b_size python:20;b_start python:0;b_start request/b_start | b_start;
+                        batch python:Batch(brains, b_size, int(b_start), orphan=1);
+                        projects python:[brain.getObject() for brain in batch];
+                        ">
+<table class="table-fullwidth">
     <tr>
-        <th i18n:tanslate="dbase_id">DBase ID</th>
-        <th i18n:tanslate="gef_id">GEF ID</th>
-        <th i18n:tanslate="focal_area">Focal Area</th>
-        <th i18n:tanslate="project_title">Project Title</th>
-        <th i18n:tanslate="country">Country</th>
-        <th i18n:tanslate="project_type">Project Type</th>
+        <th i18n:translate="dbase_id">DBase ID</th>
+        <th i18n:translate="gef_id">GEF ID</th>
+        <th i18n:translate="focal_area">Focal Area</th>
+        <th i18n:translate="project_title">Project Title</th>
+        <th i18n:translate="country">Country</th>
+        <th i18n:translate="project_type">Project Type</th>
     </tr>
 
     <tal:rep tal:repeat="project projects">
@@ -38,5 +43,7 @@
         </tr>
     </tal:rep>
 </table>
+<b><div metal:use-macro="here/batch_macros/macros/navigation" /></b>
+</tal:batch>
 
 </metal:body>
