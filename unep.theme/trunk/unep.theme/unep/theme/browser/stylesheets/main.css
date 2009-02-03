@@ -294,7 +294,6 @@ input.searchButton {
 
 iframe.kupu-editor-iframe {
     height: 200px;
-    max-width: 430px;
 }
 
 select {
@@ -304,6 +303,10 @@ select {
 form {
     padding-left: 1em;
     padding-right: 1em;
+}
+
+div.field {
+    padding-left: 1em;
 }
 
 /* ------------------ Authoring Styles ---------------------------------- */

@@ -6,10 +6,20 @@
 <metal:block define-slot="top_slot" />
 <metal:block use-macro="here/global_defines/macros/defines" />
 
+<tal:comment condition="nothing">
+    <metal:header_macro define-macro="header_macro">
+        <h1 class="documentFirstHeading" tal:content="context/Title|context/getId">Title</h1>
+    </metal:header_macro>
+    <metal:footer_macro define-macro="footer_macro" />
+</tal:comment>
+
 <html xmlns="http://www.w3.org/1999/xhtml"
     xml:lang="en"
     lang="en"
-    tal:define="lang language"
+    tal:define="lang language;
+                kss_inline_editable python:False;
+                header_macro here/main_template/macros/header_macro;
+                footer_macro here/main_template/macros/footer_macro; "
     tal:attributes="lang lang;
                     xml:lang lang">
 
