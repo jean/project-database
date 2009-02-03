@@ -274,9 +274,9 @@ select {
     max-width: 430px;
 }
 
-fieldset {
-    float: left;
-    width: 400px;
+form {
+    padding-left: 1em;
+    padding-right: 1em;
 }
 
 /* ------------------ Authoring Styles ---------------------------------- */
