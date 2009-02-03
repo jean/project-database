@@ -1,0 +1,200 @@
+<metal:header metal:define-macro="header">
+<h1 class="documentFirstHeading" tal:content="context/Title">FMI</h1>
+</metal:header>
+<metal:folderlisting metal:define-macro="folderlisting" />
+<metal:footer metal:define-macro="footer" />
+<metal:body metal:define-macro="body">
+<div>
+    <table width="100%"
+        tal:define="pgi nocall:context/aq_parent/project_general_info">
+<!-- PGI -->
+        <tr>
+            <td i18n:translate="project_title" width="30%">Project Title:</td>
+            <td>
+                <a tal:attributes="href pgi/absolute_url"
+                    tal:content="pgi/Title"> PGI </a>
+            </td>
+        </tr>
+        <tr>
+            <td i18n:translate="gef_id">GEF Id:</td>
+            <td tal:content="pgi/getGEFid" />
+        </tr>
+        <tr>
+            <td i18n:translate="focal_area">Focal Area:</td>
+            <td tal:content="pgi/getFocalAreaNames" />
+        </tr>
+        <tr>
+            <td i18n:translate="geographic_scope">Geographic Scope:</td>
+            <td tal:content="pgi/getGeographicScopeValues" />
+        </tr>
+        <tr>
+            <td i18n:translate="executing_agencies">Executing Agency(ies):</td>
+            <td tal:content="pgi/getExecutingAgencyNames" />
+        </tr>
+        <tr>
+            <td i18n:translate="task_manager">Task Manager:</td>
+            <td tal:content="pgi/getTaskManagers" />
+        </tr>
+        <tr>
+            <td i18n:translate="evaluation_budget">Evaluation Budget:</td>
+            <td tal:content="string:Unknown" />
+        </tr>
+    </table>
+</div>
+<hr />
+<div>
+<!-- FMI -->
+    <div style="width:100%" 
+        tal:repeat="fo python:context.getFolderContents(full_objects=True)">
+        <table width="100%">
+            <tr>
+                <td i18n:translate="finace_object" width="30%">Finance Object:</td>
+                <td>
+                    <span tal:content="fo/getFinanceCategory">PPG</span>&nbsp;
+                    <a tal:attributes="href string:${fo/absolute_url}/view">
+                        <span i18n:translate="view">view</span></a>
+                    <a tal:attributes="href string:${fo/absolute_url}/edit">
+                        <span i18n:translate="edit">edit</span></a>
+                </td>
+            </tr>
+            <tr>
+                <td i18n:translate="imis_no">IMIS No:</td>
+                <td tal:content="fo/getIMISNumber" />
+            </tr>
+            <tr>
+                <td i18n:translate="trustee_id">Trustee ID:</td>
+                <td tal:content="fo/getTrusteeID" />
+            <tr>
+                <td i18n:translate="status">Status:</td>
+                <td tal:content="fo/getStatus" />
+            <tr>
+                <td i18n:translate="last_revision_date">Date of last revision:</td>
+                <td tal:content="fo/getLastestRevisionDate" />
+            </tr>
+            <tr>
+                <td i18n:translate="completion_date">Expected/actual completion date:</td>
+                <td tal:content="fo/getExpectedCompletionDate" />
+            </tr>
+            <tr>
+                <td i18n:translate="grant_to_unep">Grant to UNEP US$:</td>
+                <!-- <td tal:content="fo/getCommittedGEFGrant" /> -->
+                <td tal:content="fo/getSumFinanceObjectAmount" /> 
+            </tr>
+            <tr>
+                <td i18n:translate="unep_fee">UNEP Fee US$:</td>
+                <td tal:content="fo/getFinanceObjectFee" />
+            </tr>
+            <tr>
+                <td i18n:translate="planned_co_financing">Planned Co-financing US$:</td>
+                <td tal:content="fo/getTotalCoFinOfFinanceObjectPlanned" />
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <table width="100%">
+                        <tr>
+                            <th i18n:translate="total_cash_disbursed">
+                                Total Cash Disbursed
+                            </th>
+                            <th i18n:translate="total_expenditures">
+                                Total expenditures (IMIS)
+                            </th>
+                            <th i18n:translate="receivable">
+                                Receivable
+                            </th>
+                            <th i18n:translate="last_expenditure_report">
+                                Last Expenditure Report
+                            </th>
+                            <th i18n:translate="last_audit_report">
+                                Last Audit Report
+                            </th>
+                            <th i18n:translate="last_cofinance_report">
+                                Last Co-finance Report
+                            </th>
+                            <th i18n:translate="last_inventory_report">
+                                Last Inventory Report
+                            </th>
+                            <th i18n:translate="last_progress_report">
+                                Last Progress Report
+                            </th>
+                        </tr>
+                        <tr>
+                            <td tal:content="fo/getSumCashDisbursements" />
+                            <td tal:content="fo/getSumYearlyExpenditures" />
+                            <td tal:content="fo/getAmountReceivable" />
+                            <td tal:content="python:fo.getLatestReportData('expenditure', 'report_period')" />
+                            <td tal:content="python:fo.getLatestReportData('audit', 'report_received_date')" />
+                            <td tal:content="python:fo.getLatestReportData('cofinance', 'report_received_date')" />
+                            <td tal:content="python:fo.getLatestReportData('inventory', 'report_received_date')" />
+                            <td tal:content="python:fo.getLatestReportData('progress', 'report_period')" />
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            <!-- Sub-Projects -->
+            <tr>
+                <td colspan="2">
+                    <table width="100%">
+                        <tr>
+                            <td colspan="9">&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <th colspan="9">Sub-projects/MOU's<th>
+                        </tr>
+                        <tr>
+                            <th i18n:translate="imis_no">IMIS No</th>
+                            <th i18n:translate="ea">EA</th>
+                            <th i18n:translate="total_cash_disbursed">
+                                Total Cash Disbursed
+                            </th>
+                            <th i18n:translate="total_expenditures">
+                                Total expenditures (IMIS)
+                            </th>
+                            <th i18n:translate="receivable">
+                                Receivable
+                            </th>
+                            <th i18n:translate="last_expenditure_report">
+                                Last Expenditure Report
+                            </th>
+                            <th i18n:translate="last_audit_report">
+                                Last Audit Report
+                            </th>
+                            <th i18n:translate="last_cofinance_report">
+                                Last Co-finance Report
+                            </th>
+                            <th i18n:translate="last_inventory_report">
+                                Last Inventory Report
+                            </th>
+                        </tr>
+                        <tal:block
+                            tal:repeat="so python:fo.getFolderContents(full_objects=True)">
+                        <tr>
+                            <td>
+                                <a tal:attributes="href string:${so/absolute_url}/view"
+                                    tal:content="so/getIMISNumber">sub project</a>
+                            </td>
+                            <td tal:content="so/getExecutingAgencyNames" />
+                            <td tal:content="so/getSumCashDisbursements" />
+                            <td tal:content="so/getSumYearlyExpenditures" />
+                            <td tal:content="so/getAmountReceivable" />
+                            <td tal:content="python:so.getLatestReportData('expenditure', 'report_period')" />
+                            <td tal:content="python:so.getLatestReportData('audit', 'report_received_date')" />
+                            <td tal:content="python:so.getLatestReportData('cofinance', 'report_received_date')" />
+                            <td tal:content="python:so.getLatestReportData('inventory', 'report_received_date')" />
+                        </tr>
+                        </tal:block>
+                        <tr>
+                            <td i18n:translate="total">Total</td>
+                            <td>&nbsp;</td>
+                            <td tal:content="fo/getSubProjectsTotalCashDisbursed" />
+                            <td tal:content="fo/getSubProjectsTotalExpenditures" />
+                            <td tal:content="fo/getSubProjectsTotalReceivable" />
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+        <hr />
+    </div>
+</div>
+
+</metal:body>
