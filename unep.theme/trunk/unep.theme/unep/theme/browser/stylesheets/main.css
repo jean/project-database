@@ -73,6 +73,33 @@ div.unep-menuselected a:hover {
     background: #24a1d1; 
 }
 
+/* ------------------ View Options bar ---------------------------------- */
+div.viewoptions {
+    float:left;
+    width: 100%; 
+    border-bottom: 1px solid #e7e7e7;
+    margin-bottom:15px;
+}
+
+div.viewoptions-item {
+    float:left;
+    border-right: 1px solid #e7e7e7; 
+}
+
+div.viewoptions-item a {
+    float:left;
+    padding: 10px 20px 10px 20px; 
+}
+
+div.viewoptions-item a:hover {
+    background: #d8d8d8; 
+}
+
+div.viewoptions-item.viewoptions-selected a {
+    background: #24a1d1; 
+    color: white; 
+}
+
 /* ------------------ Top Links Styles ---------------------------------- */
 div.links-row {
     float: left; 
