@@ -79,7 +79,7 @@
                         dir python:test(isRTL, 'rtl', 'ltr')">
 
 <!-- page container -->
-<div style="position: relative; left: 40px; width: 896px; height: auto;">
+<div style="position: relative; left: 40px; width: 896px;">
 
     <!-- logged in bar -->
     <div class="bar logged-in-bar">
@@ -199,13 +199,13 @@
         <div class="full-column">
             <div tal:replace="structure provider:unep.viewoptions" />
 
-            <div id="portal-content" style="width: 100%; height: auto;">
+            <div id="portal-content" style="width: 100%;">
 
                 <metal:content-slot define-slot="content">
                 <metal:content-macro define-macro="content">
 
                 <!-- left column content -->
-                <div style="width: 100%; height: auto;">
+                <div style="width: 100%;">
 
                     <div class="page-block">
 
