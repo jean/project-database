@@ -33,7 +33,7 @@
         </tr>
         <tr>
             <td i18n:translate="task_manager">Task Manager:</td>
-            <td tal:content="pgi/getTaskManagers|string:Unspecified" />
+            <td tal:content="pgi/getTaskManagers" />
         </tr>
         <tr>
             <td i18n:translate="evaluation_budget">Evaluation Budget:</td>
@@ -64,6 +64,65 @@
             <tr>
                 <td i18n:translate="last_revision_date">Date of last revision:</td>
                 <td tal:content="fo/getLastestRevisionDate" />
+            </tr>
+            <tr>
+                <td i18n:translate="completion_date">Expected/actual completion date:</td>
+                <td tal:content="fo/getExpectedCompletionDate" />
+            </tr>
+            <tr>
+                <td i18n:translate="grant_to_unep">Grant to UNEP US$:</td>
+                <!-- <td tal:content="fo/getCommittedGEFGrant" /> -->
+                <td tal:content="fo/getSumFinanceObjectAmount" /> 
+            </tr>
+            <tr>
+                <td i18n:translate="unep_fee">UNEP Fee US$:</td>
+                <td tal:content="fo/getFinanceObjectFee" />
+            </tr>
+            <tr>
+                <td i18n:translate="planned_co_financing">Planned Co-financing US$:</td>
+                <td tal:content="fo/getTotalCoFinOfFinanceObjectPlanned" />
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <table width="100%">
+                        <tr>
+                            <th i18n:translate="total_cash_disbursed">
+                                Total Cash Disbursed
+                            </th>
+                            <th i18n:translate="total_expenditures">
+                                Total expenditures (IMIS)
+                            </th>
+                            <th i18n:translate="receivable">
+                                Receivable
+                            </th>
+                            <th i18n:translate="last_expenditure_report">
+                                Last Expenditure Report
+                            </th>
+                            <th i18n:translate="last_audit_report">
+                                Last Audit Report
+                            </th>
+                            <th i18n:translate="last_cofinance_report">
+                                Last Co-finance Report
+                            </th>
+                            <th i18n:translate="last_inventory_report">
+                                Last Inventory Report
+                            </th>
+                            <th i18n:translate="last_progress_report">
+                                Last Progress Report
+                            </th>
+                        </tr>
+                        <tr>
+                            <td tal:content="fo/getSumCashDisbursements" />
+                            <td tal:content="fo/getSumYearlyExpenditures" />
+                            <td tal:content="fo/getAmountReceivable" />
+                            <td tal:content="python:fo.getLatestReportData('expenditure', 'report_period')" />
+                            <td tal:content="python:fo.getLatestReportData('audit', 'report_received_date')" />
+                            <td tal:content="python:fo.getLatestReportData('cofinance', 'report_received_date')" />
+                            <td tal:content="python:fo.getLatestReportData('inventory', 'report_received_date')" />
+                            <td tal:content="python:fo.getLatestReportData('progress', 'report_period')" />
+                        </tr>
+                    </table>
+                </td>
             </tr>
         </table>
         <hr />
