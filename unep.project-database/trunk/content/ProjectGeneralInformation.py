@@ -834,11 +834,51 @@ class ProjectGeneralInformation(BaseContent, CurrencyMixin, BrowserDefaultMixin)
     def getDatabaseID(self):
         return self.aq_inner.aq_parent.getId()
 
-    def getFocalAreaName(self):
-        val = self.getFocalArea()
+    def getFocalAreaNames(self):
+        areas = self.getFocalArea()
+        return self.getSelectedVocabularyValues(areas, 'FocalArea')
+
+    def getGeographicScopeValues(self):
+        scopes = self.getScope()
+        return self.getSelectedVocabularyValues(scopes, 'Scope')
+
+    def getExecutingAgencyNames(self):
+        lead = self.getLeadAgency()
+        result = self.getSelectedVocabularyValue(lead, 'LeadAgency')
+        other = self.getOtherImplementingAgency()
+        if other:
+            result += ', ' + self.getSelectedVocabularyValues(other, 'LeadAgency')
+        return result
+
+    def getTaskManagers(self):
+        values = self.getTaskManager()
+        result = ''
+        if values:
+            for v in values:
+                if v['name']:
+                    result += v['name'] + ', '
+        if len(result) > 2:
+            result = result[:-2]
+        else:
+            result = 'Unspecified'
+        return result
+
+
+    def getSelectedVocabularyValue(self, selection, vocabName):
         atvm = getToolByName(self, 'portal_vocabularies')
-        vocab = atvm.getVocabularyByName('FocalArea')
-        return self.displayValue(vocab, val)
+        vocab = atvm.getVocabularyByName(vocabName)
+        dict = vocab.getVocabularyDict(self)
+        return dict[selection][0]
+
+    def getSelectedVocabularyValues(self, selections, vocabName):
+        atvm = getToolByName(self, 'portal_vocabularies')
+        vocab = atvm.getVocabularyByName(vocabName)
+        dict = vocab.getVocabularyDict(self)
+        result = ''
+        for value in selections:
+            result += dict[value][0] + ', '
+        return result[:-2]
+
 
 registerType(ProjectGeneralInformation, PROJECTNAME)
 # end of class ProjectGeneralInformation

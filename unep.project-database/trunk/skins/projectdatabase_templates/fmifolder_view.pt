@@ -5,20 +5,69 @@
 <metal:footer metal:define-macro="footer" />
 <metal:body metal:define-macro="body">
 <div>
+    <table width="100%"
+        tal:define="pgi nocall:context/aq_parent/project_general_info">
 <!-- PGI -->
-    <a tal:attributes="href context/aq_parent/project_general_info/absolute_url"
-        tal:content="context/aq_parent/project_general_info/Title"> PGI </a>   
-
+        <tr>
+            <td i18n:translate="project_title" width="30%">Project Title:</td>
+            <td>
+                <a tal:attributes="href pgi/absolute_url"
+                    tal:content="pgi/Title"> PGI </a>
+            </td>
+        </tr>
+        <tr>
+            <td i18n:translate="gef_id">GEF Id:</td>
+            <td tal:content="pgi/getGEFid" />
+        </tr>
+        <tr>
+            <td i18n:translate="focal_area">Focal Area:</td>
+            <td tal:content="pgi/getFocalAreaNames" />
+        </tr>
+        <tr>
+            <td i18n:translate="geographic_scope">Geographic Scope:</td>
+            <td tal:content="pgi/getGeographicScopeValues" />
+        </tr>
+        <tr>
+            <td i18n:translate="executing_agencies">Executing Agency(ies):</td>
+            <td tal:content="pgi/getExecutingAgencyNames" />
+        </tr>
+        <tr>
+            <td i18n:translate="task_manager">Task Manager:</td>
+            <td tal:content="pgi/getTaskManagers|string:Unspecified" />
+        </tr>
+        <tr>
+            <td i18n:translate="evaluation_budget">Evaluation Budget:</td>
+            <td tal:content="string:Unknown" />
+        </tr>
+    </table>
 </div>
+<hr />
 <div>
 <!-- FMI -->
     <div style="width:100%" 
-            tal:repeat="fo python:context.getFolderContents(full_objects=True)">
-        <p>Finance Object: <span tal:content="fo/getFinanceCategory"/></p>
-        <p>IMIS No: <span tal:content="fo/getIMISNumber"/></p>
-        <p>Trustee ID: <span tal:content="fo/getTrusteeID"/></p>
-        <p>Status: <span tal:content="fo/getStatus"/></p>
-        <p>Date of last revision: <span tal:content="fo/getLastestRevisionDate"/></p>
+        tal:repeat="fo python:context.getFolderContents(full_objects=True)">
+        <table width="100%">
+            <tr>
+                <td i18n:translate="finace_object" width="30%">Finance Object:</td>
+                <td tal:content="fo/getFinanceCategory"/>
+            </tr>
+            <tr>
+                <td i18n:translate="imis_no">IMIS No:</td>
+                <td tal:content="fo/getIMISNumber" />
+            </tr>
+            <tr>
+                <td i18n:translate="trustee_id">Trustee ID:</td>
+                <td tal:content="fo/getTrusteeID" />
+            <tr>
+                <td i18n:translate="status">Status:</td>
+                <td tal:content="fo/getStatus" />
+            <tr>
+                <td i18n:translate="last_revision_date">Date of last revision:</td>
+                <td tal:content="fo/getLastestRevisionDate" />
+            </tr>
+        </table>
+        <hr />
     </div>
 </div>
+
 </metal:body>
