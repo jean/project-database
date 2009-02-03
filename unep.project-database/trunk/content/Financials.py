@@ -618,6 +618,22 @@ class Financials(BaseFolder, CurrencyMixin, BrowserDefaultMixin):
             if date != DateTime('1900/01/01'):
                 return date
 
+    def getAmountReceivable(self):
+        return self.getSumCashDisbursements() - self.getSumYearlyExpenditures()
+
+    def getLatestReportData(self, report, field):
+        values = self.getReports()
+        result = ''
+        if values:
+            date = DateTime('1900/01/01')
+            for v in values:
+                if v['report_received_date'] and v['report_type'] == report:
+                    if date < v['report_received_date']:
+                        date = v['report_received_date']
+                        result = v[field]
+            if date != DateTime('1900/01/01'):
+                return result
+        return 'Unspecified'
 
 
 registerType(Financials, PROJECTNAME)
