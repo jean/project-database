@@ -28,4 +28,12 @@
         permission="zope2.View" 
         />
 
+    <!-- The project view options-->
+    <browser:viewlet
+        name="unep.projectviewoptions"
+        manager=".interfaces.IViewOptions"
+        class=".viewoptions.ViewOptions"
+        permission="zope2.View" 
+        />
+
 </configure>
