@@ -66,17 +66,6 @@ class FMIFolder(BaseFolder, BrowserDefaultMixin):
 
     # Manually created methods
 
-    security.declarePublic('sumTotalStageActual')
-    def sumTotalStageActual(self):
-        """
-        """
-        from Products.FinanceFields.Money import Money
-        total = Money(0, 'USD')
-        for actual in self.objectValues('Financials'):
-            if actual.getTotalCostOfProjectStageActual():
-                total += actual.getTotalCostOfProjectStageActual()
-        return str(total)
-
 
 
 registerType(FMIFolder, PROJECTNAME)

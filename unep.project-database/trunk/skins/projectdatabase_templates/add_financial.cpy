@@ -19,7 +19,7 @@ message='Could not add financial.'
 
 context.invokeFactory(id=category, type_name='Financials')
 new_context = context[category]
-new_context.edit(Title=category, FinancialCategory=category)
+new_context.edit(title=category.upper(), FinanceCategory=category)
 
 message = 'Create Finance Object %s successfully' % category
 result = 'success'

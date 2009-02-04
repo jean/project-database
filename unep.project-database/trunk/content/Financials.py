@@ -393,6 +393,8 @@ Financials_schema = BaseFolderSchema.copy() + \
     schema.copy()
 
 ##code-section after-schema #fill in your manual code here
+Financials_schema['title'].widget.visible = {'edit':'hidden', 'view':'invisible'}
+Financials_schema['FinanceCategory'].widget.visible = {'edit':'hidden', 'view':'invisible'}
 ##/code-section after-schema
 
 class Financials(BaseFolder, CurrencyMixin, BrowserDefaultMixin):
