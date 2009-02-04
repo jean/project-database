@@ -1,11 +1,11 @@
-<div class="viewoptions">
-    <tal:project tal:define="project context/@@unep_utils/projectParentURL | nothing">
-        <tal:hasproject tal:condition="project">
+<tal:project tal:define="project context/@@unep_utils/projectParentURL | nothing">
+    <div class="viewoptions" tal:condition="project">
+            <div class="viewoptions-item" tal:attributes="class python: context.portal_type == 'Project' and 'viewoptions-item viewoptions-selected' or 'viewoptions-item'"><a href="" tal:attributes="href string:${project}">Overview</a></div>
             <div class="viewoptions-item" tal:attributes="class python: context.portal_type == 'ProjectGeneralInformation' and 'viewoptions-item viewoptions-selected' or 'viewoptions-item'"><a href="" tal:attributes="href string:${project}/project_general_info">General</a></div>
             <div class="viewoptions-item" tal:attributes="class python: context.portal_type == 'FMIFolder' and 'viewoptions-item viewoptions-selected' or 'viewoptions-item'"><a href="" tal:attributes="href string:${project}/fmi_folder">Financial</a></div>
             <div class="viewoptions-item" tal:attributes="class python: context.portal_type == 'Folder' and 'viewoptions-item viewoptions-selected' or 'viewoptions-item'"><a href="" tal:attributes="href string:${project}/documents">Documents</a></div>
             <div class="viewoptions-item" tal:attributes="class python: context.portal_type == 'Milestone' and 'viewoptions-item viewoptions-selected' or 'viewoptions-item'"><a href="" tal:attributes="href string:${project}/milestones">Milestones</a></div>
             <div class="viewoptions-item" tal:attributes="class python: context.portal_type == 'MandEfolder' and 'viewoptions-item viewoptions-selected' or 'viewoptions-item'"><a href="" tal:attributes="href string:${project}/mne_folder">Monitoring &amp; Evaluation</a></div>
-        </tal:hasproject>
-    </tal:project>
-</div>
+        <div class="clearboth"></div>
+    </div>
+</tal:project>

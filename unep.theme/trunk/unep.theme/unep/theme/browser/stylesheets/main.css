@@ -37,45 +37,35 @@ div.unep-menubar {
     width: 100%; 
     border-bottom: 1px solid #e7e7e7;
     font-size: x-small; 
-    height: 34px; 
 }
 
-div.unep-menuitem {
+div.unep-menuitem, div.unep-menuselected {
     float:left; 
     border-right: 1px solid #e7e7e7; 
     text-align: center;
+    height: 3em;
 }
 
-div.unep-menuitem a {
+div.unep-menuitem a, div.unep-menuselected a {
     display: block;
-    padding: 10px 20px 10px 20px; 
+    padding: 1em 2em 1em 2em; 
 }
 
 div.unep-menuitem a:hover {
     background: #d8d8d8; 
 }
 
-div.unep-menuselected {
-    float:left; 
-    border-right: 1px solid #e7e7e7; 
-    text-align: center;
-}
-
 div.unep-menuselected a {
-    display: block;
-    padding: 10px 20px 10px 20px; 
     background: #24a1d1; 
     color: white; 
 }
 
-div.unep-menuselected a:hover {
-    color: white; 
-    background: #24a1d1; 
+div.unep-menuitem form {
+    margin: 0.5em 2em 0.5em 2em; 
 }
 
 /* ------------------ View Options bar ---------------------------------- */
 div.viewoptions {
-    float:left;
     width: 100%; 
     border-bottom: 1px solid #e7e7e7;
     margin-bottom:15px;
@@ -88,7 +78,7 @@ div.viewoptions-item {
 
 div.viewoptions-item a {
     float:left;
-    padding: 10px 20px 10px 20px; 
+    padding: 0.5em 1em 0.5em 1em; 
 }
 
 div.viewoptions-item a:hover {
@@ -98,6 +88,10 @@ div.viewoptions-item a:hover {
 div.viewoptions-item.viewoptions-selected a {
     background: #24a1d1; 
     color: white; 
+}
+
+div.clearboth {
+    clear:both; 
 }
 
 /* ------------------ Top Links Styles ---------------------------------- */
