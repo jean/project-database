@@ -5,6 +5,22 @@
 <metal:footer metal:define-macro="footer" />
 <metal:body metal:define-macro="body">
 <div>
+    <form method="POST" action="#"
+        tal:attributes="action python: here.absolute_url() + '/' + template.id">
+      <input type="hidden" name="form.submitted" value="1" />
+      <input type="submit" name="add" value="Add Finacial Object"/>
+        <select name="category" 
+              tal:define="
+                    vocab python:context.portal_vocabularies.getVocabularyByName('FinanceCategory');
+                    dList python:vocab.getDisplayList(context)">
+            <tal:rep tal:repeat="item dList/items">
+                <option tal:attributes="value python:item[0];"
+                        tal:content="python:item[1]">
+                        Option
+                </option>
+            </tal:rep>
+        </select>
+    </form>
     <table width="100%"
         tal:define="pgi nocall:context/aq_parent/project_general_info">
 <!-- PGI -->

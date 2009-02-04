@@ -1,0 +1,3 @@
+[actions]
+action.success = redirect_to:string:${context/category}/edit
+
