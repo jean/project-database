@@ -1,3 +1,5 @@
+[default]
+
 [actions]
-action.success = redirect_to:string:${context/category}/edit
+action.success = redirect_to:string:${object_url}/edit
 

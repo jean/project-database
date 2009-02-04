@@ -1,6 +1,5 @@
-[validators]
-#validators=validate_add_financial
+[default]
+title=Add a Financial Object
 
 [actions]
 action.success=traverse_to:string:add_financial
-

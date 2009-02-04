@@ -1,4 +1,4 @@
-## Script (Python) "validate_add_financial"
+## Controller Python Script "validate_add_financial"
 ##bind container=container
 ##bind context=context
 ##bind namespace=
@@ -14,10 +14,9 @@ import logging
 logger = logging.getLogger("Validate Add Financial")
 logger.info("Inside validate with %s" % category)
 
-if category in context.object_ids():
+if category in context.objectIds():
     context.plone_utils.addPortalMessage(_(u'Finacial object already exists.'), 'error')
     return state.set(status='failure')
 else:
     logger.info("leaving validate with %s" % category)
     return state
-
