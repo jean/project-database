@@ -8,7 +8,7 @@
     <form name="add_finobject" method="post" action=""
             tal:attributes="action python: context.absolute_url() + '/fmifolder_view'">
         <input type="hidden" name="form.submitted" value="1" />
-        <input type="submit" name="form.button.add" value="Add Finacial Object"/>
+        <input type="submit" name="form.button.add" value="Add Financial Object"/>
         <select name="category" 
               tal:define="
                     vocab python:context.portal_vocabularies.getVocabularyByName('FinanceCategory');
@@ -159,7 +159,8 @@
                                     b_start python:getattr(request, b_start_str, b_start);
                                     batch python:Batch(brains, b_size, int(b_start), orphan=1, b_start_str=b_start_str);
                                     sos python:[brain.getObject() for brain in batch];
-                                    ">
+                                    "
+                        tal:condition="python:len(brains) > 0">
                     <table class="table-fullwidth">
                         <tr>
                             <td colspan="9">&nbsp;</td>
