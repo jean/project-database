@@ -5,10 +5,10 @@
 <metal:footer metal:define-macro="footer" />
 <metal:body metal:define-macro="body">
 <div>
-    <form method="POST" action="#"
-        tal:attributes="action python: here.absolute_url() + '/' + template.id">
-      <input type="hidden" name="form.submitted" value="1" />
-      <input type="submit" name="add" value="Add Finacial Object"/>
+    <form name="add_finobject" method="post" action=""
+            tal:attributes="action python: context.absolute_url() + '/fmifolder_view'">
+        <input type="hidden" name="form.submitted" value="1" />
+        <input type="submit" name="form.button.add" value="Add Finacial Object"/>
         <select name="category" 
               tal:define="
                     vocab python:context.portal_vocabularies.getVocabularyByName('FinanceCategory');
