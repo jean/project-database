@@ -114,58 +114,14 @@
     <div class="unep-menubar">
         <div class="unep-menuitem" style="width: 40px; height: 100%;">&nbsp;</div>
         <tal:tabs tal:replace="structure provider:unep.portaltop" />
-        <div class="unep-menuitem" style="padding: 6px 20px 6px 20px;">
+        <div class="unep-menuitem">
             <form name="searchForm" method="post" tal:attributes="action string:${portal_url}/search">
                 <input style="width: 100px;" type="text" name="SearchableText" />
                 <input name="searchButton" class="searchButton" type="submit" value="search" i18n:attributes="value search" />
             </form>
         </div>
+        <div class="clearboth"></div>
     </div>
-
-    <!-- top links bar -->
-    <metal:context-toplinks define-slot="context-toplinks" 
-        tal:condition="python: not isAnon and member.getId() != 'admin'">
-    <div class="bar" metal:define-macro="toplinks-macro">
-        <div class="links-row">&nbsp;</div>
-        <div class="links-row">
-            <span style="padding-left: 40px;">Events:</span>
-            <span class="links-item">&raquo;</span>
-            <a href="#"><span class="links-item">Conference on Lorem Ipsum</span></a>
-            <span class="links-item greytext">&#149;</span>
-            <a href="#"><span class="links-item">International Meeting of Lorem</span></a>
-            <span class="links-item greytext">&#149;</span>
-            <a href="#"><span class="links-item">Environmental Impact of Ipsum</span></a>
-            <span class="links-item greytext">&#149;</span>
-            <a href="#"><span class="links-item" style="font-weight: normal;" i18n:translate="more_events">more events</span></a>
-            <span class="links-item">&raquo;</span>
-        </div>
-        <div class="links-row">
-            <span style="padding-left: 40px;">Policies and Operational Guidelines:</span>
-            <span class="links-item">&raquo;</span>
-            <a href="#"><span class="links-item">Policy on Lorem Ipsum</span></a>
-            <span class="links-item greytext">&#149;</span>
-            <a href="#"><span class="links-item">International Agreement of Lorem</span></a>
-            <span class="links-item greytext">&#149;</span>
-            <a href="#"><span class="links-item" style="font-weight: normal;" i18n:translate="more_policies">more policies</span></a>
-            <span class="links-item">&raquo;</span>
-        </div>
-        <div class="links-row">
-            <span style="padding-left: 40px;">Publications:</span>
-            <span class="links-item">&raquo;</span>
-            <a href="#"><span class="links-item">Annual Reports</span></a>
-            <span class="links-item greytext">&#149;</span>
-            <a href="#"><span class="links-item">Operational Info</span></a>
-            <span class="links-item greytext">&#149;</span>
-            <a href="#"><span class="links-item">Focal Areas</span></a>
-            <span class="links-item greytext">&#149;</span>
-            <a href="#"><span class="links-item">Project Manuals</span></a>
-            <span class="links-item greytext">&#149;</span>
-            <a href="#"><span class="links-item" style="font-weight: normal;" i18n:translate="more_publications">more publications</span></a>
-            <span class="links-item">&raquo;</span>
-        </div>
-        <div class="links-row">&nbsp;</div>
-    </div>
-    </metal:context-toplinks>
 
     <!-- member info bar -->
     <div class="user-info" tal:condition="python: not isAnon and member.getId() != 'admin'">
