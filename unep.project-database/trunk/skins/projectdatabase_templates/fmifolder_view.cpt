@@ -64,7 +64,7 @@
         tal:repeat="fo python:context.getFolderContents(full_objects=True)">
         <table width="100%">
             <tr>
-                <td i18n:translate="finace_object" width="30%">Finance Object:</td>
+                <td i18n:translate="finance_object" width="30%">Finance Object:</td>
                 <td>
                     <span tal:content="fo/getFinanceCategory">PPG</span>&nbsp;
                     <a tal:attributes="href string:${fo/absolute_url}/view">
@@ -106,7 +106,7 @@
             </tr>
             <tr>
                 <td colspan="2">
-                    <table width="100%">
+                    <table class="table-fullwidth">
                         <tr>
                             <th i18n:translate="total_cash_disbursed">
                                 Total Cash Disbursed
@@ -133,7 +133,7 @@
                                 Last Progress Report
                             </th>
                         </tr>
-                        <tr>
+                        <tr class="even">
                             <td tal:content="fo/getSumCashDisbursements" />
                             <td tal:content="fo/getSumYearlyExpenditures" />
                             <td tal:content="fo/getAmountReceivable" />
@@ -149,7 +149,18 @@
             <!-- Sub-Projects -->
             <tr>
                 <td colspan="2">
-                    <table width="100%">
+                    <tal:batch
+                        tal:define="brains python:fo.getFolderContents(full_objects=False);
+                                    Batch python:modules['Products.CMFPlone'].Batch;
+                                    b_size python:20;
+                                    b_start python:0;
+                                    b_start_num repeat/fo/index;
+                                    b_start_str python:'b_start_%s' % b_start_num;
+                                    b_start python:getattr(request, b_start_str, b_start);
+                                    batch python:Batch(brains, b_size, int(b_start), orphan=1, b_start_str=b_start_str);
+                                    sos python:[brain.getObject() for brain in batch];
+                                    ">
+                    <table class="table-fullwidth">
                         <tr>
                             <td colspan="9">&nbsp;</td>
                         </tr>
@@ -181,9 +192,9 @@
                                 Last Inventory Report
                             </th>
                         </tr>
-                        <tal:block
-                            tal:repeat="so python:fo.getFolderContents(full_objects=True)">
-                        <tr>
+                        <tal:block tal:repeat="so sos">
+                        <tr tal:define="even repeat/so/even;"
+                            tal:attributes="class python:even and 'odd' or 'even'">
                             <td>
                                 <a tal:attributes="href string:${so/absolute_url}/view"
                                     tal:content="so/getIMISNumber">sub project</a>
@@ -198,7 +209,7 @@
                             <td tal:content="python:so.getLatestReportData('inventory', 'report_received_date')" />
                         </tr>
                         </tal:block>
-                        <tr>
+                        <tr class="even">
                             <td i18n:translate="total">Total</td>
                             <td>&nbsp;</td>
                             <td tal:content="fo/getSubProjectsTotalCashDisbursed" />
@@ -206,6 +217,8 @@
                             <td tal:content="fo/getSubProjectsTotalReceivable" />
                         </tr>
                     </table>
+                    <b><div metal:use-macro="here/batch_macros/macros/navigation" /></b>
+                    </tal:batch>
                 </td>
             </tr>
         </table>
