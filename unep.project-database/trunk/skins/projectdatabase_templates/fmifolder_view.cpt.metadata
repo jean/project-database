@@ -1,0 +1,6 @@
+[validators]
+#validators=validate_add_financial
+
+[actions]
+action.success=traverse_to:string:add_financial
+
