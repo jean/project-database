@@ -488,18 +488,18 @@ schema = Schema((
         ),
     ),
     ComputedField(
-        name='TotalCofinancingPlanned',
+        name='TotalCoFinancingPlanned',
         widget=ComputedField._properties['widget'](
             label="Total Co-financing (planned)",
-            label_msgid='ProjectDatabase_label_TotalCofinancingPlanned',
+            label_msgid='ProjectDatabase_label_TotalCoFinancingPlanned',
             i18n_domain='ProjectDatabase',
         ),
     ),
     ComputedField(
-        name='TotalCofinancingActual',
+        name='TotalCoFinancingActual',
         widget=ComputedField._properties['widget'](
             label="Total Co-financing (actual)",
-            label_msgid='ProjectDatabase_label_TotalCofinancingActual',
+            label_msgid='ProjectDatabase_label_TotalCoFinancingActual',
             i18n_domain='ProjectDatabase',
         ),
     ),
@@ -637,14 +637,19 @@ class ProjectGeneralInformation(BaseContent, CurrencyMixin, BrowserDefaultMixin)
             total += fmi_obj.getTotalFinanceObject()
         return total
 
-    security.declarePublic('getTotalCofinancingPlanned')
-    def getTotalCofinancingPlanned(self):
+    security.declarePublic('getTotalCoFinancingPlanned')
+    def getTotalCoFinancingPlanned(self):
         """
         """
-        pass
+        fmi_cash_objs = self.getAProject()['fmi_folder'].contentValues({'portal_type':'Financials'})
+        total = self.getZeroMoneyInstance()
+        for fmi_obj in fmi_cash_objs:
+            total += fmi_obj.getSumCoFinCashPlanned()
+            total += fmi_obj.getSumCoFinInKindPlanned()
+        return total
 
-    security.declarePublic('getTotalCofinancingActual')
-    def getTotalCofinancingActual(self):
+    security.declarePublic('getTotalCoFinancingActual')
+    def getTotalCoFinancingActual(self):
         """
         """
         fmi_cash_objs = self.getAProject()['fmi_folder'].contentValues({'portal_type':'Financials'})
@@ -743,17 +748,6 @@ class ProjectGeneralInformation(BaseContent, CurrencyMixin, BrowserDefaultMixin)
         return False
 
     # Manually created methods
-
-    security.declarePublic('getTotalCoFinancingPlanned')
-    def getTotalCoFinancingPlanned(self):
-        """
-        """
-        fmi_cash_objs = self.getAProject()['fmi_folder'].contentValues({'portal_type':'Financials'})
-        total = self.getZeroMoneyInstance()
-        for fmi_obj in fmi_cash_objs:
-            total += fmi_obj.getSumCoFinCashPlanned()
-            total += fmi_obj.getSumCoFinInKindPlanned()
-        return total
 
     security.declarePublic('getPDFCStatus')
     def getPDFCStatus(self):
