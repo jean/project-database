@@ -64,9 +64,6 @@ class FMIFolder(BaseFolder, BrowserDefaultMixin):
 
     # Methods
 
-    # Manually created methods
-
-
 
 registerType(FMIFolder, PROJECTNAME)
 # end of class FMIFolder

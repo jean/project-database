@@ -55,4 +55,12 @@
   <description />
 </term>
 
+<term>
+  <termIdentifier>Withdrawal</termIdentifier>
+  <caption>
+    <langstring language="en">Withdrawal</langstring>
+  </caption>
+  <description />
+</term>
+
 </vdex>
