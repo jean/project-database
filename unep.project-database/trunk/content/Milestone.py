@@ -210,8 +210,6 @@ class Milestone(BaseContent, BrowserDefaultMixin):
             self.getConceptDevelopmentDate('SPOClearance') is not None \
             or self.getConceptDevelopmentDate('DirectorClearance') is not None \
             or self.getConceptDevelopmentDate('PAGClearance') is not None
-            
-            
     def getConceptDevelopmentDate(self, action):
         values = self.getConceptDevelopment()
         if values:
@@ -226,8 +224,8 @@ class Milestone(BaseContent, BrowserDefaultMixin):
         return None
 
     def isPIFClearedByCEO(self):
-        return self.getPIFApprovalDate('CEOPIFApproval') is not None 
-            
+        return self.getPIFApprovalDate('CEOPIFApproval') is not None
+
     def getPIFApprovalDate(self, action):
         values = self.getPIFApproval()
         if values:
