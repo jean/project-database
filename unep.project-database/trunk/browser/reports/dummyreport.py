@@ -1,3 +1,5 @@
+import StringIO
+import csv
 from zope.publisher.interfaces.browser import IBrowserView
 from zope.interface import implements
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
@@ -13,7 +15,29 @@ class DummyReport(BrowserView):
 
     def csv(self):
         report = self.getReport()
-        return "hello,csv,world"
+        output = StringIO.StringIO()
+        csvwriter = csv.writer(output)
+
+        for header in report.getReportHeaders():
+            csvwriter.writerow([header])
+
+        for header in report.getTableHeaders():
+            csvwriter.writerow(header)
+
+        for row in report.getTableRows():
+            csvwriter.writerow(row)
+
+        for total in report.getTableTotals():
+            csvwriter.writerow(total)
+
+        for footer in report.getReportFooters():
+            csvwriter.writerow([footer])
+        
+        x = output.getvalue()
+        output.close()
+        self.request.response.setHeader("Content-Type", "text/csv")
+        self.request.response.setHeader("Content-Disposition", "attachment; filename=bob.csv")
+        return x
 
     def pdf(self):
         return "I am not a pdf, but I can fake it"
