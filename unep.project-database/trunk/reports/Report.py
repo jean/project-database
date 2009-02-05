@@ -1,4 +1,4 @@
-class Report:
+class Report(object):
 
     def __init__(self, context, name, **kw):
         self.name = name
@@ -11,19 +11,31 @@ class Report:
         self.report_footers = []
 
     def getReportHeaders(self):
-        return self.data['report_headers']
+        return self.report_headers
 
     def getTableHeaders(self):
-        return self.data['table_headers']
+        return self.table_headers
 
     def getTableRows(self):
-        return self.data['table_rows']
+        return self.table_rows
 
     def getTableTotals(self):
-        return self.data['table_totals']
+        return self.table_totals
 
     def getReportFooters(self):
-        return self.data['report_footers']
+        return self.report_footers
 
-    def buildReportData(self):
-        pass
+    def setReportHeaders(self, headers):
+        self.report_headers = headers
+
+    def getTableHeaders(self, headers):
+        self.table_headers = headers
+
+    def setTableRows(self, rows):
+        self.table_rows = rows
+
+    def setTableTotals(self, totals):
+        self.table_totals = totals
+
+    def setReportFooters(self, footers):
+        self.report_footers = footers
