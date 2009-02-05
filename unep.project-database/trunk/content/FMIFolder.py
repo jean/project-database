@@ -17,7 +17,7 @@ from AccessControl import ClassSecurityInfo
 from Products.Archetypes.atapi import *
 from zope.interface import implements
 import interfaces
-
+from Products.ProjectDatabase.content.CurrencyMixin import CurrencyMixin
 from Products.CMFDynamicViewFTI.browserdefault import BrowserDefaultMixin
 
 from Products.ATVocabularyManager.namedvocabulary import NamedVocabulary
@@ -47,7 +47,7 @@ FMIFolder_schema = BaseFolderSchema.copy() + \
 ##code-section after-schema #fill in your manual code here
 ##/code-section after-schema
 
-class FMIFolder(BaseFolder, BrowserDefaultMixin):
+class FMIFolder(BaseFolder, CurrencyMixin, BrowserDefaultMixin):
     """
     """
     security = ClassSecurityInfo()
@@ -63,6 +63,15 @@ class FMIFolder(BaseFolder, BrowserDefaultMixin):
     ##/code-section class-header
 
     # Methods
+
+    # Manually created methods
+
+    def getTotalPPGAmount(self):
+        result = self.getZeroMoneyInstance()
+        if self.get('ppg', None):
+            result = self.ppg.getSumFinanceObjectAmount()
+        return result
+
 
 
 registerType(FMIFolder, PROJECTNAME)

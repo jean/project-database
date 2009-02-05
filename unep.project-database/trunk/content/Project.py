@@ -98,6 +98,26 @@ class Project(BaseFolder, CurrencyMixin, BrowserDefaultMixin):
             total += fo.getSumFinanceObjectAmount()
         return total
 
+    security.declarePublic('getTotalUNEPGEFAmount')
+    def getTotalUNEPGEFAmount(self):
+        """
+        """
+        fin_objs = self.fmi_folder.getFolderContents(portal_type='Financials')
+        total = self.getZeroMoneyInstance()
+        for fo in fin_objs:
+            total += fo.getSumFinanceObjectAmount()
+        return total
+
+    security.declarePublic('getTotalUNEPFee')
+    def getTotalUNEPFee(self):
+        """
+        """
+        fin_objs = self.fmi_folder.getFolderContents(portal_type='Financials')
+        total = self.getZeroMoneyInstance()
+        for fo in fin_objs:
+            total += fo.getFinanceObjectFee()
+        return total
+
 
 
 registerType(Project, PROJECTNAME)
