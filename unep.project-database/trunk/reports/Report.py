@@ -1,16 +1,14 @@
 class Report:
 
-    def __init__(self, name, **kw):
+    def __init__(self, context, name, **kw):
         self.name = name
         self.params = kw
 
-        self.data = {
-                'report_headers':[],
-                'table_headers':[[]],
-                'table_rows':[[]],
-                'table_totals':[[]],
-                'report_footers':[]
-                }
+        self.report_headers = []
+        self.table_headers = [[]]
+        self.table_rows = [[]]
+        self.table_totals = [[]]
+        self.report_footers = []
 
     def getReportHeaders(self):
         return self.data['report_headers']
