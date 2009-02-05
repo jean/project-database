@@ -72,6 +72,7 @@ schema = Schema((
     ),
     MoneyField(
         name='CommittedGrant',
+        default='0.0',
         widget=MoneyField._properties['widget'](
             label="Committed Grant",
             label_msgid='ProjectDatabase_label_CommittedGrant',
@@ -256,7 +257,7 @@ schema = Schema((
     DataGridField(
         name='ExecutingAgencyRiskRating',
         widget=DataGridField._properties['widget'](
-            columns= {'Risk_Level':Column("Risk Level"), "Assessment_Date":CalendarColumn("Assessment Date"), 'Remarks':Column("Remarks")},
+            columns= {'Risk_Level':SelectColumn("Risk Level", vocabulary='getRiskLevelVocabulary'), "Assessment_Date":CalendarColumn("Assessment Date"), 'Remarks':Column("Remarks")},
             label="Agency Risk Rating",
             label_msgid='ProjectDatabase_label_ExecutingAgencyRiskRating',
             i18n_domain='ProjectDatabase',
@@ -328,6 +329,14 @@ class SubProject(BaseContent, CurrencyMixin, BrowserDefaultMixin):
         vocab = pvt.getVocabularyByName('ProjectRevisionType')
         return vocab.getDisplayList(self)
 
+    security.declarePublic('getRiskLevelVocabulary')
+    def getRiskLevelVocabulary(self):
+        """
+        """
+        pvt = getToolByName(self, 'portal_vocabularies')
+        vocab = pvt.getVocabularyByName('RiskLevel')
+        return vocab.getDisplayList(self)
+
     security.declarePublic('getFinanceCategory')
     def getFinanceCategory(self):
         return self.aq_parent.getFinanceCategory()
@@ -374,7 +383,6 @@ class SubProject(BaseContent, CurrencyMixin, BrowserDefaultMixin):
         return self._computeDataGridAmount( \
             [v['cofinancing_inkind_actual_amount'] \
                 for v in values if v['cofinancing_inkind_actual_amount']])
-
     security.declarePublic('getSumCashDisbursements')
     def getSumCashDisbursements(self):
         """
@@ -383,7 +391,6 @@ class SubProject(BaseContent, CurrencyMixin, BrowserDefaultMixin):
         return self._computeDataGridAmount( \
             [v['cash_disbursements_amount'] \
                 for v in values if v['cash_disbursements_amount']])
-
     def getSumYearlyExpenditures(self):
         """
         """
@@ -436,6 +443,7 @@ class SubProject(BaseContent, CurrencyMixin, BrowserDefaultMixin):
                     result += v['executing_agency'] + ', '
             return result[:-2]
         return 'Unspecified'
+
 
 
 registerType(SubProject, PROJECTNAME)

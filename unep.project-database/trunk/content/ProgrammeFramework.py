@@ -45,6 +45,7 @@ schema = Schema((
     ),
     MoneyField(
         name='PFDAllocatedAmount',
+        default='0.0',
         widget=MoneyField._properties['widget'](
             label="PFD Allocated Amount",
             label_msgid='ProjectDatabase_label_PFDAllocatedAmount',

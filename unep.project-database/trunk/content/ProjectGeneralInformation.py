@@ -37,7 +37,7 @@ schema = Schema((
     ComputedField(
         name='DatabaseID',
         widget=ComputedField._properties['widget'](
-            label='Databaseid',
+            label="Database ID",
             label_msgid='ProjectDatabase_label_DatabaseID',
             i18n_domain='ProjectDatabase',
         ),
@@ -357,6 +357,7 @@ schema = Schema((
     ),
     MoneyField(
         name='LeveragedFinancingAmount',
+        default='0.0',
         widget=MoneyField._properties['widget'](
             label="Leveraged Financing Amount",
             label_msgid='ProjectDatabase_label_LeveragedFinancingAmount',
@@ -863,7 +864,6 @@ class ProjectGeneralInformation(BaseContent, CurrencyMixin, BrowserDefaultMixin)
             result = 'Unspecified'
         return result
 
-
     def getSelectedVocabularyValue(self, selection, vocabName):
         atvm = getToolByName(self, 'portal_vocabularies')
         vocab = atvm.getVocabularyByName(vocabName)
@@ -878,6 +878,7 @@ class ProjectGeneralInformation(BaseContent, CurrencyMixin, BrowserDefaultMixin)
         for value in selections:
             result += dict[value][0] + ', '
         return result[:-2]
+
 
 
 registerType(ProjectGeneralInformation, PROJECTNAME)
