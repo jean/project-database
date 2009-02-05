@@ -718,12 +718,6 @@ class ProjectGeneralInformation(BaseContent, CurrencyMixin, BrowserDefaultMixin)
                 status = fmi_obj.getStatus()
         return status
 
-    security.declarePublic('getProjectTitle')
-    def getProjectTitle(self):
-        """
-        """
-        pass
-
     security.declarePublic('validate_PhasedTrancheNumber')
     def validate_PhasedTrancheNumber(self, value):
         """
