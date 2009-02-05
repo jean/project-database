@@ -839,6 +839,10 @@ class ProjectGeneralInformation(BaseContent, CurrencyMixin, BrowserDefaultMixin)
         areas = self.getFocalArea()
         return self.getSelectedVocabularyValues(areas, 'FocalArea')
 
+    def getCountryNames(self):
+        countries = self.getCountry()
+        return self.getSelectedVocabularyValues(countries, 'Country')
+
     def getGeographicScopeValues(self):
         scopes = self.getScope()
         return self.getSelectedVocabularyValues(scopes, 'Scope')

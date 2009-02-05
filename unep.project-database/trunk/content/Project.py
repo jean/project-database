@@ -17,7 +17,7 @@ from AccessControl import ClassSecurityInfo
 from Products.Archetypes.atapi import *
 from zope.interface import implements
 import interfaces
-
+from Products.ProjectDatabase.content.CurrencyMixin import CurrencyMixin
 from Products.CMFDynamicViewFTI.browserdefault import BrowserDefaultMixin
 
 from Products.ATVocabularyManager.namedvocabulary import NamedVocabulary
@@ -49,7 +49,7 @@ Project_schema['title'].required = False
 Project_schema['title'].widget.visible= {'edit':'hidden', 'view':'invisible'}
 ##/code-section after-schema
 
-class Project(BaseFolder, BrowserDefaultMixin):
+class Project(BaseFolder, CurrencyMixin, BrowserDefaultMixin):
     """
     """
     security = ClassSecurityInfo()
@@ -85,6 +85,19 @@ class Project(BaseFolder, BrowserDefaultMixin):
         """
         """
         return self
+
+    # Manually created methods
+
+    security.declarePublic('getTotalGEFAmount')
+    def getTotalGEFAmount(self):
+        """
+        """
+        fin_objs = self.fmi_folder.getFolderContents(portal_type='Financials')
+        total = self.getZeroMoneyInstance()
+        for fo in fin_objs:
+            total += fo.getSumFinanceObjectAmount()
+        return total
+
 
 
 registerType(Project, PROJECTNAME)
