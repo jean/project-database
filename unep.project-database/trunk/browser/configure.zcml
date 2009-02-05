@@ -46,5 +46,6 @@
         permission="zope2.View"
         />
 
-</configure>
+    <include package=".reports" />
 
+</configure>

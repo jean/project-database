@@ -1,0 +1,14 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    i18n_domain="ProjectDatabase">
+
+    <!-- Page Views -->
+    <browser:page
+        for="*"
+        name="dummyreport"
+        class=".dummyreport.DummyReport"
+        permission="zope2.View"
+        />
+
+</configure>
