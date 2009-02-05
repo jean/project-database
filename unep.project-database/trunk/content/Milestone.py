@@ -205,7 +205,7 @@ class Milestone(BaseContent, BrowserDefaultMixin):
             return vocab.getDisplayList(self)
         return DisplayList()
 
-    def getIsClearedBySPO(self):
+    def isConceptClearedBySPO(self):
         return \
             self.getConceptDevelopmentDate('SPOClearance') is not None \
             or self.getConceptDevelopmentDate('DirectorClearance') is not None \
@@ -214,6 +214,22 @@ class Milestone(BaseContent, BrowserDefaultMixin):
             
     def getConceptDevelopmentDate(self, action):
         values = self.getConceptDevelopment()
+        if values:
+            date = DateTime('1900/01/01')
+            for v in values:
+                if v['milestone_date'] \
+                   and v['milestone_action'] == action:
+                    if date < v['milestone_date']:
+                        date = v['milestone_date']
+            if date != DateTime('1900/01/01'):
+                return date
+        return None
+
+    def isPIFClearedByCEO(self):
+        return self.getPIFApprovalDate('CEOPIFApproval') is not None 
+            
+    def getPIFApprovalDate(self, action):
+        values = self.getPIFApproval()
         if values:
             date = DateTime('1900/01/01')
             for v in values:
