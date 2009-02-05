@@ -131,6 +131,7 @@ schema = Schema((
     ),
     MoneyField(
         name='FinanceObjectFee',
+        default='0.0',
         widget=MoneyField._properties['widget'](
             label="Finance Object Fee",
             label_msgid='ProjectDatabase_label_FinanceObjectFee',
@@ -657,6 +658,7 @@ class Financials(BaseFolder, CurrencyMixin, BrowserDefaultMixin):
         for sub in subs:
             result += sub.getAmountReceivable()
         return result
+
 
 
 registerType(Financials, PROJECTNAME)

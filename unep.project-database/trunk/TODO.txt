@@ -1,7 +1,17 @@
 Things to do on UNEP Project
+* When Adding  project it must create it can take you to base_view (Overview)
 * Change number of years on datagrid calender column
-* On FMI Folder create 'Add' button with fin cat pulldown
+* Change number of years on calender widgets
+* Make project id more robust
+* Add Project Stage to Projects view
 * Add 'Publish' where appropriate
+* Styling:
+  - PGI kupu box size is out
+  - Links don't stand out
+*On Model:
+  - Add Database Id label to PGI
+  - Default FO Fee must default to 0
+
 * Roles and permissions
 * Create Money column to DataGrid 
 * Reports
