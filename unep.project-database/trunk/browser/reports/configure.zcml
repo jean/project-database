@@ -11,4 +11,20 @@
         permission="zope2.View"
         />
 
+    <!-- Page Views -->
+    <browser:page
+        for="*"
+        name="ipistatusreport"
+        class=".ipistatusreport.IPIStatusReport"
+        permission="zope2.View"
+        />
+
+    <!-- Page Views -->
+    <browser:page
+        for="*"
+        name="pifapprovalstatusreport"
+        class=".pifapprovalstatusreport.PIFApprovalStatusReport"
+        permission="zope2.View"
+        />
+
 </configure>
