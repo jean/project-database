@@ -21,6 +21,7 @@ unep/theme/configure.zcml
 unep/theme/profiles.zcml
 unep/theme/setuphandlers.py
 unep/theme/skins.zcml
+unep/theme/skinswitcher.py
 unep/theme/tests.py
 unep/theme/version.txt
 unep/theme/browser/__init__.py
@@ -28,10 +29,13 @@ unep/theme/browser/configure.zcml
 unep/theme/browser/interfaces.py
 unep/theme/browser/uneputils.py
 unep/theme/browser/viewlet.pt
-unep/theme/browser/viewlets.py
 unep/theme/browser/images/README.txt
 unep/theme/browser/stylesheets/README.txt
 unep/theme/browser/stylesheets/main.css
+unep/theme/browser/viewlets/__init__.py
+unep/theme/browser/viewlets/configure.zcml
+unep/theme/browser/viewlets/unep_tabs.pt
+unep/theme/browser/viewlets/unep_viewlets.py
 unep/theme/portlets/__init__.py
 unep/theme/portlets/configure.zcml
 unep/theme/portlets/myprojects.pt
@@ -60,5 +64,3 @@ unep/theme/skins/unep_theme_styles/base_properties.props
 unep/theme/skins/unep_theme_styles/portlets.css.dtml
 unep/theme/viewlets/__init__.py
 unep/theme/viewlets/configure.zcml
-unep/theme/viewlets/unep_tabs.pt
-unep/theme/viewlets/unep_viewlets.py
