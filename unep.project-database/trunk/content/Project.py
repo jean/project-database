@@ -92,7 +92,7 @@ class Project(BaseFolder, CurrencyMixin, BrowserDefaultMixin):
     def getTotalGEFAmount(self):
         """
         """
-        fin_objs = self.fmi_folder.getFolderContents(portal_type='Financials')
+        fin_objs = self.fmi_folder.objectValues(spec='Financials')
         total = self.getZeroMoneyInstance()
         for fo in fin_objs:
             total += fo.getSumFinanceObjectAmount()
@@ -102,7 +102,7 @@ class Project(BaseFolder, CurrencyMixin, BrowserDefaultMixin):
     def getTotalUNEPGEFAmount(self):
         """
         """
-        fin_objs = self.fmi_folder.getFolderContents(portal_type='Financials')
+        fin_objs = self.fmi_folder.objectValues(spec='Financials')
         total = self.getZeroMoneyInstance()
         for fo in fin_objs:
             total += fo.getSumFinanceObjectAmount()
@@ -112,7 +112,7 @@ class Project(BaseFolder, CurrencyMixin, BrowserDefaultMixin):
     def getTotalUNEPFee(self):
         """
         """
-        fin_objs = self.fmi_folder.getFolderContents(portal_type='Financials')
+        fin_objs = self.fmi_folder.objectValues(spec='Financials')
         total = self.getZeroMoneyInstance()
         for fo in fin_objs:
             total += fo.getFinanceObjectFee()
