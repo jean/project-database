@@ -1,8 +1,7 @@
 class Report(object):
 
-    def __init__(self, context, name, **kw):
+    def __init__(self, name):
         self.name = name
-        self.params = kw
 
         self.report_headers = []
         self.table_headers = [[]]
@@ -28,7 +27,7 @@ class Report(object):
     def setReportHeaders(self, headers):
         self.report_headers = headers
 
-    def getTableHeaders(self, headers):
+    def setTableHeaders(self, headers):
         self.table_headers = headers
 
     def setTableRows(self, rows):
