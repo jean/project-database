@@ -1,0 +1,27 @@
+Metadata-Version: 1.0
+Name: unep.policy
+Version: 0.1.build.1dev-r238
+Summary: UNEP Project Database configuration product
+Home-page: https://project-database.googlecode.com/svn/unep.policy/trunk
+Author: Jurgen Blignaut
+Author-email: jurgen@upfrontsystems.co.za
+License: GPL
+Description: Introduction
+        ============
+        
+        
+        
+        Changelog
+        =========
+        
+        0.1 build 1 - Unreleased
+        ----------------
+        
+        * Initial release
+        
+        
+Keywords: UNEP project database configuration
+Platform: UNKNOWN
+Classifier: Framework :: Plone
+Classifier: Programming Language :: Python
+Classifier: Topic :: Software Development :: Libraries :: Python Modules

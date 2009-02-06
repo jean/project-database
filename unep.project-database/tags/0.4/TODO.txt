@@ -1,0 +1,26 @@
+Things to do on UNEP Project
+* When Adding  project it must create it can take you to base_view (Overview)
+* Change number of years on datagrid calender column
+* Change number of years on calender widgets
+* Make project id more robust
+* Add Project Stage to Projects view
+* Add 'Publish' where appropriate
+* Styling:
+  - PGI kupu box size is out
+  - Links don't stand out
+*On Model:
+  - Add Database Id label to PGI
+  - Default FO Fee must default to 0
+
+* Roles and permissions
+* Create Money column to DataGrid 
+* Reports
+* Export to CSV
+* Export to PDF
+* Import historical data
+
+* Questions for UNEP
+- On FMI View, Which task manager/s should be displayed?
+- ON FMI View, Evaluation Budget amount and BAC is on FO not project. Must
+  the amounts be summed?
+- M&E - only one instance per project?

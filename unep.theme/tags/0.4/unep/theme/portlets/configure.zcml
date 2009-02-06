@@ -1,0 +1,22 @@
+<configure xmlns="http://namespaces.zope.org/zope"
+           xmlns:plone="http://namespaces.plone.org/plone">
+
+    <include package="plone.app.portlets" />
+
+    <plone:portlet
+        name="unep.Overview"
+        interface=".overview.IOverviewPortlet"
+        assignment=".overview.Assignment"
+        renderer=".overview.Renderer"
+        addview=".overview.AddForm"
+        />
+
+    <plone:portlet
+        name="unep.MyProjects"
+        interface=".myprojects.IMyProjectsView"
+        assignment=".myprojects.Assignment"
+        renderer=".myprojects.Renderer"
+        addview=".myprojects.AddForm"
+        />
+
+</configure>
