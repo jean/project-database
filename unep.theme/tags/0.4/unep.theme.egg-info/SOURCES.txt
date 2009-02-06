@@ -34,8 +34,11 @@ unep/theme/browser/stylesheets/README.txt
 unep/theme/browser/stylesheets/main.css
 unep/theme/browser/viewlets/__init__.py
 unep/theme/browser/viewlets/configure.zcml
+unep/theme/browser/viewlets/interfaces.py
 unep/theme/browser/viewlets/unep_tabs.pt
 unep/theme/browser/viewlets/unep_viewlets.py
+unep/theme/browser/viewlets/viewoptions.pt
+unep/theme/browser/viewlets/viewoptions.py
 unep/theme/portlets/__init__.py
 unep/theme/portlets/configure.zcml
 unep/theme/portlets/myprojects.pt
