@@ -1,0 +1,18 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:five="http://namespaces.zope.org/five"
+    i18n_domain="unep.theme">
+
+   <five:registerPackage package="." initialize=".initialize" />
+
+   <include package=".browser" />
+   <include package=".portlets" />
+
+   <include file="skins.zcml" />
+   <include file="profiles.zcml" />
+<subscriber
+    for="Products.CMFPlone.interfaces.IPloneSiteRoot
+         zope.app.publication.interfaces.IBeforeTraverseEvent"
+    handler=".skinswitcher.setSkin" />
+
+</configure>

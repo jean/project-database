@@ -1,0 +1,46 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      lang="en"
+      metal:use-macro="here/main_template/macros/master"
+      i18n:domain="plone">
+<body>
+
+<div metal:fill-slot="main">
+    <tal:def tal:define="report view/getReport">
+
+        <tal:loop tal:repeat="header report/getReportHeaders">
+            <h1 class="documentFirstHeading" tal:condition="repeat/header/start" tal:content="header">Header</h1>
+            <h2 class="reportHeader" tal:condition="not:repeat/header/start" tal:content="header">Header</h2>
+        </tal:loop>
+
+        <table class="table-fullwidth">
+        <tr tal:repeat="tableheaders report/getTableHeaders">
+            <th tal:repeat="tableheader tableheaders" tal:content="tableheader">Head</th>
+        </tr>
+
+        <tal:rows tal:repeat="tablerows report/getTableRows">
+            <tr tal:define="even repeat/tablerows/even"
+                tal:attributes="class python:even and 'odd' or 'even'">
+                <td tal:repeat="tablerow tablerows" tal:content="tablerow">Row</td>
+            </tr>
+        </tal:rows>
+
+        <tal:row tal:repeat="tabletotals report/getTableTotals">
+        <tr class="firstrow totalrow" tal:condition="repeat/tabletotals/start">
+            <td tal:repeat="tabletotal tabletotals" tal:content="tabletotal">Total</td>
+        </tr>
+        <tr class="totalrow" tal:condition="not:repeat/tabletotals/start">
+            <td tal:repeat="tabletotal tabletotals" tal:content="tabletotal">Total</td>
+        </tr>
+        </tal:row>
+        </table>
+
+        <ul tal:define="footers report/getReportFooters" tal:condition="footers" class="report-footer">
+            <li tal:repeat="footer footers" tal:content="footer">footer</li>
+        </ul>
+    </tal:def>
+</div>
+</body>
+</html>

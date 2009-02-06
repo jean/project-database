@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vdex xmlns="http://www.imsglobal.org/xsd/imsvdex_v1p0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.imsglobal.org/xsd/imsvdex_v1p0 imsvdex_v1p0.xsd http://www.imsglobal.org/xsd/imsmd_rootv1p2p1 imsmd_rootv1p2p1.xsd"
+    language="en" orderSignificant="true" profileType="flatTokenTerms">
+<vocabName>
+  <langstring language="en">InceptionRiskRating</langstring>
+</vocabName>
+
+<term>
+  <termIdentifier>L</termIdentifier>
+  <caption>
+    <langstring language="en">Low Risk</langstring>
+  </caption>
+  <description />
+</term>
+
+<term>
+  <termIdentifier>M</termIdentifier>
+  <caption>
+    <langstring language="en">Moderate Risk</langstring>
+  </caption>
+  <description />
+</term>
+
+<term>
+  <termIdentifier>S</termIdentifier>
+  <caption>
+    <langstring language="en">Substantial Risk</langstring>
+  </caption>
+  <description />
+</term>
+
+<term>
+  <termIdentifier>H</termIdentifier>
+  <caption>
+    <langstring language="en">High Risk</langstring>
+  </caption>
+  <description />
+</term>
+
+<term>
+  <termIdentifier>TBD</termIdentifier>
+  <caption>
+    <langstring language="en">To be determined</langstring>
+  </caption>
+  <description />
+</term>
+
+</vdex>
