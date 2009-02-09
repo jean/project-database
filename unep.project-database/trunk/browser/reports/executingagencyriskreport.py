@@ -1,8 +1,8 @@
-from Products.ProjectDatabase.reports.ExecutingAgencyReportFactory \
-    import ExecutingAgencyReportFactory
+from Products.ProjectDatabase.reports.ExecutingAgencyRiskReportFactory \
+    import ExecutingAgencyRiskReportFactory
 from basereport import BaseReport
 
-class ExecutingAgencyReport(BaseReport):
+class ExecutingAgencyRiskReport(BaseReport):
     def getReport(self):
-        factory = ExecutingAgencyReportFactory(self.context)
+        factory = ExecutingAgencyRiskReportFactory(self.context)
         return factory.getReport()

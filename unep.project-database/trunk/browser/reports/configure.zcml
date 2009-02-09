@@ -195,8 +195,8 @@
 
     <browser:page
         for="*"
-        name="executingagencyreport"
-        class=".executingagencyreport.ExecutingAgencyReport"
+        name="executingagencyriskreport"
+        class=".executingagencyriskreport.ExecutingAgencyRiskReport"
         permission="zope2.View"
         />
 
@@ -251,8 +251,8 @@
 
     <browser:page
         for="*"
-        name="productratingsreport"
-        class=".productratingsreport.ProductRatingsReport"
+        name="projectratingsreport"
+        class=".projectratingsreport.ProjectRatingsReport"
         permission="zope2.View"
         />
 

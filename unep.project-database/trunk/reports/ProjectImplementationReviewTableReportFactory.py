@@ -1,6 +1,6 @@
 from Report import Report
 
-class ProjectImplementationReviewReportFactory(object):
+class ProjectImplementationReviewTableReportFactory(object):
 
     def __init__(self, context, **kw):
         self.context = context
