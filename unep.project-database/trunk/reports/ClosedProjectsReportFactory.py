@@ -1,6 +1,6 @@
 from Report import Report
 
-class CompletedProjectsReportFactory(object):
+class ClosedProjectsReportFactory(object):
 
     def __init__(self, projectdatabase, **kw):
         self.projectdatabase = projectdatabase
@@ -8,9 +8,9 @@ class CompletedProjectsReportFactory(object):
 
     def getReport(self):
         # create and fill the report
-        report = Report('Completed Projects Report')
+        report = Report('Closed Projects Report')
         report.setReportHeaders((
-            'Completed Projects Report',
+            'Closed Projects Report',
             ),)
         report.setTableHeaders(((
             'Dbase ID.',
@@ -26,8 +26,9 @@ class CompletedProjectsReportFactory(object):
             'UNEP Fee',
             'Signature',
             'Mid-term Review',
-            'Last Revision Date',
             'Actual Completion',
+            'Terminal Evaluation',
+            'Closing Revision',
             ),))
         report.setTableRows(self.getReportData())
         # report.setTableTotals([])
@@ -38,7 +39,7 @@ class CompletedProjectsReportFactory(object):
         projects = self.projectdatabase.objectValues(spec='Project')
         result = []
         for project in projects:
-            if project.milestones.getProjectImplementationDate('CompletionActual'):
+            if project.milestones.getProjectImplementationDate('ClosureActual'):
                 result.append((
                     project.getId(),
                     project.project_general_info.getGEFid(),
@@ -53,7 +54,8 @@ class CompletedProjectsReportFactory(object):
                     project.getTotalUNEPFee(),
                     project.milestones.getProjectImplementationDate('SignatureOfLegalInstrumentActual'),
                     project.milestones.getEvaluationDatesDate('MTERactual'),
-                    'Unknown Last revision date',
                     project.milestones.getProjectImplementationDate('CompletionActual'),
+                    project.milestones.getEvaluationDatesDate('TerminalEvaluationActual'),
+                    'Unknown closing revision date',
                     ))
         return result
