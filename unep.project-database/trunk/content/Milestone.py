@@ -167,7 +167,7 @@ class Milestone(BaseContent, BrowserDefaultMixin):
     # Manually created methods
 
     def getProjectTitle(self):
-        return self.getAProject()['project_general_info'].Title()
+        return self.getAProject().project_general_info.Title()
 
     def getConceptDevelopmentActionsVocabulary(self):
         return self.getVocabulary('ConceptDevelopmentActions')
