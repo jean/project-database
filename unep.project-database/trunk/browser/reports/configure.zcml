@@ -34,13 +34,6 @@
 
     <browser:page
         for="*"
-        name="ppgreceivablesreport"
-        class=".ppgreceivablesreport.PPGReceivablesReport"
-        permission="zope2.View"
-        />
-
-    <browser:page
-        for="*"
         name="mspimplstatusreport"
         class=".mspimplstatusreport.MSPImplStatusReport"
         permission="zope2.View"
@@ -57,6 +50,34 @@
         for="*"
         name="eeaimplstatusreport"
         class=".eeaimplstatusreport.EEAImplStatusReport"
+        permission="zope2.View"
+        />
+
+    <browser:page
+        for="*"
+        name="ppgreceivablesreport"
+        class=".ppgreceivablesreport.PPGReceivablesReport"
+        permission="zope2.View"
+        />
+
+    <browser:page
+        for="*"
+        name="mspreceivablesreport"
+        class=".mspreceivablesreport.MSPReceivablesReport"
+        permission="zope2.View"
+        />
+
+    <browser:page
+        for="*"
+        name="fspreceivablesreport"
+        class=".fspreceivablesreport.FSPReceivablesReport"
+        permission="zope2.View"
+        />
+
+    <browser:page
+        for="*"
+        name="eeareceivablesreport"
+        class=".eeareceivablesreport.EEAReceivablesReport"
         permission="zope2.View"
         />
 
