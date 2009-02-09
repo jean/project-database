@@ -241,6 +241,19 @@ class Milestone(BaseContent, BrowserDefaultMixin):
         return None
 
 
+    def geProjectApprovalDate(self, action):
+        values = self.getProjectApproval()
+        if values:
+            date = DateTime('1900/01/01')
+            for v in values:
+                if v['milestone_date'] \
+                   and v['milestone_action'] == action:
+                    if date < v['milestone_date']:
+                        date = v['milestone_date']
+            if date != DateTime('1900/01/01'):
+                return date
+        return None
+
     def getProjectImplementationDate(self, action):
         values = self.getProjectImplementation()
         if values:
@@ -253,6 +266,20 @@ class Milestone(BaseContent, BrowserDefaultMixin):
             if date != DateTime('1900/01/01'):
                 return date
         return None
+
+    def gePPGApprovalDate(self, action):
+        values = self.getPPGApproval()
+        if values:
+            date = DateTime('1900/01/01')
+            for v in values:
+                if v['milestone_date'] \
+                   and v['milestone_action'] == action:
+                    if date < v['milestone_date']:
+                        date = v['milestone_date']
+            if date != DateTime('1900/01/01'):
+                return date
+        return None
+
 
     def gePPGImplementationDate(self, action):
         values = self.getPPGImplementation()
