@@ -81,4 +81,193 @@
         permission="zope2.View"
         />
 
+    <browser:page
+        for="*"
+        name="projectsdueforclosurereport"
+        class=".projectsdueforclosurereport.ProjectsDueForClosureReport"
+        permission="zope2.View"
+        />
+
+    <browser:page
+        for="*"
+        name="projectcontactsreport"
+        class=".projectcontactsreport.ProjectContactsReport"
+        permission="zope2.View"
+        />
+
+    <browser:page
+        for="*"
+        name="rosterofevaluatorsreport"
+        class=".rosterofevaluatorsreport.RosterOfEvaluatorsReport"
+        permission="zope2.View"
+        />
+
+    <browser:page
+        for="*"
+        name="midtermreviewstatusreport"
+        class=".midtermreviewstatusreport.MidTermReviewStatusReport"
+        permission="zope2.View"
+        />
+
+    <browser:page
+        for="*"
+        name="midtermevaluationstatusreport"
+        class=".midtermevaluationstatusreport.MidTermEvaluationStatusReport"
+        permission="zope2.View"
+        />
+
+    <browser:page
+        for="*"
+        name="terminalevaluationstatusreport"
+        class=".terminalevaluationstatusreport.TerminalEvaluationStatusReport"
+        permission="zope2.View"
+        />
+
+    <browser:page
+        for="*"
+        name="qoterrplreport"
+        class=".qoterrplreport.qoterrplReport"
+        permission="zope2.View"
+        />
+
+    <browser:page
+        for="*"
+        name="projectsatriskreport"
+        class=".projectsatriskreport.ProjectsAtRiskReport"
+        permission="zope2.View"
+        />
+
+    <browser:page
+        for="*"
+        name="countryriskreport"
+        class=".countryriskreport.CountryRiskReport"
+        permission="zope2.View"
+        />
+
+    <browser:page
+        for="*"
+        name="executingagencyreport"
+        class=".executingagencyreport.ExecutingAgencyReport"
+        permission="zope2.View"
+        />
+
+    <browser:page
+        for="*"
+        name="projectimplementationreviewreport"
+        class=".projectimplementationreviewreport.ProjectImplementationReviewReport"
+        permission="zope2.View"
+        />
+
+    <browser:page
+        for="*"
+        name="qualityofprojectmandereport"
+        class=".qualityofprojectmandereport.QualityOfProjectMandEReport"
+        permission="zope2.View"
+        />
+
+    <browser:page
+        for="*"
+        name="projectsforceoendorsementreport"
+        class=".projectsforceoendorsementreport.ProjectsForCEOEndorsementReport"
+        permission="zope2.View"
+        />
+
+    <browser:page
+        for="*"
+        name="midtermevaluationscomingupreport"
+        class=".midtermevaluationscomingupreport.MidTermEvaluationsComingUpReport"
+        permission="zope2.View"
+        />
+
+    <browser:page
+        for="*"
+        name="terminalevaluationscomingupreport"
+        class=".terminalevaluationscomingupreport.TerminalEvaluationsComingUpReport"
+        permission="zope2.View"
+        />
+
+    <browser:page
+        for="*"
+        name="projectcyclestagestatusreport"
+        class=".projectcyclestagestatusreport.ProjectCycleStageStatusReport"
+        permission="zope2.View"
+        />
+
+    <browser:page
+        for="*"
+        name="programmeframeworkreport"
+        class=".programmeframeworkreport.ProgrammeFrameworkReport"
+        permission="zope2.View"
+        />
+
+    <browser:page
+        for="*"
+        name="productratingsreport"
+        class=".productratingsreport.ProductRatingsReport"
+        permission="zope2.View"
+        />
+
+    <browser:page
+        for="*"
+        name="qoterrreport"
+        class=".qoterrreport.qoterrReport"
+        permission="zope2.View"
+        />
+
+    <browser:page
+        for="*"
+        name="projectimplementationreviewtablereport"
+        class=".projectimplementationreviewtablereport.ProjectImplementationReviewTableReport"
+        permission="zope2.View"
+        />
+
+    <browser:page
+        for="*"
+        name="keymilestonesreport"
+        class=".keymilestonesreport.KeyMilestonesReport"
+        permission="zope2.View"
+        />
+
+    <browser:page
+        for="*"
+        name="gefprojectsbypriorityreport"
+        class=".gefprojectsbypriorityreport.GefProjectsByPriorityReport"
+        permission="zope2.View"
+        />
+
+    <browser:page
+        for="*"
+        name="internallyexecutedprojectsreport"
+        class=".internallyexecutedprojectsreport.InternallyExecutedProjectsReport"
+        permission="zope2.View"
+        />
+
+    <browser:page
+        for="*"
+        name="projectsbygeographicscopereport"
+        class=".projectsbygeographicscopereport.ProjectsByGeographicScopeReport"
+        permission="zope2.View"
+        />
+
+    <browser:page
+        for="*"
+        name="projectsbyexecutingagencyreport"
+        class=".projectsbyexecutingagencyreport.ProjectsByExecutingAgencyReport"
+        permission="zope2.View"
+        />
+
+    <browser:page
+        for="*"
+        name="donorreport"
+        class=".donorreport.DonorReport"
+        permission="zope2.View"
+        />
+
+    <browser:page
+        for="*"
+        name="projectsbystaffreport"
+        class=".projectsbystaffreport.ProjectsByStaffReport"
+        permission="zope2.View"
+        />
+
 </configure>
