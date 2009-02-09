@@ -1,6 +1,6 @@
 from Report import Report
 
-class ProjectImplementationStatusReportFactory(object):
+class CompletedProjectsReportFactory(object):
 
     def __init__(self, projectdatabase, **kw):
         self.projectdatabase = projectdatabase
@@ -8,9 +8,9 @@ class ProjectImplementationStatusReportFactory(object):
 
     def getReport(self):
         # create and fill the report
-        report = Report('Project Implementation Status Report')
+        report = Report('Completed Projects Report')
         report.setReportHeaders((
-            'Project Implementation Status Report',
+            'Completed Projects Report',
             ),)
         report.setTableHeaders(((
             'Dbase ID.',
@@ -25,12 +25,9 @@ class ProjectImplementationStatusReportFactory(object):
             'UNEP GEF Amount',
             'UNEP Fee',
             'Signature',
-            'Inception Meeting',
             'Mid-term Review',
             'Last Revision Date',
-            'Expected Completion',
-            'Revised Completion',
-            'Terminal Evaluation',
+            'Actual Completion',
             ),))
         report.setTableRows(self.getReportData())
         # report.setTableTotals([])
@@ -41,7 +38,7 @@ class ProjectImplementationStatusReportFactory(object):
         projects = self.projectdatabase.objectValues(spec='Project')
         result = []
         for project in projects:
-            if not project.milestones.getProjectImplementationDate('ClosureActual'):
+            if project.milestones.getProjectImplementationDate('ClosureActual'):
                 result.append((
                     project.getId(),
                     project.project_general_info.getGEFid(),

@@ -13,7 +13,7 @@ class PPGApprovalAndImplementationStatusReportFactory(object):
             'PPG Approval and Implementation Status Report',
             ),)
         report.setTableHeaders(((
-            'Dbase ID.',
+            'Dbase ID',
             'GEF ID',
             'IMIS No.',
             'Focal Area',
@@ -22,7 +22,6 @@ class PPGApprovalAndImplementationStatusReportFactory(object):
             'Total GEF Amount',
             'UNEP Amount',
             'UNEP Fee',
-            'Signature',
             'Total Co-financing',
             'Submission to GEF Sec',
             'Review Sheet',
@@ -40,15 +39,24 @@ class PPGApprovalAndImplementationStatusReportFactory(object):
         projects = self.projectdatabase.objectValues(spec='Project')
         result = []
         for project in projects:
-            if not project.milestones.getProjectImplementationDate('ClosureActual'):
+            ppg = project.fmi_folder.get('ppg', None)
+            if ppg and not project.milestones.getPPGImplementationDate('ClosureActual'):
                 result.append((
                     project.getId(),
                     project.project_general_info.getGEFid(),
-                    'Unknown IMIS No',
+                    ppg.getIMISNumber(),
                     project.project_general_info.getFocalAreaNames(),
                     project.Title(),
-                    project.getTotalGEFAmount(),
-                    project.getTotalUNEPGEFAmount(),
-                    project.getTotalUNEPFee(),
+                    ppg.getLeadExecutingAgencyName(),
+                    ppg.getCommittedGEFGrant(),
+                    ppg.getSumFinanceObjectAmount(),
+                    ppg.getFinanceObjectFee(),
+                    ppg.getTotalCoFinOfFinanceObjectActual(),
+                    project.milestones.getPPGApprovalDate('SubmissionToGEFSec'),
+                    project.milestones.getPPGApprovalDate('ReviewSheet'),
+                    project.milestones.getPPGApprovalDate('CEOPPGapproval'),
+                    'Unknown UNEP Approval Date',
+                    ppg.getExpectedCompletionDate(),
+                    project.milestones.getPPGImplementationDate('ClosureExpected')
                     ))
         return result
