@@ -172,7 +172,7 @@ class MonitoringAndEvaluation(BaseContent, BrowserDefaultMixin):
     def getProjectTitle(self):
         """
         """
-        return self.getAProject().Title()
+        return self.getAProject().project_general_info.Title()
 
     # Manually created methods
 
