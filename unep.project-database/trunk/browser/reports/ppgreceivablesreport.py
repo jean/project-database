@@ -1,4 +1,4 @@
-from Products.ProjectDatabase.reports.PPGReceivablesReport import PPGReceivablesReportFactory
+from Products.ProjectDatabase.reports.PPGReceivablesReportFactory import PPGReceivablesReportFactory
 from basereport import BaseReport
 
 class PPGReceivablesReport(BaseReport):
