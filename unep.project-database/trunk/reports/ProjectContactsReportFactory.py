@@ -28,7 +28,30 @@ class ProjectContactsReportFactory(object):
             'Phone No.',
             ),))
         # XXX Implement this
-        # report.setTableRows()
+        report.setTableRows(self.getReportData())
         # report.setTableTotals([])
         # report.setReportFooters()
         return report
+
+    def getReportData(self):
+        projects = self.projectdatabase.objectValues(spec='Project')
+        result = []
+        # for project in projects:
+        #     result.append((
+        #         project.Title(),
+        #         project.getId(),
+        #         project.project_general_info.getGEFid(),
+        #         'Unknown IMIS No',
+        #         project.project_general_info.getFocalAreaNames(),
+        #         project.project_general_info.getProjectTypeName(),
+        #         project.project_general_info.getGeographicScopeValues(),
+        #         project.project_general_info.getCountryNames(),
+        #         project.getTotalGEFAmount(),
+        #         project.getTotalUNEPGEFAmount(),
+        #         project.getTotalUNEPFee(),
+        #         project.milestones.getProjectImplementationDate('SignatureOfLegalInstrumentActual'),
+        #         project.milestones.getProjectImplementationDate('Suspension'),
+        #         'Unknown reason',
+        #         'Unknown resume date',
+        #         ))
+        return result
