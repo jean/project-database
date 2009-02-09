@@ -1,6 +1,6 @@
 from Report import Report
 
-class ExecutingAgencyRisk(object):
+class ExecutingAgencyRiskReportFactory(object):
 
     def __init__(self, context, **kw):
         self.context = context

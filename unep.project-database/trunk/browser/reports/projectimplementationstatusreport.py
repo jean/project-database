@@ -1,4 +1,4 @@
-from Products.ProjectDatabase.reports.ProjectImplementationStatusReportFactory \
+from Products.ProjectDatabase.reports.ProjectImplStatusReportFactory \
     import ProjectImplementationStatusReportFactory
 from basereport import BaseReport
 

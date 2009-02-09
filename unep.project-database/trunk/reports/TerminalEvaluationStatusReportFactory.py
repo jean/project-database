@@ -10,19 +10,19 @@ class TerminalEvaluationStatusReportFactory(object):
         # create and fill the report
         report = Report(name)
         report.setReportHeaders(( name,),)
-			'IMIS No.',
-			'Project title',
-			'Focal area',
-			'Evaluation budget',
-			'TM',
-			'FMO',
-			'TE Status',
-			'Lead Evaluator',
-			'email',
-			'Phone No.',
-			'Other Evaluators',
-			'Project Rating',
         report.setTableHeaders(((
+                        'IMIS No.',
+                        'Project title',
+                        'Focal area',
+                        'Evaluation budget',
+                        'TM',
+                        'FMO',
+                        'TE Status',
+                        'Lead Evaluator',
+                        'email',
+                        'Phone No.',
+                        'Other Evaluators',
+                        'Project Rating',
             ),))
         # XXX Implement this
         # report.setTableRows()
