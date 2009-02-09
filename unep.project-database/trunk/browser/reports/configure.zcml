@@ -27,8 +27,8 @@
 
     <browser:page
         for="*"
-        name="ppgimplstatusreport"
-        class=".ppgimplstatusreport.PPGImplStatusReport"
+        name="ppgaprandimplstatusreport"
+        class=".ppgaprandimplstatusreport.PPGApprovalAndImplementaionStatusReport"
         permission="zope2.View"
         />
 

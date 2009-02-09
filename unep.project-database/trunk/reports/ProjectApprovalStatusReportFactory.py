@@ -1,6 +1,6 @@
 from Report import Report
 
-class ProjectImplementationStatusReportFactory(object):
+class ProjectApprovalStatusReportFactory(object):
 
     def __init__(self, projectdatabase, **kw):
         self.projectdatabase = projectdatabase
@@ -8,14 +8,14 @@ class ProjectImplementationStatusReportFactory(object):
 
     def getReport(self):
         # create and fill the report
-        report = Report('Project Implementation Status Report')
+        report = Report('Project Approval Status Report')
         report.setReportHeaders((
-            'Project Implementation Status Report',
+            'Project Approval Status Report',
             ),)
         report.setTableHeaders(((
-            'Dbase ID.',
+            'Dbase ID',
             'GEF ID',
-            'IMIS No.',
+            'IA(s)',
             'Focal Area',
             'Project Type',
             'Geographic Scope',
@@ -23,14 +23,12 @@ class ProjectImplementationStatusReportFactory(object):
             'Project Title',
             'Total GEF Amount',
             'UNEP GEF Amount',
-            'UNEP Fee',
-            'Signature',
-            'Inception Meeting',
-            'Mid-term Review',
-            'Last Revision Date',
-            'Expected Completion',
-            'Revised Completion',
-            'Terminal Evaluation',
+            'PRC Review',
+            'Expected CEO Endorsement/Approval',
+            'Submission to GEF Sec',
+            'Review Sheet',
+            'Actual CEO Endorsement',
+            'UNEP Approval'
             ),))
         report.setTableRows(self.getReportData())
         # report.setTableTotals([])
@@ -41,25 +39,24 @@ class ProjectImplementationStatusReportFactory(object):
         projects = self.projectdatabase.objectValues(spec='Project')
         result = []
         for project in projects:
-            if not project.milestones.getProjectImplementationDate('ClosureActual'):
+            if not project.milestones.getProjectImplementationDate('SignatureOfLegalInstrumentActual'):
                 result.append((
                     project.getId(),
                     project.project_general_info.getGEFid(),
-                    'Unknown IMIS No',
+                    project.project_general_info.getExecutingAgencyNames(),
                     project.project_general_info.getFocalAreaNames(),
                     project.project_general_info.getProjectTypeName(),
                     project.project_general_info.getGeographicScopeValues(),
                     project.project_general_info.getCountryNames(),
                     project.Title(),
-                    project.getTotalGEFAmount(),
-                    project.getTotalUNEPGEFAmount(),
-                    project.getTotalUNEPFee(),
-                    project.milestones.getProjectImplementationDate('SignatureOfLegalInstrumentActual'),
-                    'Unknown Inception Meeting Date',
-                    project.milestones.getEvaluationDatesDate('MTERactual'),
-                    'Unknown Last revision date',
-                    project.milestones.getProjectImplementationDate('CompletionExpected'),
-                    project.milestones.getProjectImplementationDate('CompletionRevised'),
-                    project.milestones.getEvaluationDatesDate('TerminalEvaluationActual'),
+                    project.getTotalGEFAllocation(),
+                    project.getTotalUNEPAllocation(),
+                    project.milestones.getProjectApprovalDate('PRCReview'),
+                    project.milestones.getProjectApprovalDate('CEOApprovalEndorsementExpected'),
+                    project.milestones.getProjectApprovalDate('SubmissionToGEFSec'),
+                    project.milestones.getProjectApprovalDate('ReviewSheet'),
+                    project.milestones.getProjectApprovalDate('SubmissionToGEFSec'),
+                    project.milestones.getProjectApprovalDate('CEOApprovalEndorsementActual'),
+                    'Unknown UNEP Approval'
                     ))
         return result
