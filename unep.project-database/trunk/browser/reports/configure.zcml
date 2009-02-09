@@ -27,4 +27,13 @@
         permission="zope2.View"
         />
 
+    <!-- Page Views -->
+    <browser:page
+        for="*"
+        name="ppgreceivablesreport"
+        class=".ppgreceivablesreport.PPGReceivablesReport"
+        permission="zope2.View"
+        />
+
+
 </configure>
