@@ -7,7 +7,8 @@ from Products.Five.browser import BrowserView
 
 have_rl = True
 try:
-    from reportlab.platypus import Table, TableStyle, SimpleDocTemplate
+    from reportlab.platypus import Table, TableStyle, SimpleDocTemplate, Paragraph
+    from reportlab.lib.styles import getSampleStyleSheet
     from reportlab.lib.units import inch
 except ImportError:
     have_rl = False
@@ -55,6 +56,9 @@ class BaseReport(BrowserView):
         data = []
         style = []
         width = 0
+        stylesheet = getSampleStyleSheet()
+        normal = stylesheet['Normal']
+
 
         report = self.getReport()
         for header in report.getReportHeaders():
@@ -66,7 +70,7 @@ class BaseReport(BrowserView):
         for header in report.getTableHeaders():
             rownum = len(data)
             style.append(('FONT', (0, rownum), (len(header)-1, rownum), "Helvetica-Bold", 9))
-            data.append(header)
+            data.append([Paragraph(h, normal) for h in header])
             width = max(width, len(header))
 
         for row in report.getTableRows():
@@ -100,19 +104,22 @@ class BaseReport(BrowserView):
         # Get reasonable table cell widths.
         colsizes = [0] * width
         for section in (report.getTableHeaders(),
-                        report.getTableRows(),
                         report.getReportFooters()):
             for row in section:
                 for col in range(len(colsizes)):
-                    colsizes[col] = max(len(row[col]), colsizes[col])
-        colsizes = [min(max(size, 12), 36) for size in colsizes]
+                    for word in row[col].split():
+                        colsizes[col] = max(len(word), colsizes[col])
+        for row in report.getTableRows():
+            for col in range(len(colsizes)):
+                colsizes[col] = max(len(row[col]), colsizes[col])
+        colsizes = [min(size, 36) for size in colsizes]
         totalsize = 0
         for size in colsizes:
             totalsize = totalsize + size
         colsizes = [size*inch*7/totalsize for size in colsizes]
 
         # Construct the table
-        t=Table(data, colsizes, len(data)*[0.3*inch])
+        t=Table(data, colsizes, None)
         t.setStyle(TableStyle(style))
         Elements.append(t)
 
