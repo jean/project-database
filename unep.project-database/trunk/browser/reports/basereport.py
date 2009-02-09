@@ -18,6 +18,9 @@ class BaseReport(BrowserView):
 
     _pt = ViewPageTemplateFile("simplehtmlreport.pt")
 
+    def getReportFileName(self):
+        return self.__class__.__name__
+
     def html(self):
         return self._pt()
 
@@ -44,7 +47,7 @@ class BaseReport(BrowserView):
         x = output.getvalue()
         output.close()
         self.request.response.setHeader("Content-Type", "text/csv")
-        self.request.response.setHeader("Content-Disposition", "attachment; filename=bob.csv")
+        self.request.response.setHeader("Content-Disposition", "attachment; filename=%s.csv" % self.getReportFileName())
         return x
 
     def pdf(self):
@@ -128,7 +131,7 @@ class BaseReport(BrowserView):
         doc.build(Elements)
         buf = IO.getvalue()
         IO.close()
-        self.request.response.setHeader("Content-Disposition", "attachment; filename=bob.pdf")
+        self.request.response.setHeader("Content-Disposition", "attachment; filename=%s.pdf" % self.getReportFileName())
         self.request.response.setHeader("Content-Type", "application/pdf")
         return buf
 
