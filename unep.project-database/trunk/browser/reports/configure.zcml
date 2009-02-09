@@ -28,7 +28,56 @@
     <browser:page
         for="*"
         name="ppgaprandimplstatusreport"
-        class=".ppgaprandimplstatusreport.PPGApprovalAndImplementaionStatusReport"
+        class=".ppgaprandimplstatusreport.PPGApprovalAndImplementationStatusReport"
+        permission="zope2.View"
+        />
+
+    <browser:page
+        for="*"
+        name="projectapprovalstatusreport"
+        class=".projectapprovalstatusreport.ProjectApprovalStatusReport"
+        permission="zope2.View"
+        />
+
+    <browser:page
+        for="*"
+        name="projectimplementationstatusreport"
+        class=".projectimplementationstatusreport.ProjectImplementationStatusReport"
+        permission="zope2.View"
+        />
+
+    <browser:page
+        for="*"
+        name="completedprojectsreport"
+        class=".completedprojectsreport.CompletedProjectsReport"
+        permission="zope2.View"
+        />
+
+    <browser:page
+        for="*"
+        name="closedprojectsreport"
+        class=".closedprojectsreport.ClosedProjectsReport"
+        permission="zope2.View"
+        />
+
+    <browser:page
+        for="*"
+        name="suspendedprojectsreport"
+        class=".suspendedprojectsreport.SuspendedProjectsReport"
+        permission="zope2.View"
+        />
+
+    <browser:page
+        for="*"
+        name="cancelledprojectsreport"
+        class=".cancelledprojectsreport.CancelledProjectsReport"
+        permission="zope2.View"
+        />
+
+    <browser:page
+        for="*"
+        name="ppgimplstatusreport"
+        class=".ppgimplstatusreport.PPGImplStatusReport"
         permission="zope2.View"
         />
 
