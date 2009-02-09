@@ -24,12 +24,12 @@ class IPIStatusReportFactory(object):
             'SPO Approval Date',
             'Withdrawal Date'
             ),))
-        report.setTableRows(self.getIPIData())
+        report.setTableRows(self.getReportData())
         # report.setTableTotals([])
         # report.setReportFooters()
         return report
 
-    def getIPIData(self):
+    def getReportData(self):
         projects = self.projectdatabase.objectValues(spec='Project')
         result = []
         for project in projects:
