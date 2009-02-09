@@ -1,6 +1,6 @@
 from Report import Report
 
-class ProjectImplementationReviewReportFactory(object):
+class qoterrReportFactory(object):
 
     def __init__(self, context, **kw):
         self.context = context
@@ -10,9 +10,12 @@ class ProjectImplementationReviewReportFactory(object):
         # create and fill the report
         report = Report(name)
         report.setReportHeaders(( name,),)
+        report.setTableHeaders(((
+            'Project title',
+            'EOU rating',
+            'GEF EO Rating',
+            ),))
         # XXX Implement this
-        #report.setTableHeaders(((
-        #    ),))
         # report.setTableRows()
         # report.setTableTotals([])
         # report.setReportFooters()

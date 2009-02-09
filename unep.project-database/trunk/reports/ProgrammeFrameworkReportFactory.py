@@ -1,6 +1,6 @@
 from Report import Report
 
-class ProjectImplementationReviewReportFactory(object):
+class ProgrammeFrameworkReportFactory(object):
 
     def __init__(self, context, **kw):
         self.context = context
@@ -17,3 +17,4 @@ class ProjectImplementationReviewReportFactory(object):
         # report.setTableTotals([])
         # report.setReportFooters()
         return report
+
