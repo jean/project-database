@@ -294,6 +294,19 @@ class Milestone(BaseContent, BrowserDefaultMixin):
                 return date
         return None
 
+    def getNewPhaseImplementationDate(self, action):
+        values = self.getNewPhaseImplementation()
+        if values:
+            date = DateTime('1900/01/01')
+            for v in values:
+                if v['milestone_date'] \
+                   and v['milestone_action'] == action:
+                    if date < v['milestone_date']:
+                        date = v['milestone_date']
+            if date != DateTime('1900/01/01'):
+                return date
+        return None
+
     def getEvaluationDatesDate(self, action):
         values = self.getEvaluationDates()
         if values:
