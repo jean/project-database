@@ -27,7 +27,13 @@
         permission="zope2.View"
         />
 
-    <!-- Page Views -->
+    <browser:page
+        for="*"
+        name="ppgimplstatusreport"
+        class=".ppgimplstatusreport.PPGImplStatusReport"
+        permission="zope2.View"
+        />
+
     <browser:page
         for="*"
         name="ppgreceivablesreport"
@@ -35,5 +41,25 @@
         permission="zope2.View"
         />
 
+    <browser:page
+        for="*"
+        name="mspimplstatusreport"
+        class=".mspimplstatusreport.MSPImplStatusReport"
+        permission="zope2.View"
+        />
+
+    <browser:page
+        for="*"
+        name="fspimplstatusreport"
+        class=".fspimplstatusreport.FSPImplStatusReport"
+        permission="zope2.View"
+        />
+
+    <browser:page
+        for="*"
+        name="eeaimplstatusreport"
+        class=".eeaimplstatusreport.EEAImplStatusReport"
+        permission="zope2.View"
+        />
 
 </configure>
