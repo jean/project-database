@@ -34,7 +34,7 @@ class PPGImplementationStatusReportFactory(object):
         projects = self.projectdatabase.objectValues(spec='Project')
         result = []
         for project in projects:
-            ppg = project.fmi_folder.getattr('ppg', None)
+            ppg = project.fmi_folder.get('ppg', None)
             if ppg is not None:
                 result.append((
                     ppg.getIMISNumber(),
