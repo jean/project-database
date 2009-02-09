@@ -149,9 +149,6 @@ MonitoringAndEvaluation_schema = BaseSchema.copy() + \
     schema.copy()
 
 ##code-section after-schema #fill in your manual code here
-title_field = MonitoringAndEvaluation_schema['title']
-title_field.required=0
-title_field.widget.visible = {'edit':'hidden', 'view':'invisible'}
 ##/code-section after-schema
 
 class MonitoringAndEvaluation(BaseContent, BrowserDefaultMixin):
