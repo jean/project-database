@@ -27,8 +27,6 @@ def projectInitialized(event):
         ob.invokeFactory('MandEfolder', 'mne_folder')
         mne_folder = ob['mne_folder']
         mne_folder.edit(title='Monitoring and Evaluation Folder')
-        mne_folder.invokeFactory('MonitoringAndEvaluation', 'monitoring_and_evaluation')
-        mne_folder['monitoring_and_evaluation'].edit(title='Monitoring and Evaluation')
     if 'milestones' not in ob.objectIds():
         ob.invokeFactory('Milestone', 'milestones')
         ob['milestones'].edit(title='Milestones')
