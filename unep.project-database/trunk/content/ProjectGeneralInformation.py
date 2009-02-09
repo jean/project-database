@@ -843,6 +843,10 @@ class ProjectGeneralInformation(BaseContent, CurrencyMixin, BrowserDefaultMixin)
         scopes = self.getScope()
         return self.getSelectedVocabularyValues(scopes, 'Scope')
 
+    def getLeadExecutingAgencyName(self):
+        lead = self.getLeadAgency()
+        return self.getSelectedVocabularyValue(lead, 'LeadAgency')
+
     def getExecutingAgencyNames(self):
         lead = self.getLeadAgency()
         result = self.getSelectedVocabularyValue(lead, 'LeadAgency')
