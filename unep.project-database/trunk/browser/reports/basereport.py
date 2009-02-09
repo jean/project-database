@@ -97,7 +97,22 @@ class BaseReport(BrowserView):
                       ('VALIGN',(0,0),(-1,-1),'MIDDLE'),
                      ])
 
-        t=Table(data, width*[inch], len(data)*[0.3*inch])
+        # Get reasonable table cell widths.
+        colsizes = [0] * width
+        for section in (report.getTableHeaders(),
+                        report.getTableRows(),
+                        report.getReportFooters()):
+            for row in section:
+                for col in range(len(colsizes)):
+                    colsizes[col] = max(len(row[col]), colsizes[col])
+        colsizes = [min(max(size, 12), 36) for size in colsizes]
+        totalsize = 0
+        for size in colsizes:
+            totalsize = totalsize + size
+        colsizes = [size*inch*7/totalsize for size in colsizes]
+
+        # Construct the table
+        t=Table(data, colsizes, len(data)*[0.3*inch])
         t.setStyle(TableStyle(style))
         Elements.append(t)
 
