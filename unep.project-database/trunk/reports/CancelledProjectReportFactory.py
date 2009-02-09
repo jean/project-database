@@ -1,6 +1,6 @@
 from Report import Report
 
-class SuspendedProjectsReportFactory(object):
+class CancelledProjectsReportFactory(object):
 
     def __init__(self, projectdatabase, **kw):
         self.projectdatabase = projectdatabase
@@ -8,9 +8,9 @@ class SuspendedProjectsReportFactory(object):
 
     def getReport(self):
         # create and fill the report
-        report = Report('Suspended Projects Report')
+        report = Report('Cancelled Projects Report')
         report.setReportHeaders((
-            'Suspended Projects Report',
+            'Cancelled Projects Report',
             ),)
         report.setTableHeaders(((
             'Dbase ID.',
@@ -25,9 +25,9 @@ class SuspendedProjectsReportFactory(object):
             'UNEP GEF Amount',
             'UNEP Fee',
             'Signature',
-            'Suspension Date',
+            'Cancellation Date',
             'Reason',
-            'Expected Date of Resuming Activities',
+            'Actual Expenditures',
             ),))
         report.setTableRows(self.getReportData())
         # report.setTableTotals([])
@@ -38,7 +38,7 @@ class SuspendedProjectsReportFactory(object):
         projects = self.projectdatabase.objectValues(spec='Project')
         result = []
         for project in projects:
-            if project.milestones.getProjectImplementationDate('Suspension'):
+            if project.milestones.getProjectImplementationDate('Cancellation'):
                 result.append((
                     project.getId(),
                     project.project_general_info.getGEFid(),
@@ -52,8 +52,8 @@ class SuspendedProjectsReportFactory(object):
                     project.getTotalUNEPGEFAmount(),
                     project.getTotalUNEPFee(),
                     project.milestones.getProjectImplementationDate('SignatureOfLegalInstrumentActual'),
-                    project.milestones.getProjectImplementationDate('Suspension'),
+                    project.milestones.getProjectImplementationDate('Cancellation'),
                     'Unknown reason',
-                    'Unknown resume date',
+                    project.project_general_info.getTotalYearlyExpenditures()
                     ))
         return result
