@@ -1,0 +1,51 @@
+<metal:header metal:define-macro="header">
+<h1 class="documentFirstHeading">PROJECTS A-Z</h1>
+</metal:header>
+
+<metal:folderlisting metal:define-macro="folderlisting" />
+<metal:footer metal:define-macro="footer" />
+
+<metal:body metal:define-macro="body">
+
+<tal:batch tal:define="brains python:context.getFolderContents(full_objects=False, contentFilter={'portal_type':'Project'});
+                        Batch python:modules['Products.CMFPlone'].Batch;
+                        b_size python:20;b_start python:0;b_start request/b_start | b_start;
+                        batch python:Batch(brains, b_size, int(b_start), orphan=1);
+                        projects python:[brain.getObject() for brain in batch];
+                        ">
+<a style="float:right" tal:attributes="href string:@@create-project">Create a new project</a>
+<table class="table-fullwidth">
+    <tr>
+        <th i18n:translate="dbase_id">DBase ID</th>
+        <th i18n:translate="gef_id">GEF ID</th>
+        <th i18n:translate="focal_area">Focal Area</th>
+        <th i18n:translate="project_title">Project Title</th>
+        <th i18n:translate="country">Country</th>
+        <th i18n:translate="project_type">Project Type</th>
+    </tr>
+
+    <tal:rep tal:repeat="project projects">
+        <tr tal:define="geninfo nocall:project/project_general_info;
+                        even repeat/project/even;
+                        areavocab python:geninfo.getField('FocalArea').Vocabulary(geninfo);
+                        areavalue python:geninfo.displayValue(areavocab, geninfo.getFocalArea());
+                        countryvocab python:geninfo.getField('Country').Vocabulary(geninfo);
+                        countryvalue python:geninfo.displayValue(countryvocab, geninfo.getCountry())"
+                tal:attributes="class python:even and 'odd' or 'even'">
+            <td>
+                <a tal:content="project/title_or_id"
+                    tal:attributes="href project/absolute_url">DBase ID
+                </a></td>
+            <td tal:content="geninfo/getGEFid | string:Unknown">GEF ID</td>
+            <td tal:content="areavalue | string:Unknown">Focal Area</td>
+            <td tal:content="geninfo/Title | string:Unknown">Project Title</td>
+            <td tal:content="countryvalue | string:Unknown">Country</td>
+            <td tal:content="geninfo/getProjectType | string:Unknown">Project Type</td>
+        </tr>
+    </tal:rep>
+</table>
+<a style="float:right" tal:attributes="href string:@@create-project">Create a new project</a>
+<b><div metal:use-macro="here/batch_macros/macros/navigation" /></b>
+</tal:batch>
+
+</metal:body>

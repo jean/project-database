@@ -1,0 +1,15 @@
+        <metal:header metal:define-macro="header">
+        <h1 class="documentFirstHeading" tal:content="context/id">Project Name</h1>
+        </metal:header>
+        <metal:folderlisting metal:define-macro="folderlisting" />
+        <metal:footer metal:define-macro="footer" />
+        <metal:body metal:define-macro="body">
+
+            <h1>Project General Information - <span tal:replace="context/project_general_info/Title" /></h1>
+            <tal:def tal:define="ob nocall:context">
+                    <tal:use metal:use-macro="context/matrix_macros/macros/pgi_matrix" />
+            </tal:def>
+            <tal:def tal:define="brains context/fmi_folder/getFolderContents">
+                    <tal:use metal:use-macro="context/matrix_macros/macros/multiple_fmi_matrix" />
+            </tal:def>
+        </metal:body>
