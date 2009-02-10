@@ -869,10 +869,12 @@ class ProjectGeneralInformation(BaseContent, CurrencyMixin, BrowserDefaultMixin)
         return result
 
     def getSelectedVocabularyValue(self, selection, vocabName):
-        atvm = getToolByName(self, 'portal_vocabularies')
-        vocab = atvm.getVocabularyByName(vocabName)
-        dict = vocab.getVocabularyDict(self)
-        return dict[selection][0]
+        if selection:
+            atvm = getToolByName(self, 'portal_vocabularies')
+            vocab = atvm.getVocabularyByName(vocabName)
+            dict = vocab.getVocabularyDict(self)
+            return dict[selection][0]
+        return None
 
     def getSelectedVocabularyValues(self, selections, vocabName):
         atvm = getToolByName(self, 'portal_vocabularies')
