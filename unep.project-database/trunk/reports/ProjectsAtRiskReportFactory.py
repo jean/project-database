@@ -43,7 +43,7 @@ class ProjectsAtRiskReportFactory(object):
                     project.project_general_info.getFocalAreaNames(),
                     project.project_general_info.getProjectTypeName(),
                     fo.getId(),
-                    project.Title(),
+                    project.project_general_info.Title(),
                     project.project_general_info.getExecutingAgencyNames(),
                     project.project_general_info.getCurrentTM(),
                     fo.getCurrentFMO(),

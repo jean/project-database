@@ -48,7 +48,7 @@ class ProjectApprovalStatusReportFactory(object):
                     project.project_general_info.getProjectTypeName(),
                     project.project_general_info.getGeographicScopeValues(),
                     project.project_general_info.getCountryNames(),
-                    project.Title(),
+                    project.project_general_info.Title(),
                     project.getTotalGEFAllocation(),
                     project.getTotalUNEPAllocation(),
                     project.milestones.getProjectApprovalDate('PRCReview'),
