@@ -5,6 +5,22 @@
 
     <!-- Page Views -->
     <browser:page
+        for="Products.ProjectDatabase.content.interfaces.IProjectDatabase"
+        name="reports"
+        class=".projectdatabasereportsview.ProjectDatabaseReportsView"
+        permission="zope2.View"
+        template="projectdatabasereportsview.pt"
+        />
+
+    <browser:page
+        for="Products.ProjectDatabase.content.interfaces.IProject"
+        name="reports"
+        class=".projectreportsview.ProjectReportsView"
+        permission="zope2.View"
+        template="projectreportsview.pt"
+        />
+
+    <browser:page
         for="*"
         name="dummyreport"
         class=".dummyreport.DummyReport"
