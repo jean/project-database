@@ -8,7 +8,7 @@
 </vocabName>
 
 <term>
-  <termIdentifier>Draft TOR</termIdentifier>
+  <termIdentifier>DraftTOR</termIdentifier>
   <caption>
     <langstring language="en">Draft TOR</langstring>
   </caption>
@@ -16,7 +16,7 @@
 </term>
 
 <term>
-  <termIdentifier>Approved TOR</termIdentifier>
+  <termIdentifier>ApprovedTOR</termIdentifier>
   <caption>
     <langstring language="en">Approved TOR</langstring>
   </caption>
@@ -24,7 +24,7 @@
 </term>
 
 <term>
-  <termIdentifier>Collation of Project Information</termIdentifier>
+  <termIdentifier>CollationOfProjectInformation</termIdentifier>
   <caption>
     <langstring language="en">Collation of Project Information</langstring>
   </caption>
@@ -32,7 +32,7 @@
 </term>
 
 <term>
-  <termIdentifier>Selection of Lead Evaluator</termIdentifier>
+  <termIdentifier>SelectionOfLeadEvaluator</termIdentifier>
   <caption>
     <langstring language="en">Selection of Lead Evaluator</langstring>
   </caption>
@@ -40,7 +40,7 @@
 </term>
 
 <term>
-  <termIdentifier>Selection of other evaluators</termIdentifier>
+  <termIdentifier>SelectionOfOtherEvaluators</termIdentifier>
   <caption>
     <langstring language="en">Selection of other evaluators</langstring>
   </caption>
@@ -48,7 +48,7 @@
 </term>
 
 <term>
-  <termIdentifier>Contract Approval</termIdentifier>
+  <termIdentifier>ContractApproval</termIdentifier>
   <caption>
     <langstring language="en">Contract Approval</langstring>
   </caption>
@@ -56,7 +56,7 @@
 </term>
 
 <term>
-  <termIdentifier>Initial Payment</termIdentifier>
+  <termIdentifier>InitialPayment</termIdentifier>
   <caption>
     <langstring language="en">Initial Payment</langstring>
   </caption>
@@ -64,7 +64,7 @@
 </term>
 
 <term>
-  <termIdentifier>Travel Approval</termIdentifier>
+  <termIdentifier>TravelApproval</termIdentifier>
   <caption>
     <langstring language="en">Travel Approval</langstring>
   </caption>
@@ -72,7 +72,7 @@
 </term>
 
 <term>
-  <termIdentifier>Draft Report</termIdentifier>
+  <termIdentifier>DraftReport</termIdentifier>
   <caption>
     <langstring language="en">Draft Report</langstring>
   </caption>
@@ -80,7 +80,7 @@
 </term>
 
 <term>
-  <termIdentifier>Interim Payment</termIdentifier>
+  <termIdentifier>InterimPayment</termIdentifier>
   <caption>
     <langstring language="en">Interim Payment</langstring>
   </caption>
@@ -88,7 +88,7 @@
 </term>
 
 <term>
-  <termIdentifier>Circulation of Report</termIdentifier>
+  <termIdentifier>CirculationOfReport</termIdentifier>
   <caption>
     <langstring language="en">Circulation of Report</langstring>
   </caption>
@@ -96,7 +96,7 @@
 </term>
 
 <term>
-  <termIdentifier>Comments to Report</termIdentifier>
+  <termIdentifier>CommentsToReport</termIdentifier>
   <caption>
     <langstring language="en">Comments to Report</langstring>
   </caption>
@@ -104,7 +104,7 @@
 </term>
 
 <term>
-  <termIdentifier>Final Report</termIdentifier>
+  <termIdentifier>FinalReport</termIdentifier>
   <caption>
     <langstring language="en">Final Report</langstring>
   </caption>
@@ -112,7 +112,7 @@
 </term>
 
 <term>
-  <termIdentifier>EOU Quality Assessment Review</termIdentifier>
+  <termIdentifier>EOUQualityAssessmentReview</termIdentifier>
   <caption>
     <langstring language="en">EOU Quality Assessment Review</langstring>
   </caption>
@@ -120,7 +120,7 @@
 </term>
 
 <term>
-  <termIdentifier>Final Payment</termIdentifier>
+  <termIdentifier>FinalPayment</termIdentifier>
   <caption>
     <langstring language="en">Final Payment</langstring>
   </caption>
@@ -128,7 +128,7 @@
 </term>
 
 <term>
-  <termIdentifier>Submission to GEF EO</termIdentifier>
+  <termIdentifier>SubmissionToGEFEO</termIdentifier>
   <caption>
     <langstring language="en">Submission to GEF EO</langstring>
   </caption>
@@ -136,7 +136,7 @@
 </term>
 
 <term>
-  <termIdentifier>Circulation to partners</termIdentifier>
+  <termIdentifier>CirculationToPartners</termIdentifier>
   <caption>
     <langstring language="en">Circulation to partners</langstring>
   </caption>
@@ -144,7 +144,7 @@
 </term>
 
 <term>
-  <termIdentifier>Management response</termIdentifier>
+  <termIdentifier>ManagementResponse</termIdentifier>
   <caption>
     <langstring language="en">Management response</langstring>
   </caption>
