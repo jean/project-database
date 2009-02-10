@@ -16,7 +16,15 @@ class qoterrReportFactory(object):
             'GEF EO Rating',
             ),))
         # XXX Implement this
-        # report.setTableRows()
+        report.setTableRows(self.getReportData())
         # report.setTableTotals([])
         # report.setReportFooters()
         return report
+
+    def getReportData(self):
+        projects = self.projectdatabase.objectValues(spec='Project')
+        result = []
+        # for project in projects:
+
+        #     for me in project.bbb:
+        return result

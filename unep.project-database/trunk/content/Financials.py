@@ -680,6 +680,20 @@ class Financials(BaseFolder, CurrencyMixin, BrowserDefaultMixin):
         dict = vocab.getVocabularyDict(self)
         return dict[selection][0]
 
+    def getCurrentFMO(self):
+        values = self.getFundManagementOfficer()
+        if values:
+            date = '1900'
+            for v in values:
+                if v['FMO_Period'] and v['FMO_Name'] and v['FMO_Type'] == 'Principal':
+                    if date < v['FMO_Period']:
+                        date = v['FMO_Period']
+                        name = v['FMO_Name']
+            if date != '1900':
+                return name
+        return None
+
+
 registerType(Financials, PROJECTNAME)
 # end of class Financials
 

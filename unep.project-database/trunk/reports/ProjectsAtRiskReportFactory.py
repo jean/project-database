@@ -24,7 +24,29 @@ class ProjectsAtRiskReportFactory(object):
             'Risk rating',
             ),))
         # XXX Implement this
-        # report.setTableRows()
+        report.setTableRows(self.getReportData())
         # report.setTableTotals([])
         # report.setReportFooters()
         return report
+
+    def getReportData(self):
+        projects = self.context.objectValues(spec='Project')
+        result = []
+        # import pdb; pdb.set_trace()
+        for project in projects:
+            for fo in project.fmi_folder.objectValues():
+                result.append((
+                    project.getId(),
+                    project.project_general_info.getGEFid(),
+                    fo.getIMISNumber(),
+                    project.project_general_info.getFocalAreaNames(),
+                    project.project_general_info.getProjectTypeName(),
+                    fo.getId(),
+                    project.Title(),
+                    project.project_general_info.getExecutingAgencyNames(),
+                    project.project_general_info.getCurrentTM(),
+                    fo.getCurrentFMO(),
+                    fo.getLatestEARiskRating()
+                    ))
+
+        return result
