@@ -675,10 +675,12 @@ class Financials(BaseFolder, CurrencyMixin, BrowserDefaultMixin):
         return None
 
     def getSelectedVocabularyValue(self, selection, vocabName):
-        atvm = getToolByName(self, 'portal_vocabularies')
-        vocab = atvm.getVocabularyByName(vocabName)
-        dict = vocab.getVocabularyDict(self)
-        return dict[selection][0]
+        if selection:
+            atvm = getToolByName(self, 'portal_vocabularies')
+            vocab = atvm.getVocabularyByName(vocabName)
+            dict = vocab.getVocabularyDict(self)
+            return dict[selection][0]
+        return None
 
     def getCurrentFMO(self):
         values = self.getFundManagementOfficer()
