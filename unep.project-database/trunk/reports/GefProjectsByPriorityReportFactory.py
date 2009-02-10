@@ -6,8 +6,9 @@ class GefProjectsByPriorityReportFactory(object):
         self.context = context
         self.params = kw
 
-    def getReport(self, name):
+    def getReport(self):
         # create and fill the report
+        name = "GEF Projects by Priority Report"
         report = Report(name)
         report.setReportHeaders(( name,),)
         report.setTableHeaders(((

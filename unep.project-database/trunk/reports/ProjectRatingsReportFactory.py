@@ -6,8 +6,9 @@ class ProjectRatingsReportFactory(object):
         self.context = context
         self.params = kw
 
-    def getReport(self, name):
+    def getReport(self):
         # create and fill the report
+        name = "Project Ratings Report"
         report = Report(name)
         report.setReportHeaders(( name,),)
         # XXX Implement this

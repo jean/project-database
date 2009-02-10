@@ -6,8 +6,9 @@ class ExecutingAgencyRiskReportFactory(object):
         self.context = context
         self.params = kw
 
-    def getReport(self, name):
+    def getReport(self):
         # create and fill the report
+        name = "Executing Agency Risk Report"
         report = Report(name)
         report.setReportHeaders(( name,),)
         report.setTableHeaders(((

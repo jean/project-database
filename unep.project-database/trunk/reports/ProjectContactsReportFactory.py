@@ -6,8 +6,9 @@ class ProjectContactsReportFactory(object):
         self.context = context
         self.params = kw
 
-    def getReport(self, name):
+    def getReport(self):
         # create and fill the report
+        name = "Project Contacts Report"
         report = Report(name)
         report.setReportHeaders(( name,),)
         report.setTableHeaders(((
@@ -34,7 +35,7 @@ class ProjectContactsReportFactory(object):
         return report
 
     def getReportData(self):
-        projects = self.projectdatabase.objectValues(spec='Project')
+        projects = self.context.objectValues(spec='Project')
         result = []
         # for project in projects:
         #     result.append((
