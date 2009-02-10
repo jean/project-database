@@ -43,7 +43,7 @@ class MidTermReviewStatusReportFactory(object):
         #                 not project.milestones.getPPGImplementationDates('ClosureActual'):
         #             result.append((
         #                 fo.getIMISNumber(),
-        #                 project.Title(),
+        #                 project.project_general_info.Title(),
         #                 fo.getId(),
         #                 project.milestones.getPPGImplementationDates('CompletionActual'),
         #                 'Unknown',
@@ -60,7 +60,7 @@ class MidTermReviewStatusReportFactory(object):
         #                 not project.milestones.getProjectImplementationDates('ClosureActual'):
         #             result.append((
         #                 fo.getIMISNumber(),
-        #                 project.Title(),
+        #                 project.project_general_info.Title(),
         #                 fo.getId(),
         #                 project.milestones.getProjectImplementationDates('CompletionActual'),
         #                 'Unknown',
@@ -77,7 +77,7 @@ class MidTermReviewStatusReportFactory(object):
         #                 not project.milestones.getNewPhaseImplementationDate('Closure'):
         #             result.append((
         #                 fo.getIMISNumber(),
-        #                 project.Title(),
+        #                 project.project_general_info.Title(),
         #                 fo.getId(),
         #                 project.milestones.getNewPhaseImplementationDate('Completion'),
         #                 'Unknown',

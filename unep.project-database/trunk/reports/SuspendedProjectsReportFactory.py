@@ -47,7 +47,7 @@ class SuspendedProjectsReportFactory(object):
                     project.project_general_info.getProjectTypeName(),
                     project.project_general_info.getGeographicScopeValues(),
                     project.project_general_info.getCountryNames(),
-                    project.Title(),
+                    project.project_general_info.Title(),
                     project.getTotalGEFAmount(),
                     project.getTotalUNEPGEFAmount(),
                     project.getTotalUNEPFee(),

@@ -39,7 +39,7 @@ class ProjectContactsReportFactory(object):
         result = []
         # for project in projects:
         #     result.append((
-        #         project.Title(),
+        #         project.project_general_info.Title(),
         #         project.getId(),
         #         project.project_general_info.getGEFid(),
         #         'Unknown IMIS No',

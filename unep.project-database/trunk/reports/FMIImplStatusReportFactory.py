@@ -36,15 +36,14 @@ class FMIImplementationStatusReportFactory(object):
             if ob is not None:
                 result.append((
                     ob.getIMISNumber(),
-                    project.Title(),
+                    project.project_general_info.Title(),
                     project.project_general_info.getExecutingAgencyNames(),
                     'Unknown',
                     ob.getExpectedCompletionDate(),
                     ob.getRevisedCompletionDate(),
-                    ob.getSumFinanceObjectAmount(),
+                    ob.getTotalGEFAmount(),
                     ob.getSumCashDisbursements(),
                     ob.getSumYearlyExpenditures(),
-                    ob.getTotalGEFAmount(),
                     ob.getLatestReportData('expenditure', 'report_received_date'),
                     ob.getLatestReportData('progress', 'report_received_date'),
                     ))
