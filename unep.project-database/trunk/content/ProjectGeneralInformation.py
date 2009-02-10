@@ -828,8 +828,8 @@ class ProjectGeneralInformation(BaseContent, CurrencyMixin, BrowserDefaultMixin)
         return self.getSelectedVocabularyValues(areas, 'FocalArea')
 
     def getProjectTypeName(self):
-        types = self.getProjectType()
-        return self.getSelectedVocabularyValue(types, 'ProjectType')
+        type = self.getProjectType()
+        return self.getSelectedVocabularyValue(type, 'ProjectType')
 
     def getCountryNames(self):
         countries = self.getCountry()
