@@ -6,8 +6,9 @@ class TerminalEvaluationStatusReportFactory(object):
         self.context = context
         self.params = kw
 
-    def getReport(self, name):
+    def getReport(self):
         # create and fill the report
+        name = "Terminal Evaluation Status report"
         report = Report(name)
         report.setReportHeaders(( name,),)
         report.setTableHeaders(((

@@ -6,8 +6,9 @@ class ProjectsForCEOEndorsementReportFactory(object):
         self.context = context
         self.params = kw
 
-    def getReport(self, name):
+    def getReport(self):
         # create and fill the report
+        name = "Projects for CEO Endorsement Report"
         report = Report(name)
         report.setReportHeaders(( name,),)
         report.setTableHeaders(((

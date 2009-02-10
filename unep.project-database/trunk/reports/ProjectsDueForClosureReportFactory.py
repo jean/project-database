@@ -6,8 +6,9 @@ class ProjectsDueForClosureReportFactory(object):
         self.context = context
         self.params = kw
 
-    def getReport(self, name):
+    def getReport(self):
         # create and fill the report
+        name = "Projects Due for Closure"
         report = Report(name)
         report.setReportHeaders(( name,),)
         report.setTableHeaders(((
@@ -30,7 +31,7 @@ class ProjectsDueForClosureReportFactory(object):
         return report
 
     def getReportData(self):
-        projects = self.projectdatabase.objectValues(spec='Project')
+        projects = self.context.objectValues(spec='Project')
         result = []
         for project in projects:
 

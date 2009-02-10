@@ -23,40 +23,37 @@
         <div><a href="" tal:attributes="href string:${base}/@@mspimplstatusreport">MSP Implementation Status Report</a></div>
         <div><a href="" tal:attributes="href string:${base}/@@fspimplstatusreport">FSP Implementation Status Report</a></div>
         <div><a href="" tal:attributes="href string:${base}/@@eeaimplstatusreport">EEA Implementation Status Report</a></div>
-    </tal:def>
-    <tal:def define="base here/absolute_url">
-    <!--<tal:def define="base string:${here/absolute_url}/nonexistent">-->
-        <div><a href="" tal:attributes="href string:${base}/@@ppgreceivablesreport">@@ppgreceivablesreport</a></div>
-        <div><a href="" tal:attributes="href string:${base}/@@mspreceivablesreport">@@mspreceivablesreport</a></div>
-        <div><a href="" tal:attributes="href string:${base}/@@fspreceivablesreport">@@fspreceivablesreport</a></div>
-        <div><a href="" tal:attributes="href string:${base}/@@eeareceivablesreport">@@eeareceivablesreport</a></div>
-        <div><a href="" tal:attributes="href string:${base}/@@projectsdueforclosurereport">@@projectsdueforclosurereport</a></div>
-        <div><a href="" tal:attributes="href string:${base}/@@projectcontactsreport">@@projectcontactsreport</a></div>
-        <div><a href="" tal:attributes="href string:${base}/@@rosterofevaluatorsreport">@@rosterofevaluatorsreport</a></div>
-        <div><a href="" tal:attributes="href string:${base}/@@midtermreviewstatusreport">@@midtermreviewstatusreport</a></div>
-        <div><a href="" tal:attributes="href string:${base}/@@midtermevaluationstatusreport">@@midtermevaluationstatusreport</a></div>
-        <div><a href="" tal:attributes="href string:${base}/@@terminalevaluationstatusreport">@@terminalevaluationstatusreport</a></div>
-        <div><a href="" tal:attributes="href string:${base}/@@qoterrplreport">@@qoterrplreport</a></div>
-        <div><a href="" tal:attributes="href string:${base}/@@projectsatriskreport">@@projectsatriskreport</a></div>
-        <div><a href="" tal:attributes="href string:${base}/@@countryriskreport">@@countryriskreport</a></div>
-        <div><a href="" tal:attributes="href string:${base}/@@executingagencyriskreport">@@executingagencyriskreport</a></div>
-        <div><a href="" tal:attributes="href string:${base}/@@projectimplementationreviewreport">@@projectimplementationreviewreport</a></div>
-        <div><a href="" tal:attributes="href string:${base}/@@qualityofprojectmandereport">@@qualityofprojectmandereport</a></div>
-        <div><a href="" tal:attributes="href string:${base}/@@projectsforceoendorsementreport">@@projectsforceoendorsementreport</a></div>
-        <div><a href="" tal:attributes="href string:${base}/@@midtermevaluationscomingupreport">@@midtermevaluationscomingupreport</a></div>
-        <div><a href="" tal:attributes="href string:${base}/@@terminalevaluationscomingupreport">@@terminalevaluationscomingupreport</a></div>
-        <div><a href="" tal:attributes="href string:${base}/@@projectcyclestagestatusreport">@@projectcyclestagestatusreport</a></div>
-        <div><a href="" tal:attributes="href string:${base}/@@programmeframeworkreport">@@programmeframeworkreport</a></div>
-        <div><a href="" tal:attributes="href string:${base}/@@projectratingsreport">@@projectratingsreport</a></div>
-        <div><a href="" tal:attributes="href string:${base}/@@qoterrreport">@@qoterrreport</a></div>
-        <div><a href="" tal:attributes="href string:${base}/@@projectimplementationreviewtablereport">@@projectimplementationreviewtablereport</a></div>
-        <div><a href="" tal:attributes="href string:${base}/@@keymilestonesreport">@@keymilestonesreport</a></div>
-        <div><a href="" tal:attributes="href string:${base}/@@gefprojectsbypriorityreport">@@gefprojectsbypriorityreport</a></div>
-        <div><a href="" tal:attributes="href string:${base}/@@internallyexecutedprojectsreport">@@internallyexecutedprojectsreport</a></div>
-        <div><a href="" tal:attributes="href string:${base}/@@projectsbygeographicscopereport">@@projectsbygeographicscopereport</a></div>
-        <div><a href="" tal:attributes="href string:${base}/@@projectsbyexecutingagencyreport">@@projectsbyexecutingagencyreport</a></div>
-        <div><a href="" tal:attributes="href string:${base}/@@donorreport">@@donorreport</a></div>
-        <div><a href="" tal:attributes="href string:${base}/@@projectsbystaffreport">@@projectsbystaffreport</a></div>
+        <div><a href="" tal:attributes="href string:${base}/@@ppgreceivablesreport">PPG Receivables Report</a></div>
+        <div><a href="" tal:attributes="href string:${base}/@@mspreceivablesreport">MSP Receivables Report</a></div>
+        <div><a href="" tal:attributes="href string:${base}/@@fspreceivablesreport">FSP Receivables Report</a></div>
+        <div><a href="" tal:attributes="href string:${base}/@@projectsdueforclosurereport">Projects Due for Closure</a></div>
+        <div><a href="" tal:attributes="href string:${base}/@@eeareceivablesreport">EEA Receivables Report</a></div>
+        <div><a href="" tal:attributes="href string:${base}/@@projectcontactsreport">Project Contacts Report</a></div>
+        <div><a href="" tal:attributes="href string:${base}/@@rosterofevaluatorsreport">Roster of Evaluators Report</a></div>
+        <div><a href="" tal:attributes="href string:${base}/@@midtermreviewstatusreport">Mid-term Review Status Report</a></div>
+        <div><a href="" tal:attributes="href string:${base}/@@midtermevaluationstatusreport">Mid-term Evaluation Status Report</a></div>
+        <div><a href="" tal:attributes="href string:${base}/@@terminalevaluationstatusreport">Terminal Evaluation Status Report</a></div>
+        <div><a href="" tal:attributes="href string:${base}/@@qoterrplreport">Quality of Terminal Evaluation Report Ratings (Portfolio Level)</a></div>
+        <div><a href="" tal:attributes="href string:${base}/@@projectsatriskreport">Projects at Risk Report</a></div>
+        <div><a href="" tal:attributes="href string:${base}/@@countryriskreport">Country Risk Report</a></div>
+        <div><a href="" tal:attributes="href string:${base}/@@executingagencyriskreport">Executing Agency Risk Report</a></div>
+        <div><a href="" tal:attributes="href string:${base}/@@projectimplementationreviewreport">Project Implementation Review Report</a></div>
+        <div><a href="" tal:attributes="href string:${base}/@@qualityofprojectmandereport">Quality of Project Monitoring and Evaluation Report</a></div>
+        <div><a href="" tal:attributes="href string:${base}/@@projectsforceoendorsementreport">Projects for CEO Endorsement Report</a></div>
+        <div><a href="" tal:attributes="href string:${base}/@@midtermevaluationscomingupreport">Mid-term Evaluations Coming Up Report</a></div>
+        <div><a href="" tal:attributes="href string:${base}/@@terminalevaluationscomingupreport">Terminal Evaluations Coming Up Report</a></div>
+        <div><a href="" tal:attributes="href string:${base}/@@projectcyclestagestatusreport">Project Cycle Stage Status Report</a></div>
+        <div><a href="" tal:attributes="href string:${base}/@@programmeframeworkreport">Programme Framework Report</a></div>
+        <div><a href="" tal:attributes="href string:${base}/@@projectratingsreport">Project Ratings Report</a></div>
+        <div><a href="" tal:attributes="href string:${base}/@@qoterrreport">Quality of Terminal Evaluation report ratings</a></div>
+        <div><a href="" tal:attributes="href string:${base}/@@projectimplementationreviewtablereport">Project Implementation Review Table Report</a></div>
+        <div><a href="" tal:attributes="href string:${base}/@@keymilestonesreport">Key Milestones Report</a></div>
+        <div><a href="" tal:attributes="href string:${base}/@@gefprojectsbypriorityreport">GEF Projects by Priority Report</a></div>
+        <div><a href="" tal:attributes="href string:${base}/@@internallyexecutedprojectsreport">Internally Executed Projects Report</a></div>
+        <div><a href="" tal:attributes="href string:${base}/@@projectsbygeographicscopereport">Projects by Geographic Scope Report</a></div>
+        <div><a href="" tal:attributes="href string:${base}/@@projectsbyexecutingagencyreport">Projects by Executing Agency Report</a></div>
+        <div><a href="" tal:attributes="href string:${base}/@@donorreport">Donor Report</a></div>
+        <div><a href="" tal:attributes="href string:${base}/@@projectsbystaffreport">Projects by Staff Report</a></div>
     </tal:def>
 </div>
 </body>

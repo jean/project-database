@@ -6,8 +6,9 @@ class qoterrReportFactory(object):
         self.context = context
         self.params = kw
 
-    def getReport(self, name):
+    def getReport(self):
         # create and fill the report
+        name = "Quality of Terminal Evaluation report ratings"
         report = Report(name)
         report.setReportHeaders(( name,),)
         report.setTableHeaders(((
