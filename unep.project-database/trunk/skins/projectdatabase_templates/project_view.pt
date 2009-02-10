@@ -1,37 +1,15 @@
         <metal:header metal:define-macro="header">
-        <h1 class="documentFirstHeading" tal:content="context/Title">Project Name</h1>
+        <h1 class="documentFirstHeading" tal:content="context/id">Project Name</h1>
         </metal:header>
         <metal:folderlisting metal:define-macro="folderlisting" />
         <metal:footer metal:define-macro="footer" />
         <metal:body metal:define-macro="body">
-        <div>
-        <!-- PGI -->
-            <a tal:attributes="href context/project_general_info/absolute_url"
-                tal:content="context/project_general_info/Title"> PGI </a>   
 
-        </div>
-        <div>
-        <!-- FMI -->
-            <a tal:attributes="href context/fmi_folder/absolute_url"
-                tal:content="context/fmi_folder/Title"> FMI </a>   
-
-        </div>
-        <div>
-        <!-- M&E -->
-            <a tal:attributes="href context/mne_folder/absolute_url"
-                tal:content="context/mne_folder/Title"> M and E </a>   
-
-        </div>
-        <div>
-        <!-- Milestones -->
-            <a tal:attributes="href context/milestones/absolute_url"
-                tal:content="context/milestones/Title"> Milestones </a>   
-
-        </div>
-        <div>
-        <!-- Documents -->
-            <a tal:attributes="href context/documents/absolute_url"
-                tal:content="context/documents/Title"> Documents </a>   
-
-        </div>
+            <h1>Project General Information</h1>
+            <tal:def tal:define="ob nocall:context">
+                    <tal:use metal:use-macro="context/matrix_macros/macros/pgi_matrix" />
+            </tal:def>
+            <tal:def tal:define="brains context/fmi_folder/getFolderContents">
+                    <tal:use metal:use-macro="context/matrix_macros/macros/multiple_fmi_matrix" />
+            </tal:def>
         </metal:body>
