@@ -69,7 +69,8 @@ class ProjectDatabase(BaseFolder, BrowserDefaultMixin):
     security.declarePublic('getNextProjectId')
     def getNextProjectId(self):
         pc = getToolByName(self, 'portal_catalog')
-        projectBrains = pc(portal_type='Project', sort_index='created', reverse=1)
+        projectBrains = \
+            pc(portal_type='Project', sort_on='created', sort_order='reverse')
         if len(projectBrains) == 0:
             childrenCount = 0
         else:

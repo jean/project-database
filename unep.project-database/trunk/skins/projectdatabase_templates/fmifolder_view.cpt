@@ -8,7 +8,7 @@
     <form name="add_finobject" method="post" action=""
             tal:attributes="action python: context.absolute_url() + '/fmifolder_view'">
         <input type="hidden" name="form.submitted" value="1" />
-        <input type="submit" name="form.button.add" value="Add Financial Object"/>
+        <span>Create new finance object</span>
         <select name="category" 
               tal:define="
                     vocab python:context.portal_vocabularies.getVocabularyByName('FinanceCategory');
@@ -20,6 +20,7 @@
                 </option>
             </tal:rep>
         </select>
+        <input class="submit" type="submit" name="form.button.add" value="Create"/>
     </form>
     <table width="100%"
         tal:define="pgi nocall:context/aq_parent/project_general_info">
