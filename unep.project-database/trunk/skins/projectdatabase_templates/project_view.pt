@@ -5,7 +5,7 @@
         <metal:footer metal:define-macro="footer" />
         <metal:body metal:define-macro="body">
 
-            <h1>Project General Information</h1>
+            <h1>Project General Information - <span tal:replace="context/project_general_info/Title" /></h1>
             <tal:def tal:define="ob nocall:context">
                     <tal:use metal:use-macro="context/matrix_macros/macros/pgi_matrix" />
             </tal:def>

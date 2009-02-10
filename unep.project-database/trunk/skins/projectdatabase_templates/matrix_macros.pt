@@ -40,9 +40,9 @@
         <th>Project Cycle Stage</th>
     </tr>
     <tr>
-        <td tal:content="ob/pgi_folder/getGEFId | string:unknown" />
-        <td tal:content="ob/pgi_folder/getFocalArea | string:unknown" />
-        <td tal:content="ob/pgi_folder/getProjectCycleStage | string:unknown" />
+        <td tal:content="ob/project_general_info/getGEFid | string:unknown" />
+        <td tal:content="ob/project_general_info/getFocalAreaNames | string:unknown" />
+        <td tal:content="ob/milestones/getProjectCycleStage | string:unknown" />
     </tr>
 </table>
 </metal:pgi_matrix>
