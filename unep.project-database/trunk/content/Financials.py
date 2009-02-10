@@ -659,7 +659,26 @@ class Financials(BaseFolder, CurrencyMixin, BrowserDefaultMixin):
             result += sub.getAmountReceivable()
         return result
 
+    def getLatestEARiskRating(self):
+        values = self.getExecutingAgencyRiskRating()
+        if values:
+            date = DateTime('1900/01/01')
+            for v in values:
+                if v['Assessment_Date']:
+                    if date < v['Assessment_Date']:
+                        date = v['Assessment_Date']
+                        rating = self.getSelectedVocabularyValue( \
+                            v['Risk_Level'],
+                            'RiskLevel')
+            if date != DateTime('1900/01/01'):
+                return rating
+        return None
 
+    def getSelectedVocabularyValue(self, selection, vocabName):
+        atvm = getToolByName(self, 'portal_vocabularies')
+        vocab = atvm.getVocabularyByName(vocabName)
+        dict = vocab.getVocabularyDict(self)
+        return dict[selection][0]
 
 registerType(Financials, PROJECTNAME)
 # end of class Financials

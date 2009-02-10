@@ -198,6 +198,31 @@ class MonitoringAndEvaluation(BaseContent, BrowserDefaultMixin):
             return vocab.getDisplayList(self)
         return DisplayList()
 
+    def getEvaluationProcessStatusDates(self, step):
+        values = self.getEvaluationProcessStatus()
+        if values:
+            date = DateTime('1900/01/01')
+            for v in values:
+                if v['step_date'] \
+                   and v['process_step'] == step:
+                    if date < v['step_date']:
+                        date = v['step_date']
+            if date != DateTime('1900/01/01'):
+                return date
+        return None
+
+    def getEvaluationRatingsDates(self, step):
+        values = self.getEvaluationRatings()
+        if values:
+            date = DateTime('1900/01/01')
+            for v in values:
+                if v['step_date'] \
+                   and v['process_step'] == step:
+                    if date < v['step_date']:
+                        date = v['step_date']
+            if date != DateTime('1900/01/01'):
+                return date
+        return None
 
 
 registerType(MonitoringAndEvaluation, PROJECTNAME)
