@@ -5,3 +5,32 @@ from zope.component import getMultiAdapter
 class ViewOptions(ViewletBase):
     render = ViewPageTemplateFile('viewoptions.pt')
 
+    def _isType(self, type):
+        return self.context.portal_type == type
+
+    def _endsWith(self, path):
+        return self.context.request.URL.endswith(path)
+
+    def getTabs(self):
+
+        project = self.context.restrictedTraverse('@@unep_utils').projectParentURL()
+        if not project:
+            return []
+
+        tabs = [
+            (project, "Overview",
+                self._isType('Project') and self._endsWith('/base_view')),
+            ("%s/project_general_info" % project,"General",
+                self._isType('ProjectGeneralInformation')),
+            ("%s/fmi_folder" % project, "Financial",
+                self._isType('FMIFolder')),
+            ("%s/documents" % project, "Documents",
+                self._isType('Folder')),
+            ("%s/milestones" % project, "Milestones",
+                self._isType('Milestone')),
+            ("%s/mne_folder" % project, "Monitoring & Evaluation",
+                self._isType('MandEfolder')),
+            ("%s/reports" % project, "Reports",
+                self._isType('Project') and self._endsWith('/reports')),
+        ]
+        return [dict(url=i, title=j, selected=k) for i,j,k in tabs]
