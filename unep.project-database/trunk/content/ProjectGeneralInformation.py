@@ -883,6 +883,19 @@ class ProjectGeneralInformation(BaseContent, CurrencyMixin, BrowserDefaultMixin)
             result += dict[value][0] + ', '
         return result[:-2]
 
+    def getCurrentTM(self):
+        values = self.getTaskManager()
+        if values:
+            date = '1900'
+            for v in values:
+                if v['period'] and v['name'] and v['category'] == 'Principal':
+                    if date < v['period']:
+                        date = v['period']
+                        name = v['name']
+            if date != '1900':
+                return name
+        return None
+
 
 
 registerType(ProjectGeneralInformation, PROJECTNAME)

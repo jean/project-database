@@ -241,7 +241,7 @@ class Milestone(BaseContent, BrowserDefaultMixin):
         return None
 
 
-    def geProjectApprovalDate(self, action):
+    def getProjectApprovalDate(self, action):
         values = self.getProjectApproval()
         if values:
             date = DateTime('1900/01/01')
@@ -267,7 +267,7 @@ class Milestone(BaseContent, BrowserDefaultMixin):
                 return date
         return None
 
-    def gePPGApprovalDate(self, action):
+    def getPPGApprovalDate(self, action):
         values = self.getPPGApproval()
         if values:
             date = DateTime('1900/01/01')
