@@ -46,6 +46,13 @@
         permission="zope2.View"
         />
 
+    <browser:page
+        for="*"
+        name="create-project"
+        class=".createproject.ProjectCreation"
+        permission="zope2.View"
+        />
+
     <include package=".reports" />
 
 </configure>

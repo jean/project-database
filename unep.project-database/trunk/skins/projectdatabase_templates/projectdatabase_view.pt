@@ -13,6 +13,7 @@
                         batch python:Batch(brains, b_size, int(b_start), orphan=1);
                         projects python:[brain.getObject() for brain in batch];
                         ">
+<a style="float:right" tal:attributes="href string:@@create-project">Create a new project</a>
 <table class="table-fullwidth">
     <tr>
         <th i18n:translate="dbase_id">DBase ID</th>
@@ -43,6 +44,7 @@
         </tr>
     </tal:rep>
 </table>
+<a style="float:right" tal:attributes="href string:@@create-project">Create a new project</a>
 <b><div metal:use-macro="here/batch_macros/macros/navigation" /></b>
 </tal:batch>
 
