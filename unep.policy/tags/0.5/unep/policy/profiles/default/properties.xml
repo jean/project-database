@@ -1,0 +1,6 @@
+<?xml version="1.0" ?>
+<site>
+    <property name="title">UNEP GEF Project Office Database</property>
+    <property name="description">Welcome to the UNEP GEF Project Office Database.</property>
+    <property name="email_from_address" type="string">support@upfrontsystems.co.za</property>
+</site>
