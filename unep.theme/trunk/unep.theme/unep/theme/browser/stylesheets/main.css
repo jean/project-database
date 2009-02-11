@@ -149,6 +149,10 @@ div#content div ul {
     padding-left: 20px;
 }
 
+div#content div.field br {
+    display: none;
+}
+
 
 div.column-heading {
     float: left; 
@@ -513,6 +517,8 @@ table.table-fullwidth td {
 select {
     max-width: 800px;
 }
+
+
 
 /*
 ** end ECMAScript Content Action Menus
