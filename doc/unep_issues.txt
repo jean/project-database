@@ -21,7 +21,7 @@ PGI
 -ReferenceColumn required for DataGridField
 
 8. In view mode, the data should appear against the label and not below it(save on real estate) e.g. Database Id: Prj-00004 and not Database Id:
-- Modify field.pt
+- Done
 
 9. As discussed in SA, EA Biodiv/ EA CC / EA POPs drop down should only appear when project type is ‘enabling activity’ and focal area is ‘Biodiv or CC’.
 - javascript
@@ -45,7 +45,7 @@ PGI
 -We need exact places please.
 
 16. Lead Exec Agency Category – Research/Academic Institutions; UNEP Collaborating Centers……….shud be without ‘s’ at the end (our mistake)
-- Modify model
+- Modify VDEX
 
 17. Use different colours to distinguish the field label and the data itself. Both should not be blue.
 -Done
