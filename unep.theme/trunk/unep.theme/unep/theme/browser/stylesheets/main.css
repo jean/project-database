@@ -149,6 +149,7 @@ div#content div ul {
     padding-left: 20px;
 }
 
+
 div.column-heading {
     float: left; 
     width: 100%; 
@@ -291,8 +292,16 @@ form {
     padding-right: 1em;
 }
 
+
+label.formQuestion {
+    font-weight: bold;
+    color: #24a1d1;
+}
+
 div.field {
     padding-left: 1em;
+    font-weight: 100;
+    color: grey;
 }
 
 /* ------------------ Authoring Styles ---------------------------------- */
@@ -484,9 +493,25 @@ table.table-fullwidth th{
     background-color:#e8f4ff;
 }
 
-table.table-fullwidth td{
+table.table-fullwidth th {
     text-align:center;
-    padding:10px 0 10px 0;
+    padding: 5px 0 5px 0;
+    font-weight: bold;
+    font-size: small;
+    font-family: Arial, Verdana;
+}
+
+table.table-fullwidth td {
+    text-align: center;
+    color: grey;
+    padding: 5px 0 5px 0;
+    font-weight: 100;
+    font-size: small;
+    font-family: Arial, Verdana;
+}
+
+select {
+    max-width: 800px;
 }
 
 /*
