@@ -1,0 +1,87 @@
+1. The database should be called  UNEP GEF Project Database
+-Done
+
+2. Navigation bar – ‘Documents’ should move to the end, along side ‘Reports’
+-Done
+
+PGI
+3. Mountain Ecosystem is the project title. Why has it replaced the folder name PGI?
+-Done
+
+4. Drop downs for Focal Area, Region, Country, Scope etc have no provision to add the selected option, especially where multi selection of items might be required. The country selection options as well as the UNEP thematic priorities need to be multi selection as described in the Data dictionary.
+-Done
+
+5. Mode of Execution – ‘Division’ should be inactive till ‘Internal’ is selected.
+-Add javascript
+
+6. Text boxes – all over the database – should be small but expandible (not to discourage TMs)
+-Question: text or rich text boxes?
+
+7. Task Manager – user should not enter the name but select from the ‘contacts’ dbase. It should be reference field. (same applies to FMOs)
+-ReferenceColumn required for DataGridField
+
+8. In view mode, the data should appear against the label and not below it(save on real estate) e.g. Database Id: Prj-00004 and not Database Id:
+- Modify field.pt
+
+9. As discussed in SA, EA Biodiv/ EA CC / EA POPs drop down should only appear when project type is ‘enabling activity’ and focal area is ‘Biodiv or CC’.
+- javascript
+
+10. The blue header in PGI shows the project title which is not the case when one is in FMI/Milestones/Docs/M&E.
+-Done
+
+11. Delete the ‘Enter the 5 digit GEF Id’ description in edit mode of PGI.
+-Done
+
+12. When searching for Project Manager, it should not search the entire database but only the CONTACTS dbase.
+-Add attrib to ref field (starting dir)
+
+13. Validation of the GEF phases with regard to the Operational Programs, Strategic Priorities, Strategic Objectives and Strategic Programs.(refer to the notes column of the PGI data dictionary.
+-
+
+14. All figures in the database should be right aligned, this applies to edit as well as view mode.
+-Add MoneyColumn to DGF
+
+15. All acronyms in the database should be in CAPS.
+-We need exact places please.
+
+16. Lead Exec Agency Category – Research/Academic Institutions; UNEP Collaborating Centers……….shud be without ‘s’ at the end (our mistake)
+- Modify model
+
+17. Use different colours to distinguish the field label and the data itself. Both should not be blue.
+-Done
+
+18. When you log-in, it takes you to the project you were working on at the last log-in as opposed to ‘View’/Project List
+-Please double check
+
+FMI
+
+1. Add ‘finance object’ – why is this done in ‘view’ mode (hence emails from sandeep - yesterday). And if one adds a finance object by mistake (which is bound to happen) how do we delete that entry?
+-Ask Rijk
+
+2. Report rcvd – do not want time displayed 12.00am
+-Bug in CalendarColumn in DGF
+
+
+3. We had wanted a thousand separator to appear just when one finishes entering data in any figure field i.e after hitting the ‘tab’ or clicking on the next field
+-Javascript for format
+
+4. In view mode, spacing in field labels is missing for some e.g Total cofinance planned / actual & Total Cost etc.
+-?
+
+
+Milestones Section:
+
+1. Under project approval milestone, PRC Review appears as PRC REview. Please change this.
+-Done
+
+2. In general, table headings should be bold and in CAPS and not the data inside the table. Please also eliminate the time entry for all the date entries in the database.
+-Change DFG
+
+M& E Section:
+
+1. When we click on the M&E for the project Mountain Ecosystems it first takes us to takes us to the content view. 
+-This has changed completely
+
+2. When we click on the red font M&E (above) we get to the view below. The question is why isn’t the project title rendered on this section of the database?
+-This has changed completely
+
