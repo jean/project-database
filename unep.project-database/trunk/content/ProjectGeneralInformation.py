@@ -596,6 +596,7 @@ ProjectGeneralInformation_schema = BaseSchema.copy() + \
 
 ##code-section after-schema #fill in your manual code here
 ProjectGeneralInformation_schema['title'].widget.label = 'Project Title'
+ProjectGeneralInformation_schema['LeadAgencyContact'].widget.startup_directory_method = 'getContactsPath'
 ##/code-section after-schema
 
 class ProjectGeneralInformation(BaseContent, CurrencyMixin, BrowserDefaultMixin):
@@ -895,6 +896,13 @@ class ProjectGeneralInformation(BaseContent, CurrencyMixin, BrowserDefaultMixin)
             if date != '1900':
                 return name
         return None
+
+    def getContactsPath(self):
+        pt = getToolByName(self, 'portal_url')
+        portal = pt.getPortalObject()
+        contacts = pt.get('contacts', None)
+        if contacts:
+            return contacts.absolute_url()
 
 
 
