@@ -1,7 +1,4 @@
 Things to do on UNEP Project
-* Change number of years on datagrid calender column
-* Change number of years on calender widgets
-* Add Project Stage to Overview
 * Personal/Folder actions - what and where are they requried?
   - Add 'Publish' where appropriate
   - M&E Folder view rework
