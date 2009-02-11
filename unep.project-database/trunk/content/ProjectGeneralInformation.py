@@ -54,15 +54,13 @@ schema = Schema((
         name='GEFid',
         widget=StringField._properties['widget'](
             label="GEF ID",
-            description="Enter the 5 digit GEF ID",
             label_msgid='ProjectDatabase_label_GEFid',
-            description_msgid='ProjectDatabase_help_GEFid',
             i18n_domain='ProjectDatabase',
         ),
     ),
     LinesField(
         name='UNEPThematicPriority',
-        widget=MultiSelectionWidget(
+        widget=InAndOutWidget(
             label="UNEP Priority",
             label_msgid='ProjectDatabase_label_UNEPThematicPriority',
             i18n_domain='ProjectDatabase',
@@ -72,7 +70,7 @@ schema = Schema((
     ),
     LinesField(
         name='FocalArea',
-        widget=MultiSelectionWidget(
+        widget=InAndOutWidget(
             label="Focal Area",
             label_msgid='ProjectDatabase_label_FocalArea',
             i18n_domain='ProjectDatabase',
@@ -111,7 +109,7 @@ schema = Schema((
     ),
     LinesField(
         name='Scope',
-        widget=MultiSelectionWidget(
+        widget=InAndOutWidget(
             label="Geographic Scope",
             label_msgid='ProjectDatabase_label_Scope',
             i18n_domain='ProjectDatabase',
@@ -129,7 +127,7 @@ schema = Schema((
     ),
     LinesField(
         name='Region',
-        widget=MultiSelectionWidget(
+        widget=InAndOutWidget(
             label='Region',
             label_msgid='ProjectDatabase_label_Region',
             i18n_domain='ProjectDatabase',
@@ -147,7 +145,7 @@ schema = Schema((
     ),
     LinesField(
         name='Country',
-        widget=MultiSelectionWidget(
+        widget=InAndOutWidget(
             label='Country',
             label_msgid='ProjectDatabase_label_Country',
             i18n_domain='ProjectDatabase',
@@ -157,7 +155,7 @@ schema = Schema((
     ),
     LinesField(
         name='OtherNonGEFEligibleCountries',
-        widget=MultiSelectionWidget(
+        widget=InAndOutWidget(
             label="Other Non-GEF Eligible Project Participating Countries",
             label_msgid='ProjectDatabase_label_OtherNonGEFEligibleCountries',
             i18n_domain='ProjectDatabase',
@@ -228,7 +226,7 @@ schema = Schema((
     ),
     LinesField(
         name='OtherImplementingAgency',
-        widget=MultiSelectionWidget(
+        widget=InAndOutWidget(
             label="Other GEF Agency(ies)",
             label_msgid='ProjectDatabase_label_OtherImplementingAgency',
             i18n_domain='ProjectDatabase',
@@ -256,7 +254,7 @@ schema = Schema((
     ),
     LinesField(
         name='OtherDivisions',
-        widget=MultiSelectionWidget(
+        widget=InAndOutWidget(
             label="Other Divisions",
             label_msgid='ProjectDatabase_label_OtherDivisions',
             i18n_domain='ProjectDatabase',
@@ -396,7 +394,7 @@ schema = Schema((
     ),
     LinesField(
         name='OperationalProgramme',
-        widget=MultiSelectionWidget(
+        widget=InAndOutWidget(
             label="Operational Programme",
             label_msgid='ProjectDatabase_label_OperationalProgramme',
             i18n_domain='ProjectDatabase',
@@ -406,7 +404,7 @@ schema = Schema((
     ),
     LinesField(
         name='EABiodiversity',
-        widget=MultiSelectionWidget(
+        widget=InAndOutWidget(
             label="EA Biodiversity",
             label_msgid='ProjectDatabase_label_EABiodiversity',
             i18n_domain='ProjectDatabase',
@@ -416,7 +414,7 @@ schema = Schema((
     ),
     LinesField(
         name='EAClimateChange',
-        widget=MultiSelectionWidget(
+        widget=InAndOutWidget(
             label="EA Climate Change",
             label_msgid='ProjectDatabase_label_EAClimateChange',
             i18n_domain='ProjectDatabase',
@@ -426,7 +424,7 @@ schema = Schema((
     ),
     LinesField(
         name='EAPOP',
-        widget=MultiSelectionWidget(
+        widget=InAndOutWidget(
             label="EA POP",
             label_msgid='ProjectDatabase_label_EAPOP',
             i18n_domain='ProjectDatabase',
@@ -436,7 +434,7 @@ schema = Schema((
     ),
     LinesField(
         name='EAMultipleFocalAreas',
-        widget=MultiSelectionWidget(
+        widget=InAndOutWidget(
             label="Multiple Focal Areas",
             label_msgid='ProjectDatabase_label_EAMultipleFocalAreas',
             i18n_domain='ProjectDatabase',
