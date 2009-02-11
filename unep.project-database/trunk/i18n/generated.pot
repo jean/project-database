@@ -1500,6 +1500,16 @@ msgstr ""
 msgid "ProjectDatabase_label_TotalCoFinOfFinanceObjectPlanned"
 msgstr ""
 
+#. Default: "Total Co-financing (actual)"
+#: content/ProjectGeneralInformation.py
+msgid "ProjectDatabase_label_TotalCoFinancingActual"
+msgstr ""
+
+#. Default: "Total Co-financing (planned)"
+#: content/ProjectGeneralInformation.py
+msgid "ProjectDatabase_label_TotalCoFinancingPlanned"
+msgstr ""
+
 #. Default: "Totalcofinoffinanceobjectactual"
 #: content/Financials.py
 msgid "ProjectDatabase_label_TotalCofinOfFinanceObjectActual"

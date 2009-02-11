@@ -240,7 +240,6 @@ class Milestone(BaseContent, BrowserDefaultMixin):
                 return date
         return None
 
-
     def getProjectApprovalDate(self, action):
         values = self.getProjectApproval()
         if values:
@@ -280,7 +279,6 @@ class Milestone(BaseContent, BrowserDefaultMixin):
                 return date
         return None
 
-
     def getPPGImplementationDate(self, action):
         values = self.getPPGImplementation()
         if values:
@@ -319,6 +317,7 @@ class Milestone(BaseContent, BrowserDefaultMixin):
             if date != DateTime('1900/01/01'):
                 return date
         return None
+
 
 
 registerType(Milestone, PROJECTNAME)
