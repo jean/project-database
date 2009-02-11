@@ -1,0 +1,25 @@
+Database roles:
+. Administrator
+. Registrar (milestones including those in PFD)
+. Task Manager (PGI rights, MTR rights in M&E)
+. Fund Management Officer (FMI rights)
+. Senior Programme Officer (SPO) (the only difference with the TM role is that
+  he/she publishes “private concepts” and has Programme Framework editing
+  rights)
+. SPMO (the only role is that he/she rates country risk)
+. Monitoring Officer (M&E rights but only specific fields)
+. Evaluation Officer (M&E rights but only specific fields)
+. Senior Manager (editing rights on all sections but will not administer). Only
+  one staff in the Division should have such rights.
+
+
+Notes:
+. Programme Assistants will have the same role as Task Managers. However, they
+  will log in with their own names and passwords for auditing purposes
+. Finance Assistants will have the same role as FMOs. However, they will log in
+  with their own names and passwords for auditing purposes
+. It has been agreed that for the time being the SPMO’s only special role is to
+  rate country risk. He will be able to view all data but will not have editing
+  rights.
+. The registrar requires a backstop. The same person may be trained to also
+  provide backstopping to the Administrator.
