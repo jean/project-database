@@ -105,7 +105,7 @@
             <a href="#" tal:attributes="href string:${context/portal_url}"><img style="float: left;" src="logo.jpg" /></a>
             <div class="page-heading">
                 <br />
-                <span i18n:translate="gef_project_office">UNEP GEF Project Database</span>
+                <span tal:content="context/portal_url/Title">TITLE</span>
             </div>
         </div>
     </div>
