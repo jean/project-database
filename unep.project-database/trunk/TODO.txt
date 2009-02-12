@@ -19,9 +19,12 @@ Things to do on UNEP Project
   - Overview needs project stage
 
 * Questions for UNEP
+- Big picture
 - M&E - linked to Financial/SubProject/?
 - Add ProjectStage to Milestones or PGI?
 - On FMI View, Which task manager/s should be displayed (Principal/Former/Backup)?
+----> Drop former
+----> Always show in order Principle/Backup
 - ON FMI View, Evaluation Budget amount and BAC is on FO not project. Must the amounts be summed?
 - On all the reports, the project selection criteria must be thoroughly
   tested.

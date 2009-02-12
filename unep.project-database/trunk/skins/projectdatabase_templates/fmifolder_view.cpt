@@ -22,6 +22,7 @@
         </select>
         <input class="submit" type="submit" name="form.button.add" value="Create"/>
     </form>
+    <hr >
     <table width="100%"
         tal:define="pgi nocall:context/aq_parent/project_general_info">
 <!-- PGI -->

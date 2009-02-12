@@ -3,8 +3,6 @@
  <object name="financial_properties" meta_type="Plone Property Sheet">
   <property name="title">Financial Properties</property>
   <property name="default_currency" type="string">USD</property>
-  <property name="calendar_starting_year" type="int">1995</property>
-  <property name="calendar_future_years_available" type="int">10</property>
  </object>
 </object>
 
