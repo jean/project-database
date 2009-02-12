@@ -6,6 +6,10 @@
 <metal:footer metal:define-macro="footer" />
 <metal:body metal:define-macro="body">
 <div>
+<h3 class="" tal:content="context/project_general_info/Title">Title</h3>
+<hr >
+</div>
+<div>
     <form name="add_mande" method="post" action=""
             tal:attributes="action python: context.absolute_url() + '/mandefolder_view'">
         <input type="hidden" name="form.submitted" value="1" />

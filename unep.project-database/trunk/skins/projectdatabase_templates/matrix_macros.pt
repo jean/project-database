@@ -9,21 +9,21 @@
         <th>Total Disbursements</th>
         <th>Total Expenditures</th>
     </tr>
-    <tr tal:repeat="ob obs">
-        <td tal:content="ob/getIMISNumber | string:unknown" />
+    <tr tal:repeat="brain brains">
+        <td tal:content="brain/getIMISNumber | string:unknown" />
         <td tal:content="mainob/aq_parent/title_or_id | string:unknown" />
-        <td tal:content="ob/title_or_id | string:unknown" />
-        <td tal:content="ob/getExpectedCompletionDate | string:unknown" />
-        <td tal:content="ob/getSumFinanceObjectAmount | string:unknown" />
-        <td tal:content="ob/getSubProjectsTotalCashDisbursed | string:unknown" />
-        <td tal:content="ob/getSubProjectsTotalExpenditures | string:unknown" />
+        <td tal:content="brain/title_or_id | string:unknown" />
+        <td tal:content="brain/getExpectedCompletionDate | string:unknown" />
+        <td tal:content="brain/getSumFinanceObjectAmount | string:unknown" />
+        <td tal:content="brain/getSubProjectsTotalCashDisbursed | string:unknown" />
+        <td tal:content="brain/getSubProjectsTotalExpenditures | string:unknown" />
     </tr>
 </table>
 </metal:fmi_matrix>
 
 <metal:multiple_fmi_matrix define-macro="multiple_fmi_matrix">
 <tal:rep tal:repeat="brain brains">
-<h1 tal:content="brain/pretty_title_or_id">Title</h1>
+<h3 tal:content="brain/pretty_title_or_id">Title</h3>
 <tal:def tal:define="mainob brain/getObject;
                      obs mainob/getFolderContents;
                      ">
