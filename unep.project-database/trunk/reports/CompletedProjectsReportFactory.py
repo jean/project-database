@@ -38,22 +38,27 @@ class CompletedProjectsReportFactory(object):
         projects = self.projectdatabase.objectValues(spec='Project')
         result = []
         for project in projects:
-            if project.milestones.getProjectImplementationDate('CompletionActual'):
+            pgi = project.project_general_info
+            ms = project.milestones
+            mofu = project.fmi_folder.getMainFinanceObject()
+
+            if mofu and project.isTheProjectPublished() and \
+                ms.getProjectImplementationDate('CompletionActual'):
                 result.append((
                     project.getId(),
-                    project.project_general_info.getGEFid(),
-                    'Unknown IMIS No',
-                    project.project_general_info.getFocalAreaNames(),
-                    project.project_general_info.getProjectTypeName(),
-                    project.project_general_info.getGeographicScopeValues(),
-                    project.project_general_info.getCountryNames(),
-                    project.Title(),
+                    pgi.getGEFid(),
+                    mofu.getIMISNumber(),
+                    pgi.getFocalAreaNames(),
+                    pgi.getProjectTypeName(),
+                    pgi.getGeographicScopeValues(),
+                    pgi.getCountryNames(),
+                    pgi.Title(),
                     project.getTotalGEFAmount(),
                     project.getTotalUNEPGEFAmount(),
                     project.getTotalUNEPFee(),
-                    project.milestones.getProjectImplementationDate('SignatureOfLegalInstrumentActual'),
-                    project.milestones.getEvaluationDatesDate('MTERactual'),
-                    'Unknown Last revision date',
-                    project.milestones.getProjectImplementationDate('CompletionActual'),
+                    ms.getProjectImplementationDate('SignatureOfLegalInstrumentActual'),
+                    ms.getEvaluationDatesDate('MTERactual'),
+                    mofu.getLastestRevisionDate(),
+                    ms.getProjectImplementationDate('CompletionActual'),
                     ))
         return result

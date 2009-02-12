@@ -95,7 +95,7 @@ class Project(BaseFolder, CurrencyMixin, BrowserDefaultMixin):
         fin_objs = self.fmi_folder.objectValues(spec='Financials')
         total = self.getZeroMoneyInstance()
         for fo in fin_objs:
-            total += fo.getSumFinanceObjectAmount()
+            total += fo.getTotalFinanceObject()
         return total
 
     security.declarePublic('getTotalUNEPGEFAmount')
@@ -117,6 +117,11 @@ class Project(BaseFolder, CurrencyMixin, BrowserDefaultMixin):
         for fo in fin_objs:
             total += fo.getFinanceObjectFee()
         return total
+
+    security.declarePublic('isTheProjectPublished')
+    def isTheProjectPublished(self):
+        wft = getToolByName(self, 'portal_workflow')
+        return wft.getInfoFor(self, 'review_state') == 'published'
 
 
 

@@ -66,11 +66,22 @@ class FMIFolder(BaseFolder, CurrencyMixin, BrowserDefaultMixin):
 
     # Manually created methods
 
+    security.declarePublic('getTotalPPGAmount')
     def getTotalPPGAmount(self):
         result = self.getZeroMoneyInstance()
         if self.get('ppg', None):
             result = self.ppg.getSumFinanceObjectAmount()
         return result
+
+    security.declarePublic('getMainFinanceObject')
+    def getMainFinanceObject(self):
+        mfo = self.get('eea', None)
+        if not mfo:
+            mfo = self.get('msp', None)
+        if not mfo:
+            mfo = self.get('fsp', None)
+        return mfo
+
 
 
 

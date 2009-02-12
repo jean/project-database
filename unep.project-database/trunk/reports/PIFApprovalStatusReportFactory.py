@@ -25,10 +25,11 @@ class PIFApprovalStatusReportFactory(object):
             'Total GEF Amount',
             'UNEP GEF Amount',
             'UNEP Fee',
+            'Cofinancing',
             'PAG Approval',
             'Submission to GEF Sec',
             'Review Sheet',
-            'CEO Approval',
+            'CEO Approval Expected',
             'PPG Amount'
             ),))
         report.setTableRows(self.getReportData())
@@ -40,8 +41,9 @@ class PIFApprovalStatusReportFactory(object):
         projects = self.projectdatabase.objectValues(spec='Project')
         result = []
         for project in projects:
-            if project.milestones.isConceptClearedBySPO() and \
+            if project.isTheProjectPublished() and \
                     not project.milestones.isPIFClearedByCEO():
+                    # project.milestones.isConceptClearedBySPO() and \
                 result.append((
                     project.getId(),
                     project.project_general_info.getGEFid(),
@@ -52,14 +54,15 @@ class PIFApprovalStatusReportFactory(object):
                     project.project_general_info.getGeographicScopeValues(),
                     project.project_general_info.getCountryNames(),
                     project.project_general_info.Title(),
-                    project.getTotalGEFAmount(),
-                    project.getTotalUNEPGEFAmount(),
-                    project.getTotalUNEPFee(),
+                    project.project_general_info.getPIFTotalGEFAmount(),
+                    project.project_general_info.getPIFUNEPGEFAmount(),
+                    project.project_general_info.getPIFUNEPFee(),
+                    project.project_general_info.getPIFCofinancingAmount(),
                     project.milestones.getConceptDevelopmentDate('PAGClearance'),
                     project.milestones.getPIFApprovalDate('SubmissionToGEFSec'),
                     project.milestones.getPIFApprovalDate('ReviewSheet'),
-                    project.milestones.getPIFApprovalDate('CEOPIFApproval'),
-                    project.fmi_folder.getTotalPPGAmount()
+                    project.milestones.getPIFApprovalDate('CEOPIFApprovalExpected'),
+                    project.project_general_info.getPIFPPGAmount()
                     ))
         return result
 

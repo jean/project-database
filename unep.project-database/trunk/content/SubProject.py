@@ -32,6 +32,7 @@ from Products.ATReferenceBrowserWidget.ATReferenceBrowserWidget import Reference
 
 ##code-section module-header #fill in your manual code here
 from DateTime import DateTime
+from Products.FinanceFields.Money import Money
 ##/code-section module-header
 
 schema = Schema((
@@ -348,7 +349,7 @@ class SubProject(BaseContent, CurrencyMixin, BrowserDefaultMixin):
         amount = self.getZeroMoneyInstance()
         for v in column:
             if v:
-                amount += v
+                amount += Money(int(v), self.getDefaultCurrency())
         return amount
 
     security.declarePublic('getSumCoFinCashPlanned')

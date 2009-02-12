@@ -28,6 +28,7 @@ class PPGApprovalAndImplementationStatusReportFactory(object):
             'CEO Approval',
             'UNEP Approval',
             'Expected Completion',
+            'Actual Completion',
             'Expected Closing',
             ),))
         report.setTableRows(self.getReportData())
@@ -40,7 +41,12 @@ class PPGApprovalAndImplementationStatusReportFactory(object):
         result = []
         for project in projects:
             ppg = project.fmi_folder.get('ppg', None)
-            if ppg and not project.milestones.getPPGImplementationDate('ClosureActual'):
+            if ppg and \
+                    project.isTheProjectPublished() and \
+                    project.milestones.isPIFClearedByCEO() and \
+                    not project.milestones.getPPGImplementationDate('ClosureActual') and \
+                    not project.milestones.getPPGImplementationDate('Cancellation') and \
+                    not project.milestones.getPPGImplementationDate('Termination'):
                 result.append((
                     project.getId(),
                     project.project_general_info.getGEFid(),
@@ -51,12 +57,13 @@ class PPGApprovalAndImplementationStatusReportFactory(object):
                     ppg.getCommittedGEFGrant(),
                     ppg.getSumFinanceObjectAmount(),
                     ppg.getFinanceObjectFee(),
-                    ppg.getTotalCoFinOfFinanceObjectActual(),
+                    ppg.getTotalCoFinOfFinanceObjectPlanned(),
                     project.milestones.getPPGApprovalDate('SubmissionToGEFSec'),
                     project.milestones.getPPGApprovalDate('ReviewSheet'),
                     project.milestones.getPPGApprovalDate('CEOPPGapproval'),
-                    'Unknown UNEP Approval Date',
-                    ppg.getExpectedCompletionDate(),
+                    project.milestones.getPPGImplementationDate('SignatureOfLegalInstrumentActual'),
+                    project.milestones.getPPGImplementationDate('CompletionExpected'),
+                    project.milestones.getPPGImplementationDate('CompletionActual'),
                     project.milestones.getPPGImplementationDate('ClosureExpected')
                     ))
         return result

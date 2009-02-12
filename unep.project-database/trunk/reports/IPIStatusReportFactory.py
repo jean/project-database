@@ -8,9 +8,9 @@ class IPIStatusReportFactory(object):
 
     def getReport(self):
         # create and fill the report
-        report = Report('IPI Status Report')
+        report = Report('IPI List Report')
         report.setReportHeaders((
-            'IPI Status Report',
+            'IPI List Report',
             ),)
         report.setTableHeaders(((
             'Dbase ID',
@@ -21,7 +21,6 @@ class IPIStatusReportFactory(object):
             'Executing Agency',
             'Total GEF Amount',
             'Project Summary',
-            'SPO Approval Date',
             'Withdrawal Date'
             ),))
         report.setTableRows(self.getReportData())
@@ -33,7 +32,7 @@ class IPIStatusReportFactory(object):
         projects = self.projectdatabase.objectValues(spec='Project')
         result = []
         for project in projects:
-            if not project.milestones.isConceptClearedBySPO():
+            if not project.isTheProjectPublished():
                 result.append((
                     project.getId(),
                     project.project_general_info.getFocalAreaNames(),
@@ -41,11 +40,8 @@ class IPIStatusReportFactory(object):
                     project.project_general_info.getCountryNames(),
                     project.project_general_info.Title(),
                     project.project_general_info.getExecutingAgencyNames(),
-                    project.getTotalGEFAmount(),
+                    project.project_general_info.getPIFTotalGEFAmount(),
                     project.project_general_info.getSummaryDescription(),
-                    project.milestones.getConceptDevelopmentDate('SPOClearance'),
                     project.milestones.getConceptDevelopmentDate('Withdrawal')
                     ))
         return result
-
-

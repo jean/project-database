@@ -32,9 +32,17 @@
 </term>
 
 <term>
-  <termIdentifier>CEOPIFApproval</termIdentifier>
+  <termIdentifier>CEOPIFApprovalExpected</termIdentifier>
   <caption>
-      <langstring language="en">CEO PIF approval/clearance</langstring>
+      <langstring language="en">CEO PIF Approval/Clearance Expected</langstring>
+  </caption>
+  <description />
+</term>
+
+<term>
+  <termIdentifier>CEOPIFApprovalActual</termIdentifier>
+  <caption>
+      <langstring language="en">CEO PIF Approval/Clearance Actual</langstring>
   </caption>
   <description />
 </term>

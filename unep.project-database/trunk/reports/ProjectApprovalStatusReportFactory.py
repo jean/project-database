@@ -21,14 +21,14 @@ class ProjectApprovalStatusReportFactory(object):
             'Geographic Scope',
             'Country(ies)',
             'Project Title',
-            'Total GEF Amount',
             'UNEP GEF Amount',
+            'UNEP Fee',
             'PRC Review',
             'Expected CEO Endorsement/Approval',
             'Submission to GEF Sec',
             'Review Sheet',
             'Actual CEO Endorsement',
-            'UNEP Approval'
+            'UNEP Approval Expected'
             ),))
         report.setTableRows(self.getReportData())
         # report.setTableTotals([])
@@ -39,24 +39,28 @@ class ProjectApprovalStatusReportFactory(object):
         projects = self.projectdatabase.objectValues(spec='Project')
         result = []
         for project in projects:
-            if not project.milestones.getProjectImplementationDate('SignatureOfLegalInstrumentActual'):
+            pgi = project.project_general_info
+            ms = project.milestones
+            mofu = project.fmi_folder.getMainFinanceObject()
+
+            if mofu and project.isTheProjectPublished() and \
+                    not project.milestones.getProjectImplementationDate('SignatureOfLegalInstrumentActual'):
                 result.append((
                     project.getId(),
-                    project.project_general_info.getGEFid(),
-                    project.project_general_info.getExecutingAgencyNames(),
-                    project.project_general_info.getFocalAreaNames(),
-                    project.project_general_info.getProjectTypeName(),
-                    project.project_general_info.getGeographicScopeValues(),
-                    project.project_general_info.getCountryNames(),
-                    project.project_general_info.Title(),
-                    project.getTotalGEFAllocation(),
-                    project.getTotalUNEPAllocation(),
-                    project.milestones.getProjectApprovalDate('PRCReview'),
-                    project.milestones.getProjectApprovalDate('CEOApprovalEndorsementExpected'),
-                    project.milestones.getProjectApprovalDate('SubmissionToGEFSec'),
-                    project.milestones.getProjectApprovalDate('ReviewSheet'),
-                    project.milestones.getProjectApprovalDate('SubmissionToGEFSec'),
-                    project.milestones.getProjectApprovalDate('CEOApprovalEndorsementActual'),
-                    'Unknown UNEP Approval'
+                    pgi.getGEFid(),
+                    pgi.getExecutingAgencyNames(),
+                    pgi.getFocalAreaNames(),
+                    pgi.getProjectTypeName(),
+                    pgi.getGeographicScopeValues(),
+                    pgi.getCountryNames(),
+                    pgi.Title(),
+                    project.getTotalUNEPGEFAmount(),
+                    project.getTotalUNEPFee(),
+                    ms.getProjectApprovalDate('PRCReview'),
+                    ms.getProjectApprovalDate('CEOApprovalEndorsementExpected'),
+                    ms.getProjectApprovalDate('SubmissionToGEFSec'),
+                    ms.getProjectApprovalDate('ReviewSheet'),
+                    ms.getProjectApprovalDate('CEOApprovalEndorsementActual'),
+                    ms.getProjectImplementationDate('SignatureOfLegalInstrumentExpected'),
                     ))
         return result
