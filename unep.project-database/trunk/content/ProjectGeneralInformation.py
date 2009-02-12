@@ -30,6 +30,7 @@ from Products.CMFCore.utils import getToolByName
 from Products.ATReferenceBrowserWidget.ATReferenceBrowserWidget import ReferenceBrowserWidget
 
 ##code-section module-header #fill in your manual code here
+from Products.FinanceFields.Money import Money
 ##/code-section module-header
 
 schema = Schema((
@@ -904,6 +905,44 @@ class ProjectGeneralInformation(BaseContent, CurrencyMixin, BrowserDefaultMixin)
         if contacts:
             return contacts.absolute_url()
 
+    def getPIFTotalGEFAmount(self):
+        values = self.getPIFFinancialData()
+        amount = self.getZeroMoneyInstance()
+        for v in values:
+            amount += Money(int(v['grant_to_unep']), self.getDefaultCurrency()) + \
+                    Money(int(v['grant_to_other_ia']), self.getDefaultCurrency()) + \
+                    Money(int(v['unep_fee']), self.getDefaultCurrency()) + \
+                    Money(int(v['other_ia_fee']), self.getDefaultCurrency())
+        return amount
+
+    def getPIFUNEPGEFAmount(self):
+        values = self.getPIFFinancialData()
+        amount = self.getZeroMoneyInstance()
+        for v in values:
+            amount += Money(int(v['grant_to_unep']), self.getDefaultCurrency())
+        return amount
+
+    def getPIFUNEPFee(self):
+        values = self.getPIFFinancialData()
+        amount = self.getZeroMoneyInstance()
+        for v in values:
+            amount += Money(int(v['unep_fee']), self.getDefaultCurrency())
+        return amount
+
+    def getPIFCofinancingAmount(self):
+        values = self.getPIFFinancialData()
+        amount = self.getZeroMoneyInstance()
+        for v in values:
+            amount += Money(int(v['cofinancing']), self.getDefaultCurrency())
+        return amount
+
+    def getPIFPPGAmount(self):
+        values = self.getPIFFinancialData()
+        amount = self.getZeroMoneyInstance()
+        for v in values:
+            if v['stage'] == 'PPG':
+                amount += Money(int(v['grant_to_unep']), self.getDefaultCurrency())
+        return amount
 
 
 registerType(ProjectGeneralInformation, PROJECTNAME)

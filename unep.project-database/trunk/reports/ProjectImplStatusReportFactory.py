@@ -25,7 +25,6 @@ class ProjectImplementationStatusReportFactory(object):
             'UNEP GEF Amount',
             'UNEP Fee',
             'Signature',
-            'Inception Meeting',
             'Mid-term Review',
             'Last Revision Date',
             'Expected Completion',
@@ -41,25 +40,33 @@ class ProjectImplementationStatusReportFactory(object):
         projects = self.projectdatabase.objectValues(spec='Project')
         result = []
         for project in projects:
-            if not project.milestones.getProjectImplementationDate('ClosureActual'):
+            mofu = project.fmi_folder.getMainFinanceObject()
+            ms = project.milestones
+            pgi = project.project_general_info
+            if mofu and project.isTheProjectPublished() and \
+                    ms.getProjectImplementationDate('FirstDisbursementActual') and \
+                    not ms.getProjectImplementationDate('CompletionActual') and \
+                    not ms.getProjectImplementationDate('ClosureActual') and \
+                    not ms.getProjectImplementationDate('Cancellation') and \
+                    not ms.getProjectImplementationDate('Termination') and \
+                    not ms.getProjectImplementationDate('Suspension'):
                 result.append((
                     project.getId(),
-                    project.project_general_info.getGEFid(),
-                    'Unknown IMIS No',
-                    project.project_general_info.getFocalAreaNames(),
-                    project.project_general_info.getProjectTypeName(),
-                    project.project_general_info.getGeographicScopeValues(),
-                    project.project_general_info.getCountryNames(),
-                    project.project_general_info.Title(),
+                    pgi.getGEFid(),
+                    mofu.getIMISNumber(),
+                    pgi.getFocalAreaNames(),
+                    pgi.getProjectTypeName(),
+                    pgi.getGeographicScopeValues(),
+                    pgi.getCountryNames(),
+                    pgi.Title(),
                     project.getTotalGEFAmount(),
                     project.getTotalUNEPGEFAmount(),
                     project.getTotalUNEPFee(),
-                    project.milestones.getProjectImplementationDate('SignatureOfLegalInstrumentActual'),
-                    'Unknown Inception Meeting Date',
-                    project.milestones.getEvaluationDatesDate('MTERactual'),
-                    'Unknown Last revision date',
-                    project.milestones.getProjectImplementationDate('CompletionExpected'),
-                    project.milestones.getProjectImplementationDate('CompletionRevised'),
-                    project.milestones.getEvaluationDatesDate('TerminalEvaluationActual'),
+                    ms.getProjectImplementationDate('SignatureOfLegalInstrumentActual'),
+                    ms.getEvaluationDatesDate('MTERactual'),
+                    mofu.getLastestRevisionDate(),
+                    ms.getProjectImplementationDate('CompletionExpected'),
+                    ms.getProjectImplementationDate('CompletionRevised'),
+                    ms.getEvaluationDatesDate('TerminalEvaluationActual'),
                     ))
         return result

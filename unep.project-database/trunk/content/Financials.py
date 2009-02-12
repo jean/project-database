@@ -31,6 +31,7 @@ from Products.ATReferenceBrowserWidget.ATReferenceBrowserWidget import Reference
 
 ##code-section module-header #fill in your manual code here
 from DateTime import DateTime
+from Products.FinanceFields.Money import Money
 ##/code-section module-header
 
 schema = Schema((
@@ -480,7 +481,7 @@ class Financials(BaseFolder, CurrencyMixin, BrowserDefaultMixin):
         amount = self.getZeroMoneyInstance()
         for v in column:
             if v:
-                amount += v
+                amount += Money(int(v), self.getDefaultCurrency())
         return amount
 
     security.declarePublic('getSumCoFinCashPlanned')
@@ -533,6 +534,7 @@ class Financials(BaseFolder, CurrencyMixin, BrowserDefaultMixin):
 
     def getSumFinanceObjectAmount(self):
         """
+        UNEP GEF Amount
         """
         values = self.getFinanceObjectAmount()
         unep_alloc = self._computeDataGridAmount(
@@ -541,6 +543,7 @@ class Financials(BaseFolder, CurrencyMixin, BrowserDefaultMixin):
 
     def getTotalFinanceObject(self):
         """
+        Total GEF Amount
         """
         return self.getSumFinanceObjectAmount() + self.getFinanceObjectFee()
 
@@ -694,7 +697,6 @@ class Financials(BaseFolder, CurrencyMixin, BrowserDefaultMixin):
             if date != '1900':
                 return name
         return None
-
 
 
 registerType(Financials, PROJECTNAME)
