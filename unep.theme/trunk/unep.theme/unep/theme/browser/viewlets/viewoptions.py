@@ -22,14 +22,14 @@ class ViewOptions(ViewletBase):
                     self._isType('ProjectGeneralInformation')),
                 ("%s/fmi_folder" % project, "Financial",
                     self._isType('FMIFolder')),
-                ("%s/documents" % project, "Documents",
-                    self._isType('Folder')),
                 ("%s/milestones" % project, "Milestones",
                     self._isType('Milestone')),
                 ("%s/mne_folder" % project, "Monitoring & Evaluation",
                     self._isType('MandEfolder')),
                 ("%s/@@reports" % project, "Reports",
                     self._isType('Project') and self._endsWith('/@@reports')),
+                ("%s/documents" % project, "Documents",
+                    self._isType('Folder')),
             ]
         elif self._isType('ProjectDatabase'):
             tabs = [

@@ -242,6 +242,10 @@ div.myprojects-heading {
 }
 
 /* ----------------- Text Styles ---------------------------------------- */
+h3 {
+    color: #24a1d1; 
+}
+
 h4 {
     padding-left: 20px;
     margin-top: 5px;
