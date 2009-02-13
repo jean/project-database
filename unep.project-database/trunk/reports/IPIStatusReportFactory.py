@@ -1,4 +1,5 @@
 from Report import Report
+from Products.ProjectDatabase.utils import inner_strip
 
 class IPIStatusReportFactory(object):
 
@@ -40,7 +41,7 @@ class IPIStatusReportFactory(object):
                     project.project_general_info.getCountryNames(),
                     project.project_general_info.Title(),
                     project.project_general_info.getExecutingAgencyNames(),
-                    project.project_general_info.getPIFTotalGEFAmount(),
+                    inner_strip(project.project_general_info.getPIFTotalGEFAmount()),
                     project.project_general_info.getSummaryDescription(),
                     project.milestones.getConceptDevelopmentDate('Withdrawal')
                     ))

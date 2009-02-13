@@ -1,4 +1,5 @@
 from Report import Report
+from Products.ProjectDatabase.utils import inner_strip
 
 class ProjectImplementationStatusReportFactory(object):
 
@@ -44,7 +45,7 @@ class ProjectImplementationStatusReportFactory(object):
             ms = project.milestones
             pgi = project.project_general_info
             if mofu and project.isTheProjectPublished() and \
-                    ms.getProjectImplementationDate('FirstDisbursementActual') and \
+                    ms.getProjectImplementationDate('SignatureOfLegalInstrumentActual') and \
                     not ms.getProjectImplementationDate('CompletionActual') and \
                     not ms.getProjectImplementationDate('ClosureActual') and \
                     not ms.getProjectImplementationDate('Cancellation') and \
@@ -59,9 +60,9 @@ class ProjectImplementationStatusReportFactory(object):
                     pgi.getGeographicScopeValues(),
                     pgi.getCountryNames(),
                     pgi.Title(),
-                    project.getTotalGEFAmount(),
-                    project.getTotalUNEPGEFAmount(),
-                    project.getTotalUNEPFee(),
+                    inner_strip(project.getTotalGEFAmount()),
+                    inner_strip(project.getTotalUNEPGEFAmount()),
+                    inner_strip(project.getTotalUNEPFee()),
                     ms.getProjectImplementationDate('SignatureOfLegalInstrumentActual'),
                     ms.getEvaluationDatesDate('MTERactual'),
                     mofu.getLastestRevisionDate(),

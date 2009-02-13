@@ -1,4 +1,5 @@
 from Report import Report
+from Products.ProjectDatabase.utils import inner_strip
 
 class ClosedProjectsReportFactory(object):
 
@@ -39,23 +40,31 @@ class ClosedProjectsReportFactory(object):
         projects = self.projectdatabase.objectValues(spec='Project')
         result = []
         for project in projects:
-            if project.milestones.getProjectImplementationDate('ClosureActual'):
+            pgi = project.project_general_info
+            ms = project.milestones
+            mofu = project.fmi_folder.getMainFinanceObject()
+
+            if mofu and project.isTheProjectPublished() and \
+                    ms.getProjectImplementationDate('ClosureActual') and \
+                    not ms.getProjectImplementationDate('Cancellation') and \
+                    not ms.getProjectImplementationDate('Termination') and \
+                    not ms.getProjectImplementationDate('Suspension'):
                 result.append((
                     project.getId(),
-                    project.project_general_info.getGEFid(),
-                    'Unknown IMIS No',
-                    project.project_general_info.getFocalAreaNames(),
-                    project.project_general_info.getProjectTypeName(),
-                    project.project_general_info.getGeographicScopeValues(),
-                    project.project_general_info.getCountryNames(),
-                    project.Title(),
-                    project.getTotalGEFAmount(),
-                    project.getTotalUNEPGEFAmount(),
-                    project.getTotalUNEPFee(),
-                    project.milestones.getProjectImplementationDate('SignatureOfLegalInstrumentActual'),
-                    project.milestones.getEvaluationDatesDate('MTERactual'),
-                    project.milestones.getProjectImplementationDate('CompletionActual'),
-                    project.milestones.getEvaluationDatesDate('TerminalEvaluationActual'),
-                    'Unknown closing revision date',
+                    pgi.getGEFid(),
+                    mofu.getIMISNumber(),
+                    pgi.getFocalAreaNames(),
+                    pgi.getProjectTypeName(),
+                    pgi.getGeographicScopeValues(),
+                    pgi.getCountryNames(),
+                    pgi.Title(),
+                    inner_strip(project.getTotalGEFAmount()),
+                    inner_strip(project.getTotalUNEPGEFAmount()),
+                    inner_strip(project.getTotalUNEPFee()),
+                    ms.getProjectImplementationDate('SignatureOfLegalInstrumentActual'),
+                    ms.getEvaluationDatesDate('MTERactual'),
+                    ms.getProjectImplementationDate('CompletionActual'),
+                    ms.getEvaluationDatesDate('TerminalEvaluationActual'),
+                    mofu.getLastestRevisionDate(type='Closure'),
                     ))
         return result

@@ -1,4 +1,5 @@
 from Report import Report
+from Products.ProjectDatabase.utils import inner_strip
 
 class ProjectApprovalStatusReportFactory(object):
 
@@ -54,8 +55,8 @@ class ProjectApprovalStatusReportFactory(object):
                     pgi.getGeographicScopeValues(),
                     pgi.getCountryNames(),
                     pgi.Title(),
-                    project.getTotalUNEPGEFAmount(),
-                    project.getTotalUNEPFee(),
+                    inner_strip(project.getTotalUNEPGEFAmount()),
+                    inner_strip(project.getTotalUNEPFee()),
                     ms.getProjectApprovalDate('PRCReview'),
                     ms.getProjectApprovalDate('CEOApprovalEndorsementExpected'),
                     ms.getProjectApprovalDate('SubmissionToGEFSec'),

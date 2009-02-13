@@ -1,4 +1,5 @@
 from Report import Report
+from Products.ProjectDatabase.utils import inner_strip
 
 class SuspendedProjectsReportFactory(object):
 
@@ -38,22 +39,28 @@ class SuspendedProjectsReportFactory(object):
         projects = self.projectdatabase.objectValues(spec='Project')
         result = []
         for project in projects:
-            if project.milestones.getProjectImplementationDate('Suspension'):
+            mofu = project.fmi_folder.getMainFinanceObject()
+            ms = project.milestones
+            pgi = project.project_general_info
+            if mofu and project.isTheProjectPublished() and \
+                    not ms.getProjectImplementationDate('Cancellation') and \
+                    not ms.getProjectImplementationDate('Termination') and \
+                    ms.getProjectImplementationDate('Suspension'):
                 result.append((
                     project.getId(),
-                    project.project_general_info.getGEFid(),
-                    'Unknown IMIS No',
-                    project.project_general_info.getFocalAreaNames(),
-                    project.project_general_info.getProjectTypeName(),
-                    project.project_general_info.getGeographicScopeValues(),
-                    project.project_general_info.getCountryNames(),
-                    project.project_general_info.Title(),
-                    project.getTotalGEFAmount(),
-                    project.getTotalUNEPGEFAmount(),
-                    project.getTotalUNEPFee(),
-                    project.milestones.getProjectImplementationDate('SignatureOfLegalInstrumentActual'),
-                    project.milestones.getProjectImplementationDate('Suspension'),
-                    'Unknown reason',
-                    'Unknown resume date',
+                    pgi.getGEFid(),
+                    mofu.getIMISNumber(),
+                    pgi.getFocalAreaNames(),
+                    pgi.getProjectTypeName(),
+                    pgi.getGeographicScopeValues(),
+                    pgi.getCountryNames(),
+                    pgi.Title(),
+                    inner_strip(project.getTotalGEFAmount()),
+                    inner_strip(project.getTotalUNEPGEFAmount()),
+                    inner_strip(project.getTotalUNEPFee()),
+                    ms.getProjectImplementationDate('SignatureOfLegalInstrumentActual'),
+                    ms.getProjectImplementationDate('Suspension'),
+                    mofu.getFinancialStatusRemarks(),
+                    ms.getProjectImplementationDate('Reinitiation'),
                     ))
         return result

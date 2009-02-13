@@ -1,4 +1,5 @@
 from Report import Report
+from Products.ProjectDatabase.utils import inner_strip
 
 class PPGApprovalAndImplementationStatusReportFactory(object):
 
@@ -54,10 +55,10 @@ class PPGApprovalAndImplementationStatusReportFactory(object):
                     project.project_general_info.getFocalAreaNames(),
                     project.project_general_info.Title(),
                     project.project_general_info.getLeadExecutingAgencyName(),
-                    ppg.getCommittedGEFGrant(),
-                    ppg.getSumFinanceObjectAmount(),
-                    ppg.getFinanceObjectFee(),
-                    ppg.getTotalCoFinOfFinanceObjectPlanned(),
+                    inner_strip(ppg.getCommittedGEFGrant()),
+                    inner_strip(ppg.getSumFinanceObjectAmount()),
+                    inner_strip(ppg.getFinanceObjectFee()),
+                    inner_strip(ppg.getTotalCoFinOfFinanceObjectPlanned()),
                     project.milestones.getPPGApprovalDate('SubmissionToGEFSec'),
                     project.milestones.getPPGApprovalDate('ReviewSheet'),
                     project.milestones.getPPGApprovalDate('CEOPPGapproval'),
