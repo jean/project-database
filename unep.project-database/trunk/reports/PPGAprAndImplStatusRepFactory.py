@@ -1,5 +1,5 @@
 from Report import Report
-from Products.ProjectDatabase.utils import inner_strip
+from Products.ProjectDatabase.utils import inner_strip, unep_report_format_date
 
 class PPGApprovalAndImplementationStatusReportFactory(object):
 
@@ -59,12 +59,19 @@ class PPGApprovalAndImplementationStatusReportFactory(object):
                     inner_strip(ppg.getSumFinanceObjectAmount()),
                     inner_strip(ppg.getFinanceObjectFee()),
                     inner_strip(ppg.getTotalCoFinOfFinanceObjectPlanned()),
-                    project.milestones.getPPGApprovalDate('SubmissionToGEFSec'),
-                    project.milestones.getPPGApprovalDate('ReviewSheet'),
-                    project.milestones.getPPGApprovalDate('CEOPPGapproval'),
-                    project.milestones.getPPGImplementationDate('SignatureOfLegalInstrumentActual'),
-                    project.milestones.getPPGImplementationDate('CompletionExpected'),
-                    project.milestones.getPPGImplementationDate('CompletionActual'),
-                    project.milestones.getPPGImplementationDate('ClosureExpected')
+                    unep_report_format_date(self.projectdatabase, \
+                        project.milestones.getPPGApprovalDate('SubmissionToGEFSec')),
+                    unep_report_format_date(self.projectdatabase, \
+                        project.milestones.getPPGApprovalDate('ReviewSheet')),
+                    unep_report_format_date(self.projectdatabase, \
+                        project.milestones.getPPGApprovalDate('CEOPPGapproval')),
+                    unep_report_format_date(self.projectdatabase, \
+                        project.milestones.getPPGImplementationDate('SignatureOfLegalInstrumentActual')),
+                    unep_report_format_date(self.projectdatabase, \
+                        project.milestones.getPPGImplementationDate('CompletionExpected')),
+                    unep_report_format_date(self.projectdatabase, \
+                        project.milestones.getPPGImplementationDate('CompletionActual')),
+                    unep_report_format_date(self.projectdatabase, \
+                        project.milestones.getPPGImplementationDate('ClosureExpected'))
                     ))
         return result

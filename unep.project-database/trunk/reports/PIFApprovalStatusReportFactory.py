@@ -1,5 +1,5 @@
 from Report import Report
-from Products.ProjectDatabase.utils import inner_strip
+from Products.ProjectDatabase.utils import inner_strip, unep_report_format_date
 
 class PIFApprovalStatusReportFactory(object):
 
@@ -59,10 +59,14 @@ class PIFApprovalStatusReportFactory(object):
                     inner_strip(project.project_general_info.getPIFUNEPGEFAmount()),
                     inner_strip(project.project_general_info.getPIFUNEPFee()),
                     inner_strip(project.project_general_info.getPIFCofinancingAmount()),
-                    project.milestones.getConceptDevelopmentDate('PAGClearance'),
-                    project.milestones.getPIFApprovalDate('SubmissionToGEFSec'),
-                    project.milestones.getPIFApprovalDate('ReviewSheet'),
-                    project.milestones.getPIFApprovalDate('CEOPIFApprovalExpected'),
+                    unep_report_format_date(self.projectdatabase, \
+                        project.milestones.getConceptDevelopmentDate('PAGClearance')),
+                    unep_report_format_date(self.projectdatabase, \
+                        project.milestones.getPIFApprovalDate('SubmissionToGEFSec')),
+                    unep_report_format_date(self.projectdatabase, \
+                        project.milestones.getPIFApprovalDate('ReviewSheet')),
+                    unep_report_format_date(self.projectdatabase, \
+                        project.milestones.getPIFApprovalDate('CEOPIFApprovalExpected')),
                     inner_strip(project.project_general_info.getPIFPPGAmount())
                     ))
         return result

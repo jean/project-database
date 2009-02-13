@@ -1,5 +1,5 @@
 from Report import Report
-from Products.ProjectDatabase.utils import inner_strip
+from Products.ProjectDatabase.utils import inner_strip, unep_report_format_date
 
 class CancelledProjectsReportFactory(object):
 
@@ -56,8 +56,10 @@ class CancelledProjectsReportFactory(object):
                     inner_strip(project.getTotalGEFAmount()),
                     inner_strip(project.getTotalUNEPGEFAmount()),
                     inner_strip(project.getTotalUNEPFee()),
-                    ms.getProjectImplementationDate('SignatureOfLegalInstrumentActual'),
-                    ms.getProjectImplementationDate('Cancellation'),
+                    unep_report_format_date(self.projectdatabase, \
+                            ms.getProjectImplementationDate('SignatureOfLegalInstrumentActual')),
+                    unep_report_format_date(self.projectdatabase, \
+                            ms.getProjectImplementationDate('Cancellation')),
                     mofu.getFinancialStatusRemarks(),
                     pgi.getTotalYearlyExpenditures()
                     ))

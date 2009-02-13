@@ -13,7 +13,7 @@
        tal:define="d accessor;
                    d python:test(d and d=='None','',d);
                    format widget/format;
-                   result python:(d and here.toLocalizedTime(cell_value, long_format=1));">
+                   result python:(d and here.toLocalizedTime(cell_value, long_format=0));">
        <div tal:replace="structure python:result" />
     </metal:view_cell_macro>
 
