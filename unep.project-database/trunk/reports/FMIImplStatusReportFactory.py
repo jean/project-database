@@ -1,4 +1,5 @@
 from Report import Report
+from Products.ProjectDatabase.utils import inner_strip, unep_report_format_date
 
 class FMIImplementationStatusReportFactory(object):
 
@@ -33,18 +34,32 @@ class FMIImplementationStatusReportFactory(object):
         result = []
         for project in projects:
             ob = project.fmi_folder.get(type, None)
+            ms = project.milestones
+            pgi = project.project_general_info
             if ob is not None:
                 result.append((
                     ob.getIMISNumber(),
-                    project.project_general_info.Title(),
-                    project.project_general_info.getExecutingAgencyNames(),
-                    'Unknown',
-                    ob.getExpectedCompletionDate(),
-                    ob.getRevisedCompletionDate(),
-                    ob.getTotalGEFAmount(),
-                    ob.getSumCashDisbursements(),
-                    ob.getSumYearlyExpenditures(),
-                    ob.getLatestReportData('expenditure', 'report_received_date'),
-                    ob.getLatestReportData('progress', 'report_received_date'),
+                    pgi.Title(),
+                    pgi.getExecutingAgencyNames(),
+                    unep_report_format_date(
+                        self.projectdatabase,
+                        ms.getProjectImplementationDate('SignatureOfLegalInstrumentActual')),
+                    unep_report_format_date(
+                        self.projectdatabase,
+                        ob.getExpectedCompletionDate()),
+                    unep_report_format_date(
+                        self.projectdatabase,
+                        ob.getRevisedCompletionDate()),
+                    inner_strip(ob.getTotalGEFAmount()),
+                    inner_strip(ob.getSumCashDisbursements()),
+                    inner_strip(ob.getSumYearlyExpenditures()),
+                    unep_report_format_date(
+                        self.projectdatabase,
+                        ob.getLatestReportData(
+                            'expenditure', 'report_received_date')),
+                    unep_report_format_date(
+                        self.projectdatabase,
+                        ob.getLatestReportData(
+                            'progress', 'report_received_date')),
                     ))
         return result
