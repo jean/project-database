@@ -6,3 +6,8 @@ class FMORole(object):
     implements(ISharingPageRole)
     title = _(u'title_fmo_role', u'FMO')
     required_permission = 'Manage portal content'
+
+class MORole(object):
+    implements(ISharingPageRole)
+    title = _(u'title_mo_role', u'MO')
+    required_permission = 'Manage portal content'

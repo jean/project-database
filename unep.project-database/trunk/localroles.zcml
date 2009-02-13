@@ -6,4 +6,9 @@
         factory=".localroles.FMORole"
         />
 
+    <utility
+        name="MO"
+        factory=".localroles.MORole"
+        />
+
 </configure>
