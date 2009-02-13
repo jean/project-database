@@ -15,27 +15,31 @@
             <h2 class="reportHeader" tal:condition="not:repeat/header/start" tal:content="header">Header</h2>
         </tal:loop>
 
-        <table class="table-fullwidth">
-        <tr tal:repeat="tableheaders report/getTableHeaders">
-            <th tal:repeat="tableheader tableheaders" tal:content="tableheader">Head</th>
-        </tr>
-
-        <tal:rows tal:repeat="tablerows report/getTableRows">
-            <tr tal:define="even repeat/tablerows/even"
-                tal:attributes="class python:even and 'odd' or 'even'">
-                <td tal:repeat="tablerow tablerows" tal:content="tablerow">Row</td>
+        <div style="overflow: scroll; min-height: 400px;">
+            <table class="table-fullwidth">
+            <tr tal:repeat="tableheaders report/getTableHeaders">
+                <th style="padding: 3px; vertical-align: bottom;"
+                    tal:repeat="tableheader tableheaders" tal:content="tableheader">Head</th>
             </tr>
-        </tal:rows>
 
-        <tal:row tal:repeat="tabletotals report/getTableTotals">
-        <tr class="firstrow totalrow" tal:condition="repeat/tabletotals/start">
-            <td tal:repeat="tabletotal tabletotals" tal:content="tabletotal">Total</td>
-        </tr>
-        <tr class="totalrow" tal:condition="not:repeat/tabletotals/start">
-            <td tal:repeat="tabletotal tabletotals" tal:content="tabletotal">Total</td>
-        </tr>
-        </tal:row>
-        </table>
+            <tal:rows tal:repeat="tablerows report/getTableRows">
+                <tr tal:define="even repeat/tablerows/even"
+                    tal:attributes="class python:even and 'odd' or 'even'">
+                    <td style="white-space: nowrap; vertical-align: top; border: 1px dotted grey; padding: 3px;" 
+                        tal:repeat="tablerow tablerows" tal:content="tablerow">Row</td>
+                </tr>
+            </tal:rows>
+
+            <tal:row tal:repeat="tabletotals report/getTableTotals">
+            <tr class="firstrow totalrow" tal:condition="repeat/tabletotals/start">
+                <td tal:repeat="tabletotal tabletotals" tal:content="tabletotal">Total</td>
+            </tr>
+            <tr class="totalrow" tal:condition="not:repeat/tabletotals/start">
+                <td tal:repeat="tabletotal tabletotals" tal:content="tabletotal">Total</td>
+            </tr>
+            </tal:row>
+            </table>
+        </div>
 
         <ul tal:define="footers report/getReportFooters" tal:condition="footers" class="report-footer">
             <li tal:repeat="footer footers" tal:content="footer">footer</li>
