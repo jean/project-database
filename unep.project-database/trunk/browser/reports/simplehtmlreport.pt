@@ -15,7 +15,7 @@
             <h2 class="reportHeader" tal:condition="not:repeat/header/start" tal:content="header">Header</h2>
         </tal:loop>
 
-        <div style="overflow: scroll; min-height: 400px;">
+        <div style="overflow: scroll; min-height: 300px;">
             <table class="table-fullwidth">
             <tr tal:repeat="tableheaders report/getTableHeaders">
                 <th style="padding: 3px; vertical-align: bottom;"
