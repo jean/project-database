@@ -18,18 +18,16 @@ def projectInitialized(event):
         return
 
     if 'project_general_info' not in ob.objectIds():
-        ob.invokeFactory('ProjectGeneralInformation', 'project_general_info')
-        ob['project_general_info'].edit(title='Project General Information')
+        ob.invokeFactory('ProjectGeneralInformation', 'project_general_info',
+            title='Project General Information')
     if 'fmi_folder' not in ob.objectIds():
-        ob.invokeFactory('FMIFolder', 'fmi_folder')
-        ob['fmi_folder'].edit(title='Financial Management Information')
+        ob.invokeFactory('FMIFolder', 'fmi_folder',
+            title='Financial Management Information')
     if 'mne_folder' not in ob.objectIds():
-        ob.invokeFactory('MandEfolder', 'mne_folder')
-        mne_folder = ob['mne_folder']
-        mne_folder.edit(title='Monitoring and Evaluation Folder')
+        ob.invokeFactory('MandEfolder', 'mne_folder',
+            title='Monitoring and Evaluation Folder')
     if 'milestones' not in ob.objectIds():
-        ob.invokeFactory('Milestone', 'milestones')
-        ob['milestones'].edit(title='Milestones')
+        ob.invokeFactory('Milestone', 'milestones',
+            title='Milestones')
     if 'documents' not in ob.objectIds():
-        ob.invokeFactory('Folder', 'documents')
-        ob['documents'].edit(title='Documents')
+        ob.invokeFactory('Folder', 'documents', title='Documents')
