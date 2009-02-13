@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<rolemap>
+  <roles>
+    <role name="FMO"/>
+    <role name="MO"/>
+    <role name="TM"/>
+  </roles>
+  <permissions>
+  </permissions>
+</rolemap>

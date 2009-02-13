@@ -1,0 +1,14 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope">
+
+    <utility
+        name="FMO"
+        factory=".localroles.FMORole"
+        />
+
+    <utility
+        name="MO"
+        factory=".localroles.MORole"
+        />
+
+</configure>

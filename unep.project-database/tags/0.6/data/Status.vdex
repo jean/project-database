@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vdex xmlns="http://www.imsglobal.org/xsd/imsvdex_v1p0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.imsglobal.org/xsd/imsvdex_v1p0 imsvdex_v1p0.xsd http://www.imsglobal.org/xsd/imsmd_rootv1p2p1 imsmd_rootv1p2p1.xsd"
+    language="en" orderSignificant="true" profileType="flatTokenTerms">
+<vocabName>
+  <langstring language="en">Status</langstring>
+</vocabName>
+<term>
+  <termIdentifier>Ongoing</termIdentifier>
+  <caption>
+    <langstring language="en">Ongoing</langstring>
+  </caption>
+  <description />
+</term>
+<term>
+  <termIdentifier>Inactive</termIdentifier>
+  <caption>
+    <langstring language="en">Inactive</langstring>
+  </caption>
+  <description />
+</term>
+<term>
+  <termIdentifier>Completed</termIdentifier>
+  <caption>
+    <langstring language="en">Completed</langstring>
+  </caption>
+  <description />
+</term>
+<term>
+  <termIdentifier>Closed</termIdentifier>
+  <caption>
+    <langstring language="en">Closed</langstring>
+  </caption>
+  <description />
+</term>
+
+<term>
+  <termIdentifier>Cancelled</termIdentifier>
+  <caption>
+    <langstring language="en">Cancelled</langstring>
+  </caption>
+  <description />
+</term>
+
+<term>
+  <termIdentifier>Appraisal</termIdentifier>
+  <caption>
+    <langstring language="en">Appraisal</langstring>
+  </caption>
+  <description />
+</term>
+
+<term>
+  <termIdentifier>Under Development</termIdentifier>
+  <caption>
+    <langstring language="en">Under Development</langstring>
+  </caption>
+  <description />
+</term>
+
+</vdex>
