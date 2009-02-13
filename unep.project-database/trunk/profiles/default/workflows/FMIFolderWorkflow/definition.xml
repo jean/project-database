@@ -4,8 +4,13 @@
              state_variable="review_state"
              initial_state="Private">
  <permission>Modify portal content</permission>
+ <permission>Add portal content</permission>
  <state state_id="Private"
         title="Private">
+  <permission-map name="Add portal content"
+                  acquired="True">
+   <permission-role>FMO</permission-role>
+  </permission-map>
   <permission-map name="Modify portal content"
                   acquired="True">
    <permission-role>FMO</permission-role>
