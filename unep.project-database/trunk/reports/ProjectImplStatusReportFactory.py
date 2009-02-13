@@ -1,5 +1,5 @@
 from Report import Report
-from Products.ProjectDatabase.utils import inner_strip
+from Products.ProjectDatabase.utils import inner_strip, unep_report_format_date
 
 class ProjectImplementationStatusReportFactory(object):
 
@@ -63,11 +63,17 @@ class ProjectImplementationStatusReportFactory(object):
                     inner_strip(project.getTotalGEFAmount()),
                     inner_strip(project.getTotalUNEPGEFAmount()),
                     inner_strip(project.getTotalUNEPFee()),
-                    ms.getProjectImplementationDate('SignatureOfLegalInstrumentActual'),
-                    ms.getEvaluationDatesDate('MTERactual'),
-                    mofu.getLastestRevisionDate(),
-                    ms.getProjectImplementationDate('CompletionExpected'),
-                    ms.getProjectImplementationDate('CompletionRevised'),
-                    ms.getEvaluationDatesDate('TerminalEvaluationActual'),
+                    unep_report_format_date(self.projectdatabase, \
+                        ms.getProjectImplementationDate('SignatureOfLegalInstrumentActual')),
+                    unep_report_format_date(self.projectdatabase, \
+                        ms.getEvaluationDatesDate('MTERactual')),
+                    unep_report_format_date(self.projectdatabase, \
+                        mofu.getLastestRevisionDate()),
+                    unep_report_format_date(self.projectdatabase, \
+                        ms.getProjectImplementationDate('CompletionExpected')),
+                    unep_report_format_date(self.projectdatabase, \
+                        ms.getProjectImplementationDate('CompletionRevised')),
+                    unep_report_format_date(self.projectdatabase, \
+                        ms.getEvaluationDatesDate('TerminalEvaluationActual')),
                     ))
         return result

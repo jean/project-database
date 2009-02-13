@@ -1,5 +1,5 @@
 from Report import Report
-from Products.ProjectDatabase.utils import inner_strip
+from Products.ProjectDatabase.utils import inner_strip, unep_report_format_date
 
 class ProjectApprovalStatusReportFactory(object):
 
@@ -57,11 +57,17 @@ class ProjectApprovalStatusReportFactory(object):
                     pgi.Title(),
                     inner_strip(project.getTotalUNEPGEFAmount()),
                     inner_strip(project.getTotalUNEPFee()),
-                    ms.getProjectApprovalDate('PRCReview'),
-                    ms.getProjectApprovalDate('CEOApprovalEndorsementExpected'),
-                    ms.getProjectApprovalDate('SubmissionToGEFSec'),
-                    ms.getProjectApprovalDate('ReviewSheet'),
-                    ms.getProjectApprovalDate('CEOApprovalEndorsementActual'),
-                    ms.getProjectImplementationDate('SignatureOfLegalInstrumentExpected'),
+                    unep_report_format_date(self.projectdatabase, \
+                        ms.getProjectApprovalDate('PRCReview')),
+                    unep_report_format_date(self.projectdatabase, \
+                        ms.getProjectApprovalDate('CEOApprovalEndorsementExpected')),
+                    unep_report_format_date(self.projectdatabase, \
+                        ms.getProjectApprovalDate('SubmissionToGEFSec')),
+                    unep_report_format_date(self.projectdatabase, \
+                        ms.getProjectApprovalDate('ReviewSheet')),
+                    unep_report_format_date(self.projectdatabase, \
+                        ms.getProjectApprovalDate('CEOApprovalEndorsementActual')),
+                    unep_report_format_date(self.projectdatabase, \
+                        ms.getProjectImplementationDate('SignatureOfLegalInstrumentExpected')),
                     ))
         return result

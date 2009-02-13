@@ -1,5 +1,5 @@
 from Report import Report
-from Products.ProjectDatabase.utils import inner_strip
+from Products.ProjectDatabase.utils import inner_strip, unep_report_format_date
 
 class IPIStatusReportFactory(object):
 
@@ -43,6 +43,7 @@ class IPIStatusReportFactory(object):
                     project.project_general_info.getExecutingAgencyNames(),
                     inner_strip(project.project_general_info.getPIFTotalGEFAmount()),
                     project.project_general_info.getSummaryDescription(),
-                    project.milestones.getConceptDevelopmentDate('Withdrawal')
+                    unep_report_format_date(self.projectdatabase, \
+                            project.milestones.getConceptDevelopmentDate('Withdrawal'))
                     ))
         return result
