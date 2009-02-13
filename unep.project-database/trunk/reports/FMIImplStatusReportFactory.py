@@ -34,8 +34,12 @@ class FMIImplementationStatusReportFactory(object):
         result = []
         for project in projects:
             ob = project.fmi_folder.get(type, None)
-            ms = project.milestones
             pgi = project.project_general_info
+            ms = project.milestones
+            if type == 'ppg':
+                start_date = ms.getPPGImplementationDate('SignatureOfLegalInstrumentActual')
+            else:
+                start_date = ms.getProjectImplementationDate('SignatureOfLegalInstrumentActual')
             if ob is not None:
                 result.append((
                     ob.getIMISNumber(),
@@ -43,7 +47,7 @@ class FMIImplementationStatusReportFactory(object):
                     pgi.getExecutingAgencyNames(),
                     unep_report_format_date(
                         self.projectdatabase,
-                        ms.getProjectImplementationDate('SignatureOfLegalInstrumentActual')),
+                        start_date),
                     unep_report_format_date(
                         self.projectdatabase,
                         ob.getExpectedCompletionDate()),
