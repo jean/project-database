@@ -43,7 +43,11 @@ class CompletedProjectsReportFactory(object):
             mofu = project.fmi_folder.getMainFinanceObject()
 
             if mofu and project.isTheProjectPublished() and \
-                ms.getProjectImplementationDate('CompletionActual'):
+                    ms.getProjectImplementationDate('CompletionActual') and \
+                    not ms.getProjectImplementationDate('ClosureActual') and \
+                    not ms.getProjectImplementationDate('Cancellation') and \
+                    not ms.getProjectImplementationDate('Termination') and \
+                    not ms.getProjectImplementationDate('Suspension'):
                 result.append((
                     project.getId(),
                     pgi.getGEFid(),
@@ -53,12 +57,12 @@ class CompletedProjectsReportFactory(object):
                     pgi.getGeographicScopeValues(),
                     pgi.getCountryNames(),
                     pgi.Title(),
-                    project.getTotalGEFAmount(),
-                    project.getTotalUNEPGEFAmount(),
-                    project.getTotalUNEPFee(),
+                    inner_strip(project.getTotalGEFAmount()),
+                    inner_strip(project.getTotalUNEPGEFAmount()),
+                    inner_strip(project.getTotalUNEPFee()),
                     ms.getProjectImplementationDate('SignatureOfLegalInstrumentActual'),
                     ms.getEvaluationDatesDate('MTERactual'),
-                    mofu.getLastestRevisionDate(),
+                    mofu.getLastestRevisionDate(type='Completion'),
                     ms.getProjectImplementationDate('CompletionActual'),
                     ))
         return result

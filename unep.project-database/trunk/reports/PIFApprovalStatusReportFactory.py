@@ -1,4 +1,5 @@
 from Report import Report
+from Products.ProjectDatabase.utils import inner_strip
 
 class PIFApprovalStatusReportFactory(object):
 
@@ -54,15 +55,15 @@ class PIFApprovalStatusReportFactory(object):
                     project.project_general_info.getGeographicScopeValues(),
                     project.project_general_info.getCountryNames(),
                     project.project_general_info.Title(),
-                    project.project_general_info.getPIFTotalGEFAmount(),
-                    project.project_general_info.getPIFUNEPGEFAmount(),
-                    project.project_general_info.getPIFUNEPFee(),
-                    project.project_general_info.getPIFCofinancingAmount(),
+                    inner_strip(project.project_general_info.getPIFTotalGEFAmount()),
+                    inner_strip(project.project_general_info.getPIFUNEPGEFAmount()),
+                    inner_strip(project.project_general_info.getPIFUNEPFee()),
+                    inner_strip(project.project_general_info.getPIFCofinancingAmount()),
                     project.milestones.getConceptDevelopmentDate('PAGClearance'),
                     project.milestones.getPIFApprovalDate('SubmissionToGEFSec'),
                     project.milestones.getPIFApprovalDate('ReviewSheet'),
                     project.milestones.getPIFApprovalDate('CEOPIFApprovalExpected'),
-                    project.project_general_info.getPIFPPGAmount()
+                    inner_strip(project.project_general_info.getPIFPPGAmount())
                     ))
         return result
 
