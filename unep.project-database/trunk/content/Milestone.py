@@ -250,7 +250,6 @@ class Milestone(BaseContent, BrowserDefaultMixin):
         return self.getConceptDevelopmentDate('SPOClearance') is not None \
             or self.getConceptDevelopmentDate('DirectorClearance') is not None \
             or self.getConceptDevelopmentDate('PAGClearance') is not None
-
     def getConceptDevelopmentDate(self, action):
         values = self.getConceptDevelopment()
         if values:
