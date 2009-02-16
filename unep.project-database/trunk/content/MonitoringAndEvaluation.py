@@ -149,6 +149,8 @@ MonitoringAndEvaluation_schema = BaseSchema.copy() + \
     schema.copy()
 
 ##code-section after-schema #fill in your manual code here
+MonitoringAndEvaluation_schema['OtherAgencyEvaluationContact'].widget.startup_directory_method = \
+MonitoringAndEvaluation_schema['PlannedStartDate'].widget.show_hm = False
 ##/code-section after-schema
 
 class MonitoringAndEvaluation(BaseContent, BrowserDefaultMixin):
@@ -223,6 +225,16 @@ class MonitoringAndEvaluation(BaseContent, BrowserDefaultMixin):
             if date != DateTime('1900/01/01'):
                 return date
         return None
+
+    security.declarePublic('getContactsPath')
+    def getContactsPath(self):
+        purl = getToolByName(self, 'portal_url').getPortalObject().absolute_url()
+        pc = getToolByName(self, 'portal_catalog')
+        brains = pc({'portal_type':'ContactManager'})
+        if len(brains) > 0:
+            contacts = brains[0].getObject()
+            curl = contacts.absolute_url()
+            return curl[len(purl)+1:]
 
 
 

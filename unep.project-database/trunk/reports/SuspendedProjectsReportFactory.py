@@ -45,7 +45,8 @@ class SuspendedProjectsReportFactory(object):
             if mofu and project.isTheProjectPublished() and \
                     not ms.getProjectImplementationDate('Cancellation') and \
                     not ms.getProjectImplementationDate('Termination') and \
-                    ms.getProjectImplementationDate('Suspension'):
+                    ms.getProjectImplementationDate('Suspension') and \
+                    not ms.getProjectImplementationDate('Reinitiation'):
                 result.append((
                     project.getId(),
                     pgi.getGEFid(),

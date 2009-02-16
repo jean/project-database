@@ -111,6 +111,7 @@ ProgrammeFramework_schema = BaseSchema.copy() + \
     schema.copy()
 
 ##code-section after-schema #fill in your manual code here
+ProgrammeFramework_schema['SeniorProgrammeOfficer'].widget.startup_directory_method = 'getContactsPath'
 ##/code-section after-schema
 
 class ProgrammeFramework(BaseContent, CurrencyMixin, BrowserDefaultMixin):
@@ -143,6 +144,15 @@ class ProgrammeFramework(BaseContent, CurrencyMixin, BrowserDefaultMixin):
         vocab = pvt.getVocabularyByName(vocabName)
         return vocab.getDisplayList(self)
 
+    security.declarePublic('getContactsPath')
+    def getContactsPath(self):
+        purl = getToolByName(self, 'portal_url').getPortalObject().absolute_url()
+        pc = getToolByName(self, 'portal_catalog')
+        brains = pc({'portal_type':'ContactManager'})
+        if len(brains) > 0:
+            contacts = brains[0].getObject()
+            curl = contacts.absolute_url()
+            return curl[len(purl)+1:]
 
 
 registerType(ProgrammeFramework, PROJECTNAME)
