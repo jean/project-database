@@ -73,6 +73,9 @@
                         <span i18n:translate="view">view</span></a>
                     <a tal:attributes="href string:${fo/absolute_url}/edit">
                         <span i18n:translate="edit">edit</span></a>
+                    <a tal:attributes="href
+                    string:${fo/absolute_url}/delete_confirmation">
+                        <span i18n:translate="delete">delete</span></a>
                 </td>
             </tr>
             <tr>
