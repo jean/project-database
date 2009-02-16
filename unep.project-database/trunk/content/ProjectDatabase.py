@@ -74,8 +74,8 @@ class ProjectDatabase(BaseFolder, BrowserDefaultMixin):
         if len(projectBrains) == 0:
             childrenCount = 0
         else:
-            childrenCount = int(projectBrains[0].getId.split('-')[1])
-        return 'Prj-%05d' % (childrenCount + 1)
+            childrenCount = int(projectBrains[0].getId)
+        return '%05d' % (childrenCount + 1)
 
 
 

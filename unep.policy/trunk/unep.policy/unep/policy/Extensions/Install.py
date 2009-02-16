@@ -56,11 +56,10 @@ def Install(self, reinstall=False):
 
     # add default project databases folder
     if 'projectdatabases' not in portal.contentIds():
-        # portal.invokeFactory('Folder', 'projectdatabases', title='PROJECTS A-Z')
         projdb = ProjectDatabase('projectdatabases')
         portal._setObject('projectdatabases', projdb)
         projdb = portal['projectdatabases']
-        projdb.title='PROJECTS A-Z'
+        projdb.title='PROJECTS'
         projdb.reindexObject()
     # add global contact manager
     if 'contacts' not in portal.contentIds():
