@@ -3,6 +3,8 @@
   <roles>
     <role name="FMO"/>
     <role name="MO"/>
+    <role name="Registrar"/>
+    <role name="SPO"/>
     <role name="TM"/>
   </roles>
   <permissions>

@@ -699,6 +699,7 @@ class Financials(BaseFolder, CurrencyMixin, BrowserDefaultMixin):
         return None
 
 
+
 registerType(Financials, PROJECTNAME)
 # end of class Financials
 

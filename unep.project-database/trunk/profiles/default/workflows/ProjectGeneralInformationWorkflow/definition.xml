@@ -4,15 +4,23 @@
              state_variable="review_state"
              initial_state="Private">
  <permission>Modify portal content</permission>
- <permission></permission>
+ <permission>Edit GEFid</permission>
+ <permission>Edit Field</permission>
  <state state_id="Private"
         title="Private">
-  <permission-map name=""
-                  acquired="False">
+  <permission-map name="Edit Field"
+                  acquired="True">
+   <permission-role>TM</permission-role>
+  </permission-map>
+  <permission-map name="Edit GEFid"
+                  acquired="True">
+   <permission-role>TM</permission-role>
+   <permission-role>Registrar</permission-role>
   </permission-map>
   <permission-map name="Modify portal content"
                   acquired="True">
    <permission-role>TM</permission-role>
+   <permission-role>Registrar</permission-role>
   </permission-map>
  </state>
  <variable variable_id="action" for_catalog="False"

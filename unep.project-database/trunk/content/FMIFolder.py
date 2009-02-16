@@ -84,7 +84,6 @@ class FMIFolder(BaseFolder, CurrencyMixin, BrowserDefaultMixin):
 
 
 
-
 registerType(FMIFolder, PROJECTNAME)
 # end of class FMIFolder
 
