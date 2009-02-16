@@ -90,7 +90,7 @@
 <term>
   <termIdentifier>ResearchAcademicInstitutionsNational</termIdentifier>
   <caption>
-    <langstring language="en">Research/Academic Institutions - National</langstring>
+    <langstring language="en">Research/Academic Institution - National</langstring>
   </caption>
   <description />
 </term>
@@ -98,16 +98,15 @@
 <term>
   <termIdentifier>ResearchAcademicInstitutionsInternational</termIdentifier>
   <caption>
-    <langstring language="en">Research/Academic Institutions -
-    International</langstring>
+    <langstring language="en">Research/Academic Institution - International</langstring>
   </caption>
   <description />
 </term>
 
 <term>
-  <termIdentifier>UNEPCollaboratingCenters</termIdentifier>
+  <termIdentifier>UNEPCollaboratingCenter</termIdentifier>
   <caption>
-    <langstring language="en">UNEP Collaborating Centers</langstring>
+    <langstring language="en">UNEP Collaborating Center</langstring>
   </caption>
   <description />
 </term>

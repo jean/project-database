@@ -88,25 +88,25 @@
 </term>
 
 <term>
-  <termIdentifier>Research Academic Institutions National</termIdentifier>
+  <termIdentifier>Research Academic Institution National</termIdentifier>
   <caption>
-    <langstring language="en">Research/Academic Institutions National</langstring>
+    <langstring language="en">Research/Academic Institution National</langstring>
   </caption>
   <description />
 </term>
 
 <term>
-  <termIdentifier>Research Academic Institutions International</termIdentifier>
+  <termIdentifier>Research Academic Institution International</termIdentifier>
   <caption>
-    <langstring language="en">Research/Academic Institutions International</langstring>
+    <langstring language="en">Research/Academic Institution International</langstring>
   </caption>
   <description />
 </term>
 
 <term>
-  <termIdentifier>UNEP Collaborating Centers</termIdentifier>
+  <termIdentifier>UNEP Collaborating Center</termIdentifier>
   <caption>
-    <langstring language="en">UNEP Collaborating Centers</langstring>
+    <langstring language="en">UNEP Collaborating Center</langstring>
   </caption>
   <description />
 </term>
