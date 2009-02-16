@@ -64,6 +64,14 @@ schema = Schema((
         ),
         columns=('milestone_action', 'milestone_date', 'milestone_result'),
     ),
+    BooleanField(
+        name='PIFApprovalComplete',
+        widget=BooleanWidget(
+            label="PIF Approval Complete",
+            label_msgid='ProjectDatabase_label_pif_approval_complete',
+            i18n_domain='ProjectDatabase',
+        ),
+    ),
     DataGridField(
         name='PPGApproval',
         widget=DataGridField._properties['widget'](
@@ -73,6 +81,14 @@ schema = Schema((
             i18n_domain='ProjectDatabase',
         ),
         columns=('milestone_action', 'milestone_date', 'milestone_result'),
+    ),
+    BooleanField(
+        name='PPGApprovalComplete',
+        widget=BooleanWidget(
+            label="PPG Approval Complete",
+            label_msgid='ProjectDatabase_label_ppgapprovalcompletek',
+            i18n_domain='ProjectDatabase',
+        ),
     ),
     DataGridField(
         name='PPGImplementation',
@@ -84,6 +100,14 @@ schema = Schema((
         ),
         columns=('milestone_action', 'milestone_date'),
     ),
+    BooleanField(
+        name='PPGImplementationComplete',
+        widget=BooleanWidget(
+            label="PPG Implementation Complete",
+            label_msgid='ProjectDatabase_label_ppgimplementationcomplete',
+            i18n_domain='ProjectDatabase',
+        ),
+    ),
     DataGridField(
         name='ProjectApproval',
         widget=DataGridField._properties['widget'](
@@ -94,6 +118,14 @@ schema = Schema((
         ),
         columns=('milestone_action', 'milestone_date', 'milestone_result'),
     ),
+    BooleanField(
+        name='ProjectApprovalComplete',
+        widget=BooleanWidget(
+            label="Project Approval Complete",
+            label_msgid='ProjectDatabase_label_projectapprovalcomplete',
+            i18n_domain='ProjectDatabase',
+        ),
+    ),
     DataGridField(
         name='ProjectImplementation',
         widget=DataGridField._properties['widget'](
@@ -103,6 +135,14 @@ schema = Schema((
             i18n_domain='ProjectDatabase',
         ),
         columns=('milestone_action', 'milestone_date'),
+    ),
+    BooleanField(
+        name='ProjectImplementationComplete',
+        widget=BooleanWidget(
+            label="Project Implementation Complete",
+            label_msgid='ProjectDatabase_label_projectimplementationcomplete',
+            i18n_domain='ProjectDatabase',
+        ),
     ),
     DataGridField(
         name='NewPhaseApproval',
@@ -318,7 +358,22 @@ class Milestone(BaseContent, BrowserDefaultMixin):
                 return date
         return None
 
-
+    security.declarePublic('getProjectStage')
+    def getProjectStage(self):
+        """ Return the stage in which the project is
+        """
+        stage = 'PIF Approval'
+        if self.getPIFApprovalComplete():
+            stage = 'PPG Approval'
+        if self.getPPGApprovalComplete():
+            stage = 'PPG Implementation'
+        if self.getPPGImplementationComplete():
+            stage = 'Project Approval'
+        if self.getProjectApprovalComplete():
+            stage = 'Project Implementation'
+        if self.getProjectImplementationComplete():
+            stage = 'Project Complete'
+        return stage
 
 registerType(Milestone, PROJECTNAME)
 # end of class Milestone
