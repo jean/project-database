@@ -42,7 +42,7 @@
     <tr>
         <td tal:content="ob/project_general_info/getGEFid | string:unknown" />
         <td tal:content="ob/project_general_info/getFocalAreaNames | string:unknown" />
-        <td tal:content="ob/milestones/getProjectCycleStage | string:unknown" />
+        <td tal:content="ob/milestones/getProjectStage | string:unknown" />
     </tr>
 </table>
 </metal:pgi_matrix>

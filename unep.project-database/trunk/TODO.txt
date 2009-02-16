@@ -20,6 +20,3 @@ Things to do on UNEP Project
 * TESTING
 * Import historical data
 
-* Awaiting feedback
-  - Overview needs project stage
-
