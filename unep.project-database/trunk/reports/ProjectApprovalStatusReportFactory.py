@@ -68,6 +68,6 @@ class ProjectApprovalStatusReportFactory(object):
                     unep_report_format_date(self.projectdatabase, \
                         ms.getProjectApprovalDate('CEOApprovalEndorsementActual')),
                     unep_report_format_date(self.projectdatabase, \
-                        ms.getProjectImplementationDate('SignatureOfLegalInstrumentExpected')),
+                        ms.getProjectApprovalDate('PAGApprovalExpected')),
                     ))
         return result

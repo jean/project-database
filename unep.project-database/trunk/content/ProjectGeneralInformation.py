@@ -597,7 +597,12 @@ ProjectGeneralInformation_schema = BaseSchema.copy() + \
 
 ##code-section after-schema #fill in your manual code here
 ProjectGeneralInformation_schema['title'].widget.label = 'Project Title'
-ProjectGeneralInformation_schema['LeadAgencyContact'].widget.startup_directory_method = 'getContactsPath'
+ProjectGeneralInformation_schema['LeadAgencyContact'].widget.startup_directory_method = \
+        'getContactsPath'
+ProjectGeneralInformation_schema['ProjectManager'].widget.startup_directory_method = \
+        'getContactsPath'
+ProjectGeneralInformation_schema['ProgrammeFrameworkTitle'].widget.startup_directory_method = \
+        'getPGFPath'
 ##/code-section after-schema
 
 class ProjectGeneralInformation(BaseContent, CurrencyMixin, BrowserDefaultMixin):
@@ -898,12 +903,15 @@ class ProjectGeneralInformation(BaseContent, CurrencyMixin, BrowserDefaultMixin)
                 return name
         return None
 
+    security.declarePublic('getContactsPath')
     def getContactsPath(self):
-        pt = getToolByName(self, 'portal_url')
-        portal = pt.getPortalObject()
-        contacts = pt.get('contacts', None)
-        if contacts:
-            return contacts.absolute_url()
+        purl = getToolByName(self, 'portal_url').getPortalObject().absolute_url()
+        pc = getToolByName(self, 'portal_catalog')
+        brains = pc({'portal_type':'ContactManager'})
+        if len(brains) > 0:
+            contacts = brains[0].getObject()
+            curl = contacts.absolute_url()
+            return curl[len(purl)+1:]
 
     def getPIFTotalGEFAmount(self):
         values = self.getPIFFinancialData()
@@ -943,6 +951,16 @@ class ProjectGeneralInformation(BaseContent, CurrencyMixin, BrowserDefaultMixin)
             if v['stage'] == 'PPG':
                 amount += Money(int(v['grant_to_unep']), self.getDefaultCurrency())
         return amount
+
+    security.declarePublic('getPGFPath')
+    def getPGFPath(self):
+        purl = getToolByName(self, 'portal_url').getPortalObject().absolute_url()
+        pc = getToolByName(self, 'portal_catalog')
+        brains = pc({'portal_type':'ProgrammeFramework'})
+        if len(brains) > 0:
+            pgf = brains[0].getObject()
+            curl = pgf.absolute_url()
+            return curl[len(purl)+1:]
 
 
 registerType(ProjectGeneralInformation, PROJECTNAME)

@@ -49,8 +49,7 @@ class ProjectImplementationStatusReportFactory(object):
                     not ms.getProjectImplementationDate('CompletionActual') and \
                     not ms.getProjectImplementationDate('ClosureActual') and \
                     not ms.getProjectImplementationDate('Cancellation') and \
-                    not ms.getProjectImplementationDate('Termination') and \
-                    not ms.getProjectImplementationDate('Suspension'):
+                    not ms.getProjectImplementationDate('Termination'):
                 result.append((
                     project.getId(),
                     pgi.getGEFid(),
