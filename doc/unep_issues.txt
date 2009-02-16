@@ -12,19 +12,20 @@ PGI
 -Done
 
 5. Mode of Execution – ‘Division’ should be inactive till ‘Internal’ is selected.
--Add javascript
+-I&J - show/hide javascript
 
 6. Text boxes – all over the database – should be small but expandible (not to discourage TMs)
--Question: text or rich text boxes?
+-Add rows to textareas and max-height to kupu
 
 7. Task Manager – user should not enter the name but select from the ‘contacts’ dbase. It should be reference field. (same applies to FMOs)
 -ReferenceColumn required for DataGridField
+-NB
 
 8. In view mode, the data should appear against the label and not below it(save on real estate) e.g. Database Id: Prj-00004 and not Database Id:
 - Done
 
 9. As discussed in SA, EA Biodiv/ EA CC / EA POPs drop down should only appear when project type is ‘enabling activity’ and focal area is ‘Biodiv or CC’.
-- javascript
+- show/hide javascript
 
 10. The blue header in PGI shows the project title which is not the case when one is in FMI/Milestones/Docs/M&E.
 -Done
@@ -33,40 +34,38 @@ PGI
 -Done
 
 12. When searching for Project Manager, it should not search the entire database but only the CONTACTS dbase.
--Add attrib to ref field (starting dir)
+-Done
 
 13. Validation of the GEF phases with regard to the Operational Programs, Strategic Priorities, Strategic Objectives and Strategic Programs.(refer to the notes column of the PGI data dictionary.
--
+- show/hide js - rules in PGI spec.
 
 14. All figures in the database should be right aligned, this applies to edit as well as view mode.
 -Add MoneyColumn to DGF
 
 15. All acronyms in the database should be in CAPS.
 -We need exact places please.
+-asked
 
 16. Lead Exec Agency Category – Research/Academic Institutions; UNEP Collaborating Centers……….shud be without ‘s’ at the end (our mistake)
-- Modify VDEX
+- Done
 
 17. Use different colours to distinguish the field label and the data itself. Both should not be blue.
 -Done
 
-18. When you log-in, it takes you to the project you were working on at the last log-in as opposed to ‘View’/Project List
--Please double check
 
 FMI
 
 1. Add ‘finance object’ – why is this done in ‘view’ mode (hence emails from sandeep - yesterday). And if one adds a finance object by mistake (which is bound to happen) how do we delete that entry?
--Ask Rijk
+-Done (added del button to fmi_folder)
 
 2. Report rcvd – do not want time displayed 12.00am
--Bug in CalendarColumn in DGF
-
+-Done
 
 3. We had wanted a thousand separator to appear just when one finishes entering data in any figure field i.e after hitting the ‘tab’ or clicking on the next field
--Javascript for format
+- Create MoneyColumn for DGF
 
 4. In view mode, spacing in field labels is missing for some e.g Total cofinance planned / actual & Total Cost etc.
--?
+-Asked for all issues
 
 
 Milestones Section:
@@ -75,7 +74,7 @@ Milestones Section:
 -Done
 
 2. In general, table headings should be bold and in CAPS and not the data inside the table. Please also eliminate the time entry for all the date entries in the database.
--Change DFG
+-Done
 
 M& E Section:
 
