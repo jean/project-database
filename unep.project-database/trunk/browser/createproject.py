@@ -17,5 +17,6 @@ class ProjectCreation(BrowserView):
         context.invokeFactory(id=id, type_name='Project')
         new_context = context[id]
         event.notify(ObjectInitializedEvent(new_context))
-        context.REQUEST.response.redirect(new_context.absolute_url())
+        new_context_url = "%s/edit" % new_context['project_general_info'].absolute_url()
+        context.REQUEST.response.redirect(new_context_url)
       
