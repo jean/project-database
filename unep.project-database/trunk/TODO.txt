@@ -1,16 +1,21 @@
 Things to do on UNEP Project
 * Personal/Folder actions - what and where are they requried?
-  - Add 'Publish' where appropriate
-  - M&E Folder view rework
+  JB - Add 'Publish' where appropriate
+
+* MJM  Milestones
+  - Added isStageCompleted attribs to M&E
+  - Add method to calc project stage
+  - Model change
+
+* JB M&E
+  - Folder view rework
+
 * Rework home page
-  - 
-* On Model:
-  - Maybe link FO to M&E
-  - Maybe add Project Stage to Milestones with vocab
+  - JB Added project to the top
 
 * Roles and permissions
-* Create Money column to DataGrid 
 * Create Reference column to DataGrid 
+* Create Money column to DataGrid 
 
 * TESTING
 * Import historical data
@@ -18,13 +23,3 @@ Things to do on UNEP Project
 * Awaiting feedback
   - Overview needs project stage
 
-* Questions for UNEP
-- Big picture
-- M&E - linked to Financial/SubProject/?
-- Add ProjectStage to Milestones or PGI?
-- On FMI View, Which task manager/s should be displayed (Principal/Former/Backup)?
-----> Drop former
-----> Always show in order Principle/Backup
-- ON FMI View, Evaluation Budget amount and BAC is on FO not project. Must the amounts be summed?
-- On all the reports, the project selection criteria must be thoroughly
-  tested.
