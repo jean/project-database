@@ -14,6 +14,10 @@ table.datagridwidget-table-view {
 	width: 100%;
 }
 
+table.datagridwidget-table-view th {
+  text-transform:none; 
+}
+
 input.datagrid-radio-button {
 	/* Radio buttons try to use Plone's default text input 
 	   field CSS properties, like borders and background shade image */
