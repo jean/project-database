@@ -33,7 +33,7 @@ class ViewOptions(ViewletBase):
             ]
         elif self._isType('ProjectDatabase'):
             tabs = [
-                (self.context.absolute_url(), "Projects A-Z",
+                (self.context.absolute_url(), "Projects",
                     self._endsWith('/base_view')),
                 ("%s/@@reports" % self.context.absolute_url(), "Reports",
                     self._endsWith('/@@reports')),
