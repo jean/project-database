@@ -522,7 +522,13 @@ select {
     max-width: 800px;
 }
 
+div.unep-theme-div-hidden {
+  display: none;
+}
 
+div.unep-theme-div-visible {
+  display: block;
+}
 
 /*
 ** end ECMAScript Content Action Menus
