@@ -11,6 +11,9 @@
  <permission>Registrar</permission>
  <permission>Registrar TM FMO</permission>
  <permission>Registrar TM SPO</permission>
+ <permission>TM EO</permission>
+ <permission>TM MO</permission>
+ <permission>FMO</permission>
  <state state_id="Private"
         title="Private">
   <exit-transition transition_id="Publish"/>
@@ -38,6 +41,10 @@
   <permission-map name="Access contents information"
                   acquired="True">
    <permission-role>Member</permission-role>
+  </permission-map>
+  <permission-map name="FMO"
+                  acquired="False">
+   <permission-role>FMO</permission-role>
   </permission-map>
   <permission-map name="List folder contents"
                   acquired="True">
@@ -67,6 +74,16 @@
   <permission-map name="TM"
                   acquired="False">
    <permission-role>TM</permission-role>
+  </permission-map>
+  <permission-map name="TM EO"
+                  acquired="False">
+   <permission-role>TM</permission-role>
+   <permission-role>EO</permission-role>
+  </permission-map>
+  <permission-map name="TM MO"
+                  acquired="False">
+   <permission-role>TM</permission-role>
+   <permission-role>MO</permission-role>
   </permission-map>
   <permission-map name="View"
                   acquired="True">

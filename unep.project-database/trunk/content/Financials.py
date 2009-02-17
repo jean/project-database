@@ -54,6 +54,7 @@ schema = Schema((
             i18n_domain='ProjectDatabase',
         ),
         vocabulary=NamedVocabulary("""FinanceCategory"""),
+        write_permission="FMO",
     ),
     StringField(
         name='TrusteeID',
@@ -62,6 +63,7 @@ schema = Schema((
             label_msgid='ProjectDatabase_label_TrusteeID',
             i18n_domain='ProjectDatabase',
         ),
+        write_permission="FMO",
     ),
     StringField(
         name='PMSNumber',
@@ -70,6 +72,7 @@ schema = Schema((
             label_msgid='ProjectDatabase_label_PMSNumber',
             i18n_domain='ProjectDatabase',
         ),
+        write_permission="FMO",
     ),
     StringField(
         name='IMISNumber',
@@ -78,6 +81,7 @@ schema = Schema((
             label_msgid='ProjectDatabase_label_IMISNumber',
             i18n_domain='ProjectDatabase',
         ),
+        write_permission="FMO",
     ),
     ComputedField(
         name='LeadExecutingAgency',
@@ -86,6 +90,7 @@ schema = Schema((
             label_msgid='ProjectDatabase_label_LeadExecutingAgency',
             i18n_domain='ProjectDatabase',
         ),
+        write_permission="FMO",
     ),
     ComputedField(
         name='OtherLeadExecutingAgency',
@@ -94,6 +99,7 @@ schema = Schema((
             label_msgid='ProjectDatabase_label_OtherLeadExecutingAgency',
             i18n_domain='ProjectDatabase',
         ),
+        write_permission="FMO",
     ),
     StringField(
         name='Status',
@@ -102,6 +108,7 @@ schema = Schema((
             label_msgid='ProjectDatabase_label_Status',
             i18n_domain='ProjectDatabase',
         ),
+        write_permission="FMO",
         vocabulary=NamedVocabulary("""Status"""),
     ),
     TextField(
@@ -111,6 +118,7 @@ schema = Schema((
             label_msgid='ProjectDatabase_label_FinancialStatusRemarks',
             i18n_domain='ProjectDatabase',
         ),
+        write_permission="FMO",
     ),
     DataGridField(
         name='FinanceObjectAmount',
@@ -120,6 +128,7 @@ schema = Schema((
             label_msgid='ProjectDatabase_label_FinanceObjectAmount',
             i18n_domain='ProjectDatabase',
         ),
+        write_permission="FMO",
         columns=("trust_fund", "grant_to_unep"),
     ),
     ComputedField(
@@ -138,6 +147,7 @@ schema = Schema((
             label_msgid='ProjectDatabase_label_FinanceObjectFee',
             i18n_domain='ProjectDatabase',
         ),
+        write_permission="FMO",
     ),
     MoneyField(
         name='CommittedGEFGrant',
@@ -149,6 +159,7 @@ schema = Schema((
             description_msgid='ProjectDatabase_help_CommittedGEFGrant',
             i18n_domain='ProjectDatabase',
         ),
+        write_permission="FMO",
     ),
     ComputedField(
         name='Difference',
@@ -157,6 +168,7 @@ schema = Schema((
             label_msgid='ProjectDatabase_label_Difference',
             i18n_domain='ProjectDatabase',
         ),
+        write_permission="FMO",
     ),
     DataGridField(
         name='CoFinancingCash',
@@ -166,6 +178,7 @@ schema = Schema((
             label_msgid='ProjectDatabase_label_CoFinancingCash',
             i18n_domain='ProjectDatabase',
         ),
+        write_permission="FMO",
         columns=("cofinancing_cash_source", "cofinancing_cash_donor_name", "cofinancing_cash_planned_amount", "cofinancing_cash_actual_amount"),
     ),
     DataGridField(
@@ -176,6 +189,7 @@ schema = Schema((
             label_msgid='ProjectDatabase_label_CoFinancingInKind',
             i18n_domain='ProjectDatabase',
         ),
+        write_permission="FMO",
         columns=("cofinancing_inkind_source", "cofinancing_inkind_donor_name", "cofinancing_inkind_planned_amount", "cofinancing_inkind_actual_amount"),
     ),
     ComputedField(
@@ -185,6 +199,7 @@ schema = Schema((
             label_msgid='ProjectDatabase_label_SumCoFinCashPlanned',
             i18n_domain='ProjectDatabase',
         ),
+        write_permission="FMO",
     ),
     ComputedField(
         name='SumCoFinCashActual',
@@ -193,6 +208,7 @@ schema = Schema((
             label_msgid='ProjectDatabase_label_SumCoFinCashActual',
             i18n_domain='ProjectDatabase',
         ),
+        write_permission="FMO",
     ),
     ComputedField(
         name='SumCoFinInKindPlanned',
@@ -201,6 +217,7 @@ schema = Schema((
             label_msgid='ProjectDatabase_label_SumCoFinInKindPlanned',
             i18n_domain='ProjectDatabase',
         ),
+        write_permission="FMO",
     ),
     ComputedField(
         name='SumCoFinInKindActual',
@@ -209,6 +226,7 @@ schema = Schema((
             label_msgid='ProjectDatabase_label_SumCoFinInKindActual',
             i18n_domain='ProjectDatabase',
         ),
+        write_permission="FMO",
     ),
     ComputedField(
         name='TotalCoFinOfFinanceObjectPlanned',
@@ -217,6 +235,7 @@ schema = Schema((
             label_msgid='ProjectDatabase_label_TotalCoFinOfFinanceObjectPlanned',
             i18n_domain='ProjectDatabase',
         ),
+        write_permission="FMO",
     ),
     ComputedField(
         name='TotalCoFinOfFinanceObjectActual',
@@ -225,6 +244,7 @@ schema = Schema((
             label_msgid='ProjectDatabase_label_TotalCoFinOfFinanceObjectActual',
             i18n_domain='ProjectDatabase',
         ),
+        write_permission="FMO",
     ),
     ComputedField(
         name='TotalCostOfFinanceObjectPlanned',
@@ -233,6 +253,7 @@ schema = Schema((
             label_msgid='ProjectDatabase_label_TotalCostOfFinanceObjectPlanned',
             i18n_domain='ProjectDatabase',
         ),
+        write_permission="FMO",
     ),
     ComputedField(
         name='TotalCostOfFinanceObjectActual',
@@ -241,6 +262,7 @@ schema = Schema((
             label_msgid='ProjectDatabase_label_TotalCostOfFinanceObjectActual',
             i18n_domain='ProjectDatabase',
         ),
+        write_permission="FMO",
     ),
     ComputedField(
         name='TotalCostOfFinanceObjectVariance',
@@ -249,6 +271,7 @@ schema = Schema((
             label_msgid='ProjectDatabase_label_TotalCostOfFinanceObjectVariance',
             i18n_domain='ProjectDatabase',
         ),
+        write_permission="FMO",
     ),
     DataGridField(
         name='EvaluationFunds',
@@ -258,6 +281,7 @@ schema = Schema((
             label_msgid='ProjectDatabase_label_EvaluationFunds',
             i18n_domain='ProjectDatabase',
         ),
+        write_permission="FMO",
         columns= ("EvaluationType", "Amount", "BAC"),
     ),
     DataGridField(
@@ -268,6 +292,7 @@ schema = Schema((
             label_msgid='ProjectDatabase_label_CashDisbursements',
             i18n_domain='ProjectDatabase',
         ),
+        write_permission="FMO",
         columns=("cash_disbursements_date", "cash_disbursements_amount", "cash_disbursements_imis_rcpt_number"),
     ),
     ComputedField(
@@ -277,6 +302,7 @@ schema = Schema((
             label_msgid='ProjectDatabase_label_SumCashDisbursements',
             i18n_domain='ProjectDatabase',
         ),
+        write_permission="FMO",
     ),
     DataGridField(
         name='YearlyExpenditures',
@@ -286,6 +312,7 @@ schema = Schema((
             label_msgid='ProjectDatabase_label_YearlyExpenditures',
             i18n_domain='ProjectDatabase',
         ),
+        write_permission="FMO",
         columns=("year", "amount"),
     ),
     ComputedField(
@@ -295,6 +322,7 @@ schema = Schema((
             label_msgid='ProjectDatabase_label_SumYearlyExpenditures',
             i18n_domain='ProjectDatabase',
         ),
+        write_permission="FMO",
     ),
     IntegerField(
         name='PlannedDuration',
@@ -305,6 +333,7 @@ schema = Schema((
             description_msgid='ProjectDatabase_help_PlannedDuration',
             i18n_domain='ProjectDatabase',
         ),
+        write_permission="FMO",
     ),
     DateTimeField(
         name='ExpectedCompletionDate',
@@ -314,6 +343,7 @@ schema = Schema((
             label_msgid='ProjectDatabase_label_ExpectedCompletionDate',
             i18n_domain='ProjectDatabase',
         ),
+        write_permission="FMO",
     ),
     DateTimeField(
         name='RevisedCompletionDate',
@@ -325,6 +355,7 @@ schema = Schema((
             description_msgid='ProjectDatabase_help_RevisedCompletionDate',
             i18n_domain='ProjectDatabase',
         ),
+        write_permission="FMO",
     ),
     TextField(
         name='DelayReason',
@@ -333,6 +364,7 @@ schema = Schema((
             label_msgid='ProjectDatabase_label_DelayReason',
             i18n_domain='ProjectDatabase',
         ),
+        write_permission="FMO",
     ),
     DataGridField(
         name='Reports',
@@ -342,6 +374,7 @@ schema = Schema((
             label_msgid='ProjectDatabase_label_Reports',
             i18n_domain='ProjectDatabase',
         ),
+        write_permission="FMO",
         columns=("report_type", "report_period", "report_received_date", "amount"),
     ),
     DataGridField(
@@ -352,6 +385,7 @@ schema = Schema((
             label_msgid='ProjectDatabase_label_FundManagementOfficer',
             i18n_domain='ProjectDatabase',
         ),
+        write_permission="FMO",
         columns= ("FMO_Name", "FMO_Type", "FMO_Period"),
     ),
     DataGridField(
@@ -362,6 +396,7 @@ schema = Schema((
             label_msgid='ProjectDatabase_label_ProjectRevision',
             i18n_domain='ProjectDatabase',
         ),
+        write_permission="FMO",
         columns=("revision_number", "revision_type","revision_date"),
     ),
     TextField(
@@ -373,6 +408,7 @@ schema = Schema((
             i18n_domain='ProjectDatabase',
         ),
         default_output_type='text/html',
+        write_permission="TM",
     ),
     DataGridField(
         name='ExecutingAgencyRiskRating',
@@ -382,6 +418,7 @@ schema = Schema((
             label_msgid='ProjectDatabase_label_ExecutingAgencyRiskRating',
             i18n_domain='ProjectDatabase',
         ),
+        write_permission="FMO",
         columns= ("Risk_Level", "Assessment_Date", "Remarks"),
     ),
 
