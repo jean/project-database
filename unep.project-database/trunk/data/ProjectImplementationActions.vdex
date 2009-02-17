@@ -112,9 +112,17 @@
 </term>
 
 <term>
-  <termIdentifier>Reinitiation</termIdentifier>
+  <termIdentifier>ExpectedReinitiation</termIdentifier>
   <caption>
-    <langstring language="en">Re-initiation</langstring>
+    <langstring language="en">Expected Re-initiation</langstring>
+  </caption>
+  <description />
+</term>
+
+<term>
+  <termIdentifier>ActualReinitiation</termIdentifier>
+  <caption>
+    <langstring language="en">Actual Re-initiation</langstring>
   </caption>
   <description />
 </term>
