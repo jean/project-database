@@ -1,0 +1,10 @@
+body:load {
+  action-server: unep.theme.hide-widgets;
+}
+
+div#archetypes-fieldname-ExecutionMode input[type="radio"]:change {
+  action-server: unep.theme.togglewidget;
+  unep.theme.togglewidget-fieldname: kssAttr('atfieldname', True);
+  unep.theme.togglewidget-value: currentFormVar();
+
+}

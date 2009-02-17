@@ -34,6 +34,22 @@
         class=".uneputils.UnepViewUtils"
         permission="zope2.View"
         />
+    <!-- KSS for Hide Widgets -->
+    <browser:page
+        for="Products.Archetypes.interfaces.IBaseObject"
+        attribute="hideWidgets"
+        class=".kssview.UnepKSSView"
+        name="unep.theme.hide-widgets"
+        permission="zope2.View"
+        />
+
+    <browser:page
+        for="Products.Archetypes.interfaces.IBaseObject"
+        attribute="toggleWidget"
+        class=".kssview.UnepKSSView"
+        name="unep.theme.togglewidget"
+        permission="zope2.View"
+        />
 
    <include package=".viewlets" />
 
