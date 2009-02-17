@@ -1026,6 +1026,25 @@ class ProjectGeneralInformation(BaseContent, CurrencyMixin, BrowserDefaultMixin)
             curl = pgf.absolute_url()
             return curl[len(purl)+1:]
 
+    def getHideFieldNames(self):
+        fieldnames = []
+        if self.getExecutionMode() == 'External':
+            fieldnames.append('LeadDivision')
+            fieldnames.append('OtherDivisions')
+
+        return fieldnames
+
+    def getToggleFieldNames(self, fieldname, value):
+        hide = []
+        show = []
+        if fieldname == 'ExecutionMode' and value == 'External':
+            hide.append('LeadDivision')
+            hide.append('OtherDivisions')
+        else:
+            show.append('LeadDivision')
+            show.append('OtherDivisions')
+
+        return show, hide
 
 
 registerType(ProjectGeneralInformation, PROJECTNAME)
