@@ -6,7 +6,11 @@
  <permission>View</permission>
  <permission>List folder contents</permission>
  <permission>Access contents information</permission>
- <permission>Edit GEFid</permission>
+ <permission>Registrar TM</permission>
+ <permission>TM</permission>
+ <permission>Registrar</permission>
+ <permission>Registrar TM FMO</permission>
+ <permission>Registrar TM SPO</permission>
  <state state_id="Private"
         title="Private">
   <exit-transition transition_id="Publish"/>
@@ -35,13 +39,34 @@
                   acquired="True">
    <permission-role>Member</permission-role>
   </permission-map>
-  <permission-map name="Edit GEFid"
-                  acquired="False">
-   <permission-role>Registrar</permission-role>
-  </permission-map>
   <permission-map name="List folder contents"
                   acquired="True">
    <permission-role>Member</permission-role>
+  </permission-map>
+  <permission-map name="Registrar"
+                  acquired="False">
+   <permission-role>Registrar</permission-role>
+  </permission-map>
+  <permission-map name="Registrar TM"
+                  acquired="False">
+   <permission-role>Registrar</permission-role>
+   <permission-role>TM</permission-role>
+  </permission-map>
+  <permission-map name="Registrar TM FMO"
+                  acquired="False">
+   <permission-role>Registrar</permission-role>
+   <permission-role>TM</permission-role>
+   <permission-role>FMO</permission-role>
+  </permission-map>
+  <permission-map name="Registrar TM SPO"
+                  acquired="False">
+   <permission-role>Registrar</permission-role>
+   <permission-role>TM</permission-role>
+   <permission-role>SPO</permission-role>
+  </permission-map>
+  <permission-map name="TM"
+                  acquired="False">
+   <permission-role>TM</permission-role>
   </permission-map>
   <permission-map name="View"
                   acquired="True">

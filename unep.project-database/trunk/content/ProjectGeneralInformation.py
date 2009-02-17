@@ -35,7 +35,7 @@ from Products.FinanceFields.Money import Money
 
 copied_fields = {}
 copied_fields['title'] = BaseSchema['title'].copy()
-copied_fields['title'].write_permission = "Edit Field"
+copied_fields['title'].write_permission = "TM"
 schema = Schema((
 
     copied_fields['title'],
@@ -47,7 +47,7 @@ schema = Schema((
             label_msgid='ProjectDatabase_label_DatabaseID',
             i18n_domain='ProjectDatabase',
         ),
-        write_permission="Edit Field",
+        write_permission="TM",
     ),
     TextField(
         name='FormerProjectTitle',
@@ -56,7 +56,7 @@ schema = Schema((
             label_msgid='ProjectDatabase_label_FormerProjectTitle',
             i18n_domain='ProjectDatabase',
         ),
-        write_permission="Edit Field",
+        write_permission="TM",
     ),
     StringField(
         name='GEFid',
@@ -65,7 +65,7 @@ schema = Schema((
             label_msgid='ProjectDatabase_label_GEFid',
             i18n_domain='ProjectDatabase',
         ),
-        write_permission="Edit GEFid",
+        write_permission="Registrar TM",
     ),
     LinesField(
         name='UNEPThematicPriority',
@@ -76,7 +76,7 @@ schema = Schema((
         ),
         multiValued=1,
         vocabulary=NamedVocabulary("""UNEPThematicPriority"""),
-        write_permission="Edit Field",
+        write_permission="TM",
     ),
     LinesField(
         name='FocalArea',
@@ -87,7 +87,7 @@ schema = Schema((
         ),
         multiValued=1,
         vocabulary=NamedVocabulary("""FocalArea"""),
-        write_permission="Edit Field",
+        write_permission="TM",
     ),
     TextField(
         name='SummaryDescription',
@@ -98,7 +98,7 @@ schema = Schema((
             i18n_domain='ProjectDatabase',
         ),
         default_output_type='text/html',
-        write_permission="Edit Field",
+        write_permission="TM",
         searchable=1,
     ),
     StringField(
@@ -109,7 +109,7 @@ schema = Schema((
             i18n_domain='ProjectDatabase',
         ),
         vocabulary=NamedVocabulary("""ProjectType"""),
-        write_permission="Edit Field",
+        write_permission="TM",
     ),
     StringField(
         name='GEFPhase',
@@ -119,7 +119,7 @@ schema = Schema((
             i18n_domain='ProjectDatabase',
         ),
         vocabulary=NamedVocabulary("""GEFPhase"""),
-        write_permission="Edit Field",
+        write_permission="TM",
     ),
     LinesField(
         name='Scope',
@@ -130,7 +130,7 @@ schema = Schema((
         ),
         multiValued=1,
         vocabulary=NamedVocabulary("""Scope"""),
-        write_permission="Edit Field",
+        write_permission="TM",
     ),
     StringField(
         name='ScopeOther',
@@ -139,7 +139,7 @@ schema = Schema((
             label_msgid='ProjectDatabase_label_ScopeOther',
             i18n_domain='ProjectDatabase',
         ),
-        write_permission="Edit Field",
+        write_permission="TM",
     ),
     LinesField(
         name='Region',
@@ -150,7 +150,7 @@ schema = Schema((
         ),
         multiValued=1,
         vocabulary=NamedVocabulary("""Region"""),
-        write_permission="Edit Field",
+        write_permission="TM",
     ),
     StringField(
         name='SubRegion',
@@ -159,7 +159,7 @@ schema = Schema((
             label_msgid='ProjectDatabase_label_SubRegion',
             i18n_domain='ProjectDatabase',
         ),
-        write_permission="Edit Field",
+        write_permission="TM",
     ),
     LinesField(
         name='Country',
@@ -170,7 +170,7 @@ schema = Schema((
         ),
         multiValued=1,
         vocabulary=NamedVocabulary("""Country"""),
-        write_permission="Edit Field",
+        write_permission="TM",
     ),
     LinesField(
         name='OtherNonGEFEligibleCountries',
@@ -181,7 +181,7 @@ schema = Schema((
         ),
         multiValued=1,
         vocabulary=NamedVocabulary("""Country"""),
-        write_permission="Edit Field",
+        write_permission="TM",
     ),
     StringField(
         name='TrustFund',
@@ -191,7 +191,7 @@ schema = Schema((
             i18n_domain='ProjectDatabase',
         ),
         required=True,
-        write_permission="Edit Field",
+        write_permission="TM",
         vocabulary=NamedVocabulary("""TrustFund"""),
     ),
     DataGridField(
@@ -202,7 +202,7 @@ schema = Schema((
             label_msgid='ProjectDatabase_label_PIFFinancialData',
             i18n_domain='ProjectDatabase',
         ),
-        write_permission="Edit Field",
+        write_permission="TM",
         columns=('stage', 'grant_to_unep', 'grant_to_other_ia', 'cofinancing', 'unep_fee', 'other_ia_fee'),
     ),
     BooleanField(
@@ -212,7 +212,7 @@ schema = Schema((
             label_msgid='ProjectDatabase_label_JointImplementation',
             i18n_domain='ProjectDatabase',
         ),
-        write_permission="Edit Field",
+        write_permission="TM",
     ),
     TextField(
         name='UnepComponentDescription',
@@ -225,7 +225,7 @@ schema = Schema((
             i18n_domain='ProjectDatabase',
         ),
         default_output_type='text/html',
-        write_permission="Edit Field",
+        write_permission="TM",
     ),
     StringField(
         name='LeadAgency',
@@ -234,7 +234,7 @@ schema = Schema((
             label_msgid='ProjectDatabase_label_LeadAgency',
             i18n_domain='ProjectDatabase',
         ),
-        write_permission="Edit Field",
+        write_permission="TM",
         vocabulary=NamedVocabulary("""LeadAgency"""),
     ),
     ReferenceField(
@@ -248,7 +248,7 @@ schema = Schema((
         relationship="Project_LeadAgency",
         multiValued=0,
         allowed_types=('Person',),
-        write_permission="Edit Field",
+        write_permission="TM",
     ),
     LinesField(
         name='OtherImplementingAgency',
@@ -259,7 +259,7 @@ schema = Schema((
         ),
         multiValued=1,
         vocabulary=NamedVocabulary("""LeadAgency"""),
-        write_permission="Edit Field",
+        write_permission="TM",
     ),
     StringField(
         name='ExecutionMode',
@@ -268,7 +268,7 @@ schema = Schema((
             label_msgid='ProjectDatabase_label_ExecutionMode',
             i18n_domain='ProjectDatabase',
         ),
-        write_permission="Edit Field",
+        write_permission="TM",
         vocabulary=NamedVocabulary("""ExecutionMode"""),
     ),
     StringField(
@@ -278,7 +278,7 @@ schema = Schema((
             label_msgid='ProjectDatabase_label_LeadDivision',
             i18n_domain='ProjectDatabase',
         ),
-        write_permission="Edit Field",
+        write_permission="TM",
         vocabulary=NamedVocabulary("""Division"""),
     ),
     LinesField(
@@ -290,7 +290,7 @@ schema = Schema((
         ),
         multiValued=1,
         vocabulary=NamedVocabulary("""Division"""),
-        write_permission="Edit Field",
+        write_permission="TM",
     ),
     DataGridField(
         name='ProjectExecutingAgency',
@@ -301,7 +301,7 @@ schema = Schema((
             label_msgid='ProjectDatabase_label_ProjectExecutingAgency',
             i18n_domain='ProjectDatabase',
         ),
-        write_permission="Edit Field",
+        write_permission="TM",
         columns=('executing_agency','executing_agency_category'),
     ),
     DataGridField(
@@ -312,7 +312,7 @@ schema = Schema((
             label_msgid='ProjectDatabase_label_OtherProjectExecutingPartners',
             i18n_domain='ProjectDatabase',
         ),
-        write_permission="Edit Field",
+        write_permission="TM",
         columns=('partner_name','category'),
     ),
     DataGridField(
@@ -323,7 +323,7 @@ schema = Schema((
             label_msgid='ProjectDatabase_label_ProjectImplementationStatus',
             i18n_domain='ProjectDatabase',
         ),
-        write_permission="Edit Field",
+        write_permission="TM",
         columns=('fiscal_year','narrative'),
     ),
     DataGridField(
@@ -334,7 +334,7 @@ schema = Schema((
             label_msgid='ProjectDatabase_label_TaskManager',
             i18n_domain='ProjectDatabase',
         ),
-        write_permission="Edit Field",
+        write_permission="TM",
         columns=('name','category','period'),
     ),
     StringField(
@@ -344,7 +344,7 @@ schema = Schema((
             label_msgid='ProjectDatabase_label_RiskRatingAtInception',
             i18n_domain='ProjectDatabase',
         ),
-        write_permission="Edit Field",
+        write_permission="TM",
         vocabulary=NamedVocabulary("""InceptionRiskRating"""),
     ),
     TextField(
@@ -354,7 +354,7 @@ schema = Schema((
             label_msgid='ProjectDatabase_label_RiskRatingComments',
             i18n_domain='ProjectDatabase',
         ),
-        write_permission="Edit Field",
+        write_permission="TM",
     ),
     ReferenceField(
         name='ProjectManager',
@@ -367,7 +367,7 @@ schema = Schema((
         allowed_types=('Person',),
         multiValued=0,
         relationship="Project_ProjectManager",
-        write_permission="Edit Field",
+        write_permission="TM",
     ),
     StringField(
         name='Website',
@@ -376,7 +376,7 @@ schema = Schema((
             label_msgid='ProjectDatabase_label_Website',
             i18n_domain='ProjectDatabase',
         ),
-        write_permission="Edit Field",
+        write_permission="TM",
         validators=('isUrl',),
     ),
     TextField(
@@ -390,7 +390,7 @@ schema = Schema((
             i18n_domain='ProjectDatabase',
         ),
         default_output_type='text/html',
-        write_permission="Edit Field",
+        write_permission="TM",
     ),
     MoneyField(
         name='LeveragedFinancingAmount',
@@ -400,7 +400,7 @@ schema = Schema((
             label_msgid='ProjectDatabase_label_LeveragedFinancingAmount',
             i18n_domain='ProjectDatabase',
         ),
-        write_permission="Edit Field",
+        write_permission="TM",
     ),
     TextField(
         name='LeveragedFinancingRemark',
@@ -413,7 +413,7 @@ schema = Schema((
             i18n_domain='ProjectDatabase',
         ),
         default_output_type='text/html',
-        write_permission="Edit Field",
+        write_permission="TM",
     ),
     StringField(
         name='PhaseTranche',
@@ -422,7 +422,7 @@ schema = Schema((
             label_msgid='ProjectDatabase_label_PhaseTranche',
             i18n_domain='ProjectDatabase',
         ),
-        write_permission="Edit Field",
+        write_permission="TM",
         vocabulary=NamedVocabulary("""PhasedTranche"""),
     ),
     IntegerField(
@@ -433,7 +433,7 @@ schema = Schema((
             label_msgid='ProjectDatabase_label_PhasedTrancheNumber',
             i18n_domain='ProjectDatabase',
         ),
-        write_permission="Edit Field",
+        write_permission="TM",
     ),
     LinesField(
         name='OperationalProgramme',
@@ -444,7 +444,7 @@ schema = Schema((
         ),
         multiValued=1,
         vocabulary=NamedVocabulary("""OperationalProgramme"""),
-        write_permission="Edit Field",
+        write_permission="TM",
     ),
     LinesField(
         name='EABiodiversity',
@@ -455,7 +455,7 @@ schema = Schema((
         ),
         multiValued=1,
         vocabulary=NamedVocabulary("""EABiodiversity"""),
-        write_permission="Edit Field",
+        write_permission="TM",
     ),
     LinesField(
         name='EAClimateChange',
@@ -466,7 +466,7 @@ schema = Schema((
         ),
         multiValued=1,
         vocabulary=NamedVocabulary("""EAClimateChange"""),
-        write_permission="Edit Field",
+        write_permission="TM",
     ),
     LinesField(
         name='EAPOP',
@@ -477,7 +477,7 @@ schema = Schema((
         ),
         multiValued=1,
         vocabulary=NamedVocabulary("""EAPOP"""),
-        write_permission="Edit Field",
+        write_permission="TM",
     ),
     LinesField(
         name='EAMultipleFocalAreas',
@@ -488,7 +488,7 @@ schema = Schema((
         ),
         multiValued=1,
         vocabulary=NamedVocabulary("""MultipleFocalAreas"""),
-        write_permission="Edit Field",
+        write_permission="TM",
     ),
     StringField(
         name='StrategicPriority',
@@ -498,7 +498,7 @@ schema = Schema((
             i18n_domain='ProjectDatabase',
         ),
         vocabulary=NamedVocabulary("""StrategicPriority"""),
-        write_permission="Edit Field",
+        write_permission="TM",
     ),
     StringField(
         name='StrategicObjectives',
@@ -507,7 +507,7 @@ schema = Schema((
             label_msgid='ProjectDatabase_label_StrategicObjectives',
             i18n_domain='ProjectDatabase',
         ),
-        write_permission="Edit Field",
+        write_permission="TM",
         vocabulary=NamedVocabulary("""StrategicObjectives"""),
     ),
     StringField(
@@ -517,7 +517,7 @@ schema = Schema((
             label_msgid='ProjectDatabase_label_StrategicProgram',
             i18n_domain='ProjectDatabase',
         ),
-        write_permission="Edit Field",
+        write_permission="TM",
         vocabulary=NamedVocabulary("""StrategicProgram"""),
     ),
     ComputedField(
@@ -527,7 +527,7 @@ schema = Schema((
             label_msgid='ProjectDatabase_label_TotalGEFAllocation',
             i18n_domain='ProjectDatabase',
         ),
-        write_permission="Edit Field",
+        write_permission="TM",
     ),
     ComputedField(
         name='TotalUNEPAllocation',
@@ -536,7 +536,7 @@ schema = Schema((
             label_msgid='ProjectDatabase_label_TotalUNEPAllocation',
             i18n_domain='ProjectDatabase',
         ),
-        write_permission="Edit Field",
+        write_permission="TM",
     ),
     ComputedField(
         name='TotalCoFinancingPlanned',
@@ -545,7 +545,7 @@ schema = Schema((
             label_msgid='ProjectDatabase_label_TotalCoFinancingPlanned',
             i18n_domain='ProjectDatabase',
         ),
-        write_permission="Edit Field",
+        write_permission="TM",
     ),
     ComputedField(
         name='TotalCoFinancingActual',
@@ -554,7 +554,7 @@ schema = Schema((
             label_msgid='ProjectDatabase_label_TotalCoFinancingActual',
             i18n_domain='ProjectDatabase',
         ),
-        write_permission="Edit Field",
+        write_permission="TM",
     ),
     ComputedField(
         name='TotalCashDisbursements',
@@ -563,7 +563,7 @@ schema = Schema((
             label_msgid='ProjectDatabase_label_TotalCashDisbursements',
             i18n_domain='ProjectDatabase',
         ),
-        write_permission="Edit Field",
+        write_permission="TM",
     ),
     ComputedField(
         name='TotalYearlyExpenditures',
@@ -572,7 +572,7 @@ schema = Schema((
             label_msgid='ProjectDatabase_label_TotalYearlyExpenditures',
             i18n_domain='ProjectDatabase',
         ),
-        write_permission="Edit Field",
+        write_permission="TM",
     ),
     ComputedField(
         name='PDFAStatus',
@@ -581,7 +581,7 @@ schema = Schema((
             label_msgid='ProjectDatabase_label_PDFAStatus',
             i18n_domain='ProjectDatabase',
         ),
-        write_permission="Edit Field",
+        write_permission="TM",
     ),
     ComputedField(
         name='PDFBStatus',
@@ -590,7 +590,7 @@ schema = Schema((
             label_msgid='ProjectDatabase_label_PDFBStatus',
             i18n_domain='ProjectDatabase',
         ),
-        write_permission="Edit Field",
+        write_permission="TM",
     ),
     ComputedField(
         name='PDFCStatus',
@@ -599,7 +599,7 @@ schema = Schema((
             label_msgid='ProjectDatabase_label_PDFCStatus',
             i18n_domain='ProjectDatabase',
         ),
-        write_permission="Edit Field",
+        write_permission="TM",
     ),
     ComputedField(
         name='PPGStatus',
@@ -608,7 +608,7 @@ schema = Schema((
             label_msgid='ProjectDatabase_label_PPGStatus',
             i18n_domain='ProjectDatabase',
         ),
-        write_permission="Edit Field",
+        write_permission="TM",
     ),
     ComputedField(
         name='MSPStatus',
@@ -617,7 +617,7 @@ schema = Schema((
             label_msgid='ProjectDatabase_label_MSPStatus',
             i18n_domain='ProjectDatabase',
         ),
-        write_permission="Edit Field",
+        write_permission="TM",
     ),
     ComputedField(
         name='FSPStatus',
@@ -626,7 +626,7 @@ schema = Schema((
             label_msgid='ProjectDatabase_label_FSPStatus',
             i18n_domain='ProjectDatabase',
         ),
-        write_permission="Edit Field",
+        write_permission="TM",
     ),
     BooleanField(
         name='ProgrammeFramework',
@@ -635,7 +635,7 @@ schema = Schema((
             label_msgid='ProjectDatabase_label_ProgrammeFramework',
             i18n_domain='ProjectDatabase',
         ),
-        write_permission="Edit Field",
+        write_permission="TM",
     ),
     ReferenceField(
         name='ProgrammeFrameworkTitle',
@@ -647,7 +647,7 @@ schema = Schema((
         allowed_types=('ProgrammeFramework',),
         multiValued=0,
         relationship="project_programmeframework",
-        write_permission="Edit Field",
+        write_permission="TM",
     ),
 
 ),
@@ -1025,6 +1025,7 @@ class ProjectGeneralInformation(BaseContent, CurrencyMixin, BrowserDefaultMixin)
             pgf = brains[0].getObject()
             curl = pgf.absolute_url()
             return curl[len(purl)+1:]
+
 
 
 registerType(ProjectGeneralInformation, PROJECTNAME)

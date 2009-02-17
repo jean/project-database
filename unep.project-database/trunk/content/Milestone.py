@@ -52,6 +52,7 @@ schema = Schema((
             label_msgid='ProjectDatabase_label_ConceptDevelopment',
             i18n_domain='ProjectDatabase',
         ),
+        write_permission="Registrar TM SPO",
         columns=('milestone_action', 'milestone_date', 'milestone_result'),
     ),
     DataGridField(
@@ -62,15 +63,8 @@ schema = Schema((
             label_msgid='ProjectDatabase_label_PIFApproval',
             i18n_domain='ProjectDatabase',
         ),
+        write_permission="Registrar",
         columns=('milestone_action', 'milestone_date', 'milestone_result'),
-    ),
-    BooleanField(
-        name='PIFApprovalComplete',
-        widget=BooleanWidget(
-            label="PIF Approval Complete",
-            label_msgid='ProjectDatabase_label_pif_approval_complete',
-            i18n_domain='ProjectDatabase',
-        ),
     ),
     DataGridField(
         name='PPGApproval',
@@ -80,15 +74,8 @@ schema = Schema((
             label_msgid='ProjectDatabase_label_PPGApproval',
             i18n_domain='ProjectDatabase',
         ),
+        write_permission="Registrar",
         columns=('milestone_action', 'milestone_date', 'milestone_result'),
-    ),
-    BooleanField(
-        name='PPGApprovalComplete',
-        widget=BooleanWidget(
-            label="PPG Approval Complete",
-            label_msgid='ProjectDatabase_label_ppgapprovalcompletek',
-            i18n_domain='ProjectDatabase',
-        ),
     ),
     DataGridField(
         name='PPGImplementation',
@@ -98,15 +85,8 @@ schema = Schema((
             label_msgid='ProjectDatabase_label_PPGImplementation',
             i18n_domain='ProjectDatabase',
         ),
+        write_permission="Registrar TM FMO",
         columns=('milestone_action', 'milestone_date'),
-    ),
-    BooleanField(
-        name='PPGImplementationComplete',
-        widget=BooleanWidget(
-            label="PPG Implementation Complete",
-            label_msgid='ProjectDatabase_label_ppgimplementationcomplete',
-            i18n_domain='ProjectDatabase',
-        ),
     ),
     DataGridField(
         name='ProjectApproval',
@@ -116,15 +96,8 @@ schema = Schema((
             label_msgid='ProjectDatabase_label_ProjectApproval',
             i18n_domain='ProjectDatabase',
         ),
+        write_permission="Registrar",
         columns=('milestone_action', 'milestone_date', 'milestone_result'),
-    ),
-    BooleanField(
-        name='ProjectApprovalComplete',
-        widget=BooleanWidget(
-            label="Project Approval Complete",
-            label_msgid='ProjectDatabase_label_projectapprovalcomplete',
-            i18n_domain='ProjectDatabase',
-        ),
     ),
     DataGridField(
         name='ProjectImplementation',
@@ -134,15 +107,8 @@ schema = Schema((
             label_msgid='ProjectDatabase_label_ProjectImplementation',
             i18n_domain='ProjectDatabase',
         ),
+        write_permission="Registrar TM FMO",
         columns=('milestone_action', 'milestone_date'),
-    ),
-    BooleanField(
-        name='ProjectImplementationComplete',
-        widget=BooleanWidget(
-            label="Project Implementation Complete",
-            label_msgid='ProjectDatabase_label_projectimplementationcomplete',
-            i18n_domain='ProjectDatabase',
-        ),
     ),
     DataGridField(
         name='NewPhaseApproval',
@@ -152,6 +118,7 @@ schema = Schema((
             label_msgid='ProjectDatabase_label_NewPhaseApproval',
             i18n_domain='ProjectDatabase',
         ),
+        write_permission="Registrar",
         columns=('milestone_action', 'milestone_date', 'comment'),
     ),
     DataGridField(
@@ -162,6 +129,7 @@ schema = Schema((
             label_msgid='ProjectDatabase_label_NewPhaseImplementation',
             i18n_domain='ProjectDatabase',
         ),
+        write_permission="Registrar FMO",
         columns=('milestone_action', 'milestone_date'),
     ),
     DataGridField(
@@ -172,6 +140,7 @@ schema = Schema((
             label_msgid='ProjectDatabase_label_EvaluationDates',
             i18n_domain='ProjectDatabase',
         ),
+        write_permission="Registrar TM MO EO",
         columns=('milestone_action', 'milestone_date'),
     ),
 
@@ -373,6 +342,8 @@ class Milestone(BaseContent, BrowserDefaultMixin):
         if self.getProjectImplementationComplete():
             stage = 'Project Complete'
         return stage
+
+
 
 registerType(Milestone, PROJECTNAME)
 # end of class Milestone
