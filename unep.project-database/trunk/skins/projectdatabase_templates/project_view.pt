@@ -1,11 +1,8 @@
 <metal:header metal:define-macro="header">
 <h3 class="documentFirstHeading" 
   tal:content="python:'%s: %s' % (context.id, context.project_general_info.Title())" />
-  <a href=""
-      tal:condition="python:member.has_permission('ReviewContents', context)"
-      tal:attributes="href string:${context/absolute_url}/content_status_modify?workflow_action=publish">
-      <span i18n:translate="publish">Publish</span>
-  </a>
+
+
 </metal:header>
 
 <metal:folderlisting metal:define-macro="folderlisting" />
@@ -13,6 +10,20 @@
 
 <metal:body metal:define-macro="body">
     <h3 i18n:translate="project_general_information">Project General Information</h3>
+    <div>
+        <tal:block 
+            tal:repeat="wf_action python:context.portal_workflow.listActionInfos(object=context)">
+            <a href=""
+                tal:attributes="href string:${context/absolute_url}/content_status_modify?workflow_action=${wf_action/id}" 
+                tal:content="wf_action/title|wf_action/id">
+            </a>
+        </tal:block>
+        <a href=""
+            tal:attributes="href string:${context/absolute_url}/project_general_info/edit">
+            <span i18n:translate="edit_general_info">Edit Project General Information</span></a>
+    </div>
+    <hr />
+
     <tal:def tal:define="ob nocall:context">
             <tal:use metal:use-macro="context/matrix_macros/macros/pgi_matrix" />
     </tal:def>

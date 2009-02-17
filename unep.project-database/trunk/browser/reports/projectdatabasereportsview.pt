@@ -10,6 +10,9 @@
 <div metal:fill-slot="main">
     <!-- Reports -->
     <tal:def define="base here/absolute_url">
+    <h3 class="documentFirstHeading" i18n:translate="project_database_reports">
+        Project Database Reports
+    </h3> 
     <h2>Project Development</h2>
         <div><a href="" tal:attributes="href string:${base}/@@ipistatusreport">IPI Status Report</a></div>
         <div><a href="" tal:attributes="href string:${base}/@@pifapprovalstatusreport">PIF Approval Status Report</a></div>
