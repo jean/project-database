@@ -66,6 +66,14 @@ schema = Schema((
         write_permission="Registrar",
         columns=('milestone_action', 'milestone_date', 'milestone_result'),
     ),
+    BooleanField(
+        name='PIFApprovalComplete',
+        widget=BooleanField._properties['widget'](
+            label='Pifapprovalcomplete',
+            label_msgid='ProjectDatabase_label_PIFApprovalComplete',
+            i18n_domain='ProjectDatabase',
+        ),
+    ),
     DataGridField(
         name='PPGApproval',
         widget=DataGridField._properties['widget'](
@@ -76,6 +84,14 @@ schema = Schema((
         ),
         write_permission="Registrar",
         columns=('milestone_action', 'milestone_date', 'milestone_result'),
+    ),
+    BooleanField(
+        name='PPGApprovalComplete',
+        widget=BooleanField._properties['widget'](
+            label='Ppgapprovalcomplete',
+            label_msgid='ProjectDatabase_label_PPGApprovalComplete',
+            i18n_domain='ProjectDatabase',
+        ),
     ),
     DataGridField(
         name='PPGImplementation',
@@ -88,6 +104,14 @@ schema = Schema((
         write_permission="Registrar TM FMO",
         columns=('milestone_action', 'milestone_date'),
     ),
+    BooleanField(
+        name='PPGImplementationComplete',
+        widget=BooleanField._properties['widget'](
+            label='Ppgimplementationcomplete',
+            label_msgid='ProjectDatabase_label_PPGImplementationComplete',
+            i18n_domain='ProjectDatabase',
+        ),
+    ),
     DataGridField(
         name='ProjectApproval',
         widget=DataGridField._properties['widget'](
@@ -99,6 +123,14 @@ schema = Schema((
         write_permission="Registrar",
         columns=('milestone_action', 'milestone_date', 'milestone_result'),
     ),
+    BooleanField(
+        name='ProjectApprovalComplete',
+        widget=BooleanField._properties['widget'](
+            label='Projectapprovalcomplete',
+            label_msgid='ProjectDatabase_label_ProjectApprovalComplete',
+            i18n_domain='ProjectDatabase',
+        ),
+    ),
     DataGridField(
         name='ProjectImplementation',
         widget=DataGridField._properties['widget'](
@@ -109,6 +141,14 @@ schema = Schema((
         ),
         write_permission="Registrar TM FMO",
         columns=('milestone_action', 'milestone_date'),
+    ),
+    BooleanField(
+        name='ProjectImplementationComplete',
+        widget=BooleanField._properties['widget'](
+            label='Projectimplementationcomplete',
+            label_msgid='ProjectDatabase_label_ProjectImplementationComplete',
+            i18n_domain='ProjectDatabase',
+        ),
     ),
     DataGridField(
         name='NewPhaseApproval',
