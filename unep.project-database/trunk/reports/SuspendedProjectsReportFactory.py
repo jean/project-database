@@ -46,7 +46,7 @@ class SuspendedProjectsReportFactory(object):
                     not ms.getProjectImplementationDate('Cancellation') and \
                     not ms.getProjectImplementationDate('Termination') and \
                     ms.getProjectImplementationDate('Suspension') and \
-                    not ms.getProjectImplementationDate('Reinitiation'):
+                    not ms.getProjectImplementationDate('ExpectedReinitiation'):
                 result.append((
                     project.getId(),
                     pgi.getGEFid(),
@@ -66,6 +66,6 @@ class SuspendedProjectsReportFactory(object):
                     unep_report_format_date(self.projectdatabase, \
                         mofu.getFinancialStatusRemarks()),
                     unep_report_format_date(self.projectdatabase, \
-                        ms.getProjectImplementationDate('Reinitiation')),
+                        ms.getProjectImplementationDate('ExpectedReinitiation')),
                     ))
         return result
