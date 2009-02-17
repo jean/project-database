@@ -43,7 +43,6 @@ from Products.ATReferenceBrowserWidget.ATReferenceBrowserWidget import Reference
 import Project
 import Milestone
 import ProjectGeneralInformation
-import SubProject
 import Financials
 import FMIFolder
 import MOU
@@ -52,6 +51,7 @@ import ProjectDatabase
 import ProgrammeFramework
 import MonitoringAndEvaluation
 import MandEfolder
+import SubProject
 
 ##code-section init-module-footer #fill in your manual code here
 ##/code-section init-module-footer

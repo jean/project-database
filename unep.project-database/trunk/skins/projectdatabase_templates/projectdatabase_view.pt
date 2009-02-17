@@ -16,7 +16,11 @@
 
 <table class="table-fullwidth">
     <tr>
-        <td colspan="100"><a style="float:right" tal:attributes="href string:@@create-project">Create a new project</a></td>
+        <td colspan="100" style="padding: 2px;">
+            <a style="float:left" 
+                tal:condition="python:member.has_role(['Owner','Manager','TM','SPO','Registrar'], context)"
+                tal:attributes="href string:@@create-project">Create a new project</a>
+        </td>
     </tr>
     <tr>
         <th i18n:translate="dbase_id">DBase ID</th>
@@ -36,7 +40,7 @@
                         countryvalue python:geninfo.displayValue(countryvocab, geninfo.getCountry())"
                 tal:attributes="class python:even and 'odd' or 'even'">
             <td>
-                <a tal:content="project/title_or_id"
+                <a tal:content="project/id"
                     tal:attributes="href project/absolute_url">DBase ID
                 </a></td>
             <td tal:content="geninfo/getGEFid | string:Unknown">GEF ID</td>
@@ -47,7 +51,10 @@
         </tr>
     </tal:rep>
     <tr>
-        <td colspan="100"><a style="float:right" tal:attributes="href string:@@create-project">Create a new project</a></td>
+        <td colspan="100" style="padding: 2px;">
+            <a style="float:left" 
+                tal:condition="python:member.has_role(['Owner','Manager','TM','SPO','Registrar'], context)"
+                tal:attributes="href string:@@create-project">Create a new project</a>
     </tr>
 </table>
 <b><div metal:use-macro="here/batch_macros/macros/navigation" /></b>

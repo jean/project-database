@@ -1,29 +1,33 @@
 <metal:header metal:define-macro="header">
-<h1 class="documentFirstHeading" 
-    tal:define="projectTitle nocall:context/aq_parent/project_general_info/Title"
-    tal:content="projectTitle">FMI</h1>
+<h3 class="documentFirstHeading" 
+  tal:content="python:'%s: %s' % (context.aq_inner.aq_parent.getId(), context.project_general_info.Title())" />
 </metal:header>
 <metal:folderlisting metal:define-macro="folderlisting" />
 <metal:footer metal:define-macro="footer" />
 <metal:body metal:define-macro="body">
+<h3 tal:content="context/Title">FMI</h3>
+<br />
 <div>
-    <form name="add_finobject" method="post" action=""
-            tal:attributes="action python: context.absolute_url() + '/fmifolder_view'">
-        <input type="hidden" name="form.submitted" value="1" />
-        <span>Create new finance object</span>
-        <select name="category" 
-              tal:define="
-                    vocab python:context.portal_vocabularies.getVocabularyByName('FinanceCategory');
-                    dList python:vocab.getDisplayList(context)">
-            <tal:rep tal:repeat="item dList/items">
-                <option tal:attributes="value python:item[0];"
-                        tal:content="python:item[1]">
-                        Option
-                </option>
-            </tal:rep>
-        </select>
-        <input class="submit" type="submit" name="form.button.add" value="Create"/>
-    </form>
+    <tal:form 
+        tal:condition="python:member.has_permission('Add portal content', context)">
+        <form name="add_finobject" method="post" action=""
+                tal:attributes="action python: context.absolute_url() + '/fmifolder_view'">
+            <input type="hidden" name="form.submitted" value="1" />
+            <span>Create new finance object</span>
+            <select name="category" 
+                  tal:define="
+                        vocab python:context.portal_vocabularies.getVocabularyByName('FinanceCategory');
+                        dList python:vocab.getDisplayList(context)">
+                <tal:rep tal:repeat="item dList/items">
+                    <option tal:attributes="value python:item[0];"
+                            tal:content="python:item[1]">
+                            Option
+                    </option>
+                </tal:rep>
+            </select>
+            <input class="context" type="submit" name="form.button.add" value="Create"/>
+        </form>
+    </tal:form>
     <hr >
     <table width="100%"
         tal:define="pgi nocall:context/aq_parent/project_general_info">
@@ -70,14 +74,16 @@
             <tr>
                 <td i18n:translate="finance_object" width="30%">Finance Object:</td>
                 <td>
-                    <span tal:content="fo/getFinanceCategory">PPG</span>&nbsp;
+                    <span tal:content="fo/getFinanceCategory" 
+                        style="text-transform: uppercase;">PPG</span>&nbsp;
                     <a tal:attributes="href string:${fo/absolute_url}/view">
-                        <span i18n:translate="view">view</span></a>
-                    <a tal:attributes="href string:${fo/absolute_url}/edit">
-                        <span i18n:translate="edit">edit</span></a>
-                    <a tal:attributes="href
-                    string:${fo/absolute_url}/delete_confirmation">
-                        <span i18n:translate="delete">delete</span></a>
+                        <span i18n:translate="view">View</span></a>
+                    <a tal:attributes="href string:${fo/absolute_url}/edit"
+                        tal:condition="python:member.has_role(['Owner','Manager','FMO','SPO','Registrar'], fo)">
+                        <span i18n:translate="edit">Edit</span></a>
+                    <a tal:attributes="href string:${fo/absolute_url}/delete_confirmation"
+                        tal:condition="python:member.has_role(['Owner','Manager','FMO','SPO','Registrar'], fo)">
+                        <span i18n:translate="delete">Delete</span></a>
                 </td>
             </tr>
             <tr>
@@ -100,7 +106,6 @@
             </tr>
             <tr>
                 <td i18n:translate="grant_to_unep">Grant to UNEP US$:</td>
-                <!-- <td tal:content="fo/getCommittedGEFGrant" /> -->
                 <td tal:content="fo/getSumFinanceObjectAmount" /> 
             </tr>
             <tr>

@@ -905,6 +905,11 @@ msgstr ""
 msgid "ProjectDatabase_label_PIFApproval"
 msgstr ""
 
+#. Default: "Pifapprovalcomplete"
+#: content/Milestone.py
+msgid "ProjectDatabase_label_PIFApprovalComplete"
+msgstr ""
+
 #. Default: "Financial Data at PIF"
 #: content/ProjectGeneralInformation.py
 msgid "ProjectDatabase_label_PIFFinancialData"
@@ -937,9 +942,19 @@ msgstr ""
 msgid "ProjectDatabase_label_PPGApproval"
 msgstr ""
 
+#. Default: "Ppgapprovalcomplete"
+#: content/Milestone.py
+msgid "ProjectDatabase_label_PPGApprovalComplete"
+msgstr ""
+
 #. Default: "PPG Implementation"
 #: content/Milestone.py
 msgid "ProjectDatabase_label_PPGImplementation"
+msgstr ""
+
+#. Default: "Ppgimplementationcomplete"
+#: content/Milestone.py
+msgid "ProjectDatabase_label_PPGImplementationComplete"
 msgstr ""
 
 #. Default: "Ppgotheriaamount"
@@ -1032,6 +1047,11 @@ msgstr ""
 msgid "ProjectDatabase_label_ProjectApproval"
 msgstr ""
 
+#. Default: "Projectapprovalcomplete"
+#: content/Milestone.py
+msgid "ProjectDatabase_label_ProjectApprovalComplete"
+msgstr ""
+
 #. Default: "Project Brief"
 #: content/DocumentLinks.py
 msgid "ProjectDatabase_label_ProjectBrief"
@@ -1067,6 +1087,11 @@ msgstr ""
 #. Default: "Project Implementation"
 #: content/Milestone.py
 msgid "ProjectDatabase_label_ProjectImplementation"
+msgstr ""
+
+#. Default: "Projectimplementationcomplete"
+#: content/Milestone.py
+msgid "ProjectDatabase_label_ProjectImplementationComplete"
 msgstr ""
 
 #. Default: "Project Implementation Status"

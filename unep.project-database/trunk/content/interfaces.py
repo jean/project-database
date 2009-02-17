@@ -17,10 +17,6 @@ class IProjectGeneralInformation(Interface):
     """Marker interface for .ProjectGeneralInformation.ProjectGeneralInformation
     """
 
-class ISubProject(Interface):
-    """Marker interface for .SubProject.SubProject
-    """
-
 class IFinancials(Interface):
     """Marker interface for .Financials.Financials
     """
@@ -47,6 +43,10 @@ class IMonitoringAndEvaluation(Interface):
 
 class IMandEfolder(Interface):
     """Marker interface for .MandEfolder.MandEfolder
+    """
+
+class ISubProject(Interface):
+    """Marker interface for .SubProject.SubProject
     """
 
 ##code-section FOOT

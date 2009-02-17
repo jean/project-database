@@ -166,11 +166,8 @@
                     <div class="page-block">
 
                         <!--
-                        <div tal:condition="python:member.getId() == 'admin'"
-                            tal:content="structure provider:plone.contentviews" />
-                            -->
-
                         <div tal:content="structure provider:plone.contentviews" />
+                        -->
 
                         <div id="region-content">
 

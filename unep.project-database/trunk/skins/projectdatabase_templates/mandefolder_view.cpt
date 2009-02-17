@@ -1,55 +1,54 @@
 <metal:header metal:define-macro="header">
-<h1 class="documentFirstHeading" 
-    tal:content="context/Title">Monitoring &amp; Evaluation</h1>
+<h3 class="documentFirstHeading" 
+  tal:content="python:'%s: %s' % (context.aq_inner.aq_parent.getId(), context.project_general_info.Title())" />
 </metal:header>
 <metal:folderlisting metal:define-macro="folderlisting" />
 <metal:footer metal:define-macro="footer" />
 <metal:body metal:define-macro="body">
 <div>
-<h3 class="" tal:content="context/project_general_info/Title">Title</h3>
+<h3 tal:content="context/Title">Title</h3>
 <hr >
 </div>
 <div>
-    <form name="add_mande" method="post" action=""
-            tal:attributes="action python: context.absolute_url() + '/mandefolder_view'">
-        <input type="hidden" name="form.submitted" value="1" />
-        <span>Create new M &amp; E</span>
-        <select name="etype" 
-              tal:define="
-                    vocab python:context.portal_vocabularies.getVocabularyByName('EvaluationType');
-                    dList python:vocab.getDisplayList(context)">
-            <tal:rep tal:repeat="item dList/items">
-                <option tal:attributes="value python:item[0];"
-                        tal:content="python:item[1]">
-                        Option
-                </option>
-            </tal:rep>
-        </select>
-        <input class="submit" type="submit" name="form.button.add" value="Create"/>
-    </form>
+    <tal:form 
+        tal:condition="python:member.has_permission('Add portal content', context)">
+        <form name="add_mande" method="post" action=""
+                tal:attributes="action python: context.absolute_url() + '/mandefolder_view'">
+            <input type="hidden" name="form.submitted" value="1" />
+            <span>Create new M &amp; E</span>
+            <select name="etype" 
+                  tal:define="
+                        vocab python:context.portal_vocabularies.getVocabularyByName('EvaluationType');
+                        dList python:vocab.getDisplayList(context)">
+                <tal:rep tal:repeat="item dList/items">
+                    <option tal:attributes="value python:item[0];"
+                            tal:content="python:item[1]">
+                            Option
+                    </option>
+                </tal:rep>
+            </select>
+            <input class="context" type="submit" name="form.button.add" value="Create"/>
+        </form>
+    </tal:form>
 </div>
 <hr />
 <div>
-<!-- FMI -->
+<!-- M & E -->
     <div style="width:100%" 
         tal:repeat="mandeo python:context.getFolderContents(full_objects=True)">
         <table width="100%">
             <tr>
-                <td i18n:translate="mande_object" width="30%">M &amp; E Object:</td>
+                <td tal:content="mandeo/Title" />
                 <td>
-                    <span tal:content="mandeo/getEvaluationType">MTE</span>&nbsp;
-                    <a tal:attributes="href string:${mandeo/absolute_url}/view">
+                    <a tal:attributes="href string:${mandeo/absolute_url}/view"
+                        tal:condition="python:member.has_role(['Owner','Manager','TM','SPO','Registrar'], mandeo)">
                         <span i18n:translate="view">view</span></a>
-                    <a tal:attributes="href string:${mandeo/absolute_url}/edit">
+                    <a tal:attributes="href string:${mandeo/absolute_url}/edit"
+                        tal:condition="python:member.has_role(['Owner','Manager','TM','SPO','Registrar'], mandeo)">
                         <span i18n:translate="edit">edit</span></a>
                 </td>
             </tr>
-            <tr>
-                <td i18n:translate="title">Title:</td>
-                <td tal:content="mandeo/Title" />
-            </tr>
         </table>
-        <hr />
     </div>
 </div>
 

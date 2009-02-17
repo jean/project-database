@@ -36,14 +36,6 @@ from DateTime import DateTime
 
 schema = Schema((
 
-    ComputedField(
-        name='ProjectTitle',
-        widget=ComputedField._properties['widget'](
-            label="Project Title",
-            label_msgid='ProjectDatabase_label_ProjectTitle',
-            i18n_domain='ProjectDatabase',
-        ),
-    ),
     DataGridField(
         name='ConceptDevelopment',
         widget=DataGridField._properties['widget'](
@@ -215,9 +207,6 @@ class Milestone(BaseContent, BrowserDefaultMixin):
 
     # Manually created methods
 
-    def getProjectTitle(self):
-        return self.getAProject().project_general_info.Title()
-
     def getConceptDevelopmentActionsVocabulary(self):
         return self.getVocabulary('ConceptDevelopmentActions')
 
@@ -371,16 +360,16 @@ class Milestone(BaseContent, BrowserDefaultMixin):
         """ Return the stage in which the project is
         """
         stage = 'PIF Approval'
-        if self.getPIFApprovalComplete():
-            stage = 'PPG Approval'
-        if self.getPPGApprovalComplete():
-            stage = 'PPG Implementation'
-        if self.getPPGImplementationComplete():
-            stage = 'Project Approval'
-        if self.getProjectApprovalComplete():
-            stage = 'Project Implementation'
-        if self.getProjectImplementationComplete():
-            stage = 'Project Complete'
+        # if self.getPIFApprovalComplete():
+        #     stage = 'PPG Approval'
+        # if self.getPPGApprovalComplete():
+        #     stage = 'PPG Implementation'
+        # if self.getPPGImplementationComplete():
+        #     stage = 'Project Approval'
+        # if self.getProjectApprovalComplete():
+        #     stage = 'Project Implementation'
+        # if self.getProjectImplementationComplete():
+        #     stage = 'Project Complete'
         return stage
 
 

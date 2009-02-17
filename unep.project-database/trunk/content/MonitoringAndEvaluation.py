@@ -36,14 +36,6 @@ from Products.Archetypes.utils import DisplayList
 
 schema = Schema((
 
-    ComputedField(
-        name='ProjectTitle',
-        widget=ComputedField._properties['widget'](
-            label="Project Title",
-            label_msgid='ProjectDatabase_label_ProjectTitle',
-            i18n_domain='ProjectDatabase',
-        ),
-    ),
     StringField(
         name='EvaluationType',
         widget=SelectionWidget(
@@ -179,12 +171,6 @@ class MonitoringAndEvaluation(BaseContent, BrowserDefaultMixin):
     ##/code-section class-header
 
     # Methods
-
-    security.declarePublic('getProjectTitle')
-    def getProjectTitle(self):
-        """
-        """
-        return self.getAProject().project_general_info.Title()
 
     # Manually created methods
 

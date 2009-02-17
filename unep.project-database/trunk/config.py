@@ -37,7 +37,6 @@ ADD_CONTENT_PERMISSIONS = {
     'Project': 'ProjectDatabase: Add Project',
     'Milestone': 'ProjectDatabase: Add Milestone',
     'ProjectGeneralInformation': 'ProjectDatabase: Add ProjectGeneralInformation',
-    'SubProject': 'ProjectDatabase: Add SubProject',
     'Financials': 'ProjectDatabase: Add Financials',
     'FMIFolder': 'ProjectDatabase: Add FMIFolder',
     'MOU': 'ProjectDatabase: Add MOU',
@@ -45,12 +44,12 @@ ADD_CONTENT_PERMISSIONS = {
     'ProgrammeFramework': 'ProjectDatabase: Add ProgrammeFramework',
     'MonitoringAndEvaluation': 'ProjectDatabase: Add MonitoringAndEvaluation',
     'MandEfolder': 'ProjectDatabase: Add MandEfolder',
+    'SubProject': 'ProjectDatabase: Add SubProject',
 }
 
-setDefaultRoles('ProjectDatabase: Add Project', ('Manager','Owner'))
+setDefaultRoles('ProjectDatabase: Add Project', ('Manager','Owner','TM', 'SPO', 'Registrar'))
 setDefaultRoles('ProjectDatabase: Add Milestone', ('Manager','Owner'))
 setDefaultRoles('ProjectDatabase: Add ProjectGeneralInformation', ('Manager','Owner'))
-setDefaultRoles('ProjectDatabase: Add SubProject', ('Manager','Owner'))
 setDefaultRoles('ProjectDatabase: Add Financials', ('Manager','Owner','FMO'))
 setDefaultRoles('ProjectDatabase: Add FMIFolder', ('Manager','Owner'))
 setDefaultRoles('ProjectDatabase: Add MOU', ('Manager','Owner'))
@@ -58,6 +57,7 @@ setDefaultRoles('ProjectDatabase: Add ProjectDatabase', ('Manager','Owner'))
 setDefaultRoles('ProjectDatabase: Add ProgrammeFramework', ('Manager','Owner'))
 setDefaultRoles('ProjectDatabase: Add MonitoringAndEvaluation', ('Manager','Owner','MO','EO'))
 setDefaultRoles('ProjectDatabase: Add MandEfolder', ('Manager','Owner'))
+setDefaultRoles('ProjectDatabase: Add SubProject', ('Manager','Owner'))
 
 product_globals = globals()
 
