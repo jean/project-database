@@ -1047,6 +1047,7 @@ class ProjectGeneralInformation(BaseContent, CurrencyMixin, BrowserDefaultMixin)
         return show, hide
 
 
+
 registerType(ProjectGeneralInformation, PROJECTNAME)
 # end of class ProjectGeneralInformation
 
