@@ -12,7 +12,7 @@ PGI
 -Done
 
 5. Mode of Execution – ‘Division’ should be inactive till ‘Internal’ is selected.
--I&J - show/hide javascript
+-Done
 
 6. Text boxes – all over the database – should be small but expandible (not to discourage TMs)
 -Add rows to textareas and max-height to kupu
@@ -25,7 +25,7 @@ PGI
 - Done
 
 9. As discussed in SA, EA Biodiv/ EA CC / EA POPs drop down should only appear when project type is ‘enabling activity’ and focal area is ‘Biodiv or CC’.
-- show/hide javascript
+-Done
 
 10. The blue header in PGI shows the project title which is not the case when one is in FMI/Milestones/Docs/M&E.
 -Done
@@ -37,7 +37,7 @@ PGI
 -Done
 
 13. Validation of the GEF phases with regard to the Operational Programs, Strategic Priorities, Strategic Objectives and Strategic Programs.(refer to the notes column of the PGI data dictionary.
-- show/hide js - rules in PGI spec.
+-Done
 
 14. All figures in the database should be right aligned, this applies to edit as well as view mode.
 -Add MoneyColumn to DGF

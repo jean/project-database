@@ -2,11 +2,6 @@ Things to do on UNEP Project
 * Personal/Folder actions - what and where are they requried?
   JB - Add 'Publish' where appropriate
 
-* MJM  Milestones
-  - Added isStageCompleted attribs to M&E
-  - Add method to calc project stage
-  - Model change
-
 * JB M&E
   - Folder view rework
 

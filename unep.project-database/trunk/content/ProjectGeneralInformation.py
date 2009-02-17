@@ -1031,18 +1031,85 @@ class ProjectGeneralInformation(BaseContent, CurrencyMixin, BrowserDefaultMixin)
         if self.getExecutionMode() == 'External':
             fieldnames.append('LeadDivision')
             fieldnames.append('OtherDivisions')
+        if self.getJointImplementation() == False:
+            fieldnames.append('UnepComponentDescription')
+        if self.getGEFPhase() != 'I' and \
+           self.getGEFPhase() != 'II' and \
+           self.getGEFPhase() != 'III':
+            fieldnames.append('OperationalProgramme')
+        if self.getGEFPhase() != 'II' and self.getGEFPhase() != 'III':
+            fieldnames.append('StrategicPriority')
+        if self.getGEFPhase() != 'IV':
+            fieldnames.append('StrategicObjectives')
+            fieldnames.append('StrategicProgram')
+        if not(self.getProjectType() == 'EA' and \
+               'BD' in self.getFocalArea()):
+            fieldnames.append('EABiodiversity')
+            fieldnames.append('EAClimateChange')
+            fieldnames.append('EAPOP')
+            fieldnames.append('EAMultipleFocalAreas')
 
         return fieldnames
 
-    def getToggleFieldNames(self, fieldname, value):
+    def getToggleFieldNames(self, fieldname, value=None, **kwargs):
         hide = []
         show = []
-        if fieldname == 'ExecutionMode' and value == 'External':
-            hide.append('LeadDivision')
-            hide.append('OtherDivisions')
-        else:
-            show.append('LeadDivision')
-            show.append('OtherDivisions')
+        if fieldname == 'ExecutionMode':
+            if value == 'External':
+                hide.append('LeadDivision')
+                hide.append('OtherDivisions')
+            else:
+                show.append('LeadDivision')
+                show.append('OtherDivisions')
+
+        if fieldname == 'JointImplementation':
+          if value == 'on':
+              show.append('UnepComponentDescription')
+          else:
+              hide.append('UnepComponentDescription')
+
+        if fieldname == 'GEFPhase':
+            if value != 'I' and \
+               value != 'II' and \
+               value != 'III':
+                hide.append('OperationalProgramme')
+            else:
+                show.append('OperationalProgramme')
+            if value != 'II' and \
+               value != 'III':
+                hide.append('StrategicPriority')
+            else:
+                show.append('StrategicPriority')
+            if value != 'IV':
+                hide.append('StrategicObjectives')
+                hide.append('StrategicProgram')
+            else:
+                show.append('StrategicObjectives')
+                show.append('StrategicProgram')
+
+        if fieldname == 'ProjectType':
+            if value == 'EA' and 'BD' in kwargs['FocalArea']:
+                show.append('EABiodiversity')
+                show.append('EAClimateChange')
+                show.append('EAPOP')
+                show.append('EAMultipleFocalAreas')
+            else:
+                hide.append('EABiodiversity')
+                hide.append('EAClimateChange')
+                hide.append('EAPOP')
+                hide.append('EAMultipleFocalAreas')
+
+        if fieldname == 'FocalArea':
+            if kwargs['ProjectType'] == 'EA' and 'BD' in value:
+                show.append('EABiodiversity')
+                show.append('EAClimateChange')
+                show.append('EAPOP')
+                show.append('EAMultipleFocalAreas')
+            else:
+                hide.append('EABiodiversity')
+                hide.append('EAClimateChange')
+                hide.append('EAPOP')
+                hide.append('EAMultipleFocalAreas')
 
         return show, hide
 
