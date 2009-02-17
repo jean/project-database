@@ -27,14 +27,29 @@ class UnepKSSView(Implicit, PloneKSSView):
 
         return self.render()
 
-    def toggleWidget(self, fieldname, value):
+    def toggleWidget(self, fieldname, value=None):
         context = aq_inner(self.context)
         ksscore = self.getCommandSet('core')
         
         if not hasattr(context, 'getToggleFieldNames'):
             return self.render()
 
-        show, hide = context.getToggleFieldNames(fieldname, value)
+        #clean up - ensure no duplicates
+        kw = {}
+        for k, v in context.REQUEST.form.items():
+            if k not in ('fieldname', 'value'):
+                kw[k] = v
+
+        #clean up - if multi in-and-out select 
+        if value == '>>' or value == '<<':
+            if not kw.get('selection', None):
+                value = []
+            else:
+                value = kw['selection']
+                if not isinstance(value, (list, tuple)):
+                    value = [value]
+
+        show, hide = context.getToggleFieldNames(fieldname, value, **kw)
         for fieldname in show:
             selector = ksscore.getHtmlIdSelector(
                 'archetypes-fieldname-%s' % fieldname)

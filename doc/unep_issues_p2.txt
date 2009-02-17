@@ -5,32 +5,31 @@
 - JB Add view/edit to table
 
 3. In the previous version and this version we could not spot where to add sub project.
-- JB Add links
+-Done
 
 4. ‘Projects A – Z’ should always appear on the top most navigation bar, next to HOME, FILTERED SEARCH, ABOUT. This will avoid too many clicks one might have to do to work on a different project.
--  JB Add links
+-Done
 
 5. Save/Cancel options at the bottom of the edit mode, should also be available at the top to avoid one scrolling down a long page, just to save one small change.
 - Not easy UI change.
 
 6. When in a project, the blue header should list the full project title and not the section of the database e.g. Biodiversity Project instead of Project General Information. 
-- Question: Where in the project?
-- Asked
+-Done
 
 7. Is it possible to change the database id from alpha numeric to numeric only? E.g. change from Prj – 00001 to 00001?
-- JB Todo
+-Done
 
 8. If joint implementation option is No, Lead Agency and contact should not appear in view mode.
-- show/hide js
+-Done
 
 9. In PGI, project result, leverage financing and description should be at the bottom.
 - Model change
 
 10. Starting from GEF allocation to Total Yearly expenditures, appearing in PGI (after strategic program) were supposed to be in finance object view. (please refer to the data dictionary and see screen shot below). On the same screen the PDF A/ PDF B/ etc status, Should not be in PGI view but in Finance overview section.(Please refer to the data dictionary).
-- MM Hide from PGI, add to overview
+- MM Hide computed fields from PGI, add to overview
 
 11. As requested in previous comments and our discussions in stellenbosch, we need validations for EA BD/CC/POPs and Operational Programs/Strategic Programs/Strategic Objectives/Strategic Priorities. Details provided in the data dictionary.
-- show/hide js
+-Done
 
 12. Under M&E when we create MTR it says MTR – 1. Please change this to read Mid Term Review (with no number).
 - MJM Todo
