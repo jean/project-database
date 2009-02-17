@@ -155,6 +155,7 @@ class ProgrammeFramework(BaseContent, CurrencyMixin, BrowserDefaultMixin):
             return curl[len(purl)+1:]
 
 
+
 registerType(ProgrammeFramework, PROJECTNAME)
 # end of class ProgrammeFramework
 
