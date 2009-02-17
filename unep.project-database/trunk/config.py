@@ -56,7 +56,7 @@ setDefaultRoles('ProjectDatabase: Add FMIFolder', ('Manager','Owner'))
 setDefaultRoles('ProjectDatabase: Add MOU', ('Manager','Owner'))
 setDefaultRoles('ProjectDatabase: Add ProjectDatabase', ('Manager','Owner'))
 setDefaultRoles('ProjectDatabase: Add ProgrammeFramework', ('Manager','Owner'))
-setDefaultRoles('ProjectDatabase: Add MonitoringAndEvaluation', ('Manager','Owner','MO'))
+setDefaultRoles('ProjectDatabase: Add MonitoringAndEvaluation', ('Manager','Owner','MO','EO'))
 setDefaultRoles('ProjectDatabase: Add MandEfolder', ('Manager','Owner'))
 
 product_globals = globals()

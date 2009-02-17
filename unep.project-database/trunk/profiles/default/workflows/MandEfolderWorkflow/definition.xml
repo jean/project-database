@@ -9,6 +9,8 @@
   <permission-map name="Add portal content"
                   acquired="True">
    <permission-role>MO</permission-role>
+   <permission-role>EO</permission-role>
+   <permission-role>TM</permission-role>
   </permission-map>
  </state>
  <variable variable_id="action" for_catalog="False"
