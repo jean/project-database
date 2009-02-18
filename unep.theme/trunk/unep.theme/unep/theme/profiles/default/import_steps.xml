@@ -8,4 +8,14 @@
     Various import steps that are not handled by GS import/export
     handlers.
   </import-step>
+<!-- ##code-section ADDITIONALSTEPS -->
+ <import-step 
+    id="ProjectDatabase-Install-ChangeSkinsLayers" 
+    handler="Products.ProjectDatabase.setuphandlers.changeSkinsLayers"
+    title="Change UNEP theme skns layers"
+    version="2008-10-22T10:43:44.119176">
+   <dependency step="skins"/>
+   Move the unep theme layers to the top in the unep theme skins
+ </import-step>
+<!-- ##/code-section ADDITIONALSTEPS --> 
 </import-steps>
