@@ -254,6 +254,17 @@ class MonitoringAndEvaluation(BaseContent, BrowserDefaultMixin):
                     return v['name']
         return None
 
+    security.declarePublic('getOtherEvaluators')
+    def getOtherEvaluators(self):
+        values = self.getEvaluationTeam()
+        names = ""
+        if values:
+            for v in values:
+                if v['name'] and v['role'] and v['role'] == 'Member':
+                    names += v['name'] + ', '
+            return names[:-2]
+        return None
+
 registerType(MonitoringAndEvaluation, PROJECTNAME)
 # end of class MonitoringAndEvaluation
 
