@@ -265,6 +265,11 @@ msgstr ""
 msgid "ProjectDatabase_label_ConceptDevelopment"
 msgstr ""
 
+#. Default: "Convention Ratification"
+#: content/CountryClassification.py
+msgid "ProjectDatabase_label_ConventionRatification"
+msgstr ""
+
 #. Default: "Cost Effectiveness"
 #: content/OtherProjectRatings.py
 msgid "ProjectDatabase_label_CostEffectiveness"
@@ -274,6 +279,16 @@ msgstr ""
 #: content/ProjectGeneralInformation.py
 #: content/CoreMixin.py
 msgid "ProjectDatabase_label_Country"
+msgstr ""
+
+#. Default: "Country Grouping"
+#: content/CountryClassification.py
+msgid "ProjectDatabase_label_CountryGrouping"
+msgstr ""
+
+#. Default: "Country"
+#: content/CountryClassification.py
+msgid "ProjectDatabase_label_CountryName"
 msgstr ""
 
 #. Default: "Country Ownership"
@@ -298,6 +313,11 @@ msgstr ""
 #: content/SubProject.py
 #: content/Financials.py
 msgid "ProjectDatabase_label_DelayReason"
+msgstr ""
+
+#. Default: "Development Objective"
+#: content/PIRRating.py
+msgid "ProjectDatabase_label_DevelopmentObjective"
 msgstr ""
 
 #. Default: "Difference"
@@ -359,6 +379,11 @@ msgstr ""
 #. Default: "EOU Rating Elements"
 #: content/RatingTrackingSystem.py
 msgid "ProjectDatabase_label_EOURatingElements"
+msgstr ""
+
+#. Default: "Terminal Evaluation Report Quality: EOU Rating"
+#: content/MonitoringAndEvaluation.py
+msgid "ProjectDatabase_label_EOUTerminalEvaluationReportQuality"
 msgstr ""
 
 #. Default: "Evaluationactualestimatedifference"
@@ -543,6 +568,11 @@ msgstr ""
 #. Default: "GEF Review Sheets"
 #: content/DocumentLinks.py
 msgid "ProjectDatabase_label_GEFReviewSheets"
+msgstr ""
+
+#. Default: "Terminal Evaluation Report Quality: GEF EO Rating"
+#: content/MonitoringAndEvaluation.py
+msgid "ProjectDatabase_label_GEFTerminalEvaluationReportQuality"
 msgstr ""
 
 #. Default: "GEF Trust Fund"
@@ -762,6 +792,11 @@ msgstr ""
 msgid "ProjectDatabase_label_MonitoringAndEvaluation"
 msgstr ""
 
+#. Default: "Monitoring and Evaluation"
+#: content/PIRRating.py
+msgid "ProjectDatabase_label_MonitoringAneEvaluation"
+msgstr ""
+
 #. Default: "Multiple Focal Areas"
 #: content/ProjectGeneralInformation.py
 msgid "ProjectDatabase_label_MultipleFocalAreas"
@@ -827,6 +862,11 @@ msgstr ""
 #. Default: "Other Division"
 #: content/ProjectGeneralInformation.py
 msgid "ProjectDatabase_label_OtherDivisions"
+msgstr ""
+
+#. Default: "Other Group"
+#: content/CountryClassification.py
+msgid "ProjectDatabase_label_OtherGroup"
 msgstr ""
 
 #. Default: "Other GEF Agency(ies)"
@@ -1152,6 +1192,11 @@ msgstr ""
 msgid "ProjectDatabase_label_ProjectRevisions"
 msgstr ""
 
+#. Default: "Project Risk"
+#: content/PIRRating.py
+msgid "ProjectDatabase_label_ProjectRisk"
+msgstr ""
+
 #. Default: "Project Risk Rating for each PIR"
 #: content/RatingTrackingSystem.py
 msgid "ProjectDatabase_label_ProjectRiskRatingForEachPIR"
@@ -1208,6 +1253,7 @@ msgstr ""
 #. Default: "Remarks"
 #: content/EvaluationMilestone.py
 #: content/RatingTrackingSystem.py
+#: content/CountryClassification.py
 msgid "ProjectDatabase_label_Remarks"
 msgstr ""
 
@@ -1248,6 +1294,11 @@ msgstr ""
 #. Default: "Risk"
 #: content/PIRRating.py
 msgid "ProjectDatabase_label_Risk"
+msgstr ""
+
+#. Default: "Risk Rating"
+#: content/CountryClassification.py
+msgid "ProjectDatabase_label_RiskRating"
 msgstr ""
 
 #. Default: "Risk Rating at Inception"

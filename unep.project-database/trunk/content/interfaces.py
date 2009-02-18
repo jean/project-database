@@ -17,6 +17,10 @@ class IProjectGeneralInformation(Interface):
     """Marker interface for .ProjectGeneralInformation.ProjectGeneralInformation
     """
 
+class ISubProject(Interface):
+    """Marker interface for .SubProject.SubProject
+    """
+
 class IFinancials(Interface):
     """Marker interface for .Financials.Financials
     """
@@ -45,8 +49,16 @@ class IMandEfolder(Interface):
     """Marker interface for .MandEfolder.MandEfolder
     """
 
-class ISubProject(Interface):
-    """Marker interface for .SubProject.SubProject
+class IPIRRating(Interface):
+    """Marker interface for .PIRRating.PIRRating
+    """
+
+class ICountryClassification(Interface):
+    """Marker interface for .CountryClassification.CountryClassification
+    """
+
+class ICountryClassificationSystem(Interface):
+    """Marker interface for .CountryClassificationSystem.CountryClassificationSystem
     """
 
 ##code-section FOOT

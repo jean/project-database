@@ -34,13 +34,13 @@
   <type type_id="SubProject">
    <bound-workflow workflow_id="FMIFolderWorkflow" />
   </type>
+  <type type_id="SubProject">
+   <bound-workflow workflow_id="FMIFolderWorkflow" />
+  </type>
   <type type_id="Financials">
    <bound-workflow workflow_id="FMIFolderWorkflow" />
   </type>
   <type type_id="MOU">
-   <bound-workflow workflow_id="FMIFolderWorkflow" />
-  </type>
-  <type type_id="SubProject">
    <bound-workflow workflow_id="FMIFolderWorkflow" />
   </type>
  </bindings>

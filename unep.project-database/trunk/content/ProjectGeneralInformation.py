@@ -392,29 +392,6 @@ schema = Schema((
         default_output_type='text/html',
         write_permission="TM",
     ),
-    MoneyField(
-        name='LeveragedFinancingAmount',
-        default='0.0',
-        widget=MoneyField._properties['widget'](
-            label="Leveraged Financing Amount",
-            label_msgid='ProjectDatabase_label_LeveragedFinancingAmount',
-            i18n_domain='ProjectDatabase',
-        ),
-        write_permission="TM",
-    ),
-    TextField(
-        name='LeveragedFinancingRemark',
-        allowable_content_types=('text/plain', 'text/structured', 'text/html', 'application/msword',),
-        widget=RichWidget(
-            label="Leveraged Financing Description",
-            description="Enter Sources and Purposes",
-            label_msgid='ProjectDatabase_label_LeveragedFinancingRemark',
-            description_msgid='ProjectDatabase_help_LeveragedFinancingRemark',
-            i18n_domain='ProjectDatabase',
-        ),
-        default_output_type='text/html',
-        write_permission="TM",
-    ),
     StringField(
         name='PhaseTranche',
         widget=SelectionWidget(
@@ -524,6 +501,7 @@ schema = Schema((
         name='TotalGEFAllocation',
         widget=ComputedField._properties['widget'](
             label="Total GEF Allocation",
+            visible={'view':'invisible', 'edit':'hidden'},
             label_msgid='ProjectDatabase_label_TotalGEFAllocation',
             i18n_domain='ProjectDatabase',
         ),
@@ -533,6 +511,7 @@ schema = Schema((
         name='TotalUNEPAllocation',
         widget=ComputedField._properties['widget'](
             label="Total UNEP Allocation",
+            visible={'view':'invisible', 'edit':'hidden'},
             label_msgid='ProjectDatabase_label_TotalUNEPAllocation',
             i18n_domain='ProjectDatabase',
         ),
@@ -542,6 +521,7 @@ schema = Schema((
         name='TotalCoFinancingPlanned',
         widget=ComputedField._properties['widget'](
             label="Total Co-financing (planned)",
+            visible={'view':'invisible', 'edit':'hidden'},
             label_msgid='ProjectDatabase_label_TotalCoFinancingPlanned',
             i18n_domain='ProjectDatabase',
         ),
@@ -551,6 +531,7 @@ schema = Schema((
         name='TotalCoFinancingActual',
         widget=ComputedField._properties['widget'](
             label="Total Co-financing (actual)",
+            visible={'view':'invisible', 'edit':'hidden'},
             label_msgid='ProjectDatabase_label_TotalCoFinancingActual',
             i18n_domain='ProjectDatabase',
         ),
@@ -560,6 +541,7 @@ schema = Schema((
         name='TotalCashDisbursements',
         widget=ComputedField._properties['widget'](
             label="Total Cash Disbursements",
+            visible={'view':'invisible', 'edit':'hidden'},
             label_msgid='ProjectDatabase_label_TotalCashDisbursements',
             i18n_domain='ProjectDatabase',
         ),
@@ -569,6 +551,7 @@ schema = Schema((
         name='TotalYearlyExpenditures',
         widget=ComputedField._properties['widget'](
             label="Total Yearly Expenditures",
+            visible={'view':'invisible', 'edit':'hidden'},
             label_msgid='ProjectDatabase_label_TotalYearlyExpenditures',
             i18n_domain='ProjectDatabase',
         ),
@@ -647,6 +630,29 @@ schema = Schema((
         allowed_types=('ProgrammeFramework',),
         multiValued=0,
         relationship="project_programmeframework",
+        write_permission="TM",
+    ),
+    TextField(
+        name='LeveragedFinancingRemark',
+        allowable_content_types=('text/plain', 'text/structured', 'text/html', 'application/msword',),
+        widget=RichWidget(
+            label="Leveraged Financing Description",
+            description="Enter Sources and Purposes",
+            label_msgid='ProjectDatabase_label_LeveragedFinancingRemark',
+            description_msgid='ProjectDatabase_help_LeveragedFinancingRemark',
+            i18n_domain='ProjectDatabase',
+        ),
+        default_output_type='text/html',
+        write_permission="TM",
+    ),
+    MoneyField(
+        name='LeveragedFinancingAmount',
+        default='0.0',
+        widget=MoneyField._properties['widget'](
+            label="Leveraged Financing Amount",
+            label_msgid='ProjectDatabase_label_LeveragedFinancingAmount',
+            i18n_domain='ProjectDatabase',
+        ),
         write_permission="TM",
     ),
 
@@ -1025,6 +1031,7 @@ class ProjectGeneralInformation(BaseContent, CurrencyMixin, BrowserDefaultMixin)
             pgf = brains[0].getObject()
             curl = pgf.absolute_url()
             return curl[len(purl)+1:]
+        return ''
 
     def getHideFieldNames(self):
         fieldnames = []

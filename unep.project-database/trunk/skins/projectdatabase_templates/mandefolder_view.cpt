@@ -26,6 +26,7 @@
                             Option
                     </option>
                 </tal:rep>
+                <option value="PIRRating">PIR Rating</option>
             </select>
             <input class="context" type="submit" name="form.button.add" value="Create"/>
         </form>
@@ -34,10 +35,9 @@
 <hr />
 <div>
 <!-- M & E -->
-    <div style="width:100%" 
-        tal:repeat="mandeo python:context.getFolderContents(full_objects=True)">
+    <div style="width:100%" >
         <table width="100%">
-            <tr>
+            <tr tal:repeat="mandeo python:context.getFolderContents(full_objects=True)">
                 <td tal:content="mandeo/Title" />
                 <td>
                     <a tal:attributes="href string:${mandeo/absolute_url}/view"
