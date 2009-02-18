@@ -207,7 +207,7 @@ class MonitoringAndEvaluation(BaseContent, BrowserDefaultMixin):
                 return date
         return None
 
-    def getLastestEvaluationProcessStatus(self):
+    def getLatestEvaluationProcessStatus(self):
         values = self.getEvaluationProcessStatus()
         if values:
             step = ''
