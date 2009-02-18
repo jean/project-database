@@ -47,7 +47,7 @@ PGI
 -asked
 
 16. Lead Exec Agency Category – Research/Academic Institutions; UNEP Collaborating Centers……….shud be without ‘s’ at the end (our mistake)
-- Done
+-Done
 
 17. Use different colours to distinguish the field label and the data itself. Both should not be blue.
 -Done
@@ -62,7 +62,7 @@ FMI
 -Done
 
 3. We had wanted a thousand separator to appear just when one finishes entering data in any figure field i.e after hitting the ‘tab’ or clicking on the next field
-- Create MoneyColumn for DGF
+-Create MoneyColumn for DGF
 
 4. In view mode, spacing in field labels is missing for some e.g Total cofinance planned / actual & Total Cost etc.
 -Asked for all issues

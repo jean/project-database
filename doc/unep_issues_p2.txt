@@ -2,7 +2,7 @@
 -Done
 
 2. ‘Create new project’ should be the same as(look and feel) ‘create new finance object/M&E’. In order to maintain the consistency of the ‘create’ function. Additionally all create should be under the drop down ‘Add’. Further, change ‘M&E object’ to say ‘evaluation type’.
-- JB Add view/edit to table
+-Done
 
 3. In the previous version and this version we could not spot where to add sub project.
 -Done
@@ -11,7 +11,7 @@
 -Done
 
 5. Save/Cancel options at the bottom of the edit mode, should also be available at the top to avoid one scrolling down a long page, just to save one small change.
-- Not easy UI change.
+-Not easy UI change.
 
 6. When in a project, the blue header should list the full project title and not the section of the database e.g. Biodiversity Project instead of Project General Information. 
 -Done
@@ -23,20 +23,20 @@
 -Done
 
 9. In PGI, project result, leverage financing and description should be at the bottom.
-- Model change
+-Done
 
 10. Starting from GEF allocation to Total Yearly expenditures, appearing in PGI (after strategic program) were supposed to be in finance object view. (please refer to the data dictionary and see screen shot below). On the same screen the PDF A/ PDF B/ etc status, Should not be in PGI view but in Finance overview section.(Please refer to the data dictionary).
-- MM Hide computed fields from PGI, add to overview
+-Done
 
 11. As requested in previous comments and our discussions in stellenbosch, we need validations for EA BD/CC/POPs and Operational Programs/Strategic Programs/Strategic Objectives/Strategic Priorities. Details provided in the data dictionary.
 -Done
 
 12. Under M&E when we create MTR it says MTR – 1. Please change this to read Mid Term Review (with no number).
-- MJM Todo
+-Done
 
 13. Under M&E, provision for PIR ratings should always be available. Note that PIR is independent of the Evaluation/Review.
-- Asked
+-Done
 
 14. As rightly pointed out by Mike during the telecom, ‘add new row’ for Terminal Evaluation Report Rating is not required since the entry is done only once.
-- Model change
+-Done 
 
