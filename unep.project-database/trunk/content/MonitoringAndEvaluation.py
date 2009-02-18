@@ -221,6 +221,7 @@ class MonitoringAndEvaluation(BaseContent, BrowserDefaultMixin):
                 return step
         return None
 
+    security.declarePublic('getEvaluationRatingsDates')
     def getEvaluationRatingsDates(self, step):
         values = self.getEvaluationRatings()
         if values:
@@ -244,7 +245,14 @@ class MonitoringAndEvaluation(BaseContent, BrowserDefaultMixin):
             curl = contacts.absolute_url()
             return curl[len(purl)+1:]
 
-
+    security.declarePublic('getLeadEvaluator')
+    def getLeadEvaluator(self):
+        values = self.getEvaluationTeam()
+        if values:
+            for v in values:
+                if v['name'] and v['role'] and v['role'] == 'Lead':
+                    return v['name']
+        return None
 
 registerType(MonitoringAndEvaluation, PROJECTNAME)
 # end of class MonitoringAndEvaluation
