@@ -121,7 +121,7 @@ class Project(BaseFolder, CurrencyMixin, BrowserDefaultMixin):
     security.declarePublic('isTheProjectPublished')
     def isTheProjectPublished(self):
         wft = getToolByName(self, 'portal_workflow')
-        return wft.getInfoFor(self, 'review_state') == 'published'
+        return wft.getInfoFor(self, 'review_state').lower() == 'published'
 
 
 

@@ -1,9 +1,13 @@
-Things to do on UNEP Project
+THINGS TO DO ON UNEP PROJECT
 * Reports
 * Country Classificiation
 * Create Reference column to DataGrid 
 * Create Money column to DataGrid 
 
-* TESTING
+* Testing
 * Import historical data
 
+BUG FIXES
+* Financials - Expected completion date: show_hm to be set to False
+* Financials - Revised completion date: show_hm to be set to False
+* FMI Folder View - Only show latest task manager
