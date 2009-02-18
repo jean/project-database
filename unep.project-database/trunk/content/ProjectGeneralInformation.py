@@ -1107,7 +1107,9 @@ class ProjectGeneralInformation(BaseContent, CurrencyMixin, BrowserDefaultMixin)
                 hide.append('EAMultipleFocalAreas')
 
         if fieldname == 'FocalArea':
-            if kwargs['ProjectType'] == 'EA' and 'BD' in value:
+            if kwargs.get('ProjectType', None) and \
+               kwargs['ProjectType'] == 'EA' and \
+               'BD' in value:
                 show.append('EABiodiversity')
                 show.append('EAClimateChange')
                 show.append('EAPOP')
