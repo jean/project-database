@@ -735,6 +735,15 @@ class Financials(BaseFolder, CurrencyMixin, BrowserDefaultMixin):
                 return name
         return None
 
+    def getEvaluationAmount(self, type):
+        """
+        Sum the evaluation funds for the given field
+        """
+        values = self.getEvaluationFunds()
+        amount = self._computeDataGridAmount(
+          [v['Amount'] for v in values \
+            if v['Amount'] and v['EvaluationType'] == type])
+        return amount
 
 
 registerType(Financials, PROJECTNAME)
