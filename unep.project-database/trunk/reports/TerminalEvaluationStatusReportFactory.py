@@ -1,32 +1,8 @@
-from Report import Report
+from MnEStatusReportFactory import MnEStatusReportFactory
 
-class TerminalEvaluationStatusReportFactory(object):
+class TerminalEvaluationStatusReportFactory(MnEStatusReportFactory):
 
-    def __init__(self, context, **kw):
+    def __init__(self, context):
         self.context = context
-        self.params = kw
-
-    def getReport(self):
-        # create and fill the report
-        name = "Terminal Evaluation Status report"
-        report = Report(name)
-        report.setReportHeaders(( name,),)
-        report.setTableHeaders(((
-                        'IMIS No.',
-                        'Project title',
-                        'Focal area',
-                        'Evaluation budget',
-                        'TM',
-                        'FMO',
-                        'TE Status',
-                        'Lead Evaluator',
-                        'email',
-                        'Phone No.',
-                        'Other Evaluators',
-                        'Project Rating',
-            ),))
-        # XXX Implement this
-        # report.setTableRows()
-        # report.setTableTotals([])
-        # report.setReportFooters()
-        return report
+        self.evaluationType = 'TE'
+        self.name = "Terminal Evaluation Status Report"

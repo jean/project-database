@@ -32,6 +32,7 @@ from Products.ATReferenceBrowserWidget.ATReferenceBrowserWidget import Reference
 ##code-section module-header #fill in your manual code here
 import permissions
 from Products.Archetypes.utils import DisplayList
+from DateTime import DateTime
 ##/code-section module-header
 
 schema = Schema((
