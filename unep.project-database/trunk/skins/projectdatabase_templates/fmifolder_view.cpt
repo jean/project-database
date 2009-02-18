@@ -74,7 +74,7 @@
             <tr>
                 <td i18n:translate="finance_object" width="30%">Finance Object:</td>
                 <td>
-                    <span tal:content="fo/getFinanceCategory" 
+                    <span tal:content="fo/id" 
                         style="text-transform: uppercase;">PPG</span>&nbsp;
                     <a tal:attributes="href string:${fo/absolute_url}/view">
                         <span i18n:translate="view">View</span></a>

@@ -1,20 +1,19 @@
 <?xml version="1.0"?>
-<object name="MandEfolder"
+<object name="CountryClassificationSystem"
         meta_type="Factory-based Type Information with dynamic views"
         xmlns:i18n="http://xml.zope.org/namespaces/i18n">
    
- <property name="title">MandEfolder</property>
+ <property name="title">CountryClassificationSystem</property>
  <property name="description"></property>
- <property name="content_icon">MandEfolder.gif</property>
- <property name="content_meta_type">MandEfolder</property>
+ <property name="content_icon">CountryClassificationSystem.gif</property>
+ <property name="content_meta_type">CountryClassificationSystem</property>
  <property name="product">ProjectDatabase</property>
- <property name="factory">addMandEfolder</property>
+ <property name="factory">addCountryClassificationSystem</property>
  <property name="immediate_view">base_view</property>
- <property name="global_allow">False</property>
+ <property name="global_allow">True</property>
  <property name="filter_content_types">True</property>
  <property name="allowed_content_types">
-   <element value="MonitoringAndEvaluation"/>
-   <element value="PIRRating"/>
+   <element value="CountryClassification"/>
  </property>
  <property name="allow_discussion">False</property>
  <property name="default_view">base_view</property>

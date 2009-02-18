@@ -38,6 +38,7 @@ def installVocabularies(context):
     atvm = getToolByName(site, ATVOCABULARYTOOL)
     vocabmap = {'Category': ('VdexVocabulary', 'SimpleVocabularyTerm'),
          'StrategicPriority': ('VdexVocabulary', 'SimpleVocabularyTerm'),
+         'RiskLevel': ('VdexVocabulary', 'SimpleVocabularyTerm'),
          'GEFPhase': ('VdexVocabulary', 'SimpleVocabularyTerm'),
          'Scope': ('VdexVocabulary', 'SimpleVocabularyTerm'),
          'Status': ('VdexVocabulary', 'SimpleVocabularyTerm'),
@@ -53,14 +54,17 @@ def installVocabularies(context):
          'Region': ('VdexVocabulary', 'SimpleVocabularyTerm'),
          'EABiodiversity': ('VdexVocabulary', 'SimpleVocabularyTerm'),
          'MultipleFocalAreas': ('VdexVocabulary', 'SimpleVocabularyTerm'),
+         'ConventionRatification': ('VdexVocabulary', 'SimpleVocabularyTerm'),
          'FocalArea': ('VdexVocabulary', 'SimpleVocabularyTerm'),
          'StrategicObjectives': ('VdexVocabulary', 'SimpleVocabularyTerm'),
          'InceptionRiskRating': ('VdexVocabulary', 'SimpleVocabularyTerm'),
          'TrustFund': ('VdexVocabulary', 'SimpleVocabularyTerm'),
+         'Rating': ('VdexVocabulary', 'SimpleVocabularyTerm'),
          'ExecutionMode': ('VdexVocabulary', 'SimpleVocabularyTerm'),
          'EAClimateChange': ('VdexVocabulary', 'SimpleVocabularyTerm'),
          'StrategicProgram': ('VdexVocabulary', 'SimpleVocabularyTerm'),
          'PhasedTranche': ('VdexVocabulary', 'SimpleVocabularyTerm'),
+         'CountryGrouping': ('VdexVocabulary', 'SimpleVocabularyTerm'),
         }
     for vocabname in vocabmap.keys():
         if not vocabname in atvm.contentIds():
@@ -184,7 +188,6 @@ def installDataGridVocabularies(context):
         'ProjectProcesses': ('VdexVocabulary', 'SimpleVocabularyTerm'),
         'TMCategory': ('VdexVocabulary', 'SimpleVocabularyTerm'),
         'ProjectExecutingAgencyDescription': ('VdexVocabulary', 'SimpleVocabularyTerm'),
-        #'EvaluationType': ('VdexVocabulary', 'SimpleVocabularyTerm'),
         'TrustFund': ('VdexVocabulary', 'SimpleVocabularyTerm'),
         'ConceptDevelopmentActions': ('VdexVocabulary', 'SimpleVocabularyterm'),
         'PIFApprovalActions': ('VdexVocabulary', 'SimpleVocabularyterm'),

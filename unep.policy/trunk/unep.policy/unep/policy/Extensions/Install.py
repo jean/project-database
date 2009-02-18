@@ -2,6 +2,7 @@ import transaction
 from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.migrations.migration_util import safeEditProperty
 from Products.ProjectDatabase.content.ProjectDatabase import ProjectDatabase
+from Products.ProjectDatabase.content.CountryClassificationSystem import CountryClassificationSystem
 
 PRODUCT_DEPENDENCIES = (
         'ATExtensions', 
@@ -61,9 +62,18 @@ def Install(self, reinstall=False):
         projdb = portal['projectdatabases']
         projdb.title='PROJECTS'
         projdb.reindexObject()
+
     # add global contact manager
     if 'contacts' not in portal.contentIds():
         portal.invokeFactory('ContactManager', 'contacts', title='STAFF & CONTACTS')
+
+    # add country classification system
+    if 'countryclassification' not in portal.contentIds():
+        ccs = CountryClassificationSystem('countryclassification')
+        portal._setObject('countryclassification', ccs)
+        ccs = portal['countryclassification']
+        ccs.title='Country Classification System'
+        ccs.reindexObject()
 
     # remove unneeded folders
     ids=['Members', 'news', 'events', 'front-page']

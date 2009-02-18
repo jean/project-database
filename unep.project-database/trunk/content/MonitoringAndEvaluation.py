@@ -107,16 +107,25 @@ schema = Schema((
         write_permission="TM EO",
         columns=('criterion', 'evaluator_rating', 'EOU_rating', 'GEF_EO_Rating'),
     ),
-    DataGridField(
-        name='TerminalEvaluationReportQuality',
-        widget=DataGridField._properties['widget'](
-            label="Terminal Evaluation Report Quality",
-            columns={'EOU_rating':SelectColumn('EOU Rating', vocabulary='getRatingVocabulary'), 'GEF_EO_rating':SelectColumn('GEF EO Rating', vocabulary='getRatingVocabulary')},
-            label_msgid='ProjectDatabase_label_TerminalEvaluationReportQuality',
+    StringField(
+        name='EOUTerminalEvaluationReportQuality',
+        widget=SelectionWidget(
+            label="Terminal Evaluation Report Quality: EOU Rating",
+            label_msgid='ProjectDatabase_label_EOUTerminalEvaluationReportQuality',
             i18n_domain='ProjectDatabase',
         ),
         write_permission="TM EO",
-        columns=('EOU_rating', 'GEF_EO_rating'),
+        vocabulary=NamedVocabulary("""Rating"""),
+    ),
+    StringField(
+        name='GEFTerminalEvaluationReportQuality',
+        widget=SelectionWidget(
+            label="Terminal Evaluation Report Quality: GEF EO Rating",
+            label_msgid='ProjectDatabase_label_GEFTerminalEvaluationReportQuality',
+            i18n_domain='ProjectDatabase',
+        ),
+        write_permission="TM EO",
+        vocabulary=NamedVocabulary("""Rating"""),
     ),
     DataGridField(
         name='EvaluationTeam',
@@ -128,17 +137,6 @@ schema = Schema((
         ),
         write_permission="TM EO",
         columns=('name', 'role'),
-    ),
-    DataGridField(
-        name='PIRRatings',
-        widget=DataGridField._properties['widget'](
-            label="PIR Ratings",
-            columns={'year':Column('Fiscal Year'), 'dev_obj':SelectColumn('Development Objective', vocabulary='getRatingVocabulary'), 'imp_obj':SelectColumn('Implementation Progress', vocabulary='getRatingVocabulary'), 'm_and_e':SelectColumn('Monitoring and Evaluation', vocabulary='getRatingVocabulary'), 'risk':SelectColumn('Project Risk', vocabulary='getRiskLevelVocabulary')},
-            label_msgid='ProjectDatabase_label_PIRRatings',
-            i18n_domain='ProjectDatabase',
-        ),
-        write_permission="TM MO",
-        columns=('year', 'dev_obj', 'imp_obj', 'm_and_e', 'risk'),
     ),
 
 ),

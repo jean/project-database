@@ -4,6 +4,7 @@
   <type portal_type="Project"/>
   <type portal_type="Milestone"/>
   <type portal_type="ProjectGeneralInformation"/>
+  <type portal_type="SubProject"/>
   <type portal_type="Financials"/>
   <type portal_type="FMIFolder"/>
   <type portal_type="MOU"/>
@@ -12,6 +13,8 @@
   <type portal_type="ProgrammeFramework"/>
   <type portal_type="MonitoringAndEvaluation"/>
   <type portal_type="MandEfolder"/>
-  <type portal_type="SubProject"/>
+  <type portal_type="PIRRating"/>
+  <type portal_type="CountryClassification"/>
+  <type portal_type="CountryClassificationSystem"/>
  </factorytypes>
 </object>
