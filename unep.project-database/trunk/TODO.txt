@@ -1,14 +1,6 @@
 Things to do on UNEP Project
-* Personal/Folder actions - what and where are they requried?
-  JB - Add 'Publish' where appropriate
-
-* JB M&E
-  - Folder view rework
-
-* Rework home page
-  - JB Added project to the top
-
-* Roles and permissions
+* Reports
+* Country Classificiation
 * Create Reference column to DataGrid 
 * Create Money column to DataGrid 
 
