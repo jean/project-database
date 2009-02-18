@@ -207,6 +207,20 @@ class MonitoringAndEvaluation(BaseContent, BrowserDefaultMixin):
                 return date
         return None
 
+    def getLastestEvaluationProcessStatus(self):
+        values = self.getEvaluationProcessStatus()
+        if values:
+            step = ''
+            date = DateTime('1900/01/01')
+            for v in values:
+                if v['step_date'] and v['process_step']:
+                    if date < v['step_date']:
+                        date = v['step_date']
+                        step = v['process_step']
+            if date != DateTime('1900/01/01'):
+                return step
+        return None
+
     def getEvaluationRatingsDates(self, step):
         values = self.getEvaluationRatings()
         if values:
