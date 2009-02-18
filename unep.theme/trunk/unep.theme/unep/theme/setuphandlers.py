@@ -57,5 +57,6 @@ def _setupSkins(context, skin_prefix, definition=None):
         skins[skin] = ','.join(new_layers)
 
 def changeSkinLayers(context):
+    import pdb; pdb.set_trace()
     _setupSkins(context, 'projectdatabase')
     _setupSkins(context, 'unep_theme')
