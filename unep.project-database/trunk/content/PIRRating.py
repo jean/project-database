@@ -64,10 +64,10 @@ schema = Schema((
         vocabulary=NamedVocabulary("""Rating"""),
     ),
     StringField(
-        name='MonitoringAneEvaluation',
+        name='MonitoringAndEvaluation',
         widget=SelectionWidget(
             label="Monitoring and Evaluation",
-            label_msgid='ProjectDatabase_label_MonitoringAneEvaluation',
+            label_msgid='ProjectDatabase_label_MonitoringAndEvaluation',
             i18n_domain='ProjectDatabase',
         ),
         write_permission="TM MO",

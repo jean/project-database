@@ -77,7 +77,9 @@
  <state state_id="published"
         title="published">
   <permission-map name="Access contents information"
-                  acquired="True">
+                  acquired="False">
+   <permission-role>Manager</permission-role>
+   <permission-role>Owner</permission-role>
    <permission-role>Member</permission-role>
   </permission-map>
   <permission-map name="FMO"
@@ -86,7 +88,9 @@
    <permission-role>Manager</permission-role>
   </permission-map>
   <permission-map name="List folder contents"
-                  acquired="True">
+                  acquired="False">
+   <permission-role>Manager</permission-role>
+   <permission-role>Owner</permission-role>
    <permission-role>Member</permission-role>
   </permission-map>
   <permission-map name="Registrar"
@@ -137,7 +141,9 @@
    <permission-role>Manager.Owner</permission-role>
   </permission-map>
   <permission-map name="View"
-                  acquired="True">
+                  acquired="False">
+   <permission-role>Manager</permission-role>
+   <permission-role>Owner</permission-role>
    <permission-role>Member</permission-role>
   </permission-map>
  </state>
