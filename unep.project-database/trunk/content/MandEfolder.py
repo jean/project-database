@@ -63,7 +63,16 @@ class MandEfolder(BaseFolder, BrowserDefaultMixin):
     ##/code-section class-header
 
     # Methods
-
+    security.declarePublic('getLatestPIRRating')
+    def getLatestPIRRating(self):
+        year = '1900'
+        for pir in self.objectValues(spec='PIRRating'):
+            if pir.getFiscalYear() > year:
+                year = pir.getFiscalYear()
+        if year != '1900':
+            return pir
+        
+    
 
 registerType(MandEfolder, PROJECTNAME)
 # end of class MandEfolder
