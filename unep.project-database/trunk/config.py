@@ -50,7 +50,7 @@ ADD_CONTENT_PERMISSIONS = {
     'CountryClassificationSystem': 'ProjectDatabase: Add CountryClassificationSystem',
 }
 
-setDefaultRoles('ProjectDatabase: Add Project', ('Manager','Owner','TM', 'SPO', 'Registrar'))
+setDefaultRoles('ProjectDatabase: Add Project', ('Manager','Owner','TM', 'SPO'))
 setDefaultRoles('ProjectDatabase: Add Milestone', ('Manager','Owner'))
 setDefaultRoles('ProjectDatabase: Add ProjectGeneralInformation', ('Manager','Owner'))
 setDefaultRoles('ProjectDatabase: Add SubProject', ('Manager','Owner'))
