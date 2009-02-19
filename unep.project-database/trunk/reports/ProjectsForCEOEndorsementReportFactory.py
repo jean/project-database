@@ -1,4 +1,5 @@
 from Report import Report
+from Products.ProjectDatabase.utils import unep_report_format_date
 
 class ProjectsForCEOEndorsementReportFactory(object):
 
@@ -19,7 +20,29 @@ class ProjectsForCEOEndorsementReportFactory(object):
             'Task Manager',
             ),))
         # XXX Implement this
-        # report.setTableRows()
+        report.setTableRows(self.getReportData())
         # report.setTableTotals([])
         # report.setReportFooters()
         return report
+
+    def getReportData(self):
+        projects = self.context.objectValues(spec='Project')
+        result = []
+        for project in projects:
+            ms = project.milestones
+            if project.isTheProjectPublished() and \
+               ms.getProjectApprovalDate('CEOApprovalEndorsementExpected') and \
+               not ms.getProjectApprovalDate('CEOApprovalEndorsementActual'):
+                pgi = project.project_general_info
+                mande = project.mne_folder
+
+                result.append((
+                        pgi.getGEFid(),
+                        pgi.Title(),
+                        pgi.getFocalAreaNames(),
+                        unep_report_format_date(self.context, \
+                                ms.getProjectApprovalDate('CEOApprovalEndorsementExpected')),
+                        pgi.getCurrentTM(),
+                    ),)
+
+        return result

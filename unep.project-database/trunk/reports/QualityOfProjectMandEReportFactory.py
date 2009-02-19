@@ -1,4 +1,6 @@
 from Report import Report
+from Products.ProjectDatabase.utils import \
+        inner_strip, unep_report_format_date, getVocabularyValue
 
 class QualityOfProjectMandEReportFactory(object):
 
@@ -22,7 +24,34 @@ class QualityOfProjectMandEReportFactory(object):
             'TM',
             ),))
         # XXX Implement this
-        # report.setTableRows()
+        report.setTableRows(self.getReportData())
         # report.setTableTotals([])
         # report.setReportFooters()
         return report
+
+    def getReportData(self):
+        projects = self.context.objectValues(spec='Project')
+        result = []
+
+        for project in projects:
+            pgi = project.project_general_info
+            ms = project.milestones
+            mofu = project.fmi_folder.getMainFinanceObject()
+            mande = project.mne_folder
+
+            if mofu and project.isTheProjectPublished():
+                pir = mande.getLatestPIRRating()
+                if pir:
+                    result.append((
+                        pgi.getGEFid(),
+                        mofu.getIMISNumber(),
+                        pgi.getFocalAreaNames(),
+                        pgi.getLeadExecutingAgencyName(),
+                        pgi.Title(),
+                        getVocabularyValue(self.context, \
+                            'Rating', pir.getMonitoringAndEvaluation()),
+                        pir.getFiscalYear(),
+                        pgi.getCurrentTM(),
+                        ))
+
+        return result
