@@ -1,0 +1,48 @@
+<metal:fmi_matrix define-macro="fmi_matrix">
+<table class="table-fullwidth">
+    <tr>
+        <th>IMIS No</th>
+        <th>Project Title</th>
+        <th>Finance Object</th>
+        <th>Expected/Revised Completion</th>
+        <th>Grant to UNEP</th>
+        <th>Total Disbursements</th>
+        <th>Total Expenditures</th>
+    </tr>
+    <tr tal:repeat="brain brains">
+        <td tal:content="brain/getIMISNumber | string:unknown" />
+        <td tal:content="mainob/aq_parent/title_or_id | string:unknown" />
+        <td tal:content="brain/title_or_id | string:unknown" />
+        <td tal:content="brain/getExpectedCompletionDate | string:unknown" />
+        <td tal:content="brain/getSumFinanceObjectAmount | string:unknown" />
+        <td tal:content="brain/getSubProjectsTotalCashDisbursed | string:unknown" />
+        <td tal:content="brain/getSubProjectsTotalExpenditures | string:unknown" />
+    </tr>
+</table>
+</metal:fmi_matrix>
+
+<metal:multiple_fmi_matrix define-macro="multiple_fmi_matrix">
+<tal:rep tal:repeat="brain brains">
+<h3 tal:content="brain/pretty_title_or_id">Title</h3>
+<tal:def tal:define="mainob brain/getObject;
+                     obs mainob/getFolderContents;
+                     ">
+<tal:use metal:use-macro="context/matrix_macros/macros/fmi_matrix" />
+</tal:def>
+</tal:rep>
+</metal:multiple_fmi_matrix>
+
+<metal:pgi_matrix define-macro="pgi_matrix">
+<table class="table-fullwidth">
+    <tr>
+        <th>GEF ID</th>
+        <th>Focal Area</th>
+        <th>Project Cycle Stage</th>
+    </tr>
+    <tr>
+        <td tal:content="ob/project_general_info/getGEFid | string:unknown" />
+        <td tal:content="ob/project_general_info/getFocalAreaNames | string:unknown" />
+        <td tal:content="ob/milestones/getProjectStage | string:unknown" />
+    </tr>
+</table>
+</metal:pgi_matrix>
