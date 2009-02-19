@@ -13,6 +13,7 @@
  <permission>TM</permission>
  <permission>TM EO</permission>
  <permission>TM MO</permission>
+ <permission>Registrar TM MO EO</permission>
  <permission>Access contents information</permission>
  <state state_id="private"
         title="private">
@@ -43,6 +44,11 @@
    <permission-role>Manager</permission-role>
   </permission-map>
   <permission-map name="Registrar TM FMO"
+                  acquired="False">
+   <permission-role>TM</permission-role>
+   <permission-role>Manager</permission-role>
+  </permission-map>
+  <permission-map name="Registrar TM MO EO"
                   acquired="False">
    <permission-role>TM</permission-role>
    <permission-role>Manager</permission-role>
@@ -113,6 +119,15 @@
    <permission-role>Manager</permission-role>
    <permission-role>Owner</permission-role>
   </permission-map>
+  <permission-map name="Registrar TM MO EO"
+                  acquired="False">
+   <permission-role>Registrar</permission-role>
+   <permission-role>TM</permission-role>
+   <permission-role>MO</permission-role>
+   <permission-role>EO</permission-role>
+   <permission-role>Manager</permission-role>
+   <permission-role>Owner</permission-role>
+  </permission-map>
   <permission-map name="Registrar TM SPO"
                   acquired="False">
    <permission-role>Registrar</permission-role>
@@ -138,7 +153,8 @@
                   acquired="False">
    <permission-role>TM</permission-role>
    <permission-role>MO</permission-role>
-   <permission-role>Manager.Owner</permission-role>
+   <permission-role>Manager</permission-role>
+   <permission-role>Owner</permission-role>
   </permission-map>
   <permission-map name="View"
                   acquired="False">
