@@ -118,6 +118,34 @@ div.datagrid-calendar-wrapper select { width: auto !important; }
 /* Calendar image must display inline */
 div.datagrid-calendar-wrapper img { display: inline !important; }
 
+/* Styles used by referncebrowser widget */
+.destructive {
+    background: &dtml-notifyBackgroundColor; url(&dtml-portal_url;/linkTransparent.gif) 9px 1px no-repeat !important;
+    border: &dtml-borderWidth; &dtml-borderStyle; &dtml-notifyBorderColor;;
+    color: &dtml-fontColor;;
+    cursor: pointer;
+    font-size: &dtml-fontSmallSize;;
+    padding: 1px 1px 1px 15px;
+    text-transform: &dtml-textTransform;;
+    border: &dtml-borderWidth; solid &dtml-globalBorderColor;;
+}
+input.searchButton {
+    margin-bottom: &dtml-borderWidth; ! important;
+    color: &dtml-fontColor;;
+    font-size: &dtml-fontSmallSize;;
+    background: &dtml-backgroundColor; url(&dtml-portal_url;/search_icon.gif) 2px 1px no-repeat;
+    cursor: pointer;
+    padding: 1px 1px 1px 19px;
+    text-transform: &dtml-textTransform;;
+    border: &dtml-borderWidth; solid &dtml-globalBorderColor;;
+}
+
+/* Do not subject referencebrowser widget to 100% width */
+div.datagrid-reference-wrapper input[type="submit"], 
+div.datagrid-reference-wrapper input[type="button"] { 
+    width: auto !important; 
+}
+
 /* 
   </dtml-with>  (end of loaded base_properties variables)
 */

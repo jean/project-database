@@ -32,6 +32,7 @@ from Products.DataGridField.LinkColumn import LinkColumn
 from Products.DataGridField.HelpColumn import HelpColumn
 from Products.DataGridField.CheckboxColumn import CheckboxColumn
 from Products.DataGridField.CalendarColumn import CalendarColumn
+from Products.DataGridField.ReferenceColumn import ReferenceColumn
 from Products.DataGridField import validators
 
 from Products.DataGridField.config import PKG_NAME, GLOBALS
