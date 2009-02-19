@@ -906,6 +906,10 @@ class ProjectGeneralInformation(BaseContent, CurrencyMixin, BrowserDefaultMixin)
         type = self.getProjectType()
         return self.getSelectedVocabularyValue(type, 'ProjectType')
 
+    def getRegionNames(self):
+        areas = self.getRegion()
+        return self.getSelectedVocabularyValues(areas, 'Region')
+
     def getCountryNames(self):
         countries = self.getCountry()
         return self.getSelectedVocabularyValues(countries, 'Country')
