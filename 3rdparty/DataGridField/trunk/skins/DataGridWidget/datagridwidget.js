@@ -192,36 +192,35 @@ dataGridFieldFunctions.createNewRow = function(tr) {
 
 
     /* REFERENCE */
-    // xxx: more than one reference in a row not yet supported
-    
-    // Change the name of each cloned reference browser widget. We need the name
-    // of the first hidden input for each reference widget in the row.
-    var base_id = '';
-    var wrapper = jq(newtr).find(".datagrid-reference-wrapper input[type=hidden]").each(function(i) {        
-        base_id = this.id;
-        //this.name = this.name + last_suffix;
-        this.id = this.id + last_suffix;
-    });
 
-    var wrapper = jq(newtr).find(".datagrid-reference-wrapper input[type=text]").each(function(i) {        
-        this.id = base_id + last_suffix + '_label';
-    });
+    // Iterate over referencebrowser widgets in this row
+    var dummy = jq(newtr).find(".datagrid-reference-wrapper").each(function(i) {        
 
-    var startup_directory = '';
-    var at_url = '';
-    var fieldRealName = '';
-    var wrapper = jq(newtr).find(".datagrid-reference-wrapper span.meta").each(function(i) {
-        startup_directory   = this.getAttribute('startup_directory');
-        at_url              = this.getAttribute('at_url');
-        fieldRealName       = this.getAttribute('fieldRealName');
-    });
-
-    // Modify the onClick functions on each reference widget
-    var wrapper = jq(newtr).find(".datagrid-reference-wrapper input.searchButton").each(function(i) {
-        // We need a local variable here
+        // Alias
+        var div = this;
         var xlast_suffix = last_suffix;
-        this.onclick = function(){referencebrowser_openBrowser(startup_directory, 
-            base_id+xlast_suffix, at_url, fieldRealName)};
+
+        // Adjust first hidden input. It also provides us with base_id.
+        var elem = jq(div).find("input[type=hidden]");        
+        var base_id = elem.attr("id");
+        elem.attr("id", base_id + last_suffix);
+
+        // Adjust input that is used to display the label.
+        var elem = jq(div).find("input[type=text]");        
+        elem.attr("id", base_id + last_suffix + '_label');
+
+        // Retrieve a few variables needed for javascript popup launcher
+        var elem = jq(div).find("span.meta");        
+        var startup_directory   = elem.attr("startup_directory");
+        var at_url              = elem.attr("at_url");
+        var fieldRealName       = elem.attr("fieldRealName");
+
+        // Modify the onClick functions
+        var elem = jq(div).find("input.searchButton");
+        elem.click(function(){
+            referencebrowser_openBrowser(startup_directory, base_id+xlast_suffix, at_url, fieldRealName);
+        });
+
     });
 
     // 'Increment' the suffix
