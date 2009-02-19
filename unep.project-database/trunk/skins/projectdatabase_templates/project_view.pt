@@ -18,8 +18,8 @@
                 tal:content="wf_action/title|wf_action/id">
             </a>
         </tal:block>
-        <a href=""
-            tal:attributes="href string:${context/absolute_url}/project_general_info/edit">
+        <a href="" tal:attributes="href string:${context/absolute_url}/project_general_info/edit"
+            tal:condition="python:member.has_role(['Owner', 'Manager', 'TM', 'Registrar'], context)">
             <span i18n:translate="edit_general_info">Edit Project General Information</span></a>
     </div>
     <hr />
