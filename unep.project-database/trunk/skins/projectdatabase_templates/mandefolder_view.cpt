@@ -29,7 +29,6 @@
             </select>
             <input class="context" type="submit" name="form.button.add" value="Create"/>
         </form>
-    </tal:form>
 <hr />
 </div>
 <div>
