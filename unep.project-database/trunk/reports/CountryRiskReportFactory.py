@@ -17,7 +17,14 @@ class CountryRiskReportFactory(object):
             'Risk Rating',
             ),))
         # XXX Implement this
-        # report.setTableRows()
+        report.setTableRows(self.getReportData())
         # report.setTableTotals([])
         # report.setReportFooters()
         return report
+
+    def getReportData(self):
+        projects = self.context.objectValues(spec='Project')
+        result = []
+        for project in projects:
+            pass
+        return result
