@@ -4,6 +4,7 @@
     <role name="EO"/>
     <role name="FMO"/>
     <role name="MO"/>
+    <role name="Manager.Owner"/>
     <role name="Registrar"/>
     <role name="SPO"/>
     <role name="TM"/>

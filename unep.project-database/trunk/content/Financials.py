@@ -746,6 +746,7 @@ class Financials(BaseFolder, CurrencyMixin, BrowserDefaultMixin):
         return amount
 
 
+
 registerType(Financials, PROJECTNAME)
 # end of class Financials
 

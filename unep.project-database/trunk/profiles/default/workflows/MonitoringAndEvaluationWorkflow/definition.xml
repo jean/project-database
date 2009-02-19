@@ -2,10 +2,10 @@
 <dc-workflow workflow_id="MonitoringAndEvaluationWorkflow"
              title="MonitoringAndEvaluationWorkflow"
              state_variable="review_state"
-             initial_state="Private">
+             initial_state="private">
  <permission>Modify portal content</permission>
- <state state_id="Private"
-        title="Private">
+ <state state_id="private"
+        title="private">
   <permission-map name="Modify portal content"
                   acquired="True">
    <permission-role>MO</permission-role>

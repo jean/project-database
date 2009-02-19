@@ -118,6 +118,7 @@ class CountryClassification(BaseContent, BrowserDefaultMixin):
 
     # Methods
 
+
 registerType(CountryClassification, PROJECTNAME)
 # end of class CountryClassification
 
