@@ -64,6 +64,7 @@ class CountryClassificationSystem(BaseFolder, BrowserDefaultMixin):
 
     # Methods
 
+
 registerType(CountryClassificationSystem, PROJECTNAME)
 # end of class CountryClassificationSystem
 

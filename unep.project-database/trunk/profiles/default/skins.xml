@@ -9,20 +9,20 @@
  <object name="projectdatabase_images"
          meta_type="Filesystem Directory View"
          directory="ProjectDatabase/skins/projectdatabase_images"/>
- <object name="projectdatabase_styles"
-         meta_type="Filesystem Directory View"
-         directory="ProjectDatabase/skins/projectdatabase_styles"/>
  <object name="projectdatabase_templates"
          meta_type="Filesystem Directory View"
          directory="ProjectDatabase/skins/projectdatabase_templates"/>
+ <object name="projectdatabase_styles"
+         meta_type="Filesystem Directory View"
+         directory="ProjectDatabase/skins/projectdatabase_styles"/>
  
  <skin-path name="Plone Default">
   <layer insert-after="custom" 
          name="projectdatabase_images"/>
   <layer insert-after="custom" 
-         name="projectdatabase_styles"/>
-  <layer insert-after="custom" 
          name="projectdatabase_templates"/>
+  <layer insert-after="custom" 
+         name="projectdatabase_styles"/>
  </skin-path>
 
 </object>
