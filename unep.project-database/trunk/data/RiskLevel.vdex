@@ -8,6 +8,14 @@
 </vocabName>
 
 <term>
+  <termIdentifier>No Selection</termIdentifier>
+  <caption>
+    <langstring language="en">-------</langstring>
+  </caption>
+  <description />
+</term>
+
+<term>
   <termIdentifier>L</termIdentifier>
   <caption>
     <langstring language="en">Low Risk</langstring>
