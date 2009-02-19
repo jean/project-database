@@ -236,6 +236,14 @@ class MonitoringAndEvaluation(BaseContent, BrowserDefaultMixin):
                 return date
         return None
 
+    security.declarePublic('getEvaluationCriterionRatings')
+    def getEvaluationCriterionRatings(self, criterion):
+        values = self.getEvaluationRatings()
+        for v in values:
+            if v['criterion'] == criterion:
+                return (v['evaluator_rating'], v['EOU_rating'], v['GEF_EO_Rating'])
+        return (None, None, None)
+
     security.declarePublic('getContactsPath')
     def getContactsPath(self):
         purl = getToolByName(self, 'portal_url').getPortalObject().absolute_url()
