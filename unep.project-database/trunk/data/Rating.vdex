@@ -8,6 +8,14 @@
 </vocabName>
 
 <term>
+  <termIdentifier>No Selection</termIdentifier>
+  <caption>
+    <langstring language="en">-------</langstring>
+  </caption>
+  <description />
+</term>
+
+<term>
   <termIdentifier>HS</termIdentifier>
   <caption>
     <langstring language="en">Highly Satisfactory</langstring>
