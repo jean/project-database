@@ -248,6 +248,8 @@ class Milestone(BaseContent, BrowserDefaultMixin):
         return self.getConceptDevelopmentDate('SPOClearance') is not None \
             or self.getConceptDevelopmentDate('DirectorClearance') is not None \
             or self.getConceptDevelopmentDate('PAGClearance') is not None
+
+
     def getConceptDevelopmentDate(self, action):
         values = self.getConceptDevelopment()
         if values:
@@ -259,6 +261,19 @@ class Milestone(BaseContent, BrowserDefaultMixin):
                         date = v['milestone_date']
             if date != DateTime('1900/01/01'):
                 return date
+        return None
+
+    def getConceptDevelopmentMilestone(self):
+        values = self.getConceptDevelopment()
+        if values:
+            date = DateTime('1900/01/01')
+            for v in values:
+                if v['milestone_date'] \
+                    if date < v['milestone_date']:
+                        date = v['milestone_date']
+                        action = v['milestone_action']
+            if date != DateTime('1900/01/01'):
+                return action, date
         return None
 
     def isPIFClearedByCEO(self):
@@ -290,6 +305,19 @@ class Milestone(BaseContent, BrowserDefaultMixin):
                 return date
         return None
 
+    def getProjectApprovalMilestone(self):
+        values = self.getProjectApproval()
+        if values:
+            date = DateTime('1900/01/01')
+            for v in values:
+                if v['milestone_date']:
+                    if date < v['milestone_date']:
+                        date = v['milestone_date']
+                        action = v['milestone_action']
+            if date != DateTime('1900/01/01'):
+                return action, date
+        return None
+
     def getProjectImplementationDate(self, action):
         values = self.getProjectImplementation()
         if values:
@@ -301,6 +329,19 @@ class Milestone(BaseContent, BrowserDefaultMixin):
                         date = v['milestone_date']
             if date != DateTime('1900/01/01'):
                 return date
+        return None
+
+    def getProjectImplementationMilestone(self):
+        values = self.getProjectImplementation()
+        if values:
+            date = DateTime('1900/01/01')
+            for v in values:
+                if v['milestone_date']:
+                    if date < v['milestone_date']:
+                        date = v['milestone_date']
+                        action = v['milestone_action']
+            if date != DateTime('1900/01/01'):
+                return action, date
         return None
 
     def getPPGApprovalDate(self, action):
@@ -316,6 +357,19 @@ class Milestone(BaseContent, BrowserDefaultMixin):
                 return date
         return None
 
+    def getPPGApprovalMilestone(self):
+        values = self.getPPGApproval()
+        if values:
+            date = DateTime('1900/01/01')
+            for v in values:
+                if v['milestone_date']:
+                    if date < v['milestone_date']:
+                        date = v['milestone_date']
+                        action = v['milestone_action']
+            if date != DateTime('1900/01/01'):
+                return action, date
+        return None, None
+
     def getPPGImplementationDate(self, action):
         values = self.getPPGImplementation()
         if values:
@@ -327,6 +381,19 @@ class Milestone(BaseContent, BrowserDefaultMixin):
                         date = v['milestone_date']
             if date != DateTime('1900/01/01'):
                 return date
+        return None
+
+    def getPPGImplementationMilestone(self):
+        values = self.getPPGImplementation()
+        if values:
+            date = DateTime('1900/01/01')
+            for v in values:
+                if v['milestone_date']:
+                    if date < v['milestone_date']:
+                        date = v['milestone_date']
+                        action = v['milestone_action']
+            if date != DateTime('1900/01/01'):
+                return action, date
         return None
 
     def getNewPhaseImplementationDate(self, action):
@@ -360,17 +427,35 @@ class Milestone(BaseContent, BrowserDefaultMixin):
         """ Return the stage in which the project is
         """
         stage = 'PIF Approval'
-        # if self.getPIFApprovalComplete():
-        #     stage = 'PPG Approval'
-        # if self.getPPGApprovalComplete():
-        #     stage = 'PPG Implementation'
-        # if self.getPPGImplementationComplete():
-        #     stage = 'Project Approval'
-        # if self.getProjectApprovalComplete():
-        #     stage = 'Project Implementation'
-        # if self.getProjectImplementationComplete():
-        #     stage = 'Project Complete'
+        if self.getPIFApprovalComplete():
+            stage = 'PPG Approval'
+        if self.getPPGApprovalComplete():
+            stage = 'PPG Implementation'
+        if self.getPPGImplementationComplete():
+            stage = 'Project Approval'
+        if self.getProjectApprovalComplete():
+            stage = 'Project Implementation'
+        if self.getProjectImplementationComplete():
+            stage = 'Project Complete'
         return stage
+
+    security.declarePublic('getProjectStageMilestone')
+    def getProjectStageMilestone(self):
+        """ Return the latest milestone in the currect stage
+            of the project 
+        """
+        stage = self.getProjectStage()
+        if stage == 'PIF Approval':
+            return self.getConceptDevelopmentMilestone()
+        elif stage == 'PPG Approval':
+            return self.getPPGApprovalMilestone()
+        elif stage == 'PPG Implementation':
+            return self.getPPGImplementationMilestone()
+        elif stage == 'Project Approval':
+            return self.getProjectApprovalMilestone()
+        elif stage == 'Project Implementation'
+            return self.getProjectImplementationMilestone()
+        return None, None
 
 
 
