@@ -982,6 +982,7 @@ class ProjectGeneralInformation(BaseContent, CurrencyMixin, BrowserDefaultMixin)
             contacts = brains[0].getObject()
             curl = contacts.absolute_url()
             return curl[len(purl)+1:]
+        return ''
 
     def getPIFTotalGEFAmount(self):
         values = self.getPIFFinancialData()
