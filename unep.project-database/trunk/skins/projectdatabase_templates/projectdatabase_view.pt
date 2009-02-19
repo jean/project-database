@@ -15,10 +15,10 @@
                         ">
 
 <table class="table-fullwidth">
-    <tr>
+    <tr tal:define-macro="create_project">
         <td colspan="100" style="padding: 2px;">
             <a style="float:left" 
-                tal:condition="python:member.has_role(['Owner','Manager','TM','SPO','Registrar'], context)"
+                tal:condition="python:member.has_role(['Owner','Manager','TM','SPO'], context)"
                 tal:attributes="href string:@@create-project">Create a new project</a>
         </td>
     </tr>
@@ -50,12 +50,7 @@
             <td tal:content="geninfo/getProjectType | string:Unknown">Project Type</td>
         </tr>
     </tal:rep>
-    <tr>
-        <td colspan="100" style="padding: 2px;">
-            <a style="float:left" 
-                tal:condition="python:member.has_role(['Owner','Manager','TM','SPO','Registrar'], context)"
-                tal:attributes="href string:@@create-project">Create a new project</a>
-    </tr>
+    <tr tal:use-macro="here/projectdatabase_view/macros/create_project" />
 </table>
 <b><div metal:use-macro="here/batch_macros/macros/navigation" /></b>
 </tal:batch>
