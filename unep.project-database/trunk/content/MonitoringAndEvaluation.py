@@ -242,8 +242,8 @@ class MonitoringAndEvaluation(BaseContent, BrowserDefaultMixin):
         values = self.getEvaluationRatings()
         for v in values:
             if v['criterion'] == criterion:
-                return (getVocabularyValue(self, 'Rating', v['evaluator_rating']), 
-                        getVocabularyValue(self, 'Rating', v['EOU_rating']), 
+                return (getVocabularyValue(self, 'Rating', v['evaluator_rating']),
+                        getVocabularyValue(self, 'Rating', v['EOU_rating']),
                         getVocabularyValue(self, 'Rating', v['GEF_EO_Rating']))
         return (None, None, None)
 
