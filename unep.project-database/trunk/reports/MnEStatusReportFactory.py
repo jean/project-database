@@ -1,5 +1,6 @@
 from Report import Report
-from Products.ProjectDatabase.utils import inner_strip, unep_report_format_date
+from Products.ProjectDatabase.utils import \
+        inner_strip, unep_report_format_date
 
 class MnEStatusReportFactory(object):
 
@@ -59,7 +60,7 @@ class MnEStatusReportFactory(object):
                             'Unknown',
                             'Unknown',
                             mne.getOtherEvaluators(),
-                            'Unknown',
+                            mne.getEvaluationCriterionRatings('Overall rating')[0],
                             ))
 
         return result

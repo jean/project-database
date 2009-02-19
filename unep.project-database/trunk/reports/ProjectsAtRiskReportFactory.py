@@ -6,11 +6,10 @@ class ProjectsAtRiskReportFactory(object):
         self.context = context
         self.params = kw
 
-    def getReport(self):
+    def getReport(self, thename):
         # create and fill the report
-        name = "Projects at Risk Report"
-        report = Report(name)
-        report.setReportHeaders(( name,),)
+        report = Report(thename)
+        report.setReportHeaders(( thename,),)
         report.setTableHeaders(((
             'Dbase ID',
             'GEF ID',
@@ -33,7 +32,6 @@ class ProjectsAtRiskReportFactory(object):
     def getReportData(self):
         projects = self.context.objectValues(spec='Project')
         result = []
-        # import pdb; pdb.set_trace()
         for project in projects:
             for fo in project.fmi_folder.objectValues():
                 result.append((
@@ -42,7 +40,7 @@ class ProjectsAtRiskReportFactory(object):
                     fo.getIMISNumber(),
                     project.project_general_info.getFocalAreaNames(),
                     project.project_general_info.getProjectTypeName(),
-                    fo.getId(),
+                    fo.getId().upper(),
                     project.project_general_info.Title(),
                     project.project_general_info.getExecutingAgencyNames(),
                     project.project_general_info.getCurrentTM(),

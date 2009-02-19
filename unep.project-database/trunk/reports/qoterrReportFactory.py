@@ -1,4 +1,5 @@
 from Report import Report
+from Products.ProjectDatabase.utils import getVocabularyValue
 
 class qoterrReportFactory(object):
 
@@ -23,9 +24,18 @@ class qoterrReportFactory(object):
         return report
 
     def getReportData(self):
-        projects = self.projectdatabase.objectValues(spec='Project')
+        projects = self.context.objectValues(spec='Project')
         result = []
-        # for project in projects:
-
-        #     for me in project.bbb:
+        for project in projects:
+            pgi = project.project_general_info
+            mande = project.mne_folder
+            for me in mande.objectValues(spec='MonitoringAndEvaluation'):
+                if me.getEvaluationType() == 'TE':
+                    result.append((
+                        pgi.Title(),
+                        getVocabularyValue(self.context, \
+                            'Rating', me.getEOUTerminalEvaluationReportQuality()),
+                        getVocabularyValue(self.context, \
+                            'Rating', me.getGEFTerminalEvaluationReportQuality())
+                        ))
         return result

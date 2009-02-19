@@ -17,7 +17,15 @@ class ExecutingAgencyRiskReportFactory(object):
             'Risk Ratings',
             ),))
         # XXX Implement this
-        # report.setTableRows()
+        report.setTableRows(self.getReportData())
         # report.setTableTotals([])
         # report.setReportFooters()
         return report
+
+    def getReportData(self):
+        projects = self.context.objectValues(spec='Project')
+        result = []
+        for project in projects:
+            pgi = project.project_general_info
+            mofu = project.fmi_folder.getMainFinanceObject()
+        return result

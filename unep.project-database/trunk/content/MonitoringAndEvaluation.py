@@ -33,6 +33,7 @@ from Products.ATReferenceBrowserWidget.ATReferenceBrowserWidget import Reference
 import permissions
 from Products.Archetypes.utils import DisplayList
 from DateTime import DateTime
+from Products.ProjectDatabase.utils import getVocabularyValue
 ##/code-section module-header
 
 schema = Schema((
@@ -219,7 +220,7 @@ class MonitoringAndEvaluation(BaseContent, BrowserDefaultMixin):
                         date = v['step_date']
                         step = v['process_step']
             if date != DateTime('1900/01/01'):
-                return step
+                return getVocabularyValue(self, 'MEProcessStep', step)
         return None
 
     security.declarePublic('getEvaluationRatingsDates')
@@ -241,7 +242,9 @@ class MonitoringAndEvaluation(BaseContent, BrowserDefaultMixin):
         values = self.getEvaluationRatings()
         for v in values:
             if v['criterion'] == criterion:
-                return (v['evaluator_rating'], v['EOU_rating'], v['GEF_EO_Rating'])
+                return (getVocabularyValue(self, 'Rating', v['evaluator_rating']), 
+                        getVocabularyValue(self, 'Rating', v['EOU_rating']), 
+                        getVocabularyValue(self, 'Rating', v['GEF_EO_Rating']))
         return (None, None, None)
 
     security.declarePublic('getContactsPath')
