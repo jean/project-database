@@ -1,4 +1,6 @@
 from Report import Report
+from Products.ProjectDatabase.utils import \
+        inner_strip, unep_report_format_date, getVocabularyValue
 
 class ProjectImplementationReviewReportFactory(object):
 
@@ -64,18 +66,24 @@ class ProjectImplementationReviewReportFactory(object):
                         pgi.getRegionNames(),
                         pgi.getCountryNames(),
                         pgi.Title(),
-                        ms.getProjectImplementationDate('FirstDisbursementActual'),
-                        ms.getProjectImplementationDate('ClosureExpected'),
-                        ms.getProjectImplementationDate('ClosureActual'),
+                        unep_report_format_date(self.context, \
+                                ms.getProjectImplementationDate('FirstDisbursementActual')),
+                        unep_report_format_date(self.context, \
+                                ms.getProjectImplementationDate('ClosureExpected')),
+                        unep_report_format_date(self.context, \
+                                ms.getProjectImplementationDate('ClosureActual')),
                         pgi.getProjectTypeName(),
                         'Unknown',
                         'Unknown',
                         'Unknown',
                         'Unknown',
                         'Unknown',
-                        pir.getDevelopmentObjective(),
-                        pir.getImplementationProgress(),
-                        pir.getProjectRisk(),
+                        getVocabularyValue(self.context, 'Rating', \
+                                pir.getDevelopmentObjective()),
+                        getVocabularyValue(self.context, 'Rating', \
+                                pir.getImplementationProgress()),
+                        getVocabularyValue(self.context, 'RiskLevel', \
+                                pir.getProjectRisk()),
                         'Unknown',
                         'Unknown',
                         'Unknown',

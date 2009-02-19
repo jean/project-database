@@ -268,13 +268,13 @@ class Milestone(BaseContent, BrowserDefaultMixin):
         if values:
             date = DateTime('1900/01/01')
             for v in values:
-                if v['milestone_date'] \
+                if v['milestone_date']:
                     if date < v['milestone_date']:
                         date = v['milestone_date']
                         action = v['milestone_action']
             if date != DateTime('1900/01/01'):
                 return action, date
-        return None
+        return None, None
 
     def isPIFClearedByCEO(self):
         return self.getPIFApprovalDate('CEOPIFApprovalActual') is not None
@@ -316,7 +316,7 @@ class Milestone(BaseContent, BrowserDefaultMixin):
                         action = v['milestone_action']
             if date != DateTime('1900/01/01'):
                 return action, date
-        return None
+        return None, None
 
     def getProjectImplementationDate(self, action):
         values = self.getProjectImplementation()
@@ -342,7 +342,7 @@ class Milestone(BaseContent, BrowserDefaultMixin):
                         action = v['milestone_action']
             if date != DateTime('1900/01/01'):
                 return action, date
-        return None
+        return None, None
 
     def getPPGApprovalDate(self, action):
         values = self.getPPGApproval()
@@ -394,7 +394,7 @@ class Milestone(BaseContent, BrowserDefaultMixin):
                         action = v['milestone_action']
             if date != DateTime('1900/01/01'):
                 return action, date
-        return None
+        return None, None
 
     def getNewPhaseImplementationDate(self, action):
         values = self.getNewPhaseImplementation()
@@ -453,7 +453,7 @@ class Milestone(BaseContent, BrowserDefaultMixin):
             return self.getPPGImplementationMilestone()
         elif stage == 'Project Approval':
             return self.getProjectApprovalMilestone()
-        elif stage == 'Project Implementation'
+        elif stage == 'Project Implementation':
             return self.getProjectImplementationMilestone()
         return None, None
 
