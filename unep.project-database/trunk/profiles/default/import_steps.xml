@@ -6,7 +6,7 @@
     id="ProjectDatabase-Install-Vocabularies" 
     handler="Products.ProjectDatabase.setuphandlers.installVocabularies"
     title="Install Vocabularies for ProjectDatabase"
-    version="2009-02-19T13:21:57.086342">
+    version="2009-02-19T13:59:07.595141">
    <dependency step="ProjectDatabase-QI-dependencies"/>
    Installs the vocabulary files into vocabulary library for ProjectDatabase
  </import-step>
@@ -15,7 +15,7 @@
     id="ProjectDatabase-Update-RoleMappings" 
     handler="Products.ProjectDatabase.setuphandlers.updateRoleMappings"
     title="Update Workflow role mappings for ProjectDatabase"
-    version="2009-02-19T13:21:57.086342">
+    version="2009-02-19T13:59:07.595141">
    <dependency step="ProjectDatabase-QI-dependencies"/>
    updates the workflow role mappings for ProjectDatabase
  </import-step>
@@ -24,7 +24,7 @@
     id="ProjectDatabase-postInstall" 
     handler="Products.ProjectDatabase.setuphandlers.postInstall"
     title="manual coded post-install for ProjectDatabase"
-    version="2009-02-19T13:21:57.086342">
+    version="2009-02-19T13:59:07.595141">
    <dependency step="ProjectDatabase-QI-dependencies"/>
    manual coded post-install for ProjectDatabase
  </import-step>

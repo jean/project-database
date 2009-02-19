@@ -41,7 +41,6 @@ schema = Schema((
             label_msgid='ProjectDatabase_label_FiscalYear',
             i18n_domain='ProjectDatabase',
         ),
-        write_permission="TM MO",
     ),
     StringField(
         name='DevelopmentObjective',
@@ -50,7 +49,6 @@ schema = Schema((
             label_msgid='ProjectDatabase_label_DevelopmentObjective',
             i18n_domain='ProjectDatabase',
         ),
-        write_permission="TM MO",
         vocabulary=NamedVocabulary("""Rating"""),
     ),
     StringField(
@@ -60,7 +58,6 @@ schema = Schema((
             label_msgid='ProjectDatabase_label_ImplementationProgress',
             i18n_domain='ProjectDatabase',
         ),
-        write_permission="TM MO",
         vocabulary=NamedVocabulary("""Rating"""),
     ),
     StringField(
@@ -70,7 +67,6 @@ schema = Schema((
             label_msgid='ProjectDatabase_label_MonitoringAndEvaluation',
             i18n_domain='ProjectDatabase',
         ),
-        write_permission="TM MO",
         vocabulary=NamedVocabulary("""Rating"""),
     ),
     StringField(
@@ -80,7 +76,6 @@ schema = Schema((
             label_msgid='ProjectDatabase_label_ProjectRisk',
             i18n_domain='ProjectDatabase',
         ),
-        write_permission="TM MO",
         vocabulary=NamedVocabulary("""RiskLevel"""),
     ),
 

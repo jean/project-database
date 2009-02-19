@@ -4,6 +4,7 @@
  <object name="MandEfolderWorkflow" meta_type="Workflow"/>
  <object name="MilestoneWorkflow" meta_type="Workflow"/>
  <object name="MonitoringAndEvaluationWorkflow" meta_type="Workflow"/>
+ <object name="PIRRatingWorkflow" meta_type="Workflow"/>
  <object name="ProjectGeneralInformationWorkflow" meta_type="Workflow"/>
  <object name="ProjectWorkflow" meta_type="Workflow"/>
  <bindings>
@@ -24,6 +25,9 @@
   </type>
   <type type_id="MonitoringAndEvaluation">
    <bound-workflow workflow_id="MonitoringAndEvaluationWorkflow" />
+  </type>
+  <type type_id="PIRRating">
+   <bound-workflow workflow_id="PIRRatingWorkflow" />
   </type>
   <type type_id="Project">
    <bound-workflow workflow_id="ProjectWorkflow" />

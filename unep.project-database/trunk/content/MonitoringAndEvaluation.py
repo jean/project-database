@@ -45,7 +45,6 @@ schema = Schema((
             label_msgid='ProjectDatabase_label_EvaluationType',
             i18n_domain='ProjectDatabase',
         ),
-        write_permission="TM EO",
         vocabulary=NamedVocabulary("""EvaluationType"""),
     ),
     BooleanField(
@@ -55,7 +54,6 @@ schema = Schema((
             label_msgid='ProjectDatabase_label_JointEvaluation',
             i18n_domain='ProjectDatabase',
         ),
-        write_permission="TM EO",
     ),
     StringField(
         name='OtherAgency',
@@ -64,7 +62,6 @@ schema = Schema((
             label_msgid='ProjectDatabase_label_OtherAgency',
             i18n_domain='ProjectDatabase',
         ),
-        write_permission="TM EO",
     ),
     ReferenceField(
         name='OtherAgencyEvaluationContact',
@@ -76,7 +73,6 @@ schema = Schema((
         allowed_types=('Person',),
         multiValued=0,
         relationship="monitoring_contact",
-        write_permission="TM EO",
     ),
     DateTimeField(
         name='PlannedStartDate',
@@ -85,7 +81,6 @@ schema = Schema((
             label_msgid='ProjectDatabase_label_PlannedStartDate',
             i18n_domain='ProjectDatabase',
         ),
-        write_permission="TM EO",
     ),
     DataGridField(
         name='EvaluationProcessStatus',
@@ -95,7 +90,6 @@ schema = Schema((
             label_msgid='ProjectDatabase_label_EvaluationProcessStatus',
             i18n_domain='ProjectDatabase',
         ),
-        write_permission="TM EO",
         columns=('process_step', 'step_date'),
     ),
     DataGridField(
@@ -106,7 +100,6 @@ schema = Schema((
             label_msgid='ProjectDatabase_label_EvaluationRatings',
             i18n_domain='ProjectDatabase',
         ),
-        write_permission="TM EO",
         columns=('criterion', 'evaluator_rating', 'EOU_rating', 'GEF_EO_Rating'),
     ),
     StringField(
@@ -116,7 +109,6 @@ schema = Schema((
             label_msgid='ProjectDatabase_label_EOUTerminalEvaluationReportQuality',
             i18n_domain='ProjectDatabase',
         ),
-        write_permission="TM EO",
         vocabulary=NamedVocabulary("""Rating"""),
     ),
     StringField(
@@ -126,7 +118,6 @@ schema = Schema((
             label_msgid='ProjectDatabase_label_GEFTerminalEvaluationReportQuality',
             i18n_domain='ProjectDatabase',
         ),
-        write_permission="TM EO",
         vocabulary=NamedVocabulary("""Rating"""),
     ),
     DataGridField(
@@ -137,7 +128,6 @@ schema = Schema((
             label_msgid='ProjectDatabase_label_EvaluationTeam',
             i18n_domain='ProjectDatabase',
         ),
-        write_permission="TM EO",
         columns=('name', 'role'),
     ),
 
