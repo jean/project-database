@@ -125,8 +125,27 @@ class Project(BaseFolder, CurrencyMixin, BrowserDefaultMixin):
 
     security.declarePublic('projectRisk')
     def projectRisk(self):
-        pass 
+        risk = 0
+        #Project Risk
+        pgi = self.project_general_info
+        rating = pgi.getRiskRatingAtInception():
+        if rating == 'S' or rating == 'H':
+            risk += 1
+        #PIR Risk
+        mandef = self.mne_folder
+        pir = mandef.getLatestPIRRating()
+        rating = pir.getProjectRisk()
+        if rating == 'S' or rating == 'H':
+            risk += 1
+        #EA Risk
+        #Country Risk
+        #Completion Delays
+        #Disbursement Delays
+        #Delayed Finanacial reports
+        #Delayed Substantive reports
+        #Lack of revision
 
+        return risk
 
 registerType(Project, PROJECTNAME)
 # end of class Project
