@@ -146,6 +146,19 @@ div.datagrid-reference-wrapper input[type="button"] {
     width: auto !important; 
 }
 
+/* Hide money label, remove div padding, change width */
+div.datagrid-money-wrapper label { 
+    display: none;
+}    
+div.datagrid-money-wrapper div.ArchetypesMoneyWidget {
+    padding: 0;
+}
+div.datagrid-money-wrapper input[type="text"], 
+div.datagrid-money-wrapper select { 
+    width: auto !important; 
+}
+
+
 /* 
   </dtml-with>  (end of loaded base_properties variables)
 */

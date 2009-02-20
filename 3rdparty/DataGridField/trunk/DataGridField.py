@@ -155,10 +155,20 @@ class DataGridField(ObjectField):
                     
                     val = {}
                     for col in self.getColumnIds():
+                        '''
+                        # Original code below assumes strings
                         val[col] = (row.get(col,'')).strip()
                         
                         if val[col] != '':
                             empty = False
+                        '''
+                        # Replacement code
+                        avalue = row.get(col, None)
+                        if avalue is not None:
+                            empty = False
+                            if isinstance(avalue, basestring):
+                                avalue = avalue.strip()
+                        val[col] = avalue
                                                                         
                     if order is not None:                        
                         try:
