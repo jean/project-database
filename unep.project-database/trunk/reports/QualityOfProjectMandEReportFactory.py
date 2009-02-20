@@ -23,7 +23,6 @@ class QualityOfProjectMandEReportFactory(object):
             'FY',
             'TM',
             ),))
-        # XXX Implement this
         report.setTableRows(self.getReportData())
         # report.setTableTotals([])
         # report.setReportFooters()
