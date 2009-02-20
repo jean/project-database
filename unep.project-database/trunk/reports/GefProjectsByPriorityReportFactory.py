@@ -1,4 +1,6 @@
 from Report import Report
+from Products.ProjectDatabase.utils import \
+        inner_strip, amount2millions, unep_report_format_date, getVocabularyValue
 
 class GefProjectsByPriorityReportFactory(object):
 
@@ -21,8 +23,34 @@ class GefProjectsByPriorityReportFactory(object):
             'Status',
             'GEF amount',
             ),))
-        # XXX Implement this
-        # report.setTableRows()
+        #        
+        report.setTableRows(self.getReportData())
         # report.setTableTotals([])
         # report.setReportFooters()
         return report
+
+    def getReportData(self):
+        projects = self.context.objectValues(spec='Project')
+        result = []
+
+        for project in projects:
+            pgi = project.project_general_info
+            mofu = project.fmi_folder.getMainFinanceObject()
+
+            if project.isTheProjectPublished():
+                result.append((
+                    ', '.join([getVocabularyValue(self.context, \
+                            'UNEPThematicPriority', priority) \
+                            for priority in pgi.getUNEPThematicPriority()]),
+                    pgi.Title(),
+                    pgi.getFocalAreaNames(),
+                    pgi.getCurrentTM(),
+                    getVocabularyValue(self.context, \
+                            'ExecutionMode', pgi.getExecutionMode()),
+                    getVocabularyValue(self.context, \
+                            'Division', pgi.getLeadDivision()),
+                    getVocabularyValue(self.context, \
+                            'Status', mofu.getStatus()),
+                    inner_strip(project.getTotalGEFAmount()),
+                ))
+        return result 
