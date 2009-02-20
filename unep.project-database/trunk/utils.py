@@ -6,6 +6,18 @@ def inner_strip(object):
     """
     return ''.join(str(object).split(' '))
 
+def amount2millions(object):
+    """
+    Render an amount in millions
+    """
+    moneylst = str(object).split(' ')
+    currency = moneylst[0]
+    amount = ''.join(moneylst[1].split(','))
+    amount = float(amount)
+    amount = amount / 1000000.00
+    return '%s%4.2f' % (currency, amount)
+
+
 def unep_report_format_date(context, dateObject):
     if dateObject is not None:
         return context.restrictedTraverse('@@plone').toLocalizedTime(\

@@ -30,20 +30,24 @@ from Products.CMFCore.utils import getToolByName
 from Products.ATReferenceBrowserWidget.ATReferenceBrowserWidget import ReferenceBrowserWidget
 
 ##code-section module-header #fill in your manual code here
+from Products.Archetypes.utils import DisplayList
+from DateTime import DateTime
 ##/code-section module-header
 
 schema = Schema((
 
     StringField(
         name='FiscalYear',
-        widget=StringField._properties['widget'](
+        widget=SelectionWidget(
             label="Fiscal Year",
             label_msgid='ProjectDatabase_label_FiscalYear',
             i18n_domain='ProjectDatabase',
         ),
+        vocabulary="getFiscalYearVocabulary",
     ),
     StringField(
         name='DevelopmentObjective',
+        default="No Selection",
         widget=SelectionWidget(
             label="Development Objective",
             label_msgid='ProjectDatabase_label_DevelopmentObjective',
@@ -53,6 +57,7 @@ schema = Schema((
     ),
     StringField(
         name='ImplementationProgress',
+        default="No Selection",
         widget=SelectionWidget(
             label="Implementation Progress",
             label_msgid='ProjectDatabase_label_ImplementationProgress',
@@ -62,6 +67,7 @@ schema = Schema((
     ),
     StringField(
         name='MonitoringAndEvaluation',
+        default="No Selection",
         widget=SelectionWidget(
             label="Monitoring and Evaluation",
             label_msgid='ProjectDatabase_label_MonitoringAndEvaluation',
@@ -71,6 +77,7 @@ schema = Schema((
     ),
     StringField(
         name='ProjectRisk',
+        default="No Selection",
         widget=SelectionWidget(
             label="Project Risk",
             label_msgid='ProjectDatabase_label_ProjectRisk',
@@ -89,6 +96,7 @@ PIRRating_schema = BaseSchema.copy() + \
     schema.copy()
 
 ##code-section after-schema #fill in your manual code here
+PIRRating_schema['FiscalYear'].default = str(DateTime().year())
 ##/code-section after-schema
 
 class PIRRating(BaseContent, BrowserDefaultMixin):
@@ -107,6 +115,15 @@ class PIRRating(BaseContent, BrowserDefaultMixin):
     ##/code-section class-header
 
     # Methods
+    def getFiscalYearVocabulary(self):
+        dl = DisplayList()
+        year = DateTime().year()
+        startYear = year - 20
+        endYear = year + 20
+        while startYear < endYear:
+            dl.add(str(startYear), str(startYear))
+            startYear += 1
+        return dl
 
 
 registerType(PIRRating, PROJECTNAME)

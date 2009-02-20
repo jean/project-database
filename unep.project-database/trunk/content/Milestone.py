@@ -249,8 +249,6 @@ class Milestone(BaseContent, BrowserDefaultMixin):
         return self.getConceptDevelopmentDate('SPOClearance') is not None \
             or self.getConceptDevelopmentDate('DirectorClearance') is not None \
             or self.getConceptDevelopmentDate('PAGClearance') is not None
-
-
     def getConceptDevelopmentDate(self, action):
         values = self.getConceptDevelopment()
         if values:
@@ -463,7 +461,7 @@ class Milestone(BaseContent, BrowserDefaultMixin):
     security.declarePublic('getProjectStageMilestone')
     def getProjectStageMilestone(self):
         """ Return the latest milestone in the currect stage
-            of the project 
+            of the project
         """
         stage = self.getProjectStage()
         if stage == 'PIF Approval':

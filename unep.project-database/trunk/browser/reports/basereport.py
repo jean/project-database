@@ -112,6 +112,7 @@ class BaseReport(BrowserView):
                 for col in range(len(colsizes)):
                     for word in row[col].split():
                         colsizes[col] = max(len(word), colsizes[col])
+
         for row in report.getTableRows():
             for col in range(len(colsizes)):
                 colsizes[col] = max(len(row[col]), colsizes[col])

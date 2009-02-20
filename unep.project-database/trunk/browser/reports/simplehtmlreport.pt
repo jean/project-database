@@ -14,6 +14,13 @@
             <h1 class="documentFirstHeading" tal:condition="repeat/header/start" tal:content="header">Header</h1>
             <h2 class="reportHeader" tal:condition="not:repeat/header/start" tal:content="header">Header</h2>
         </tal:loop>
+        <div>
+            <a href=""
+                tal:attributes="href string:${request/URL}?format=csv">CSV</a>
+            &nbsp;
+            <a href=""
+                tal:attributes="href string:${request/URL}?format=pdf">PDF</a>
+        </div>
 
         <div style="overflow: scroll; min-height: 300px;">
             <table class="table-fullwidth">
