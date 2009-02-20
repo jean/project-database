@@ -75,7 +75,17 @@ class MandEfolder(BaseFolder, BrowserDefaultMixin):
         if year != '1900':
             return pir
 
-
+    security.declarePublic('getFinalReportInfoInYear')
+    def getFinalReportInfoInYear(self, year_end):
+        for mne in self.objectValues(spec='MonitoringAndEvaluation'):
+            report_date = mne.getEvaluationProcessStatusDates('FinalReport')
+            if report_date and \
+               report_date <= year_end and \
+               report_date > year_end - 365:
+                rating = mne.getEvaluationRatingsDates('Overall rating')
+                return mne.getEvaluationType, report_date, rating
+        None, None, None
+  
 
 registerType(MandEfolder, PROJECTNAME)
 # end of class MandEfolder
