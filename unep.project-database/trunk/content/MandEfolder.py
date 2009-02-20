@@ -82,9 +82,9 @@ class MandEfolder(BaseFolder, BrowserDefaultMixin):
             if report_date and \
                report_date <= year_end and \
                report_date > year_end - 365:
-                rating = mne.getEvaluationRatingsDates('Overall rating')
-                return mne.getEvaluationType, report_date, rating
-        None, None, None
+                   rating, b, c = mne.getEvaluationCriterionRatings('Overall rating')
+                   return mne.getEvaluationType(), report_date, rating
+        return None, None, None
   
 
 registerType(MandEfolder, PROJECTNAME)

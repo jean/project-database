@@ -142,7 +142,10 @@ MonitoringAndEvaluation_schema = BaseSchema.copy() + \
 
 ##code-section after-schema #fill in your manual code here
 MonitoringAndEvaluation_schema['OtherAgencyEvaluationContact'].widget.startup_directory_method = \
+            'getContactsPath'
 MonitoringAndEvaluation_schema['PlannedStartDate'].widget.show_hm = False
+MonitoringAndEvaluation_schema['EvaluationType'].widget.visible = \
+            {'edit':'hidden', 'view':'invisible'}
 ##/code-section after-schema
 
 class MonitoringAndEvaluation(BaseContent, BrowserDefaultMixin):
@@ -211,20 +214,6 @@ class MonitoringAndEvaluation(BaseContent, BrowserDefaultMixin):
                         step = v['process_step']
             if date != DateTime('1900/01/01'):
                 return getVocabularyValue(self, 'MEProcessStep', step)
-        return None
-
-    security.declarePublic('getEvaluationRatingsDates')
-    def getEvaluationRatingsDates(self, step):
-        values = self.getEvaluationRatings()
-        if values:
-            date = DateTime('1900/01/01')
-            for v in values:
-                if v['step_date'] \
-                   and v['process_step'] == step:
-                    if date < v['step_date']:
-                        date = v['step_date']
-            if date != DateTime('1900/01/01'):
-                return date
         return None
 
     security.declarePublic('getEvaluationCriterionRatings')

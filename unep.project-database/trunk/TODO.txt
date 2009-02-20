@@ -11,3 +11,17 @@ BUG FIXES
 * Financials - Expected completion date: show_hm to be set to False
 * Financials - Revised completion date: show_hm to be set to False
 * FMI Folder View - Only show latest task manager
+* M+E = Evaluation Type should be hidden field
+
+-----------------------------------------------------------------------
+Fiscal Year Selections
+* PGI - Project Implementation Status
+* PGI - Task Manager Period
+* Financial - FMO Period
+
+Reference Columns
+* PGI - Lead Executing Agency
+* PGI - Other Project Executing Partners
+* PGI - Task Manager Name
+* Financial - Fund Management Officer
+* MnE - Other Agency?, Evaluation Team

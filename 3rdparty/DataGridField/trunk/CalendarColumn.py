@@ -67,7 +67,7 @@ class CalendarColumn(Column):
                     if valList[1] != '00' and valList[2] != '00':
                         new_date_str = "%s/%s/%s" % (valList[0], valList[1], valList[2])
                         #new_date = DateTime(new_date_str)
-                        newRow[columnId] = new_date_str
+                        newRow[columnId] = DateTime(new_date_str)
             except IndexError:
                 pass
             except ValueError:
