@@ -229,7 +229,7 @@ schema = Schema((
     ),
     StringField(
         name='LeadAgency',
-        widget=SelectionWidget(
+        widget=SelectionWidget
             label="Lead GEF Agency",
             label_msgid='ProjectDatabase_label_LeadAgency',
             i18n_domain='ProjectDatabase',
@@ -922,11 +922,37 @@ class ProjectGeneralInformation(BaseContent, CurrencyMixin, BrowserDefaultMixin)
         scopes = self.getScope()
         return self.getSelectedVocabularyValues(scopes, 'Scope')
 
-    def getLeadExecutingAgencyName(self):
+    def getLeadExecutingAgencyNames(self):
+        values = self.getProjectExecutingAgency()
+        result = ''
+        if values:
+            for v in values:
+                if v['executing_agency']:
+                    result += v['executing_agency'] + ', '
+        if len(result) > 2:
+            result = result[:-2]
+        else:
+            result = 'Unspecified'
+        return result
+
+    def getOtherExecutingAgencyNames(self):
+        values = self.getOtherProjectExecutingPartner()
+        result = ''
+        if values:
+            for v in values:
+                if v['executing_agency']:
+                    result += v['executing_agency'] + ', '
+        if len(result) > 2:
+            result = result[:-2]
+        else:
+            result = 'Unspecified'
+        return result
+
+    def getLeadGEFAgencyName(self):
         lead = self.getLeadAgency()
         return self.getSelectedVocabularyValue(lead, 'LeadAgency')
 
-    def getExecutingAgencyNames(self):
+    def getGEFAgencyNames(self):
         lead = self.getLeadAgency()
         result = self.getSelectedVocabularyValue(lead, 'LeadAgency')
         other = self.getOtherImplementingAgency()
