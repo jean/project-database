@@ -1,4 +1,6 @@
 from Report import Report
+from Products.ProjectDatabase.utils import \
+        inner_strip, getVocabularyValue
 
 class InternallyExecutedProjectsReportFactory(object):
 
@@ -18,8 +20,27 @@ class InternallyExecutedProjectsReportFactory(object):
             'Status',
             'GEF amount',
             ),))
-        # XXX Implement this
-        # report.setTableRows()
+        report.setTableRows(self.getReportData())
         # report.setTableTotals([])
         # report.setReportFooters()
         return report
+
+    def getReportData(self):
+        projects = self.context.objectValues(spec='Project')
+        result = []
+
+        for project in projects:
+            pgi = project.project_general_info
+            if pgi.getExecutionMode() == 'Internal':
+                mofu = project.fmi_folder.getMainFinanceObject()
+                if project.isTheProjectPublished():
+                    result.append((
+                        getVocabularyValue(self.context, \
+                                'Division', pgi.getLeadDivision()),
+                        pgi.Title(),
+                        pgi.getFocalAreaNames(),
+                        getVocabularyValue(self.context, \
+                                'Status', mofu.getStatus()),
+                        inner_strip(project.getTotalGEFAmount()),
+                    ))
+        return result 
