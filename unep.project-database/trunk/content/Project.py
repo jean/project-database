@@ -123,6 +123,9 @@ class Project(BaseFolder, CurrencyMixin, BrowserDefaultMixin):
         wft = getToolByName(self, 'portal_workflow')
         return wft.getInfoFor(self, 'review_state').lower() == 'published'
 
+    security.declarePublic('projectRisk')
+    def projectRisk(self):
+        pass 
 
 
 registerType(Project, PROJECTNAME)
