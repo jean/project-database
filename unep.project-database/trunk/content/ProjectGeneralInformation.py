@@ -229,7 +229,7 @@ schema = Schema((
     ),
     StringField(
         name='LeadAgency',
-        widget=SelectionWidget
+        widget=SelectionWidget(
             label="Lead GEF Agency",
             label_msgid='ProjectDatabase_label_LeadAgency',
             i18n_domain='ProjectDatabase',
@@ -936,7 +936,7 @@ class ProjectGeneralInformation(BaseContent, CurrencyMixin, BrowserDefaultMixin)
         return result
 
     def getOtherExecutingAgencyNames(self):
-        values = self.getOtherProjectExecutingPartner()
+        values = self.getOtherProjectExecutingPartners()
         result = ''
         if values:
             for v in values:

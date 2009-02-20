@@ -1,4 +1,6 @@
 from Report import Report
+from Products.ProjectDatabase.utils import \
+        inner_strip, getVocabularyValue
 
 class ProjectsByGeographicScopeReportFactory(object):
 
@@ -21,8 +23,28 @@ class ProjectsByGeographicScopeReportFactory(object):
             'Status',
             'GEF amount',
             ),))
-        # XXX Implement this
-        # report.setTableRows()
+        report.setTableRows(self.getReportData())
         # report.setTableTotals([])
         # report.setReportFooters()
         return report
+
+    def getReportData(self):
+        projects = self.context.objectValues(spec='Project')
+        result = []
+
+        for project in projects:
+            pgi = project.project_general_info
+            mofu = project.fmi_folder.getMainFinanceObject()
+            if project.isTheProjectPublished():
+                result.append((
+                    pgi.getFocalAreaNames(),
+                    pgi.getGeographicScopeValues(),
+                    pgi.getRegionNames(),
+                    pgi.getSubRegion(),
+                    pgi.getCountryNames(),
+                    pgi.Title(),
+                    getVocabularyValue(self.context, \
+                            'Status', mofu.getStatus()),
+                    inner_strip(project.getTotalGEFAmount()),
+                ))
+        return result 

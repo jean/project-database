@@ -128,7 +128,7 @@ class Project(BaseFolder, CurrencyMixin, BrowserDefaultMixin):
         risk = 0
         #Project Risk
         pgi = self.project_general_info
-        rating = pgi.getRiskRatingAtInception():
+        rating = pgi.getRiskRatingAtInception()
         if rating == 'S' or rating == 'H':
             risk += 1
         #PIR Risk
