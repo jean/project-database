@@ -32,6 +32,7 @@ from Products.ATReferenceBrowserWidget.ATReferenceBrowserWidget import Reference
 ##code-section module-header #fill in your manual code here
 from Products.Archetypes.utils import DisplayList
 from DateTime import DateTime
+from Products.ProjectDatabase.utils import getVocabularyValue
 ##/code-section module-header
 
 schema = Schema((
@@ -273,7 +274,11 @@ class Milestone(BaseContent, BrowserDefaultMixin):
                         date = v['milestone_date']
                         action = v['milestone_action']
             if date != DateTime('1900/01/01'):
-                return action, date
+                return getVocabularyValue(
+                          self, 
+                          'ConceptDevelopmentActions', 
+                          action), \
+                       date
         return None, None
 
     def isPIFClearedByCEO(self):
@@ -315,7 +320,11 @@ class Milestone(BaseContent, BrowserDefaultMixin):
                         date = v['milestone_date']
                         action = v['milestone_action']
             if date != DateTime('1900/01/01'):
-                return action, date
+                return getVocabularyValue(
+                          self, 
+                          'ProjectApprovalActions', 
+                          action), \
+                       date
         return None, None
 
     def getProjectImplementationDate(self, action):
@@ -341,7 +350,11 @@ class Milestone(BaseContent, BrowserDefaultMixin):
                         date = v['milestone_date']
                         action = v['milestone_action']
             if date != DateTime('1900/01/01'):
-                return action, date
+                return getVocabularyValue(
+                          self, 
+                          'ProjectImplementationActions', 
+                          action), \
+                       date
         return None, None
 
     def getPPGApprovalDate(self, action):
@@ -367,7 +380,11 @@ class Milestone(BaseContent, BrowserDefaultMixin):
                         date = v['milestone_date']
                         action = v['milestone_action']
             if date != DateTime('1900/01/01'):
-                return action, date
+                return getVocabularyValue(
+                          self, 
+                          'PPGApprovalActions', 
+                          action), \
+                       date
         return None, None
 
     def getPPGImplementationDate(self, action):
@@ -393,7 +410,11 @@ class Milestone(BaseContent, BrowserDefaultMixin):
                         date = v['milestone_date']
                         action = v['milestone_action']
             if date != DateTime('1900/01/01'):
-                return action, date
+                return getVocabularyValue(
+                          self, 
+                          'PPGImplementationActions', 
+                          action), \
+                       date
         return None, None
 
     def getNewPhaseImplementationDate(self, action):

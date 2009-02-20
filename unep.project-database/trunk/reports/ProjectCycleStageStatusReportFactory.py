@@ -31,12 +31,11 @@ class ProjectCycleStageStatusReportFactory(object):
         projects = self.context.objectValues(spec='Project')
         result = []
         for project in projects:
-            if project.isTheProjectPublished():
+            mofu = project.fmi_folder.getMainFinanceObject()
+            if mofu and project.isTheProjectPublished():
                 pgi = project.project_general_info
                 mande = project.mne_folder
-                mofu = project.fmi_folder.getMainFinanceObject()
                 ms = project.milestones
-                # import pdb; pdb.set_trace()
                 milestone, msdate = ms.getProjectStageMilestone()
                 result.append((
                         project.getId(),
