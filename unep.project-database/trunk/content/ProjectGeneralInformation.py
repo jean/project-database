@@ -940,12 +940,20 @@ class ProjectGeneralInformation(BaseContent, CurrencyMixin, BrowserDefaultMixin)
         result = ''
         if values:
             for v in values:
-                if v['executing_agency']:
-                    result += v['executing_agency'] + ', '
+                if v['partner_name']:
+                    result += v['partner_name'] + ', '
         if len(result) > 2:
             result = result[:-2]
         else:
             result = 'Unspecified'
+        return result
+
+    def getAllExecutingAgencyNames(self):
+        result = self.getLeadExecutingAgencyNames()
+        if result != 'Unspecified':
+            tmp = self.getOtherExecutingAgencyNames()
+            if tmp != 'Unspecified':
+                result = result + ', ' + tmp
         return result
 
     def getLeadGEFAgencyName(self):

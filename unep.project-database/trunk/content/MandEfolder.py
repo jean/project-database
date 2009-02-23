@@ -85,7 +85,8 @@ class MandEfolder(BaseFolder, BrowserDefaultMixin):
                    rating, b, c = mne.getEvaluationCriterionRatings('Overall rating')
                    return mne.getEvaluationType(), report_date, rating
         return None, None, None
-  
+
+
 
 registerType(MandEfolder, PROJECTNAME)
 # end of class MandEfolder

@@ -53,7 +53,7 @@
         </tr>
         <tr>
             <td i18n:translate="executing_agencies">Executing Agency(ies):</td>
-            <td tal:content="pgi/getExecutingAgencyNames" />
+            <td tal:content="pgi/getAllExecutingAgencyNames" />
         </tr>
         <tr>
             <td i18n:translate="task_manager">Task Manager:</td>
