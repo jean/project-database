@@ -12,6 +12,7 @@ class ExecutingAgencyRiskReportFactory(object):
         report = Report(name)
         report.setReportHeaders(( name,),)
         report.setTableHeaders(((
+            'GEF ID',
             'Executing Agency',
             'Year',
             'Risk Ratings',
@@ -28,4 +29,13 @@ class ExecutingAgencyRiskReportFactory(object):
         for project in projects:
             pgi = project.project_general_info
             mofu = project.fmi_folder.getMainFinanceObject()
+            if mofu and project.isTheProjectPublished():
+                ratingPairs = mofu.getEARiskRatings()
+                for ratingPair in ratingPairs:
+                    result.append((
+                        project.getId(),
+                        mofu.getLeadExecutingAgency(),
+                        ratingPair[0],
+                        ratingPair[1]
+                  ))
         return result

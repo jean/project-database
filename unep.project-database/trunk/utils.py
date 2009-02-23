@@ -1,4 +1,6 @@
 from Products.CMFCore.utils import getToolByName
+from Products.Archetypes.utils import DisplayList
+from DateTime import DateTime
 
 def inner_strip(object):
     """
@@ -36,3 +38,13 @@ def getVocabularyValue(context, vocabName, selection):
         dict = vocab.getVocabularyDict(context)
         return dict[selection][0]
     return 'No Selection'
+    
+def getYearVocabulary():
+    dl = DisplayList()
+    year = DateTime().year()
+    startYear = year - 20
+    endYear = year + 20
+    while startYear < endYear:
+        dl.add(str(startYear), str(startYear))
+        startYear += 1
+    return dl

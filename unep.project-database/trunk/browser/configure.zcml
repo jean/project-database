@@ -53,6 +53,13 @@
         permission="zope2.View"
         />
 
+    <browser:page
+        for="*"
+        name="create-country"
+        class=".createcountry.CountryCreation"
+        permission="zope2.View"
+        />
+
     <include package=".reports" />
 
 </configure>

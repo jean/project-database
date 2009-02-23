@@ -1,9 +1,12 @@
 from Report import Report
+from Products.Archetypes.utils import getToolByName
+from Products.ProjectDatabase.utils import getVocabularyValue
 
 class CountryRiskReportFactory(object):
 
     def __init__(self, context, **kw):
-        self.context = context
+        portal = getToolByName(context, 'portal_url').getPortalObject()
+        self.context = portal.get('countryclassification', None)
         self.params = kw
 
     def getReport(self):
@@ -23,8 +26,15 @@ class CountryRiskReportFactory(object):
         return report
 
     def getReportData(self):
-        projects = self.context.objectValues(spec='Project')
+        countries = self.context.objectValues(spec='CountryClassification')
         result = []
-        for project in projects:
-            pass
+        for country in countries:
+            result.append((
+                getVocabularyValue(self.context,
+                    'Country', country.getCountryName()),
+                country.getYear(),
+                getVocabularyValue(self.context,
+                    'RiskLevel', country.getRiskRating())))
         return result
+          
+

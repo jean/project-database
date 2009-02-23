@@ -30,6 +30,8 @@ from Products.CMFCore.utils import getToolByName
 from Products.ATReferenceBrowserWidget.ATReferenceBrowserWidget import ReferenceBrowserWidget
 
 ##code-section module-header #fill in your manual code here
+from Products.ProjectDatabase.utils import getYearVocabulary
+from DateTime import DateTime
 ##/code-section module-header
 
 schema = Schema((
@@ -45,7 +47,7 @@ schema = Schema((
     ),
     LinesField(
         name='ConventionRatification',
-        widget=MultiSelectionWidget(
+        widget=InAndOutWidget(
             label="Convention Ratification",
             label_msgid='ProjectDatabase_label_ConventionRatification',
             i18n_domain='ProjectDatabase',
@@ -55,7 +57,7 @@ schema = Schema((
     ),
     LinesField(
         name='CountryGrouping',
-        widget=MultiSelectionWidget(
+        widget=InAndOutWidget(
             label="Country Grouping",
             label_msgid='ProjectDatabase_label_CountryGrouping',
             i18n_domain='ProjectDatabase',
@@ -88,6 +90,15 @@ schema = Schema((
             i18n_domain='ProjectDatabase',
         ),
     ),
+    StringField(
+        name='Year',
+        widget=SelectionWidget(
+            label='Year',
+            label_msgid='ProjectDatabase_label_Year',
+            i18n_domain='ProjectDatabase',
+        ),
+        vocabulary="getYearVocabulary",
+    ),
 
 ),
 )
@@ -99,6 +110,7 @@ CountryClassification_schema = BaseSchema.copy() + \
     schema.copy()
 
 ##code-section after-schema #fill in your manual code here
+CountryClassification_schema['Year'].default = str(DateTime().year())
 ##/code-section after-schema
 
 class CountryClassification(BaseContent, BrowserDefaultMixin):
@@ -117,6 +129,12 @@ class CountryClassification(BaseContent, BrowserDefaultMixin):
     ##/code-section class-header
 
     # Methods
+
+    # Manually created methods
+
+    def getYearVocabulary(self):
+        return getYearVocabulary()
+
 
 
 registerType(CountryClassification, PROJECTNAME)
