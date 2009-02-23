@@ -235,6 +235,7 @@ class MonitoringAndEvaluation(BaseContent, BrowserDefaultMixin):
             contacts = brains[0].getObject()
             curl = contacts.absolute_url()
             return curl[len(purl)+1:]
+        return ''
 
     security.declarePublic('getLeadEvaluator')
     def getLeadEvaluator(self):
