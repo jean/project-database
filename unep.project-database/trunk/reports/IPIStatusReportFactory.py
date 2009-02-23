@@ -40,7 +40,7 @@ class IPIStatusReportFactory(object):
                     project.project_general_info.getGeographicScopeValues(),
                     project.project_general_info.getCountryNames(),
                     project.project_general_info.Title(),
-                    project.project_general_info.getExecutingAgencyNames(),
+                    project.project_general_info.getLeadExecutingAgencyNames(),
                     inner_strip(project.project_general_info.getPIFTotalGEFAmount()),
                     project.project_general_info.getSummaryDescription(),
                     unep_report_format_date(self.projectdatabase, \
