@@ -273,8 +273,8 @@ class Milestone(BaseContent, BrowserDefaultMixin):
                         action = v['milestone_action']
             if date != DateTime('1900/01/01'):
                 return getVocabularyValue(
-                          self, 
-                          'ConceptDevelopmentActions', 
+                          self,
+                          'ConceptDevelopmentActions',
                           action), \
                        date
         return None, None
@@ -319,8 +319,8 @@ class Milestone(BaseContent, BrowserDefaultMixin):
                         action = v['milestone_action']
             if date != DateTime('1900/01/01'):
                 return getVocabularyValue(
-                          self, 
-                          'ProjectApprovalActions', 
+                          self,
+                          'ProjectApprovalActions',
                           action), \
                        date
         return None, None
@@ -349,8 +349,8 @@ class Milestone(BaseContent, BrowserDefaultMixin):
                         action = v['milestone_action']
             if date != DateTime('1900/01/01'):
                 return getVocabularyValue(
-                          self, 
-                          'ProjectImplementationActions', 
+                          self,
+                          'ProjectImplementationActions',
                           action), \
                        date
         return None, None
@@ -379,8 +379,8 @@ class Milestone(BaseContent, BrowserDefaultMixin):
                         action = v['milestone_action']
             if date != DateTime('1900/01/01'):
                 return getVocabularyValue(
-                          self, 
-                          'PPGApprovalActions', 
+                          self,
+                          'PPGApprovalActions',
                           action), \
                        date
         return None, None
@@ -409,8 +409,8 @@ class Milestone(BaseContent, BrowserDefaultMixin):
                         action = v['milestone_action']
             if date != DateTime('1900/01/01'):
                 return getVocabularyValue(
-                          self, 
-                          'PPGImplementationActions', 
+                          self,
+                          'PPGImplementationActions',
                           action), \
                        date
         return None, None

@@ -92,10 +92,10 @@ schema = Schema((
         ),
         write_permission="FMO",
     ),
-    ComputedField(
+    StringField(
         name='OtherLeadExecutingAgency',
-        widget=ComputedField._properties['widget'](
-            label="Other Project Executing Partners",
+        widget=StringField._properties['widget'](
+            label="Other Executing Agency",
             label_msgid='ProjectDatabase_label_OtherLeadExecutingAgency',
             i18n_domain='ProjectDatabase',
         ),
@@ -553,7 +553,6 @@ class Financials(BaseFolder, CurrencyMixin, BrowserDefaultMixin):
         return self._computeDataGridAmount( \
             [v['cofinancing_inkind_actual_amount'] \
                 for v in values if v['cofinancing_inkind_actual_amount']])
-
     security.declarePublic('getSumCashDisbursements')
     def getSumCashDisbursements(self):
         """
@@ -562,7 +561,6 @@ class Financials(BaseFolder, CurrencyMixin, BrowserDefaultMixin):
         return self._computeDataGridAmount( \
             [v['cash_disbursements_amount'] \
                 for v in values if v['cash_disbursements_amount']])
-    
     security.declarePublic('getSumCashDisbursementsToDate')
     def getSumCashDisbursementsToDate(self, to_date):
         """
@@ -574,7 +572,6 @@ class Financials(BaseFolder, CurrencyMixin, BrowserDefaultMixin):
                   if v['cash_disbursements_amount'] and \
                      v['cash_disbursements_date'] and \
                      v['cash_disbursements_date'] <= to_date])
-
     security.declarePublic('getDifference')
     def getDifference(self):
         """ calculate the difference between the committed and allocated GEF grant
@@ -612,14 +609,7 @@ class Financials(BaseFolder, CurrencyMixin, BrowserDefaultMixin):
     def getLeadExecutingAgency(self):
         """
         """
-        return self.getAProject()['project_general_info'].getLeadAgency()
-
-    def getOtherLeadExecutingAgency(self):
-        """
-        """
-        agencies = self.getAProject()['project_general_info'].getOtherImplementingAgency()
-        if agencies:
-            return agencies[0]
+        return self.getAProject()['project_general_info'].getLeadExecutingAgencyNames()
 
     def getTotalCoFinOfFinanceObjectPlanned(self):
         """

@@ -147,6 +147,8 @@ class Project(BaseFolder, CurrencyMixin, BrowserDefaultMixin):
 
         return risk
 
+
+
 registerType(Project, PROJECTNAME)
 # end of class Project
 

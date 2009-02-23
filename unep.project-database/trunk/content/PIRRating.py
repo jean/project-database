@@ -115,6 +115,9 @@ class PIRRating(BaseContent, BrowserDefaultMixin):
     ##/code-section class-header
 
     # Methods
+
+    # Manually created methods
+
     def getFiscalYearVocabulary(self):
         dl = DisplayList()
         year = DateTime().year()
@@ -124,6 +127,7 @@ class PIRRating(BaseContent, BrowserDefaultMixin):
             dl.add(str(startYear), str(startYear))
             startYear += 1
         return dl
+
 
 
 registerType(PIRRating, PROJECTNAME)
