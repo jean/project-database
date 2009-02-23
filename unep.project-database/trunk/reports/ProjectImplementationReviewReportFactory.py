@@ -71,7 +71,7 @@ class ProjectImplementationReviewReportFactory(object):
                         pir.getFiscalYear(),
                         pgi.getGEFid(),
                         mofu.getIMISNumber(),
-                        pgi.getExecutingAgencyNames(),
+                        pgi.getGEFAgencyNames(),
                         pgi.getFocalAreaNames(),
                         pgi.getGeographicScopeValues(),
                         pgi.getRegionNames(),

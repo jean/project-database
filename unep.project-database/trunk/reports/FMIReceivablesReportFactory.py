@@ -34,7 +34,7 @@ class FMIReceivablesReportFactory(object):
                 result.append((
                     ob.getIMISNumber(),
                     project.project_general_info.Title(),
-                    project.project_general_info.getExecutingAgencyNames(),
+                    project.project_general_info.getLeadExecutingAgencyNames(),
                     inner_strip(ob.getCommittedGEFGrant()),
                     inner_strip(ob.getSumCashDisbursements()),
                     inner_strip(ob.getSumYearlyExpenditures()),

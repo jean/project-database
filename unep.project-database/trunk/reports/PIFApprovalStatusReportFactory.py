@@ -48,7 +48,7 @@ class PIFApprovalStatusReportFactory(object):
                 result.append((
                     project.getId(),
                     project.project_general_info.getGEFid(),
-                    project.project_general_info.getExecutingAgencyNames(),
+                    project.project_general_info.getGEFAgencyNames(),
                     project.project_general_info.getFocalAreaNames(),
                     project.project_general_info.getProjectTypeName(),
                     project.project_general_info.getUNEPPriorityNames(),

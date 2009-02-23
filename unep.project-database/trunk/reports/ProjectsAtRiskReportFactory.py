@@ -42,7 +42,7 @@ class ProjectsAtRiskReportFactory(object):
                     project.project_general_info.getProjectTypeName(),
                     fo.getId().upper(),
                     project.project_general_info.Title(),
-                    project.project_general_info.getExecutingAgencyNames(),
+                    project.project_general_info.getLeadExecutingAgencyNames(),
                     project.project_general_info.getCurrentTM(),
                     fo.getCurrentFMO(),
                     fo.getLatestEARiskRating()
