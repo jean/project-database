@@ -30,7 +30,7 @@ from Products.CMFCore.utils import getToolByName
 from Products.ATReferenceBrowserWidget.ATReferenceBrowserWidget import ReferenceBrowserWidget
 
 ##code-section module-header #fill in your manual code here
-from Products.Archetypes.utils import DisplayList
+from Products.ProjectDatabase.utils import getYearVocabulary
 from DateTime import DateTime
 ##/code-section module-header
 
@@ -119,14 +119,7 @@ class PIRRating(BaseContent, BrowserDefaultMixin):
     # Manually created methods
 
     def getFiscalYearVocabulary(self):
-        dl = DisplayList()
-        year = DateTime().year()
-        startYear = year - 20
-        endYear = year + 20
-        while startYear < endYear:
-            dl.add(str(startYear), str(startYear))
-            startYear += 1
-        return dl
+        return getYearVocabulary()
 
 
 

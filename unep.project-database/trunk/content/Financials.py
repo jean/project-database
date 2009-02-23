@@ -95,7 +95,7 @@ schema = Schema((
     StringField(
         name='OtherLeadExecutingAgency',
         widget=StringField._properties['widget'](
-            label="Other Executing Agency",
+            label="Other Lead Executing Agency",
             label_msgid='ProjectDatabase_label_OtherLeadExecutingAgency',
             i18n_domain='ProjectDatabase',
         ),
@@ -717,6 +717,19 @@ class Financials(BaseFolder, CurrencyMixin, BrowserDefaultMixin):
             if date != DateTime('1900/01/01'):
                 return rating
         return None
+
+    def getEARiskRatings(self):
+        values = self.getExecutingAgencyRiskRating()
+        results = []
+        if values:
+            for v in values:
+                if v['Assessment_Date'] and v['Risk_Level']:
+                    rating = self.getSelectedVocabularyValue( \
+                        v['Risk_Level'],
+                        'RiskLevel')
+                    year = v['Assessment_Date'].year()
+                    results.append((year, rating))
+        return results
 
     def getSelectedVocabularyValue(self, selection, vocabName):
         if selection:
