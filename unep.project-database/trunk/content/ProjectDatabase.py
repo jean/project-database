@@ -70,9 +70,9 @@ class ProjectDatabase(BaseFolder, BrowserDefaultMixin):
     def getNextProjectId(self):
         pc = getToolByName(self, 'portal_catalog')
         projectBrains = \
-            pc.unrestrictedSearchResults( 
-                portal_type='Project', 
-                sort_on='created', 
+            pc.unrestrictedSearchResults(
+                portal_type='Project',
+                sort_on='created',
                 sort_order='reverse')
         if len(projectBrains) == 0:
             childrenCount = 0
