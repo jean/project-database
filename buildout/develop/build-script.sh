@@ -14,20 +14,19 @@ echo
 echo "=======================Setup python"
 cd $INSTANCE
 virtualenv --no-site-packages unep
-source unep/bin/activate
-python $SRC/Imaging-1.1.6/setup.py install
+unep/bin/python $SRC/Imaging-1.1.6/setup.py install
 echo "=======================Setup Reportlab"
 ln -s /usr/lib/python2.4/site-packages/reportlab unep/lib/python2.4/site-packages/reportlab
 echo
 echo "=======================Setup plone"
-easy_install ZopeSkel
-paster create -t plone3_buildout unep
+unep/bin/easy_install ZopeSkel
+unep/bin/paster create -t plone3_buildout unep
 echo
 echo "=======================Setup buildout"
 rm unep/buildout.cfg
 ln -s $REPOS/buildout/develop/buildout.cfg unep/
 cd unep
-python bootstrap.py
+bin/python bootstrap.py
 echo
 echo "=======================Setup links to dev trunks"
 ln -sf $REPOS/unep.project-database/trunk products/ProjectDatabase
