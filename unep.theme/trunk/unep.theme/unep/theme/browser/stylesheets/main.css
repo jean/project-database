@@ -530,6 +530,14 @@ div.unep-theme-div-visible {
   display: block;
 }
 
+#login-form {
+  width: 50em;
+}
+
+#forgotten-password {
+  width: 20em;
+}
+
 /*
 ** end ECMAScript Content Action Menus
 */
