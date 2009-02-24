@@ -9,6 +9,10 @@
 
 <div metal:fill-slot="main">
     <tal:def define="base here/absolute_url">
+    <!-- <div><a href="" tal:attributes="href
+    string:${base}/@@projectratingsreport">Project Ratings Report</a></div>
+    -->
+    <div>Project Ratings Report</div>
     <div>
         <a href="" tal:attributes="href string:${base}/@@keymilestonesreport">
             Key Milestones</a>
