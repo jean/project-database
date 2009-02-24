@@ -145,7 +145,7 @@ MonitoringAndEvaluation_schema['OtherAgencyEvaluationContact'].widget.startup_di
             'getContactsPath'
 MonitoringAndEvaluation_schema['PlannedStartDate'].widget.show_hm = False
 MonitoringAndEvaluation_schema['EvaluationType'].widget.visible = \
-            {'edit':'hidden', 'view':'invisible'}
+            {'edit':'hidden', 'view':'visible'}
 ##/code-section after-schema
 
 class MonitoringAndEvaluation(BaseContent, BrowserDefaultMixin):
