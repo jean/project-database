@@ -37,6 +37,13 @@
                     <span i18n:translate="gef_contacts">Contacts</span>
             </a>
         </li>
+        <li>
+            <a href="" 
+                tal:attributes="href
+                string:${context/portal_url}/countryclassification">
+                    <span i18n:translate="country_classification">Countries</span>
+            </a>
+        </li>
     </ul>
 
 </div>
