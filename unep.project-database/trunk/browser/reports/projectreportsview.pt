@@ -21,6 +21,10 @@
         <a href="" tal:attributes="href string:${base}/@@qoterrreport">
             Quality of Terminal Evaluation report ratings</a>
     </div>
+    <div>
+        <a href="" tal:attributes="href string:${base}/@@projectimplementationreviewtablereport">
+            Project Implementation Review Table Report</a>
+    </div>
     </tal:def>
 </div>
 </body>

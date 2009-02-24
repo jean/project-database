@@ -45,7 +45,7 @@ class QualityOfProjectMandEReportFactory(object):
                         pgi.getGEFid(),
                         mofu.getIMISNumber(),
                         pgi.getFocalAreaNames(),
-                        pgi.getLeadExecutingAgencyName(),
+                        pgi.getLeadGEFAgencyName(),
                         pgi.Title(),
                         getVocabularyValue(self.context, \
                             'Rating', pir.getMonitoringAndEvaluation()),

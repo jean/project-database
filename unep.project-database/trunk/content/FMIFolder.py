@@ -69,8 +69,17 @@ class FMIFolder(BaseFolder, CurrencyMixin, BrowserDefaultMixin):
     security.declarePublic('getTotalPPGAmount')
     def getTotalPPGAmount(self):
         result = self.getZeroMoneyInstance()
-        if self.get('ppg', None):
-            result = self.ppg.getSumFinanceObjectAmount()
+        ppg = self.get('ppg', None)
+        if ppg:
+            result = ppg.getSumFinanceObjectAmount()
+        return result
+
+    security.declarePublic('getTotalPDFPPGcofinActual')
+    def getTotalPDFPPGcofinActual(self):
+        result = self.getZeroMoneyInstance()
+        for fo in self.objectValues(spec='Financials'):
+            if fo.getFinanceCategory() in ['ppg', 'pdfa', 'pdfb', 'pdfc']:
+                result += fo.getTotalCoFinOfFinanceObjectActual()
         return result
 
     security.declarePublic('getTotalPDFFunding')

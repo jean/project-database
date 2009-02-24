@@ -1,4 +1,5 @@
-from Products.ProjectDatabase.reports.ProjectImplementationReviewTableReportFactory import ProjectImplementationReviewTableReportFactory
+from Products.ProjectDatabase.reports.ProjectImplementationReviewTableReportFactory \
+        import ProjectImplementationReviewTableReportFactory
 from basereport import BaseReport
 
 class ProjectImplementationReviewTableReport(BaseReport):

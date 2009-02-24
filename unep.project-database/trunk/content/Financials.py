@@ -529,6 +529,7 @@ class Financials(BaseFolder, CurrencyMixin, BrowserDefaultMixin):
         return self._computeDataGridAmount( \
             [v['cofinancing_cash_planned_amount']  \
                 for v in values if v['cofinancing_cash_planned_amount']])
+
     security.declarePublic('getSumCoFinCashActual')
     def getSumCoFinCashActual(self):
         """
@@ -537,6 +538,7 @@ class Financials(BaseFolder, CurrencyMixin, BrowserDefaultMixin):
         return self._computeDataGridAmount( \
             [v['cofinancing_cash_actual_amount'] \
                 for v in values if v['cofinancing_cash_actual_amount']])
+
     security.declarePublic('getSumCoFinInKindPlanned')
     def getSumCoFinInKindPlanned(self):
         """
@@ -545,6 +547,7 @@ class Financials(BaseFolder, CurrencyMixin, BrowserDefaultMixin):
         return self._computeDataGridAmount( \
             [v['cofinancing_inkind_planned_amount'] \
                 for v in values if v['cofinancing_inkind_planned_amount']])
+
     security.declarePublic('getSumCoFinInKindActual')
     def getSumCoFinInKindActual(self):
         """
@@ -553,6 +556,7 @@ class Financials(BaseFolder, CurrencyMixin, BrowserDefaultMixin):
         return self._computeDataGridAmount( \
             [v['cofinancing_inkind_actual_amount'] \
                 for v in values if v['cofinancing_inkind_actual_amount']])
+
     security.declarePublic('getSumCashDisbursements')
     def getSumCashDisbursements(self):
         """
@@ -561,6 +565,7 @@ class Financials(BaseFolder, CurrencyMixin, BrowserDefaultMixin):
         return self._computeDataGridAmount( \
             [v['cash_disbursements_amount'] \
                 for v in values if v['cash_disbursements_amount']])
+
     security.declarePublic('getSumCashDisbursementsToDate')
     def getSumCashDisbursementsToDate(self, to_date):
         """
@@ -572,6 +577,7 @@ class Financials(BaseFolder, CurrencyMixin, BrowserDefaultMixin):
                   if v['cash_disbursements_amount'] and \
                      v['cash_disbursements_date'] and \
                      v['cash_disbursements_date'] <= to_date])
+
     security.declarePublic('getDifference')
     def getDifference(self):
         """ calculate the difference between the committed and allocated GEF grant
