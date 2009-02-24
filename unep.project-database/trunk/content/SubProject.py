@@ -72,7 +72,7 @@ schema = Schema((
             label_msgid='ProjectDatabase_label_SubProjectExecutingAgency',
             i18n_domain='ProjectDatabase',
         ),
-        write_permission="TM",
+        write_permission="FMO",
         columns=('executing_agency','executing_agency_category'),
     ),
     MoneyField(
