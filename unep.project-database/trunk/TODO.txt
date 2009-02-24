@@ -13,6 +13,9 @@ BUG FIXES
 * FMI Folder View - Only show latest task manager
 * M+E = Evaluation Type should be hidden field
 
+Miscellaneoous
+* Thousand separators
+
 -----------------------------------------------------------------------
 Fiscal Year Selections
 * PGI - Project Implementation Status
