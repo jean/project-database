@@ -54,7 +54,6 @@
         <div><a href="" tal:attributes="href string:${base}/@@programmeframeworkreport">Programme Framework Report</a></div>
         <div><a href="" tal:attributes="href string:${base}/@@projectratingsreport">Project Ratings Report</a></div>
         <div><a href="" tal:attributes="href string:${base}/@@projectimplementationreviewtablereport">Project Implementation Review Table Report</a></div>
-        <div><a href="" tal:attributes="href string:${base}/@@keymilestonesreport">Key Milestones Report</a></div>
     <h2>Other Reports</h2>
         <div><a href="" tal:attributes="href string:${base}/@@gefprojectsbypriorityreport">GEF Projects by Priority Report</a></div>
         <div><a href="" tal:attributes="href string:${base}/@@internallyexecutedprojectsreport">Internally Executed Projects Report</a></div>
