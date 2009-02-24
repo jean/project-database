@@ -654,16 +654,20 @@ class Financials(BaseFolder, CurrencyMixin, BrowserDefaultMixin):
     def getTotalCostOfFinanceObjectVariance(self):
         return self.getTotalCostOfFinanceObjectActual() - self.getTotalCostOfFinanceObjectPlanned()
 
-    def getLastestRevisionDate(self, type='Regular'):
+    def getLastestRevisionDate(self, type=None):
         values = self.getProjectRevision()
         if values:
             date = DateTime('1900/01/01')
             for v in values:
-                if v['revision_date'] and v['revision_type'] == type:
-                    if date < v['revision_date']:
-                        date = v['revision_date']
+                if v['revision_date'] and v['revision_type']:
+                    if type is None or v['revision_type'] == type:
+                        if date < v['revision_date']:
+                            date = v['revision_date']
             if date != DateTime('1900/01/01'):
                 return date
+
+    def getNumberOfRevisions(self):
+        return len(self.getProjectRevision())
 
     def getAmountReceivable(self):
         return self.getSumCashDisbursements() - self.getSumYearlyExpenditures()
