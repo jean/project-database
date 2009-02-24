@@ -41,7 +41,7 @@
         <div><a href="" tal:attributes="href string:${base}/@@midtermreviewstatusreport">Mid-term Review Status Report</a></div>
         <div><a href="" tal:attributes="href string:${base}/@@midtermevaluationstatusreport">Mid-term Evaluation Status Report</a></div>
         <div><a href="" tal:attributes="href string:${base}/@@terminalevaluationstatusreport">Terminal Evaluation Status Report</a></div>
-        <div><a href="" tal:attributes="href string:${base}/@@qoterrreport">Quality of Terminal Evaluation Report Ratings (Portfolio Level)</a></div>
+        <div><a href="" tal:attributes="href string:${base}/@@qoterrplreport">Quality of Terminal Evaluation Report Ratings (Portfolio Level)</a></div>
         <div><a href="" tal:attributes="href string:${base}/@@projectsatriskreport">Projects at Risk Report</a></div>
         <div><a href="" tal:attributes="href string:${base}/@@countryriskreport">Country Risk Report</a></div>
         <div><a href="" tal:attributes="href string:${base}/@@executingagencyriskreport">Executing Agency Risk Report</a></div>
@@ -53,7 +53,6 @@
         <div><a href="" tal:attributes="href string:${base}/@@projectcyclestagestatusreport">Project Cycle Stage Status Report</a></div>
         <div><a href="" tal:attributes="href string:${base}/@@programmeframeworkreport">Programme Framework Report</a></div>
         <div><a href="" tal:attributes="href string:${base}/@@projectratingsreport">Project Ratings Report</a></div>
-        <div><a href="" tal:attributes="href string:${base}/@@qoterrplreport">Quality of Terminal Evaluation report ratings</a></div>
         <div><a href="" tal:attributes="href string:${base}/@@projectimplementationreviewtablereport">Project Implementation Review Table Report</a></div>
         <div><a href="" tal:attributes="href string:${base}/@@keymilestonesreport">Key Milestones Report</a></div>
     <h2>Other Reports</h2>

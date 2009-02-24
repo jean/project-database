@@ -8,7 +8,9 @@
 <body>
 
 <div metal:fill-slot="main">
-TBA
+    <tal:def define="base here/absolute_url">
+        <div><a href="" tal:attributes="href string:${base}/@@qoterrreport">Quality of Terminal Evaluation report ratings</a></div>
+    </tal:def>
 </div>
 </body>
 </html>
