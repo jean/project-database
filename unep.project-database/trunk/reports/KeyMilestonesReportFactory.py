@@ -16,6 +16,10 @@ class KeyMilestonesReportFactory(object):
             name, 
             "Project Title: %s" % self.context.project_general_info.Title(),
             "Report Date: %s" % unep_report_format_date(self.context, DateTime())),)
+        report.setTableHeaders(((
+            'Milestone',
+            'Milestone Date',
+            ),))
         report.setTableRows(self.getReportData())
         # report.setTableTotals([])
         # report.setReportFooters()
@@ -26,8 +30,6 @@ class KeyMilestonesReportFactory(object):
         result = []
         pgi = project.project_general_info
         ms = project.milestones
-        # mofu = project.fmi_folder.getMainFinanceObject()
-        # if mofu and project.isTheProjectPublished():
         result.append(( 'PDF approval:', 'Unknown'))
         result.append(( 'PIF approval:',
                     unep_report_format_date(self.context, ms.getPIFApprovalDate('CEOPIFApprovalActual'))
