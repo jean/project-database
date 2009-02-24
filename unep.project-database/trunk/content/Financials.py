@@ -408,7 +408,7 @@ schema = Schema((
             i18n_domain='ProjectDatabase',
         ),
         default_output_type='text/html',
-        write_permission="TM",
+        write_permission="FMO",
     ),
     DataGridField(
         name='ExecutingAgencyRiskRating',
