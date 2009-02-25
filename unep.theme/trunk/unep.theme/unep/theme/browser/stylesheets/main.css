@@ -538,14 +538,6 @@ div.unep-theme-div-visible {
   width: 20em;
 }
 
-td.datagridwidget-cell label.currency {
-    display:none;
-}
-
-td.datagridwidget-cell select.currency {
-    display:none;
-}
-
 /*
 ** end ECMAScript Content Action Menus
 */
