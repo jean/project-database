@@ -1,10 +1,29 @@
 THINGS TO DO ON UNEP PROJECT
-* Reports
 * Create Reference column to DataGrid - implement to classes and test
 * Create Money column to DataGrid - implement to classes and test
+* Filtered search - see email from Carmen
+* SPO Focal Area - add focal area to contacts database
+* UI for Programme Framework
 
 * Testing
 * Import historical data
+
+OUTSTANDING REPORTS
+* Donor reports
+* Project ratings report
+* Project contacts
+* Roster of evaluators
+* Projects at risk
+* Programme Framework
+* Projects by staff
+
+ISSUES
+* Text boxes – all over the database – should be small but expandible (not to discourage TMs)
+    -Add rows to textareas and max-height to kupu
+* In view mode, spacing in field labels is missing for some e.g Total cofinance planned / actual & Total Cost etc.
+    -Asked for all issues
+* Save/Cancel options at the bottom of the edit mode, should also be available at the top to avoid one scrolling down a long page, just to save one small change.
+    -Not easy UI change.
 
 BUG FIXES
 * Financials - Expected completion date: show_hm to be set to False
@@ -12,7 +31,7 @@ BUG FIXES
 * FMI Folder View - Only show latest task manager
 * Cannot edit Sub Project or MOU
 
-Miscellaneoous
+MISCELLANEOOUS
 * Thousand separators
 * Remove fieldset tabs in edit mode
 
