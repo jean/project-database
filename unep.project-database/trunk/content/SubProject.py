@@ -520,7 +520,7 @@ class SubProject(BaseContent, CurrencyMixin, BrowserDefaultMixin):
                 return result
         return 'Unspecified'
 
-    def getExecutingAgencyNames(self):
+    def getLeadExecutingAgencyNames(self):
         lead = self.getSubProjectExecutingAgency()
         result = ''
         if lead:

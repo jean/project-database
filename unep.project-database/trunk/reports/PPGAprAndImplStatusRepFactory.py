@@ -54,7 +54,7 @@ class PPGApprovalAndImplementationStatusReportFactory(object):
                     ppg.getIMISNumber(),
                     project.project_general_info.getFocalAreaNames(),
                     project.project_general_info.Title(),
-                    project.project_general_info.getLeadExecutingAgencyName(),
+                    project.project_general_info.getLeadExecutingAgencyNames(),
                     inner_strip(ppg.getCommittedGEFGrant()),
                     inner_strip(ppg.getSumFinanceObjectAmount()),
                     inner_strip(ppg.getFinanceObjectFee()),

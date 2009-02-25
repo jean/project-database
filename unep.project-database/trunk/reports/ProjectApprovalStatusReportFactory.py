@@ -49,7 +49,7 @@ class ProjectApprovalStatusReportFactory(object):
                 result.append((
                     project.getId(),
                     pgi.getGEFid(),
-                    pgi.getExecutingAgencyNames(),
+                    pgi.getLeadGEFAgencyName(),
                     pgi.getFocalAreaNames(),
                     pgi.getProjectTypeName(),
                     pgi.getGeographicScopeValues(),

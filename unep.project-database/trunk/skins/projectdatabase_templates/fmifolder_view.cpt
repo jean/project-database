@@ -215,7 +215,7 @@
                                 <a tal:attributes="href string:${so/absolute_url}/view"
                                     tal:content="so/getIMISNumber">sub project</a>
                             </td>
-                            <td tal:content="so/getExecutingAgencyNames" />
+                            <td tal:content="so/getLeadExecutingAgencyNames" />
                             <td tal:content="so/getSumCashDisbursements" />
                             <td tal:content="so/getSumYearlyExpenditures" />
                             <td tal:content="so/getAmountReceivable" />

@@ -35,7 +35,7 @@ class PPGReceivablesReportFactory(object):
                 result.append((
                     ppg.getIMISNumber(),
                     project.project_general_info.Title(),
-                    project.project_general_info.getExecutingAgencyNames(),
+                    project.project_general_info.getLeadExecutingAgencyNames(),
                     ppg.getCommittedGEFGrant(),
                     ppg.getSumCashDisbursements(),
                     ppg.getSumYearlyExpenditures(),
