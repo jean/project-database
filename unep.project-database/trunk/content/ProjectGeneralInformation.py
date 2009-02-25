@@ -25,14 +25,14 @@ from Products.ProjectDatabase.config import *
 
 # additional imports from tagged value 'import'
 from Products.FinanceFields.MoneyField import MoneyField
-from Products.DataGridField import DataGridField, Column, SelectColumn, CalendarColumn, \
-        ReferenceColumn, MoneyColumn
+from Products.DataGridField import DataGridField, Column, SelectColumn, CalendarColumn
 from Products.CMFCore.utils import getToolByName
 from Products.ATReferenceBrowserWidget.ATReferenceBrowserWidget import ReferenceBrowserWidget
 
 ##code-section module-header #fill in your manual code here
 from Products.FinanceFields.Money import Money
 from Products.ProjectDatabase.utils import getYearVocabulary
+from Products.DataGridField import MoneyColumn, ReferenceColumn
 
 datagrid_schema = Schema((
     MoneyField(
@@ -79,7 +79,7 @@ datagrid_schema = Schema((
             i18n_domain='ProjectDatabase',
         ),
     ),
-))    
+))
 ##/code-section module-header
 
 copied_fields = {}
@@ -246,12 +246,7 @@ schema = Schema((
     DataGridField(
         name='PIFFinancialData',
         widget=DataGridField._properties['widget'](
-            columns={'stage':SelectColumn('Stage', vocabulary='getPIFStageVocabulary'), 
-                'grant_to_unep':MoneyColumn('Grant to UNEP', field=datagrid_schema['grant_to_unep']), 
-                'grant_to_other_ia':MoneyColumn('Grant to other IA', field=datagrid_schema['grant_to_other_ia']), 
-                'cofinancing':MoneyColumn('Co-Financing', field=datagrid_schema['cofinancing']), 
-                'unep_fee':MoneyColumn('UNEP Fee', field=datagrid_schema['unep_fee']), 
-                'other_ia_fee':MoneyColumn('Other IA Fee', field=datagrid_schema['other_ia_fee'])},
+            columns={'stage':SelectColumn('Stage', vocabulary='getPIFStageVocabulary'), 'grant_to_unep':MoneyColumn('Grant to UNEP', field=datagrid_schema['grant_to_unep']), 'grant_to_other_ia':MoneyColumn('Grant to other IA', field=datagrid_schema['grant_to_other_ia']), 'cofinancing':MoneyColumn('Co-Financing', field=datagrid_schema['cofinancing']), 'unep_fee':MoneyColumn('UNEP Fee', field=datagrid_schema['unep_fee']), 'other_ia_fee':MoneyColumn('Other IA Fee', field=datagrid_schema['other_ia_fee'])},
             label="Financial Data at PIF",
             label_msgid='ProjectDatabase_label_PIFFinancialData',
             i18n_domain='ProjectDatabase',
@@ -384,11 +379,7 @@ schema = Schema((
         name='TaskManager',
         widget=DataGridField._properties['widget'](
             label="Task Manager",
-            columns={
-                'name' : ReferenceColumn('Name', fieldname='TaskManager'),
-                'category' : SelectColumn('Category', vocabulary='getTMCategoryVocab'),
-                'period' : Column('Period'),
-            },
+            columns={'name':ReferenceColumn('Name', fieldname='TaskManagerName'),'category':SelectColumn('Category', vocabulary='getTMCategoryVocab'),'period':SelectColumn('Period', vocabulary='getFiscalYearVocabulary')},
             label_msgid='ProjectDatabase_label_TaskManager',
             i18n_domain='ProjectDatabase',
         ),
@@ -733,7 +724,7 @@ ProjectGeneralInformation_schema['ProgrammeFrameworkTitle'].widget.startup_direc
         'getPGFPath'
 
 ProjectGeneralInformation_schema = ProjectGeneralInformation_schema.copy()  + Schema((
-    ReferenceField("fakeTaskManager",
+    ReferenceField("fakeTaskManagerName",
             widget = ReferenceBrowserWidget(
                 label="Task Manager",
                 visible=False,
@@ -1087,15 +1078,17 @@ class ProjectGeneralInformation(BaseContent, CurrencyMixin, BrowserDefaultMixin)
     def getCurrentTM(self):
         values = self.getTaskManager()
         if values:
+            refcat = getToolByName(self, 'reference_catalog')
             date = '1900'
             for v in values:
                 if v['period'] and v['name'] and v['category'] == 'Principal':
                     if date < v['period']:
                         date = v['period']
-                        name = v['name']
+                        name = refcat.lookupObject(v['name']).getFullname()
+                        name = name is not None and name or 'Unspecified'
             if date != '1900':
                 return name
-        return None
+        return 'Unspecified'
 
     security.declarePublic('getContactsPath')
     def getContactsPath(self):
@@ -1112,31 +1105,31 @@ class ProjectGeneralInformation(BaseContent, CurrencyMixin, BrowserDefaultMixin)
         values = self.getPIFFinancialData()
         amount = self.getZeroMoneyInstance()
         for v in values:
-            amount += Money(int(v['grant_to_unep']), self.getDefaultCurrency()) + \
-                    Money(int(v['grant_to_other_ia']), self.getDefaultCurrency()) + \
-                    Money(int(v['unep_fee']), self.getDefaultCurrency()) + \
-                    Money(int(v['other_ia_fee']), self.getDefaultCurrency())
+            amount += v['grant_to_unep'] + \
+                    v['grant_to_other_ia'] + \
+                    v['unep_fee'] + \
+                    v['other_ia_fee']
         return amount
 
     def getPIFUNEPGEFAmount(self):
         values = self.getPIFFinancialData()
         amount = self.getZeroMoneyInstance()
         for v in values:
-            amount += Money(int(v['grant_to_unep']), self.getDefaultCurrency())
+            amount += v['grant_to_unep']
         return amount
 
     def getPIFUNEPFee(self):
         values = self.getPIFFinancialData()
         amount = self.getZeroMoneyInstance()
         for v in values:
-            amount += Money(int(v['unep_fee']), self.getDefaultCurrency())
+            amount += v['unep_fee']
         return amount
 
     def getPIFCofinancingAmount(self):
         values = self.getPIFFinancialData()
         amount = self.getZeroMoneyInstance()
         for v in values:
-            amount += Money(int(v['cofinancing']), self.getDefaultCurrency())
+            amount += v['cofinancing']
         return amount
 
     def getPIFPPGAmount(self):
@@ -1144,7 +1137,7 @@ class ProjectGeneralInformation(BaseContent, CurrencyMixin, BrowserDefaultMixin)
         amount = self.getZeroMoneyInstance()
         for v in values:
             if v['stage'] == 'PPG':
-                amount += Money(int(v['grant_to_unep']), self.getDefaultCurrency())
+                amount += v['grant_to_unep']
         return amount
 
     security.declarePublic('getPGFPath')
