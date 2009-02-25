@@ -44,7 +44,7 @@ class FMIImplementationStatusReportFactory(object):
                 result.append((
                     ob.getIMISNumber(),
                     pgi.Title(),
-                    pgi.getExecutingAgencyNames(),
+                    pgi.getLeadExecutingAgencyNames(),
                     unep_report_format_date(
                         self.projectdatabase,
                         start_date),

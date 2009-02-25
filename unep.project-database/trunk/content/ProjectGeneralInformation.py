@@ -1026,12 +1026,6 @@ class ProjectGeneralInformation(BaseContent, CurrencyMixin, BrowserDefaultMixin)
         lead = self.getLeadAgency()
         return self.getSelectedVocabularyValue(lead, 'LeadAgency')
 
-    def getLeadExecutingAgencyName(self):
-        """ Jurgen added this to save the existing reports
-            from breaking 24/02/2009 19:11
-        """
-        return self.getLeadGEFAgencyName()
-
     def getStrategicPriorityName(self):
         priority = self.getStrategicPriority()
         return self.getSelectedVocabularyValue(priority, 'StrategicPriority')
