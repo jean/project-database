@@ -32,16 +32,25 @@
             </a>
         </li>
         <li>
+        Programme Framework
+        <!--
             <a href="" 
-                tal:attributes="href string:${context/portal_url}/contacts">
-                    <span i18n:translate="gef_contacts">Contacts</span>
+                tal:attributes="href string:${context/portal_url}/frameworkdatabase">
+                    <span i18n:translate="programme_frameworks">Programme Frameworks</span>
             </a>
+            -->
         </li>
         <li>
             <a href="" 
                 tal:attributes="href
                 string:${context/portal_url}/countryclassification">
                     <span i18n:translate="country_classification">Countries</span>
+            </a>
+        </li>
+        <li>
+            <a href="" 
+                tal:attributes="href string:${context/portal_url}/contacts">
+                    <span i18n:translate="gef_contacts">Contacts</span>
             </a>
         </li>
     </ul>
