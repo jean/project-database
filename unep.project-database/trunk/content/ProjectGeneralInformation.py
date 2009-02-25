@@ -30,7 +30,6 @@ from Products.CMFCore.utils import getToolByName
 from Products.ATReferenceBrowserWidget.ATReferenceBrowserWidget import ReferenceBrowserWidget
 
 ##code-section module-header #fill in your manual code here
-from Products.FinanceFields.Money import Money
 from Products.ProjectDatabase.utils import getYearVocabulary
 from Products.DataGridField import MoneyColumn, ReferenceColumn
 
