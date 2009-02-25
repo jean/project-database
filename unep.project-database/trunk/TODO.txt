@@ -26,21 +26,12 @@ ISSUES
     -Not easy UI change.
 
 BUG FIXES
-* Financials - Expected completion date: show_hm to be set to False
-* Financials - Revised completion date: show_hm to be set to False
-* FMI Folder View - Only show latest task manager
-* Cannot edit Sub Project or MOU
 
 MISCELLANEOOUS
 * Thousand separators
 * Remove fieldset tabs in edit mode
 
 -----------------------------------------------------------------------
-Fiscal Year Selections
-* PGI - Project Implementation Status
-* PGI - Task Manager Period
-* Financial - FMO Period
-
 Reference Columns
 * PGI - Lead Executing Agency
 * PGI - Other Project Executing Partners

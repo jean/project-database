@@ -57,7 +57,7 @@
         </tr>
         <tr>
             <td i18n:translate="task_manager">Task Manager:</td>
-            <td tal:content="pgi/getTaskManagers" />
+            <td tal:content="pgi/getCurrentTM" />
         </tr>
         <tr>
             <td i18n:translate="evaluation_budget">Evaluation Budget:</td>

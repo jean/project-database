@@ -9,7 +9,7 @@
 # GNU General Public License (GPL)
 #
 
-__author__ = """Jean Jordaan <jean.jordaan@gmail.com>, Jurgen Blignaut
+__author__ = """Mike Metcalfe <mikejmets@gmail.com>, Jurgen Blignaut
 <jurgen.blignaut@gmail.com>"""
 __docformat__ = 'plaintext'
 
@@ -31,6 +31,7 @@ from Products.ATReferenceBrowserWidget.ATReferenceBrowserWidget import Reference
 
 ##code-section module-header #fill in your manual code here
 from Products.FinanceFields.Money import Money
+from Products.ProjectDatabase.utils import getYearVocabulary
 ##/code-section module-header
 
 copied_fields = {}
@@ -319,7 +320,7 @@ schema = Schema((
         name='ProjectImplementationStatus',
         widget=DataGridField._properties['widget'](
             label="Project Implementation Status",
-            columns={'fiscal_year':Column('Fiscal Year'),'narrative':Column('Project activities and objectives met')},
+            columns={'fiscal_year':SelectColumn('Fiscal Year', vocabulary='getFiscalYearVocabulary'),'narrative':Column('Project activities and objectives met')},
             label_msgid='ProjectDatabase_label_ProjectImplementationStatus',
             i18n_domain='ProjectDatabase',
         ),
@@ -330,7 +331,7 @@ schema = Schema((
         name='TaskManager',
         widget=DataGridField._properties['widget'](
             label="Task Manager",
-            columns={'name':Column('Name'),'category':SelectColumn('Category', vocabulary='getTMCategoryVocab'),'period':Column('Period')},
+            columns={'name':Column('Name'),'category':SelectColumn('Category', vocabulary='getTMCategoryVocab'),'period':SelectColumn('Period', vocabulary='getFiscalYearVocabulary')},
             label_msgid='ProjectDatabase_label_TaskManager',
             i18n_domain='ProjectDatabase',
         ),
@@ -965,7 +966,7 @@ class ProjectGeneralInformation(BaseContent, CurrencyMixin, BrowserDefaultMixin)
         return self.getSelectedVocabularyValue(lead, 'LeadAgency')
 
     def getLeadExecutingAgencyName(self):
-        """ Jurgen added this to save the existing reports 
+        """ Jurgen added this to save the existing reports
             from breaking 24/02/2009 19:11
         """
         return self.getLeadGEFAgencyName()
@@ -1174,6 +1175,9 @@ class ProjectGeneralInformation(BaseContent, CurrencyMixin, BrowserDefaultMixin)
                 hide.append('EAMultipleFocalAreas')
 
         return show, hide
+
+    def getFiscalYearVocabulary(self):
+        return getYearVocabulary()
 
 
 

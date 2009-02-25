@@ -24,7 +24,7 @@
 # 02110-1301, USA.
 #
 
-__author__ = """Jean Jordaan <jean.jordaan@gmail.com>, Jurgen Blignaut
+__author__ = """Mike Metcalfe <mikejmets@gmail.com>, Jurgen Blignaut
 <jurgen.blignaut@gmail.com>"""
 __docformat__ = 'plaintext'
 
