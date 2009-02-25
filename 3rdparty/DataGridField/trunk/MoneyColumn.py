@@ -41,7 +41,11 @@ class MoneyColumn(Column):
 
     security.declarePublic('getDefault')
     def getDefault(self, context):
-        return Money(self._field.default, self._field.getDefaultCurrency(context))
+        if self._field.use_global_currency:
+          currency = self._field.getGlobalCurrency()
+        else:
+          currency = self._field.getDefaultCurrency(context)
+        return Money(self._field.default, currency)
 
     security.declarePublic('getMacro')
     def getMacro(self):
@@ -65,10 +69,14 @@ class MoneyColumn(Column):
             if di['orderindex_'] != 'template_row_marker':
                 # Attempt to convert to Money. Falied conversion can be avoided by
                 # the calling application doing validation.
+                if self._field.use_global_currency:
+                    currency = self._field.getGlobalCurrency()
+                else:
+                    currency = di.get(columnId + '_currency', None)
                 try:
-                    money = Money(di[columnId], di[columnId + '_currency'])
+                    money = Money(di[columnId], currency)
                 except ValueError:
-                    money = Money('0.00', self._field.getDefaultCurrency(context).int_currency_symbol)
+                    money = Money('0.00', currency)
                 row[columnId] = money
 
             result.append(row)
