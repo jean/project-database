@@ -25,13 +25,61 @@ from Products.ProjectDatabase.config import *
 
 # additional imports from tagged value 'import'
 from Products.FinanceFields.MoneyField import MoneyField
-from Products.DataGridField import DataGridField, Column, SelectColumn, CalendarColumn
+from Products.DataGridField import DataGridField, Column, SelectColumn, CalendarColumn, \
+        ReferenceColumn, MoneyColumn
 from Products.CMFCore.utils import getToolByName
 from Products.ATReferenceBrowserWidget.ATReferenceBrowserWidget import ReferenceBrowserWidget
 
 ##code-section module-header #fill in your manual code here
 from Products.FinanceFields.Money import Money
 from Products.ProjectDatabase.utils import getYearVocabulary
+
+datagrid_schema = Schema((
+    MoneyField(
+        name='grant_to_unep',
+        default='0.0',
+        widget=MoneyField._properties['widget'](
+            label="",
+            i18n_domain='ProjectDatabase',
+        ),
+    ),
+
+    MoneyField(
+        name='grant_to_other_ia',
+        default='0.0',
+        widget=MoneyField._properties['widget'](
+            label="",
+            i18n_domain='ProjectDatabase',
+        ),
+    ),
+
+    MoneyField(
+        name='cofinancing',
+        default='0.0',
+        widget=MoneyField._properties['widget'](
+            label="",
+            i18n_domain='ProjectDatabase',
+        ),
+    ),
+
+    MoneyField(
+        name='unep_fee',
+        default='0.0',
+        widget=MoneyField._properties['widget'](
+            label="",
+            i18n_domain='ProjectDatabase',
+        ),
+    ),
+
+    MoneyField(
+        name='other_ia_fee',
+        default='0.0',
+        widget=MoneyField._properties['widget'](
+            label="",
+            i18n_domain='ProjectDatabase',
+        ),
+    ),
+))    
 ##/code-section module-header
 
 copied_fields = {}
@@ -198,7 +246,12 @@ schema = Schema((
     DataGridField(
         name='PIFFinancialData',
         widget=DataGridField._properties['widget'](
-            columns={'stage':SelectColumn('Stage', vocabulary='getPIFStageVocabulary'), 'grant_to_unep':Column('Grant to UNEP'), 'grant_to_other_ia':Column('Grant to other IA'), 'cofinancing':Column('Co-Financing'), 'unep_fee':Column('UNEP Fee'), 'other_ia_fee':Column('Other IA Fee')},
+            columns={'stage':SelectColumn('Stage', vocabulary='getPIFStageVocabulary'), 
+                'grant_to_unep':MoneyColumn('Grant to UNEP', field=datagrid_schema['grant_to_unep']), 
+                'grant_to_other_ia':MoneyColumn('Grant to other IA', field=datagrid_schema['grant_to_other_ia']), 
+                'cofinancing':MoneyColumn('Co-Financing', field=datagrid_schema['cofinancing']), 
+                'unep_fee':MoneyColumn('UNEP Fee', field=datagrid_schema['unep_fee']), 
+                'other_ia_fee':MoneyColumn('Other IA Fee', field=datagrid_schema['other_ia_fee'])},
             label="Financial Data at PIF",
             label_msgid='ProjectDatabase_label_PIFFinancialData',
             i18n_domain='ProjectDatabase',
@@ -331,7 +384,11 @@ schema = Schema((
         name='TaskManager',
         widget=DataGridField._properties['widget'](
             label="Task Manager",
-            columns={'name':Column('Name'),'category':SelectColumn('Category', vocabulary='getTMCategoryVocab'),'period':SelectColumn('Period', vocabulary='getFiscalYearVocabulary')},
+            columns={
+                'name' : ReferenceColumn('Name', fieldname='TaskManager'),
+                'category' : SelectColumn('Category', vocabulary='getTMCategoryVocab'),
+                'period' : Column('Period'),
+            },
             label_msgid='ProjectDatabase_label_TaskManager',
             i18n_domain='ProjectDatabase',
         ),
@@ -674,6 +731,20 @@ ProjectGeneralInformation_schema['ProjectManager'].widget.startup_directory_meth
         'getContactsPath'
 ProjectGeneralInformation_schema['ProgrammeFrameworkTitle'].widget.startup_directory_method = \
         'getPGFPath'
+
+ProjectGeneralInformation_schema = ProjectGeneralInformation_schema.copy()  + Schema((
+    ReferenceField("fakeTaskManager",
+            widget = ReferenceBrowserWidget(
+                label="Task Manager",
+                visible=False,
+                startup_directory='/contacts',
+            ),
+            allowed_types=('Person',),
+            relationship='pgi_taskmanager_fake',
+            multiValued=0,
+        )
+))
+#
 ##/code-section after-schema
 
 class ProjectGeneralInformation(BaseContent, CurrencyMixin, BrowserDefaultMixin):
