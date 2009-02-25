@@ -33,6 +33,65 @@ from Products.ATReferenceBrowserWidget.ATReferenceBrowserWidget import Reference
 ##code-section module-header #fill in your manual code here
 from DateTime import DateTime
 from Products.FinanceFields.Money import Money
+from Products.ProjectDatabase.utils import getYearVocabulary as getAnnualVocabulary
+from Products.DataGridField import MoneyColumn
+
+datagrid_schema = Schema((
+
+    MoneyField(
+        name='cofinancing_cash_planned_amount',
+        default='0.0',
+        widget=MoneyField._properties['widget'](
+            label="",
+            i18n_domain='Financials',
+        ),
+    ),
+
+    MoneyField(
+        name='cofinancing_cash_actual_amount',
+        default='0.0',
+        widget=MoneyField._properties['widget'](
+            label="",
+            i18n_domain='Financials',
+        ),
+    ),
+
+    MoneyField(
+        name='cofinancing_inkind_planned_amount',
+        default='0.0',
+        widget=MoneyField._properties['widget'](
+            label="",
+            i18n_domain='Financials',
+        ),
+    ),
+
+    MoneyField(
+        name='cofinancing_inkind_actual_amount',
+        default='0.0',
+        widget=MoneyField._properties['widget'](
+            label="",
+            i18n_domain='Financials',
+        ),
+    ),
+
+    MoneyField(
+        name='cash_disbursements_amount',
+        default='0.0',
+        widget=MoneyField._properties['widget'](
+            label="",
+            i18n_domain='Financials',
+        ),
+    ),
+
+    MoneyField(
+        name='amount',
+        default='0.0',
+        widget=MoneyField._properties['widget'](
+            label="",
+            i18n_domain='Financials',
+        ),
+    ),
+))
 ##/code-section module-header
 
 schema = Schema((
@@ -88,7 +147,7 @@ schema = Schema((
     DataGridField(
         name='CoFinancingCash',
         widget=DataGridField._properties['widget'](
-            columns={ 'cofinancing_cash_source' : SelectColumn("Source", vocabulary="getDonorTypesVocabulary"), 'cofinancing_cash_donor_name' : Column("Name of donor"), 'cofinancing_cash_planned_amount' : Column("Planned Amount"), 'cofinancing_cash_actual_amount' : Column("Actual Amount") },
+            columns={ 'cofinancing_cash_source' : SelectColumn("Source", vocabulary="getDonorTypesVocabulary"), 'cofinancing_cash_donor_name' : Column("Name of donor"), 'cofinancing_cash_planned_amount' : MoneyColumn("Planned Amount", field=datagrid_schema['cofinancing_cash_planned_amount']), 'cofinancing_cash_actual_amount' : MoneyColumn("Actual Amount", field=datagrid_schema['cofinancing_cash_actual_amount']) },
             label="Cofinancing: Cash",
             label_msgid='ProjectDatabase_label_CoFinancingCash',
             i18n_domain='ProjectDatabase',
@@ -99,7 +158,7 @@ schema = Schema((
     DataGridField(
         name='CoFinancingInKind',
         widget=DataGridField._properties['widget'](
-            columns={ 'cofinancing_inkind_source' : SelectColumn("Source", vocabulary="getDonorTypesVocabulary"), 'cofinancing_inkind_donor_name' : Column("Name of donor"), 'cofinancing_inkind_planned_amount' : Column("Planned Amount"), 'cofinancing_inkind_actual_amount' : Column("Actual Amount") },
+            columns={ 'cofinancing_inkind_source' : SelectColumn("Source", vocabulary="getDonorTypesVocabulary"), 'cofinancing_inkind_donor_name' : Column("Name of donor"), 'cofinancing_inkind_planned_amount' : MoneyColumn("Planned Amount", field=datagrid_schema['cofinancing_inkind_planned_amount']), 'cofinancing_inkind_actual_amount' : MoneyColumn("Actual Amount", field=datagrid_schema['cofinancing_inkind_actual_amount']) },
             label="Cofinancing: In Kind",
             label_msgid='ProjectDatabase_label_CoFinancingInKind',
             i18n_domain='ProjectDatabase',
@@ -164,7 +223,7 @@ schema = Schema((
     DataGridField(
         name='CashDisbursements',
         widget=DataGridField._properties['widget'](
-            columns={ 'cash_disbursements_date' : CalendarColumn("Date"), 'cash_disbursements_amount' : Column("Amount"), 'cash_disbursements_imis_rcpt_number' : Column("IMIS RCPT Number") },
+            columns={ 'cash_disbursements_date' : CalendarColumn("Date"), 'cash_disbursements_amount' : MoneyColumn("Amount", field=datagrid_schema['cash_disbursements_amount']), 'cash_disbursements_imis_rcpt_number' : Column("IMIS RCPT Number") },
             label="Cash Disbursements",
             label_msgid='ProjectDatabase_label_CashDisbursements',
             i18n_domain='ProjectDatabase',
@@ -184,7 +243,7 @@ schema = Schema((
     DataGridField(
         name='YearlyExpenditures',
         widget=DataGridField._properties['widget'](
-            columns={ 'year' : Column("Year"), 'amount' : Column("Amount") },
+            columns={ 'year' : SelectColumn("Year", vocabulary='getYearVocabulary'), 'amount' : MoneyColumn("Amount", field=datagrid_schema['amount']) },
             label="Yearly Expenditures",
             label_msgid='ProjectDatabase_label_YearlyExpenditures',
             i18n_domain='ProjectDatabase',
@@ -261,7 +320,7 @@ schema = Schema((
     DataGridField(
         name='Reports',
         widget=DataGridField._properties['widget'](
-            columns={ 'report_type' : SelectColumn("Report Type", vocabulary="getReportTypesVocabulary"), 'report_period' : Column("Report Period"), 'report_received_date' : CalendarColumn("Report Received Date"), 'amount' : Column("Amount") },
+            columns={ 'report_type' : SelectColumn("Report Type", vocabulary="getReportTypesVocabulary"), 'report_period' : SelectColumn("Report Period", vocabulary="getYearVocabulary"), 'report_received_date' : CalendarColumn("Report Received Date"), 'amount' : MoneyColumn("Amount", field=datagrid_schema['amount']) },
             label='Reports',
             label_msgid='ProjectDatabase_label_Reports',
             i18n_domain='ProjectDatabase',
@@ -375,7 +434,7 @@ class SubProject(BaseContent, CurrencyMixin, BrowserDefaultMixin):
         amount = self.getZeroMoneyInstance()
         for v in column:
             if v:
-                amount += Money(int(v), self.getDefaultCurrency())
+                amount += v
         return amount
 
     security.declarePublic('getSumCoFinCashPlanned')
@@ -470,6 +529,9 @@ class SubProject(BaseContent, CurrencyMixin, BrowserDefaultMixin):
                     result += v['executing_agency'] + ', '
             return result[:-2]
         return 'Unspecified'
+
+    def getYearVocabulary(self):
+        return getAnnualVocabulary()
 
 
 
