@@ -1759,6 +1759,11 @@ msgstr ""
 msgid "ProjectDatabase_label_Website"
 msgstr ""
 
+#. Default: "Year"
+#: content/CountryClassification.py
+msgid "ProjectDatabase_label_Year"
+msgstr ""
+
 #. Default: "Yearlyexpenditures"
 #: content/SubProject.py
 #: content/Financials.py

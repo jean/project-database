@@ -9,7 +9,7 @@
 # GNU General Public License (GPL)
 #
 
-__author__ = """Jean Jordaan <jean.jordaan@gmail.com>, Jurgen Blignaut
+__author__ = """Mike Metcalfe <mikejmets@gmail.com>, Jurgen Blignaut
 <jurgen.blignaut@gmail.com>"""
 __docformat__ = 'plaintext'
 
@@ -32,6 +32,7 @@ from Products.ATReferenceBrowserWidget.ATReferenceBrowserWidget import Reference
 ##code-section module-header #fill in your manual code here
 from DateTime import DateTime
 from Products.FinanceFields.Money import Money
+from Products.ProjectDatabase.utils import getYearVocabulary
 ##/code-section module-header
 
 schema = Schema((
@@ -307,7 +308,7 @@ schema = Schema((
     DataGridField(
         name='YearlyExpenditures',
         widget=DataGridField._properties['widget'](
-            columns={ 'year' : Column("Year"), 'amount' : Column("Amount") },
+            columns={ 'year' : SelectColumn("Year", vocabulary='getFiscalYearVocabulary'), 'amount' : Column("Amount") },
             label="Yearly Expenditures",
             label_msgid='ProjectDatabase_label_YearlyExpenditures',
             i18n_domain='ProjectDatabase',
@@ -369,7 +370,7 @@ schema = Schema((
     DataGridField(
         name='Reports',
         widget=DataGridField._properties['widget'](
-            columns={ 'report_type' : SelectColumn("Report Type", vocabulary="getReportTypesVocabulary"), 'report_period' : Column("Report Period"), 'report_received_date' : CalendarColumn("Report Received Date"), 'amount' : Column("Amount") },
+            columns={ 'report_type' : SelectColumn("Report Type", vocabulary="getReportTypesVocabulary"), 'report_period' : SelectColumn("Report Period", vocabulary='getFiscalYearVocabulary'), 'report_received_date' : CalendarColumn("Report Received Date"), 'amount' : Column("Amount") },
             label="Reports",
             label_msgid='ProjectDatabase_label_Reports',
             i18n_domain='ProjectDatabase',
@@ -380,7 +381,7 @@ schema = Schema((
     DataGridField(
         name='FundManagementOfficer',
         widget=DataGridField._properties['widget'](
-            columns= { 'FMO_Name': Column("Name"), "FMO_Type":SelectColumn("Type", vocabulary="getTMCategoryVocabulary"), "FMO_Period":Column('Period')},
+            columns= { 'FMO_Name': Column("Name"), "FMO_Type":SelectColumn("Type", vocabulary="getTMCategoryVocabulary"), "FMO_Period":SelectColumn('Period', vocabulary='getFiscalYearVocabulary')},
             label="Fund Management Officer",
             label_msgid='ProjectDatabase_label_FundManagementOfficer',
             i18n_domain='ProjectDatabase',
@@ -529,7 +530,6 @@ class Financials(BaseFolder, CurrencyMixin, BrowserDefaultMixin):
         return self._computeDataGridAmount( \
             [v['cofinancing_cash_planned_amount']  \
                 for v in values if v['cofinancing_cash_planned_amount']])
-
     security.declarePublic('getSumCoFinCashActual')
     def getSumCoFinCashActual(self):
         """
@@ -538,7 +538,6 @@ class Financials(BaseFolder, CurrencyMixin, BrowserDefaultMixin):
         return self._computeDataGridAmount( \
             [v['cofinancing_cash_actual_amount'] \
                 for v in values if v['cofinancing_cash_actual_amount']])
-
     security.declarePublic('getSumCoFinInKindPlanned')
     def getSumCoFinInKindPlanned(self):
         """
@@ -547,7 +546,6 @@ class Financials(BaseFolder, CurrencyMixin, BrowserDefaultMixin):
         return self._computeDataGridAmount( \
             [v['cofinancing_inkind_planned_amount'] \
                 for v in values if v['cofinancing_inkind_planned_amount']])
-
     security.declarePublic('getSumCoFinInKindActual')
     def getSumCoFinInKindActual(self):
         """
@@ -556,7 +554,6 @@ class Financials(BaseFolder, CurrencyMixin, BrowserDefaultMixin):
         return self._computeDataGridAmount( \
             [v['cofinancing_inkind_actual_amount'] \
                 for v in values if v['cofinancing_inkind_actual_amount']])
-
     security.declarePublic('getSumCashDisbursements')
     def getSumCashDisbursements(self):
         """
@@ -565,7 +562,6 @@ class Financials(BaseFolder, CurrencyMixin, BrowserDefaultMixin):
         return self._computeDataGridAmount( \
             [v['cash_disbursements_amount'] \
                 for v in values if v['cash_disbursements_amount']])
-
     security.declarePublic('getSumCashDisbursementsToDate')
     def getSumCashDisbursementsToDate(self, to_date):
         """
@@ -577,7 +573,6 @@ class Financials(BaseFolder, CurrencyMixin, BrowserDefaultMixin):
                   if v['cash_disbursements_amount'] and \
                      v['cash_disbursements_date'] and \
                      v['cash_disbursements_date'] <= to_date])
-
     security.declarePublic('getDifference')
     def getDifference(self):
         """ calculate the difference between the committed and allocated GEF grant
@@ -771,6 +766,9 @@ class Financials(BaseFolder, CurrencyMixin, BrowserDefaultMixin):
           [v['Amount'] for v in values \
             if v['Amount'] and v['EvaluationType'] == type])
         return amount
+
+    def getFiscalYearVocabulary(self):
+        return getYearVocabulary()
 
 
 
