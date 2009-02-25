@@ -143,6 +143,7 @@ schema = Schema((
     MoneyField(
         name='FinanceObjectFee',
         default='0.0',
+        use_global_currency = True,
         widget=MoneyField._properties['widget'](
             label="Finance Object Fee",
             label_msgid='ProjectDatabase_label_FinanceObjectFee',
@@ -660,10 +661,12 @@ class Financials(BaseFolder, CurrencyMixin, BrowserDefaultMixin):
         if values:
             date = DateTime('1900/01/01')
             for v in values:
-                if v['revision_date'] and v['revision_type']:
-                    if type is None or v['revision_type'] == type:
-                        if date < v['revision_date']:
-                            date = v['revision_date']
+                revision_date = v.get('revision_date', None)
+                revision_type = v.get('revision_type', None)
+                if revision_date and revision_type:
+                    if type is None or revision_type == type:
+                        if date < revision_date:
+                            date = revision_date
             if date != DateTime('1900/01/01'):
                 return date
 

@@ -1084,8 +1084,11 @@ class ProjectGeneralInformation(BaseContent, CurrencyMixin, BrowserDefaultMixin)
                 if v['period'] and v['name'] and v['category'] == 'Principal':
                     if date < v['period']:
                         date = v['period']
-                        name = refcat.lookupObject(v['name']).getFullname()
-                        name = name is not None and name or 'Unspecified'
+                        mem = refcat.lookupObject(v['name'])
+                        if mem is not None:
+                            name = mem.getFullname()
+                        else:
+                            name = 'Unspecified'
             if date != '1900':
                 return name
         return 'Unspecified'

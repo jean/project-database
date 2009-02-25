@@ -58,12 +58,15 @@ DirectoryView.registerDirectory('skins', product_globals)
 
 
 ##code-section custom-init-head #fill in your manual code here
+from Products.FinanceFields.MoneyField import MoneyField
+MoneyField._properties['use_global_currency'] = True
 ##/code-section custom-init-head
 
 
 def initialize(context):
     """initialize product (called by zope)"""
     ##code-section custom-init-top #fill in your manual code here
+
     ##/code-section custom-init-top
 
     # imports packages and types for registration
