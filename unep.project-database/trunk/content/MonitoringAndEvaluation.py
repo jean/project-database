@@ -147,6 +147,21 @@ MonitoringAndEvaluation_schema['OtherAgencyEvaluationContact'].widget.startup_di
 MonitoringAndEvaluation_schema['PlannedStartDate'].widget.show_hm = False
 MonitoringAndEvaluation_schema['EvaluationType'].widget.visible = \
             {'edit':'hidden', 'view':'visible'}
+
+MonitoringAndEvaluation_schema = MonitoringAndEvaluation_schema.copy()  + Schema((
+
+    ReferenceField("fakeEvaluatorName",
+            widget = ReferenceBrowserWidget(
+                label="Name",
+                visible={'edit':'hidden', 'view':'invisible'},
+                startup_directory='/contacts',
+            ),
+            allowed_types=('Person',),
+            relationship='fmi_evaluator_fake',
+            multiValued=0,
+        ),
+
+    ))
 ##/code-section after-schema
 
 class MonitoringAndEvaluation(BaseContent, BrowserDefaultMixin):
