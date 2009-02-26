@@ -34,7 +34,7 @@ from Products.ATReferenceBrowserWidget.ATReferenceBrowserWidget import Reference
 from DateTime import DateTime
 from Products.FinanceFields.Money import Money
 from Products.ProjectDatabase.utils import getYearVocabulary as getAnnualVocabulary
-from Products.DataGridField import MoneyColumn
+from Products.DataGridField import MoneyColumn, ReferenceColumn
 
 datagrid_schema = Schema((
 
@@ -126,7 +126,7 @@ schema = Schema((
     DataGridField(
         name='SubProjectExecutingAgency',
         widget=DataGridField._properties['widget'](
-            columns={'executing_agency':Column('Executing Agency'),'executing_agency_category':SelectColumn('Category', vocabulary='getCategoryVocabulary')},
+            columns={'executing_agency':ReferenceColumn('Executing Agency', fieldname='ExecutingAgencyName'),'executing_agency_category':SelectColumn('Category', vocabulary='getCategoryVocabulary')},
             label="Lead Executing Agency",
             label_msgid='ProjectDatabase_label_SubProjectExecutingAgency',
             i18n_domain='ProjectDatabase',
@@ -362,6 +362,20 @@ SubProject_schema = BaseSchema.copy() + \
 
 ##code-section after-schema #fill in your manual code here
 SubProject_schema['title'].widget.label = 'Sub-Project Title'
+
+SubProject_schema = SubProject_schema.copy()  + Schema((
+
+    ReferenceField("fakeExecutingAgencyName",
+            widget = ReferenceBrowserWidget(
+                label="Executing Agency",
+                visible={'edit':'hidden', 'view':'invisible'},
+                startup_directory='/contacts',
+            ),
+            allowed_types=('Organisation',),
+            relationship='pgi_executingagency_fake',
+            multiValued=0,
+        ),
+    ))
 ##/code-section after-schema
 
 class SubProject(BaseContent, CurrencyMixin, BrowserDefaultMixin):

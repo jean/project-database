@@ -34,7 +34,7 @@ from DateTime import DateTime
 from Products.FinanceFields.Money import Money
 from Products.ProjectDatabase.utils import getYearVocabulary
 from Products.CMFCore.utils import getToolByName
-from Products.DataGridField import MoneyColumn
+from Products.DataGridField import MoneyColumn, ReferenceColumn
 
 datagrid_schema = Schema((
     MoneyField(
@@ -457,7 +457,7 @@ schema = Schema((
     DataGridField(
         name='FundManagementOfficer',
         widget=DataGridField._properties['widget'](
-            columns= { 'FMO_Name': Column("Name"), "FMO_Type":SelectColumn("Type", vocabulary="getTMCategoryVocabulary"), "FMO_Period":SelectColumn('Period', vocabulary='getFiscalYearVocabulary')},
+            columns= { 'FMO_Name': ReferenceColumn("Name", fieldname='FMOname'), "FMO_Type":SelectColumn("Type", vocabulary="getTMCategoryVocabulary"), "FMO_Period":SelectColumn('Period', vocabulary='getFiscalYearVocabulary')},
             label="Fund Management Officer",
             label_msgid='ProjectDatabase_label_FundManagementOfficer',
             i18n_domain='ProjectDatabase',
@@ -511,6 +511,21 @@ Financials_schema = BaseFolderSchema.copy() + \
 ##code-section after-schema #fill in your manual code here
 Financials_schema['title'].widget.visible = {'edit':'hidden', 'view':'invisible'}
 Financials_schema['FinanceCategory'].widget.visible = {'edit':'hidden', 'view':'invisible'}
+
+Financials_schema = Financials_schema.copy()  + Schema((
+
+    ReferenceField("fakeFMOname",
+            widget = ReferenceBrowserWidget(
+                label="Name",
+                visible={'edit':'hidden', 'view':'invisible'},
+                startup_directory='/contacts',
+            ),
+            allowed_types=('Person',),
+            relationship='fmi_fmo_fake',
+            multiValued=0,
+        ),
+
+    ))
 ##/code-section after-schema
 
 class Financials(BaseFolder, CurrencyMixin, BrowserDefaultMixin):
@@ -825,12 +840,17 @@ class Financials(BaseFolder, CurrencyMixin, BrowserDefaultMixin):
     def getCurrentFMO(self):
         values = self.getFundManagementOfficer()
         if values:
+            refcat = getToolByName(self, 'reference_catalog')
             date = '1900'
             for v in values:
                 if v['FMO_Period'] and v['FMO_Name'] and v['FMO_Type'] == 'Principal':
                     if date < v['FMO_Period']:
                         date = v['FMO_Period']
-                        name = v['FMO_Name']
+                        officer = refcat.lookupObject(v['FMO_Name'])
+                        if officer is not None:
+                            name = officer.getFullname()
+                        else:
+                            name = 'Unspecified'
             if date != '1900':
                 return name
         return None

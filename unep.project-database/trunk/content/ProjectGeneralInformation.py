@@ -345,7 +345,7 @@ schema = Schema((
         vocabulary=NamedVocabulary("""Category"""),
         widget=DataGridField._properties['widget'](
             label="Lead Executing Agency",
-            columns={'executing_agency':Column('Executing Agency'),'executing_agency_category':SelectColumn('Category', vocabulary='getCategoryVocab')},
+            columns={'executing_agency':ReferenceColumn('Executing Agency', fieldname='ExecutingAgencyName'),'executing_agency_category':SelectColumn('Category', vocabulary='getCategoryVocab')},
             label_msgid='ProjectDatabase_label_ProjectExecutingAgency',
             i18n_domain='ProjectDatabase',
         ),
@@ -356,7 +356,7 @@ schema = Schema((
         name='OtherProjectExecutingPartners',
         widget=DataGridField._properties['widget'](
             label="Other Project Executing Partners",
-            columns={'partner_name':Column('Partner'),'category':SelectColumn('Category',vocabulary='getCategoryVocab')},
+            columns={'partner_name':ReferenceColumn('Partner', fieldname='OtherExecutingPartnerName'),'category':SelectColumn('Category',vocabulary='getCategoryVocab')},
             label_msgid='ProjectDatabase_label_OtherProjectExecutingPartners',
             i18n_domain='ProjectDatabase',
         ),
@@ -723,16 +723,39 @@ ProjectGeneralInformation_schema['ProgrammeFrameworkTitle'].widget.startup_direc
         'getPGFPath'
 
 ProjectGeneralInformation_schema = ProjectGeneralInformation_schema.copy()  + Schema((
+
     ReferenceField("fakeTaskManagerName",
             widget = ReferenceBrowserWidget(
                 label="Task Manager",
-                visible=False,
+                visible={'view':'invisible', 'edit':'hidden'},
                 startup_directory='/contacts',
             ),
             allowed_types=('Person',),
             relationship='pgi_taskmanager_fake',
             multiValued=0,
-        )
+        ),
+
+    ReferenceField("fakeExecutingAgencyName",
+            widget = ReferenceBrowserWidget(
+                label="Executing Agency",
+                visible={'view':'invisible', 'edit':'hidden'},
+                startup_directory='/contacts',
+            ),
+            allowed_types=('Organisation',),
+            relationship='pgi_executingagency_fake',
+            multiValued=0,
+        ),
+
+    ReferenceField("fakeOtherExecutingPartnerName",
+            widget = ReferenceBrowserWidget(
+                label="Partner",
+                visible={'view':'invisible', 'edit':'hidden'},
+                startup_directory='/contacts',
+            ),
+            allowed_types=('Organisation',),
+            relationship='pgi_executingpartner_fake',
+            multiValued=0,
+        ),
 ))
 #
 ##/code-section after-schema
@@ -1005,9 +1028,15 @@ class ProjectGeneralInformation(BaseContent, CurrencyMixin, BrowserDefaultMixin)
         values = self.getOtherProjectExecutingPartners()
         result = ''
         if values:
+            refcat = getToolByName(self, 'reference_catalog')
             for v in values:
                 if v['partner_name']:
-                    result += v['partner_name'] + ', '
+                    partner = refcat.lookupObject(v['partner_name'])
+                    if partner is not None:
+                        name = partner.getName()
+                    else:
+                        name = 'Unspecified'
+                    result += name + ', '
         if len(result) > 2:
             result = result[:-2]
         else:
@@ -1042,9 +1071,15 @@ class ProjectGeneralInformation(BaseContent, CurrencyMixin, BrowserDefaultMixin)
         values = self.getTaskManager()
         result = ''
         if values:
+            refcat = getToolByName(self, 'reference_catalog')
             for v in values:
                 if v['name']:
-                    result += v['name'] + ', '
+                    mem = refcat.lookupObject(v['name'])
+                    if mem is not None:
+                        name = mem.getFullname()
+                    else:
+                        name = 'Unspecified'
+                    result += name + ', '
         if len(result) > 2:
             result = result[:-2]
         else:
@@ -1140,7 +1175,7 @@ class ProjectGeneralInformation(BaseContent, CurrencyMixin, BrowserDefaultMixin)
     def getPGFPath(self):
         purl = getToolByName(self, 'portal_url').getPortalObject().absolute_url()
         pc = getToolByName(self, 'portal_catalog')
-        brains = pc({'portal_type':'ProgrammeFramework'})
+        brains = pc({'portal_type':'FrameworkDatabase'})
         if len(brains) > 0:
             pgf = brains[0].getObject()
             curl = pgf.absolute_url()

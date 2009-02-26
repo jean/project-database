@@ -64,6 +64,7 @@ class FrameworkDatabase(BaseFolder, BrowserDefaultMixin):
 
     # Methods
 
+
 registerType(FrameworkDatabase, PROJECTNAME)
 # end of class FrameworkDatabase
 
