@@ -56,13 +56,15 @@ schema = Schema((
             i18n_domain='ProjectDatabase',
         ),
     ),
-    StringField(
+    ReferenceField(
         name='OtherAgency',
-        widget=StringField._properties['widget'](
+        widget=ReferenceBrowserWidget(
             label="Other Agency",
             label_msgid='ProjectDatabase_label_OtherAgency',
             i18n_domain='ProjectDatabase',
         ),
+        allowed_types= ('Organisation',),
+        relationship="OtherAgency_Organisation",
     ),
     ReferenceField(
         name='OtherAgencyEvaluationContact',

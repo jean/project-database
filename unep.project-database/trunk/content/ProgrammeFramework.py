@@ -63,7 +63,7 @@ schema = Schema((
     ),
     LinesField(
         name='FocalArea',
-        widget=MultiSelectionWidget(
+        widget=InAndOutWidget(
             label="Focal Area",
             label_msgid='ProjectDatabase_label_FocalArea',
             i18n_domain='ProjectDatabase',
@@ -75,6 +75,7 @@ schema = Schema((
         name='ProjectSubmissionDeadline',
         widget=DateTimeField._properties['widget'](
             label="Project Submission Deadline",
+            show_hm=False,
             label_msgid='ProjectDatabase_label_ProjectSubmissionDeadline',
             i18n_domain='ProjectDatabase',
         ),
@@ -83,7 +84,7 @@ schema = Schema((
         name='ProgrammeFrameworkMilestones',
         widget=DataGridField._properties['widget'](
             label="Programme Framework Milestones",
-            columns={'milestone_action':SelectColumn('Milestone Action', vocabulary='getMilestoneActionVocabulary'), 'milestone_date':Column('Milestone Date'),  'milestone_result':SelectColumn('Milestone Result', vocabulary='getMilestoneResultVocabulary')},
+            columns={'milestone_action':SelectColumn('Milestone Action', vocabulary='getMilestoneActionVocabulary'), 'milestone_date':CalendarColumn('Milestone Date'),  'milestone_result':SelectColumn('Milestone Result', vocabulary='getMilestoneResultVocabulary')},
             label_msgid='ProjectDatabase_label_ProgrammeFrameworkMilestones',
             i18n_domain='ProjectDatabase',
         ),
