@@ -62,7 +62,7 @@ schema = Schema((
     BooleanField(
         name='PIFApprovalComplete',
         widget=BooleanField._properties['widget'](
-            label='Pifapprovalcomplete',
+            label="PIF Approval Complete",
             label_msgid='ProjectDatabase_label_PIFApprovalComplete',
             i18n_domain='ProjectDatabase',
         ),
@@ -81,7 +81,7 @@ schema = Schema((
     BooleanField(
         name='PPGApprovalComplete',
         widget=BooleanField._properties['widget'](
-            label='Ppgapprovalcomplete',
+            label="PPG Approval Complete",
             label_msgid='ProjectDatabase_label_PPGApprovalComplete',
             i18n_domain='ProjectDatabase',
         ),
@@ -100,7 +100,7 @@ schema = Schema((
     BooleanField(
         name='PPGImplementationComplete',
         widget=BooleanField._properties['widget'](
-            label='Ppgimplementationcomplete',
+            label="PPG Implementation Complete",
             label_msgid='ProjectDatabase_label_PPGImplementationComplete',
             i18n_domain='ProjectDatabase',
         ),
@@ -119,7 +119,7 @@ schema = Schema((
     BooleanField(
         name='ProjectApprovalComplete',
         widget=BooleanField._properties['widget'](
-            label='Projectapprovalcomplete',
+            label="Project Approval Complete",
             label_msgid='ProjectDatabase_label_ProjectApprovalComplete',
             i18n_domain='ProjectDatabase',
         ),
@@ -138,7 +138,7 @@ schema = Schema((
     BooleanField(
         name='ProjectImplementationComplete',
         widget=BooleanField._properties['widget'](
-            label='Projectimplementationcomplete',
+            label="Project Implementation Complete",
             label_msgid='ProjectDatabase_label_ProjectImplementationComplete',
             i18n_domain='ProjectDatabase',
         ),
