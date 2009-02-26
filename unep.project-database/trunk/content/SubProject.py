@@ -372,7 +372,7 @@ SubProject_schema = SubProject_schema.copy()  + Schema((
                 startup_directory='/contacts',
             ),
             allowed_types=('Organisation',),
-            relationship='pgi_executingagency_fake',
+            relationship='subproj_executingagency_fake',
             multiValued=0,
         ),
     ))
