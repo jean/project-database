@@ -2,6 +2,7 @@ import transaction
 from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.migrations.migration_util import safeEditProperty
 from Products.ProjectDatabase.content.ProjectDatabase import ProjectDatabase
+from Products.ProjectDatabase.content.FrameworkDatabase import FrameworkDatabase
 from Products.ProjectDatabase.content.CountryClassificationSystem import CountryClassificationSystem
 
 PRODUCT_DEPENDENCIES = (
@@ -72,8 +73,16 @@ def Install(self, reinstall=False):
         ccs = CountryClassificationSystem('countryclassification')
         portal._setObject('countryclassification', ccs)
         ccs = portal['countryclassification']
-        ccs.title='Country Classification System'
+        ccs.title='COUNTRY CLASSIFICATION SYSTEM'
         ccs.reindexObject()
+
+    # add default framework databases folder
+    if 'frameworkdatabase' not in portal.contentIds():
+        projdb = FrameworkDatabase('frameworkdatabase')
+        portal._setObject('frameworkdatabase', projdb)
+        projdb = portal['frameworkdatabase']
+        projdb.title='FRAMEWORKS'
+        projdb.reindexObject()
 
     # remove unneeded folders
     ids=['Members', 'news', 'events', 'front-page']
