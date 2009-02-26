@@ -35,16 +35,16 @@ class ProjectsDueForClosureReportFactory(object):
         result = []
         for project in projects:
 
-            for fo in project.fmi_folder:
+            for fo in project.fmi_folder.objectValues():
 
                 if fo.getFinanceCategory() == 'ppg' and \
-                        project.milestones.getPPGImplementationDates('CompletionActual') and \
-                        not project.milestones.getPPGImplementationDates('ClosureActual'):
+                        project.milestones.getPPGImplementationDate('CompletionActual') and \
+                        not project.milestones.getPPGImplementationDate('ClosureActual'):
                     result.append((
                         fo.getIMISNumber(),
                         project.project_general_info.Title(),
                         fo.getId(),
-                        project.milestones.getPPGImplementationDates('CompletionActual'),
+                        project.milestones.getPPGImplementationDate('CompletionActual'),
                         'Unknown',
                         fo.getLatestReportData('terminal', 'report_received_date'),
                         fo.getLatestReportData('expenditure', 'report_received_date'),
@@ -55,13 +55,13 @@ class ProjectsDueForClosureReportFactory(object):
                         ))
 
                 elif fo.getFinanceCategory() in ['eea', 'fsp', 'msp'] and \
-                        project.milestones.getProjectImplementationDates('CompletionActual') and \
-                        not project.milestones.getProjectImplementationDates('ClosureActual'):
+                        project.milestones.getProjectImplementationDate('CompletionActual') and \
+                        not project.milestones.getProjectImplementationDate('ClosureActual'):
                     result.append((
                         fo.getIMISNumber(),
                         project.project_general_info.Title(),
                         fo.getId(),
-                        project.milestones.getProjectImplementationDates('CompletionActual'),
+                        project.milestones.getProjectImplementationDate('CompletionActual'),
                         'Unknown',
                         fo.getLatestReportData('terminal', 'report_received_date'),
                         fo.getLatestReportData('expenditure', 'report_received_date'),
