@@ -32,13 +32,10 @@
             </a>
         </li>
         <li>
-        Programme Framework
-        <!--
             <a href="" 
                 tal:attributes="href string:${context/portal_url}/frameworkdatabase">
                     <span i18n:translate="programme_frameworks">Programme Frameworks</span>
             </a>
-            -->
         </li>
         <li>
             <a href="" 

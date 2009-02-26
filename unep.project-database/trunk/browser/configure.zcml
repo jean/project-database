@@ -60,6 +60,13 @@
         permission="zope2.View"
         />
 
+    <browser:page
+        for="*"
+        name="create-framework"
+        class=".createframework.FrameworkCreation"
+        permission="zope2.View"
+        />
+
     <include package=".reports" />
 
 </configure>

@@ -99,7 +99,7 @@
     </div>
 
     <!-- logo bar -->
-    <div class="bar">
+    <div class="bar" style="height: 105px;">
         <div style="float: left; width: 40px; height: 105px;"></div>
         <div style="height: 105px;">
             <a href="#" tal:attributes="href string:${context/portal_url}"><img style="float: left;" src="logo.jpg" /></a>
