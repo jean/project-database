@@ -48,6 +48,7 @@ ADD_CONTENT_PERMISSIONS = {
     'PIRRating': 'ProjectDatabase: Add PIRRating',
     'CountryClassification': 'ProjectDatabase: Add CountryClassification',
     'CountryClassificationSystem': 'ProjectDatabase: Add CountryClassificationSystem',
+    'FrameworkDatabase': 'ProjectDatabase: Add FrameworkDatabase',
 }
 
 setDefaultRoles('ProjectDatabase: Add Project', ('Manager','Owner','TM', 'SPO'))
@@ -64,6 +65,7 @@ setDefaultRoles('ProjectDatabase: Add MandEfolder', ('Manager','Owner'))
 setDefaultRoles('ProjectDatabase: Add PIRRating', ('Manager','Owner','TM','MO'))
 setDefaultRoles('ProjectDatabase: Add CountryClassification', ('Manager','Owner'))
 setDefaultRoles('ProjectDatabase: Add CountryClassificationSystem', ('Manager','Owner'))
+setDefaultRoles('ProjectDatabase: Add FrameworkDatabase', ('Manager','Owner'))
 
 product_globals = globals()
 

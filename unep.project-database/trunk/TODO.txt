@@ -1,6 +1,4 @@
 THINGS TO DO ON UNEP PROJECT
-* Create Reference column to DataGrid - implement to classes and test
-* Create Money column to DataGrid - implement to classes and test
 * Filtered search - see email from Carmen
 * SPO Focal Area - add focal area to contacts database
 * UI for Programme Framework
@@ -38,6 +36,3 @@ Reference Columns
 * PGI - Task Manager Name
 * Financial - Fund Management Officer
 * MnE - Other Agency?, Evaluation Team
-
-Money Columns
-* T.B.D.

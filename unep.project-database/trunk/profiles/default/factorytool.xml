@@ -16,5 +16,6 @@
   <type portal_type="PIRRating"/>
   <type portal_type="CountryClassification"/>
   <type portal_type="CountryClassificationSystem"/>
+  <type portal_type="FrameworkDatabase"/>
  </factorytypes>
 </object>

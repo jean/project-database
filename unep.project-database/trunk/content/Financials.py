@@ -219,7 +219,6 @@ schema = Schema((
     MoneyField(
         name='FinanceObjectFee',
         default='0.0',
-        use_global_currency = True,
         widget=MoneyField._properties['widget'](
             label="Finance Object Fee",
             label_msgid='ProjectDatabase_label_FinanceObjectFee',

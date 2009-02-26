@@ -66,7 +66,6 @@ MoneyField._properties['use_global_currency'] = True
 def initialize(context):
     """initialize product (called by zope)"""
     ##code-section custom-init-top #fill in your manual code here
-
     ##/code-section custom-init-top
 
     # imports packages and types for registration
