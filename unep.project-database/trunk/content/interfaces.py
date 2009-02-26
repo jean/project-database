@@ -61,5 +61,9 @@ class ICountryClassificationSystem(Interface):
     """Marker interface for .CountryClassificationSystem.CountryClassificationSystem
     """
 
+class IFrameworkDatabase(Interface):
+    """Marker interface for .FrameworkDatabase.FrameworkDatabase
+    """
+
 ##code-section FOOT
 ##/code-section FOOT

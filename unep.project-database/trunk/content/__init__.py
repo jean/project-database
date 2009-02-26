@@ -55,6 +55,7 @@ import MandEfolder
 import PIRRating
 import CountryClassification
 import CountryClassificationSystem
+import FrameworkDatabase
 
 ##code-section init-module-footer #fill in your manual code here
 ##/code-section init-module-footer
