@@ -1,19 +1,17 @@
 THINGS TO DO ON UNEP PROJECT
 * Filtered search - see email from Carmen
 * SPO Focal Area - add focal area to contacts database
-* UI for Programme Framework
 
-* Testing
 * Import historical data
 
 OUTSTANDING REPORTS
 * Donor reports
-* Project ratings report
 * Project contacts
 * Roster of evaluators
-* Projects at risk
 * Programme Framework
 * Projects by staff
+* Project ratings report
+* Projects at risk
 
 ISSUES
 * Text boxes – all over the database – should be small but expandible (not to discourage TMs)
@@ -24,15 +22,9 @@ ISSUES
     -Not easy UI change.
 
 BUG FIXES
+* PDF Reports failing
+* Show/Hide - Include more fields for Joint Implementation on PGI
 
 MISCELLANEOOUS
 * Thousand separators
 * Remove fieldset tabs in edit mode
-
------------------------------------------------------------------------
-Reference Columns
-* PGI - Lead Executing Agency
-* PGI - Other Project Executing Partners
-* PGI - Task Manager Name
-* Financial - Fund Management Officer
-* MnE - Other Agency?, Evaluation Team
