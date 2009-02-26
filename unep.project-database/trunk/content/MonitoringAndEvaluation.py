@@ -34,6 +34,7 @@ import permissions
 from Products.Archetypes.utils import DisplayList
 from DateTime import DateTime
 from Products.ProjectDatabase.utils import getVocabularyValue
+from Products.DataGridField import ReferenceColumn
 ##/code-section module-header
 
 schema = Schema((
@@ -124,7 +125,7 @@ schema = Schema((
         name='EvaluationTeam',
         widget=DataGridField._properties['widget'](
             label="Evaluation Team",
-            columns={'name':Column('Evaluator Name'), 'role':SelectColumn('Role', vocabulary='getEvaluatorRoleVocabulary')},
+            columns={'name':ReferenceColumn('Evaluator Name', fieldname='EvaluatorName'), 'role':SelectColumn('Role', vocabulary='getEvaluatorRoleVocabulary')},
             label_msgid='ProjectDatabase_label_EvaluationTeam',
             i18n_domain='ProjectDatabase',
         ),
