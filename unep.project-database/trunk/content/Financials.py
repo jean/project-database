@@ -837,7 +837,8 @@ class Financials(BaseFolder, CurrencyMixin, BrowserDefaultMixin):
             return dict[selection][0]
         return None
 
-    def getCurrentFMO(self):
+    def getCurrentFMOPerson(self):
+        person = None
         values = self.getFundManagementOfficer()
         if values:
             refcat = getToolByName(self, 'reference_catalog')
@@ -848,12 +849,16 @@ class Financials(BaseFolder, CurrencyMixin, BrowserDefaultMixin):
                         date = v['FMO_Period']
                         officer = refcat.lookupObject(v['FMO_Name'])
                         if officer is not None:
-                            name = officer.getFullname()
-                        else:
-                            name = 'Unspecified'
-            if date != '1900':
-                return name
-        return None
+                            person = officer
+        return person
+
+    def getCurrentFMODetails(self):
+        person = self.getCurrentFMOPerson()
+        if person:
+            return person.getFullname(), \
+                  person.getEmail(), \
+                  person.getBusinessPhone()
+        return None, None, None
 
     def getEvaluationAmount(self, type):
         """

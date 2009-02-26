@@ -54,7 +54,7 @@ class MnEStatusReportFactory(object):
                             pgi.getFocalAreaNames(),
                             inner_strip(mofu.getEvaluationAmount(self.evaluationType)),
                             pgi.getCurrentTM(),
-                            mofu.getCurrentFMO(),
+                            mofu.getCurrentFMODetails()[0],
                             mne.getLatestEvaluationProcessStatus(),
                             mne.getLeadEvaluator(),
                             'Unknown',

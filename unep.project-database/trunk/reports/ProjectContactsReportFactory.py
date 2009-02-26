@@ -21,6 +21,7 @@ class ProjectContactsReportFactory(object):
             'Phone No',
             'GEF Sec',
             'email',
+            'Phone No',
             'Other IA',
             'email',
             'Phone No.',
@@ -28,7 +29,6 @@ class ProjectContactsReportFactory(object):
             'email',
             'Phone No.',
             ),))
-        # XXX Implement this
         report.setTableRows(self.getReportData())
         # report.setTableTotals([])
         # report.setReportFooters()
@@ -37,22 +37,31 @@ class ProjectContactsReportFactory(object):
     def getReportData(self):
         projects = self.context.objectValues(spec='Project')
         result = []
-        # for project in projects:
-        #     result.append((
-        #         project.project_general_info.Title(),
-        #         project.getId(),
-        #         project.project_general_info.getGEFid(),
-        #         'Unknown IMIS No',
-        #         project.project_general_info.getFocalAreaNames(),
-        #         project.project_general_info.getProjectTypeName(),
-        #         project.project_general_info.getGeographicScopeValues(),
-        #         project.project_general_info.getCountryNames(),
-        #         project.getTotalGEFAmount(),
-        #         project.getTotalUNEPGEFAmount(),
-        #         project.getTotalUNEPFee(),
-        #         project.milestones.getProjectImplementationDate('SignatureOfLegalInstrumentActual'),
-        #         project.milestones.getProjectImplementationDate('Suspension'),
-        #         'Unknown reason',
-        #         'Unknown resume date',
-        #         ))
+        for project in projects:
+            pgi = project.project_general_info
+            fmo_name = fmo_email = fmo_phone = None
+            mofu = project.fmi_folder.getMainFinanceObject()
+            if mofu:
+                fmo_name, fmo_email, fmo_phone = mofu.getCurrentFMODetails()
+            tm_name, tm_email, tm_phone = pgi.getCurrentTMDetails()
+            pm_name, pm_email, pm_phone = pgi.getProjectManagerDetails()
+            if project.isTheProjectPublished():
+                result.append((
+                    pgi.Title(),
+                    fmo_name,
+                    fmo_email,
+                    fmo_phone,
+                    tm_name,
+                    tm_email,
+                    tm_phone,
+                    "Unknown",
+                    "Unknown",
+                    "Unknown",
+                    "Unknown",
+                    "Unknown",
+                    "Unknown",
+                    pm_name,
+                    pm_email,
+                    pm_phone,
+                    ))
         return result

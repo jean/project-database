@@ -1103,7 +1103,8 @@ class ProjectGeneralInformation(BaseContent, CurrencyMixin, BrowserDefaultMixin)
             result += dict[value][0] + ', '
         return result[:-2]
 
-    def getCurrentTM(self):
+    def getCurrentTMPerson(self):
+        person = None
         values = self.getTaskManager()
         if values:
             refcat = getToolByName(self, 'reference_catalog')
@@ -1114,12 +1115,22 @@ class ProjectGeneralInformation(BaseContent, CurrencyMixin, BrowserDefaultMixin)
                         date = v['period']
                         mem = refcat.lookupObject(v['name'])
                         if mem is not None:
-                            name = mem.getFullname()
-                        else:
-                            name = 'Unspecified'
-            if date != '1900':
-                return name
-        return 'Unspecified'
+                            person = mem
+        return person
+
+    def getCurrentTM(self):
+        person = self.getCurrentTMPerson()
+        if person:
+            return person.getFullname()
+        return None
+
+    def getCurrentTMDetails(self):
+        person = self.getCurrentTMPerson()
+        if person:
+            return person.getFullname(), \
+                  person.getEmail(), \
+                  person.getBusinessPhone()
+        return None, None, None
 
     security.declarePublic('getContactsPath')
     def getContactsPath(self):
@@ -1274,6 +1285,12 @@ class ProjectGeneralInformation(BaseContent, CurrencyMixin, BrowserDefaultMixin)
     def getFiscalYearVocabulary(self):
         return getYearVocabulary()
 
+    def getProjectManagerDetails(self):
+        refcat = getToolByName(self, 'reference_catalog')
+        pm = self.getProjectManager()
+        if pm is not None:
+            return pm.getFullname(), pm.getEmail(), pm.getBusinessPhone()
+        return None, None, None
 
 
 registerType(ProjectGeneralInformation, PROJECTNAME)
