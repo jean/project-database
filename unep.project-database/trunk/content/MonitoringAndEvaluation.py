@@ -279,6 +279,7 @@ class MonitoringAndEvaluation(BaseContent, BrowserDefaultMixin):
         person = self.getLeadEvaluatorPerson()
         if person:
             address = person.getPhysicalAddress() 
+            nationality = 'Unknown'
             if address:
                 nationality = address.get('country', '')
             return person.getFullname(), \
