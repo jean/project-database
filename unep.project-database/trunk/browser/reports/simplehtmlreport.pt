@@ -33,7 +33,7 @@
                 <tr tal:define="even repeat/tablerows/even"
                     tal:attributes="class python:even and 'odd' or 'even'">
                     <td style="vertical-align: top; border: 1px dotted grey; padding: 3px;" 
-                        tal:repeat="tablerow tablerows" tal:content="tablerow">Row</td>
+                        tal:repeat="tablerow tablerows" tal:content="structure tablerow">Row</td>
                 </tr>
             </tal:rows>
 
