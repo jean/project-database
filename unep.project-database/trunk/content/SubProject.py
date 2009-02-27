@@ -538,9 +538,15 @@ class SubProject(BaseContent, CurrencyMixin, BrowserDefaultMixin):
         lead = self.getSubProjectExecutingAgency()
         result = ''
         if lead:
+            refcat = getToolByName(self, 'reference_catalog')
             for v in lead:
                 if v['executing_agency']:
-                    result += v['executing_agency'] + ', '
+                    agency = refcat.lookupObject(v['executing_agency'])
+                    if agency is not None:
+                        name = agency.getName()
+                    else:
+                        name = 'Unspecified'
+                    result += name + ', '
             return result[:-2]
         return 'Unspecified'
 
