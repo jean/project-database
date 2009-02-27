@@ -44,6 +44,8 @@ class ProjectContactsReportFactory(object):
             if mofu:
                 fmo_name, fmo_email, fmo_phone = mofu.getCurrentFMODetails()
             tm_name, tm_email, tm_phone = pgi.getCurrentTMDetails()
+            gs_name, gs_email, gs_phone = pgi.getGEFSecStaffDetails()
+            ia_name, ia_email, ia_phone = pgi.getLeadAgencyContactDetails()
             pm_name, pm_email, pm_phone = pgi.getProjectManagerDetails()
             if project.isTheProjectPublished():
                 result.append((
@@ -54,12 +56,12 @@ class ProjectContactsReportFactory(object):
                     tm_name,
                     tm_email,
                     tm_phone,
-                    "Unknown",
-                    "Unknown",
-                    "Unknown",
-                    "Unknown",
-                    "Unknown",
-                    "Unknown",
+                    gs_name,
+                    gs_email,
+                    gs_phone,
+                    ia_name,
+                    ia_email,
+                    ia_phone,
                     pm_name,
                     pm_email,
                     pm_phone,
