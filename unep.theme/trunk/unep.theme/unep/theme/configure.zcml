@@ -10,6 +10,7 @@
 
    <include file="skins.zcml" />
    <include file="profiles.zcml" />
+
 <subscriber
     for="Products.CMFPlone.interfaces.IPloneSiteRoot
          zope.app.publication.interfaces.IBeforeTraverseEvent"
