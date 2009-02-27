@@ -62,11 +62,10 @@
         <div><a href="" tal:attributes="href string:${base}/@@internallyexecutedprojectsreport">Internally Executed Projects Report</a></div>
         <div><a href="" tal:attributes="href string:${base}/@@projectsbygeographicscopereport">Projects by Geographic Scope Report</a></div>
         <div><a href="" tal:attributes="href string:${base}/@@projectsbyexecutingagencyreport">Projects by Executing Agency Report</a></div>
-        <!--
         <div><a href="" tal:attributes="href string:${base}/@@donorreport">Donor Report</a></div>
+        <!--
         <div><a href="" tal:attributes="href string:${base}/@@projectsbystaffreport">Projects by Staff Report</a></div>
         -->
-        <div>Donor Report</div>
         <div>Projects by Staff Report</div>
     </tal:def>
 </div>
