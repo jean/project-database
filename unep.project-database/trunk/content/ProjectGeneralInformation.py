@@ -1203,6 +1203,8 @@ class ProjectGeneralInformation(BaseContent, CurrencyMixin, BrowserDefaultMixin)
             fieldnames.append('LeadAgency')
             fieldnames.append('LeadAgencyContact')
             fieldnames.append('OtherImplementingAgency')
+        if self.getProgrammeFramework() == False:
+            fieldnames.append('ProgrammeFrameworkTitle')
         if self.getGEFPhase() != 'I' and \
            self.getGEFPhase() != 'II' and \
            self.getGEFPhase() != 'III':
@@ -1243,6 +1245,13 @@ class ProjectGeneralInformation(BaseContent, CurrencyMixin, BrowserDefaultMixin)
               hide.append('LeadAgency')
               hide.append('LeadAgencyContact')
               hide.append('OtherImplementingAgency')
+
+        if fieldname == 'ProgrammeFramework':
+          if value == 'on':
+              show.append('ProgrammeFrameworkTitle')
+          else:
+              hide.append('ProgrammeFrameworkTitle')
+
 
         if fieldname == 'GEFPhase':
             if value != 'I' and \
