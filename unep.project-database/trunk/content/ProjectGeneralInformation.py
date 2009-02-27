@@ -1200,6 +1200,9 @@ class ProjectGeneralInformation(BaseContent, CurrencyMixin, BrowserDefaultMixin)
             fieldnames.append('OtherDivisions')
         if self.getJointImplementation() == False:
             fieldnames.append('UnepComponentDescription')
+            fieldnames.append('LeadAgency')
+            fieldnames.append('LeadAgencyContact')
+            fieldnames.append('OtherImplementingAgency')
         if self.getGEFPhase() != 'I' and \
            self.getGEFPhase() != 'II' and \
            self.getGEFPhase() != 'III':
@@ -1232,8 +1235,14 @@ class ProjectGeneralInformation(BaseContent, CurrencyMixin, BrowserDefaultMixin)
         if fieldname == 'JointImplementation':
           if value == 'on':
               show.append('UnepComponentDescription')
+              show.append('LeadAgency')
+              show.append('LeadAgencyContact')
+              show.append('OtherImplementingAgency')
           else:
               hide.append('UnepComponentDescription')
+              hide.append('LeadAgency')
+              hide.append('LeadAgencyContact')
+              hide.append('OtherImplementingAgency')
 
         if fieldname == 'GEFPhase':
             if value != 'I' and \
