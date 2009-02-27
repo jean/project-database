@@ -1015,9 +1015,15 @@ class ProjectGeneralInformation(BaseContent, CurrencyMixin, BrowserDefaultMixin)
         values = self.getProjectExecutingAgency()
         result = ''
         if values:
+            refcat = getToolByName(self, 'reference_catalog')
             for v in values:
                 if v['executing_agency']:
-                    result += v['executing_agency'] + ', '
+                    agency = refcat.lookupObject(v['executing_agency'])
+                    if agency is not None:
+                        name = agency.getName()
+                    else:
+                        name = 'Unspecified'
+                    result += name + ', '
         if len(result) > 2:
             result = result[:-2]
         else:

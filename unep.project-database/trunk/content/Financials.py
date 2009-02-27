@@ -541,6 +541,12 @@ class Financials(BaseFolder, CurrencyMixin, BrowserDefaultMixin):
     schema = Financials_schema
 
     ##code-section class-header #fill in your manual code here
+    # def __init__(self, oid, **kwargs):
+    #     BaseFolder.__init__(self, oid, **kwargs)
+
+    #     # hide the metadata fieldset fields
+    #     for field in schema:
+    #         print field.schemata
     ##/code-section class-header
 
     # Methods
