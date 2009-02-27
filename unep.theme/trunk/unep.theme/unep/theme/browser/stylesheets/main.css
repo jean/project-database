@@ -172,6 +172,17 @@ div.column-heading {
     font-weight: bold;
 }
 
+div#region-content h1.documentFirstHeading {
+    display: block;
+    background: white;
+    color: #24a1d1; 
+    font-size: medium; 
+    padding: 10px; 
+    padding-left: 30px; 
+    padding-right: 0px;
+    font-weight: bold;
+}
+
 div.column-title {
     float: left; 
     background: #24a1d1; 
@@ -529,6 +540,25 @@ div.unep-theme-div-hidden {
 div.unep-theme-div-visible {
   display: block;
 }
+/* We are hiding the schemata tabs 
+ * and displaying all the schemata 
+ * on one page for the UNEP skin */
+ul.formTabs {
+    display: none;
+}
+.formPanel.hidden {
+    display: block;
+}
+fieldset#fieldset-metadata {
+    display: none;
+}
+fieldset#fieldset-Security {
+    display: none;
+}
+fieldset#fieldset-Plone-Settings {
+    display: none;
+}
+/* -- end schemata styling -- */
 
 #login-form {
   width: 50em;
