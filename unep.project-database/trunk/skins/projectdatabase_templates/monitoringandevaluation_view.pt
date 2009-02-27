@@ -1,10 +1,4 @@
-<metal:header metal:define-macro="header">
-<h3 class="documentFirstHeading" 
-  tal:content="python:'%s: %s' % (context.aq_inner.aq_parent.aq_parent.getId(), context.aq_parent.project_general_info.Title())" />
-
-
-</metal:header>
-
+<metal:header metal:define-macro="header" />
 <metal:folderlisting metal:define-macro="folderlisting" />
 <metal:footer metal:define-macro="footer" />
 

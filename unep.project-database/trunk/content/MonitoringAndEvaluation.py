@@ -255,14 +255,39 @@ class MonitoringAndEvaluation(BaseContent, BrowserDefaultMixin):
             return curl[len(purl)+1:]
         return ''
 
-    security.declarePublic('getLeadEvaluator')
-    def getLeadEvaluator(self):
+    security.declarePublic('getLeadEvaluatorPerson')
+    def getLeadEvaluatorPerson(self):
         values = self.getEvaluationTeam()
         if values:
+            refcat = getToolByName(self, 'reference_catalog')
             for v in values:
                 if v['name'] and v['role'] and v['role'] == 'Lead':
-                    return v['name']
+                    lead = refcat.lookupObject(v['name'])
+                    if lead is not None:
+                        return lead
         return None
+
+    security.declarePublic('getLeadEvaluator')
+    def getLeadEvaluator(self):
+        person = self.getLeadEvaluatorPerson()
+        if person:
+            return person.getFullname()
+        return ''
+
+    security.declarePublic('getLeadEvaluatorDetails')
+    def getLeadEvaluatorDetails(self):
+        person = self.getLeadEvaluatorPerson()
+        if person:
+            address = person.getPhysicalAddress() 
+            if address:
+                nationality = address.get('country', '')
+            return person.getFullname(), \
+                    nationality, \
+                    'Unknown', \
+                    person.getEmail(), \
+                    person.getMobilePhone(), \
+                    person.getBusinessPhone()
+        return None, None, None, None, None, None 
 
     security.declarePublic('getOtherEvaluators')
     def getOtherEvaluators(self):

@@ -1,30 +1,32 @@
 THINGS TO DO ON UNEP PROJECT
 * Filtered search - see email from Carmen
-* SPO Focal Area - add focal area to contacts database
+* Extend ContactsManager
+    - SPO Focal Area - add focal area to contacts database
+    - Add job title field
+    - Add salutation field
+    - Add Rating Assessment
+    - Add Area of Expertise
 
 * Import historical data
 
 OUTSTANDING REPORTS
-* Donor reports
-* Project contacts
-* Roster of evaluators
+27/02 * Donor reports
+27/02 * Roster of evaluators
+27/02 * Projects by staff
 * Programme Framework
-* Projects by staff
+    Requires change to reporting mechanism
 * Project ratings report
 * Projects at risk
 
 ISSUES
 * Text boxes – all over the database – should be small but expandible (not to discourage TMs)
     -Add rows to textareas and max-height to kupu
-* In view mode, spacing in field labels is missing for some e.g Total cofinance planned / actual & Total Cost etc.
-    -Asked for all issues
 * Save/Cancel options at the bottom of the edit mode, should also be available at the top to avoid one scrolling down a long page, just to save one small change.
     -Not easy UI change.
+* Print and Send Email links
 
 BUG FIXES
-* PDF Reports failing
-* Show/Hide - Include more fields for Joint Implementation on PGI
+Await Feedback * PDF Reports failing
 
 MISCELLANEOOUS
 * Thousand separators
-* Remove fieldset tabs in edit mode
