@@ -36,10 +36,8 @@
         <div><a href="" tal:attributes="href string:${base}/@@projectsdueforclosurereport">Projects Due for Closure</a></div>
     <h2>Contacts</h2>
         <div><a href="" tal:attributes="href string:${base}/@@projectcontactsreport">Project Contacts Report</a></div> 
-        <!-- <div><a href="" tal:attributes="href string:${base}/@@projectcontactsreport">Project Contacts Report</a></div> 
         <div><a href="" tal:attributes="href string:${base}/@@rosterofevaluatorsreport">Roster of Evaluators Report</a></div>
-        -->
-        <div>Roster of Evaluators Report</div>
+
     <h2>Monitoring and Evaluation Reports</h2>
         <div><a href="" tal:attributes="href string:${base}/@@midtermreviewstatusreport">Mid-term Review Status Report</a></div>
         <div><a href="" tal:attributes="href string:${base}/@@midtermevaluationstatusreport">Mid-term Evaluation Status Report</a></div>
