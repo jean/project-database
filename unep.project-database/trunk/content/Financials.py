@@ -541,12 +541,6 @@ class Financials(BaseFolder, CurrencyMixin, BrowserDefaultMixin):
     schema = Financials_schema
 
     ##code-section class-header #fill in your manual code here
-    # def __init__(self, oid, **kwargs):
-    #     BaseFolder.__init__(self, oid, **kwargs)
-
-    #     # hide the metadata fieldset fields
-    #     for field in schema:
-    #         print field.schemata
     ##/code-section class-header
 
     # Methods
@@ -879,6 +873,33 @@ class Financials(BaseFolder, CurrencyMixin, BrowserDefaultMixin):
     def getFiscalYearVocabulary(self):
         return getYearVocabulary()
 
+    def getDonorPledges(self):
+        result = []
+        cofincash = self.getCoFinancingCash()
+        if cofincash:
+            for v in cofincash:
+                vtype = v['cofinancing_cash_source']
+                vdonor = v['cofinancing_cash_donor_name']
+                vamount = v['cofinancing_cash_planned_amount']
+                for item in result:
+                    if item['type'] == vtype and item['name'].lower() == vdonor.lower():
+                        item['amount'] += vamount
+                        break
+                else:
+                    result.append({'type':vtype, 'name':vdonor, 'amount':vamount})
+        cofininkind = self.getCoFinancingInKind()
+        if cofininkind:
+            for v in cofininkind:
+                vtype = v['cofinancing_inkind_source']
+                vdonor = v['cofinancing_inkind_donor_name']
+                vamount = v['cofinancing_inkind_planned_amount']
+                for item in result:
+                    if item['type'] == vtype and item['name'].lower() == vdonor.lower():
+                        item['amount'] += vamount
+                        break
+                else:
+                    result.append({'type':vtype, 'name':vdonor, 'amount':vamount})
+        return result
 
 
 registerType(Financials, PROJECTNAME)
