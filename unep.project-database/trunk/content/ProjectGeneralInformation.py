@@ -253,6 +253,19 @@ schema = Schema((
         write_permission="TM",
         columns=('stage', 'grant_to_unep', 'grant_to_other_ia', 'cofinancing', 'unep_fee', 'other_ia_fee'),
     ),
+    ReferenceField(
+        name='GEFSecStaff',
+        widget=ReferenceBrowserWidget(
+            label="GEF Sec. Staff",
+            startup_directory='/contacts',
+            label_msgid='ProjectDatabase_label_GEFSecStaff',
+            i18n_domain='ProjectDatabase',
+        ),
+        allowed_types= ('Person',),
+        multiValued= 0,
+        relationship="GEFSec_Person",
+        write_permission="TM",
+    ),
     BooleanField(
         name='JointImplementation',
         widget=BooleanWidget(
@@ -1138,6 +1151,22 @@ class ProjectGeneralInformation(BaseContent, CurrencyMixin, BrowserDefaultMixin)
                   person.getBusinessPhone()
         return None, None, None
 
+    def getGEFSecStaffDetails(self):
+        person = self.getGEFSecStaff()
+        if person:
+            return person.getFullname(), \
+                  person.getEmail(), \
+                  person.getBusinessPhone()
+        return None, None, None
+
+    def getLeadAgencyContactDetails(self):
+        person = self.getLeadAgencyContact()
+        if person:
+            return person.getFullname(), \
+                  person.getEmail(), \
+                  person.getBusinessPhone()
+        return None, None, None
+
     security.declarePublic('getContactsPath')
     def getContactsPath(self):
         purl = getToolByName(self, 'portal_url').getPortalObject().absolute_url()
@@ -1315,6 +1344,7 @@ class ProjectGeneralInformation(BaseContent, CurrencyMixin, BrowserDefaultMixin)
         if pm is not None:
             return pm.getFullname(), pm.getEmail(), pm.getBusinessPhone()
         return None, None, None
+
 
 
 registerType(ProjectGeneralInformation, PROJECTNAME)
