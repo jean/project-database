@@ -36,4 +36,11 @@
         permission="zope2.View" 
         />
 
+    <browser:viewlet
+        name="unep.unepdocumentactions"
+        manager="plone.app.layout.viewlets.interfaces.IAboveContentBody"
+        template="unepdocumentactions.pt"
+        permission="zope2.View"
+        />
+
 </configure>
