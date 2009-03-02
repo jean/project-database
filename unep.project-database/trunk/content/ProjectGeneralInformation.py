@@ -1137,19 +1137,19 @@ class ProjectGeneralInformation(BaseContent, CurrencyMixin, BrowserDefaultMixin)
                             person = mem
         return person
 
-    def getCurrentTM(self, tm_category='Pricipal'):
+    def getCurrentTM(self, tm_category='Principal'):
         person = self.getCurrentTMPerson(tm_category)
         if person:
             return person.getFullname()
         return None
 
-    def getCurrentTMSortable(self, tm_category='Pricipal'):
+    def getCurrentTMSortable(self, tm_category='Principal'):
         person = self.getCurrentTMPerson(tm_category)
         if person:
             return person.getLastName() + ', ' + person.getFirstName()
         return None
 
-    def getCurrentTMDetails(self, tm_category='Pricipal'):
+    def getCurrentTMDetails(self, tm_category='Principal'):
         person = self.getCurrentTMPerson(tm_category)
         if person:
             return person.getFullname(), \

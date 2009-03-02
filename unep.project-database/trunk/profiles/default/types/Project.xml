@@ -54,36 +54,4 @@
          visible="True">
   <permission value="Modify portal content"/>
  </action>
- <action title="export" 
-         action_id="export"
-         category="object_tabs" 
-         condition_expr="python:1"
-         url_expr="string:${object_url}/export_view" 
-         visible="True">
-  <permission value="python:permissions.ViewProjects"/>
- </action>
- <action title="Project Search" 
-         action_id="search"
-         category="object_tabs" 
-         condition_expr="python:1"
-         url_expr="string:${object_url}/project_search" 
-         visible="True">
-  <permission value="python:permissions.ViewProjects"/>
- </action>
- <action title="Export Project Data (csv)" 
-         action_id="export_project_data"
-         category="object_tabs" 
-         condition_expr="python:1"
-         url_expr="string:${object_url}/export_project_data" 
-         visible="True">
-  <permission value="python:permissions.ViewProjects"/>
- </action>
- <action title="reports" 
-         action_id="reports"
-         category="object_tabs" 
-         condition_expr="python:1"
-         url_expr="string:${object_url}/reports_view" 
-         visible="True">
-  <permission value="python:permissions.ViewProjects"/>
- </action>
 </object>
