@@ -1,0 +1,114 @@
+<metal:header metal:define-macro="header" />
+<metal:folderlisting metal:define-macro="folderlisting" />
+<metal:footer metal:define-macro="footer" />
+<metal:body metal:define-macro="body">
+<div>
+    <tal:form>
+        <form name="filtered_search" method="post" action=""
+                tal:attributes="action python: context.absolute_url() + '/filtered_search'">
+            <input type="hidden" name="form.submitted" value="1" />
+            <select name="country" 
+                  tal:define="
+                        vocab
+                        python:context.portal_vocabularies.getVocabularyByName('Country');
+                        dList python:vocab.getDisplayList(context)">
+                <tal:rep tal:repeat="item dList/items">
+                    <option tal:attributes="value python:item[0];"
+                            tal:content="python:item[1]">
+                            Option
+                    </option>
+                </tal:rep>
+            </select>
+            <input class="context" type="submit" name="form.button.search"
+                value="Search"/>
+        </form>
+    </tal:form>
+    <table width="100%">
+      <tr>
+          <td colspan="2">
+              <tal:batch
+                  tal:define="pc here/portal_catalog;
+                              brains python:pc.searchResults();
+                              Batch python:modules['Products.CMFPlone'].Batch;
+                              b_size python:20;
+                              b_start python:0;
+                              b_start_num repeat/fo/index;
+                              b_start_str python:'b_start_%s' % b_start_num;
+                              b_start python:getattr(request, b_start_str, b_start);
+                              batch python:Batch(brains, b_size, int(b_start), orphan=1, b_start_str=b_start_str);
+                              sos python:[brain.getObject() for brain in batch];
+                              "
+                  tal:condition="python:len(brains) > 0">
+              <table class="table-fullwidth">
+                  <tr>
+                      <td colspan="9">&nbsp;</td>
+                  </tr>
+                  <tr>
+                      <th colspan="9">Sub-projects/MOU's<th>
+                  </tr>
+                  <tr>
+                      <th i18n:translate="imis_no">IMIS No</th>
+                      <th i18n:translate="ea">EA</th>
+                      <th i18n:translate="total_cash_disbursed">
+                          Total Cash Disbursed
+                      </th>
+                      <th i18n:translate="total_expenditures">
+                          Total expenditures (IMIS)
+                      </th>
+                      <th i18n:translate="receivable">
+                          Receivable
+                      </th>
+                      <th i18n:translate="last_expenditure_report">
+                          Last Expenditure Report
+                      </th>
+                      <th i18n:translate="last_audit_report">
+                          Last Audit Report
+                      </th>
+                      <th i18n:translate="last_cofinance_report">
+                          Last Co-finance Report
+                      </th>
+                      <th i18n:translate="last_inventory_report">
+                          Last Inventory Report
+                      </th>
+                      <th i18n:translate="actions">
+                          Actions 
+                      </th>
+                  </tr>
+                  <tal:block tal:repeat="so sos">
+                  <tr tal:define="even repeat/so/even;"
+                      tal:attributes="class python:even and 'odd' or 'even'">
+                      <td>
+                          <a tal:attributes="href string:${so/absolute_url}/view"
+                              tal:content="so/getIMISNumber">sub project</a>
+                      </td>
+                      <td tal:content="so/getLeadExecutingAgencyNames" />
+                      <td tal:content="so/getSumCashDisbursements" />
+                      <td tal:content="so/getSumYearlyExpenditures" />
+                      <td tal:content="so/getAmountReceivable" />
+                      <td tal:content="python:so.getLatestReportData('expenditure', 'report_period')" />
+                      <td tal:content="python:so.getLatestReportData('audit', 'report_received_date')" />
+                      <td tal:content="python:so.getLatestReportData('cofinance', 'report_received_date')" />
+                      <td tal:content="python:so.getLatestReportData('inventory', 'report_received_date')" />
+                      <td>  
+                        <a tal:attributes="href string:${so/absolute_url}/edit"
+                            tal:condition="python:member.has_role(['Owner','Manager','FMO','SPO','Registrar'], fo)">
+                            <span i18n:translate="edit">Edit</span></a>
+                      </td>
+                  </tr>
+                  </tal:block>
+                  <tr class="even">
+                      <td i18n:translate="total">Total</td>
+                      <td>&nbsp;</td>
+                      <td tal:content="fo/getSubProjectsTotalCashDisbursed" />
+                      <td tal:content="fo/getSubProjectsTotalExpenditures" />
+                      <td tal:content="fo/getSubProjectsTotalReceivable" />
+                  </tr>
+              </table>
+              <b><div metal:use-macro="here/batch_macros/macros/navigation" /></b>
+              </tal:batch>
+          </td>
+      </tr>
+  </table>
+</div>
+
+</metal:body>
