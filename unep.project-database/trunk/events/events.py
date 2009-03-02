@@ -1,5 +1,4 @@
-from Products.ProjectDatabase.content.interfaces import IProject
-from Products.ProjectDatabase.content.interfaces import IMonitoringAndEvaluation
+from Products.ProjectDatabase.content.interfaces import *
 
 import logging
 LOG = logging.getLogger('ProjectDatabase.events.events')
@@ -31,3 +30,18 @@ def projectInitialized(event):
             title='Milestones')
     if 'documents' not in ob.objectIds():
         ob.invokeFactory('Folder', 'documents', title='Documents')
+
+def projectModified(event):
+    """ We are handling the object modified event for 
+        classes implementing the IProject interface
+    """
+    ob = event.object
+    if ob.isTemporary():
+        return
+
+    if IProjectGeneralInformation.providedBy(ob) or \
+        IFinancials.providedBy(ob) or \
+        IMilestone.providedBy(ob):
+          ob.getAProject().reindexObject()
+
+    

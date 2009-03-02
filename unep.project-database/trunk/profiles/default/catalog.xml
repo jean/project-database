@@ -1,57 +1,45 @@
 <?xml version="1.0"?>
 <object name="portal_catalog" meta_type="Plone Catalog Tool">
-  <index name="getFocalArea" 
+  <index name="getCountries" 
          meta_type="FieldIndex">
+    <indexed_attr value="getCountries"/>
   </index>
   <index name="getProjectType" 
          meta_type="FieldIndex">
+    <indexed_attr value="getProjectType"/>
   </index>
-  <index name="getGEFPhase" 
+  <index name="getExecutingAgencies" 
          meta_type="FieldIndex">
+    <indexed_attr value="getExecutingAgencies"/>
   </index>
-  <index name="getScope" 
+  <index name="getGEFApprovalDate" 
          meta_type="FieldIndex">
+    <indexed_attr value="getGEFApprovalDate"/>
   </index>
-  <index name="getRegion" 
+  <index name="getUNEPApprovalDate" 
          meta_type="FieldIndex">
+    <indexed_attr value="getUNEPApprovalDate"/>
   </index>
-  <index name="getCountry" 
+  <index name="getProjectTitle" 
          meta_type="FieldIndex">
+    <indexed_attr value="getProjectTitle"/>
   </index>
-  <index name="getLeadAgencyContact" 
+  <index name="getTaskManager" 
          meta_type="FieldIndex">
+    <indexed_attr value="getTaskManager"/>
   </index>
-  <index name="getOperationalProgramme" 
+  <index name="getFundManager" 
          meta_type="FieldIndex">
+    <indexed_attr value="getFundManager"/>
   </index>
-  <index name="getStrategicPriority" 
-         meta_type="FieldIndex">
-  </index>
-  <index name="getFinanceCategory" 
-         meta_type="FieldIndex">
-  </index>
-  <index name="getPMSNumber" 
-         meta_type="FieldIndex">
-  </index>
-  <index name="getIMISNumber" 
-         meta_type="FieldIndex">
-  </index>
-  <index name="getPlannedDuration" 
-         meta_type="FieldIndex">
-  </index>
-  <column value="getFocalArea"/>
+  <column value="getCountries"/>
   <column value="getProjectType"/>
-  <column value="getGEFPhase"/>
-  <column value="getScope"/>
-  <column value="getRegion"/>
-  <column value="getCountry"/>
-  <column value="getLeadAgencyContact"/>
-  <column value="getOperationalProgramme"/>
-  <column value="getStrategicPriority"/>
-  <column value="getFinanceCategory"/>
-  <column value="getPMSNumber"/>
-  <column value="getIMISNumber"/>
-  <column value="getPlannedDuration"/>
+  <column value="getExecutingAgencies"/>
+  <column value="getGEFApprovalDate"/>
+  <column value="getUNEPApprovalDate"/>
+  <column value="getProjectTitle"/>
+  <column value="getTaskManager"/>
+  <column value="getFundManager"/>
 <!-- ##code-section FOOT -->
 <!-- ##/code-section FOOT -->
 </object>

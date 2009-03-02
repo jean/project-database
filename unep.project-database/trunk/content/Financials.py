@@ -682,7 +682,6 @@ class Financials(BaseFolder, CurrencyMixin, BrowserDefaultMixin):
                   if v['cash_disbursements_amount'] and \
                      v['cash_disbursements_date'] and \
                      v['cash_disbursements_date'] <= to_date])
-
     security.declarePublic('getDifference')
     def getDifference(self):
         """ calculate the difference between the committed and allocated GEF grant

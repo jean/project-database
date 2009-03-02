@@ -6,4 +6,8 @@
     for="Products.Archetypes.interfaces.IObjectInitializedEvent"
     handler=".events.projectInitialized" />
 
+<subscriber
+    for="zope.lifecycleevent.interfaces.IObjectModifiedEvent"
+    handler=".events.projectModified" />
+
 </configure>

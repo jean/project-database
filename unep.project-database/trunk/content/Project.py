@@ -34,6 +34,78 @@ from Products.ATReferenceBrowserWidget.ATReferenceBrowserWidget import Reference
 
 schema = Schema((
 
+    ComputedField(
+        name='Countries',
+        widget=ComputedField._properties['widget'](
+            label='Countries',
+            label_msgid='ProjectDatabase_label_Countries',
+            i18n_domain='ProjectDatabase',
+        ),
+    ),
+    ComputedField(
+        name='FocalAreas',
+        widget=ComputedField._properties['widget'](
+            label='Focalareas',
+            label_msgid='ProjectDatabase_label_FocalAreas',
+            i18n_domain='ProjectDatabase',
+        ),
+    ),
+    ComputedField(
+        name='ProjectType',
+        widget=ComputedField._properties['widget'](
+            label='Projecttype',
+            label_msgid='ProjectDatabase_label_ProjectType',
+            i18n_domain='ProjectDatabase',
+        ),
+    ),
+    ComputedField(
+        name='ExecutingAgencies',
+        widget=ComputedField._properties['widget'](
+            label='Executingagencies',
+            label_msgid='ProjectDatabase_label_ExecutingAgencies',
+            i18n_domain='ProjectDatabase',
+        ),
+    ),
+    ComputedField(
+        name='GEFApprovalDate',
+        widget=ComputedField._properties['widget'](
+            label='Gefapprovaldate',
+            label_msgid='ProjectDatabase_label_GEFApprovalDate',
+            i18n_domain='ProjectDatabase',
+        ),
+    ),
+    ComputedField(
+        name='UNEPApprovalDate',
+        widget=ComputedField._properties['widget'](
+            label='Unepapprovaldate',
+            label_msgid='ProjectDatabase_label_UNEPApprovalDate',
+            i18n_domain='ProjectDatabase',
+        ),
+    ),
+    ComputedField(
+        name='ProjectTitle',
+        widget=ComputedField._properties['widget'](
+            label='Projecttitle',
+            label_msgid='ProjectDatabase_label_ProjectTitle',
+            i18n_domain='ProjectDatabase',
+        ),
+    ),
+    ComputedField(
+        name='TaskManager',
+        widget=ComputedField._properties['widget'](
+            label='Taskmanager',
+            label_msgid='ProjectDatabase_label_TaskManager',
+            i18n_domain='ProjectDatabase',
+        ),
+    ),
+    ComputedField(
+        name='FundManager',
+        widget=ComputedField._properties['widget'](
+            label='Fundmanager',
+            label_msgid='ProjectDatabase_label_FundManager',
+            i18n_domain='ProjectDatabase',
+        ),
+    ),
 
 ),
 )
@@ -88,6 +160,18 @@ class Project(BaseFolder, CurrencyMixin, BrowserDefaultMixin):
 
     # Manually created methods
 
+    security.declarePublic('getFMIFolder')
+    def getFMIFolder(self):
+        """
+        """
+        return self['fmi_folder']
+
+    security.declarePublic('getMilestone')
+    def getMilestone(self):
+        """
+        """
+        return self['milestones']
+
     security.declarePublic('getTotalGEFAmount')
     def getTotalGEFAmount(self):
         """
@@ -127,7 +211,7 @@ class Project(BaseFolder, CurrencyMixin, BrowserDefaultMixin):
     def projectRisk(self):
         risk = 0
         #Project Risk
-        pgi = self.project_general_info
+        pgi = self.getProjectGeneralInformation()
         rating = pgi.getRiskRatingAtInception()
         if rating == 'S' or rating == 'H':
             risk += 1
@@ -148,7 +232,7 @@ class Project(BaseFolder, CurrencyMixin, BrowserDefaultMixin):
         return risk
 
     def getProjectStaff(self):
-        pgi = self.project_general_info
+        pgi = self.getProjectGeneralInformation()
         mofu = self.fmi_folder.getMainFinanceObject()
         ms = self.milestones
         milestone = ms.getProjectStageMilestone()
@@ -175,6 +259,63 @@ class Project(BaseFolder, CurrencyMixin, BrowserDefaultMixin):
                     pgi.Title(), ms.getProjectStage(), milestone[0], \
                     milestone[1], mofu.getSumFinanceObjectAmount()])
         return result
+
+    security.declarePublic('getCountries')
+    def getCountries(self):
+        """
+        """
+        return self.getProjectGeneralInformation().getCountry()
+
+    security.declarePublic('getFocalAreas')
+    def getFocalAreas(self):
+        """
+        """
+        return self.getProjectGeneralInformation().getFocalArea()
+
+    security.declarePublic('getProjectType')
+    def getProjectType(self):
+        """
+        """
+        return self.getProjectGeneralInformation().getProjectType()
+
+    security.declarePublic('getExecutingAgencies')
+    def getExecutingAgencies(self):
+        """
+        """
+        return self.getProjectGeneralInformation().getLeadExecutingAgencyNames()
+
+    security.declarePublic('getGEFApprovalDate')
+    def getGEFApprovalDate(self):
+        """
+        """
+        return self.getMilestone().getProjectApprovalDate('CEOApprovalEndorsementActual')
+
+    security.declarePublic('getUNEPApprovalDate')
+    def getUNEPApprovalDate(self):
+        """
+        """
+        return self.getMilestone().getProjectImplementationDate('SignatureOfLegalInstrumentActual')
+
+    security.declarePublic('getProjectTitle')
+    def getProjectTitle(self):
+        """
+        """
+        return self.getProjectGeneralInformation().Title()
+
+    security.declarePublic('getTaskManager')
+    def getTaskManager(self):
+        """
+        """
+        return self.getProjectGeneralInformation().getCurrentTM()
+
+    security.declarePublic('getFundManager')
+    def getFundManager(self):
+        """
+        """
+        mofu = self.getFMIFolder().getMainFinanceObject()
+        if mofu:
+            return mofu.getCurrentPrincipalFMO()
+
 
 
 registerType(Project, PROJECTNAME)
