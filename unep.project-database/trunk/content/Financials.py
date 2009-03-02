@@ -861,10 +861,11 @@ class Financials(BaseFolder, CurrencyMixin, BrowserDefaultMixin):
                   person.getBusinessPhone()
         return None, None, None
 
-
-    def getCurrentPrincipalFMO(self):
-        fullname, email, phone = self.getCurrentFMODetails('Principal')
-        return fullname
+    def getCurrentFMOSortable(self, fmo_type='Principal'):
+        person = self.getCurrentFMOPerson(fmo_type)
+        if person:
+            return person.getLastName() + ', ' + person.getFirstName()
+        return None
 
     def getCurrentBackupFMO(self):
         fullname, email, phone = self.getCurrentFMODetails('Backup')
