@@ -147,6 +147,34 @@ class Project(BaseFolder, CurrencyMixin, BrowserDefaultMixin):
 
         return risk
 
+    def getProjectStaff(self):
+        pgi = self.project_general_information
+        mofu = self.fmi_folder.getMainFinanceObject()
+        ms = self.milestones
+        milestone = ms.getProjectStageMilestone()
+        result = []
+        principal_tm = pgi.getCurrentTMSortable(tm_category='Principal')
+        if principal_tm:
+            result.append([principal_tm, 'TM', pgi.getFocalAreaNames(), \
+                    pgi.Title(), ms.getProjectStage(), milestone[0], \
+                    milestone[1], mofu.getSumFinanceObjectAmount()])
+        backup_tm = pgi.getCurrentTMSortable(tm_category='Backup')
+        if backup_tm:
+            result.append([backup_tm, 'PA', pgi.getFocalAreaNames(), \
+                pgi.Title(), ms.getProjectStage(), milestone[0], \
+                milestone[1], mofu.getSumFinanceObjectAmount()])
+        if mofu:
+            principal_fmo = mofu.getCurrentFMOSortable(fmo_type='Principal')
+            if principal_fmo:
+                result.append([principal_fmo, 'FMO', pgi.getFocalAreaNames(), \
+                        pgi.Title(), ms.getProjectStage(), milestone[0], \
+                        milestone[1], mofu.getSumFinanceObjectAmount()])
+            backup_fmo = mofu.getCurrentFMOSortable(fmo_type='Backup')
+            if backup_fmo:
+                result.append([backup_fmo, 'FA', pgi.getFocalAreaNames(), \
+                    pgi.Title(), ms.getProjectStage(), milestone[0], \
+                    milestone[1], mofu.getSumFinanceObjectAmount()])
+        return result
 
 
 registerType(Project, PROJECTNAME)

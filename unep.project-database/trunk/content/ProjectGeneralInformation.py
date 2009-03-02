@@ -1122,14 +1122,14 @@ class ProjectGeneralInformation(BaseContent, CurrencyMixin, BrowserDefaultMixin)
             result += dict[value][0] + ', '
         return result[:-2]
 
-    def getCurrentTMPerson(self):
+    def getCurrentTMPerson(self, tm_category='Principal'):
         person = None
         values = self.getTaskManager()
         if values:
             refcat = getToolByName(self, 'reference_catalog')
             date = '1900'
             for v in values:
-                if v['period'] and v['name'] and v['category'] == 'Principal':
+                if v['period'] and v['name'] and v['category'] == tm_category:
                     if date < v['period']:
                         date = v['period']
                         mem = refcat.lookupObject(v['name'])
@@ -1137,14 +1137,20 @@ class ProjectGeneralInformation(BaseContent, CurrencyMixin, BrowserDefaultMixin)
                             person = mem
         return person
 
-    def getCurrentTM(self):
-        person = self.getCurrentTMPerson()
+    def getCurrentTM(self, tm_category='Pricipal'):
+        person = self.getCurrentTMPerson(tm_category)
         if person:
             return person.getFullname()
         return None
 
-    def getCurrentTMDetails(self):
-        person = self.getCurrentTMPerson()
+    def getCurrentTMSortable(self, tm_category='Pricipal'):
+        person = self.getCurrentTMPerson(tm_category)
+        if person:
+            return person.getLastName() + ', ' + person.getFirstName()
+        return None
+
+    def getCurrentTMDetails(self, tm_category='Pricipal'):
+        person = self.getCurrentTMPerson(tm_category)
         if person:
             return person.getFullname(), \
                   person.getEmail(), \
