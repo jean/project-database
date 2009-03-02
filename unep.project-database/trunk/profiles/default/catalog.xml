@@ -4,6 +4,10 @@
          meta_type="FieldIndex">
     <indexed_attr value="getCountries"/>
   </index>
+  <index name="getFocalAreas" 
+         meta_type="FieldIndex">
+    <indexed_attr value="getFocalAreas"/>
+  </index>
   <index name="getProjectType" 
          meta_type="FieldIndex">
     <indexed_attr value="getProjectType"/>
@@ -33,6 +37,7 @@
     <indexed_attr value="getFundManager"/>
   </index>
   <column value="getCountries"/>
+  <column value="getFocalAreas"/>
   <column value="getProjectType"/>
   <column value="getExecutingAgencies"/>
   <column value="getGEFApprovalDate"/>
