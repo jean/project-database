@@ -10,9 +10,9 @@
 
 <div metal:fill-slot="main">
 
-    <h1 class="documentFirstHeading" i18n:translate="heading_about">About 
+    <h3 class="documentFirstHeading" i18n:translate="heading_about">About 
         <span i18n:name="sitename" tal:omit-tag="" tal:content="here/Title">Portal title</span>
-    </h1>
+    </h3>
 
     <p i18n:translate="tbd">
         To be determined
