@@ -664,6 +664,7 @@ class Financials(BaseFolder, CurrencyMixin, BrowserDefaultMixin):
                   if v['cash_disbursements_amount'] and \
                      v['cash_disbursements_date'] and \
                      v['cash_disbursements_date'] <= to_date])
+
     security.declarePublic('getDifference')
     def getDifference(self):
         """ calculate the difference between the committed and allocated GEF grant
@@ -837,14 +838,14 @@ class Financials(BaseFolder, CurrencyMixin, BrowserDefaultMixin):
             return dict[selection][0]
         return None
 
-    def getCurrentFMOPerson(self):
+    def getCurrentFMOPerson(self, fmo_type='Principal'):
         person = None
         values = self.getFundManagementOfficer()
         if values:
             refcat = getToolByName(self, 'reference_catalog')
             date = '1900'
             for v in values:
-                if v['FMO_Period'] and v['FMO_Name'] and v['FMO_Type'] == 'Principal':
+                if v['FMO_Period'] and v['FMO_Name'] and v['FMO_Type'] == fmo_type:
                     if date < v['FMO_Period']:
                         date = v['FMO_Period']
                         officer = refcat.lookupObject(v['FMO_Name'])
@@ -852,13 +853,22 @@ class Financials(BaseFolder, CurrencyMixin, BrowserDefaultMixin):
                             person = officer
         return person
 
-    def getCurrentFMODetails(self):
-        person = self.getCurrentFMOPerson()
+    def getCurrentFMODetails(self, fmo_type='Principal'):
+        person = self.getCurrentFMOPerson(fmo_type)
         if person:
             return person.getFullname(), \
                   person.getEmail(), \
                   person.getBusinessPhone()
         return None, None, None
+
+
+    def getCurrentPrincipalFMO(self):
+        fullname, email, phone = self.getCurrentFMODetails('Principal')
+        return fullname
+
+    def getCurrentBackupFMO(self):
+        fullname, email, phone = self.getCurrentFMODetails('Backup')
+        return fullname
 
     def getEvaluationAmount(self, type):
         """
