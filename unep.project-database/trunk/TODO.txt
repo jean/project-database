@@ -1,5 +1,6 @@
 THINGS TO DO ON UNEP PROJECT
 * Filtered search - see email from Carmen
+    Check if still in scope
 * Extend ContactsManager
     - SPO Focal Area - add focal area to contacts database
     - Add job title field
@@ -10,9 +11,7 @@ THINGS TO DO ON UNEP PROJECT
 * Import historical data
 
 OUTSTANDING REPORTS
-27/02 * Donor reports
-27/02 * Roster of evaluators
-27/02 * Projects by staff
+02/03 * Projects by staff
 * Programme Framework
     Requires change to reporting mechanism
 * Project ratings report
