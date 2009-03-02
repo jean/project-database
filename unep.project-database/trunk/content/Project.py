@@ -148,7 +148,7 @@ class Project(BaseFolder, CurrencyMixin, BrowserDefaultMixin):
         return risk
 
     def getProjectStaff(self):
-        pgi = self.project_general_information
+        pgi = self.project_general_info
         mofu = self.fmi_folder.getMainFinanceObject()
         ms = self.milestones
         milestone = ms.getProjectStageMilestone()

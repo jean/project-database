@@ -267,7 +267,7 @@ class MonitoringAndEvaluation(BaseContent, BrowserDefaultMixin):
                         return lead
         return None
 
-    security.declarePublic('getLeadEvaluator')
+    security.declarePublic('getLeadEvaluatorPerson')
     def getLeadEvaluator(self):
         person = self.getLeadEvaluatorPerson()
         if person:
@@ -278,7 +278,7 @@ class MonitoringAndEvaluation(BaseContent, BrowserDefaultMixin):
     def getLeadEvaluatorDetails(self):
         person = self.getLeadEvaluatorPerson()
         if person:
-            address = person.getPhysicalAddress() 
+            address = person.getPhysicalAddress()
             nationality = 'Unknown'
             if address:
                 nationality = address.get('country', '')
@@ -288,7 +288,7 @@ class MonitoringAndEvaluation(BaseContent, BrowserDefaultMixin):
                     person.getEmail(), \
                     person.getMobilePhone(), \
                     person.getBusinessPhone()
-        return None, None, None, None, None, None 
+        return None, None, None, None, None, None
 
     security.declarePublic('getOtherEvaluators')
     def getOtherEvaluators(self):

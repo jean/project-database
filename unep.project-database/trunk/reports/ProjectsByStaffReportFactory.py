@@ -21,8 +21,10 @@ class ProjectsByStaffReportFactory(object):
             'Actual date',
             'Project Grant ',
             ),))
-        # XXX Implement this
-        # report.setTableRows()
+        report.setTableRows(self.getReportData())
         # report.setTableTotals([])
         # report.setReportFooters()
         return report
+
+    def getReportData(self):
+        return self.context.getStaffForProjects()
