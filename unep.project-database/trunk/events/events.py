@@ -36,12 +36,10 @@ def projectModified(event):
         classes implementing the IProject interface
     """
     ob = event.object
-    if ob.isTemporary():
-        return
-
-    if IProjectGeneralInformation.providedBy(ob) or \
-        IFinancials.providedBy(ob) or \
-        IMilestone.providedBy(ob):
-          ob.getAProject().reindexObject()
+    if ob:
+        if IProjectGeneralInformation.providedBy(ob) or \
+           IFinancials.providedBy(ob) or \
+           IMilestone.providedBy(ob):
+              ob.getAProject().reindexObject()
 
     
