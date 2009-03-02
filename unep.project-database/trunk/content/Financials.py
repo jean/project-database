@@ -498,6 +498,24 @@ schema = Schema((
         write_permission="FMO",
         columns= ("Risk_Level", "Assessment_Date", "Remarks"),
     ),
+    ComputedField(
+        name='getCurrentPrincipalFMO',
+        visible={'edit':'hidden', 'view':'invisible'},
+        widget=ComputedField._properties['widget'](
+            label='Getcurrentprincipalfmo',
+            label_msgid='ProjectDatabase_label_getCurrentPrincipalFMO',
+            i18n_domain='ProjectDatabase',
+        ),
+    ),
+    ComputedField(
+        name='getCurrentBackupFMO',
+        visible={'edit':'hidden', 'view':'invisible'},
+        widget=ComputedField._properties['widget'](
+            label='Getcurrentbackupfmo',
+            label_msgid='ProjectDatabase_label_getCurrentBackupFMO',
+            i18n_domain='ProjectDatabase',
+        ),
+    ),
 
 ),
 )
@@ -867,6 +885,10 @@ class Financials(BaseFolder, CurrencyMixin, BrowserDefaultMixin):
             return person.getLastName() + ', ' + person.getFirstName()
         return None
 
+    def getCurrentPrincipalFMO(self):
+        fullname, email, phone = self.getCurrentFMODetails('Principal')
+        return fullname
+
     def getCurrentBackupFMO(self):
         fullname, email, phone = self.getCurrentFMODetails('Backup')
         return fullname
@@ -911,6 +933,7 @@ class Financials(BaseFolder, CurrencyMixin, BrowserDefaultMixin):
                 else:
                     result.append({'type':vtype, 'name':vdonor, 'amount':vamount})
         return result
+
 
 
 registerType(Financials, PROJECTNAME)

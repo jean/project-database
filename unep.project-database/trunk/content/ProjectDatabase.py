@@ -80,6 +80,16 @@ class ProjectDatabase(BaseFolder, BrowserDefaultMixin):
             childrenCount = int(projectBrains[0].getId)
         return '%05d' % (childrenCount + 1)
 
+  
+    security.declarePublic('getStaffForProjects')
+    def getStaffForProjects(self):
+        projects = self.objectValues(spec='Project')
+        staff = []
+        for project in projects:
+            staff.extend(project.getProjectStaff())
+        if len(staff) > 0:
+              staff.sort()
+              return staff
 
 
 registerType(ProjectDatabase, PROJECTNAME)
