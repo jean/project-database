@@ -150,7 +150,7 @@ class Project(BaseFolder, CurrencyMixin, BrowserDefaultMixin):
     def getProjectGeneralInformation(self):
         """
         """
-        return self['project_general_info']
+        return self.get('project_general_info', None)
 
     security.declarePublic('getAProject')
     def getAProject(self):
@@ -164,13 +164,13 @@ class Project(BaseFolder, CurrencyMixin, BrowserDefaultMixin):
     def getFMIFolder(self):
         """
         """
-        return self['fmi_folder']
+        return self.get('fmi_folder', None)
 
     security.declarePublic('getMilestone')
     def getMilestone(self):
         """
         """
-        return self['milestones']
+        return self.get('milestones', None)
 
     security.declarePublic('getTotalGEFAmount')
     def getTotalGEFAmount(self):
@@ -264,57 +264,75 @@ class Project(BaseFolder, CurrencyMixin, BrowserDefaultMixin):
     def getCountries(self):
         """
         """
-        return self.getProjectGeneralInformation().getCountry()
+        pgi = self.getProjectGeneralInformation()
+        if pgi:
+            return pgi.getCountry()
 
     security.declarePublic('getFocalAreas')
     def getFocalAreas(self):
         """
         """
-        return self.getProjectGeneralInformation().getFocalArea()
+        pgi = self.getProjectGeneralInformation()
+        if pgi:
+            return pgi.getFocalArea()
 
     security.declarePublic('getProjectType')
     def getProjectType(self):
         """
         """
-        return self.getProjectGeneralInformation().getProjectType()
+        pgi = self.getProjectGeneralInformation()
+        if pgi:
+            return pgi.getProjectType()
 
     security.declarePublic('getExecutingAgencies')
     def getExecutingAgencies(self):
         """
         """
-        return self.getProjectGeneralInformation().getLeadExecutingAgencyNames()
+        pgi = self.getProjectGeneralInformation()
+        if pgi:
+            return pgi.getLeadExecutingAgencyNames()
 
     security.declarePublic('getGEFApprovalDate')
     def getGEFApprovalDate(self):
         """
         """
-        return self.getMilestone().getProjectApprovalDate('CEOApprovalEndorsementActual')
+        ms = self.getMilestone()
+        if ms:
+            return ms.getProjectApprovalDate('CEOApprovalEndorsementActual')
 
     security.declarePublic('getUNEPApprovalDate')
     def getUNEPApprovalDate(self):
         """
         """
-        return self.getMilestone().getProjectImplementationDate('SignatureOfLegalInstrumentActual')
+        ms = self.getMilestone()
+        if ms:
+            return ms.getProjectImplementationDate('SignatureOfLegalInstrumentActual')
 
     security.declarePublic('getProjectTitle')
     def getProjectTitle(self):
         """
         """
-        return self.getProjectGeneralInformation().Title()
+        pgi = self.getProjectGeneralInformation()
+        if pgi:
+            return pgi.Title()
 
     security.declarePublic('getTaskManager')
     def getTaskManager(self):
         """
         """
-        return self.getProjectGeneralInformation().getCurrentTM()
+        pgi = self.getProjectGeneralInformation()
+        if pgi:
+            return pgi.getCurrentTM()
 
     security.declarePublic('getFundManager')
     def getFundManager(self):
         """
         """
-        mofu = self.getFMIFolder().getMainFinanceObject()
-        if mofu:
-            return mofu.getCurrentPrincipalFMO()
+        fmi = self.getFMIFolder()
+        if fmi:
+            mofu = fmi.getMainFinanceObject()
+            if mofu:
+                return mofu.getCurrentPrincipalFMO()
 
 
 

@@ -1141,13 +1141,13 @@ class ProjectGeneralInformation(BaseContent, CurrencyMixin, BrowserDefaultMixin)
         person = self.getCurrentTMPerson(tm_category)
         if person:
             return person.getFullname()
-        return None
+        return ''
 
     def getCurrentTMSortable(self, tm_category='Principal'):
         person = self.getCurrentTMPerson(tm_category)
         if person:
             return person.getLastName() + ', ' + person.getFirstName()
-        return None
+        return ''
 
     def getCurrentTMDetails(self, tm_category='Principal'):
         person = self.getCurrentTMPerson(tm_category)
@@ -1155,7 +1155,7 @@ class ProjectGeneralInformation(BaseContent, CurrencyMixin, BrowserDefaultMixin)
             return person.getFullname(), \
                   person.getEmail(), \
                   person.getBusinessPhone()
-        return None, None, None
+        return '', '', ''
 
     def getGEFSecStaffDetails(self):
         person = self.getGEFSecStaff()
@@ -1163,7 +1163,7 @@ class ProjectGeneralInformation(BaseContent, CurrencyMixin, BrowserDefaultMixin)
             return person.getFullname(), \
                   person.getEmail(), \
                   person.getBusinessPhone()
-        return None, None, None
+        return '', '', ''
 
     def getLeadAgencyContactDetails(self):
         person = self.getLeadAgencyContact()
@@ -1171,7 +1171,7 @@ class ProjectGeneralInformation(BaseContent, CurrencyMixin, BrowserDefaultMixin)
             return person.getFullname(), \
                   person.getEmail(), \
                   person.getBusinessPhone()
-        return None, None, None
+        return '', '', ''
 
     security.declarePublic('getContactsPath')
     def getContactsPath(self):
@@ -1349,7 +1349,7 @@ class ProjectGeneralInformation(BaseContent, CurrencyMixin, BrowserDefaultMixin)
         pm = self.getProjectManager()
         if pm is not None:
             return pm.getFullname(), pm.getEmail(), pm.getBusinessPhone()
-        return None, None, None
+        return '', '', ''
 
 
 

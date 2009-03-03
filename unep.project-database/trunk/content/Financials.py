@@ -499,20 +499,20 @@ schema = Schema((
         columns= ("Risk_Level", "Assessment_Date", "Remarks"),
     ),
     ComputedField(
-        name='getCurrentPrincipalFMO',
-        visible={'edit':'hidden', 'view':'invisible'},
+        name='CurrentPrincipalFMO',
         widget=ComputedField._properties['widget'](
-            label='Getcurrentprincipalfmo',
-            label_msgid='ProjectDatabase_label_getCurrentPrincipalFMO',
+            visible={'edit':'hidden', 'view':'invisible'},
+            label='Currentprincipalfmo',
+            label_msgid='ProjectDatabase_label_CurrentPrincipalFMO',
             i18n_domain='ProjectDatabase',
         ),
     ),
     ComputedField(
-        name='getCurrentBackupFMO',
-        visible={'edit':'hidden', 'view':'invisible'},
+        name='CurrentBackupFMO',
         widget=ComputedField._properties['widget'](
-            label='Getcurrentbackupfmo',
-            label_msgid='ProjectDatabase_label_getCurrentBackupFMO',
+            visible={'edit':'hidden', 'view':'invisible'},
+            label='Currentbackupfmo',
+            label_msgid='ProjectDatabase_label_CurrentBackupFMO',
             i18n_domain='ProjectDatabase',
         ),
     ),
@@ -876,13 +876,13 @@ class Financials(BaseFolder, CurrencyMixin, BrowserDefaultMixin):
             return person.getFullname(), \
                   person.getEmail(), \
                   person.getBusinessPhone()
-        return None, None, None
+        return '', '', ''
 
     def getCurrentFMOSortable(self, fmo_type='Principal'):
         person = self.getCurrentFMOPerson(fmo_type)
         if person:
             return person.getLastName() + ', ' + person.getFirstName()
-        return None
+        return ''
 
     def getCurrentPrincipalFMO(self):
         fullname, email, phone = self.getCurrentFMODetails('Principal')
