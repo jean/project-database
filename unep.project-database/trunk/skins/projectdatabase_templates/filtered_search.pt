@@ -16,6 +16,7 @@
               project_title request/project_title|nothing;
               task_manager request/task_manager|nothing;
               fund_manager request/task_manager|nothing;
+              unepsearch nocall:context/@@unepsearch;
               ">
 
     <h3 class="documentFirstHeading" i18n:translate="Filtered_Search">Filtered Search</h3>
@@ -68,6 +69,66 @@
             </tr>
             <tr>
                 <td>
+                    <label i18n:translate="gef_approval_period">GEF Approval Period</label>
+                </td>
+                <td>
+                    <tal:gef-from-date
+                        tal:define="label string:From:;
+                                    month_name string:gef_from_month;
+                                    year_name string:gef_from_year">
+                        <metal:date define-macro="search-date-macro">
+                        <label tal:content="label">From:</label>
+                        <select tal:attributes="name month_name"
+                            tal:define="months python:range(12)">
+                            <option value="">--</option>
+                            <option tal:repeat="month months"
+                                tal:attributes="
+                                    value python:str(month+1);
+                                    selected python:str(month+1) == request.get(month_name,None) and 'selected' or None"
+                                tal:content="python:str(month+1)">1</option>
+                        </select>
+                        <select tal:attributes="name year_name" 
+                            tal:define="years unepsearch/getSearchYearVocabulary">
+                            <option value="">--</option>
+                            <option tal:repeat="year years"
+                                tal:attributes="
+                                    value python:str(year);
+                                    selected python:str(year) == request.get(year_name,None) and 'selected' or None"
+                                tal:content="python:str(year)">2000</option>
+                        </select>
+                        </metal:date>
+                    </tal:gef-from-date>
+                    &nbsp;
+                    <tal:gef-to-date
+                        tal:define="label string:To:;
+                                    month_name string:gef_to_month;
+                                    year_name string:gef_to_year">
+                        <metal:date use-macro="context/filtered_search/macros/search-date-macro" />
+                    </tal:gef-to-date>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label i18n:translate="gef_approval_period">UNEP Approval Period</label>
+                </td>
+                <td>
+                    <tal:unep-from-date
+                        tal:define="label string:From:;
+                                    month_name string:unep_from_month;
+                                    year_name string:unep_from_year">
+                        <metal:date use-macro="context/filtered_search/macros/search-date-macro" />
+                    </tal:unep-from-date>
+                    &nbsp;
+                    <tal:unep-to-date
+                        tal:define="label string:To:;
+                                    month_name string:unep_to_month;
+                                    year_name string:unep_to_year">
+                        <metal:date use-macro="context/filtered_search/macros/search-date-macro" />
+                    </tal:unep-to-date>
+                </td>
+            </tr>
+            <tr>
+                <td>
                     <label i18n:translate="search_project_title">Project Title</label>
                 </td>
                 <td>
@@ -109,8 +170,7 @@
       <h3 class="documentFirstHeading" 
               i18n:translate="search_result">Search Results</h3>
       <tal:results 
-          tal:define="unepsearch nocall:context/@@unepsearch;
-                      brains python:unepsearch(country, focal_area, project_type, executing_agency, project_title, task_manager, fund_manager);">
+          tal:define="brains python:unepsearch(request);">
           <table class="table-fullwidth"
               tal:condition="python:len(brains) > 0">
               <tr>
