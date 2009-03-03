@@ -12,10 +12,6 @@
          meta_type="FieldIndex">
     <indexed_attr value="getProjectType"/>
   </index>
-  <index name="getExecutingAgencies" 
-         meta_type="FieldIndex">
-    <indexed_attr value="getExecutingAgencies"/>
-  </index>
   <index name="getGEFApprovalDate" 
          meta_type="DateIndex">
     <indexed_attr value="getGEFApprovalDate"/>
@@ -23,18 +19,6 @@
   <index name="getUNEPApprovalDate" 
          meta_type="DateIndex">
     <indexed_attr value="getUNEPApprovalDate"/>
-  </index>
-  <index name="getProjectTitle" 
-         meta_type="FieldIndex">
-    <indexed_attr value="getProjectTitle"/>
-  </index>
-  <index name="getTaskManager" 
-         meta_type="FieldIndex">
-    <indexed_attr value="getTaskManager"/>
-  </index>
-  <index name="getFundManager" 
-         meta_type="FieldIndex">
-    <indexed_attr value="getFundManager"/>
   </index>
   <index name="getCurrentPrincipalFMO" 
          meta_type="FieldIndex">
@@ -47,14 +31,38 @@
   <column value="getCountries"/>
   <column value="getFocalAreas"/>
   <column value="getProjectType"/>
-  <column value="getExecutingAgencies"/>
   <column value="getGEFApprovalDate"/>
   <column value="getUNEPApprovalDate"/>
-  <column value="getProjectTitle"/>
-  <column value="getTaskManager"/>
-  <column value="getFundManager"/>
   <column value="getCurrentPrincipalFMO"/>
   <column value="getCurrentBackupFMO"/>
 <!-- ##code-section FOOT -->
+  <index name="getProjectTitle" 
+         meta_type="ZCTextIndex">
+    <indexed_attr value="getProjectTitle"/>
+    <extra name="index_type" value="Okapi BM25 Rank"/>
+    <extra name="lexicon_id" value="plone_lexicon"/>
+  </index>
+  <column value="getProjectTitle"/>
+  <index name="getExecutingAgencies" 
+         meta_type="ZCTextIndex">
+    <indexed_attr value="getExecutingAgencies"/>
+    <extra name="index_type" value="Okapi BM25 Rank"/>
+    <extra name="lexicon_id" value="plone_lexicon"/>
+  </index>
+  <column value="getExecutingAgencies"/>
+  <index name="getTaskManager" 
+         meta_type="ZCTextIndex">
+    <indexed_attr value="getTaskManager"/>
+    <extra name="index_type" value="Okapi BM25 Rank"/>
+    <extra name="lexicon_id" value="plone_lexicon"/>
+  </index>
+  <column value="getTaskManager"/>
+  <index name="getFundManager" 
+         meta_type="ZCTextIndex">
+    <indexed_attr value="getFundManager"/>
+    <extra name="index_type" value="Okapi BM25 Rank"/>
+    <extra name="lexicon_id" value="plone_lexicon"/>
+  </index>
+  <column value="getFundManager"/>
 <!-- ##/code-section FOOT -->
 </object>
