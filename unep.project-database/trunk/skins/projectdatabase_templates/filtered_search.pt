@@ -104,7 +104,7 @@
     <table width="100%">
       <tr>
           <td colspan="2"
-              tal:define="unepsearch nocall:context/@@xunepsearch;
+              tal:define="unepsearch nocall:context/@@unepsearch;
                           brains python:unepsearch(country, focal_area, project_type, executing_agency, project_title, task_manager, fund_manager);"
               tal:condition="python:len(brains) > 0">
               <table class="table-fullwidth">
