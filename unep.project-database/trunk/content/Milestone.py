@@ -246,9 +246,11 @@ class Milestone(BaseContent, BrowserDefaultMixin):
         return DisplayList()
 
     def isConceptClearedBySPO(self):
-        return self.getConceptDevelopmentDate('SPOClearance') is not None \
+        result = self.getConceptDevelopmentDate('SPOClearance') is not None \
             or self.getConceptDevelopmentDate('DirectorClearance') is not None \
             or self.getConceptDevelopmentDate('PAGClearance') is not None
+        return result
+
     def getConceptDevelopmentDate(self, action):
         values = self.getConceptDevelopment()
         if values:
