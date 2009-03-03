@@ -12,7 +12,7 @@
     tal:define="country request/country|nothing;
               focal_area request/focal_area|nothing;
               project_type request/project_type|nothing;
-              lead_agency request/lead_agency|nothing;
+              executing_agency request/executing_agency|nothing;
               project_title request/project_title|nothing;
               task_manager request/task_manager|nothing;
               fund_manager request/task_manager|nothing;
@@ -59,10 +59,10 @@
             </tr>
             <tr>
                 <td>
-                    <label i18n:translate="search_lead_executing_agency">Lead Executing Agency</label>
+                    <label i18n:translate="search_executing_agency">Executing Agency</label>
                 </td>
                 <td>
-                    <input type="text" name="lead_agency" tal:attributes="value lead_agency" />
+                    <input type="text" name="executing_agency" tal:attributes="value executing_agency" />
                 </td>
             </tr>
             <tr>
@@ -104,14 +104,13 @@
     <table width="100%">
       <tr>
           <td colspan="2"
-              tal:define="unepsearch context/@@unepsearch;
-                          brains python:unepsearch.getSearchResults(country, focal_area, project_type, lead_agency, project_title, task_manager, fund_mananger);"
+              tal:define="unepsearch nocall:context/@@xunepsearch;
+                          brains python:unepsearch(country, focal_area, project_type, executing_agency, project_title, task_manager, fund_manager);"
               tal:condition="python:len(brains) > 0">
-              <!--
               <table class="table-fullwidth">
                   <tr>
                       <th i18n:translate="dbase_id">DBase ID</th>
-                      <th i18n:translate="gef_if">GEF ID</th>
+                      <th i18n:translate="gef_id">GEF ID</th>
                       <th i18n:translate="focal_area">Focal Areas</th>
                       <th i18n:translate="project_title">Project Title</th>
                       <th i18n:translate="country">Country</th>
@@ -121,18 +120,17 @@
                   <tr tal:define="even repeat/brain/even;"
                       tal:attributes="class python:even and 'odd' or 'even'">
                       <td>
-                          <a tal:attributes="href string:${brain/getId}"
-                              tal:content="brain/getId">Project ID</a>
+                          <a tal:attributes="href string:${brain/id}"
+                              tal:content="brain/id">Project ID</a>
                       </td>
                       <td tal:content="nothing" />
                       <td tal:content="brain/getFocalAreas" />
                       <td tal:content="brain/getProjectTitle" />
                       <td tal:content="brain/getCountries" />
-                      <td tal:content="nothing" />
+                      <td tal:content="brain/getProjectType" />
                   </tr>
                   </tal:block>
               </table>
-              -->
           </td>
       </tr>
   </table>
