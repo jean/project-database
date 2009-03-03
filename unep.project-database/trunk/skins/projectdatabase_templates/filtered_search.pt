@@ -15,7 +15,7 @@
               executing_agency request/executing_agency|nothing;
               project_title request/project_title|nothing;
               task_manager request/task_manager|nothing;
-              fund_manager request/task_manager|nothing;
+              fund_manager request/fund_manager|nothing;
               unepsearch nocall:context/@@unepsearch;
               ">
 
@@ -185,7 +185,7 @@
               <tr tal:define="even repeat/brain/even;"
                   tal:attributes="class python:even and 'odd' or 'even'">
                   <td>
-                      <a tal:attributes="href string:${brain/id}"
+                      <a tal:attributes="href string:${brain/getURL}"
                           tal:content="brain/id">Project ID</a>
                   </td>
                   <td tal:content="nothing" />
