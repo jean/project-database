@@ -260,13 +260,25 @@ class Project(BaseFolder, CurrencyMixin, BrowserDefaultMixin):
                     milestone[1], mofu.getSumFinanceObjectAmount()])
         return result
 
+    security.declarePrivate('_getSelectedVocabularyValueList')
+    def _getSelectedVocabularyValueList(self, selections, vocabName):
+        atvm = getToolByName(self, 'portal_vocabularies')
+        vocab = atvm.getVocabularyByName(vocabName)
+        dict = vocab.getVocabularyDict(self)
+        result = []
+        for value in selections:
+            result.append(dict[value][0])
+        return result
+
     security.declarePublic('getCountries')
     def getCountries(self):
         """
         """
         pgi = self.getProjectGeneralInformation()
         if pgi:
-            return pgi.getCountry()
+            return self._getSelectedVocabularyValueList(\
+                      pgi.getCountry(), \
+                      'Country')
 
     security.declarePublic('getFocalAreas')
     def getFocalAreas(self):
@@ -274,7 +286,9 @@ class Project(BaseFolder, CurrencyMixin, BrowserDefaultMixin):
         """
         pgi = self.getProjectGeneralInformation()
         if pgi:
-            return pgi.getFocalArea()
+            return self._getSelectedVocabularyValueList(\
+                      pgi.getFocalArea(), \
+                      'FocalArea')
 
     security.declarePublic('getProjectType')
     def getProjectType(self):
