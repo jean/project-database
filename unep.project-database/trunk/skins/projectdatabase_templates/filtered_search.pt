@@ -57,7 +57,25 @@
             <tr tal:define="fieldName string:project_type; 
                             vocabularyName string:ProjectType; 
                             labelText string:Project Type;">
-                <tal:items metal:use-macro="context/filtered_search/macros/select-items-macro" />
+                <td width="30%">
+                    <label tal:content="labelText">Label</label>
+                </td>
+                <td>
+                    <select name="dummy" 
+                        tal:attributes="name fieldName"
+                        tal:define="
+                            vocab python:context.portal_vocabularies.getVocabularyByName(vocabularyName);
+                            dList python:vocab.getDisplayList(context)">
+                        <option value="" i18n:translate="all_options">All</option>
+                        <tal:rep tal:repeat="item dList/items">
+                            <option tal:attributes="value python:item[0];
+                                        selected python:item[0] == request.get(fieldName,None) and 'selected' or None"
+                                    tal:content="python:item[1]">
+                                    Option
+                            </option>
+                        </tal:rep>
+                    </select>
+                </td>
             </tr>
             <tr>
                 <td>
