@@ -78,7 +78,16 @@ class ProjectDatabase(BaseFolder, BrowserDefaultMixin):
             childrenCount = 0
         else:
             childrenCount = int(projectBrains[0].getId)
-        return '%05d' % (childrenCount + 1)
+        newId = '%05d' % (childrenCount + 1)
+        # In case some projects were deleted and we try to use an existing id.
+        while newId in self.keys():
+            childrenCount += 1
+            # in case we have created more than 99999 projects.
+            if childrenCount < 1000000:
+                newId = '%05d' % (childrenCount + 1)
+            else:
+                raise KeyError, 'Project id exceeds 99999.'
+        return newId
 
     security.declarePublic('getStaffForProjects')
     def getStaffForProjects(self):
