@@ -36,6 +36,10 @@ class ProjectsByGeographicScopeReportFactory(object):
             pgi = project.project_general_info
             mofu = project.fmi_folder.getMainFinanceObject()
             if project.isTheProjectPublished():
+                mofu_Status = 'Unspecified'
+                if mofu is not None:
+                    mofu_Status =  getVocabularyValue(self.context,
+                        'Status', mofu.getStatus())
                 result.append((
                     pgi.getFocalAreaNames(),
                     pgi.getGeographicScopeValues(),
@@ -43,8 +47,7 @@ class ProjectsByGeographicScopeReportFactory(object):
                     pgi.getSubRegion(),
                     pgi.getCountryNames(),
                     pgi.Title(),
-                    getVocabularyValue(self.context, \
-                            'Status', mofu.getStatus()),
+                    mofu_Status,
                     inner_strip(project.getTotalGEFAmount()),
                 ))
         return result 
