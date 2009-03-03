@@ -129,9 +129,9 @@
                           tal:content="brain/id">Project ID</a>
                   </td>
                   <td tal:content="nothing" />
-                  <td tal:content="python:brain.getFocalAreas.strip('(').strip(')')" />
+                  <td tal:content="brain/getFocalAreas" />
                   <td tal:content="brain/getProjectTitle" />
-                  <td tal:content="python:brain.getCountries.strip('(').strip(')')" />
+                  <td tal:content="brain/getCountries" />
                   <td tal:content="brain/getProjectType" />
               </tr>
               </tal:block>
