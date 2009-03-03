@@ -36,8 +36,12 @@ class GefProjectsByPriorityReportFactory(object):
         for project in projects:
             pgi = project.project_general_info
             mofu = project.fmi_folder.getMainFinanceObject()
-
             if project.isTheProjectPublished():
+                mofu_Status = 'Unspecified'
+                if mofu is not None:
+                    mofu_Status = getVocabularyValue(self.context,
+                            'Status', mofu.getStatus())
+
                 result.append((
                     ', '.join([getVocabularyValue(self.context, \
                             'UNEPThematicPriority', priority) \
@@ -49,8 +53,7 @@ class GefProjectsByPriorityReportFactory(object):
                             'ExecutionMode', pgi.getExecutionMode()),
                     getVocabularyValue(self.context, \
                             'Division', pgi.getLeadDivision()),
-                    getVocabularyValue(self.context, \
-                            'Status', mofu.getStatus()),
+                    mofu_Status,
                     inner_strip(project.getTotalGEFAmount()),
                 ))
         return result 
