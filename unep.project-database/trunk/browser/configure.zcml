@@ -27,7 +27,7 @@
 
     <browser:page
         for="*"
-        name="xunepsearch"
+        name="unepsearch"
         class=".filtered_search_view.FilteredSearchView"
         permission="zope2.View"
         />
