@@ -45,8 +45,12 @@ class FilteredSearchView(BrowserView):
                 query = getMonthEnd(gef_to_year, gef_to_month)
             else:
                 range = 'minmax'
-                query = [DateTime('%s/%s/1' % (gef_from_year, gef_from_month)), \
-                        getMonthEnd(gef_to_year, gef_to_month)]
+                mindate = DateTime('%s/%s/1' % (gef_from_year, gef_from_month))
+                maxdate = getMonthEnd(gef_to_year, gef_to_month)
+                if maxdate < mindate:
+                    query = [maxdate, mindate]
+                else:
+                    query = [mindate, maxdate]
                 search_dict['getGEFApprovalDate'] = {'range':range, 'query':query}
 
         unep_from_month = request.get('unep_from_month', None)
@@ -63,8 +67,12 @@ class FilteredSearchView(BrowserView):
                 query = getMonthEnd(unep_to_year, unep_to_month)
             else:
                 range = 'minmax'
-                query = [DateTime('%s/%s/1' % (unep_from_year, unep_from_month)), \
-                        getMonthEnd(unep_to_year, unep_to_month)]
+                mindate = DateTime('%s/%s/1' % (unep_from_year, unep_from_month))
+                maxdate = getMonthEnd(unep_to_year, unep_to_month)
+                if maxdate < mindate:
+                    query = [maxdate, mindate]
+                else:
+                    query = [mindate, maxdate]
                 search_dict['getUNEPApprovalDate'] = {'range':range, 'query':query}
 
         project_title = request.get('project_title', None)
