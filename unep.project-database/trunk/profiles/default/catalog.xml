@@ -36,6 +36,14 @@
          meta_type="FieldIndex">
     <indexed_attr value="getFundManager"/>
   </index>
+  <index name="getCurrentPrincipalFMO" 
+         meta_type="FieldIndex">
+    <indexed_attr value="getCurrentPrincipalFMO"/>
+  </index>
+  <index name="getCurrentBackupFMO" 
+         meta_type="FieldIndex">
+    <indexed_attr value="getCurrentBackupFMO"/>
+  </index>
   <column value="getCountries"/>
   <column value="getFocalAreas"/>
   <column value="getProjectType"/>
@@ -45,6 +53,8 @@
   <column value="getProjectTitle"/>
   <column value="getTaskManager"/>
   <column value="getFundManager"/>
+  <column value="getCurrentPrincipalFMO"/>
+  <column value="getCurrentBackupFMO"/>
 <!-- ##code-section FOOT -->
 <!-- ##/code-section FOOT -->
 </object>
