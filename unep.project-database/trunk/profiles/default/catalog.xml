@@ -1,11 +1,11 @@
 <?xml version="1.0"?>
 <object name="portal_catalog" meta_type="Plone Catalog Tool">
   <index name="getCountries" 
-         meta_type="FieldIndex">
+         meta_type="KeywordIndex">
     <indexed_attr value="getCountries"/>
   </index>
   <index name="getFocalAreas" 
-         meta_type="FieldIndex">
+         meta_type="KeywordIndex">
     <indexed_attr value="getFocalAreas"/>
   </index>
   <index name="getProjectType" 
@@ -17,11 +17,11 @@
     <indexed_attr value="getExecutingAgencies"/>
   </index>
   <index name="getGEFApprovalDate" 
-         meta_type="FieldIndex">
+         meta_type="DateIndex">
     <indexed_attr value="getGEFApprovalDate"/>
   </index>
   <index name="getUNEPApprovalDate" 
-         meta_type="FieldIndex">
+         meta_type="DateIndex">
     <indexed_attr value="getUNEPApprovalDate"/>
   </index>
   <index name="getProjectTitle" 
