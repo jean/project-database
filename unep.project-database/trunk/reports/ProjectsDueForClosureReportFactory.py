@@ -35,11 +35,12 @@ class ProjectsDueForClosureReportFactory(object):
         result = []
         for project in projects:
 
-            for fo in project.fmi_folder.objectValues():
+            for fo in project.fmi_folder.getAllFinanceObjects():
 
                 if fo.getFinanceCategory() == 'ppg' and \
                         project.milestones.getPPGImplementationDate('CompletionActual') and \
                         not project.milestones.getPPGImplementationDate('ClosureActual'):
+
                     result.append((
                         fo.getIMISNumber(),
                         project.project_general_info.Title(),
