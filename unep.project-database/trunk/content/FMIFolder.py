@@ -99,6 +99,13 @@ class FMIFolder(BaseFolder, CurrencyMixin, BrowserDefaultMixin):
             mfo = self.get('fsp', None)
         return mfo
 
+    def getAllFinanceObjects(self):
+        pc = getToolByName(self, 'portal_catalog')
+        query = {'portal_type':  'Financials',
+                 'path': '/'.join(self.getPhysicalPath())}
+        brains = pc(query)
+        return [brain.getObject() for brain in brains]
+
 
 
 registerType(FMIFolder, PROJECTNAME)
