@@ -8,10 +8,10 @@ class FilteredSearchView(BrowserView):
     """
     implements(IFilteredSearchView)
 
-    def getSearchResults(self, country, focal_area, project_type, project_title, task_manager, fund_mananger):
+    def getSearchResults(self, country, focal_area, project_type, \
+            project_title, executing_agency, task_manager, fund_manager):
         """ return search results from the portal catalog
         """
-        import pdb; pdb.set_trace()
         pc = getToolByName(self.context, 'portal_catalog')
         search_dict = {'portal_type':'Project'}
         if country:
@@ -20,12 +20,16 @@ class FilteredSearchView(BrowserView):
             search_dict['getFocalAreas'] = focal_area
         if project_type:
             search_dict['getProjectType'] = project_type
-        if lead_agency:
-            search_dict['getLeadExecutingAgencies'] = lead_agency
+        if executing_agency:
+            search_dict['getLeadExecutingAgencies'] = executing_agency
         if project_title:
             search_dict['getProjectTitle'] = project_title
         if task_manager:
             search_dict['getTaskManager'] = task_manager
         if fund_manager:
-            search_dict['getFundManager'] = fund_mananger
+            search_dict['getFundManager'] = fund_manager
         return pc.searchResults(**search_dict)
+
+
+    __call__ = getSearchResults
+
