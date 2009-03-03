@@ -34,13 +34,16 @@ class InternallyExecutedProjectsReportFactory(object):
             if pgi.getExecutionMode() == 'Internal':
                 mofu = project.fmi_folder.getMainFinanceObject()
                 if project.isTheProjectPublished():
+                    mofu_Status = 'Unspecified'
+                    if mofu is not None:
+                        mofu_Status = getVocabularyValue(self.context,
+                                'Status', mofu.getStatus())
                     result.append((
                         getVocabularyValue(self.context, \
                                 'Division', pgi.getLeadDivision()),
                         pgi.Title(),
                         pgi.getFocalAreaNames(),
-                        getVocabularyValue(self.context, \
-                                'Status', mofu.getStatus()),
+                        mofu_Status,
                         inner_strip(project.getTotalGEFAmount()),
                     ))
         return result 
