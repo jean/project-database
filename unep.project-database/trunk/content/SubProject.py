@@ -459,6 +459,7 @@ class SubProject(BaseContent, CurrencyMixin, BrowserDefaultMixin):
         return self._computeDataGridAmount( \
             [v['cofinancing_cash_planned_amount']  \
                 for v in values if v['cofinancing_cash_planned_amount']])
+
     security.declarePublic('getSumCoFinCashActual')
     def getSumCoFinCashActual(self):
         """
@@ -467,6 +468,7 @@ class SubProject(BaseContent, CurrencyMixin, BrowserDefaultMixin):
         return self._computeDataGridAmount( \
             [v['cofinancing_cash_actual_amount'] \
                 for v in values if v['cofinancing_cash_actual_amount']])
+
     security.declarePublic('getSumCoFinInKindPlanned')
     def getSumCoFinInKindPlanned(self):
         """
@@ -475,6 +477,7 @@ class SubProject(BaseContent, CurrencyMixin, BrowserDefaultMixin):
         return self._computeDataGridAmount( \
             [v['cofinancing_inkind_planned_amount'] \
                 for v in values if v['cofinancing_inkind_planned_amount']])
+
     security.declarePublic('getSumCoFinInKindActual')
     def getSumCoFinInKindActual(self):
         """
@@ -483,20 +486,25 @@ class SubProject(BaseContent, CurrencyMixin, BrowserDefaultMixin):
         return self._computeDataGridAmount( \
             [v['cofinancing_inkind_actual_amount'] \
                 for v in values if v['cofinancing_inkind_actual_amount']])
+
     security.declarePublic('getSumCashDisbursements')
     def getSumCashDisbursements(self):
         """
         """
         values = self.getCashDisbursements()
-        return self._computeDataGridAmount( \
+        returnVal = self._computeDataGridAmount( \
             [v['cash_disbursements_amount'] \
                 for v in values if v['cash_disbursements_amount']])
+        return returnVal
+
     def getSumYearlyExpenditures(self):
         """
         """
         values = self.getYearlyExpenditures()
-        return self._computeDataGridAmount( \
+        returnValue = self._computeDataGridAmount( \
             [v['amount'] for v in values if v['amount']])
+        return returnValue
+
     def getTotalCostOfSubProjectPlanned(self):
         """
         """
