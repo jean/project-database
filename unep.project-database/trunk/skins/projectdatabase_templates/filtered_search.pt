@@ -36,6 +36,7 @@
                         tal:define="
                             vocab python:context.portal_vocabularies.getVocabularyByName(vocabularyName);
                             dList python:vocab.getDisplayList(context)">
+                        <option value="">----</option>
                         <tal:rep tal:repeat="item dList/items">
                             <option tal:attributes="value python:item[0];
                                         selected python:item[0] == request.get(fieldName,None) and 'selected' or None"
@@ -101,39 +102,47 @@
             </tr>
         </table>
     </form>
-    <table width="100%">
-      <tr>
-          <td colspan="2"
-              tal:define="unepsearch nocall:context/@@unepsearch;
-                          brains python:unepsearch(country, focal_area, project_type, executing_agency, project_title, task_manager, fund_manager);"
+    <br />
+    <div style="width 100%" 
+            tal:define="submitted request/form.submitted|nothing"
+            tal:condition="submitted">
+      <h3 class="documentFirstHeading" 
+              i18n:translate="search_result">Search Results</h3>
+      <tal:results 
+          tal:define="unepsearch nocall:context/@@unepsearch;
+                      brains python:unepsearch(country, focal_area, project_type, executing_agency, project_title, task_manager, fund_manager);">
+          <table class="table-fullwidth"
               tal:condition="python:len(brains) > 0">
-              <table class="table-fullwidth">
-                  <tr>
-                      <th i18n:translate="dbase_id">DBase ID</th>
-                      <th i18n:translate="gef_id">GEF ID</th>
-                      <th i18n:translate="focal_area">Focal Areas</th>
-                      <th i18n:translate="project_title">Project Title</th>
-                      <th i18n:translate="country">Country</th>
-                      <th i18n:translate="project_type">Project Type</th>
-                  </tr>
-                  <tal:block tal:repeat="brain brains">
-                  <tr tal:define="even repeat/brain/even;"
-                      tal:attributes="class python:even and 'odd' or 'even'">
-                      <td>
-                          <a tal:attributes="href string:${brain/id}"
-                              tal:content="brain/id">Project ID</a>
-                      </td>
-                      <td tal:content="nothing" />
-                      <td tal:content="brain/getFocalAreas" />
-                      <td tal:content="brain/getProjectTitle" />
-                      <td tal:content="brain/getCountries" />
-                      <td tal:content="brain/getProjectType" />
-                  </tr>
-                  </tal:block>
-              </table>
-          </td>
-      </tr>
-  </table>
+              <tr>
+                  <th i18n:translate="dbase_id">DBase ID</th>
+                  <th i18n:translate="gef_id">GEF ID</th>
+                  <th i18n:translate="focal_area">Focal Areas</th>
+                  <th i18n:translate="project_title">Project Title</th>
+                  <th i18n:translate="country">Country</th>
+                  <th i18n:translate="project_type">Project Type</th>
+              </tr>
+              <tal:block tal:repeat="brain brains">
+              <tr tal:define="even repeat/brain/even;"
+                  tal:attributes="class python:even and 'odd' or 'even'">
+                  <td>
+                      <a tal:attributes="href string:${brain/id}"
+                          tal:content="brain/id">Project ID</a>
+                  </td>
+                  <td tal:content="nothing" />
+                  <td tal:content="brain/getFocalAreas" />
+                  <td tal:content="brain/getProjectTitle" />
+                  <td tal:content="brain/getCountries" />
+                  <td tal:content="brain/getProjectType" />
+              </tr>
+              </tal:block>
+          </table>
+          <p tal:condition="python:len(brains) == 0"
+              i18n:translate="no_results">
+              No projects matched your search criteria. 
+              Refine your criteria above, and re-submit the form
+          </p>
+      </tal:results>
+    </div>
 </div>
 
 </body>
