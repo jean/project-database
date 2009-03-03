@@ -29,7 +29,7 @@ class FilteredSearchView(BrowserView):
 
         executing_agency = request.get('executing_agency', None)
         if executing_agency:
-            search_dict['getLeadExecutingAgencies'] = executing_agency
+            search_dict['getExecutingAgencies'] = executing_agency
 
         gef_from_month = request.get('gef_from_month', None)
         gef_from_year = request.get('gef_from_year', None)
@@ -51,7 +51,7 @@ class FilteredSearchView(BrowserView):
                     query = [maxdate, mindate]
                 else:
                     query = [mindate, maxdate]
-                search_dict['getGEFApprovalDate'] = {'range':range, 'query':query}
+            search_dict['getGEFApprovalDate'] = {'range':range, 'query':query}
 
         unep_from_month = request.get('unep_from_month', None)
         unep_from_year = request.get('unep_from_year', None)
@@ -73,7 +73,7 @@ class FilteredSearchView(BrowserView):
                     query = [maxdate, mindate]
                 else:
                     query = [mindate, maxdate]
-                search_dict['getUNEPApprovalDate'] = {'range':range, 'query':query}
+            search_dict['getUNEPApprovalDate'] = {'range':range, 'query':query}
 
         project_title = request.get('project_title', None)
         if project_title:
