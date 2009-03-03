@@ -129,7 +129,7 @@
                           tal:content="brain/id">Project ID</a>
                   </td>
                   <td tal:content="nothing" />
-                  <td tal:content="brain/getFocalAreas" />
+                  <td tal:content="python:','.join([f for f in brain.getFocalAreas])" />
                   <td tal:content="brain/getProjectTitle" />
                   <td tal:content="python:','.join([c for c in brain.getCountries])" />
                   <td tal:content="brain/getProjectType" />
