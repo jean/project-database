@@ -70,6 +70,7 @@ def initialize(context):
 
     # imports packages and types for registration
     import content
+    import widgets
 
 
     # Initialize portal content
