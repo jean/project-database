@@ -36,10 +36,10 @@
                         tal:define="
                             vocab python:context.portal_vocabularies.getVocabularyByName(vocabularyName);
                             dList python:vocab.getDisplayList(context)">
-                        <option value="">----</option>
+                        <option value="" i18n:translate="all_options">All</option>
                         <tal:rep tal:repeat="item dList/items">
-                            <option tal:attributes="value python:item[0];
-                                        selected python:item[0] == request.get(fieldName,None) and 'selected' or None"
+                            <option tal:attributes="value python:item[1];
+                                        selected python:item[1] == request.get(fieldName,None) and 'selected' or None"
                                     tal:content="python:item[1]">
                                     Option
                             </option>
@@ -129,9 +129,9 @@
                           tal:content="brain/id">Project ID</a>
                   </td>
                   <td tal:content="nothing" />
-                  <td tal:content="brain/getFocalAreas" />
+                  <td tal:content="python:brain.getFocalAreas.strip('(').strip(')')" />
                   <td tal:content="brain/getProjectTitle" />
-                  <td tal:content="brain/getCountries" />
+                  <td tal:content="python:brain.getCountries.strip('(').strip(')')" />
                   <td tal:content="brain/getProjectType" />
               </tr>
               </tal:block>
