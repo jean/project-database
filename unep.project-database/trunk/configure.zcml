@@ -9,6 +9,8 @@
   <!-- ##code-section configure.zcml -->
     <include package=".events" />
     <include package=".browser" />
+    <include package=".extensions" />
+    <include package="archetypes.schemaextender" />
     <include file="localroles.zcml" />
   <!-- ##/code-section configure.zcml -->
 

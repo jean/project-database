@@ -1,9 +1,0 @@
-<configure xmlns="http://namespaces.zope.org/zope"
-           xmlns:browser="http://namespaces.zope.org/browser">
-  
-  <adapter 
-    factory="Products.ProjectDatabase.extensions.person.PersonExtender" 
-    for="Products.UpfrontContacts.Person.Person" 
-    name="unep-person"/>
-
-</configure>
