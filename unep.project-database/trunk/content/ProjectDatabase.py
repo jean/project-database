@@ -30,6 +30,7 @@ from Products.CMFCore.utils import getToolByName
 from Products.ATReferenceBrowserWidget.ATReferenceBrowserWidget import ReferenceBrowserWidget
 
 ##code-section module-header #fill in your manual code here
+from threading import Lock
 ##/code-section module-header
 
 schema = Schema((
@@ -65,29 +66,37 @@ class ProjectDatabase(BaseFolder, BrowserDefaultMixin):
     # Methods
 
     # Manually created methods
-
-    security.declarePublic('getNextProjectId')
+    
     def getNextProjectId(self):
-        pc = getToolByName(self, 'portal_catalog')
-        projectBrains = \
-            pc.unrestrictedSearchResults(
-                portal_type='Project',
-                sort_on='created',
-                sort_order='reverse')
-        if len(projectBrains) == 0:
-            childrenCount = 0
-        else:
-            childrenCount = int(projectBrains[0].getId)
-        newId = '%05d' % (childrenCount + 1)
-        # In case some projects were deleted and we try to use an existing id.
-        while newId in self.keys():
-            childrenCount += 1
-            # in case we have created more than 99999 projects.
-            if childrenCount < 1000000:
-                newId = '%05d' % (childrenCount + 1)
+        """
+        Lock this method so only one thread can access it at a time.
+        Search the project database for the highest numbered project.
+        Increment that number by one.
+        Check if the new id exists and increment if it does.
+        Release the lock in all cases.
+        """
+        lock = Lock()
+        try:
+            pc = getToolByName(self, 'portal_catalog')
+
+            lock.acquire()
+            projectBrains = \
+                pc.unrestrictedSearchResults(
+                    portal_type='Project',
+                    sort_on='created',
+                    sort_order='reverse')
+            if len(projectBrains) == 0:
+                childrenCount = 0
             else:
-                raise KeyError, 'Project id exceeds 99999.'
-        return newId
+                childrenCount = int(projectBrains[0].getId)
+            newId = '%05d' % (childrenCount + 1)
+            # In case some projects were deleted and we try to use an existing id.
+            while newId in self.keys():
+                childrenCount += 1
+                newId = '%05d' % (childrenCount + 1)
+            return newId
+        finally:
+            lock.release()
 
     security.declarePublic('getStaffForProjects')
     def getStaffForProjects(self):
@@ -106,6 +115,5 @@ registerType(ProjectDatabase, PROJECTNAME)
 
 ##code-section module-footer #fill in your manual code here
 ##/code-section module-footer
-
 
 
