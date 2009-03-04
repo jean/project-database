@@ -7,7 +7,6 @@ from Products.Archetypes.Field import __all__ as ATField_all
 from Products.DataGridField import DataGridField
 from archetypes.schemaextender.field import ExtensionField
 from copy import deepcopy
-from Products.ATBackRef.BackReferenceField import BackReferenceField
 
 def _at_field_copy(field, name=None):
         """
@@ -24,6 +23,6 @@ def _at_field_copy(field, name=None):
         properties['name'] = name
         return properties
 
-ATField_all = ATField_all + ('DataGridField','BackReferenceField')
+ATField_all = ATField_all + ('DataGridField',)
 for klass in ATField_all:
     exec("class ef%s(ExtensionField, %s): pass" % (klass, klass))

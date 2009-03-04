@@ -90,7 +90,8 @@ class ProjectDatabase(BaseFolder, BrowserDefaultMixin):
             else:
                 childrenCount = int(projectBrains[0].getId)
             newId = '%05d' % (childrenCount + 1)
-            # In case some projects were deleted and we try to use an existing id.
+            # In case some projects were deleted and we try to use 
+            # an existing id.
             while newId in self.keys():
                 childrenCount += 1
                 newId = '%05d' % (childrenCount + 1)
