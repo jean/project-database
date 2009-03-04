@@ -738,37 +738,37 @@ ProjectGeneralInformation_schema['ProgrammeFrameworkTitle'].widget.startup_direc
 
 ProjectGeneralInformation_schema = ProjectGeneralInformation_schema.copy()  + Schema((
 
-    ReferenceField("fakeTaskManagerName",
+    ReferenceField("TaskManagerName",
             widget = ReferenceBrowserWidget(
                 label="Task Manager",
-                visible={'view':'invisible', 'edit':'hidden'},
+                visible=False,
                 startup_directory='/contacts',
             ),
             allowed_types=('Person',),
             relationship='pgi_taskmanager_fake',
-            multiValued=0,
+            multiValued=1,
         ),
 
-    ReferenceField("fakeExecutingAgencyName",
+    ReferenceField("ExecutingAgencyName",
             widget = ReferenceBrowserWidget(
                 label="Executing Agency",
-                visible={'view':'invisible', 'edit':'hidden'},
+                visible=False,
                 startup_directory='/contacts',
             ),
             allowed_types=('Organisation',),
             relationship='pgi_executingagency_fake',
-            multiValued=0,
+            multiValued=1,
         ),
 
-    ReferenceField("fakeOtherExecutingPartnerName",
+    ReferenceField("OtherExecutingPartnerName",
             widget = ReferenceBrowserWidget(
                 label="Partner",
-                visible={'view':'invisible', 'edit':'hidden'},
+                visible=False,
                 startup_directory='/contacts',
             ),
             allowed_types=('Organisation',),
             relationship='pgi_executingpartner_fake',
-            multiValued=0,
+            multiValued=1,
         ),
 ))
 #
