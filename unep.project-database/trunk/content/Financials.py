@@ -532,15 +532,15 @@ Financials_schema['FinanceCategory'].widget.visible = {'edit':'hidden', 'view':'
 
 Financials_schema = Financials_schema.copy()  + Schema((
 
-    ReferenceField("fakeFMOname",
+    ReferenceField("FMOname",
             widget = ReferenceBrowserWidget(
                 label="Name",
-                visible={'edit':'hidden', 'view':'invisible'},
+                visible=False,
                 startup_directory='/contacts',
             ),
             allowed_types=('Person',),
             relationship='fmi_fmo_fake',
-            multiValued=0,
+            multiValued=1,
         ),
 
     ))

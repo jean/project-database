@@ -365,15 +365,15 @@ SubProject_schema['title'].widget.label = 'Sub-Project Title'
 
 SubProject_schema = SubProject_schema.copy()  + Schema((
 
-    ReferenceField("fakeExecutingAgencyName",
+    ReferenceField("ExecutingAgencyName",
             widget = ReferenceBrowserWidget(
                 label="Executing Agency",
-                visible={'edit':'hidden', 'view':'invisible'},
+                visible=False,
                 startup_directory='/contacts',
             ),
             allowed_types=('Organisation',),
             relationship='subproj_executingagency_fake',
-            multiValued=0,
+            multiValued=1,
         ),
     ))
 ##/code-section after-schema
