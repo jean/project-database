@@ -218,6 +218,7 @@ dataGridFieldFunctions.createNewRow = function(tr) {
         // Modify the onClick functions
         var elem = jq(div).find("input.searchButton");
         elem.click(function(){
+        alert(base_id+xlast_suffix);
             referencebrowser_openBrowser(startup_directory, base_id+xlast_suffix, at_url, fieldRealName);
         });
 
