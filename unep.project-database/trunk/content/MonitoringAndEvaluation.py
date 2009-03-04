@@ -127,7 +127,8 @@ schema = Schema((
         name='EvaluationTeam',
         widget=DataGridField._properties['widget'](
             label="Evaluation Team",
-            columns={'name':ReferenceColumn('Evaluator Name', fieldname='EvaluatorName'), 'role':SelectColumn('Role', vocabulary='getEvaluatorRoleVocabulary')},
+            columns={'name':ReferenceColumn('Evaluator Name',
+            fieldname='EvaluationTeamEvaluatorName'), 'role':SelectColumn('Role', vocabulary='getEvaluatorRoleVocabulary')},
             label_msgid='ProjectDatabase_label_EvaluationTeam',
             i18n_domain='ProjectDatabase',
         ),
@@ -152,14 +153,14 @@ MonitoringAndEvaluation_schema['EvaluationType'].widget.visible = \
 
 MonitoringAndEvaluation_schema = MonitoringAndEvaluation_schema.copy()  + Schema((
 
-    ReferenceField("fakeEvaluatorName",
+    ReferenceField("EvaluationTeamEvaluatorName",
             widget = ReferenceBrowserWidget(
                 label="Name",
                 visible={'edit':'hidden', 'view':'invisible'},
                 startup_directory='/contacts',
             ),
             allowed_types=('Person',),
-            relationship='fmi_evaluator_fake',
+            relationship='mne_evaluator',
             multiValued=0,
         ),
 
