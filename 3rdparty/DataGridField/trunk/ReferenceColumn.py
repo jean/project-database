@@ -54,13 +54,26 @@ class ReferenceColumn(Column):
         """
         return "datagrid_reference_cell"
 
+    security.declarePublic('processCellData')
+    def xxxprocessCellData(self, form, value, context, field, columnId):
+        """
+        Override
+        """
+        Column.processCellData(self, form, value, context, 
+          field, columnId)
+        context.getField(self._fieldname).set(context, value)
+    
     security.declarePublic('getFakeReferenceField')
     def getFakeReferenceField(self, context):
         """
         Return the ReferenceField as provided by the object in context. 
         This is needed by the referencebrowser widget macros.
         """
-        return context.Schema()['fake'+self._fieldname]
+        return context.Schema()[self._fieldname]
+
+        field = context.Schema()[self._fieldname].copy()
+        field.multiValued = 0
+        return field
 
     security.declarePublic('sanitize')
     def sanitize(self, context, value):
