@@ -156,12 +156,12 @@ MonitoringAndEvaluation_schema = MonitoringAndEvaluation_schema.copy()  + Schema
     ReferenceField("EvaluationTeamEvaluatorName",
             widget = ReferenceBrowserWidget(
                 label="Name",
-                visible={'edit':'hidden', 'view':'invisible'},
+                visible=False,
                 startup_directory='/contacts',
             ),
             allowed_types=('Person',),
             relationship='mne_evaluator',
-            multiValued=0,
+            multiValued=1,
         ),
 
     ))
