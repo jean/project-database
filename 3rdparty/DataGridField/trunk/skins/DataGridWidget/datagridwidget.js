@@ -218,8 +218,7 @@ dataGridFieldFunctions.createNewRow = function(tr) {
         // Modify the onClick functions
         var elem = jq(div).find("input.searchButton");
         elem.click(function(){
-        alert(base_id+xlast_suffix);
-            referencebrowser_openBrowser(startup_directory, base_id+xlast_suffix, at_url, fieldRealName);
+            dataGridFieldFunctions.referencebrowser_openBrowser(startup_directory, base_id+xlast_suffix, at_url, fieldRealName);
         });
 
     });
@@ -466,3 +465,7 @@ dataGridFieldFunctions.update_date_field_plone25 = function(field, year, month, 
     }
 }
 
+// function to open the popup window
+dataGridFieldFunctions.referencebrowser_openBrowser = function referencebrowser_openBrowser(path, fieldName, at_url, fieldRealName){
+    atrefpopup = window.open(path + '/referencebrowser_popup?fieldName=' + fieldName + '&fieldRealName=' + fieldRealName +'&at_url=' + at_url+'&multiValued=0','referencebrowser_popup','toolbar=no,location=no,status=no,menubar=no,scrollbars=yes,resizable=yes,width=500,height=550');
+}

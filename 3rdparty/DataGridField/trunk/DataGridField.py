@@ -143,7 +143,6 @@ class DataGridField(ObjectField):
             # from DataGridWidget. Value is Python array,
             # each item being a dictionary with column_name : value mappins
             # + orderinder which is used in JS reordering
-            
             for row in value:
                 order = row.get('orderindex_', None)
                 
