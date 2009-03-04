@@ -1,7 +1,5 @@
 THINGS TO DO ON UNEP PROJECT
 * Extend ContactsManager
-    - SPO Focal Area - add focal area to contacts database
-    - Add job title field
     - Add salutation field
     - Add Rating Assessment
     - Add Area of Expertise
