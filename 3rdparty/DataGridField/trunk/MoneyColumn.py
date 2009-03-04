@@ -21,7 +21,7 @@ from Globals import InitializeClass
 from Products.CMFCore.utils import getToolByName
 
 # Local imports
-from Products.FinanceFields.Money import Money
+from Products.FinanceFields.Money import Money, InvalidMoneyString
 from Products.DataGridField.Column import Column
 
 class MoneyColumn(Column):
@@ -75,7 +75,7 @@ class MoneyColumn(Column):
                     currency = di.get(columnId + '_currency', None)
                 try:
                     money = Money(di[columnId], currency)
-                except ValueError:
+                except InvalidMoneyString:
                     money = Money('0.00', currency)
                 row[columnId] = money
 
