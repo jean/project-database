@@ -9,25 +9,25 @@
 </vocabName>
 
 <term>
-  <termIdentifier>Project objectives</termIdentifier>
+  <termIdentifier>Project Objectives</termIdentifier>
   <caption>
-    <langstring language="en">Project objectives</langstring>
+    <langstring language="en">Project Objectives</langstring>
   </caption>
   <description />
 </term>
 
 <term>
-  <termIdentifier>Implementation progress</termIdentifier>
+  <termIdentifier>Implementation Progress</termIdentifier>
   <caption>
-    <langstring language="en">Implementation progress</langstring>
+    <langstring language="en">Implementation Progress</langstring>
   </caption>
   <description />
 </term>
 
 <term>
-  <termIdentifier>Monitoring and evaluation</termIdentifier>
+  <termIdentifier>Monitoring and Evaluation</termIdentifier>
   <caption>
-    <langstring language="en">Monitoring and evaluation</langstring>
+    <langstring language="en">Monitoring and Evaluation</langstring>
   </caption>
   <description />
 </term>
@@ -41,49 +41,49 @@
 </term>
 
 <term>
-  <termIdentifier>Project outputs and activities</termIdentifier>
+  <termIdentifier>Project Outputs and Activities</termIdentifier>
   <caption>
-    <langstring language="en">Project outputs and activities</langstring>
+    <langstring language="en">Project Outputs and Activities</langstring>
   </caption>
   <description />
 </term>
 
 <term>
-  <termIdentifier>Catalytic role</termIdentifier>
+  <termIdentifier>Catalytic Role</termIdentifier>
   <caption>
-    <langstring language="en">Catalytic role</langstring>
+    <langstring language="en">Catalytic Role</langstring>
   </caption>
   <description />
 </term>
 
 <term>
-  <termIdentifier>Preparation and readiness</termIdentifier>
+  <termIdentifier>Preparation and Readiness</termIdentifier>
   <caption>
-    <langstring language="en">Preparation and readiness</langstring>
+    <langstring language="en">Preparation and Readiness</langstring>
   </caption>
   <description />
 </term>
 
 <term>
-  <termIdentifier>Sustainability of outcomes</termIdentifier>
+  <termIdentifier>Sustainability of Outcomes</termIdentifier>
   <caption>
-    <langstring language="en">Sustainability of outcomes</langstring>
+    <langstring language="en">Sustainability of Outcomes</langstring>
   </caption>
   <description />
 </term>
 
 <term>
-  <termIdentifier>Stakeholder involvement</termIdentifier>
+  <termIdentifier>Stakeholder Involvement</termIdentifier>
   <caption>
-    <langstring language="en">Stakeholder involvement</langstring>
+    <langstring language="en">Stakeholder Involvement</langstring>
   </caption>
   <description />
 </term>
 
 <term>
-  <termIdentifier>Country ownership</termIdentifier>
+  <termIdentifier>Country Ownership</termIdentifier>
   <caption>
-    <langstring language="en">Country ownership</langstring>
+    <langstring language="en">Country Ownership</langstring>
   </caption>
   <description />
 </term>
@@ -105,9 +105,9 @@
 </term>
 
 <term>
-  <termIdentifier>Overall rating</termIdentifier>
+  <termIdentifier>Overall Rating</termIdentifier>
   <caption>
-    <langstring language="en">Overall rating</langstring>
+    <langstring language="en">Overall Rating</langstring>
   </caption>
   <description />
 </term>

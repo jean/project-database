@@ -1,17 +1,12 @@
 THINGS TO DO ON UNEP PROJECT
-* Extend ContactsManager
-    - Add salutation field
-    - Add Rating Assessment
-    - Add Area of Expertise
 * Print and Send Email links
-* Skins organisation
+* Skin Organisation
 
 * Import historical data
 
 OUTSTANDING REPORTS
 * Programme Framework
     Requires change to reporting mechanism
-* Project ratings report
 * Projects at risk
 
 ISSUES
