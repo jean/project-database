@@ -4,13 +4,15 @@
     i18n_domain="ProjectDatabase">
 
     <!-- Page Views -->
+    <!--
     <browser:page
         for="Products.ProjectDatabase.content.interfaces.IProjectDatabase"
         name="reports"
         class=".projectdatabasereportsview.ProjectDatabaseReportsView"
         permission="zope2.View"
-        template="projectdatabasereportsview.pt"
+        template="projectdatabasereportsview.cpt"
         />
+    -->
 
     <browser:page
         for="Products.ProjectDatabase.content.interfaces.IProject"
