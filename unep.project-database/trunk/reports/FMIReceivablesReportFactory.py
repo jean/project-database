@@ -26,7 +26,9 @@ class FMIReceivablesReportFactory(object):
         return report
 
     def getReportData(self, type):
-        projects = self.projectdatabase.objectValues(spec='Project')
+        projects = self.params.get('projects', None)
+        if projects is None:
+            projects = self.projectdatabase.objectValues(spec='Project')
         result = []
         for project in projects:
             ob = project.fmi_folder.get(type, None)
