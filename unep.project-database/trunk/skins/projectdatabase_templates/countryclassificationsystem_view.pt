@@ -7,6 +7,13 @@
 
 <metal:body metal:define-macro="body">
 <table>
+    <tr>
+        <td colspan="100" style="padding: 2px;">
+            <a style="float:left" 
+                tal:condition="python:member.has_role(['Owner','Manager','TM','SPO'], context)"
+                tal:attributes="href string:@@countryriskreport">Countries Risk Report</a>
+        </td>
+    </tr>
     <tr metal:define-macro="create_country">
         <td colspan="100" style="padding: 2px;">
             <a style="float:left" 
@@ -16,14 +23,23 @@
         </td>
     </tr>
     <tr>
-        <th i18n:translate="Title">Title</th>
+        <th i18n:translate="Country">Country</th>
+        <th i18n:translate="Year">Year</th>
+        <th i18n:translate="ConventionRatification">Convention</th>
+        <th i18n:translate="CountryGrouping">Grouping</th>
+        <th i18n:translate="RiskRating">Rating</th>
         <th i18n:translate="Action">Action</th>
     </tr>
 
     <tal:rep tal:repeat="country here/getFolderContents">
-        <tr tal:define=" even repeat/country/even;"
+        <tr style="border:1px dotted grey; vertical-align: center;"
+            tal:define=" even repeat/country/even;"
                 tal:attributes="class python:even and 'odd' or 'even'">
-          <td tal:content="country/Title" />
+          <td tal:content="country/getCountryName" />
+          <td tal:content="country/getYear" />
+          <td tal:content="python:', '.join(country.getConventionRatification)" />
+          <td tal:content="python:', '.join(country.getCountryGrouping)" />
+          <td tal:content="country/getRiskRating" />
           <td>
               <a tal:attributes="href string:${country/getURL}/view">
                   <span i18n:translate="view">view</span></a>

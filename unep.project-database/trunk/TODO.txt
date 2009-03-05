@@ -1,8 +1,9 @@
 THINGS TO DO ON UNEP PROJECT
 * Print and Send Email links
-* Skin Organisation
-
-* Import historical data
+* Styling
+  - Skin Organisation
+  - Documents need work
+* Add filtering to certain reports
 
 OUTSTANDING REPORTS
 * Programme Framework
