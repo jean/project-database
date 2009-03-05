@@ -47,23 +47,23 @@ schema = Schema((
     ),
     LinesField(
         name='ConventionRatification',
+        vocabulary=NamedVocabulary("""ConventionRatification"""),
         widget=InAndOutWidget(
             label="Convention Ratification",
             label_msgid='ProjectDatabase_label_ConventionRatification',
             i18n_domain='ProjectDatabase',
         ),
         multiValued=1,
-        vocabulary=NamedVocabulary("""ConventionRatification"""),
     ),
     LinesField(
         name='CountryGrouping',
+        vocabulary=NamedVocabulary("""CountryGrouping"""),
         widget=InAndOutWidget(
             label="Country Grouping",
             label_msgid='ProjectDatabase_label_CountryGrouping',
             i18n_domain='ProjectDatabase',
         ),
         multiValued=1,
-        vocabulary=NamedVocabulary("""CountryGrouping"""),
     ),
     StringField(
         name='OtherGroup',

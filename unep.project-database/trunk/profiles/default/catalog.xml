@@ -40,6 +40,13 @@
   <column value="getCurrentPrincipalFMO"/>
   <column value="getCurrentBackupFMO"/>
   <column value="getEvaluationType"/>
+  <column value="getCountryName"/>
+  <column value="getConventionRatification"/>
+  <column value="getCountryGrouping"/>
+  <column value="getOtherGroup"/>
+  <column value="getRiskRating"/>
+  <column value="getRemarks"/>
+  <column value="getYear"/>
 <!-- ##code-section FOOT -->
   <index name="getProjectTitle" 
          meta_type="ZCTextIndex">

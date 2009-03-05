@@ -19,7 +19,6 @@ class CountryRiskReportFactory(object):
             'Year',
             'Risk Rating',
             ),))
-        # XXX Implement this
         report.setTableRows(self.getReportData())
         # report.setTableTotals([])
         # report.setReportFooters()
