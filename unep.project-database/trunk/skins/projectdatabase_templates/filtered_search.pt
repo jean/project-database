@@ -24,6 +24,7 @@
             tal:attributes="action string:${context/absolute_url}/${template/id}">
         <input type="hidden" name="form.submitted" value="1" />
         <table width="100%">
+            <metal:searchcriteria metal:define-macro="search-criteria">
             <tr tal:define="fieldName string:country; 
                             vocabularyName string:Country; 
                             labelText string:Country;">
@@ -169,6 +170,7 @@
                     <input type="text" name="fund_manager" tal:attributes="value fund_manager" />
                 </td>
             </tr>
+            </metal:searchcriteria>
             <tr>
                 <td>&nbsp;</td>
                 <td>
