@@ -540,6 +540,11 @@ div.unep-theme-div-hidden {
 div.unep-theme-div-visible {
   display: block;
 }
+
+div.documentByLine {
+  display: none;
+}
+
 /* We are hiding the schemata tabs 
  * and displaying all the schemata 
  * on one page for the UNEP skin */
