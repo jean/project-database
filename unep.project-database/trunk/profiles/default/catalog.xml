@@ -28,6 +28,10 @@
          meta_type="FieldIndex">
     <indexed_attr value="getCurrentBackupFMO"/>
   </index>
+  <index name="getEvaluationType" 
+         meta_type="FieldIndex">
+    <indexed_attr value="getEvaluationType"/>
+  </index>
   <column value="getCountries"/>
   <column value="getFocalAreas"/>
   <column value="getProjectType"/>
@@ -35,6 +39,7 @@
   <column value="getUNEPApprovalDate"/>
   <column value="getCurrentPrincipalFMO"/>
   <column value="getCurrentBackupFMO"/>
+  <column value="getEvaluationType"/>
 <!-- ##code-section FOOT -->
   <index name="getProjectTitle" 
          meta_type="ZCTextIndex">

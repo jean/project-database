@@ -127,8 +127,7 @@ schema = Schema((
         name='EvaluationTeam',
         widget=DataGridField._properties['widget'](
             label="Evaluation Team",
-            columns={'name':ReferenceColumn('Evaluator Name',
-            fieldname='EvaluationTeamEvaluatorName'), 'role':SelectColumn('Role', vocabulary='getEvaluatorRoleVocabulary')},
+            columns={'name':ReferenceColumn('Evaluator Name', fieldname='EvaluationTeamEvaluatorName'), 'role':SelectColumn('Role', vocabulary='getEvaluatorRoleVocabulary')},
             label_msgid='ProjectDatabase_label_EvaluationTeam',
             i18n_domain='ProjectDatabase',
         ),
