@@ -66,7 +66,7 @@ class ProjectDatabase(BaseFolder, BrowserDefaultMixin):
     # Methods
 
     # Manually created methods
-    
+
     def getNextProjectId(self):
         """
         Lock this method so only one thread can access it at a time.
@@ -90,7 +90,7 @@ class ProjectDatabase(BaseFolder, BrowserDefaultMixin):
             else:
                 childrenCount = int(projectBrains[0].getId)
             newId = '%05d' % (childrenCount + 1)
-            # In case some projects were deleted and we try to use 
+            # In case some projects were deleted and we try to use
             # an existing id.
             while newId in self.keys():
                 childrenCount += 1
@@ -116,5 +116,6 @@ registerType(ProjectDatabase, PROJECTNAME)
 
 ##code-section module-footer #fill in your manual code here
 ##/code-section module-footer
+
 
 
