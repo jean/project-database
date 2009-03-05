@@ -17,14 +17,15 @@ class ExecutingAgencyRiskReportFactory(object):
             'Year',
             'Risk Ratings',
             ),))
-        # XXX Implement this
         report.setTableRows(self.getReportData())
         # report.setTableTotals([])
         # report.setReportFooters()
         return report
 
     def getReportData(self):
-        projects = self.context.objectValues(spec='Project')
+        projects = self.params.get('projects', None)
+        if projects is None:
+            projects = self.context.objectValues(spec='Project')
         result = []
         for project in projects:
             pgi = project.project_general_info

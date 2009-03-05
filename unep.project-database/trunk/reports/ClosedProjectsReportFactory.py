@@ -37,7 +37,9 @@ class ClosedProjectsReportFactory(object):
         return report
 
     def getReportData(self):
-        projects = self.projectdatabase.objectValues(spec='Project')
+        projects = self.params.get('projects', None)
+        if projects is None:
+            projects = self.projectdatabase.objectValues(spec='Project')
         result = []
         for project in projects:
             pgi = project.project_general_info
