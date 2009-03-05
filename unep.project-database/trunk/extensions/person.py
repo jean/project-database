@@ -7,8 +7,10 @@ from Products.UpfrontContacts.Person import Person
 from Products.ATVocabularyManager.namedvocabulary import NamedVocabulary
 from Products.ProjectDatabase.widgets.UNEPSelectionWidget \
         import UNEPSelectionWidget
+from Products.ProjectDatabase.utils import *
 from utils import *
 from Products.CMFCore.utils import getToolByName
+from DateTime import DateTime
 
 class RatingComputedField(ExtensionField, ComputedField):
     """ """
@@ -16,9 +18,23 @@ class RatingComputedField(ExtensionField, ComputedField):
         """ """
         print "Inside Last Rating"
         refcat = getToolByName(context, 'reference_catalog')
-        mnes = refcat.getReferences(context.UID())
-        import pdb; pdb.set_trace()
-        return 'KAK'
+        relationships = refcat.getBackReferences(
+            context.UID(), 
+            relationship='mne_evaluator')
+        mod_date = DateTime('1900/01/01')
+        last_mne = None
+        for rel in relationships:
+            mne = refcat.lookupObject(rel.sourceUID)
+            #Maybe also check for lead evaluator
+            if mne['modification_date'] > mod_date:
+                mod_date = mne['modification_date']
+                last_mne = mne
+        if last_mne:
+            rating = last_mne.getEOUTerminalEvaluationReportQuality()
+            if rating != 'No Selection':
+                rating = getVocabularyValue(context, 'Rating', rating)
+            return rating
+        
 
 
 
