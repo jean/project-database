@@ -1,5 +1,6 @@
 from Products.ProjectDatabase.reports.PPGReceivablesReportFactory import PPGReceivablesReportFactory
 from basereport import BaseReport
+from Products.CMFCore.utils import getToolByName
 
 class PPGReceivablesReport(BaseReport):
     def getReport(self):

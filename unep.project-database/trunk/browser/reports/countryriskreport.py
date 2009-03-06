@@ -1,6 +1,7 @@
 from Products.ProjectDatabase.reports.CountryRiskReportFactory \
     import CountryRiskReportFactory
 from basereport import BaseReport
+from Products.CMFCore.utils import getToolByName
 
 class CountryRiskReport(BaseReport):
     def getReport(self):

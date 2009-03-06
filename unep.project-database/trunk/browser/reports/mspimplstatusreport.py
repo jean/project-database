@@ -1,6 +1,7 @@
 from Products.ProjectDatabase.reports.MSPImplStatusReportFactory \
     import MSPImplementationStatusReportFactory
 from basereport import BaseReport
+from Products.CMFCore.utils import getToolByName
 
 class MSPImplStatusReport(BaseReport):
     def getReport(self):

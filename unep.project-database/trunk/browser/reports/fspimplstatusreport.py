@@ -1,6 +1,7 @@
 from Products.ProjectDatabase.reports.FSPImplStatusReportFactory \
     import FSPImplementationStatusReportFactory
 from basereport import BaseReport
+from Products.CMFCore.utils import getToolByName
 
 class FSPImplStatusReport(BaseReport):
     def getReport(self):
