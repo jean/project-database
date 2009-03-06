@@ -156,6 +156,12 @@ class ProgrammeFramework(BaseContent, CurrencyMixin, BrowserDefaultMixin):
             return curl[len(purl)+1:]
 
 
+    def getSPOName(self):
+        refcat = getToolByName(self, 'reference_catalog')
+        spo = self.getSeniorProgrammeOfficer()
+        if spo is not None:
+            return spo.getFullname()
+        return ''
 
 registerType(ProgrammeFramework, PROJECTNAME)
 # end of class ProgrammeFramework

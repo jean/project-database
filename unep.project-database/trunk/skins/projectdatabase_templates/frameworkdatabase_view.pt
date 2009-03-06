@@ -7,6 +7,13 @@
 
 <metal:body metal:define-macro="body">
 <table>
+    <tr>
+        <td colspan="100" style="padding: 2px;">
+            <a style="float:left" 
+                tal:condition="python:member.has_role(['Owner','Manager','TM','SPO'], context)"
+                tal:attributes="href string:@@programmeframeworkreport">Projects By Framework Report</a>
+        </td>
+    </tr>
     <tr metal:define-macro="create_framework">
         <td colspan="100" style="padding: 2px;">
             <a style="float:left" 
