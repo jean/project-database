@@ -31,6 +31,7 @@ from Products.ATReferenceBrowserWidget.ATReferenceBrowserWidget import Reference
 
 ##code-section module-header #fill in your manual code here
 from threading import Lock
+from DateTime import DateTime
 ##/code-section module-header
 
 schema = Schema((
@@ -118,10 +119,13 @@ class ProjectDatabase(BaseFolder, BrowserDefaultMixin):
                 results.append(project)
         return results
 
-    def hasExecutingAgencyHighRiskRatingInTwoYears(self, agency):
-        projects = self.getProjectsByExecutingAgency(agency)
+    def hasExecutingAgencyHighRiskRatingInTwoYears(self, agencylist):
+        projects = []
+        for agency in agencylist:
+            agencyprojects = self.getProjectsByExecutingAgency(agency)
+            projects.extend([prj for prj in agencyprojects if prj not in projects])
         for project in projects:
-            mofu = project.getMainFinanceObject()
+            mofu = project.fmi_folder.getMainFinanceObject()
             if mofu:
                 for rating, date in mofu.getEARiskRatingsAndDates():
                     if rating in ['H', 'S'] and (DateTime() - date) < 730:

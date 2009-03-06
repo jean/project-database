@@ -34,19 +34,25 @@ class ProjectsAtRiskReportFactory(object):
             projects = self.context.objectValues(spec='Project')
         result = []
         for project in projects:
-            for fo in project.fmi_folder.objectValues():
+            pgi = project.project_general_info
+            ms = project.milestones
+            mofu = project.fmi_folder.getMainFinanceObject()
+            projectRisk = project.projectRisk()
+
+            if mofu and project.isTheProjectPublished() and \
+                    projectRisk > 0:
                 result.append((
                     project.getId(),
-                    project.project_general_info.getGEFid(),
-                    fo.getIMISNumber(),
-                    project.project_general_info.getFocalAreaNames(),
-                    project.project_general_info.getProjectTypeName(),
-                    fo.getId().upper(),
-                    project.project_general_info.Title(),
-                    project.project_general_info.getLeadExecutingAgencyNames(),
-                    project.project_general_info.getCurrentTM(),
-                    fo.getCurrentFMODetails()[0],
-                    fo.getLatestEARiskRating()
+                    pgi.getGEFid(),
+                    mofu.getIMISNumber(),
+                    pgi.getFocalAreaNames(),
+                    pgi.getProjectTypeName(),
+                    mofu.getId().upper(),
+                    pgi.Title(),
+                    pgi.getLeadExecutingAgencyNames(),
+                    pgi.getCurrentTM(),
+                    mofu.getCurrentFMODetails()[0],
+                    projectRisk
                     ))
 
         return result
