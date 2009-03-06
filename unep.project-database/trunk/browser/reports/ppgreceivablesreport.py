@@ -3,5 +3,11 @@ from basereport import BaseReport
 
 class PPGReceivablesReport(BaseReport):
     def getReport(self):
-        factory = PPGReceivablesReportFactory(self.context)
+        rc = getToolByName(self, 'reference_catalog')
+        projects = []
+        UIDs = self.context.REQUEST.get('projects', None)
+        if UIDs:
+            UIDs = UIDs.split('|')
+            projects = [rc.lookupObject(UID) for UID in UIDs]
+        factory = PPGReceivablesReportFactory(self.context, projects=projects)
         return factory.getReport()
