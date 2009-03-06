@@ -35,8 +35,10 @@ class ViewOptions(ViewletBase):
             tabs = [
                 (self.context.absolute_url(), "Projects",
                     self._endsWith('/base_view')),
-                ("%s/@@reports" % self.context.absolute_url(), "Reports",
-                    self._endsWith('/@@reports')),
+                # ("%s/@@reports" % self.context.absolute_url(), "Reports",
+                #     self._endsWith('/@@reports')),
+                ("%s/projectdatabasereportsview" % self.context.absolute_url(), "Reports",
+                    self._endsWith('/projectdatabasereportsview')),
             ]
         else:
             return []
