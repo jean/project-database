@@ -1,6 +1,7 @@
 from Products.ProjectDatabase.reports.MidTermReviewStatusReportFactory \
     import MidTermReviewStatusReportFactory
 from basereport import BaseReport
+from Products.CMFCore.utils import getToolByName
 
 class MidTermReviewStatusReport(BaseReport):
     def getReport(self):

@@ -1,6 +1,7 @@
 from Products.ProjectDatabase.reports.ProjectsDueForClosureReportFactory \
     import ProjectsDueForClosureReportFactory
 from basereport import BaseReport
+from Products.CMFCore.utils import getToolByName
 
 class ProjectsDueForClosureReport(BaseReport):
     def getReport(self):
