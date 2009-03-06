@@ -916,7 +916,8 @@ class Financials(BaseFolder, CurrencyMixin, BrowserDefaultMixin):
                 vdonor = v['cofinancing_cash_donor_name']
                 vamount = v['cofinancing_cash_planned_amount']
                 for item in result:
-                    if item['type'] == vtype and item['name'].lower() == vdonor.lower():
+                    if item['type'] == vtype and \
+                       item['name'].lower() == vdonor.lower():
                         item['amount'] += vamount
                         break
                 else:
@@ -928,13 +929,29 @@ class Financials(BaseFolder, CurrencyMixin, BrowserDefaultMixin):
                 vdonor = v['cofinancing_inkind_donor_name']
                 vamount = v['cofinancing_inkind_planned_amount']
                 for item in result:
-                    if item['type'] == vtype and item['name'].lower() == vdonor.lower():
+                    if item['type'] == vtype and \
+                       item['name'].lower() == vdonor.lower():
                         item['amount'] += vamount
                         break
                 else:
                     result.append({'type':vtype, 'name':vdonor, 'amount':vamount})
         return result
 
+
+    def getLastDisbursement(self):
+        values = self.getCashDisbursements()
+        if values:
+            date = DateTime('1900/01/01')
+            for v in values:
+                disbursements_date = v.get('disbursements_date', None)
+                disbursements_amount = v.get('disbursements_amount', None)
+                if disbursements_date and disbursements_amount:
+                    if date < disbursements_date:
+                        date = disbursements_date
+                        amount = disbursements_amount
+            if date != DateTime('1900/01/01'):
+                return date, amount
+        return None, None
 
 
 registerType(Financials, PROJECTNAME)
