@@ -954,6 +954,27 @@ class Financials(BaseFolder, CurrencyMixin, BrowserDefaultMixin):
         return None, None
 
 
+    def hasDelayedFinancialReports(self):
+        exp_date = getLatestReportData('expenditure', 'report_received_date')
+        audit_date = getLatestReportData('audit', 'report_received_date')
+        cofin_date = getLatestReportData('cofinance', 'report_received_date')
+        now = DateTime()
+        return not( (now - exp_date) < 300 or \
+                    (now - audit_date) < 300 or \
+                    (now - cofin) < 300)
+
+    def hasDelayedSubstantiveReports(self):
+        inv_date = getLatestReportData('inventory', 'report_received_date')
+        prog_date = getLatestReportData('progress', 'report_received_date')
+        term_date = getLatestReportData('terminal', 'report_received_date')
+        now = DateTime()
+        return not( (now - inv_date) < 300 or \
+                    (now - prog_date) < 300 or \
+                    (now - term) < 300)
+
+
+
+
 registerType(Financials, PROJECTNAME)
 # end of class Financials
 
