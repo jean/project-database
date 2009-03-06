@@ -4,5 +4,11 @@ from basereport import BaseReport
 
 class PPGImplStatusReport(BaseReport):
     def getReport(self):
-        factory = PPGImplementationStatusReportFactory(self.context)
+        rc = getToolByName(self, 'reference_catalog')
+        projects = []
+        UIDs = self.context.REQUEST.get('projects', None)
+        if UIDs:
+            UIDs = UIDs.split('|')
+            projects = [rc.lookupObject(UID) for UID in UIDs]
+        factory = PPGImplementationStatusReportFactory(self.context, projects=projects)
         return factory.getReport()

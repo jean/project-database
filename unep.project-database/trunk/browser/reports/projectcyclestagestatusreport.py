@@ -4,5 +4,11 @@ from basereport import BaseReport
 
 class ProjectCycleStageStatusReport(BaseReport):
     def getReport(self):
-        factory = ProjectCycleStageStatusReportFactory(self.context)
+        rc = getToolByName(self, 'reference_catalog')
+        projects = []
+        UIDs = self.context.REQUEST.get('projects', None)
+        if UIDs:
+            UIDs = UIDs.split('|')
+            projects = [rc.lookupObject(UID) for UID in UIDs]
+        factory = ProjectCycleStageStatusReportFactory(self.context, projects=projects)
         return factory.getReport()
