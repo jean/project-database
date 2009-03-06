@@ -109,7 +109,24 @@ class ProjectDatabase(BaseFolder, BrowserDefaultMixin):
               staff.sort()
               return staff
 
+    security.declarePublic('getProjectsByExecutingAgency')
+    def getProjectsByExecutingAgency(self, executing_agency):
+        projects = self.objectValues(spec='Project')
+        results = []
+        for project in projects:
+            if executing_agency in project.getExecutingAgencies():
+                results.append(project)
+        return results
 
+    def hasExecutingAgencyHighRiskRatingInTwoYears(self, agency):
+        projects = self.getProjectsByExecutingAgency(agency)
+        for project in projects:
+            mofu = project.getMainFinanceObject()
+            if mofu:
+                for rating, date in mofu.getEARiskRatingsAndDates():
+                    if rating in ['H', 'S'] and (DateTime() - date) < 730:
+                        return True
+        return False
 
 registerType(ProjectDatabase, PROJECTNAME)
 # end of class ProjectDatabase
