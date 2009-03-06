@@ -348,6 +348,21 @@ class Project(BaseFolder, CurrencyMixin, BrowserDefaultMixin):
             if mofu:
                 return mofu.getCurrentPrincipalFMO()
 
+    def hasProjectCompletionDelays(self):
+        ms = self.milestones
+        complete_exp = ms.getPPGImplementationDate('CompletionExpected')
+        if complete_exp:
+            complete_act = ms.getPPGImplementationDate('CompletionActual')
+            if complete_act:
+                return (complete_act - complete_exp) > 180
+
+        complete_exp = ms.getProjectImplementationDate('CompletionExpected')
+        if complete_exp:
+            complete_act = ms.getProjectImplementationDate('CompletionActual')
+            if complete_act:
+                return (complete_act - complete_exp) > 180
+        return False
+
 
 
 registerType(Project, PROJECTNAME)
