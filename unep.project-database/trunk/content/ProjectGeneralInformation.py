@@ -1026,22 +1026,22 @@ class ProjectGeneralInformation(BaseContent, CurrencyMixin, BrowserDefaultMixin)
         return self.getSelectedVocabularyValue(objective, 'StrategicObjectives')
 
     def getLeadExecutingAgencyNames(self):
+        values = self.getLeadExecutingAgencyList()
+        if values:
+            result = ', '.join(values)
+            return result
+        return 'Unspecified'
+
+    def getLeadExecutingAgencyList(self):
         values = self.getProjectExecutingAgency()
-        result = ''
+        result = []
         if values:
             refcat = getToolByName(self, 'reference_catalog')
             for v in values:
                 if v['executing_agency']:
                     agency = refcat.lookupObject(v['executing_agency'])
                     if agency is not None:
-                        name = agency.getName()
-                    else:
-                        name = 'Unspecified'
-                    result += name + ', '
-        if len(result) > 2:
-            result = result[:-2]
-        else:
-            result = 'Unspecified'
+                        result.append(agency.getName())
         return result
 
     def getOtherExecutingAgencyNames(self):
@@ -1351,7 +1351,6 @@ class ProjectGeneralInformation(BaseContent, CurrencyMixin, BrowserDefaultMixin)
         if pm is not None:
             return pm.getFullname(), pm.getEmail(), pm.getBusinessPhone()
         return '', '', ''
-
 
 
 registerType(ProjectGeneralInformation, PROJECTNAME)

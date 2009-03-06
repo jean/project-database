@@ -849,6 +849,17 @@ class Financials(BaseFolder, CurrencyMixin, BrowserDefaultMixin):
                     results.append((year, rating))
         return results
 
+    def getEARiskRatingsAndDates(self):
+        values = self.getExecutingAgencyRiskRating()
+        results = []
+        if values:
+            for v in values:
+                if v['Assessment_Date'] and v['Risk_Level']:
+                    rating = v['Risk_Level']
+                    date = v['Assessment_Date']
+                    results.append((rating, date))
+        return results
+
     def getSelectedVocabularyValue(self, selection, vocabName):
         if selection:
             atvm = getToolByName(self, 'portal_vocabularies')

@@ -50,28 +50,24 @@ class CalendarColumn(Column):
         #print "form value:" + str(form)
         
         for row in value:
-            
             # we must clone row since
             # row is readonly ZPublished.HTTPRequest.record object
+            if row["orderindex_"] == 'template_row_marker':
+                continue
+
             newRow = {}
             for key in row.keys():
                 newRow[key] = row[key]
-                        
-            try:
-                orderIndex = int(row["orderindex_"])
-                cellId = "%s.%s" % (field.getName(), columnId)
-                if form.has_key(cellId):
-                    start = orderIndex * 6 - 6
-                    end = orderIndex * 6 
-                    valList = form[cellId][start:end]
-                    if valList[1] != '00' and valList[2] != '00':
-                        new_date_str = "%s/%s/%s" % (valList[0], valList[1], valList[2])
-                        #new_date = DateTime(new_date_str)
-                        newRow[columnId] = DateTime(new_date_str)
-            except IndexError:
-                pass
-            except ValueError:
-                pass
+
+            orderIndex = int(row["orderindex_"])
+            cellId = "%s.%s" % (field.getName(), columnId)
+            if form.has_key(cellId):
+                start = orderIndex * 6 - 6
+                end = orderIndex * 6 
+                valList = form[cellId][start:end]
+                if valList and valList[1] != '00' and valList[2] != '00':
+                    new_date_str = "%s/%s/%s" % (valList[0], valList[1], valList[2])
+                    newRow[columnId] = DateTime(new_date_str)
 
             newValue.append(newRow)
             

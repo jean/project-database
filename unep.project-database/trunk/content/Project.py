@@ -30,6 +30,8 @@ from Products.CMFCore.utils import getToolByName
 from Products.ATReferenceBrowserWidget.ATReferenceBrowserWidget import ReferenceBrowserWidget
 
 ##code-section module-header #fill in your manual code here
+from types import StringTypes
+from DateTime import DateTime
 ##/code-section module-header
 
 schema = Schema((
@@ -210,20 +212,37 @@ class Project(BaseFolder, CurrencyMixin, BrowserDefaultMixin):
     security.declarePublic('projectRisk')
     def projectRisk(self):
         risk = 0
+
         #Project Risk
         pgi = self.getProjectGeneralInformation()
         rating = pgi.getRiskRatingAtInception()
         if rating == 'S' or rating == 'H':
             risk += 1
+
         #PIR Risk
         mandef = self.mne_folder
         pir = mandef.getLatestPIRRating()
-        rating = pir.getProjectRisk()
-        if rating == 'S' or rating == 'H':
-            risk += 1
+        if pir:
+            rating = pir.getProjectRisk()
+            if rating == 'S' or rating == 'H':
+                risk += 1
+
         #EA Risk
+        if self.aq_inner.aq_parent.hasExecutingAgencyHighRiskRatingInTwoYears( \
+                            pgi.getLeadExecutingAgencyList()):
+            risk += 1
+
         #Country Risk
+        ccs = self.restrictedTraverse('countryclassification')
+        countries = pgi.getCountry()
+        if ccs and len(countries) == 1:
+                if ccs.getLatestCountryRiskRating(countries[0]) in ['H', 'S']:
+                    risk += 1
+
         #Completion Delays
+        if self.hasProjectCompletionDelays():
+            risk += 1
+
         #Disbursement Delays
         #Delayed Finanacial reports
         #Delayed Substantive reports
@@ -354,13 +373,22 @@ class Project(BaseFolder, CurrencyMixin, BrowserDefaultMixin):
         if complete_exp:
             complete_act = ms.getPPGImplementationDate('CompletionActual')
             if complete_act:
+                if isinstance(complete_exp, StringTypes):
+                    complete_exp = DateTime(complete_exp)
+                if isinstance(complete_act, StringTypes):
+                    complete_act = DateTime(complete_act)
                 return (complete_act - complete_exp) > 180
 
         complete_exp = ms.getProjectImplementationDate('CompletionExpected')
         if complete_exp:
             complete_act = ms.getProjectImplementationDate('CompletionActual')
             if complete_act:
+                if isinstance(complete_exp, StringTypes):
+                    complete_exp = DateTime(complete_exp)
+                if isinstance(complete_act, StringTypes):
+                    complete_act = DateTime(complete_act)
                 return (complete_act - complete_exp) > 180
+
         return False
 
 
