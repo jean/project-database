@@ -1,0 +1,59 @@
+<metal:header metal:define-macro="header" />
+<metal:folderlisting metal:define-macro="folderlisting" />
+<metal:footer metal:define-macro="footer" />
+<metal:body metal:define-macro="body">
+<div>
+<h3 tal:content="context/Title">Title</h3>
+<hr >
+</div>
+<div tal:condition="python:member.has_role(['Owner','Manager','TM','EO', 'MO'], context)">
+        <form name="add_mande" method="post" action=""
+                tal:attributes="action python: context.absolute_url() + '/mandefolder_view'">
+            <input type="hidden" name="form.submitted" value="1" />
+            <span>Create new M &amp; E</span>
+            <select name="etype" 
+                  tal:define="
+                        vocab python:context.portal_vocabularies.getVocabularyByName('EvaluationType');
+                        dList python:vocab.getDisplayList(context)">
+                <tal:rep tal:repeat="item dList/items">
+                    <option tal:attributes="value python:item[0];"
+                            tal:content="python:item[1]"
+                            tal:condition="python:member.has_role(['Owner','Manager','TM','EO'], context)">
+                            Option
+                    </option>
+                </tal:rep>
+                    <option value="PIRRating" tal:condition="python:member.has_role(['Owner','Manager','TM','MO'], context)">PIR Rating</option>
+            </select>
+            <input class="context" type="submit" name="form.button.add" value="Create"/>
+        </form>
+<hr />
+</div>
+<div>
+<!-- M & E -->
+    <div style="width:100%" >
+        <table width="100%">
+            <tr tal:repeat="mandeo python:context.getFolderContents({'portal_type':'MonitoringAndEvaluation'},full_objects=True)">
+                <td tal:content="mandeo/Title" />
+                <td>
+                    <a tal:attributes="href string:${mandeo/absolute_url}/view">
+                        <span i18n:translate="view">view</span></a>
+                    <a tal:attributes="href string:${mandeo/absolute_url}/edit"
+                        tal:condition="python:member.has_role(['Owner','Manager','TM','SPO', 'EO'], mandeo)">
+                        <span i18n:translate="edit">edit</span></a>
+                </td>
+            </tr>
+            <tr tal:repeat="mandeo python:context.getFolderContents({'portal_type':'PIRRating'},full_objects=True)">
+                <td tal:content="mandeo/Title" />
+                <td>
+                    <a tal:attributes="href string:${mandeo/absolute_url}/view">
+                        <span i18n:translate="view">view</span></a>
+                    <a tal:attributes="href string:${mandeo/absolute_url}/edit"
+                        tal:condition="python:member.has_role(['Owner','Manager','TM','SPO', 'MO'], mandeo)">
+                        <span i18n:translate="edit">edit</span></a>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+</metal:body>

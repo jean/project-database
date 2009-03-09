@@ -1,0 +1,224 @@
+<?xml version="1.0"?>
+<dc-workflow workflow_id="ProjectWorkflow"
+             title="ProjectWorkflow"
+             state_variable="review_state"
+             initial_state="private">
+ <permission>View</permission>
+ <permission>List folder contents</permission>
+ <permission>FMO</permission>
+ <permission>Registrar</permission>
+ <permission>Registrar TM</permission>
+ <permission>Registrar TM FMO</permission>
+ <permission>Registrar TM SPO</permission>
+ <permission>TM</permission>
+ <permission>TM EO</permission>
+ <permission>TM MO</permission>
+ <permission>Registrar TM MO EO</permission>
+ <permission>Access contents information</permission>
+ <state state_id="private"
+        title="private">
+  <exit-transition transition_id="Publish"/>
+  <permission-map name="Access contents information"
+                  acquired="False">
+   <permission-role>Owner</permission-role>
+   <permission-role>SPO</permission-role>
+   <permission-role>Manager</permission-role>
+  </permission-map>
+  <permission-map name="FMO"
+                  acquired="False">
+   <permission-role>Manager</permission-role>
+  </permission-map>
+  <permission-map name="List folder contents"
+                  acquired="False">
+   <permission-role>Owner</permission-role>
+   <permission-role>Manager</permission-role>
+   <permission-role>SPO</permission-role>
+  </permission-map>
+  <permission-map name="Registrar"
+                  acquired="False">
+   <permission-role>Manager</permission-role>
+  </permission-map>
+  <permission-map name="Registrar TM"
+                  acquired="False">
+   <permission-role>TM</permission-role>
+   <permission-role>Manager</permission-role>
+  </permission-map>
+  <permission-map name="Registrar TM FMO"
+                  acquired="False">
+   <permission-role>TM</permission-role>
+   <permission-role>Manager</permission-role>
+  </permission-map>
+  <permission-map name="Registrar TM MO EO"
+                  acquired="False">
+   <permission-role>TM</permission-role>
+   <permission-role>Manager</permission-role>
+  </permission-map>
+  <permission-map name="Registrar TM SPO"
+                  acquired="False">
+   <permission-role>TM</permission-role>
+   <permission-role>Manager</permission-role>
+  </permission-map>
+  <permission-map name="TM"
+                  acquired="False">
+   <permission-role>TM</permission-role>
+   <permission-role>Manager</permission-role>
+  </permission-map>
+  <permission-map name="TM EO"
+                  acquired="False">
+   <permission-role>TM</permission-role>
+   <permission-role>Manager</permission-role>
+  </permission-map>
+  <permission-map name="TM MO"
+                  acquired="False">
+   <permission-role>TM</permission-role>
+   <permission-role>Manager</permission-role>
+  </permission-map>
+  <permission-map name="View"
+                  acquired="False">
+   <permission-role>Owner</permission-role>
+   <permission-role>SPO</permission-role>
+   <permission-role>Manager</permission-role>
+  </permission-map>
+ </state>
+ <state state_id="published"
+        title="published">
+  <permission-map name="Access contents information"
+                  acquired="False">
+   <permission-role>Manager</permission-role>
+   <permission-role>Owner</permission-role>
+   <permission-role>Member</permission-role>
+  </permission-map>
+  <permission-map name="FMO"
+                  acquired="False">
+   <permission-role>FMO</permission-role>
+   <permission-role>Manager</permission-role>
+  </permission-map>
+  <permission-map name="List folder contents"
+                  acquired="False">
+   <permission-role>Manager</permission-role>
+   <permission-role>Owner</permission-role>
+   <permission-role>Member</permission-role>
+  </permission-map>
+  <permission-map name="Registrar"
+                  acquired="False">
+   <permission-role>Registrar</permission-role>
+   <permission-role>Manager</permission-role>
+  </permission-map>
+  <permission-map name="Registrar TM"
+                  acquired="False">
+   <permission-role>Registrar</permission-role>
+   <permission-role>TM</permission-role>
+   <permission-role>Manager</permission-role>
+   <permission-role>Owner</permission-role>
+  </permission-map>
+  <permission-map name="Registrar TM FMO"
+                  acquired="False">
+   <permission-role>Registrar</permission-role>
+   <permission-role>TM</permission-role>
+   <permission-role>FMO</permission-role>
+   <permission-role>Manager</permission-role>
+   <permission-role>Owner</permission-role>
+  </permission-map>
+  <permission-map name="Registrar TM MO EO"
+                  acquired="False">
+   <permission-role>Registrar</permission-role>
+   <permission-role>TM</permission-role>
+   <permission-role>MO</permission-role>
+   <permission-role>EO</permission-role>
+   <permission-role>Manager</permission-role>
+   <permission-role>Owner</permission-role>
+  </permission-map>
+  <permission-map name="Registrar TM SPO"
+                  acquired="False">
+   <permission-role>Registrar</permission-role>
+   <permission-role>TM</permission-role>
+   <permission-role>SPO</permission-role>
+   <permission-role>Manager</permission-role>
+   <permission-role>Owner</permission-role>
+  </permission-map>
+  <permission-map name="TM"
+                  acquired="False">
+   <permission-role>TM</permission-role>
+   <permission-role>Manager</permission-role>
+   <permission-role>Owner</permission-role>
+  </permission-map>
+  <permission-map name="TM EO"
+                  acquired="False">
+   <permission-role>TM</permission-role>
+   <permission-role>EO</permission-role>
+   <permission-role>Manager</permission-role>
+   <permission-role>Owner</permission-role>
+  </permission-map>
+  <permission-map name="TM MO"
+                  acquired="False">
+   <permission-role>TM</permission-role>
+   <permission-role>MO</permission-role>
+   <permission-role>Manager</permission-role>
+   <permission-role>Owner</permission-role>
+  </permission-map>
+  <permission-map name="View"
+                  acquired="False">
+   <permission-role>Manager</permission-role>
+   <permission-role>Owner</permission-role>
+   <permission-role>Member</permission-role>
+  </permission-map>
+ </state>
+ <transition transition_id="Publish"
+             title="Publish"
+             new_state="published"
+             trigger="USER"
+             before_script=""
+             after_script="">
+  <action url="" category="workflow">Publish</action>
+  <guard>
+  </guard>
+ </transition>
+ <variable variable_id="action" for_catalog="False"
+           for_status="True" update_always="True">
+  <description>The last transition</description>
+  <default>
+   <expression>transition/getId|nothing</expression>
+  </default>
+  <guard>
+  </guard>
+ </variable>
+ <variable variable_id="actor" for_catalog="False"
+           for_status="True" update_always="True">
+  <description>The ID of the user who performed the last transition</description>
+  <default>
+   <expression>user/getId</expression>
+  </default>
+  <guard>
+  </guard>
+ </variable>
+ <variable variable_id="comments" for_catalog="False"
+           for_status="True" update_always="True">
+  <description>Comments about the last transition</description>
+  <default>
+   <expression>python:state_change.kwargs.get('comment', '')</expression>
+  </default>
+  <guard>
+  </guard>
+ </variable>
+ <variable variable_id="review_history" for_catalog="False"
+           for_status="False" update_always="False">
+  <description>Provides access to workflow history</description>
+  <default>
+   <expression>state_change/getHistory</expression>
+  </default>
+  <guard>
+   <guard-permission>Request review</guard-permission>
+   <guard-permission>Review portal content</guard-permission>
+  </guard>
+ </variable>
+ <variable variable_id="time" for_catalog="False"
+           for_status="True" update_always="True">
+  <description>Time of the last transition</description>
+  <default>
+   <expression>state_change/getDateTime</expression>
+  </default>
+  <guard>
+  </guard>
+ </variable>
+ <!-- We dont use workflow scripts any more, we use subscribers -->
+</dc-workflow>
