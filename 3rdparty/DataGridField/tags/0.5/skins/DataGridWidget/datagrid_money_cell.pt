@@ -1,0 +1,45 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      i18n:domain="plone">
+      
+      
+<!-- View/edit money columns -->
+
+<body>
+    <!-- VIEW -->
+    <metal:view_cell_macro define-macro="view_cell">                
+      <span tal:replace="cell_value"/>
+    </metal:view_cell_macro>
+
+    <!-- EDIT -->
+    <metal:edit_cell_macro define-macro="edit_cell">
+      <tal:def define="field python:column_definition.getField();
+                       widget python:field.widget;
+                       fieldName string:${fieldName}.${column};
+                       marshaller string::records;
+                       value cell_value">
+        <div class="datagrid-money-wrapper">
+          <metal:use use-macro="here/datagrid_money/macros/edit"/>
+        </div>
+      </tal:def>
+    </metal:edit_cell_macro>
+    
+   <!-- EMPTY EDIT -->
+    <metal:edit_empty_cell_macro define-macro="edit_empty_cell">
+      <tal:def define="field python:column_definition.getField();
+                       widget python:field.widget;
+                       fieldName string:${fieldName}.${column};
+                       marshaller string::records;
+                       cell_value python:column_definition.getDefault(context)">
+        <div class="datagrid-money-wrapper">
+          <metal:use use-macro="here/datagrid_money/macros/edit"/>
+        </div>
+      </tal:def>
+   </metal:edit_empty_cell_macro>
+        
+</body>
+
+</html>
+
