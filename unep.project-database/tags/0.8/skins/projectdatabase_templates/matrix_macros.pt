@@ -1,0 +1,57 @@
+<metal:fmi_matrix define-macro="fmi_matrix">
+<table class="table-fullwidth">
+    <tr>
+        <th>IMIS No</th>
+        <th>Finance Object</th>
+        <th>Expected/Revised Completion</th>
+        <th>Grant to UNEP</th>
+        <th>Total Disbursements</th>
+        <th>Total Expenditures</th>
+    </tr>
+    <tr tal:repeat="brain brains">
+        <tal:def tal:define="obj brain/getObject">
+        <td>
+            <a href="" 
+                tal:attributes="href string:${obj/absolute_url}/view" 
+                tal:content="obj/getIMISNumber | string:unknown">IMIS</a>
+            <a tal:condition="python:member.has_role(['Owner', 'Manager', 'FMO'], obj)"
+                tal:attributes="href string:${obj/absolute_url}/edit">edit</a>
+        </td>
+        <td tal:content="python:obj.getFinanceCategory().upper() or 'unknown'" />
+            <td tal:define="revdate obj/getRevisedCompletionDate;
+                    revdate python:revdate is not None and revdate or obj.getExpectedCompletionDate()"
+                tal:content="revdate | string:unknown" />
+        <td tal:content="obj/getSumFinanceObjectAmount | string:unknown" />
+        <td tal:content="obj/getSumCashDisbursements | string:unknown" />
+        <td tal:content="obj/getSumYearlyExpenditures | string:unknown" />
+        </tal:def>
+    </tr>
+</table>
+</metal:fmi_matrix>
+
+<metal:multiple_fmi_matrix define-macro="multiple_fmi_matrix">
+<tal:def tal:define="brains context/fmi_folder/getFolderContents;">
+    <tal:use metal:use-macro="context/matrix_macros/macros/fmi_matrix" />
+</tal:def>
+</metal:multiple_fmi_matrix>
+
+<metal:pgi_matrix define-macro="pgi_matrix">
+<table class="table-fullwidth">
+    <tr>
+        <th>GEF ID</th>
+        <th>Focal Area</th>
+        <th>Project Cycle Stage</th>
+    </tr>
+    <tr>
+        <td>
+            <a href="" 
+                tal:attributes="href string:${ob/project_general_info/absolute_url}/view" 
+                tal:content="ob/project_general_info/getGEFid | string:unknown" />
+            <a tal:condition="python:member.has_role(['Owner', 'Manager', 'TM', 'Registrar'], ob.project_general_info)"
+                tal:attributes="href string:${ob/project_general_info/absolute_url}/edit">edit</a>
+        </td>
+        <td tal:content="ob/project_general_info/getFocalAreaNames | string:unknown" />
+        <td tal:content="ob/milestones/getProjectStage | string:unknown" />
+    </tr>
+</table>
+</metal:pgi_matrix>

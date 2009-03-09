@@ -1,0 +1,247 @@
+<metal:header metal:define-macro="header" />
+<metal:folderlisting metal:define-macro="folderlisting" />
+<metal:footer metal:define-macro="footer" />
+<metal:body metal:define-macro="body">
+<h3 tal:content="context/Title">FMI</h3>
+<br />
+<div>
+    <tal:form 
+        tal:condition="python:member.has_permission('Add portal content', context)">
+        <form name="add_finobject" method="post" action=""
+                tal:attributes="action python: context.absolute_url() + '/fmifolder_view'">
+            <input type="hidden" name="form.submitted" value="1" />
+            <span>Create new finance object</span>
+            <select name="category" 
+                  tal:define="
+                        vocab python:context.portal_vocabularies.getVocabularyByName('FinanceCategory');
+                        dList python:vocab.getDisplayList(context)">
+                <tal:rep tal:repeat="item dList/items">
+                    <option tal:attributes="value python:item[0];"
+                            tal:content="python:item[1]">
+                            Option
+                    </option>
+                </tal:rep>
+            </select>
+            <input class="context" type="submit" name="form.button.add" value="Create"/>
+        </form>
+    </tal:form>
+    <hr >
+    <table width="100%"
+        tal:define="pgi nocall:context/aq_parent/project_general_info">
+<!-- PGI -->
+        <tr>
+            <td i18n:translate="project_title" width="30%">Project Title:</td>
+            <td>
+                <a tal:attributes="href pgi/absolute_url"
+                    tal:content="pgi/Title"> PGI </a>
+            </td>
+        </tr>
+        <tr>
+            <td i18n:translate="gef_id">GEF Id:</td>
+            <td tal:content="pgi/getGEFid" />
+        </tr>
+        <tr>
+            <td i18n:translate="focal_area">Focal Area:</td>
+            <td tal:content="pgi/getFocalAreaNames" />
+        </tr>
+        <tr>
+            <td i18n:translate="geographic_scope">Geographic Scope:</td>
+            <td tal:content="pgi/getGeographicScopeValues" />
+        </tr>
+        <tr>
+            <td i18n:translate="executing_agencies">Executing Agency(ies):</td>
+            <td tal:content="pgi/getAllExecutingAgencyNames" />
+        </tr>
+        <tr>
+            <td i18n:translate="task_manager">Task Manager:</td>
+            <td tal:content="pgi/getCurrentTM" />
+        </tr>
+        <tr>
+            <td i18n:translate="evaluation_budget">Evaluation Budget:</td>
+            <td tal:content="string:Unknown" />
+        </tr>
+    </table>
+</div>
+<hr />
+<div>
+<!-- FMI -->
+    <div style="width:100%" 
+        tal:repeat="fo python:context.getFolderContents(full_objects=True)">
+        <table width="100%">
+            <tr>
+                <td i18n:translate="finance_object" width="30%">Finance Object:</td>
+                <td>
+                    <span tal:content="fo/id" 
+                        style="text-transform: uppercase;">PPG</span>&nbsp;
+                    <a tal:attributes="href string:${fo/absolute_url}/view">
+                        <span i18n:translate="view">View</span></a>
+                    <a tal:attributes="href string:${fo/absolute_url}/edit"
+                        tal:condition="python:member.has_role(['Owner','Manager','FMO','SPO','Registrar'], fo)">
+                        <span i18n:translate="edit">Edit</span></a>
+                    <a tal:attributes="href string:${fo/absolute_url}/delete_confirmation"
+                        tal:condition="python:member.has_role(['Owner','Manager','FMO','SPO','Registrar'], fo)">
+                        <span i18n:translate="delete">Delete</span></a>
+                </td>
+            </tr>
+            <tr>
+                <td i18n:translate="imis_no">IMIS No:</td>
+                <td tal:content="fo/getIMISNumber" />
+            </tr>
+            <tr>
+                <td i18n:translate="trustee_id">Trustee ID:</td>
+                <td tal:content="fo/getTrusteeID" />
+            <tr>
+                <td i18n:translate="status">Status:</td>
+                <td tal:content="fo/getStatus" />
+            <tr>
+                <td i18n:translate="last_revision_date">Date of last revision:</td>
+                <td tal:content="fo/getLastestRevisionDate" />
+            </tr>
+            <tr>
+                <td i18n:translate="completion_date">Expected/actual completion date:</td>
+                <td tal:content="fo/getExpectedCompletionDate" />
+            </tr>
+            <tr>
+                <td i18n:translate="grant_to_unep">Grant to UNEP US$:</td>
+                <td tal:content="fo/getSumFinanceObjectAmount" /> 
+            </tr>
+            <tr>
+                <td i18n:translate="unep_fee">UNEP Fee US$:</td>
+                <td tal:content="fo/getFinanceObjectFee" />
+            </tr>
+            <tr>
+                <td i18n:translate="planned_co_financing">Planned Co-financing US$:</td>
+                <td tal:content="fo/getTotalCoFinOfFinanceObjectPlanned" />
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <table class="table-fullwidth">
+                        <tr>
+                            <th i18n:translate="total_cash_disbursed">
+                                Total Cash Disbursed
+                            </th>
+                            <th i18n:translate="total_expenditures">
+                                Total expenditures (IMIS)
+                            </th>
+                            <th i18n:translate="receivable">
+                                Receivable
+                            </th>
+                            <th i18n:translate="last_expenditure_report">
+                                Last Expenditure Report
+                            </th>
+                            <th i18n:translate="last_audit_report">
+                                Last Audit Report
+                            </th>
+                            <th i18n:translate="last_cofinance_report">
+                                Last Co-finance Report
+                            </th>
+                            <th i18n:translate="last_inventory_report">
+                                Last Inventory Report
+                            </th>
+                            <th i18n:translate="last_progress_report">
+                                Last Progress Report
+                            </th>
+                        </tr>
+                        <tr class="even">
+                            <td tal:content="fo/getSumCashDisbursements" />
+                            <td tal:content="fo/getSumYearlyExpenditures" />
+                            <td tal:content="fo/getAmountReceivable" />
+                            <td tal:content="python:fo.getLatestReportData('expenditure', 'report_period')" />
+                            <td tal:content="python:fo.getLatestReportData('audit', 'report_received_date')" />
+                            <td tal:content="python:fo.getLatestReportData('cofinance', 'report_received_date')" />
+                            <td tal:content="python:fo.getLatestReportData('inventory', 'report_received_date')" />
+                            <td tal:content="python:fo.getLatestReportData('progress', 'report_period')" />
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            <!-- Sub-Projects -->
+            <tr>
+                <td colspan="2">
+                    <tal:batch
+                        tal:define="brains python:fo.getFolderContents(full_objects=False);
+                                    Batch python:modules['Products.CMFPlone'].Batch;
+                                    b_size python:20;
+                                    b_start python:0;
+                                    b_start_num repeat/fo/index;
+                                    b_start_str python:'b_start_%s' % b_start_num;
+                                    b_start python:getattr(request, b_start_str, b_start);
+                                    batch python:Batch(brains, b_size, int(b_start), orphan=1, b_start_str=b_start_str);
+                                    sos python:[brain.getObject() for brain in batch];
+                                    "
+                        tal:condition="python:len(brains) > 0">
+                    <table class="table-fullwidth">
+                        <tr>
+                            <td colspan="9">&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <th colspan="9">Sub-projects/MOU's<th>
+                        </tr>
+                        <tr>
+                            <th i18n:translate="imis_no">IMIS No</th>
+                            <th i18n:translate="ea">EA</th>
+                            <th i18n:translate="total_cash_disbursed">
+                                Total Cash Disbursed
+                            </th>
+                            <th i18n:translate="total_expenditures">
+                                Total expenditures (IMIS)
+                            </th>
+                            <th i18n:translate="receivable">
+                                Receivable
+                            </th>
+                            <th i18n:translate="last_expenditure_report">
+                                Last Expenditure Report
+                            </th>
+                            <th i18n:translate="last_audit_report">
+                                Last Audit Report
+                            </th>
+                            <th i18n:translate="last_cofinance_report">
+                                Last Co-finance Report
+                            </th>
+                            <th i18n:translate="last_inventory_report">
+                                Last Inventory Report
+                            </th>
+                            <th i18n:translate="actions">
+                                Actions 
+                            </th>
+                        </tr>
+                        <tal:block tal:repeat="so sos">
+                        <tr tal:define="even repeat/so/even;"
+                            tal:attributes="class python:even and 'odd' or 'even'">
+                            <td>
+                                <a tal:attributes="href string:${so/absolute_url}/view"
+                                    tal:content="so/getIMISNumber">sub project</a>
+                            </td>
+                            <td tal:content="so/getLeadExecutingAgencyNames" />
+                            <td tal:content="so/getSumCashDisbursements" />
+                            <td tal:content="so/getSumYearlyExpenditures" />
+                            <td tal:content="so/getAmountReceivable" />
+                            <td tal:content="python:so.getLatestReportData('expenditure', 'report_period')" />
+                            <td tal:content="python:so.getLatestReportData('audit', 'report_received_date')" />
+                            <td tal:content="python:so.getLatestReportData('cofinance', 'report_received_date')" />
+                            <td tal:content="python:so.getLatestReportData('inventory', 'report_received_date')" />
+                            <td>  
+                              <a tal:attributes="href string:${so/absolute_url}/edit"
+                                  tal:condition="python:member.has_role(['Owner','Manager','FMO','SPO','Registrar'], fo)">
+                                  <span i18n:translate="edit">Edit</span></a>
+                            </td>
+                        </tr>
+                        </tal:block>
+                        <tr class="even">
+                            <td i18n:translate="total">Total</td>
+                            <td>&nbsp;</td>
+                            <td tal:content="fo/getSubProjectsTotalCashDisbursed" />
+                            <td tal:content="fo/getSubProjectsTotalExpenditures" />
+                            <td tal:content="fo/getSubProjectsTotalReceivable" />
+                        </tr>
+                    </table>
+                    <b><div metal:use-macro="here/batch_macros/macros/navigation" /></b>
+                    </tal:batch>
+                </td>
+            </tr>
+        </table>
+        <hr />
+    </div>
+</div>
+
+</metal:body>

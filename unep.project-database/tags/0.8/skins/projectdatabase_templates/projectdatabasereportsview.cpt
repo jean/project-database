@@ -1,0 +1,233 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      lang="en"
+      metal:use-macro="here/main_template/macros/master"
+      i18n:domain="plone">
+<body>
+
+<div metal:fill-slot="main"
+    tal:define="country request/country|nothing;
+              focal_area request/focal_area|nothing;
+              project_type request/project_type|nothing;
+              executing_agency request/executing_agency|nothing;
+              project_title request/project_title|nothing;
+              task_manager request/task_manager|nothing;
+              fund_manager request/fund_manager|nothing;
+              base here/absolute_url;
+              unepsearch nocall:context/@@unepsearch;" >
+    <!-- Reports -->
+    <h3 class="documentFirstHeading" i18n:translate="report_criteria">
+        Project Database Report Criteria
+    </h3> 
+    <form name="report_criteria" method="post" action=""
+            tal:attributes="action string:${context/absolute_url}/${template/id}">
+        <input type="hidden" name="form.submitted" value="1" />
+        <table width="100%">
+            <metal:searchcriteria metal:use-macro="context/filtered_search/macros/search-criteria" />
+            <tr>
+                <td width="30%">
+                    <label i18n:translate="select_report">Select Report to View</label>
+                </td>
+                <td>
+                    <select name="report">
+                        <optgroup label="Project Development">
+                            <option tal:attributes="value string:${base}/@@ipistatusreport">
+                                IPI Status Report
+                            </option>
+                            <option tal:attributes="value string:${base}/@@pifapprovalstatusreport">
+                                PIF Approval Status Report</option>
+                            <option tal:attributes="value string:${base}/@@ppgaprandimplstatusreport">
+                                PPG Approval and Implementation Status Report</option>
+                            <option tal:attributes="value string:${base}/@@projectapprovalstatusreport">
+                                Project Approval Status Report</option>
+                        </optgroup>
+                        <optgroup label="Project Implementation">
+                            <option tal:attributes="value string:${base}/@@projectimplementationstatusreport">
+                                Project Implementation Status Report
+                            </option>
+                            <option tal:attributes="value string:${base}/@@completedprojectsreport">
+                                Completed Projects Report
+                            </option>
+                            <option tal:attributes="value string:${base}/@@closedprojectsreport">
+                                Closed Projects Report
+                            </option>
+                            <option tal:attributes="value string:${base}/@@suspendedprojectsreport">
+                                Suspended Projects Report
+                            </option>
+                            <option tal:attributes="value string:${base}/@@cancelledprojectsreport">
+                                Cancelled Projects Report
+                            </option>
+                        </optgroup>
+                        <optgroup label="Financial Management Information">
+                            <option tal:attributes="value string:${base}/@@ppgimplstatusreport">
+                                PPG Implementation Status Report</option>
+                            <option tal:attributes="value string:${base}/@@mspimplstatusreport">
+                                MSP Implementation Status Report</option>
+                            <option tal:attributes="value string:${base}/@@fspimplstatusreport">
+                                FSP Implementation Status Report
+                            </option>
+                            <option tal:attributes="value string:${base}/@@eeaimplstatusreport">
+                                EEA Implementation Status Report
+                            </option>
+                            <option tal:attributes="value string:${base}/@@ppgreceivablesreport">
+                                PPG Receivables Report
+                            </option>
+                            <option tal:attributes="value string:${base}/@@mspreceivablesreport">
+                                MSP Receivables Report
+                            </option>
+                            <option tal:attributes="value string:${base}/@@fspreceivablesreport">
+                                FSP Receivables Report
+                            </option>
+                            <option tal:attributes="value string:${base}/@@eeareceivablesreport">
+                                EEA Receivables Report
+                            </option>
+                            <option tal:attributes="value string:${base}/@@projectsdueforclosurereport">
+                                Projects Due for Closure
+                            </option>
+                        </optgroup>
+                        <optgroup label="Contacts">
+                            <option tal:attributes="value string:${base}/@@projectcontactsreport">
+                                Project Contacts Report
+                            </option> 
+                            <option tal:attributes="value string:${base}/@@rosterofevaluatorsreport">
+                                Roster of Evaluators Report
+                            </option>
+                        </optgroup>
+                        <optgroup label="Monitoring and Evaluation Reports">
+                            <option tal:attributes="value string:${base}/@@midtermreviewstatusreport">
+                                Mid-term Review Status Report
+                            </option>
+                            <option tal:attributes="value string:${base}/@@midtermevaluationstatusreport">
+                                Mid-term Evaluation Status Report
+                            </option>
+                            <option tal:attributes="value string:${base}/@@terminalevaluationstatusreport">
+                                Terminal Evaluation Status Report
+                            </option>
+                            <option tal:attributes="value string:${base}/@@qoterrplreport">
+                                Quality of Terminal Evaluation Report Ratings (Portfolio Level)
+                            </option>
+                            <option tal:attributes="value string:${base}/@@projectsatriskreport">
+                                Projects at Risk Report
+                            </option>
+                            <option tal:attributes="value string:${base}/@@countryriskreport">
+                                Country Risk Report
+                            </option>
+                            <option tal:attributes="value string:${base}/@@executingagencyriskreport">
+                                Executing Agency Risk Report
+                            </option>
+                            <option tal:attributes="value string:${base}/@@projectimplementationreviewreport">
+                                Project Implementation Review Report
+                            </option>
+                            <option tal:attributes="value string:${base}/@@qualityofprojectmandereport">
+                                Quality of Project Monitoring and Evaluation Report
+                            </option>
+                            <option tal:attributes="value string:${base}/@@projectsforceoendorsementreport">
+                                Projects for CEO Endorsement Report
+                            </option>
+                            <option tal:attributes="value string:${base}/@@midtermevaluationscomingupreport">
+                                Mid-term Evaluations Coming Up Report
+                            </option>
+                            <option tal:attributes="value string:${base}/@@terminalevaluationscomingupreport">
+                                Terminal Evaluations Coming Up Report
+                            </option>
+                            <option tal:attributes="value string:${base}/@@projectcyclestagestatusreport">
+                                Project Cycle Stage Status Report
+                            </option>
+                        </optgroup>
+                        <optgroup label="Other Reports">
+                            <option tal:attributes="value string:${base}/@@gefprojectsbypriorityreport">
+                                GEF Projects by Priority Report
+                            </option>
+                            <option tal:attributes="value string:${base}/@@internallyexecutedprojectsreport">
+                                Internally Executed Projects Report
+                            </option>
+                            <option tal:attributes="value string:${base}/@@projectsbygeographicscopereport">
+                                Projects by Geographic Scope Report
+                            </option>
+                            <option tal:attributes="value string:${base}/@@projectsbyexecutingagencyreport">
+                                Projects by Executing Agency Report
+                            </option>
+                            <option tal:attributes="value string:${base}/@@donorreport">
+                                Donor Report
+                            </option>
+                            <option tal:attributes="value string:${base}/@@projectsbystaffreport">
+                                Projects by Staff Report
+                            </option>
+                        </optgroup>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>&nbsp;</td>
+                <td>
+                    <input 
+                        class="context" 
+                        type="submit" 
+                        name="form.button.report" 
+                        value="Generate Report"/>
+                </td>
+            </tr>
+        </table>
+    </form>
+    <!--
+    <br />
+    <tal:def define="base here/absolute_url">
+    <h3 class="documentFirstHeading" i18n:translate="project_database_reports">
+        Project Database Reports
+    </h3> 
+    <h2>Project Development</h2>
+        <div><a href="" tal:attributes="href string:${base}/@@ipistatusreport">IPI Status Report</a></div>
+        <div><a href="" tal:attributes="href string:${base}/@@pifapprovalstatusreport">PIF Approval Status Report</a></div>
+        <div><a href="" tal:attributes="href string:${base}/@@ppgaprandimplstatusreport">PPG Approval and Implementation Status Report</a></div>
+        <div><a href="" tal:attributes="href string:${base}/@@projectapprovalstatusreport">Project Approval Status Report</a></div>
+    <h2>Project Implementation</h2>
+        <div><a href="" tal:attributes="href string:${base}/@@projectimplementationstatusreport">Project Implementation Status Report</a></div>
+        <div><a href="" tal:attributes="href string:${base}/@@completedprojectsreport">Completed Projects Report</a></div>
+        <div><a href="" tal:attributes="href string:${base}/@@closedprojectsreport">Closed Projects Report</a></div>
+        <div><a href="" tal:attributes="href string:${base}/@@suspendedprojectsreport">Suspended Projects Report</a></div>
+        <div><a href="" tal:attributes="href string:${base}/@@cancelledprojectsreport">Cancelled Projects Report</a></div>
+    <h2>Financial Management Information</h2>
+        <div><a href="" tal:attributes="href string:${base}/@@ppgimplstatusreport">PPG Implementation Status Report</a></div>
+        <div><a href="" tal:attributes="href string:${base}/@@mspimplstatusreport">MSP Implementation Status Report</a></div>
+        <div><a href="" tal:attributes="href string:${base}/@@fspimplstatusreport">FSP Implementation Status Report</a></div>
+        <div><a href="" tal:attributes="href string:${base}/@@eeaimplstatusreport">EEA Implementation Status Report</a></div>
+        <div><a href="" tal:attributes="href string:${base}/@@ppgreceivablesreport">PPG Receivables Report</a></div>
+        <div><a href="" tal:attributes="href string:${base}/@@mspreceivablesreport">MSP Receivables Report</a></div>
+        <div><a href="" tal:attributes="href string:${base}/@@fspreceivablesreport">FSP Receivables Report</a></div>
+        <div><a href="" tal:attributes="href string:${base}/@@eeareceivablesreport">EEA Receivables Report</a></div>
+        <div><a href="" tal:attributes="href string:${base}/@@projectsdueforclosurereport">Projects Due for Closure</a></div>
+    <h2>Contacts</h2>
+        <div><a href="" tal:attributes="href string:${base}/@@projectcontactsreport">Project Contacts Report</a></div> 
+        <div><a href="" tal:attributes="href string:${base}/@@rosterofevaluatorsreport">Roster of Evaluators Report</a></div>
+
+    <h2>Monitoring and Evaluation Reports</h2>
+        <div><a href="" tal:attributes="href string:${base}/@@midtermreviewstatusreport">Mid-term Review Status Report</a></div>
+        <div><a href="" tal:attributes="href string:${base}/@@midtermevaluationstatusreport">Mid-term Evaluation Status Report</a></div>
+        <div><a href="" tal:attributes="href string:${base}/@@terminalevaluationstatusreport">Terminal Evaluation Status Report</a></div>
+        <div><a href="" tal:attributes="href string:${base}/@@qoterrplreport">Quality of Terminal Evaluation Report Ratings (Portfolio Level)</a></div>
+        <div><a href="" tal:attributes="href string:${base}/@@projectsatriskreport">Projects at Risk Report</a></div>
+        <div>Projects at risk report</div>
+        <div><a href="" tal:attributes="href string:${base}/@@countryriskreport">Country Risk Report</a></div>
+        <div><a href="" tal:attributes="href string:${base}/@@executingagencyriskreport">Executing Agency Risk Report</a></div>
+        <div><a href="" tal:attributes="href string:${base}/@@projectimplementationreviewreport">Project Implementation Review Report</a></div>
+        <div><a href="" tal:attributes="href string:${base}/@@qualityofprojectmandereport">Quality of Project Monitoring and Evaluation Report</a></div>
+        <div><a href="" tal:attributes="href string:${base}/@@projectsforceoendorsementreport">Projects for CEO Endorsement Report</a></div>
+        <div><a href="" tal:attributes="href string:${base}/@@midtermevaluationscomingupreport">Mid-term Evaluations Coming Up Report</a></div>
+        <div><a href="" tal:attributes="href string:${base}/@@terminalevaluationscomingupreport">Terminal Evaluations Coming Up Report</a></div>
+        <div><a href="" tal:attributes="href string:${base}/@@projectcyclestagestatusreport">Project Cycle Stage Status Report</a></div>
+        <div><a href="" tal:attributes="href string:${base}/@@programmeframeworkreport">Programme Framework Report</a></div>
+        <div>Programme Framework Report</div>
+    <h2>Other Reports</h2>
+        <div><a href="" tal:attributes="href string:${base}/@@gefprojectsbypriorityreport">GEF Projects by Priority Report</a></div>
+        <div><a href="" tal:attributes="href string:${base}/@@internallyexecutedprojectsreport">Internally Executed Projects Report</a></div>
+        <div><a href="" tal:attributes="href string:${base}/@@projectsbygeographicscopereport">Projects by Geographic Scope Report</a></div>
+        <div><a href="" tal:attributes="href string:${base}/@@projectsbyexecutingagencyreport">Projects by Executing Agency Report</a></div>
+        <div><a href="" tal:attributes="href string:${base}/@@donorreport">Donor Report</a></div>
+        <div><a href="" tal:attributes="href string:${base}/@@projectsbystaffreport">Projects by Staff Report</a></div>
+    </tal:def>
+    -->
+</div>
+</body>
+</html>

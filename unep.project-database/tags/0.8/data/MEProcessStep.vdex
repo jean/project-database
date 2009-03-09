@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vdex xmlns="http://www.imsglobal.org/xsd/imsvdex_v1p0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.imsglobal.org/xsd/imsvdex_v1p0 imsvdex_v1p0.xsd http://www.imsglobal.org/xsd/imsmd_rootv1p2p1 imsmd_rootv1p2p1.xsd"
+    language="en" orderSignificant="true" profileType="flatTokenTerms">
+<vocabName>
+  <langstring language="en">MEMilestoneName</langstring>
+</vocabName>
+
+<term>
+  <termIdentifier>DraftTOR</termIdentifier>
+  <caption>
+    <langstring language="en">Draft TOR</langstring>
+  </caption>
+  <description />
+</term>
+
+<term>
+  <termIdentifier>ApprovedTOR</termIdentifier>
+  <caption>
+    <langstring language="en">Approved TOR</langstring>
+  </caption>
+  <description />
+</term>
+
+<term>
+  <termIdentifier>CollationOfProjectInformation</termIdentifier>
+  <caption>
+    <langstring language="en">Collation of Project Information</langstring>
+  </caption>
+  <description />
+</term>
+
+<term>
+  <termIdentifier>SelectionOfLeadEvaluator</termIdentifier>
+  <caption>
+    <langstring language="en">Selection of Lead Evaluator</langstring>
+  </caption>
+  <description />
+</term>
+
+<term>
+  <termIdentifier>SelectionOfOtherEvaluators</termIdentifier>
+  <caption>
+    <langstring language="en">Selection of other evaluators</langstring>
+  </caption>
+  <description />
+</term>
+
+<term>
+  <termIdentifier>ContractApproval</termIdentifier>
+  <caption>
+    <langstring language="en">Contract Approval</langstring>
+  </caption>
+  <description />
+</term>
+
+<term>
+  <termIdentifier>InitialPayment</termIdentifier>
+  <caption>
+    <langstring language="en">Initial Payment</langstring>
+  </caption>
+  <description />
+</term>
+
+<term>
+  <termIdentifier>TravelApproval</termIdentifier>
+  <caption>
+    <langstring language="en">Travel Approval</langstring>
+  </caption>
+  <description />
+</term>
+
+<term>
+  <termIdentifier>DraftReport</termIdentifier>
+  <caption>
+    <langstring language="en">Draft Report</langstring>
+  </caption>
+  <description />
+</term>
+
+<term>
+  <termIdentifier>InterimPayment</termIdentifier>
+  <caption>
+    <langstring language="en">Interim Payment</langstring>
+  </caption>
+  <description />
+</term>
+
+<term>
+  <termIdentifier>CirculationOfReport</termIdentifier>
+  <caption>
+    <langstring language="en">Circulation of Report</langstring>
+  </caption>
+  <description />
+</term>
+
+<term>
+  <termIdentifier>CommentsToReport</termIdentifier>
+  <caption>
+    <langstring language="en">Comments to Report</langstring>
+  </caption>
+  <description />
+</term>
+
+<term>
+  <termIdentifier>FinalReport</termIdentifier>
+  <caption>
+    <langstring language="en">Final Report</langstring>
+  </caption>
+  <description />
+</term>
+
+<term>
+  <termIdentifier>EOUQualityAssessmentReview</termIdentifier>
+  <caption>
+    <langstring language="en">EOU Quality Assessment Review</langstring>
+  </caption>
+  <description />
+</term>
+
+<term>
+  <termIdentifier>FinalPayment</termIdentifier>
+  <caption>
+    <langstring language="en">Final Payment</langstring>
+  </caption>
+  <description />
+</term>
+
+<term>
+  <termIdentifier>SubmissionToGEFEO</termIdentifier>
+  <caption>
+    <langstring language="en">Submission to GEF EO</langstring>
+  </caption>
+  <description />
+</term>
+
+<term>
+  <termIdentifier>CirculationToPartners</termIdentifier>
+  <caption>
+    <langstring language="en">Circulation to partners</langstring>
+  </caption>
+  <description />
+</term>
+
+<term>
+  <termIdentifier>ManagementResponse</termIdentifier>
+  <caption>
+    <langstring language="en">Management response</langstring>
+  </caption>
+  <description />
+</term>
+
+</vdex>
