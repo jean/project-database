@@ -954,8 +954,8 @@ class Financials(BaseFolder, CurrencyMixin, BrowserDefaultMixin):
         if values:
             date = DateTime('1900/01/01')
             for v in values:
-                disbursements_date = v.get('disbursements_date', None)
-                disbursements_amount = v.get('disbursements_amount', None)
+                disbursements_date = v.get('cash_disbursements_date', None)
+                disbursements_amount = v.get('cash_disbursements_amount', None)
                 if disbursements_date and disbursements_amount:
                     if date < disbursements_date:
                         date = disbursements_date
@@ -966,22 +966,22 @@ class Financials(BaseFolder, CurrencyMixin, BrowserDefaultMixin):
 
 
     def hasDelayedFinancialReports(self):
-        exp_date = getLatestReportData('expenditure', 'report_received_date')
-        audit_date = getLatestReportData('audit', 'report_received_date')
-        cofin_date = getLatestReportData('cofinance', 'report_received_date')
+        exp_date = self.getLatestReportData('expenditure', 'report_received_date')
+        audit_date = self.getLatestReportData('audit', 'report_received_date')
+        cofin_date = self.getLatestReportData('cofinance', 'report_received_date')
         now = DateTime()
-        return not( (now - exp_date) < 300 or \
-                    (now - audit_date) < 300 or \
-                    (now - cofin) < 300)
+        return not ((exp_date != 'Unspecified' and (now - exp_date) < 300) or \
+                    (audit_date != 'Unspecified' and (now - audit_date) < 300) or \
+                    (cofin_date != 'Unspecified' and (now - cofin_date) < 300))
 
     def hasDelayedSubstantiveReports(self):
-        inv_date = getLatestReportData('inventory', 'report_received_date')
-        prog_date = getLatestReportData('progress', 'report_received_date')
-        term_date = getLatestReportData('terminal', 'report_received_date')
+        inv_date = self.getLatestReportData('inventory', 'report_received_date')
+        prog_date = self.getLatestReportData('progress', 'report_received_date')
+        term_date = self.getLatestReportData('terminal', 'report_received_date')
         now = DateTime()
-        return not( (now - inv_date) < 300 or \
-                    (now - prog_date) < 300 or \
-                    (now - term) < 300)
+        return not( (inv_date != 'Unspecified' and (now - inv_date) < 300) or \
+                    (prog_date != 'Unspecified' and (now - prog_date) < 300) or \
+                    (term_date != 'Unspecified' and (now - term_date) < 300))
 
 
 
