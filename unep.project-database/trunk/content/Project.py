@@ -217,6 +217,7 @@ class Project(BaseFolder, CurrencyMixin, BrowserDefaultMixin):
         pgi = self.getProjectGeneralInformation()
         rating = pgi.getRiskRatingAtInception()
         if rating == 'S' or rating == 'H':
+            print "Increased risk because of Rating at Inception"
             risk += 1
 
         #PIR Risk
@@ -225,11 +226,15 @@ class Project(BaseFolder, CurrencyMixin, BrowserDefaultMixin):
         if pir:
             rating = pir.getProjectRisk()
             if rating == 'S' or rating == 'H':
+                print "Increased risk because of PIR Rating"
                 risk += 1
 
         #EA Risk
-        if self.aq_inner.aq_parent.hasExecutingAgencyHighRiskRatingInTwoYears( \
-                            pgi.getLeadExecutingAgencyList()):
+        ealist = pgi.getLeadExecutingAgencyList()
+        if ealist and \
+                self.aq_inner.aq_parent.hasExecutingAgencyHighRiskRatingInTwoYears( \
+                            ealist):
+            print "Increased risk because of EAs"
             risk += 1
 
         #Country Risk
@@ -237,22 +242,48 @@ class Project(BaseFolder, CurrencyMixin, BrowserDefaultMixin):
         countries = pgi.getCountry()
         if ccs and len(countries) == 1:
                 if ccs.getLatestCountryRiskRating(countries[0]) in ['H', 'S']:
+                    print "Increased risk because of Countries"
                     risk += 1
 
         #Completion Delays
         if self.hasProjectCompletionDelays():
+            print "Increased risk because of Completion delays"
             risk += 1
 
-        #Disbursement Delays
-        #Delayed Finanacial reports
-        #Delayed Substantive reports
-        #Lack of revision
+        mofu = self.fmi_folder.getMainFinanceObject()
+        if mofu:
+            #Disbursement Delays
+            last_disbursement, dummy = mofu.getLastDisbursement()
+            now = DateTime()
+            if last_disbursement and (now - last_disbursement) > 365:
+                print "Increased risk because of Disbursement delays"
+                risk += 1
+
+            #Delayed Finanacial reports
+            if mofu.hasDelayedFinancialReports():
+                print "Increased risk because of Fin report delays"
+                risk += 1
+
+            #Delayed Substantive reports
+            if mofu.hasDelayedSubstantiveReports():
+                print "Increased risk because of Substantive report delays"
+                risk += 1
+
+            #Lack of revision
+            last_revision = mofu.getLastestRevisionDate()
+            if last_revision and now - last_revision > 550:
+                print "Increased risk because of revision delays"
+                risk += 1
 
         return risk
 
     def getProjectStaff(self):
         pgi = self.getProjectGeneralInformation()
         mofu = self.fmi_folder.getMainFinanceObject()
+        if mofu:
+            sumFinObjAmnt = mofu.getSumFinanceObjectAmount()
+        else:
+            sumFinObjAmnt = 'Unspecified'
         ms = self.milestones
         milestone = ms.getProjectStageMilestone()
         result = []
@@ -260,23 +291,23 @@ class Project(BaseFolder, CurrencyMixin, BrowserDefaultMixin):
         if principal_tm:
             result.append([principal_tm, 'TM', pgi.getFocalAreaNames(), \
                     pgi.Title(), ms.getProjectStage(), milestone[0], \
-                    milestone[1], mofu.getSumFinanceObjectAmount()])
+                    milestone[1], sumFinObjAmnt ])
         backup_tm = pgi.getCurrentTMSortable(tm_category='Backup')
         if backup_tm:
             result.append([backup_tm, 'PA', pgi.getFocalAreaNames(), \
                 pgi.Title(), ms.getProjectStage(), milestone[0], \
-                milestone[1], mofu.getSumFinanceObjectAmount()])
+                milestone[1], sumFinObjAmnt])
         if mofu:
             principal_fmo = mofu.getCurrentFMOSortable(fmo_type='Principal')
             if principal_fmo:
                 result.append([principal_fmo, 'FMO', pgi.getFocalAreaNames(), \
                         pgi.Title(), ms.getProjectStage(), milestone[0], \
-                        milestone[1], mofu.getSumFinanceObjectAmount()])
+                        milestone[1], sumFinObjAmnt])
             backup_fmo = mofu.getCurrentFMOSortable(fmo_type='Backup')
             if backup_fmo:
                 result.append([backup_fmo, 'FA', pgi.getFocalAreaNames(), \
                     pgi.Title(), ms.getProjectStage(), milestone[0], \
-                    milestone[1], mofu.getSumFinanceObjectAmount()])
+                    milestone[1], sumFinObjAmnt])
         return result
 
     security.declarePrivate('_getSelectedVocabularyValueList')
@@ -372,22 +403,16 @@ class Project(BaseFolder, CurrencyMixin, BrowserDefaultMixin):
         complete_exp = ms.getPPGImplementationDate('CompletionExpected')
         if complete_exp:
             complete_act = ms.getPPGImplementationDate('CompletionActual')
-            if complete_act:
-                if isinstance(complete_exp, StringTypes):
-                    complete_exp = DateTime(complete_exp)
-                if isinstance(complete_act, StringTypes):
-                    complete_act = DateTime(complete_act)
-                return (complete_act - complete_exp) > 180
+            if not complete_act:
+                complete_act = DateTime()
+            return (complete_act - complete_exp) > 180
 
         complete_exp = ms.getProjectImplementationDate('CompletionExpected')
         if complete_exp:
             complete_act = ms.getProjectImplementationDate('CompletionActual')
-            if complete_act:
-                if isinstance(complete_exp, StringTypes):
-                    complete_exp = DateTime(complete_exp)
-                if isinstance(complete_act, StringTypes):
-                    complete_act = DateTime(complete_act)
-                return (complete_act - complete_exp) > 180
+            if not complete_act:
+                complete_act = DateTime()
+            return (complete_act - complete_exp) > 180
 
         return False
 
