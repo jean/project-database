@@ -215,6 +215,7 @@ class Project(BaseFolder, CurrencyMixin, BrowserDefaultMixin):
 
         #Project Risk
         pgi = self.getProjectGeneralInformation()
+        ms = self.getMilestone()
         rating = pgi.getRiskRatingAtInception()
         if rating == 'S' or rating == 'H':
             print "Increased risk because of Rating at Inception"
@@ -255,6 +256,9 @@ class Project(BaseFolder, CurrencyMixin, BrowserDefaultMixin):
             #Disbursement Delays
             last_disbursement, dummy = mofu.getLastDisbursement()
             now = DateTime()
+            if not last_disbursement:
+                last_disbursement = \
+                        ms.getProjectImplementationDate('SignatureOfLegalInstrumentActual')
             if last_disbursement and (now - last_disbursement) > 365:
                 print "Increased risk because of Disbursement delays"
                 risk += 1
@@ -271,6 +275,9 @@ class Project(BaseFolder, CurrencyMixin, BrowserDefaultMixin):
 
             #Lack of revision
             last_revision = mofu.getLastestRevisionDate()
+            if not last_revision:
+                last_revision = \
+                        ms.getProjectImplementationDate('SignatureOfLegalInstrumentActual')
             if last_revision and now - last_revision > 550:
                 print "Increased risk because of revision delays"
                 risk += 1
@@ -400,13 +407,6 @@ class Project(BaseFolder, CurrencyMixin, BrowserDefaultMixin):
 
     def hasProjectCompletionDelays(self):
         ms = self.milestones
-        complete_exp = ms.getPPGImplementationDate('CompletionExpected')
-        if complete_exp:
-            complete_act = ms.getPPGImplementationDate('CompletionActual')
-            if not complete_act:
-                complete_act = DateTime()
-            return (complete_act - complete_exp) > 180
-
         complete_exp = ms.getProjectImplementationDate('CompletionExpected')
         if complete_exp:
             complete_act = ms.getProjectImplementationDate('CompletionActual')
