@@ -967,21 +967,13 @@ class Financials(BaseFolder, CurrencyMixin, BrowserDefaultMixin):
 
     def hasDelayedFinancialReports(self):
         exp_date = self.getLatestReportData('expenditure', 'report_received_date')
-        audit_date = self.getLatestReportData('audit', 'report_received_date')
-        cofin_date = self.getLatestReportData('cofinance', 'report_received_date')
         now = DateTime()
-        return not ((exp_date != 'Unspecified' and (now - exp_date) < 300) or \
-                    (audit_date != 'Unspecified' and (now - audit_date) < 300) or \
-                    (cofin_date != 'Unspecified' and (now - cofin_date) < 300))
+        return not (exp_date != 'Unspecified' and (now - exp_date) < 300)
 
     def hasDelayedSubstantiveReports(self):
-        inv_date = self.getLatestReportData('inventory', 'report_received_date')
         prog_date = self.getLatestReportData('progress', 'report_received_date')
-        term_date = self.getLatestReportData('terminal', 'report_received_date')
         now = DateTime()
-        return not( (inv_date != 'Unspecified' and (now - inv_date) < 300) or \
-                    (prog_date != 'Unspecified' and (now - prog_date) < 300) or \
-                    (term_date != 'Unspecified' and (now - term_date) < 300))
+        return not (prog_date != 'Unspecified' and (now - prog_date) < 300)
 
 
 
