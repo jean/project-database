@@ -37,22 +37,22 @@ class ProjectsAtRiskReportFactory(object):
             pgi = project.project_general_info
             ms = project.milestones
             mofu = project.fmi_folder.getMainFinanceObject()
-            projectRisk = project.projectRisk()
 
-            if mofu and project.isTheProjectPublished() and \
-                    projectRisk > 0:
-                result.append((
-                    project.getId(),
-                    pgi.getGEFid(),
-                    mofu.getIMISNumber(),
-                    pgi.getFocalAreaNames(),
-                    pgi.getProjectTypeName(),
-                    mofu.getId().upper(),
-                    pgi.Title(),
-                    pgi.getLeadExecutingAgencyNames(),
-                    pgi.getCurrentTM(),
-                    mofu.getCurrentFMODetails()[0],
-                    projectRisk
-                    ))
+            if mofu and project.isTheProjectPublished():
+                projectRisk = project.projectRisk()
+                if projectRisk > 0:
+                    result.append((
+                        project.getId(),
+                        pgi.getGEFid(),
+                        mofu.getIMISNumber(),
+                        pgi.getFocalAreaNames(),
+                        pgi.getProjectTypeName(),
+                        mofu.getId().upper(),
+                        pgi.Title(),
+                        pgi.getLeadExecutingAgencyNames(),
+                        pgi.getCurrentTM(),
+                        mofu.getCurrentFMODetails()[0],
+                        projectRisk
+                        ))
 
         return result
