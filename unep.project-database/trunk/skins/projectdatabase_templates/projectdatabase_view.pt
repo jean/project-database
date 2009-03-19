@@ -18,7 +18,7 @@
     <tr metal:define-macro="create_project">
         <td colspan="100" style="padding: 2px;">
             <a style="float:left" 
-                tal:condition="python:member.has_role(['Owner','Manager','TM','SPO'], context)"
+                tal:condition="python:member.has_permission('ProjectDatabase: Add Project', context)"
                 tal:attributes="href string:@@create-project">Create a new project</a>
         </td>
     </tr>
