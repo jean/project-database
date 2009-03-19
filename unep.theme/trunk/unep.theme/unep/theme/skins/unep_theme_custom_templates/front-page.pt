@@ -28,7 +28,7 @@
         <li>
             <a href="" 
                 tal:attributes="href string:${context/portal_url}/projectdatabases">
-                    <span i18n:translate="gef_projects">GEF Projects</span>
+                    <span i18n:translate="projects">Projects</span>
             </a>
         </li>
         <li>
