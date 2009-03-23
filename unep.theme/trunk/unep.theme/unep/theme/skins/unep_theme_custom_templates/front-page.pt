@@ -23,7 +23,7 @@
     <br />
     <br />
     <br />
-    <p i18n:translate="select_below">Click a link below to view the current GEF projects or contacts</p>
+    <p i18n:translate="select_below">Click a link below to view the current projects or contacts</p>
     <ul>
         <li>
             <a href="" 
