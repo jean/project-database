@@ -165,7 +165,7 @@
 
                     <div class="page-block">
 
-                        <div tal:condition="python:member.has_permission('Manager', context) or member.has_permission('Owner', context)"
+                        <div tal:condition="python:member.has_permission('ManagePortal', context)"
                              tal:content="structure provider:plone.contentviews" />
 
                         <div id="region-content">
