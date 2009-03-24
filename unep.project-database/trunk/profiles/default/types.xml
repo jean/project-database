@@ -11,9 +11,6 @@
  <object name="ProjectGeneralInformation"
          meta_type="Factory-based Type Information with dynamic views"/>
 
- <object name="SubProject"
-         meta_type="Factory-based Type Information with dynamic views"/>
-
  <object name="Financials"
          meta_type="Factory-based Type Information with dynamic views"/>
 
@@ -45,6 +42,9 @@
          meta_type="Factory-based Type Information with dynamic views"/>
 
  <object name="FrameworkDatabase"
+         meta_type="Factory-based Type Information with dynamic views"/>
+
+ <object name="SubProject"
          meta_type="Factory-based Type Information with dynamic views"/>
 
 </object>
