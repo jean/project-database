@@ -573,6 +573,9 @@ fieldset#fieldset-Plone-Settings {
   width: 20em;
 }
 
+div.datagrid-money-wrapper span.currency_edit { 
+    display: none;
+}    
 /*
 ** end ECMAScript Content Action Menus
 */
