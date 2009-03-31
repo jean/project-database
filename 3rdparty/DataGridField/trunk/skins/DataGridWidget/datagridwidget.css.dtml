@@ -16,6 +16,8 @@ table.datagridwidget-table-view {
 
 table.datagridwidget-table-view th {
   text-transform:none; 
+  font-weight: bold;
+  color: #24a1d1;
 }
 
 input.datagrid-radio-button {
@@ -152,10 +154,14 @@ div.datagrid-money-wrapper label {
 }    
 div.datagrid-money-wrapper div.ArchetypesMoneyWidget {
     padding: 0;
+    color: red;
 }
 div.datagrid-money-wrapper input[type="text"], 
 div.datagrid-money-wrapper select { 
     width: auto !important; 
+}
+span.datagrid-money-view {
+    float: right;
 }
 
 

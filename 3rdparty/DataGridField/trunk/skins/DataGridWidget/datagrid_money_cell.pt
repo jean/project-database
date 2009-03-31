@@ -10,7 +10,7 @@
 <body>
     <!-- VIEW -->
     <metal:view_cell_macro define-macro="view_cell">                
-      <span tal:replace="cell_value"/>
+      <span class="datagrid-money-view" tal:content="cell_value"/>
     </metal:view_cell_macro>
 
     <!-- EDIT -->
