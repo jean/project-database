@@ -45,6 +45,6 @@ def getYearVocabulary():
     startYear = year - 20
     endYear = year + 20
     while startYear < endYear:
-        dl.add(str(startYear), str(startYear))
+        dl.add(str(startYear), 'FY' + str(startYear)[2:])
         startYear += 1
     return dl
