@@ -152,6 +152,7 @@ div.datagrid-reference-wrapper input[type="button"] {
 div.datagrid-money-wrapper label { 
     display: none;
 }    
+
 div.datagrid-money-wrapper div.ArchetypesMoneyWidget {
     padding: 0;
 }

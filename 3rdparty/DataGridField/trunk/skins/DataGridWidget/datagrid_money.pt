@@ -68,11 +68,11 @@ easy to port in future.
                 />
         </select>
     </tal:con>
-    <label class="currency"
+    <span class="currency currency_edit"
         tal:condition="field/use_global_currency"
-        tal:replace="python:field.getGlobalCurrency()">
+        tal:content="python:field.getGlobalCurrency()">
         USD
-    </label>
+    </span>
     </div>
 
 </metal:use>
