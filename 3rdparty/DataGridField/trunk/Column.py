@@ -22,20 +22,28 @@ class Column:
 
     security = ClassSecurityInfo()
 
-    def __init__(self, label, default=None, default_method=None, label_msgid=None):
+    def __init__(self, label, default=None, default_method=None, 
+                label_msgid=None, col_width=None):
         """ Create a column
         
             @param label User visible name
             @param default Default value for new rows
             @param default_value Default function to generate the default value for new rows
+            @param col_width for width of column
         """
         self.label = label
         self.default = default
         self.default_method = default_method
+        self.col_width = col_width
         
         if label_msgid is None:
             label_msgid = label
             self.label_msgid = label_msgid
+
+    security.declarePublic('getColWidth')
+    def getColWidth(self, context, widget):
+        return self.col_width
+
 
     security.declarePublic('getLabel')
     def getLabel(self, context, widget):

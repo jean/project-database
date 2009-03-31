@@ -30,13 +30,13 @@ class MoneyColumn(Column):
     """
     security = ClassSecurityInfo()
 
-    def __init__(self, title, field, default=None):
+    def __init__(self, title, field, default=None, col_width="100"):
         """ 
         Create a MoneyColumn
 
         @param field Field and widget specification.
         """
-        Column.__init__(self, title, default=default)
+        Column.__init__(self, title, default=default, col_width=col_width)
         self._field = field
 
     security.declarePublic('getDefault')

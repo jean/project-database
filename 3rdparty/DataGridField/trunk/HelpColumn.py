@@ -24,11 +24,11 @@ class HelpColumn(Column):
     
     security = ClassSecurityInfo()
         
-    def __init__(self, title, helper_text, script, icon):
+    def __init__(self, title, helper_text, script, icon, col_width=None):
         """ Create a HelpColumn
         
         """
-        Column.__init__(self, title)
+        Column.__init__(self, title, col_width=col_width)
         self.helper_text = helper_text
         self.helper_url = script
         self.icon = icon

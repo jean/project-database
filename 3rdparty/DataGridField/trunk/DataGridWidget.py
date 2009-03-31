@@ -112,6 +112,8 @@ class DataGridWidget(TypesWidget):
             visible = getattr(c, 'visible', True)
             item['visible'] = visible
             item['label'] = c.getLabel(instance, self)
+            if c.getColWidth(instance, self):
+                item['col_width'] = c.getColWidth(instance, self)
             result.append(item)
         
         return result
