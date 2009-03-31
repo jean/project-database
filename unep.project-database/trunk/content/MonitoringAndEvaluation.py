@@ -149,6 +149,8 @@ MonitoringAndEvaluation_schema['OtherAgencyEvaluationContact'].widget.startup_di
 MonitoringAndEvaluation_schema['PlannedStartDate'].widget.show_hm = False
 MonitoringAndEvaluation_schema['EvaluationType'].widget.visible = \
             {'edit':'hidden', 'view':'visible'}
+MonitoringAndEvaluation_schema['title'].widget.visible = \
+            {'edit':'hidden', 'view':'visible'}
 
 MonitoringAndEvaluation_schema = MonitoringAndEvaluation_schema.copy()  + Schema((
 
