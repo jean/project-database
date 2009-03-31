@@ -154,11 +154,11 @@ div.datagrid-money-wrapper label {
 }    
 div.datagrid-money-wrapper div.ArchetypesMoneyWidget {
     padding: 0;
-    color: red;
 }
 div.datagrid-money-wrapper input[type="text"], 
 div.datagrid-money-wrapper select { 
     width: auto !important; 
+    text-align: right;
 }
 span.datagrid-money-view {
     float: right;
