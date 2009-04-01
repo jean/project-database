@@ -14,14 +14,18 @@
                         projects python:[brain.getObject() for brain in batch];
                         ">
 
+    <div metal:define-macro="create_project">
+        <form method="GET" action="" 
+            tal:condition="python:member.has_permission('ProjectDatabase: Add Project', context)"
+            tal:attributes="action string:@@create-project">
+            <span i18n:translate="create_project"
+                style="color: #24a1d1; font-weight: bold;">Create new project</span> 
+            <input class="context" type="submit" 
+                   name="create" i18n:attributes="value Create" />
+        </form>
+    </div>
+    <hr />
 <table class="table-fullwidth">
-    <tr metal:define-macro="create_project">
-        <td colspan="100" style="padding: 2px;">
-            <a style="float:left" 
-                tal:condition="python:member.has_permission('ProjectDatabase: Add Project', context)"
-                tal:attributes="href string:@@create-project">Create a new project</a>
-        </td>
-    </tr>
     <tr>
         <th i18n:translate="dbase_id">DBase ID</th>
         <th i18n:translate="gef_id">GEF ID</th>
@@ -50,8 +54,11 @@
             <td tal:content="geninfo/getProjectType | string:Unknown">Project Type</td>
         </tr>
     </tal:rep>
-    <tr metal:use-macro="here/projectdatabase_view/macros/create_project" />
 </table>
+    <hr />
+    <div metal:use-macro="here/projectdatabase_view/macros/create_project" />
+    <hr />
+
 <b><div metal:use-macro="here/batch_macros/macros/navigation" /></b>
 </tal:batch>
 
