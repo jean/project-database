@@ -37,14 +37,14 @@ class ReferenceColumn(Column):
     """
     security = ClassSecurityInfo()
 
-    def __init__(self, title, fieldname, default=None, col_width=None):
+    def __init__(self, title, fieldname, default=None):
         """ 
         Create a ReferenceColumn
 
         @param fieldname The field that must be updated on the object that
         this widget provides UI for.
         """
-        Column.__init__(self, title, default=default, col_width=col_width)
+        Column.__init__(self, title, default=default)
         self._fieldname = fieldname
 
     security.declarePublic('getMacro')

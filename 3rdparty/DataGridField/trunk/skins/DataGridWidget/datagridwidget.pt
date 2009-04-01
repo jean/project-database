@@ -14,8 +14,11 @@
             <thead tal:condition="python: widget.hasHeader(context, field)">
                 <tr>
                     <tal:block tal:repeat="c columns" >
-                    <th tal:attributes="class python:not c['visible'] and 'dgw-hidden-column' or '';
-                        width c/col_width|nothing" 
+                    <th tal:define="coldef python:widget.getColumnDefinition(field, c['id']);
+                            typeclassname python:'%s-view' % (coldef.getMacro());
+                            fieldclassname python:'%s-%s-view' % (field.getName(), c['id'])"
+                        tal:attributes="
+                                class python:not c['visible'] and 'dgw-hidden-column %s %s' % (typeclassname, fieldclassname) or '%s %s' % (typeclassname, fieldclassname);"
                         tal:content="c/label" i18n:translate="">NAME</th>
                     </tal:block>
                 </tr>
@@ -44,9 +47,11 @@
                 <thead tal:condition="python: widget.hasHeader(context, field)">
                     <tr>
 						<tal:block tal:repeat="c columns"
-                        ><th tal:attributes="
-                                class python:not c['visible'] and 'dgw-hidden-column discreet' or 'discreet';
-                                width c/col_width|nothing;"
+                        ><th tal:define="coldef python:widget.getColumnDefinition(field, c['id']);
+                            typeclassname python:'%s-edit' % (coldef.getMacro());
+                            fieldclassname python:'%s-%s-edit' % (field.getName(), c['id'])"
+                            tal:attributes="
+                                class python:not c['visible'] and 'dgw-hidden-column discreet %s %s' % (typeclassname, fieldclassname) or 'discreet %s %s' % (typeclassname, fieldclassname);"
                             style="text-align: left" 
                             tal:content="c/label" 
                             i18n:translate="">Column name</th

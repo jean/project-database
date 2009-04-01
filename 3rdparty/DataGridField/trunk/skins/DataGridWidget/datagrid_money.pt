@@ -41,10 +41,10 @@ easy to port in future.
         tabindex="#"
         tal:define="marshaller marshaller|string:"
         tal:attributes="name string:${fieldName}${marshaller};
-        value cell_value/amount|nothing;
-        size widget/size;
-        maxlength widget/maxlength|nothing;
-        tabindex tabindex/next;"
+                        value cell_value/amount|nothing;
+                        size widget/size;
+                        maxlength widget/maxlength|nothing;
+                        tabindex tabindex/next;"
         />
 
     <tal:con
