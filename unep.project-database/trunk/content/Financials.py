@@ -340,7 +340,7 @@ schema = Schema((
     ComputedField(
         name='TotalCoFinOfFinanceObjectPlanned',
         widget=ComputedField._properties['widget'](
-            label='Totalcofinoffinanceobjectplanned',
+            label="Total Cofinancing (Planned)",
             label_msgid='ProjectDatabase_label_TotalCoFinOfFinanceObjectPlanned',
             i18n_domain='ProjectDatabase',
         ),
@@ -349,7 +349,7 @@ schema = Schema((
     ComputedField(
         name='TotalCoFinOfFinanceObjectActual',
         widget=ComputedField._properties['widget'](
-            label='Totalcofinoffinanceobjectactual',
+            label="Total Cofinancing (Actual)",
             label_msgid='ProjectDatabase_label_TotalCoFinOfFinanceObjectActual',
             i18n_domain='ProjectDatabase',
         ),
@@ -376,7 +376,7 @@ schema = Schema((
     ComputedField(
         name='TotalCostOfFinanceObjectVariance',
         widget=ComputedField._properties['widget'](
-            label='Totalcostoffinanceobjectvariance',
+            label="Total Cost if Finance Object Variance",
             label_msgid='ProjectDatabase_label_TotalCostOfFinanceObjectVariance',
             i18n_domain='ProjectDatabase',
         ),
@@ -457,7 +457,7 @@ schema = Schema((
     DataGridField(
         name='Reports',
         widget=DataGridField._properties['widget'](
-            columns={ 'report_type' : SelectColumn("Report Type", vocabulary="getReportTypesVocabulary"), 'report_period' : SelectColumn("Report Period", vocabulary='getFiscalYearVocabulary'), 'report_received_date' : CalendarColumn("Report Received Date"), 'amount' : MoneyColumn("Amount", field=datagrid_schema['amount']) },
+            columns={ 'report_type' : SelectColumn("Report Type", vocabulary="getReportTypesVocabulary"), 'report_period' : Column("Report Period"), 'report_received_date' : CalendarColumn("Report Received Date"), 'amount' : MoneyColumn("Amount", field=datagrid_schema['amount']) },
             label="Reports",
             label_msgid='ProjectDatabase_label_Reports',
             i18n_domain='ProjectDatabase',
