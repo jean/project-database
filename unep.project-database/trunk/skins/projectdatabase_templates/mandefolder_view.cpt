@@ -6,27 +6,28 @@
 <h3 tal:content="context/Title">Title</h3>
 <hr >
 </div>
+
 <div tal:condition="python:member.has_role(['Owner','Manager','TM','EO', 'MO'], context)">
-        <form name="add_mande" method="post" action=""
-                tal:attributes="action python: context.absolute_url() + '/mandefolder_view'">
-            <input type="hidden" name="form.submitted" value="1" />
-            <span i18n:translate="create_eval_type">Create new evaluation type</span>
-            <select name="etype" 
-                  tal:define="
-                        vocab python:context.portal_vocabularies.getVocabularyByName('EvaluationType');
-                        dList python:vocab.getDisplayList(context)">
-                <tal:rep tal:repeat="item dList/items">
-                    <option tal:attributes="value python:item[0];"
-                            tal:content="python:item[1]"
-                            tal:condition="python:member.has_role(['Owner','Manager','TM','EO'], context)">
-                            Option
-                    </option>
-                </tal:rep>
-                    <option value="PIRRating" tal:condition="python:member.has_role(['Owner','Manager','TM','MO'], context)">PIR Rating</option>
-            </select>
-            <input class="context" type="submit" name="form.button.add" value="Create"/>
-        </form>
-<hr />
+    <form name="add_mande" method="post" action=""
+            tal:attributes="action python: context.absolute_url() + '/mandefolder_view'">
+        <input type="hidden" name="form.submitted" value="1" />
+        <span i18n:translate="create_eval_type">Create new evaluation type</span>
+        <select name="etype" 
+              tal:define="
+                    vocab python:context.portal_vocabularies.getVocabularyByName('EvaluationType');
+                    dList python:vocab.getDisplayList(context)">
+            <tal:rep tal:repeat="item dList/items">
+                <option tal:attributes="value python:item[0];"
+                        tal:content="python:item[1]"
+                        tal:condition="python:member.has_role(['Owner','Manager','TM','EO'], context)">
+                        Option
+                </option>
+            </tal:rep>
+                <option value="PIRRating" tal:condition="python:member.has_role(['Owner','Manager','TM','MO'], context)">PIR Rating</option>
+        </select>
+        <input class="context" type="submit" name="form.button.add" value="Create"/>
+    </form>
+    <hr />
 </div>
 <div>
 <!-- M & E -->

@@ -25,36 +25,38 @@
         </form>
     </div>
     <hr />
-<table class="table-fullwidth">
-    <tr>
-        <th i18n:translate="dbase_id">DBase ID</th>
-        <th i18n:translate="gef_id">GEF ID</th>
-        <th i18n:translate="focal_area">Focal Area</th>
-        <th i18n:translate="project_title">Project Title</th>
-        <th i18n:translate="country">Country</th>
-        <th i18n:translate="project_type">Project Type</th>
-    </tr>
 
-    <tal:rep tal:repeat="project projects">
-        <tr tal:define="geninfo nocall:project/project_general_info;
-                        even repeat/project/even;
-                        areavocab python:geninfo.getField('FocalArea').Vocabulary(geninfo);
-                        areavalue python:geninfo.displayValue(areavocab, geninfo.getFocalArea());
-                        countryvocab python:geninfo.getField('Country').Vocabulary(geninfo);
-                        countryvalue python:geninfo.displayValue(countryvocab, geninfo.getCountry())"
-                tal:attributes="class python:even and 'odd' or 'even'">
-            <td>
-                <a tal:content="project/id"
-                    tal:attributes="href project/absolute_url">DBase ID
-                </a></td>
-            <td tal:content="geninfo/getGEFid | string:Unknown">GEF ID</td>
-            <td tal:content="areavalue | string:Unknown">Focal Area</td>
-            <td tal:content="geninfo/Title | string:Unknown">Project Title</td>
-            <td tal:content="countryvalue | string:Unknown">Country</td>
-            <td tal:content="geninfo/getProjectType | string:Unknown">Project Type</td>
+    <table class="table-fullwidth">
+        <tr>
+            <th i18n:translate="dbase_id">DBase ID</th>
+            <th i18n:translate="gef_id">GEF ID</th>
+            <th i18n:translate="focal_area">Focal Area</th>
+            <th i18n:translate="project_title">Project Title</th>
+            <th i18n:translate="country">Country</th>
+            <th i18n:translate="project_type">Project Type</th>
         </tr>
-    </tal:rep>
-</table>
+
+        <tal:rep tal:repeat="project projects">
+            <tr tal:define="geninfo nocall:project/project_general_info;
+                            even repeat/project/even;
+                            areavocab python:geninfo.getField('FocalArea').Vocabulary(geninfo);
+                            areavalue python:geninfo.displayValue(areavocab, geninfo.getFocalArea());
+                            countryvocab python:geninfo.getField('Country').Vocabulary(geninfo);
+                            countryvalue python:geninfo.displayValue(countryvocab, geninfo.getCountry())"
+                    tal:attributes="class python:even and 'odd' or 'even'">
+                <td>
+                    <a tal:content="project/id"
+                        tal:attributes="href project/absolute_url">DBase ID
+                    </a></td>
+                <td tal:content="geninfo/getGEFid | string:Unknown">GEF ID</td>
+                <td tal:content="areavalue | string:Unknown">Focal Area</td>
+                <td tal:content="geninfo/Title | string:Unknown">Project Title</td>
+                <td tal:content="countryvalue | string:Unknown">Country</td>
+                <td tal:content="geninfo/getProjectType | string:Unknown">Project Type</td>
+            </tr>
+        </tal:rep>
+    </table>
+
     <hr />
     <div metal:use-macro="here/projectdatabase_view/macros/create_project" />
     <hr />
