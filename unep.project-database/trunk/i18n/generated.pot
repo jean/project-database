@@ -68,6 +68,11 @@ msgstr ""
 msgid "ProjectDatabase_help_Number"
 msgstr ""
 
+#. Default: "Operation programme"
+#: content/ProjectGeneralInformation.py
+msgid "ProjectDatabase_help_OperationalProgramme"
+msgstr ""
+
 #. Default: "Planned date for the particular milestone"
 #: content/EvaluationMilestone.py
 msgid "ProjectDatabase_help_PlannedDate"
@@ -275,6 +280,11 @@ msgstr ""
 msgid "ProjectDatabase_label_CostEffectiveness"
 msgstr ""
 
+#. Default: "Countries"
+#: content/Project.py
+msgid "ProjectDatabase_label_Countries"
+msgstr ""
+
 #. Default: "Country"
 #: content/ProjectGeneralInformation.py
 #: content/CoreMixin.py
@@ -294,6 +304,16 @@ msgstr ""
 #. Default: "Country Ownership"
 #: content/OtherProjectRatings.py
 msgid "ProjectDatabase_label_CountryOwnership"
+msgstr ""
+
+#. Default: "Currentbackupfmo"
+#: content/Financials.py
+msgid "ProjectDatabase_label_CurrentBackupFMO"
+msgstr ""
+
+#. Default: "Currentprincipalfmo"
+#: content/Financials.py
+msgid "ProjectDatabase_label_CurrentPrincipalFMO"
 msgstr ""
 
 #. Default: "Current Task Manager"
@@ -431,6 +451,11 @@ msgstr ""
 msgid "ProjectDatabase_label_EvaluationTypeMilestone"
 msgstr ""
 
+#. Default: "Executingagencies"
+#: content/Project.py
+msgid "ProjectDatabase_label_ExecutingAgencies"
+msgstr ""
+
 #. Default: "Executingagencyriskrating"
 #: content/SubProject.py
 #: content/Financials.py
@@ -533,6 +558,11 @@ msgstr ""
 msgid "ProjectDatabase_label_FocalArea"
 msgstr ""
 
+#. Default: "Focalareas"
+#: content/Project.py
+msgid "ProjectDatabase_label_FocalAreas"
+msgstr ""
+
 #. Default: "Former Project Title"
 #: content/ProjectGeneralInformation.py
 msgid "ProjectDatabase_label_FormerProjectTitle"
@@ -544,9 +574,19 @@ msgstr ""
 msgid "ProjectDatabase_label_FundManagementOfficer"
 msgstr ""
 
+#. Default: "Fundmanager"
+#: content/Project.py
+msgid "ProjectDatabase_label_FundManager"
+msgstr ""
+
 #. Default: "GEF Agency Implementation"
 #: content/MonitoringAndEvaluation.py
 msgid "ProjectDatabase_label_GEFAgencyImplementation"
+msgstr ""
+
+#. Default: "Gefapprovaldate"
+#: content/Project.py
+msgid "ProjectDatabase_label_GEFApprovalDate"
 msgstr ""
 
 #. Default: "GEF Focal Point Endrosement Letters"
@@ -568,6 +608,11 @@ msgstr ""
 #. Default: "GEF Review Sheets"
 #: content/DocumentLinks.py
 msgid "ProjectDatabase_label_GEFReviewSheets"
+msgstr ""
+
+#. Default: "GEF Sec. Staff"
+#: content/ProjectGeneralInformation.py
+msgid "ProjectDatabase_label_GEFSecStaff"
 msgstr ""
 
 #. Default: "Terminal Evaluation Report Quality: GEF EO Rating"
@@ -1221,6 +1266,7 @@ msgstr ""
 
 #. Default: "Project Type"
 #: content/ProjectGeneralInformation.py
+#: content/Project.py
 msgid "ProjectDatabase_label_ProjectType"
 msgstr ""
 
@@ -1506,6 +1552,7 @@ msgstr ""
 
 #. Default: "Task Manager"
 #: content/ProjectGeneralInformation.py
+#: content/Project.py
 msgid "ProjectDatabase_label_TaskManager"
 msgstr ""
 
@@ -1717,6 +1764,11 @@ msgstr ""
 msgid "ProjectDatabase_label_TrusteeID"
 msgstr ""
 
+#. Default: "Unepapprovaldate"
+#: content/Project.py
+msgid "ProjectDatabase_label_UNEPApprovalDate"
+msgstr ""
+
 #. Default: "UNEP Component Description"
 #: content/BlankCoreMixin.py
 msgid "ProjectDatabase_label_UNEPComponentDescription"
@@ -1768,6 +1820,11 @@ msgstr ""
 #: content/SubProject.py
 #: content/Financials.py
 msgid "ProjectDatabase_label_YearlyExpenditures"
+msgstr ""
+
+#. Default: "Newattr"
+#: content/ProjectGeneralInformation.py
+msgid "ProjectDatabase_label_newAttr"
 msgstr ""
 
 #. Default: "Title"

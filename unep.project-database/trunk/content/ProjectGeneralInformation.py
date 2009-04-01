@@ -275,16 +275,17 @@ schema = Schema((
         vocabulary=NamedVocabulary("""Country"""),
         write_permission="TM",
     ),
-    StringField(
+    LinesField(
         name='TrustFund',
-        widget=SelectionWidget(
+        widget=InAndOutWidget(
             label="Trust Fund",
             label_msgid='ProjectDatabase_label_TrustFund',
             i18n_domain='ProjectDatabase',
         ),
+        multiValued=1,
+        vocabulary=NamedVocabulary("""TrustFund"""),
         required=True,
         write_permission="TM",
-        vocabulary=NamedVocabulary("""TrustFund"""),
     ),
     DataGridField(
         name='PIFFinancialData',
@@ -601,6 +602,7 @@ schema = Schema((
         name='PDFAStatus',
         widget=ComputedField._properties['widget'](
             label="PDFA Status",
+            visible=False,
             label_msgid='ProjectDatabase_label_PDFAStatus',
             i18n_domain='ProjectDatabase',
         ),
@@ -610,6 +612,7 @@ schema = Schema((
         name='PDFBStatus',
         widget=ComputedField._properties['widget'](
             label="PDFB Status",
+            visible=False,
             label_msgid='ProjectDatabase_label_PDFBStatus',
             i18n_domain='ProjectDatabase',
         ),
@@ -619,6 +622,7 @@ schema = Schema((
         name='PDFCStatus',
         widget=ComputedField._properties['widget'](
             label="PDFC Status",
+            visible=False,
             label_msgid='ProjectDatabase_label_PDFCStatus',
             i18n_domain='ProjectDatabase',
         ),
@@ -628,6 +632,7 @@ schema = Schema((
         name='PPGStatus',
         widget=ComputedField._properties['widget'](
             label="PPG Status",
+            visible=False,
             label_msgid='ProjectDatabase_label_PPGStatus',
             i18n_domain='ProjectDatabase',
         ),
@@ -637,6 +642,7 @@ schema = Schema((
         name='MSPStatus',
         widget=ComputedField._properties['widget'](
             label="MSP Status",
+            visible=False,
             label_msgid='ProjectDatabase_label_MSPStatus',
             i18n_domain='ProjectDatabase',
         ),
@@ -646,6 +652,7 @@ schema = Schema((
         name='FSPStatus',
         widget=ComputedField._properties['widget'](
             label="FSP Status",
+            visible=False,
             label_msgid='ProjectDatabase_label_FSPStatus',
             i18n_domain='ProjectDatabase',
         ),
@@ -718,14 +725,6 @@ schema = Schema((
         multiValued=0,
         relationship="project_programmeframework",
         write_permission="TM",
-    ),
-    StringField(
-        name='newAttr',
-        widget=StringField._properties['widget'](
-            label='Newattr',
-            label_msgid='ProjectDatabase_label_newAttr',
-            i18n_domain='ProjectDatabase',
-        ),
     ),
 
 ),
