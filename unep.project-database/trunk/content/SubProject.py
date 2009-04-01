@@ -486,7 +486,7 @@ class SubProject(BaseContent, CurrencyMixin, BrowserDefaultMixin):
         return self._computeDataGridAmount( \
             [v['cofinancing_inkind_actual_amount'] \
                 for v in values if v['cofinancing_inkind_actual_amount']])
-    
+
     security.declarePublic('getSumCashDisbursements')
     def getSumCashDisbursements(self):
         """

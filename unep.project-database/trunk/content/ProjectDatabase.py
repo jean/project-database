@@ -132,6 +132,8 @@ class ProjectDatabase(BaseFolder, BrowserDefaultMixin):
                         return True
         return False
 
+
+
 registerType(ProjectDatabase, PROJECTNAME)
 # end of class ProjectDatabase
 

@@ -169,11 +169,43 @@ schema = Schema((
         ),
         write_permission="FMO",
     ),
+    IntegerField(
+        name='PlannedDuration',
+        widget=IntegerField._properties['widget'](
+            label="Planned Duration",
+            description="The number of months",
+            label_msgid='ProjectDatabase_label_PlannedDuration',
+            description_msgid='ProjectDatabase_help_PlannedDuration',
+            i18n_domain='ProjectDatabase',
+        ),
+        write_permission="FMO",
+    ),
     StringField(
         name='OtherLeadExecutingAgency',
         widget=StringField._properties['widget'](
             label="Other Lead Executing Agency",
             label_msgid='ProjectDatabase_label_OtherLeadExecutingAgency',
+            i18n_domain='ProjectDatabase',
+        ),
+        write_permission="FMO",
+    ),
+    DataGridField(
+        name='FundManagementOfficer',
+        widget=DataGridField._properties['widget'](
+            columns= { 'FMO_Name': ReferenceColumn("Name", fieldname='FMOname'), "FMO_Type":SelectColumn("Type", vocabulary="getTMCategoryVocabulary"), "FMO_Period":SelectColumn('Period', vocabulary='getFiscalYearVocabulary')},
+            label="Fund Management Officer",
+            label_msgid='ProjectDatabase_label_FundManagementOfficer',
+            i18n_domain='ProjectDatabase',
+        ),
+        write_permission="FMO",
+        columns= ("FMO_Name", "FMO_Type", "FMO_Period"),
+    ),
+    DateTimeField(
+        name='ExpectedCompletionDate',
+        widget=CalendarWidget(
+            label="Expected Completion Date",
+            show_hm=False,
+            label_msgid='ProjectDatabase_label_ExpectedCompletionDate',
             i18n_domain='ProjectDatabase',
         ),
         write_permission="FMO",
@@ -364,7 +396,7 @@ schema = Schema((
     DataGridField(
         name='CashDisbursements',
         widget=DataGridField._properties['widget'](
-            columns={ 'cash_disbursements_date' : CalendarColumn("Date"), 'cash_disbursements_amount' : MoneyColumn("Amount", field=datagrid_schema['cash_disbursements_amount']), 'cash_disbursements_imis_rcpt_number' : Column("IMIS RCPT Number") },
+            columns={ 'cash_disbursements_date' : CalendarColumn("Date"), 'cash_disbursements_amount' : MoneyColumn("Amount", field=datagrid_schema['cash_disbursements_amount']), 'cash_disbursements_imis_rcpt_number' : Column("IMIS RCTP Number") },
             label="Cash Disbursements",
             label_msgid='ProjectDatabase_label_CashDisbursements',
             i18n_domain='ProjectDatabase',
@@ -397,27 +429,6 @@ schema = Schema((
         widget=ComputedField._properties['widget'](
             label="Total Yearly Expenditures",
             label_msgid='ProjectDatabase_label_SumYearlyExpenditures',
-            i18n_domain='ProjectDatabase',
-        ),
-        write_permission="FMO",
-    ),
-    IntegerField(
-        name='PlannedDuration',
-        widget=IntegerField._properties['widget'](
-            label="Planned Duration",
-            description="The number of months",
-            label_msgid='ProjectDatabase_label_PlannedDuration',
-            description_msgid='ProjectDatabase_help_PlannedDuration',
-            i18n_domain='ProjectDatabase',
-        ),
-        write_permission="FMO",
-    ),
-    DateTimeField(
-        name='ExpectedCompletionDate',
-        widget=CalendarWidget(
-            label="Expected Completion Date",
-            show_hm=False,
-            label_msgid='ProjectDatabase_label_ExpectedCompletionDate',
             i18n_domain='ProjectDatabase',
         ),
         write_permission="FMO",
@@ -455,17 +466,6 @@ schema = Schema((
         columns=("report_type", "report_period", "report_received_date", "amount"),
     ),
     DataGridField(
-        name='FundManagementOfficer',
-        widget=DataGridField._properties['widget'](
-            columns= { 'FMO_Name': ReferenceColumn("Name", fieldname='FMOname'), "FMO_Type":SelectColumn("Type", vocabulary="getTMCategoryVocabulary"), "FMO_Period":SelectColumn('Period', vocabulary='getFiscalYearVocabulary')},
-            label="Fund Management Officer",
-            label_msgid='ProjectDatabase_label_FundManagementOfficer',
-            i18n_domain='ProjectDatabase',
-        ),
-        write_permission="FMO",
-        columns= ("FMO_Name", "FMO_Type", "FMO_Period"),
-    ),
-    DataGridField(
         name='ProjectRevision',
         widget=DataGridField._properties['widget'](
             columns={"revision_number":Column("Revision Number"), "revision_type":SelectColumn("Revision Type", vocabulary="getRevisionTypeVocabulary"),"revision_date":CalendarColumn("Revision Date")},
@@ -480,7 +480,7 @@ schema = Schema((
         name='FinanceObjectPreparationResults',
         allowable_content_types=('text/plain', 'text/structured', 'text/html', 'application/msword',),
         widget=RichWidget(
-            label="Finance Object Preparation Results",
+            label="Finance Object Results",
             label_msgid='ProjectDatabase_label_FinanceObjectPreparationResults',
             i18n_domain='ProjectDatabase',
         ),
@@ -639,6 +639,7 @@ class Financials(BaseFolder, CurrencyMixin, BrowserDefaultMixin):
         return self._computeDataGridAmount( \
             [v['cofinancing_cash_planned_amount']  \
                 for v in values if v['cofinancing_cash_planned_amount']])
+
     security.declarePublic('getSumCoFinCashActual')
     def getSumCoFinCashActual(self):
         """
@@ -647,6 +648,7 @@ class Financials(BaseFolder, CurrencyMixin, BrowserDefaultMixin):
         return self._computeDataGridAmount( \
             [v['cofinancing_cash_actual_amount'] \
                 for v in values if v['cofinancing_cash_actual_amount']])
+
     security.declarePublic('getSumCoFinInKindPlanned')
     def getSumCoFinInKindPlanned(self):
         """
@@ -655,6 +657,7 @@ class Financials(BaseFolder, CurrencyMixin, BrowserDefaultMixin):
         return self._computeDataGridAmount( \
             [v['cofinancing_inkind_planned_amount'] \
                 for v in values if v['cofinancing_inkind_planned_amount']])
+
     security.declarePublic('getSumCoFinInKindActual')
     def getSumCoFinInKindActual(self):
         """
@@ -663,6 +666,7 @@ class Financials(BaseFolder, CurrencyMixin, BrowserDefaultMixin):
         return self._computeDataGridAmount( \
             [v['cofinancing_inkind_actual_amount'] \
                 for v in values if v['cofinancing_inkind_actual_amount']])
+
     security.declarePublic('getSumCashDisbursements')
     def getSumCashDisbursements(self):
         """
@@ -671,6 +675,7 @@ class Financials(BaseFolder, CurrencyMixin, BrowserDefaultMixin):
         return self._computeDataGridAmount( \
             [v['cash_disbursements_amount'] \
                 for v in values if v['cash_disbursements_amount']])
+
     security.declarePublic('getSumCashDisbursementsToDate')
     def getSumCashDisbursementsToDate(self, to_date):
         """
@@ -682,6 +687,7 @@ class Financials(BaseFolder, CurrencyMixin, BrowserDefaultMixin):
                   if v['cash_disbursements_amount'] and \
                      v['cash_disbursements_date'] and \
                      v['cash_disbursements_date'] <= to_date])
+
     security.declarePublic('getDifference')
     def getDifference(self):
         """ calculate the difference between the committed and allocated GEF grant
@@ -948,7 +954,6 @@ class Financials(BaseFolder, CurrencyMixin, BrowserDefaultMixin):
                     result.append({'type':vtype, 'name':vdonor, 'amount':vamount})
         return result
 
-
     def getLastDisbursement(self):
         values = self.getCashDisbursements()
         if values:
@@ -964,7 +969,6 @@ class Financials(BaseFolder, CurrencyMixin, BrowserDefaultMixin):
                 return date, amount
         return None, None
 
-
     def hasDelayedFinancialReports(self):
         exp_date = self.getLatestReportData('expenditure', 'report_received_date')
         now = DateTime()
@@ -974,7 +978,6 @@ class Financials(BaseFolder, CurrencyMixin, BrowserDefaultMixin):
         prog_date = self.getLatestReportData('progress', 'report_received_date')
         now = DateTime()
         return not (prog_date != 'Unspecified' and (now - prog_date) < 300)
-
 
 
 

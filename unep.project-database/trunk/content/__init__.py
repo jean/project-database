@@ -43,6 +43,7 @@ from Products.ATReferenceBrowserWidget.ATReferenceBrowserWidget import Reference
 import Project
 import Milestone
 import ProjectGeneralInformation
+import SubProject
 import Financials
 import FMIFolder
 import MOU
@@ -55,7 +56,6 @@ import PIRRating
 import CountryClassification
 import CountryClassificationSystem
 import FrameworkDatabase
-import SubProject
 
 ##code-section init-module-footer #fill in your manual code here
 ##/code-section init-module-footer

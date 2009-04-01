@@ -37,6 +37,7 @@ ADD_CONTENT_PERMISSIONS = {
     'Project': 'ProjectDatabase: Add Project',
     'Milestone': 'ProjectDatabase: Add Milestone',
     'ProjectGeneralInformation': 'ProjectDatabase: Add ProjectGeneralInformation',
+    'SubProject': 'ProjectDatabase: Add SubProject',
     'Financials': 'ProjectDatabase: Add Financials',
     'FMIFolder': 'ProjectDatabase: Add FMIFolder',
     'MOU': 'ProjectDatabase: Add MOU',
@@ -48,12 +49,12 @@ ADD_CONTENT_PERMISSIONS = {
     'CountryClassification': 'ProjectDatabase: Add CountryClassification',
     'CountryClassificationSystem': 'ProjectDatabase: Add CountryClassificationSystem',
     'FrameworkDatabase': 'ProjectDatabase: Add FrameworkDatabase',
-    'SubProject': 'ProjectDatabase: Add SubProject',
 }
 
 setDefaultRoles('ProjectDatabase: Add Project', ('Manager','Owner','TM', 'SPO'))
 setDefaultRoles('ProjectDatabase: Add Milestone', ('Manager','Owner'))
 setDefaultRoles('ProjectDatabase: Add ProjectGeneralInformation', ('Manager','Owner'))
+setDefaultRoles('ProjectDatabase: Add SubProject', ('Manager','Owner'))
 setDefaultRoles('ProjectDatabase: Add Financials', ('Manager','Owner','FMO'))
 setDefaultRoles('ProjectDatabase: Add FMIFolder', ('Manager','Owner'))
 setDefaultRoles('ProjectDatabase: Add MOU', ('Manager','Owner'))
@@ -65,7 +66,6 @@ setDefaultRoles('ProjectDatabase: Add PIRRating', ('Manager','Owner','TM','MO'))
 setDefaultRoles('ProjectDatabase: Add CountryClassification', ('Manager','Owner'))
 setDefaultRoles('ProjectDatabase: Add CountryClassificationSystem', ('Manager','Owner'))
 setDefaultRoles('ProjectDatabase: Add FrameworkDatabase', ('Manager','Owner'))
-setDefaultRoles('ProjectDatabase: Add SubProject', ('Manager','Owner'))
 
 product_globals = globals()
 
