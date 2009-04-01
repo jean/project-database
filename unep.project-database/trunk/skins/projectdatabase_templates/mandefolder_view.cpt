@@ -10,7 +10,7 @@
         <form name="add_mande" method="post" action=""
                 tal:attributes="action python: context.absolute_url() + '/mandefolder_view'">
             <input type="hidden" name="form.submitted" value="1" />
-            <span>Create new M &amp; E</span>
+            <span i18n:translate="create_eval_type">Create new evaluation type</span>
             <select name="etype" 
                   tal:define="
                         vocab python:context.portal_vocabularies.getVocabularyByName('EvaluationType');
