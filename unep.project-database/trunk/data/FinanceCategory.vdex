@@ -76,4 +76,11 @@
   </caption>
   <description />
 </term>
+<term>
+  <termIdentifier>supplementary_action</termIdentifier>
+  <caption>
+    <langstring language="en">Supplementary action</langstring>
+  </caption>
+  <description />
+</term>
 </vdex>
