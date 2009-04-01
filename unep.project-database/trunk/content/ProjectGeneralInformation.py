@@ -101,7 +101,7 @@ schema = Schema((
     TextField(
         name='FormerProjectTitle',
         widget=TextAreaWidget(
-            label="Former Project Title",
+            label="Former / Short Title",
             label_msgid='ProjectDatabase_label_FormerProjectTitle',
             i18n_domain='ProjectDatabase',
         ),
@@ -138,6 +138,59 @@ schema = Schema((
         vocabulary=NamedVocabulary("""FocalArea"""),
         write_permission="TM",
     ),
+    StringField(
+        name='GEFPhase',
+        widget=UNEPSelectionWidget(
+            label="GEF Phase",
+            label_msgid='ProjectDatabase_label_GEFPhase',
+            i18n_domain='ProjectDatabase',
+        ),
+        vocabulary=NamedVocabulary("""GEFPhase"""),
+        write_permission="TM",
+    ),
+    LinesField(
+        name='OperationalProgramme',
+        widget=InAndOutWidget(
+            label="Operational Programme",
+            description="Operation programme",
+            label_msgid='ProjectDatabase_label_OperationalProgramme',
+            description_msgid='ProjectDatabase_help_OperationalProgramme',
+            i18n_domain='ProjectDatabase',
+        ),
+        multiValued=1,
+        vocabulary=NamedVocabulary("""OperationalProgramme"""),
+        write_permission="TM",
+    ),
+    StringField(
+        name='StrategicPriority',
+        widget=SelectionWidget(
+            label="Strategic Priority",
+            label_msgid='ProjectDatabase_label_StrategicPriority',
+            i18n_domain='ProjectDatabase',
+        ),
+        vocabulary=NamedVocabulary("""StrategicPriority"""),
+        write_permission="TM",
+    ),
+    StringField(
+        name='StrategicObjectives',
+        widget=SelectionWidget(
+            label="Strategic Objectives",
+            label_msgid='ProjectDatabase_label_StrategicObjectives',
+            i18n_domain='ProjectDatabase',
+        ),
+        write_permission="TM",
+        vocabulary=NamedVocabulary("""StrategicObjectives"""),
+    ),
+    StringField(
+        name='StrategicProgram',
+        widget=SelectionWidget(
+            label="Strategic Program",
+            label_msgid='ProjectDatabase_label_StrategicProgram',
+            i18n_domain='ProjectDatabase',
+        ),
+        write_permission="TM",
+        vocabulary=NamedVocabulary("""StrategicProgram"""),
+    ),
     TextField(
         name='SummaryDescription',
         allowable_content_types=('text/plain', 'text/structured', 'text/html', 'application/msword',),
@@ -158,16 +211,6 @@ schema = Schema((
             i18n_domain='ProjectDatabase',
         ),
         vocabulary=NamedVocabulary("""ProjectType"""),
-        write_permission="TM",
-    ),
-    StringField(
-        name='GEFPhase',
-        widget=UNEPSelectionWidget(
-            label="GEF Phase",
-            label_msgid='ProjectDatabase_label_GEFPhase',
-            i18n_domain='ProjectDatabase',
-        ),
-        vocabulary=NamedVocabulary("""GEFPhase"""),
         write_permission="TM",
     ),
     LinesField(
@@ -378,17 +421,6 @@ schema = Schema((
         columns=('partner_name','category'),
     ),
     DataGridField(
-        name='ProjectImplementationStatus',
-        widget=DataGridField._properties['widget'](
-            label="Project Implementation Status",
-            columns={'fiscal_year':SelectColumn('Fiscal Year', vocabulary='getFiscalYearVocabulary'),'narrative':Column('Project activities and objectives met')},
-            label_msgid='ProjectDatabase_label_ProjectImplementationStatus',
-            i18n_domain='ProjectDatabase',
-        ),
-        write_permission="TM",
-        columns=('fiscal_year','narrative'),
-    ),
-    DataGridField(
         name='TaskManager',
         widget=DataGridField._properties['widget'](
             label="Task Manager",
@@ -441,19 +473,6 @@ schema = Schema((
         write_permission="TM",
         validators=('isUrl',),
     ),
-    TextField(
-        name='ProjectResults',
-        allowable_content_types=('text/plain', 'text/structured', 'text/html', 'application/msword',),
-        widget=RichWidget(
-            label="Project Results",
-            description="Enter overall Project Results AFTER Project Terminal Evaluation",
-            label_msgid='ProjectDatabase_label_ProjectResults',
-            description_msgid='ProjectDatabase_help_ProjectResults',
-            i18n_domain='ProjectDatabase',
-        ),
-        default_output_type='text/html',
-        write_permission="TM",
-    ),
     StringField(
         name='PhaseTranche',
         widget=SelectionWidget(
@@ -472,17 +491,6 @@ schema = Schema((
             label_msgid='ProjectDatabase_label_PhasedTrancheNumber',
             i18n_domain='ProjectDatabase',
         ),
-        write_permission="TM",
-    ),
-    LinesField(
-        name='OperationalProgramme',
-        widget=InAndOutWidget(
-            label="Operational Programme",
-            label_msgid='ProjectDatabase_label_OperationalProgramme',
-            i18n_domain='ProjectDatabase',
-        ),
-        multiValued=1,
-        vocabulary=NamedVocabulary("""OperationalProgramme"""),
         write_permission="TM",
     ),
     LinesField(
@@ -528,36 +536,6 @@ schema = Schema((
         multiValued=1,
         vocabulary=NamedVocabulary("""MultipleFocalAreas"""),
         write_permission="TM",
-    ),
-    StringField(
-        name='StrategicPriority',
-        widget=SelectionWidget(
-            label="Strategic Priority",
-            label_msgid='ProjectDatabase_label_StrategicPriority',
-            i18n_domain='ProjectDatabase',
-        ),
-        vocabulary=NamedVocabulary("""StrategicPriority"""),
-        write_permission="TM",
-    ),
-    StringField(
-        name='StrategicObjectives',
-        widget=SelectionWidget(
-            label="Strategic Objectives",
-            label_msgid='ProjectDatabase_label_StrategicObjectives',
-            i18n_domain='ProjectDatabase',
-        ),
-        write_permission="TM",
-        vocabulary=NamedVocabulary("""StrategicObjectives"""),
-    ),
-    StringField(
-        name='StrategicProgram',
-        widget=SelectionWidget(
-            label="Strategic Program",
-            label_msgid='ProjectDatabase_label_StrategicProgram',
-            i18n_domain='ProjectDatabase',
-        ),
-        write_permission="TM",
-        vocabulary=NamedVocabulary("""StrategicProgram"""),
     ),
     ComputedField(
         name='TotalGEFAllocation',
@@ -673,6 +651,53 @@ schema = Schema((
         ),
         write_permission="TM",
     ),
+    DataGridField(
+        name='ProjectImplementationStatus',
+        widget=DataGridField._properties['widget'](
+            label="Project Implementation Status",
+            columns={'fiscal_year':SelectColumn('Fiscal Year', vocabulary='getFiscalYearVocabulary'),'narrative':Column('Project activities and objectives met')},
+            label_msgid='ProjectDatabase_label_ProjectImplementationStatus',
+            i18n_domain='ProjectDatabase',
+        ),
+        write_permission="TM",
+        columns=('fiscal_year','narrative'),
+    ),
+    TextField(
+        name='ProjectResults',
+        allowable_content_types=('text/plain', 'text/structured', 'text/html', 'application/msword',),
+        widget=RichWidget(
+            label="Project Results",
+            description="Enter overall Project Results AFTER Project Terminal Evaluation",
+            label_msgid='ProjectDatabase_label_ProjectResults',
+            description_msgid='ProjectDatabase_help_ProjectResults',
+            i18n_domain='ProjectDatabase',
+        ),
+        default_output_type='text/html',
+        write_permission="TM",
+    ),
+    MoneyField(
+        name='LeveragedFinancingAmount',
+        default='0.0',
+        widget=MoneyField._properties['widget'](
+            label="Leveraged Financing Amount",
+            label_msgid='ProjectDatabase_label_LeveragedFinancingAmount',
+            i18n_domain='ProjectDatabase',
+        ),
+        write_permission="TM",
+    ),
+    TextField(
+        name='LeveragedFinancingRemark',
+        allowable_content_types=('text/plain', 'text/structured', 'text/html', 'application/msword',),
+        widget=RichWidget(
+            label="Leveraged Financing Description",
+            description="Enter Sources and Purposes",
+            label_msgid='ProjectDatabase_label_LeveragedFinancingRemark',
+            description_msgid='ProjectDatabase_help_LeveragedFinancingRemark',
+            i18n_domain='ProjectDatabase',
+        ),
+        default_output_type='text/html',
+        write_permission="TM",
+    ),
     BooleanField(
         name='ProgrammeFramework',
         widget=BooleanField._properties['widget'](
@@ -694,28 +719,13 @@ schema = Schema((
         relationship="project_programmeframework",
         write_permission="TM",
     ),
-    TextField(
-        name='LeveragedFinancingRemark',
-        allowable_content_types=('text/plain', 'text/structured', 'text/html', 'application/msword',),
-        widget=RichWidget(
-            label="Leveraged Financing Description",
-            description="Enter Sources and Purposes",
-            label_msgid='ProjectDatabase_label_LeveragedFinancingRemark',
-            description_msgid='ProjectDatabase_help_LeveragedFinancingRemark',
+    StringField(
+        name='newAttr',
+        widget=StringField._properties['widget'](
+            label='Newattr',
+            label_msgid='ProjectDatabase_label_newAttr',
             i18n_domain='ProjectDatabase',
         ),
-        default_output_type='text/html',
-        write_permission="TM",
-    ),
-    MoneyField(
-        name='LeveragedFinancingAmount',
-        default='0.0',
-        widget=MoneyField._properties['widget'](
-            label="Leveraged Financing Amount",
-            label_msgid='ProjectDatabase_label_LeveragedFinancingAmount',
-            i18n_domain='ProjectDatabase',
-        ),
-        write_permission="TM",
     ),
 
 ),
@@ -1351,6 +1361,7 @@ class ProjectGeneralInformation(BaseContent, CurrencyMixin, BrowserDefaultMixin)
         if pm is not None:
             return pm.getFullname(), pm.getEmail(), pm.getBusinessPhone()
         return '', '', ''
+
 
 
 registerType(ProjectGeneralInformation, PROJECTNAME)

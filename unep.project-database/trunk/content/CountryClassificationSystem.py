@@ -63,15 +63,20 @@ class CountryClassificationSystem(BaseFolder, BrowserDefaultMixin):
     ##/code-section class-header
 
     # Methods
+
+    # Manually created methods
+
     def getLatestCountryRiskRating(self, country):
         pc = getToolByName(self, 'portal_catalog')
         brains = pc(
-                    portal_type='CountryClassification', 
+                    portal_type='CountryClassification',
                     getCountryName=country,
                     sort_on='created',
                     sort_order='reverse')
         if brains:
             return brains[0].getRiskRating
+
+
 
 registerType(CountryClassificationSystem, PROJECTNAME)
 # end of class CountryClassificationSystem

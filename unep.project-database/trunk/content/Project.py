@@ -24,6 +24,7 @@ from Products.ATVocabularyManager.namedvocabulary import NamedVocabulary
 from Products.ProjectDatabase.config import *
 
 # additional imports from tagged value 'import'
+from Products.ProjectDatabase.widgets.UNEPSelectionWidget import UNEPSelectionWidget
 from Products.FinanceFields.MoneyField import MoneyField
 from Products.DataGridField import DataGridField, Column, SelectColumn, CalendarColumn
 from Products.CMFCore.utils import getToolByName
