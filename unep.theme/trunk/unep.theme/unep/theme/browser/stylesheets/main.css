@@ -576,6 +576,28 @@ fieldset#fieldset-Plone-Settings {
 div.datagrid-money-wrapper span.currency_edit { 
     display: none;
 }    
+
+table.datagridwidget-table-view {
+	width: auto !important;
+}
+
+/* datagrid specific cell styles to set widths */
+.datagrid_money_cell-view {
+    width: 100px;
+}
+.datagrid_money_cell-edit {
+    width: 200px;
+}
+.datagrid_calendar_cell-view {
+    width: 100px;
+}
+.ExecutingAgencyRiskRating-Remarks-view {
+    width: 600px;
+}
+.ExecutingAgencyRiskRating-Remarks-edit {
+    width: 300px;
+}
+
 /*
 ** end ECMAScript Content Action Menus
 */
