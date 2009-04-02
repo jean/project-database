@@ -17,7 +17,7 @@
             <a tal:condition="python:member.has_role(['Owner', 'Manager', 'FMO'], obj)"
                 tal:attributes="href string:${obj/absolute_url}/edit">edit</a>
         </td>
-        <td tal:content="python:obj.getFinanceCategory().upper() or 'unknown'" />
+        <td tal:content="python:obj.Title() or 'unknown'" />
             <td tal:define="revdate obj/getRevisedCompletionDate;
                     revdate python:revdate is not None and revdate or obj.getExpectedCompletionDate()"
                 tal:content="revdate | string:unknown" />

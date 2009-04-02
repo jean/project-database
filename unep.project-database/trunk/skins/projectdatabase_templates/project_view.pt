@@ -15,7 +15,7 @@
     <hr />
 
     <tal:def tal:define="ob nocall:context">
-            <tal:use metal:use-macro="context/matrix_macros/macros/pgi_matrix" />
+        <tal:use metal:use-macro="context/matrix_macros/macros/pgi_matrix" />
     </tal:def>
     <tal:def >
             <tal:use metal:use-macro="context/matrix_macros/macros/multiple_fmi_matrix" />
