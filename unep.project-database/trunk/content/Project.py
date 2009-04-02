@@ -406,6 +406,16 @@ class Project(BaseFolder, CurrencyMixin, BrowserDefaultMixin):
             if mofu:
                 return mofu.getCurrentPrincipalFMO()
 
+    security.declarePublic('getFundManagerPerson')
+    def getFundManagerPerson(self):
+        """
+        """
+        fmi = self.getFMIFolder()
+        if fmi:
+            mofu = fmi.getMainFinanceObject()
+            if mofu:
+                return mofu.getCurrentFMOPerson()
+
     def hasProjectCompletionDelays(self):
         ms = self.milestones
         complete_exp = ms.getProjectImplementationDate('CompletionExpected')
