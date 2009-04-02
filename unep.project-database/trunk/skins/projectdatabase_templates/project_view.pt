@@ -17,7 +17,23 @@
     <tal:def tal:define="ob nocall:context">
         <tal:use metal:use-macro="context/matrix_macros/macros/pgi_matrix" />
     </tal:def>
+    <hr />
     <tal:def >
             <tal:use metal:use-macro="context/matrix_macros/macros/multiple_fmi_matrix" />
+    </tal:def>
+    <hr />
+    <h3>Monitoring and Evaluation</h3>
+    <tal:def >
+            <tal:use metal:use-macro="context/matrix_macros/macros/mande_matrix" />
+    </tal:def>
+    <hr />
+    <h3>Milestones</h3>
+    <tal:def >
+            <tal:use metal:use-macro="context/matrix_macros/macros/milestones_matrix" />
+    </tal:def>
+    <hr />
+    <h3>Contacts</h3>
+    <tal:def >
+            <tal:use metal:use-macro="context/matrix_macros/macros/contacts_matrix" />
     </tal:def>
 </metal:body>
