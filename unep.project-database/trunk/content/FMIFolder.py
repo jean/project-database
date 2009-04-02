@@ -106,7 +106,33 @@ class FMIFolder(BaseFolder, CurrencyMixin, BrowserDefaultMixin):
         brains = pc(query)
         return [brain.getObject() for brain in brains]
 
+    security.declarePublic('getTotalGrantToUnep')
+    def getTotalGrantToUnep(self):
+        result = self.getZeroMoneyInstance()
+        for fo in self.getAllFinanceObjects():
+            result += fo.getSumFinanceObjectAmount()
+        return result
 
+    security.declarePublic('getTotalDisbursements')
+    def getTotalDisbursements(self):
+        result = self.getZeroMoneyInstance()
+        for fo in self.getAllFinanceObjects():
+            result += fo.getSumCashDisbursements()
+        return result
+
+    security.declarePublic('getTotalUnepFee')
+    def getTotalUnepFee(self):
+        result = self.getZeroMoneyInstance()
+        for fo in self.getAllFinanceObjects():
+            result += fo.getFinanceObjectFee()
+        return result
+
+    security.declarePublic('getTotalActualCofin')
+    def getTotalActualCofin(self):
+        result = self.getZeroMoneyInstance()
+        for fo in self.getAllFinanceObjects():
+            result += fo.getTotalCoFinOfFinanceObjectActual()
+        return result
 
 registerType(FMIFolder, PROJECTNAME)
 # end of class FMIFolder

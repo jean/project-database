@@ -590,7 +590,7 @@ table.datagridwidget-table-view {
     width: 100px;
 }
 .datagrid_money_cell-edit {
-    width: 200px;
+    width: 100px;
 }
 .datagrid_calendar_cell-view {
     width: 100px;
@@ -600,6 +600,10 @@ table.datagridwidget-table-view {
 }
 .ExecutingAgencyRiskRating-Remarks-edit {
     width: 300px;
+}
+
+.Reports-report_period-edit {
+    width: 100px;
 }
 
 /*

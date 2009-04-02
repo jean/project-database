@@ -158,7 +158,6 @@ div.datagrid-money-wrapper div.ArchetypesMoneyWidget {
 }
 div.datagrid-money-wrapper input[type="text"], 
 div.datagrid-money-wrapper select { 
-    width: auto !important; 
     text-align: right;
 }
 span.datagrid-money-view {

@@ -1229,8 +1229,32 @@ class ProjectGeneralInformation(BaseContent, CurrencyMixin, BrowserDefaultMixin)
         values = self.getPIFFinancialData()
         amount = self.getZeroMoneyInstance()
         for v in values:
-            if v['stage'] == 'PPG':
+            if v['stage'] in ['PPG', 'PDF']:
                 amount += v['grant_to_unep']
+        return amount
+
+    def getPIFPPGCoFinAmount(self):
+        values = self.getPIFFinancialData()
+        amount = self.getZeroMoneyInstance()
+        for v in values:
+            if v['stage'] in ['PPG', 'PDF']:
+                amount += v['cofinancing']
+        return amount
+
+    def getPIFProjectAmount(self):
+        values = self.getPIFFinancialData()
+        amount = self.getZeroMoneyInstance()
+        for v in values:
+            if v['stage'] == 'Project':
+                amount += v['grant_to_unep']
+        return amount
+
+    def getPIFProjectCoFinAmount(self):
+        values = self.getPIFFinancialData()
+        amount = self.getZeroMoneyInstance()
+        for v in values:
+            if v['stage'] == 'Project':
+                amount += v['cofinancing']
         return amount
 
     security.declarePublic('getPGFPath')
