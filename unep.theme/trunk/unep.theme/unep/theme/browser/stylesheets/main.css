@@ -269,6 +269,10 @@ p {
     font-weight: 100;
 }
 
+td.structured_text p {
+    color: #24a1d1;
+}
+
 span.greytext {
     color: #878787;
 }
