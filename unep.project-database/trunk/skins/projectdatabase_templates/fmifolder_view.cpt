@@ -56,9 +56,35 @@
             <td i18n:translate="task_manager">Task Manager:</td>
             <td tal:content="pgi/getCurrentTM" />
         </tr>
-        <tr>
+        <tr tal:define="mofu context/getMainFinanceObject|nothing;
+                        values python:mofu and mofu.getEvaluationFunds() or None">
             <td i18n:translate="evaluation_budget">Evaluation Budget:</td>
-            <td tal:content="string:Unknown" />
+            <td tal:condition="values">  
+                <table class="table-fullwidth">
+                    <tr>
+                        <th i18n:translate="evaluation_type">
+                            Evaluation Type
+                        </th>
+                        <th i18n:translate="amount">
+                            Amount
+                        </th>
+                        <th i18n:translate="bac">
+                            BAC
+                        </th>
+                    </tr>
+                    <tal:rep tal:repeat="val values">
+                    <tr >
+                        <td tal:content="python:val['EvaluationType']" />
+                        <td tal:content="python:val['Amount']" />
+                        <td tal:content="python:val['BAC']" />
+                    </tr>
+                    </tal:rep>
+                </table>
+            </td>
+            <td tal:condition="not:values"
+                i18n:translate="unspecified">
+                Unspecified
+            </td>
         </tr>
     </table>
 </div>
@@ -71,8 +97,7 @@
             <tr>
                 <td i18n:translate="finance_object" width="30%">Finance Object:</td>
                 <td>
-                    <span tal:content="fo/id" 
-                        style="text-transform: uppercase;">PPG</span>&nbsp;
+                    <span tal:content="fo/title">PPG</span>&nbsp;
                     <a tal:attributes="href string:${fo/absolute_url}/view">
                         <span i18n:translate="view">View</span></a>
                     <a tal:attributes="href string:${fo/absolute_url}/edit"
