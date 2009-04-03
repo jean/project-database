@@ -566,7 +566,6 @@ class Milestone(BaseContent, BrowserDefaultMixin):
 
     security.declarePublic('getDataGridData')
     def getDataGridReference(self, accessor, in_field, in_value, out_field):
-        import pdb; pdb.set_trace()
         values = accessor()
         if values:
             for v in values:
