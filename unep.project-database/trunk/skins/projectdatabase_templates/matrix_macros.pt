@@ -81,7 +81,10 @@ tal:define="fmi_folder nocall:context/fmi_folder;
     <tr>
         <td i18n:translate="gef_id" width="30%">GEF ID:</td>
         <td>
-            <a tal:attributes="href string:${pgi/absolute_url}/view"
+            <span tal:condition="python:member.has_role(['Anonymous'], pgi)"
+                tal:content="pgi/getGEFid|string:Unspecified"> PGI </span>
+            <a tal:condition="python:member.has_role(['Owner', 'Manager', 'TM', 'Registrar'], pgi)"
+                tal:attributes="href string:${pgi/absolute_url}/view"
                 tal:content="pgi/getGEFid|string:Unspecified"> PGI </a>
             <a tal:condition="python:member.has_role(['Owner', 'Manager', 'TM', 'Registrar'], pgi)"
                 tal:attributes="href string:${pgi/absolute_url}/edit">edit</a>
@@ -196,6 +199,7 @@ tal:define="fmi_folder nocall:context/fmi_folder;
                 pm  pgi/getProjectManager;
                 fmo  context/getFundManagerPerson;
                 tm  pgi/getCurrentTMPerson;">
+    <tal:pm tal:condition="pm">
     <tr>
         <td i18n:translate="project_manager">Project Manager:</td>
         <td i18n:translate="name">Name:</td>
@@ -221,6 +225,8 @@ tal:define="fmi_folder nocall:context/fmi_folder;
                         zip python:dict.get('zip', '')"
             tal:content="python:'%s, %s, %s, %s' % (add, city, country, zip)"/>
     </tr>
+    </tal:pm>
+    <tal:tm tal:condition="tm">
     <tr>
         <td i18n:translate="task_manager">Task Manager:</td>
         <td i18n:translate="name">Name:</td>
@@ -246,6 +252,8 @@ tal:define="fmi_folder nocall:context/fmi_folder;
                         zip python:dict.get('zip', '')"
             tal:content="python:'%s, %s, %s, %s' % (add, city, country, zip)"/>
     </tr>
+    </tal:tm>
+    <tal:fmo tal:condition="fmo">
     <tr>
         <td i18n:translate="fund_management_officer">Fund Management Officer:</td>
         <td i18n:translate="name">Name:</td>
@@ -271,5 +279,6 @@ tal:define="fmi_folder nocall:context/fmi_folder;
                         zip python:dict.get('zip', '')"
             tal:content="python:'%s, %s, %s, %s' % (add, city, country, zip)"/>
     </tr>
+    </tal:fmo>
 </table>
 </metal:contacts_matrix>

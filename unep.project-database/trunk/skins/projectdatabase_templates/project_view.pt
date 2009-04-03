@@ -18,20 +18,25 @@
         <tal:use metal:use-macro="context/matrix_macros/macros/pgi_matrix" />
     </tal:def>
     <hr />
-    <tal:def >
-            <tal:use metal:use-macro="context/matrix_macros/macros/multiple_fmi_matrix" />
+    <tal:def tal:condition="python:member.has_role(['Owner', 'Manager', 'FMO'], context)">
+        <tal:use metal:use-macro="context/matrix_macros/macros/multiple_fmi_matrix" />
+        <hr />
     </tal:def>
-    <hr />
-    <h3>Monitoring and Evaluation</h3>
-    <tal:def >
-            <tal:use metal:use-macro="context/matrix_macros/macros/mande_matrix" />
+    <tal:def tal:condition="python:member.has_role(['Owner', 'Manager', 'FMO'], context)">
+        <h3>Monitoring and Evaluation</h3>
+        <tal:use metal:use-macro="context/matrix_macros/macros/mande_matrix" />
+        <hr />
     </tal:def>
-    <hr />
-    <h3>Milestones</h3>
-    <tal:def >
-            <tal:use metal:use-macro="context/matrix_macros/macros/milestones_matrix" />
+    <tal:def tal:condition="python:member.has_role(['Anonymous'], context)">
+        <h3>Project Status</h3>
+        <tal:use metal:use-macro="context/matrix_macros/macros/milestones_matrix" />
+        <hr />
     </tal:def>
-    <hr />
+    <tal:def tal:condition="python:member.has_role(['Owner', 'Manager', 'FMO'], context)">
+        <h3>Milestones</h3>
+        <tal:use metal:use-macro="context/matrix_macros/macros/milestones_matrix" />
+        <hr />
+    </tal:def>
     <h3>Contacts</h3>
     <tal:def >
             <tal:use metal:use-macro="context/matrix_macros/macros/contacts_matrix" />
