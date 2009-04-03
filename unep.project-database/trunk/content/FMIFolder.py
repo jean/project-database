@@ -134,6 +134,8 @@ class FMIFolder(BaseFolder, CurrencyMixin, BrowserDefaultMixin):
             result += fo.getTotalCoFinOfFinanceObjectActual()
         return result
 
+
+
 registerType(FMIFolder, PROJECTNAME)
 # end of class FMIFolder
 
