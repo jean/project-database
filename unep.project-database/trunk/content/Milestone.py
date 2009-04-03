@@ -33,6 +33,7 @@ from Products.ATReferenceBrowserWidget.ATReferenceBrowserWidget import Reference
 from Products.Archetypes.utils import DisplayList
 from DateTime import DateTime
 from Products.ProjectDatabase.utils import getVocabularyValue
+from Products.DataGridField import ReferenceColumn
 ##/code-section module-header
 
 schema = Schema((
@@ -41,12 +42,12 @@ schema = Schema((
         name='ConceptDevelopment',
         widget=DataGridField._properties['widget'](
             label="Concept Development (IPI)",
-            columns={'milestone_action':SelectColumn('Milestone Action', vocabulary='getConceptDevelopmentActionsVocabulary'), 'milestone_date':CalendarColumn('Milestone Date'), 'milestone_result':SelectColumn('Milestone Result', vocabulary='getMilestoneResultVocabulary')},
+            columns={'milestone_action':SelectColumn('Milestone Action', vocabulary='getConceptDevelopmentActionsVocabulary'), 'milestone_date':CalendarColumn('Milestone Date'), 'milestone_result':SelectColumn('Milestone Result', vocabulary='getMilestoneResultVocabulary'), 'document':ReferenceColumn('Doument', fieldname='ConceptDevelopmentDocument'),},
             label_msgid='ProjectDatabase_label_ConceptDevelopment',
             i18n_domain='ProjectDatabase',
         ),
         write_permission="Registrar TM SPO",
-        columns=('milestone_action', 'milestone_date', 'milestone_result'),
+        columns=('milestone_action', 'milestone_date', 'milestone_result', 'document'),
     ),
     DataGridField(
         name='PIFApproval',
@@ -187,6 +188,18 @@ Milestone_schema = BaseSchema.copy() + \
     schema.copy()
 
 ##code-section after-schema #fill in your manual code here
+Milestone_schema = Milestone_schema.copy()  + Schema((
+
+    ReferenceField("ConceptDevelopmentDocument",
+            widget = ReferenceBrowserWidget(
+                visible=False,
+                startup_directory_method='getProjectDocumentsFolder',
+            ),
+            allowed_types=('File',),
+            relationship='conceptdev_document_fake',
+            multiValued=1,
+        ),
+    ))
 ##/code-section after-schema
 
 class Milestone(BaseContent, BrowserDefaultMixin):
@@ -477,6 +490,17 @@ class Milestone(BaseContent, BrowserDefaultMixin):
         elif stage == 'Project Implementation':
             return self.getProjectImplementationMilestone()
         return None, None
+
+    security.declarePublic('getProjectDocumentsFolder')
+    def getProjectDocumentsFolder(self):
+        purl = getToolByName(self, 'portal_url'). \
+                getPortalObject().absolute_url()
+        folder = self.getAProject().get('documents', None)
+        if not folder:
+            folder = self.getAProject()
+        curl = folder.absolute_url()
+        return curl[len(purl)+1:]
+
 
 
 
