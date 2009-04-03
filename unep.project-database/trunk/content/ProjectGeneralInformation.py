@@ -425,7 +425,7 @@ schema = Schema((
         name='TaskManager',
         widget=DataGridField._properties['widget'](
             label="Task Manager",
-            columns={'name':ReferenceColumn('Name', fieldname='TaskManagerName'),'category':SelectColumn('Category', vocabulary='getTMCategoryVocab'),'period':SelectColumn('Period', vocabulary='getFiscalYearVocabulary')},
+            columns={'name':ReferenceColumn('Name', fieldname='TaskManagerName'),'category':SelectColumn('Category', vocabulary='getTMCategoryVocab'),'period':Column('Period')},
             label_msgid='ProjectDatabase_label_TaskManager',
             i18n_domain='ProjectDatabase',
         ),

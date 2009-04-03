@@ -192,7 +192,7 @@ schema = Schema((
     DataGridField(
         name='FundManagementOfficer',
         widget=DataGridField._properties['widget'](
-            columns= { 'FMO_Name': ReferenceColumn("Name", fieldname='FMOname'), "FMO_Type":SelectColumn("Type", vocabulary="getTMCategoryVocabulary"), "FMO_Period":SelectColumn('Period', vocabulary='getFiscalYearVocabulary')},
+            columns= { 'FMO_Name': ReferenceColumn("Name", fieldname='FMOname'), "FMO_Type":SelectColumn("Type", vocabulary="getTMCategoryVocabulary"), "FMO_Period":Column('Period')},
             label="Fund Management Officer",
             label_msgid='ProjectDatabase_label_FundManagementOfficer',
             i18n_domain='ProjectDatabase',

@@ -29,7 +29,7 @@
     </tal:def>
     <tal:def tal:condition="python:member.has_role(['Anonymous'], context)">
         <h3>Project Status</h3>
-        <tal:use metal:use-macro="context/matrix_macros/macros/milestones_matrix" />
+        <tal:use metal:use-macro="context/matrix_macros/macros/projectstatus_matrix" />
         <hr />
     </tal:def>
     <tal:def tal:condition="python:member.has_role(['Owner', 'Manager', 'FMO'], context)">
