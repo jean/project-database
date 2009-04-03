@@ -77,6 +77,8 @@ class MoneyColumn(Column):
                     money = Money(di[columnId], currency)
                 except InvalidMoneyString:
                     money = Money('0.00', currency)
+                except ValueError:
+                    money = Money('0.00', currency)
                 row[columnId] = money
 
             result.append(row)
