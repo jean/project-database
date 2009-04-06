@@ -1,0 +1,79 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      i18n:domain="plone">
+      
+      
+<!-- View/edit reference columns
+ 
+  -->
+
+<body>
+    <!-- VIEW -->
+    <metal:view_cell_macro define-macro="view_cell">                
+      <tal:def define="rc nocall:context/reference_catalog;
+                       pc nocall:context/portal_catalog"
+               condition="cell_value">
+
+        <tal:single condition="python:not same_type(cell_value, [])">
+          <tal:def define="brains python:pc(UID=cell_value)"
+                   condition="brains">
+            <a tal:define="brain python:brains[0]"
+               tal:attributes="href brain/getURL"
+               tal:content="brain/pretty_title_or_id"></a>
+          </tal:def>
+        </tal:single>
+
+        <tal:multi condition="python:same_type(cell_value, [])">
+          <tal:def define="brains python:pc(UID=cell_value)"
+                   condition="brains">
+            <ul>
+              <li tal:repeat="brain brains">
+                <a tal:attributes="href brain/getURL"
+                   tal:content="brain/pretty_title_or_id"></a>
+              </li>
+            </ul>
+          </tal:def>
+        </tal:multi>
+
+      </tal:def>
+    </metal:view_cell_macro>
+
+    <!-- EDIT -->
+    <metal:edit_cell_macro define-macro="edit_cell">
+      <tal:def define="field python:column_definition.getFakeReferenceField(context);
+                       widget python:field.widget;
+                       fieldId string:${fieldName}_${repeat/rows/number|string:};
+                       fieldName string:${fieldName}.${column};
+                       marshaller string::records;
+                       cell_value python:column_definition.sanitize(context, cell_value);
+                       value cell_value">
+       <div class="datagrid-reference-wrapper">
+         <metal:use use-macro="here/datagrid_referencebrowser/macros/reference_edit"/>
+       </div>
+     </tal:def>
+    </metal:edit_cell_macro>
+    
+   <!-- EMPTY EDIT -->
+    <metal:edit_empty_cell_macro define-macro="edit_empty_cell">
+      <tal:def define="field python:column_definition.getFakeReferenceField(context);
+                       widget python:field.widget;
+                       fieldId string:${fieldName}_${repeat/rows/number|string:};
+                       fieldName string:${fieldName}.${column};
+                       marshaller string::records;
+                       value string:;">
+        <div class="datagrid-reference-wrapper">
+          <span tal:attributes="startup_directory python:context.referencebrowser_startupDirectory(widget.getStartupDirectory(context));
+                                at_url python:'/'.join(context.getPhysicalPath());
+                                fieldRealName field/getName"
+                class="meta"/>
+          <metal:use use-macro="here/datagrid_referencebrowser/macros/reference_edit"/>
+        </div>
+     </tal:def>
+    </metal:edit_empty_cell_macro>
+        
+</body>
+
+</html>
+
