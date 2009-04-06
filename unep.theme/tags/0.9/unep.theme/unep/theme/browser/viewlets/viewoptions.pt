@@ -1,0 +1,14 @@
+<div class="viewoptions" tal:define="tabs view/getTabs" tal:condition="tabs">
+
+    <div tal:repeat="tab tabs" class="viewoptions-item"
+         tal:attributes="class python:tab['selected'] and
+            'viewoptions-item viewoptions-selected' or 'viewoptions-item'">
+        <a href="" tal:attributes="href tab/url" tal:content="tab/title">Overview</a>
+    </div>
+    <div class="clearboth"></div>
+    <div tal:define="project context/@@unep_utils/projectParentURL|nothing"
+            tal:condition="project">
+        <h3 class="documentFirstHeading" 
+            tal:content="python:context.getAProject().project_general_info.Title()">Project Title</h3>
+    </div>
+</div>

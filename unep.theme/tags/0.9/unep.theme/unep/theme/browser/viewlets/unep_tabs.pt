@@ -1,0 +1,12 @@
+<tal:tabs tal:condition="view/portal_tabs"
+          i18n:domain="plone">
+    <tal:loop tal:repeat="tab view/portal_tabs">
+        <div tal:attributes="id string:portaltab-${tab/id};
+                            class python:view.selected_portal_tab==tab['id'] and 'unep-menuselected' or 'unep-menuitem'">
+            <a href="" 
+               tal:content="tab/name"
+               tal:attributes="href tab/url;
+                               title tab/description|nothing"> Tab Name </a>
+        </div>
+    </tal:loop>
+</tal:tabs>
