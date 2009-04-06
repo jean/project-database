@@ -209,7 +209,10 @@ tal:define="fmi_folder nocall:context/fmi_folder;
         <td i18n:translate="gef_approval">GEF Approval Date &nbsp;
             <span tal:content="python:ms.getPIFApprovalDate('CEOPIFApprovalActual') or 'Unspecified'"/>
         </td>
-        <td><a tal:attributes="href python:ms.getDataGridReference(ms.getPIFApproval, 'milestone_action', 'CEOPIFApprovalActual', 'document')"> Document </a></td>
+        <td tal:define="docref python:ms.getDataGridReference(ms.getPIFApproval, 'milestone_action', 'CEOPIFApprovalActual', 'document')">
+            <a tal:condition="docref" tal:attributes="href docref"> Document </a>
+            <span tal:condition="not: docref"> No Document </span>
+        </td>
     </tr>
     <tr><td colspan=3>&nbsp;</td></tr>
     <tr>
@@ -217,7 +220,10 @@ tal:define="fmi_folder nocall:context/fmi_folder;
         <td i18n:translate="gef_approval">GEF Approval Date &nbsp;
             <span tal:content="python:ms.getPPGApprovalDate('CEOPPGapproval') or 'Unspecified'"/>
         </td>
-        <td><a tal:attributes="href python:ms.getDataGridReference(ms.getPPGApproval, 'milestone_action', 'CEOPPGapproval', 'document')"> Document </a></td>
+        <td tal:define="docref python:ms.getDataGridReference(ms.getPPGApproval, 'milestone_action', 'CEOPPGapproval', 'document')">
+            <a tal:condition="docref" tal:attributes="href docref"> Document </a>
+            <span tal:condition="not: docref"> No Document </span>
+        </td>
     </tr>
     <tr>
         <td></td>
@@ -249,7 +255,10 @@ tal:define="fmi_folder nocall:context/fmi_folder;
         <td i18n:translate="act_signature">CEO Approval Date&nbsp;
             <span tal:content="python:ms.getProjectApprovalDate('CEOApprovalEndorsementActual') or 'Unspecified'"/>
         </td>
-        <td><a tal:attributes="href python:ms.getDataGridReference(ms.getProjectApproval, 'milestone_action', 'CEOApprovalEndorsementActual', 'document')"> Document </a></td>
+        <td tal:define="docref python:ms.getDataGridReference(ms.getProjectApproval, 'milestone_action', 'CEOApprovalEndorsementActual', 'document')">
+            <a tal:condition="docref" tal:attributes="href docref"> Document </a>
+            <span tal:condition="not: docref"> No Document </span>
+        </td>
     </tr>
     <tr>
         <td></td>
@@ -262,7 +271,10 @@ tal:define="fmi_folder nocall:context/fmi_folder;
         <td i18n:translate="act_completion">Completion Date&nbsp;
             <span tal:content="python:ms.getProjectImplementationDate('CompletionActual') or 'Unspecified'"/>
         </td>
-        <td><a tal:attributes="href string:xxx"> Document </a></td>
+        <td tal:define="docref python:ms.getDataGridReference(ms.getProjectImplementation, 'milestone_action', 'CompletionActual', 'document')">
+            <a tal:condition="docref" tal:attributes="href docref"> Document </a>
+            <span tal:condition="not: docref"> No Document </span>
+        </td>
     </tr>
 </table>
 </metal:projectstatus_matrix>
