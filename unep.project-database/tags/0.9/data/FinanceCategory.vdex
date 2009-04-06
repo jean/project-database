@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vdex xmlns="http://www.imsglobal.org/xsd/imsvdex_v1p0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.imsglobal.org/xsd/imsvdex_v1p0 imsvdex_v1p0.xsd http://www.imsglobal.org/xsd/imsmd_rootv1p2p1 imsmd_rootv1p2p1.xsd"
+    language="en" orderSignificant="true" profileType="flatTokenTerms">
+<vocabName>
+  <langstring language="en">Finance Category</langstring>
+</vocabName>
+<term>
+  <termIdentifier>eea</termIdentifier>
+  <caption>
+    <langstring language="en">EEA</langstring>
+  </caption>
+  <description />
+</term>
+<term>
+  <termIdentifier>fsp</termIdentifier>
+  <caption>
+    <langstring language="en">FSP</langstring>
+  </caption>
+  <description />
+</term>
+<term>
+  <termIdentifier>msp</termIdentifier>
+  <caption>
+    <langstring language="en">MSP</langstring>
+  </caption>
+  <description />
+</term>
+<term>
+  <termIdentifier>ppg</termIdentifier>
+  <caption>
+    <langstring language="en">PPG</langstring>
+  </caption>
+  <description />
+</term>
+<term>
+  <termIdentifier>pdfa</termIdentifier>
+  <caption>
+    <langstring language="en">PDF A</langstring>
+  </caption>
+  <description />
+</term>
+<term>
+  <termIdentifier>pdfb</termIdentifier>
+  <caption>
+    <langstring language="en">PDF B</langstring>
+  </caption>
+  <description />
+</term>
+<term>
+  <termIdentifier>pdfc</termIdentifier>
+  <caption>
+    <langstring language="en">PDF C</langstring>
+  </caption>
+  <description />
+</term>
+<term>
+  <termIdentifier>phase</termIdentifier>
+  <caption>
+    <langstring language="en">Phase</langstring>
+  </caption>
+  <description />
+</term>
+<term>
+  <termIdentifier>addon</termIdentifier>
+  <caption>
+    <langstring language="en">Add-On</langstring>
+  </caption>
+  <description />
+</term>
+<term>
+  <termIdentifier>tranche</termIdentifier>
+  <caption>
+    <langstring language="en">Tranche</langstring>
+  </caption>
+  <description />
+</term>
+<term>
+  <termIdentifier>supplementary_action</termIdentifier>
+  <caption>
+    <langstring language="en">Supplementary action</langstring>
+  </caption>
+  <description />
+</term>
+</vdex>
