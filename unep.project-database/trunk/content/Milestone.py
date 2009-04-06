@@ -569,7 +569,9 @@ class Milestone(BaseContent, BrowserDefaultMixin):
         values = accessor()
         if values:
             for v in values:
-                if v[in_field] and v[in_field] == in_value:
+                if v.get(in_field) and \
+                   v[in_field] == in_value and \
+                   v.get(out_field):
                     uid = v[out_field]
                     rc = getToolByName(self, 'reference_catalog')
                     return rc.lookupObject(uid).absolute_url()
