@@ -564,7 +564,7 @@ class Milestone(BaseContent, BrowserDefaultMixin):
         curl = folder.absolute_url()
         return curl[len(purl)+1:]
 
-    security.declarePublic('getDataGridData')
+    security.declarePublic('getDataGridReference')
     def getDataGridReference(self, accessor, in_field, in_value, out_field):
         values = accessor()
         if values:
