@@ -17,8 +17,7 @@ def projectInitialized(event):
         return
 
     if 'project_general_info' not in ob.objectIds():
-        ob.invokeFactory('ProjectGeneralInformation', 'project_general_info',
-            title='Project General Information')
+        ob.invokeFactory('ProjectGeneralInformation', 'project_general_info')
     if 'fmi_folder' not in ob.objectIds():
         ob.invokeFactory('FMIFolder', 'fmi_folder',
             title='Financial Management Information')
