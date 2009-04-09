@@ -916,7 +916,7 @@ class Financials(BaseFolder, CurrencyMixin, BrowserDefaultMixin):
         return amount
 
     def getFiscalYearVocabulary(self):
-        return getYearVocabulary()
+        return getYearVocabulary(fiscal=False)
 
     def getDonorPledges(self):
         result = []
