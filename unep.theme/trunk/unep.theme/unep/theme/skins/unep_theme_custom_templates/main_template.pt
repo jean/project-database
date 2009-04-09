@@ -135,7 +135,7 @@
         </span>
         <tal:office>
             <span class="greytext">&raquo;</span>
-            <span class="greytext" tal:content="python:member.getCompany().getName()">NAIROBI</span>
+            <span class="greytext" tal:content="python:member.getOrganisation().getName()">NAIROBI</span>
         </tal:office>
         <tal:phone tal:condition="member/getBusinessPhone">
             <span class="greytext">&raquo;</span>
