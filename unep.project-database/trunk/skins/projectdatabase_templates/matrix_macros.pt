@@ -50,7 +50,7 @@ tal:define="fmi_folder nocall:context/fmi_folder;
 <metal:mande_matrix define-macro="mande_matrix">
 <table class="table-fullwidth">
     <tr>
-        <th>Financial Year</th>
+        <th>Fiscal Year</th>
         <th>DO Rating</th>
         <th>IP Rating</th>
         <th>M&amp;E Rating</th>
