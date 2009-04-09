@@ -39,12 +39,15 @@ def getVocabularyValue(context, vocabName, selection):
         return dict[selection][0]
     return 'No Selection'
     
-def getYearVocabulary():
+def getYearVocabulary(fiscal=True):
     dl = DisplayList()
     year = DateTime().year()
     startYear = year - 20
     endYear = year + 20
     while startYear < endYear:
-        dl.add(str(startYear), 'FY' + str(startYear)[2:])
+        if fiscal:
+            dl.add(str(startYear), 'FY' + str(startYear)[2:])
+        else:
+            dl.add(str(startYear), str(startYear))
         startYear += 1
     return dl
