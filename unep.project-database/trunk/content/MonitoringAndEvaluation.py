@@ -304,6 +304,25 @@ class MonitoringAndEvaluation(BaseContent, BrowserDefaultMixin):
         return None
 
 
+    def getHideFieldNames(self):
+        fieldnames = []
+        if self.getJointEvaluation() == False:
+            fieldnames.append('OtherAgency')
+            fieldnames.append('OtherAgencyEvaluationContact')
+
+        return fieldnames
+
+    def getToggleFieldNames(self, fieldname, value=None, **kwargs):
+        hide = []
+        show = []
+        if fieldname == 'JointEvaluation':
+            if value == 'on':
+                hide.append('OtherAgency')
+                hide.append('OtherAgencyEvaluationContact')
+            else:
+                show.append('OtherAgency')
+                show.append('OtherAgencyEvaluationContact')
+        return show, hide
 
 registerType(MonitoringAndEvaluation, PROJECTNAME)
 # end of class MonitoringAndEvaluation
