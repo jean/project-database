@@ -606,6 +606,14 @@ table.datagridwidget-table-view {
     width: 100px;
 }
 
+.ProjectExecutingAgency-executing_agency-edit {
+    width: 400px;
+}
+
+.EvaluationProcessStatus-process_step-edit {
+    width: 450px;
+}
+
 /*
 ** end ECMAScript Content Action Menus
 */
