@@ -376,7 +376,7 @@ schema = Schema((
     ComputedField(
         name='TotalCostOfFinanceObjectVariance',
         widget=ComputedField._properties['widget'](
-            label="Total Cost if Finance Object Variance",
+            label="Total Cost Variance",
             label_msgid='ProjectDatabase_label_TotalCostOfFinanceObjectVariance',
             i18n_domain='ProjectDatabase',
         ),

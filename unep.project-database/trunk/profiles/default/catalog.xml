@@ -20,6 +20,10 @@
          meta_type="DateIndex">
     <indexed_attr value="getUNEPApprovalDate"/>
   </index>
+  <index name="getGEFid" 
+         meta_type="FieldIndex">
+    <indexed_attr value="getGEFid"/>
+  </index>
   <index name="getCurrentPrincipalFMO" 
          meta_type="FieldIndex">
     <indexed_attr value="getCurrentPrincipalFMO"/>
@@ -37,6 +41,7 @@
   <column value="getProjectType"/>
   <column value="getGEFApprovalDate"/>
   <column value="getUNEPApprovalDate"/>
+  <column value="getGEFid"/>
   <column value="getCurrentPrincipalFMO"/>
   <column value="getCurrentBackupFMO"/>
   <column value="getEvaluationType"/>
