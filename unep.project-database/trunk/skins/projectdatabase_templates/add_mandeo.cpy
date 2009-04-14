@@ -10,7 +10,7 @@
 ##
 
 from Products.CMFCore.utils import getToolByName
-
+from Products.ProjectDatabase.utils import getVocabularyValue
 import logging 
 # logger = logging.getLogger("Add M&E")
 # logger.info("Inside add mandeo: %s" %"/".join(context.getPhysicalPath()))
@@ -36,8 +36,10 @@ if pf.getFactoryTypes().has_key(portal_type):
         mandeIds = context.objectIds(spec='MonitoringAndEvaluation')
         while newid in mandeIds:
             newid = newid + '1'
+        title = getVocabularyValue(context, 'EvaluationType', etype)
+
         new_url = 'portal_factory/%s/%s/edit?EvaluationType=%s&amp;title=%s' \
-                %(portal_type, newid, mande_type, newid)
+                %(portal_type, newid, mande_type, title)
 
     # logger.info("New ID: %s", newid)
     # logger.info("New URL: %s", new_url)
