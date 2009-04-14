@@ -317,11 +317,11 @@ class MonitoringAndEvaluation(BaseContent, BrowserDefaultMixin):
         show = []
         if fieldname == 'JointEvaluation':
             if value == 'on':
-                hide.append('OtherAgency')
-                hide.append('OtherAgencyEvaluationContact')
-            else:
                 show.append('OtherAgency')
                 show.append('OtherAgencyEvaluationContact')
+            else:
+                hide.append('OtherAgency')
+                hide.append('OtherAgencyEvaluationContact')
         return show, hide
 
 registerType(MonitoringAndEvaluation, PROJECTNAME)
