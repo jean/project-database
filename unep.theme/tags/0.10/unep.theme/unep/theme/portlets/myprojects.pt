@@ -1,0 +1,27 @@
+<div style="width: 100%; height: auto;">
+    <div style="float: left; width: 100%; height: 15px;">&nbsp;</div>
+    <div class="myprojects-heading">
+        <span i18n:translate="my_projects_list">My Project List - Views</span>
+    </div>
+    <div style="float: left; width: 100%; height: 15px;">&nbsp;</div>
+    <div class="overview-item">
+        <a href="" tal:attributes="href string:${context/portal_url}/@@my-projects-a2z">Projects A-Z</a>
+    </div>
+    <div class="overview-item">
+        <a href="" tal:attributes="href string:${context/portal_url}/@@my-projects-general">General</a>
+    </div>
+    <div class="overview-item">
+        <a href="" tal:attributes="href string:${context/portal_url}/@@my-projects-financial">Financial</a>
+    </div>
+    <div class="overview-item">
+        <a href="" tal:attributes="href string:${context/portal_url}/@@my-projects-documents">Documents</a>
+    </div>
+    <div class="overview-item">
+        <a href="" tal:attributes="href string:${context/portal_url}/@@my-projects-milestones">Milestones</a>
+    </div>
+    <div class="overview-item">
+        <a href="" tal:attributes="href string:${context/portal_url}/@@my-projects-monitoring">Monitoring &amp; Evaluation</a>
+    </div>
+    <div style="float: left; width: 100%; height: 30px;">&nbsp;</div>
+</div>
+
