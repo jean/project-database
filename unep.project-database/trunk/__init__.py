@@ -60,6 +60,8 @@ DirectoryView.registerDirectory('skins', product_globals)
 ##code-section custom-init-head #fill in your manual code here
 from Products.FinanceFields.MoneyField import MoneyField
 MoneyField._properties['use_global_currency'] = True
+from AccessControl import allow_module
+allow_module('Products.ProjectDatabase.utils')
 ##/code-section custom-init-head
 
 
