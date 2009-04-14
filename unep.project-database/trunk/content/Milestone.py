@@ -577,6 +577,8 @@ class Milestone(BaseContent, BrowserDefaultMixin):
                     return rc.lookupObject(uid).absolute_url()
         return None
 
+
+
 registerType(Milestone, PROJECTNAME)
 # end of class Milestone
 

@@ -109,6 +109,14 @@ schema = Schema((
             i18n_domain='ProjectDatabase',
         ),
     ),
+    ComputedField(
+        name='GEFid',
+        widget=ComputedField._properties['widget'](
+            label='Gefid',
+            label_msgid='ProjectDatabase_label_GEFid',
+            i18n_domain='ProjectDatabase',
+        ),
+    ),
 
 ),
 )
@@ -387,6 +395,14 @@ class Project(BaseFolder, CurrencyMixin, BrowserDefaultMixin):
         pgi = self.getProjectGeneralInformation()
         if pgi:
             return pgi.Title()
+
+    security.declarePublic('getGEFid')
+    def getGEFid(self):
+        """
+        """
+        pgi = self.getProjectGeneralInformation()
+        if pgi:
+            return pgi.getGEFid()
 
     security.declarePublic('getTaskManager')
     def getTaskManager(self):
