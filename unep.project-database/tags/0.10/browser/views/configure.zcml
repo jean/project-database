@@ -1,0 +1,23 @@
+<configure  xmlns="http://namespaces.zope.org/five"
+            xmlns:cmf="http://namespaces.zope.org/cmf"
+            xmlns:browser="http://namespaces.zope.org/browser">
+
+    <browser:page
+        for="*"
+        name="unep.import-form"
+        class=".import.ImportForm"
+        template="import.pt"
+        permission="cmf.ManagePortal"
+        />  
+
+    <browser:page
+        for="*"
+        name="unep.import-form-action"
+        class=".import.ImportForm"
+        attribute="action"
+        permission="cmf.ManagePortal"
+        />  
+    <!-- Import form end -->
+
+</configure>
+
