@@ -11,20 +11,23 @@ from Products.Archetypes.event import ObjectInitializedEvent
 DEBUG_LEVEL = 0
 RESULT_LINES = []
 # not self.plone_log?
-LOGGER = logging.Logger('[PGI import]')
+LOGGER = logging.getLogger('[PGI import]')
 
 def writeMessage(msg):
     '''
     Write the message to response stream and plone log depending on the
     debug level.
     '''
-    if DEBUG_LEVEL == 1:
-        LOGGER.warn(msg)
+    LOGGER.warn(msg)
 
 def getListFromString(tmp_string):
-    delimeter = tmp_string.find(',') > 0 and ',' or ' '
-    raw_list = tmp_string.split(delimeter)
-    raw_list = [value.strip() for value in raw_list]
+    raw_list = []
+    delimeter = tmp_string.find(',') > 0 and ',' or None
+    if delimeter:
+        raw_list = tmp_string.split(delimeter)
+        raw_list = [value.strip() for value in raw_list]
+    else:
+        raw_list.append(tmp_string.strip())
     return raw_list
 
 def getFieldNames(csv_file):
@@ -68,9 +71,9 @@ def createProject(context):
     contained objects.
     '''
     project_id = context.getNextProjectId()
+    writeMessage('Creating project:%s' % project_id)
     context.invokeFactory(id=project_id, type_name='Project')
-    transaction.commit()
-    new_project = context[project_id]
+    new_project = context._getOb(project_id)
     event.notify(ObjectInitializedEvent(new_project))
     return new_project
 
@@ -150,6 +153,7 @@ def updatePGI(context, pgi_data):
     '''
     pgi = context.get('project_general_info', None)
     if pgi:
+        writeMessage('Updating PGI')
         for field_name, field_value in pgi_data.items():
             field = getField(field_name, pgi)
             if field:
@@ -162,6 +166,7 @@ def updatePGI(context, pgi_data):
             else:
                 msg = 'Field %s was not found.' % field_name
                 writeMessage(msg)
+        writeMessage('Done updating PGI:%s' % pgi.getGEFid())
     else:
         msg = 'No PGI found! Aborting import.'
         writeMessage(msg)
@@ -202,7 +207,6 @@ def run(self, csv_file=None, coding='latin-1', debug=1):
     debug: regulates the level of verbosity in loggin.
     '''
     # Explicit check for user role 'manager'
-
     checkUserRole(self)
     DEBUG_LEVEL = debug
     RESULT_LINES = []
@@ -228,6 +232,7 @@ def run(self, csv_file=None, coding='latin-1', debug=1):
                 projects_created += 1
                 transaction.commit()
                 pgi = updatePGI(new_project, pgi_data)
+                new_project.reindexObject()
                 pgis_created += 1
         
         msg = ("[unep.import_fsp_from_csv] - 100.0% complete")
