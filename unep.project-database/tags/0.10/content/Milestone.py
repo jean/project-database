@@ -41,8 +41,18 @@ schema = Schema((
     DataGridField(
         name='ConceptDevelopment',
         widget=DataGridField._properties['widget'](
+            columns={'milestone_action':
+                        SelectColumn('Milestone Action',
+                        vocabulary='getConceptDevelopmentActionsVocabulary'),
+                     'milestone_date':
+                        CalendarColumn('Milestone Date'),
+                     'milestone_result':
+                        SelectColumn('Milestone Result',
+                        vocabulary='getMilestoneResultVocabulary'),
+                     'document':
+                        ReferenceColumn('Document',
+                        fieldname='ConceptDevelopmentDocument')},
             label="Concept Development (IPI)",
-            columns={'milestone_action':SelectColumn('Milestone Action', vocabulary='getConceptDevelopmentActionsVocabulary'), 'milestone_date':CalendarColumn('Milestone Date'), 'milestone_result':SelectColumn('Milestone Result', vocabulary='getMilestoneResultVocabulary'), 'document':ReferenceColumn('Document', fieldname='ConceptDevelopmentDocument')},
             label_msgid='ProjectDatabase_label_ConceptDevelopment',
             i18n_domain='ProjectDatabase',
         ),
@@ -52,7 +62,17 @@ schema = Schema((
     DataGridField(
         name='PIFApproval',
         widget=DataGridField._properties['widget'](
-            columns={'milestone_action':SelectColumn('Milestone Action', vocabulary='getPIFApprovalActionsVocabulary'), 'milestone_date':CalendarColumn('Milestone Date'), 'milestone_result':SelectColumn('Milestone Result', vocabulary='getMilestoneResultVocabulary'), 'document':ReferenceColumn('Document', fieldname='PIFApprovalDocument')},
+            columns={'milestone_action':
+                        SelectColumn('Milestone Action',
+                        vocabulary='getPIFApprovalActionsVocabulary'),
+                     'milestone_date':
+                         CalendarColumn('Milestone Date'),
+                     'milestone_result':
+                        SelectColumn('Milestone Result',
+                        vocabulary='getMilestoneResultVocabulary'),
+                     'document':
+                        ReferenceColumn('Document',
+                        fieldname='PIFApprovalDocument')},
             label="PIF Approval",
             label_msgid='ProjectDatabase_label_PIFApproval',
             i18n_domain='ProjectDatabase',
@@ -71,7 +91,17 @@ schema = Schema((
     DataGridField(
         name='PPGApproval',
         widget=DataGridField._properties['widget'](
-            columns={'milestone_action':SelectColumn('Milestone Action', vocabulary='getPPGApprovalActionsVocabulary'), 'milestone_date':CalendarColumn('Milestone Date'), 'milestone_result':SelectColumn('Milestone Result', vocabulary='getMilestoneResultVocabulary'), 'document':ReferenceColumn('Document', fieldname='PPGApprovalDocument')},
+            columns={'milestone_action':
+                        SelectColumn('Milestone Action',
+                        vocabulary='getPPGApprovalActionsVocabulary'),
+                     'milestone_date':
+                        CalendarColumn('Milestone Date'),
+                     'milestone_result':
+                        SelectColumn('Milestone Result',
+                        vocabulary='getMilestoneResultVocabulary'),
+                     'document':
+                        ReferenceColumn('Document',
+                        fieldname='PPGApprovalDocument')},
             label="PPG Approval",
             label_msgid='ProjectDatabase_label_PPGApproval',
             i18n_domain='ProjectDatabase',
@@ -90,7 +120,14 @@ schema = Schema((
     DataGridField(
         name='PPGImplementation',
         widget=DataGridField._properties['widget'](
-            columns={'milestone_action':SelectColumn('Milestone Action', vocabulary='getPPGImplementationActionsVocabulary'), 'milestone_date':CalendarColumn('Milestone Date'), 'document':ReferenceColumn('document', fieldname='PPGImplementationDocument')},
+            columns={'milestone_action':
+                        SelectColumn('Milestone Action',
+                        vocabulary='getPPGImplementationActionsVocabulary'),
+                     'milestone_date':
+                        CalendarColumn('Milestone Date'),
+                     'document':
+                        ReferenceColumn('document',
+                        fieldname='PPGImplementationDocument')},
             label="PPG Implementation",
             label_msgid='ProjectDatabase_label_PPGImplementation',
             i18n_domain='ProjectDatabase',
@@ -109,7 +146,17 @@ schema = Schema((
     DataGridField(
         name='ProjectApproval',
         widget=DataGridField._properties['widget'](
-            columns={'milestone_action':SelectColumn('Milestone Action', vocabulary='getProjectApprovalActionsVocabulary'), 'milestone_date':CalendarColumn('Milestone Date'), 'milestone_result':SelectColumn('Milestone Result', vocabulary='getMilestoneResultVocabulary'), 'document':ReferenceColumn('Document', fieldname='ProjectApprovalDocument')},
+            columns={'milestone_action':
+                        SelectColumn('Milestone Action',
+                        vocabulary='getProjectApprovalActionsVocabulary'),
+                     'milestone_date':
+                        CalendarColumn('Milestone Date'),
+                     'milestone_result':
+                        SelectColumn('Milestone Result',
+                        vocabulary='getMilestoneResultVocabulary'),
+                     'document':
+                        ReferenceColumn('Document',
+                        fieldname='ProjectApprovalDocument')},
             label="Project Approval",
             label_msgid='ProjectDatabase_label_ProjectApproval',
             i18n_domain='ProjectDatabase',
@@ -128,7 +175,14 @@ schema = Schema((
     DataGridField(
         name='ProjectImplementation',
         widget=DataGridField._properties['widget'](
-            columns={'milestone_action':SelectColumn('Milestone Action', vocabulary='getProjectImplementationActionsVocabulary'), 'milestone_date':CalendarColumn('Milestone Date'), 'document':ReferenceColumn('Document', fieldname='ProjectImplementationDocument')},
+            columns={'milestone_action':
+                        SelectColumn('Milestone Action',
+                        vocabulary='getProjectImplementationActionsVocabulary'),
+                     'milestone_date':
+                        CalendarColumn('Milestone Date'),
+                     'document':
+                        ReferenceColumn('Document',
+                        fieldname='ProjectImplementationDocument')},
             label="Project Implementation",
             label_msgid='ProjectDatabase_label_ProjectImplementation',
             i18n_domain='ProjectDatabase',
@@ -147,7 +201,16 @@ schema = Schema((
     DataGridField(
         name='NewPhaseApproval',
         widget=DataGridField._properties['widget'](
-            columns={'milestone_action':SelectColumn('Milestone Action', vocabulary='getNewPhaseApprovalActionsVocabulary'), 'milestone_date':CalendarColumn('Milestone Date'), 'comment':Column('Comment'), 'document':ReferenceColumn('document', fieldname='NewPhaseApprovalDocument')},
+            columns={'milestone_action':
+                        SelectColumn('Milestone Action',
+                        vocabulary='getNewPhaseApprovalActionsVocabulary'),
+                     'milestone_date':
+                        CalendarColumn('Milestone Date'),
+                     'comment':
+                        Column('Comment'),
+                     'document':
+                        ReferenceColumn('document',
+                        fieldname='NewPhaseApprovalDocument')},
             label="Add-on, Phase or Tranche Approval",
             label_msgid='ProjectDatabase_label_NewPhaseApproval',
             i18n_domain='ProjectDatabase',
@@ -158,7 +221,14 @@ schema = Schema((
     DataGridField(
         name='NewPhaseImplementation',
         widget=DataGridField._properties['widget'](
-            columns={'milestone_action':SelectColumn('Milestone Action', vocabulary='getNewPhaseImplementationActionsVocabulary'), 'milestone_date':CalendarColumn('Milestone Date'), 'document':ReferenceColumn('Document', fieldname='NewPhaseImplementationDocument')},
+            columns={'milestone_action':
+                        SelectColumn('Milestone Action',
+                        vocabulary='getNewPhaseImplementationActionsVocabulary'),
+                     'milestone_date':
+                        CalendarColumn('Milestone Date'),
+                     'document':
+                        ReferenceColumn('Document',
+                        fieldname='NewPhaseImplementationDocument')},
             label="Add-on, Phase or Tranche Implementation",
             label_msgid='ProjectDatabase_label_NewPhaseImplementation',
             i18n_domain='ProjectDatabase',
@@ -169,7 +239,11 @@ schema = Schema((
     DataGridField(
         name='EvaluationDates',
         widget=DataGridField._properties['widget'](
-            columns={'milestone_action':SelectColumn('Milestone Action', vocabulary='getEvaluationDatesActionsVocabulary'), 'milestone_date':CalendarColumn('Milestone Date')},
+            columns={'milestone_action':
+                        SelectColumn('Milestone Action',
+                        vocabulary='getEvaluationDatesActionsVocabulary'),
+                     'milestone_date':
+                        CalendarColumn('Milestone Date')},
             label="Evaluation Dates",
             label_msgid='ProjectDatabase_label_EvaluationDates',
             i18n_domain='ProjectDatabase',
@@ -577,13 +651,37 @@ class Milestone(BaseContent, BrowserDefaultMixin):
                     return rc.lookupObject(uid).absolute_url()
         return None
 
-
-
 registerType(Milestone, PROJECTNAME)
 # end of class Milestone
 
 ##code-section module-footer #fill in your manual code here
+import logging
+
+import transaction
+from zope import event
+from Products.Archetypes.event import ObjectInitializedEvent
+
+from Products.ProjectDatabase.content.ProjectDatabase import CSVImporter
+
+class Milestone_CSVImporter(CSVImporter):
+    def __init__(self, context, csvfile, coding, debug):
+        CSVImporter.__init__(self, context, csvfile, coding, debug)
+        self.LOGGER = logging.getLogger('[Financial import]')
+        self._milestones_created     = 0
+        self._milestones_not_created = 0
+
+    def importCSV(self):
+        import pdb; pdb.set_trace()
+        dict_reader = self.getDictReader()
+        milestones = context.get('milestones', None)
+        if pgi:
+            self.writeMessage('Updating milestones')
+            self.updateFields(milestones, pgi_data)
+            self.writeMessage('Done updating Milestones:%s' % milestones.getGEFid())
+            return True
+        else:
+            msg = 'No Milestones found! Aborting import.'
+            self.writeMessage(msg)
+            raise msg
+        return False
 ##/code-section module-footer
-
-
-
