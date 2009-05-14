@@ -149,11 +149,11 @@ from Products.Archetypes.event import ObjectInitializedEvent
 from Products.DataGridField.MoneyColumn import MoneyColumn
 from Products.FinanceFields.Money import Money
 
-ALL_FEEDBACK =1
-SOME_FEEDBACK = 2
-NO_FEEDBACK = 3
-
 class CSVImporter:
+    ALL_FEEDBACK =1
+    SOME_FEEDBACK = 2
+    NO_FEEDBACK = 3
+
     def __init__(self, context, csvfile, coding, debug):
         self._context            = context
         self._request            = self._context.REQUEST
@@ -166,22 +166,22 @@ class CSVImporter:
 
         self._csvfile = csvfile
         self._coding = coding
-        self.setDebuglevel(debug)
+        self.setDebugLevel(debug)
         self._result_lines = []
         self._LOGGER = logging.getLogger('[CSVImporter]')
         self._error_file_name = '%s_errors.log' % self._csvfile.filename
         self._errors = []
         self.writeMessage('Done setup')
 
-    def setDebuglevel(self, debug):
+    def setDebugLevel(self, debug):
         if isinstance(debug, str): 
             debug_level = int(debug)
-            debug_dict = {1: ALL_FEEDBACK,
-                          2: SOME_FEEDBACK,
-                          3: NO_FEEDBACK, }
-            self._debug = debug_dict.get(debug_level, ALL_FEEDBACK)
         else:
-            self._debug = ALL_FEEDBACK
+            debug_level = debug
+        debug_dict = {1: self.ALL_FEEDBACK,
+                      2: self.SOME_FEEDBACK,
+                      3: self.NO_FEEDBACK, }
+        self._debug = debug_dict.get(debug_level, self.ALL_FEEDBACK)
 
     def writeMessage(self, msg, debug_level=None):
         '''
@@ -193,15 +193,9 @@ class CSVImporter:
         else:
             local_debug_level = self._debug
 
-        if local_debug_level == ALL_FEEDBACK:
+        if local_debug_level == self.ALL_FEEDBACK:
             self._LOGGER.warn(msg)
             self._errors.append('%s\n' % msg)
-        elif local_debug_level == SOME_FEEDBACK:
-            # do something else
-            pass
-        elif local_debug_level == NO_FEEDBACK:
-            # 
-            pass
 
     def getListFromString(self, tmp_string):
         raw_list = []
@@ -308,6 +302,9 @@ class CSVImporter:
             mutator = self.getMutator(field, context)
             mutator(vocab_value)
 
+    def setMoneyField(self, field, context, field_value):
+        field.set(context, Money(field_value, 'USD'))
+
     def setDataGridField(self,
             field, context, field_name, column_names, field_value):
         """
@@ -327,6 +324,9 @@ class CSVImporter:
                         column.getVocabulary(context)
                 if vocab:
                     for key, value in vocab.items():
+                        key.lower()
+                        value.lower()
+                        raw_value.lower()
                         if raw_value == key or raw_value == value:
                             field_dict[column_name] = key
                     else:
@@ -383,6 +383,8 @@ class CSVImporter:
                                           field_value=field_value)
                 elif field.type == 'lines':
                     self.setFieldLines(field, context, field_value)
+                elif field.type == 'Money':
+                    self.setMoneyField(field, context, field_value)
                 elif field.type in ['string', 'text']:
                     self.setField(field, context, field_value)
                 else:
@@ -396,7 +398,7 @@ class CSVImporter:
         """
         Write all error messages to the error log file.
         """
-        if self._debug == ALL_FEEDBACK:
+        if self._debug == self.ALL_FEEDBACK:
             error_file = open(self._error_file_name, 'wb')
             error_file.writelines(self._errors)
             error_file.close()

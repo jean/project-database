@@ -1076,16 +1076,22 @@ class Financial_CSVImporter(CSVImporter):
         self._fmis_not_created = 0
 
     def importCSV(self):
-        import pdb; pdb.set_trace()
         dict_reader = self.getDictReader()
         for raw_dict in dict_reader:
             gef_id = raw_dict.get('GEFid', None)
-            self.writeMessage('Processing project:%s' % gef_id)
             project = self.getProjectByGefId(gef_id)
+            self.writeMessage('Processing project:%s(%s)' % (project.id, gef_id))
+
             if project:
+                # suppress unnecessary log writing
+                #CSVImporter.setDebugLevel(self, CSVImporter.NO_FEEDBACK)
                 self.updateFields(project, raw_dict)
-                fmi = self.getFMI(project, raw_dict) or \
-                      self.createFMI(gef_id, raw_dict)
+                pgi = project['project_general_info']
+                self.updateFields(pgi, raw_dict)
+                # re-enable log writing
+                #CSVImporter.setDebugLevel(self, CSVImporter.ALL_FEEDBACK)
+
+                fmi = self.getFMI(project, raw_dict)
                 if fmi:
                     self.writeMessage('Updating FMI fields')
                     self.updateFields(fmi, raw_dict)
@@ -1098,38 +1104,31 @@ class Financial_CSVImporter(CSVImporter):
                 self.writeMessage('No project found for GEFid:%s' % gef_id)
         return True
 
-    def createFMI(self, gef_id, data_dict):
+    def createFMI(self, container, category, title):
+        container.invokeFactory(id=category, type_name='Financials')
+        new_fmi = container[category]
+        new_fmi.edit(title=title, FinanceCategory=category)
+        transaction.commit()
+        self._fmis_created += 1
+        return new_fmi
+
+    def getFMI(self, project, data_dict):
         try:
             category = data_dict['FinanceCategory']
             title = data_dict.get('Title', category)
-            project = self.getProjectByGefId(gef_id)
-            if not project:
-                return None
-            fmi_folder = project['fmi_folder']
-            if category:
-                fmi_folder.invokeFactory(id=category, type_name='Financials')
-                new_fmi = fmi_folder[category]
-                new_fmi.edit(title=title, FinanceCategory=category)
-                transaction.commit()
-                self._fmis_created += 1
-                return new_fmi
+            container = project['fmi_folder']
+            query = {'portal_type' : 'Financials',
+                     'getFinanceCategory': category,
+                     'path' : {'query' : '/'.join(project.getPhysicalPath())},
+                    }
+            brains = self._pc(**query)
+            if len(brains):
+                return brains[0].getObject()
             else:
-                self.writeMessage('FMI data does not contain category.')
-                return None
+                return self.createFMI(container, category, title)
         except KeyError:
-            self.writeMessage('Essential information not in CSV.')
-            return None
-
-    def getFMI(self, project, data_dict):
-        category = data_dict['FinanceCategory']
-	query = {'portal_type' : 'Financials',
-                 'getFinanceCategory': category,
-                 'path' : {'query' : '/'.join(project.getPhysicalPath())},
-		}
-        brains = self._pc(**query)
-        if len(brains):
-            return brains[0].getObject()
-        else:
+            self.writeMessage('Essential Financial information is not in CSV:%s.') \
+                % self._csvfile
             return None
 
 ##/code-section module-footer
