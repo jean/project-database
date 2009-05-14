@@ -677,7 +677,8 @@ class Milestone_CSVImporter(CSVImporter):
         if pgi:
             self.writeMessage('Updating milestones')
             self.updateFields(milestones, pgi_data)
-            self.writeMessage('Done updating Milestones:%s' % milestones.getGEFid())
+            self.writeMessage(
+                'Done updating Milestones:%s' % milestones.getGEFid())
             return True
         else:
             msg = 'No Milestones found! Aborting import.'
