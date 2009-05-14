@@ -33,6 +33,7 @@ from Products.ATReferenceBrowserWidget.ATReferenceBrowserWidget import Reference
 ##code-section module-header #fill in your manual code here
 from Products.ProjectDatabase.utils import getYearVocabulary
 from Products.DataGridField import MoneyColumn, ReferenceColumn
+from Products.ProjectDatabase.content.ProjectDatabase import CSVImporter
 
 datagrid_schema = Schema((
     MoneyField(
@@ -290,13 +291,35 @@ schema = Schema((
     DataGridField(
         name='PIFFinancialData',
         widget=DataGridField._properties['widget'](
-            columns={'stage':SelectColumn('Stage', vocabulary='getPIFStageVocabulary'), 'grant_to_unep':MoneyColumn('Grant to UNEP', field=datagrid_schema['grant_to_unep']), 'grant_to_other_ia':MoneyColumn('Grant to other IA', field=datagrid_schema['grant_to_other_ia']), 'cofinancing':MoneyColumn('Co-Financing', field=datagrid_schema['cofinancing']), 'unep_fee':MoneyColumn('UNEP Fee', field=datagrid_schema['unep_fee']), 'other_ia_fee':MoneyColumn('Other IA Fee', field=datagrid_schema['other_ia_fee'])},
+            columns={'stage':
+                        SelectColumn('Stage',
+                        vocabulary='getPIFStageVocabulary'),
+                     'grant_to_unep':
+                        MoneyColumn('Grant to UNEP',
+                        field=datagrid_schema['grant_to_unep']),
+                     'grant_to_other_ia':
+                        MoneyColumn('Grant to other IA',
+                        field=datagrid_schema['grant_to_other_ia']),
+                     'cofinancing':
+                        MoneyColumn('Co-Financing',
+                        field=datagrid_schema['cofinancing']),
+                     'unep_fee':
+                        MoneyColumn('UNEP Fee',
+                        field=datagrid_schema['unep_fee']),
+                     'other_ia_fee':
+                        MoneyColumn('Other IA Fee',
+                        field=datagrid_schema['other_ia_fee'])},
             label="Financial Data at PIF",
             label_msgid='ProjectDatabase_label_PIFFinancialData',
             i18n_domain='ProjectDatabase',
         ),
         write_permission="TM",
-        columns=('stage', 'grant_to_unep', 'grant_to_other_ia', 'cofinancing', 'unep_fee', 'other_ia_fee'),
+        columns=('stage',
+                 'grant_to_unep',
+                 'grant_to_other_ia',
+                 'cofinancing',
+                 'unep_fee',
+                 'other_ia_fee'),
     ),
     ReferenceField(
         name='GEFSecStaff',
@@ -402,35 +425,56 @@ schema = Schema((
         name='ProjectExecutingAgency',
         vocabulary=NamedVocabulary("""Category"""),
         widget=DataGridField._properties['widget'](
+            columns={'executing_agency': 
+                        ReferenceColumn('Executing Agency',
+                        fieldname='ExecutingAgencyName'),
+                     'executing_agency_category':
+                        SelectColumn('Category',
+                        vocabulary='getCategoryVocab')},
             label="Lead Executing Agency",
-            columns={'executing_agency':ReferenceColumn('Executing Agency', fieldname='ExecutingAgencyName'),'executing_agency_category':SelectColumn('Category', vocabulary='getCategoryVocab')},
             label_msgid='ProjectDatabase_label_ProjectExecutingAgency',
             i18n_domain='ProjectDatabase',
         ),
         write_permission="TM",
-        columns=('executing_agency','executing_agency_category'),
+        columns=('executing_agency',
+                 'executing_agency_category'),
     ),
     DataGridField(
         name='OtherProjectExecutingPartners',
         widget=DataGridField._properties['widget'](
+            columns={'partner_name':
+                        ReferenceColumn('Partner',
+                        fieldname='OtherExecutingPartnerName'),
+                     'category':
+                        SelectColumn('Category',
+                        vocabulary='getCategoryVocab')},
             label="Other Project Executing Partners",
-            columns={'partner_name':ReferenceColumn('Partner', fieldname='OtherExecutingPartnerName'),'category':SelectColumn('Category',vocabulary='getCategoryVocab')},
             label_msgid='ProjectDatabase_label_OtherProjectExecutingPartners',
             i18n_domain='ProjectDatabase',
         ),
         write_permission="TM",
-        columns=('partner_name','category'),
+        columns=('partner_name',
+                 'category'),
     ),
     DataGridField(
         name='TaskManager',
         widget=DataGridField._properties['widget'](
-            label="Task Manager",
-            columns={'name':ReferenceColumn('Name', fieldname='TaskManagerName'),'category':SelectColumn('Category', vocabulary='getTMCategoryVocab'),'period':Column('Period')},
+            columns={'name':
+                        ReferenceColumn('Name',
+                        fieldname='TaskManagerName'),
+                     'category':
+                        SelectColumn('Category',
+                        vocabulary='getTMCategoryVocab'),
+                     'period':
+                        Column('Period')},
+            label="Task  Manager",
             label_msgid='ProjectDatabase_label_TaskManager',
             i18n_domain='ProjectDatabase',
         ),
         write_permission="TM",
-        columns=('name','category','period'),
+        columns=('name',
+                 'category',
+                 'period'),
     ),
     StringField(
         name='RiskRatingAtInception',
@@ -661,17 +705,26 @@ schema = Schema((
     DataGridField(
         name='ProjectImplementationStatus',
         widget=DataGridField._properties['widget'](
+            columns={'fiscal_year':
+                        SelectColumn('Fiscal Year',
+                        vocabulary='getFiscalYearVocabulary'),
+                     'narrative':
+                        Column('Project activities and objectives met')},
             label="Project Implementation Status",
-            columns={'fiscal_year':SelectColumn('Fiscal Year', vocabulary='getFiscalYearVocabulary'),'narrative':Column('Project activities and objectives met')},
             label_msgid='ProjectDatabase_label_ProjectImplementationStatus',
             i18n_domain='ProjectDatabase',
         ),
         write_permission="TM",
-        columns=('fiscal_year','narrative'),
+        columns=('fiscal_year',
+                 'narrative'),
     ),
     TextField(
         name='ProjectResults',
-        allowable_content_types=('text/plain', 'text/structured', 'text/html', 'application/msword',),
+        allowable_content_types=('text/plain',
+                                 'text/structured',
+                                 'text/html',
+                                 'application/msword'),
+
         widget=RichWidget(
             label="Project Results",
             description="Enter overall Project Results AFTER Project Terminal Evaluation",
@@ -1391,7 +1444,26 @@ registerType(ProjectGeneralInformation, PROJECTNAME)
 # end of class ProjectGeneralInformation
 
 ##code-section module-footer #fill in your manual code here
+import logging
+class PGI_CSVImporter(CSVImporter):
+    def __init__(self, context, csvfile, coding, debug):
+        CSVImporter.__init__(self, context, csvfile, coding, debug)
+        self._LOGGER = logging.getLogger('[PGI import]')
+
+    def importCSV(self, context, pgi_data):
+        '''
+        Update the PGI that was created during the project create step.
+        The context that is passed in is the containing project.
+        '''
+        pgi = context.get('project_general_info', None)
+        if pgi:
+            self.writeMessage('Updating PGI')
+            self.updateFields(pgi, pgi_data)
+            self.writeMessage('Done updating PGI:%s' % pgi.getGEFid())
+            return True
+        else:
+            msg = 'No PGI found! Aborting import.'
+            self.writeMessage(msg)
+            raise msg
+        return False
 ##/code-section module-footer
-
-
-

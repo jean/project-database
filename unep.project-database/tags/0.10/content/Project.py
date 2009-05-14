@@ -31,8 +31,6 @@ from Products.CMFCore.utils import getToolByName
 from Products.ATReferenceBrowserWidget.ATReferenceBrowserWidget import ReferenceBrowserWidget
 
 ##code-section module-header #fill in your manual code here
-from types import StringTypes
-from DateTime import DateTime
 ##/code-section module-header
 
 schema = Schema((
@@ -449,7 +447,103 @@ registerType(Project, PROJECTNAME)
 # end of class Project
 
 ##code-section module-footer #fill in your manual code here
+import logging
+from DateTime import DateTime
+
+import transaction
+from zope import event
+from Products.CMFCore.utils import getToolByName
+from Products.Archetypes.event import ObjectInitializedEvent
+
+from Products.ProjectDatabase.content.ProjectDatabase import CSVImporter
+from Products.ProjectDatabase.content.ProjectGeneralInformation import PGI_CSVImporter
+
+class Project_CSVImporter(CSVImporter):
+    def __init__(self, context, csvfile, coding, debug):
+        CSVImporter.__init__(self, context, csvfile, coding, debug)
+        self._LOGGER = logging.getLogger('[Project import]')
+        self._projects_created     = 0
+        self._projects_not_created = 0
+        self._pgis_created         = 0
+        self._pgis_not_created     = 0
+
+    def importCSV(self):
+        dict_reader = self.getDictReader()
+        pgi_importer = PGI_CSVImporter(self._context,
+                                       self._csvfile,
+                                       self._coding,
+                                       self._debug)
+        if dict_reader:
+            for pgi_data in dict_reader:
+                gef_id = pgi_data['GEFid']
+                project = self.getProjectByGefId(gef_id)
+                if project:
+                    self._projects_not_created += 1
+                else:
+                    project = self.createProject(self._projectdatabases)
+                    self._projects_created += 1
+                    transaction.commit()
+
+                if pgi_importer.importCSV(project, pgi_data):
+                    project.reindexObject()
+                    self._pgis_created += 1
+                else:
+                    self._pgis_not_created += 1
+            
+            msg = ("[unep.import_projects] - 100.0% complete")
+            self.writeMessage(msg)
+
+            msg = "Projects: %s created; %s not created" \
+                  % (self._projects_created, self._projects_not_created)
+            self._result_lines.append(msg)
+            self.writeMessage(msg)
+
+            msg = "PGI's: %s created; %s not created" \
+                  % (self._pgis_created, self._pgis_not_created)
+            self._result_lines.append(msg)
+            self.writeMessage(msg)
+        else:
+            self._result_lines = "An error occured. Please check the log files."
+
+        return self._result_lines
+
+    def getPGIData(self, dict_reader):
+        '''
+        Return a list and removes those entries that have been imported
+        before based on GEFid.
+        We can assume GEFid is in the dict_reader, because we checked in
+        a previous step of the process.
+        '''
+        pgi_data_list = []
+        for line in dict_reader:
+            gef_id = line.get('GEFid')
+            if self.projectExists(gef_id):
+                self._projects_not_created += 1
+            else:
+                pgi_data_list.append(line)
+        return pgi_data_list
+
+    def projectExists(self, gef_id):
+        '''
+        Search for a project by GEFid.
+        '''
+        query = {'portal_type': 'Project',
+                 'getGEFid': gef_id}
+        brains = self._pc(**query)
+        if len(brains):
+            return True
+        return False
+
+    def createProject(self, context):
+        '''
+        Create a new project and fire the event to create the relevant
+        contained objects.
+        '''
+        project_id = context.getNextProjectId()
+        self.writeMessage('Creating project:%s' % project_id)
+        context.invokeFactory(id=project_id, type_name='Project')
+        new_project = context._getOb(project_id)
+        event.notify(ObjectInitializedEvent(new_project))
+        return new_project
+
 ##/code-section module-footer
-
-
-

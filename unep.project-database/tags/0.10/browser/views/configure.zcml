@@ -12,9 +12,33 @@
 
     <browser:page
         for="*"
-        name="unep.import-form-action"
+        name="unep.import-projects-action"
         class=".import.ImportForm"
-        attribute="action"
+        attribute="import_projects"
+        permission="cmf.ManagePortal"
+        />  
+
+    <browser:page
+        for="*"
+        name="unep.import-financials-action"
+        class=".import.ImportForm"
+        attribute="import_financials"
+        permission="cmf.ManagePortal"
+        />  
+
+    <browser:page
+        for="*"
+        name="unep.import-subprojects-action"
+        class=".import.ImportForm"
+        attribute="import_subprojects"
+        permission="cmf.ManagePortal"
+        />  
+
+    <browser:page
+        for="*"
+        name="unep.import-milestones-action"
+        class=".import.ImportForm"
+        attribute="import_milestones"
         permission="cmf.ManagePortal"
         />  
     <!-- Import form end -->

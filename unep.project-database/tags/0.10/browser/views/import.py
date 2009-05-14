@@ -11,7 +11,10 @@ from zope.interface import implements
 
 from Products.Five import BrowserView
 
-from Products.ProjectDatabase.import_pgi_csv import run
+from Products.ProjectDatabase.content.Project import Project_CSVImporter
+from Products.ProjectDatabase.content.Financials import Financial_CSVImporter
+from Products.ProjectDatabase.content.SubProject import SubProject_CSVImporter
+from Products.ProjectDatabase.content.Milestone import Milestone_CSVImporter
 
 from interfaces import IImportForm
 
@@ -21,29 +24,80 @@ class ImportForm(BrowserView):
     """
     implements(IImportForm)
 
-    def action(self):
-        context = aq_inner(self.context)
-        request = context.REQUEST
-
-        csvfile = request.get('csvfile')
-
+    def setup(self):
+        self._request = self.context.REQUEST
+        self._csvfile = self._request.get('csvfile')
+        self._coding = 'latin-1'
+        self._debug = self._request.get('debug', 0)
+        self._import_form = \
+                self.context.restrictedTraverse('@@unep.import-form')
         # Validate
-        errors = {}
-        if not csvfile:
-            errors['csvfile'] = "Please specify a file"
+        self._errors = {}
+        if not self._csvfile:
+            self._errors['csvfile'] = "Please specify a file"
 
-        if errors:
-            import_form = context.restrictedTraverse('@@unep.import-form')
-            return import_form(REQUEST=request, errors=errors)
-
+    def import_financials(self):
+        self.setup()
+        if self._errors:
+            return self._import_form(REQUEST=self._request, errors=self._errors)
         # Delegate to external method
-        msg = run(context, csvfile, debug=1)
+        csv_importer = Financial_CSVImporter(
+                               context=self.context,
+                               csvfile=self._csvfile,
+                               coding=self._coding,
+                               debug=self._debug)
+        msg = csv_importer.importCSV()
+        self.returnResult(msg)
 
-        # Make msg a list because the global_status macro doesn't handle line breaks well
+    def import_projects(self):
+        self.setup()
+        if self._errors:
+            return self._import_form(REQUEST=self._request, errors=self._errors)
+        # Delegate to external method
+        csv_importer = Project_CSVImporter(
+                               context=self.context,
+                               csvfile=self._csvfile,
+                               coding=self._coding,
+                               debug=self._debug)
+        msg = csv_importer.importCSV()
+        self.returnResult(msg)
+
+    def import_subprojects(self):
+        self.setup()
+        if self._errors:
+            return self._import_form(REQUEST=self._request, errors=self._errors)
+        # Delegate to external method
+        csv_importer = SubProject_CSVImporter(
+                                  context=self.context,
+                                  csvfile=self._csvfile,
+                                  coding=self._coding,
+                                  debug=self._debug)
+        msg = csv_importer.importCSV()
+        self.returnResult(msg)
+
+    def import_milestones(self):
+        self.setup()
+        if self._errors:
+            return self._import_form(REQUEST=self._request, errors=self._errors)
+        # Delegate to external method
+        csv_importer = Milestone_CSVImporter(
+                                 context=self.context,
+                                 csvfile=self._csvfile,
+                                 coding=self._coding,
+                                 debug=self._debug)
+        msg = csv_importer.importCSV()
+        self.returnResult(msg)
+
+    def returnResult(self, msg=[]):
+        """
+        Make msg a list because the global_status macro doesn't handle
+        line breaks well
+        """
         if not isinstance(msg, ListType):
             msg = [msg]
         for m in msg:
-            context.plone_utils.addPortalMessage(m)
+            self.context.plone_utils.addPortalMessage(m)
         
-        redirect_url = '%s/%s' % (context.absolute_url(), '@@unep.import-form')
-        request.RESPONSE.redirect(redirect_url)
+        redirect_url = '%s/%s' % (self.context.absolute_url(),
+                       '@@unep.import-form')
+        self._request.RESPONSE.redirect(redirect_url)

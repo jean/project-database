@@ -563,7 +563,55 @@ registerType(SubProject, PROJECTNAME)
 # end of class SubProject
 
 ##code-section module-footer #fill in your manual code here
+import logging
+
+import transaction
+from zope import event
+from Products.Archetypes.event import ObjectInitializedEvent
+
+from Products.ProjectDatabase.content.ProjectDatabase import CSVImporter
+
+class SubProject_CSVImporter(CSVImporter):
+    def __init__(self, context, csvfile, coding, debug):
+        CSVImporter.__init__(self, context, csvfile, coding, debug)
+        self.LOGGER = logging.getLogger('[Financial import]')
+        self._subprojects_created     = 0
+        self._subprojects_not_created = 0
+
+    def importCSV(self):
+        import pdb; pdb.set_trace()
+        dict_reader = self.getDictReader()
+        sub_project_id = raw_dict.get('SubprojectId', None)
+        if sub_project_id:
+            sub_project = \
+                self.getSubProjectById(self.context, sub_project_id) or \
+                self.createSubProject(self.context, raw_dict)
+            if sub_project:
+                self.writeMessage('Updating subproject fields')
+                self.updateFields(sub_project, raw_dict) 
+                self.writeMessage('Done updating fields.')
+            else:
+                self.writeMessage('Could create subproject:%s')
+        else:
+            self.writeMessage('No subproject id supplied. Skipping line.')
+
+    def createSubProject(self, context, data_dict):
+        subproject_id = data_dict['SubprojectId']
+        title = data_dict.get('Title', 'SubProject %s' % subproject_id)
+        context.invokeFactory(id=subproject_id, type_name='SubProject')
+        new_subproject = context[subproject_id]
+        new_subproject.setTitle(title)
+        transaction.commit()
+        return new_subproject
+
+    def getSubProjectById(self, context, subproject_id):
+        query = {'portal_type': 'SubProject',
+                 'id': subproject_id,
+                 'path': {'query': '/'.join(context.getPhysicalPath())}
+		}
+        brains = self._pc(**query)
+        if len(brains):
+            return brains[0].getObject()
+        return None
+
 ##/code-section module-footer
-
-
-

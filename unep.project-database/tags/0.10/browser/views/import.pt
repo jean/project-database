@@ -14,7 +14,7 @@
       <p>Please be patient.</p>
   </div>  
 
-  <form tal:attributes="action string:${portal_url}/@@unep.import-form-action"
+  <form tal:attributes="action string:${portal_url}/@@unep.import-projects-action"
         tal:define="errors options/errors|nothing"
         method="post"
         enctype="multipart/form-data">
@@ -35,12 +35,197 @@
              name="csvfile"
              size="30"                
              tal:attributes="tabindex tabindex/next"/>
+      <br/>
+      <input type="radio"
+             value='1'
+             name="debug"
+             checked
+             tal:attributes="tabindex tabindex/next"/>
+      No feedback <br/>
+
+      <input type="radio"
+             value='2'
+             name="debug"
+             tal:attributes="tabindex tabindex/next"/>
+      Some feedback <br/>
+
+      <input type="radio"
+             title='All feedback'
+             value='3'
+             name="debug"
+             tal:attributes="tabindex tabindex/next"/>
+      All feedback <br/>
     </div>
 
     <input class="context"
            type="submit"
            name="import"
            value="Import"/>
+  </form>
+
+  <h2>Import Financials from CSV</h2>
+  <div class="formHelp">
+      <p>Please be patient.</p>
+  </div>  
+
+  <form tal:attributes="action string:${portal_url}/@@unep.import-financials-action"
+        tal:define="errors options/errors|nothing"
+        method="post"
+        enctype="multipart/form-data">
+        
+    <div class="field"
+         tal:define="error errors/csvfile| nothing"
+         tal:attributes="class python:error and 'field error' or 'field'">
+         
+      <label for="csvfile">CSV file</label>
+
+      <span class="fieldRequired" title="Required"
+            i18n:attributes="title title_required;"
+            i18n:translate="label_required">(Required)</span>
+
+      <div tal:content="error">Validation error output</div>
+
+      <input type="file"
+             name="csvfile"
+             size="30"                
+             tal:attributes="tabindex tabindex/next"/>
+      <br/>
+      <input type="radio"
+             value='0'
+             name="debug"
+             checked
+             tal:attributes="tabindex tabindex/next"/>
+      No feedback <br/>
+
+      <input type="radio"
+             value='1'
+             name="debug"
+             tal:attributes="tabindex tabindex/next"/>
+      Some feedback <br/>
+
+      <input type="radio"
+             title='All feedback'
+             value='2'
+             name="debug"
+             tal:attributes="tabindex tabindex/next"/>
+      All feedback <br/>
+    
+    </div>
+    <input class="context"
+           type="submit"
+           name="import"
+           value="Import"/>
+
+  </form>
+
+  <h2>Import SubProjects from CSV</h2>
+  <div class="formHelp">
+      <p>Please be patient.</p>
+  </div>  
+
+  <form tal:attributes="action string:${portal_url}/@@unep.import-subprojects-action"
+        tal:define="errors options/errors|nothing"
+        method="post"
+        enctype="multipart/form-data">
+        
+    <div class="field"
+         tal:define="error errors/csvfile| nothing"
+         tal:attributes="class python:error and 'field error' or 'field'">
+         
+      <label for="csvfile">CSV file</label>
+
+      <span class="fieldRequired" title="Required"
+            i18n:attributes="title title_required;"
+            i18n:translate="label_required">(Required)</span>
+
+      <div tal:content="error">Validation error output</div>
+
+      <input type="file"
+             name="csvfile"
+             size="30"                
+             tal:attributes="tabindex tabindex/next"/>
+      <br/>
+      <input type="radio"
+             value='0'
+             name="debug"
+             checked
+             tal:attributes="tabindex tabindex/next"/>
+      No feedback <br/>
+
+      <input type="radio"
+             value='1'
+             name="debug"
+             tal:attributes="tabindex tabindex/next"/>
+      Some feedback <br/>
+
+      <input type="radio"
+             title='All feedback'
+             value='2'
+             name="debug"
+             tal:attributes="tabindex tabindex/next"/>
+      All feedback <br/>
+    
+    </div>
+    <input class="context"
+           type="submit"
+           name="import"
+           value="Import"/>
+
+  </form>
+
+  <h2>Import Milestones from CSV</h2>
+  <div class="formHelp">
+      <p>Please be patient.</p>
+  </div>  
+
+  <form tal:attributes="action string:${portal_url}/@@unep.import-milestones-action"
+        tal:define="errors options/errors|nothing"
+        method="post"
+        enctype="multipart/form-data">
+        
+    <div class="field"
+         tal:define="error errors/csvfile| nothing"
+         tal:attributes="class python:error and 'field error' or 'field'">
+         
+      <label for="csvfile">CSV file</label>
+
+      <span class="fieldRequired" title="Required"
+            i18n:attributes="title title_required;"
+            i18n:translate="label_required">(Required)</span>
+
+      <div tal:content="error">Validation error output</div>
+
+      <input type="file"
+             name="csvfile"
+             size="30"                
+             tal:attributes="tabindex tabindex/next"/>
+      <br/>
+      <input type="radio"
+             value='0'
+             name="debug"
+             checked
+             tal:attributes="tabindex tabindex/next"/>
+      No feedback <br/>
+
+      <input type="radio"
+             value='1'
+             name="debug"
+             tal:attributes="tabindex tabindex/next"/>
+      Some feedback <br/>
+
+      <input type="radio"
+             title='All feedback'
+             value='2'
+             name="debug"
+             tal:attributes="tabindex tabindex/next"/>
+      All feedback <br/>
+    
+    </div>
+    <input class="context"
+           type="submit"
+           name="import"
+           value="Import"/>
+
   </form>
 
 </metal:fill>

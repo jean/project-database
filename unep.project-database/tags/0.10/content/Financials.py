@@ -35,6 +35,7 @@ from Products.FinanceFields.Money import Money
 from Products.ProjectDatabase.utils import getYearVocabulary
 from Products.CMFCore.utils import getToolByName
 from Products.DataGridField import MoneyColumn, ReferenceColumn
+from Products.ProjectDatabase.content.ProjectDatabase import CSVImporter
 
 datagrid_schema = Schema((
     MoneyField(
@@ -192,7 +193,14 @@ schema = Schema((
     DataGridField(
         name='FundManagementOfficer',
         widget=DataGridField._properties['widget'](
-            columns= { 'FMO_Name': ReferenceColumn("Name", fieldname='FMOname'), "FMO_Type":SelectColumn("Type", vocabulary="getTMCategoryVocabulary"), "FMO_Period":Column('Period')},
+            columns= {"FMO_Name":
+                         ReferenceColumn("Name",
+                         fieldname='FMOname'),
+                      "FMO_Type":
+                         SelectColumn("Type",
+                         vocabulary="getTMCategoryVocabulary"),
+                      "FMO_Period":
+                         Column('Period')},
             label="Fund Management Officer",
             label_msgid='ProjectDatabase_label_FundManagementOfficer',
             i18n_domain='ProjectDatabase',
@@ -232,7 +240,12 @@ schema = Schema((
     DataGridField(
         name='FinanceObjectAmount',
         widget=DataGridField._properties['widget'](
-            columns={ 'trust_fund' : SelectColumn("Trust Fund", vocabulary="getTrustFundVocabulary"), 'grant_to_unep' : MoneyColumn("Grant to UNEP", field=datagrid_schema['grant_to_unep']) },
+            columns={'trust_fund':
+                        SelectColumn("Trust Fund",
+                        vocabulary="getTrustFundVocabulary"),
+                     'grant_to_unep':
+                        MoneyColumn("Grant to UNEP",
+                        field=datagrid_schema['grant_to_unep'])},
             label="Finance Object Amount",
             label_msgid='ProjectDatabase_label_FinanceObjectAmount',
             i18n_domain='ProjectDatabase',
@@ -282,24 +295,50 @@ schema = Schema((
     DataGridField(
         name='CoFinancingCash',
         widget=DataGridField._properties['widget'](
-            columns={ 'cofinancing_cash_source' : SelectColumn("Source", vocabulary="getDonorTypesVocabulary"), 'cofinancing_cash_donor_name' : Column("Name of donor"), 'cofinancing_cash_planned_amount' : MoneyColumn("Planned Amount", field=datagrid_schema['cofinancing_cash_planned_amount']), 'cofinancing_cash_actual_amount' : MoneyColumn("Actual Amount", field=datagrid_schema['cofinancing_cash_planned_amount']) },
+            columns={'cofinancing_cash_source' :
+                         SelectColumn("Source",
+                         vocabulary="getDonorTypesVocabulary"),
+                     'cofinancing_cash_donor_name' :
+                         Column("Name of donor"),
+                     'cofinancing_cash_planned_amount' :
+                         MoneyColumn("Planned Amount",
+                         field=datagrid_schema['cofinancing_cash_planned_amount']),
+                     'cofinancing_cash_actual_amount' :
+                         MoneyColumn("Actual Amount",
+                         field=datagrid_schema['cofinancing_cash_planned_amount']) },
             label="Cofinancing: Cash",
             label_msgid='ProjectDatabase_label_CoFinancingCash',
             i18n_domain='ProjectDatabase',
         ),
         write_permission="FMO",
-        columns=("cofinancing_cash_source", "cofinancing_cash_donor_name", "cofinancing_cash_planned_amount", "cofinancing_cash_actual_amount"),
+        columns=("cofinancing_cash_source",
+                 "cofinancing_cash_donor_name",
+                 "cofinancing_cash_planned_amount",
+                 "cofinancing_cash_actual_amount"),
     ),
     DataGridField(
         name='CoFinancingInKind',
         widget=DataGridField._properties['widget'](
-            columns={ 'cofinancing_inkind_source' : SelectColumn("Source", vocabulary="getDonorTypesVocabulary"), 'cofinancing_inkind_donor_name' : Column("Name of donor"), 'cofinancing_inkind_planned_amount' : MoneyColumn("Planned Amount", field=datagrid_schema['cofinancing_inkind_planned_amount']), 'cofinancing_inkind_actual_amount' : MoneyColumn("Actual Amount", field=datagrid_schema['cofinancing_inkind_actual_amount']) },
+            columns={'cofinancing_inkind_source' :
+                         SelectColumn("Source",
+                         vocabulary="getDonorTypesVocabulary"),
+                     'cofinancing_inkind_donor_name' :
+                         Column("Name of donor"),
+                     'cofinancing_inkind_planned_amount' :
+                         MoneyColumn("Planned Amount",
+                         field=datagrid_schema['cofinancing_inkind_planned_amount']),
+                     'cofinancing_inkind_actual_amount' :
+                         MoneyColumn("Actual Amount",
+                         field=datagrid_schema['cofinancing_inkind_actual_amount']) },
             label="Cofinancing: In Kind",
             label_msgid='ProjectDatabase_label_CoFinancingInKind',
             i18n_domain='ProjectDatabase',
         ),
         write_permission="FMO",
-        columns=("cofinancing_inkind_source", "cofinancing_inkind_donor_name", "cofinancing_inkind_planned_amount", "cofinancing_inkind_actual_amount"),
+        columns=("cofinancing_inkind_source",
+                 "cofinancing_inkind_donor_name",
+                 "cofinancing_inkind_planned_amount",
+                 "cofinancing_inkind_actual_amount"),
     ),
     ComputedField(
         name='SumCoFinCashPlanned',
@@ -385,7 +424,14 @@ schema = Schema((
     DataGridField(
         name='EvaluationFunds',
         widget=DataGridField._properties['widget'](
-            columns= { 'EvaluationType':SelectColumn("EvaluationType", vocabulary="getEvaluationTypeVocabulary"), 'Amount':MoneyColumn('Amount', field=datagrid_schema['Amount']), 'BAC':Column('BAC') },
+            columns= {'EvaluationType':
+                          SelectColumn("EvaluationType",
+                          vocabulary="getEvaluationTypeVocabulary"),
+                      'Amount':
+                          MoneyColumn('Amount',
+                          field=datagrid_schema['Amount']),
+                      'BAC':
+                          Column('BAC') },
             label="Evaluation Funds",
             label_msgid='ProjectDatabase_label_EvaluationFunds',
             i18n_domain='ProjectDatabase',
@@ -396,7 +442,13 @@ schema = Schema((
     DataGridField(
         name='CashDisbursements',
         widget=DataGridField._properties['widget'](
-            columns={ 'cash_disbursements_date' : CalendarColumn("Date"), 'cash_disbursements_amount' : MoneyColumn("Amount", field=datagrid_schema['cash_disbursements_amount']), 'cash_disbursements_imis_rcpt_number' : Column("IMIS RCTP Number") },
+            columns={ 'cash_disbursements_date' :
+                          CalendarColumn("Date"),
+                      'cash_disbursements_amount' :
+                          MoneyColumn("Amount",
+                          field=datagrid_schema['cash_disbursements_amount']),
+                      'cash_disbursements_imis_rcpt_number' :
+                          Column("IMIS RCTP Number") },
             label="Cash Disbursements",
             label_msgid='ProjectDatabase_label_CashDisbursements',
             i18n_domain='ProjectDatabase',
@@ -416,7 +468,12 @@ schema = Schema((
     DataGridField(
         name='YearlyExpenditures',
         widget=DataGridField._properties['widget'](
-            columns={ 'year' : SelectColumn("Year", vocabulary='getFiscalYearVocabulary'), 'amount' : MoneyColumn("Amount", field=datagrid_schema['amount']) },
+            columns={ 'year' :
+                          SelectColumn("Year",
+                          vocabulary='getFiscalYearVocabulary'),
+                      'amount' :
+                          MoneyColumn("Amount",
+                          field=datagrid_schema['amount']) },
             label="Yearly Expenditures",
             label_msgid='ProjectDatabase_label_YearlyExpenditures',
             i18n_domain='ProjectDatabase',
@@ -457,7 +514,16 @@ schema = Schema((
     DataGridField(
         name='Reports',
         widget=DataGridField._properties['widget'](
-            columns={ 'report_type' : SelectColumn("Report Type", vocabulary="getReportTypesVocabulary"), 'report_period' : Column("Report Period"), 'report_received_date' : CalendarColumn("Report Received Date"), 'amount' : MoneyColumn("Amount", field=datagrid_schema['amount']) },
+            columns={ 'report_type' :
+                          SelectColumn("Report Type",
+                          vocabulary="getReportTypesVocabulary"),
+                      'report_period' :
+                          Column("Report Period"),
+                      'report_received_date' :
+                          CalendarColumn("Report Received Date"),
+                      'amount' :
+                          MoneyColumn("Amount",
+                          field=datagrid_schema['amount']) },
             label="Reports",
             label_msgid='ProjectDatabase_label_Reports',
             i18n_domain='ProjectDatabase',
@@ -468,7 +534,13 @@ schema = Schema((
     DataGridField(
         name='ProjectRevision',
         widget=DataGridField._properties['widget'](
-            columns={"revision_number":Column("Revision Number"), "revision_type":SelectColumn("Revision Type", vocabulary="getRevisionTypeVocabulary"),"revision_date":CalendarColumn("Revision Date")},
+            columns={"revision_number":
+                         Column("Revision Number"),
+                     "revision_type":
+                         SelectColumn("Revision Type",
+                         vocabulary="getRevisionTypeVocabulary"),
+                     "revision_date":
+                         CalendarColumn("Revision Date")},
             label="Project Revision",
             label_msgid='ProjectDatabase_label_ProjectRevision',
             i18n_domain='ProjectDatabase',
@@ -478,7 +550,8 @@ schema = Schema((
     ),
     TextField(
         name='FinanceObjectPreparationResults',
-        allowable_content_types=('text/plain', 'text/structured', 'text/html', 'application/msword',),
+        allowable_content_types=('text/plain', 'text/structured',
+                                 'text/html', 'application/msword',),
         widget=RichWidget(
             label="Finance Object Results",
             label_msgid='ProjectDatabase_label_FinanceObjectPreparationResults',
@@ -490,7 +563,13 @@ schema = Schema((
     DataGridField(
         name='ExecutingAgencyRiskRating',
         widget=DataGridField._properties['widget'](
-            columns= {'Risk_Level':SelectColumn("Risk Level", vocabulary="getRiskLevelVocabulary"), "Assessment_Date":CalendarColumn("Assessment Date"), 'Remarks':Column("Remarks")},
+            columns= {'Risk_Level':
+                          SelectColumn("Risk Level",
+                          vocabulary="getRiskLevelVocabulary"),
+                      "Assessment_Date":
+                          CalendarColumn("Assessment Date"),
+                      'Remarks':
+                          Column("Remarks")},
             label="Executing Agency Risk Rating",
             label_msgid='ProjectDatabase_label_ExecutingAgencyRiskRating',
             i18n_domain='ProjectDatabase',
@@ -979,7 +1058,78 @@ registerType(Financials, PROJECTNAME)
 # end of class Financials
 
 ##code-section module-footer #fill in your manual code here
+import logging
+from DateTime import DateTime
+
+import transaction
+from zope import event
+from Products.CMFCore.utils import getToolByName
+from Products.Archetypes.event import ObjectInitializedEvent
+
+from Products.ProjectDatabase.content.ProjectDatabase import CSVImporter
+
+class Financial_CSVImporter(CSVImporter):
+    def __init__(self, context, csvfile, coding, debug):
+        CSVImporter.__init__(self, context, csvfile, coding, debug)
+        self.LOGGER = logging.getLogger('[Financial import]')
+        self._fmis_created     = 0
+        self._fmis_not_created = 0
+
+    def importCSV(self):
+        import pdb; pdb.set_trace()
+        dict_reader = self.getDictReader()
+        for raw_dict in dict_reader:
+            gef_id = raw_dict.get('GEFid', None)
+            self.writeMessage('Processing project:%s' % gef_id)
+            project = self.getProjectByGefId(gef_id)
+            if project:
+                self.updateFields(project, raw_dict)
+                fmi = self.getFMI(project, raw_dict) or \
+                      self.createFMI(gef_id, raw_dict)
+                if fmi:
+                    self.writeMessage('Updating FMI fields')
+                    self.updateFields(fmi, raw_dict)
+                    self.writeMessage('Done updating fields.')
+                else:
+                    self._fmis_not_created += 1
+                    self.writeMessage('Could not add FMI to project:%s' \
+                                      % gef_id)
+            else:
+                self.writeMessage('No project found for GEFid:%s' % gef_id)
+        return True
+
+    def createFMI(self, gef_id, data_dict):
+        try:
+            category = data_dict['FinanceCategory']
+            title = data_dict.get('Title', category)
+            project = self.getProjectByGefId(gef_id)
+            if not project:
+                return None
+            fmi_folder = project['fmi_folder']
+            if category:
+                fmi_folder.invokeFactory(id=category, type_name='Financials')
+                new_fmi = fmi_folder[category]
+                new_fmi.edit(title=title, FinanceCategory=category)
+                transaction.commit()
+                self._fmis_created += 1
+                return new_fmi
+            else:
+                self.writeMessage('FMI data does not contain category.')
+                return None
+        except KeyError:
+            self.writeMessage('Essential information not in CSV.')
+            return None
+
+    def getFMI(self, project, data_dict):
+        category = data_dict['FinanceCategory']
+	query = {'portal_type' : 'Financials',
+                 'getFinanceCategory': category,
+                 'path' : {'query' : '/'.join(project.getPhysicalPath())},
+		}
+        brains = self._pc(**query)
+        if len(brains):
+            return brains[0].getObject()
+        else:
+            return None
+
 ##/code-section module-footer
-
-
-
