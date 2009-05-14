@@ -1080,9 +1080,10 @@ class Financial_CSVImporter(CSVImporter):
         for raw_dict in dict_reader:
             gef_id = raw_dict.get('GEFid', None)
             project = self.getProjectByGefId(gef_id)
-            self.writeMessage('Processing project:%s(%s)' % (project.id, gef_id))
-
             if project:
+                self.writeMessage(
+                    'Processing project:%s(%s)' % (project.id, gef_id))
+
                 # suppress unnecessary log writing
                 #CSVImporter.setDebugLevel(self, CSVImporter.NO_FEEDBACK)
                 self.updateFields(project, raw_dict)
