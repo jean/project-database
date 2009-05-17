@@ -1078,20 +1078,17 @@ class Financial_CSVImporter(CSVImporter):
     def importCSV(self):
         dict_reader = self.getDictReader()
         for raw_dict in dict_reader:
+            self.writeMessage('*******************************************')
             gef_id = raw_dict.get('GEFid', None)
+            self.writeMessage('Searching for project:GEFid=%s' %gef_id)
             project = self.getProjectByGefId(gef_id)
             if project:
-                self.writeMessage(
-                    'Processing project:%s(%s)' % (project.id, gef_id))
-
-                # suppress unnecessary log writing
-                #CSVImporter.setDebugLevel(self, CSVImporter.NO_FEEDBACK)
+                self.writeMessage('Updating project:id=%s(GEFid=%s)' \
+                                  % (project.id, gef_id))
                 self.updateFields(project, raw_dict)
                 pgi = project['project_general_info']
+                self.writeMessage('Updating PGI') 
                 self.updateFields(pgi, raw_dict)
-                # re-enable log writing
-                #CSVImporter.setDebugLevel(self, CSVImporter.ALL_FEEDBACK)
-
                 fmi = self.getFMI(project, raw_dict)
                 if fmi:
                     self.writeMessage('Updating FMI fields')
@@ -1103,6 +1100,8 @@ class Financial_CSVImporter(CSVImporter):
                                       % gef_id)
             else:
                 self.writeMessage('No project found for GEFid:%s' % gef_id)
+
+            self.writeMessage('*******************************************')
         return True
 
     def createFMI(self, container, category, title):
