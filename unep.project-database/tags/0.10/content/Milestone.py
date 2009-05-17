@@ -666,7 +666,7 @@ from Products.ProjectDatabase.content.ProjectDatabase import CSVImporter
 class Milestone_CSVImporter(CSVImporter):
     def __init__(self, context, csvfile, coding, debug):
         CSVImporter.__init__(self, context, csvfile, coding, debug)
-        self.LOGGER = logging.getLogger('[Financial import]')
+        self.LOGGER = logging.getLogger('[Milestone import]')
         self._milestones_created     = 0
         self._milestones_not_created = 0
 
