@@ -453,9 +453,14 @@ from DateTime import DateTime
 import transaction
 from zope import event
 from Products.CMFCore.utils import getToolByName
+from Products.ATContentTypes.content.folder import ATFolder
 from Products.Archetypes.event import ObjectInitializedEvent
 
 from Products.ProjectDatabase.content.ProjectDatabase import CSVImporter
+from Products.ProjectDatabase.content.ProjectGeneralInformation import ProjectGeneralInformation
+from Products.ProjectDatabase.content.FMIFolder import FMIFolder
+from Products.ProjectDatabase.content.MandEfolder import MandEfolder
+from Products.ProjectDatabase.content.Milestone import Milestone
 from Products.ProjectDatabase.content.ProjectGeneralInformation import PGI_CSVImporter
 
 class Project_CSVImporter(CSVImporter):
@@ -475,6 +480,7 @@ class Project_CSVImporter(CSVImporter):
                                        self._debug)
         if dict_reader:
             for pgi_data in dict_reader:
+                self.writeMessage('*******************************************')
                 gef_id = pgi_data['GEFid']
                 project = self.getProjectByGefId(gef_id)
                 if project:
@@ -489,6 +495,7 @@ class Project_CSVImporter(CSVImporter):
                     self._pgis_created += 1
                 else:
                     self._pgis_not_created += 1
+                self.writeMessage('*******************************************')
             
             msg = ("[unep.import_projects] - 100.0% complete")
             self.writeMessage(msg)
@@ -536,9 +543,47 @@ class Project_CSVImporter(CSVImporter):
 
     def createProject(self, context):
         '''
-        Create a new project and fire the event to create the relevant
-        contained objects.
+        Create a new project and all required sub objects.
         '''
+        ## Create new project and add it to the context
+        #project_id = context.getNextProjectId()
+        #self.writeMessage('Creating project:%s' % project_id)
+        #project = Project(project_id)
+        #context._setOb(project_id, project)
+        #new_project = context._getOb(project_id)
+
+        ## Create the ProjectGeneralInformation and set it on the project
+        #pgi_id='project_general_info'
+        #pgi = ProjectGeneralInformation(pgi_id)
+        #pgi.setTitle('Project General Information')
+        #new_project._setOb(pgi_id, pgi)
+
+        ## Create the FMIFolder and set it on the project
+        ## Needs some more bootstrapping
+        #fmi_id = 'fmi_folder'
+        #fmi_folder = FMIFolder(fmi_id)
+        #fmi_folder.setTitle('Financial Management Information')
+        #new_project._setOb(fmi_id, fmi_folder)
+
+        ## Create the MandEfolder and set it on the project
+        #mne_id = 'mne_folder'
+        #mne_folder = MandEfolder(mne_id)
+        #mne_folder.setTitle('Monitoring and Evaluation Folder')
+        #new_project._setOb(mne_id, mne_folder)
+        #
+        ## Create the Milestone folder and set it on the project
+        ## Needs some more bootstrapping
+        #milestone_id = 'milestones'
+        #milestones = Milestone(milestone_id)
+        #milestones.setTitle('Milestones')
+        #new_project._setOb(milestone_id, milestones)
+
+        ## Create the documents folder and set it on the project
+        #docs_id = 'documents'
+        #docs = ATFolder(docs_id)
+        #docs.setTitle('Documents')
+        #new_project._setOb(docs_id, docs)
+        
         project_id = context.getNextProjectId()
         self.writeMessage('Creating project:%s' % project_id)
         context.invokeFactory(id=project_id, type_name='Project')
