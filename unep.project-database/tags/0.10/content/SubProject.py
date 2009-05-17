@@ -126,7 +126,12 @@ schema = Schema((
     DataGridField(
         name='SubProjectExecutingAgency',
         widget=DataGridField._properties['widget'](
-            columns={'executing_agency':ReferenceColumn('Executing Agency', fieldname='ExecutingAgencyName'),'executing_agency_category':SelectColumn('Category', vocabulary='getCategoryVocabulary')},
+            columns={'executing_agency':
+                         ReferenceColumn('Executing Agency',
+                         fieldname='ExecutingAgencyName'),
+                     'executing_agency_category':
+                         SelectColumn('Category',
+                         vocabulary='getCategoryVocabulary')},
             label="Lead Executing Agency",
             label_msgid='ProjectDatabase_label_SubProjectExecutingAgency',
             i18n_domain='ProjectDatabase',
@@ -570,30 +575,60 @@ from zope import event
 from Products.Archetypes.event import ObjectInitializedEvent
 
 from Products.ProjectDatabase.content.ProjectDatabase import CSVImporter
+from Products.ProjectDatabase.content.Financials import Financial_CSVImporter
 
 class SubProject_CSVImporter(CSVImporter):
     def __init__(self, context, csvfile, coding, debug):
         CSVImporter.__init__(self, context, csvfile, coding, debug)
-        self.LOGGER = logging.getLogger('[Financial import]')
+        self.LOGGER = logging.getLogger('[SubProject import]')
         self._subprojects_created     = 0
         self._subprojects_not_created = 0
 
     def importCSV(self):
-        import pdb; pdb.set_trace()
         dict_reader = self.getDictReader()
-        sub_project_id = raw_dict.get('SubprojectId', None)
-        if sub_project_id:
-            sub_project = \
-                self.getSubProjectById(self.context, sub_project_id) or \
-                self.createSubProject(self.context, raw_dict)
-            if sub_project:
-                self.writeMessage('Updating subproject fields')
-                self.updateFields(sub_project, raw_dict) 
-                self.writeMessage('Done updating fields.')
+        for row in dict_reader:
+            gef_id = row['GEFid']
+            project = self.getProjectByGefId(gef_id)
+            if not project:
+                self.writeMessage('Project NOT found for GEFId:%s' % gef_id)
+                continue 
+            self.writeMessage('Found project:%s' % project.getId())
+            fmi_foder = project.fmi_folder
+            fmi = self.getFMI(fmi_folder, row['category'])
+            subproject_id = row.get('subprojectid', None)
+            if subproject_id:
+                sub_project = self.getSubProject(fmi, subproject_id)
+                if sub_project:
+                    self.writeMessage('Updating subproject fields')
+                    self.updateFields(sub_project, row) 
+                    self.writeMessage('Done updating fields.')
+                else:
+                    self.writeMessage('Could not create subproject:%s')
             else:
-                self.writeMessage('Could create subproject:%s')
-        else:
-            self.writeMessage('No subproject id supplied. Skipping line.')
+                self.writeMessage('No subproject id supplied. Skipping line.')
+        
+        self._result_lines.append('SubProjects created:%s' \
+                % self._subprojects_created)
+
+        self._result_lines.append('SubProjects not created:%s' \
+                % self._subprojects_not_created)
+        return self._result_lines
+
+    def getFMI(self, fmi_folder, category):
+        query = ''
+        fmi_list = [item for item in fmi_folder.objectValues('Finance') \
+                   if item.getCategory() == 'category']
+        fmi = len(fmi_list) > 0 and fmi_list[0]
+        if not fmi:
+            self.writeMessage('Could not find FMI instance.')
+            fmi_folder.invokeFactory(id=category, type_name='Financials')
+            new_fmi = container[category]
+            new_fmi.edit(title=title, FinanceCategory=category)
+            transaction.commit()
+
+    def getSubProject(self, fmi, subproject_id, row):
+        return self.getSubProjectById(fmi, subproject_id) or \
+        self.createSubProject(fmi, row)
 
     def createSubProject(self, context, data_dict):
         subproject_id = data_dict['SubprojectId']
