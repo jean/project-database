@@ -178,6 +178,7 @@ def installDataGridVocabularies(context):
         'OtherRatings': ('VdexVocabulary', 'SimpleVocabularyTerm'),
         'YesOrNo': ('VdexVocabulary', 'SimpleVocabularyTerm'),
         'Rating': ('VdexVocabulary', 'SimpleVocabularyTerm'),
+        'EvaluatorRating': ('VdexVocabulary', 'SimpleVocabularyTerm'),
         'EORatingElements': ('VdexVocabulary', 'SimpleVocabularyTerm'),
         'AgencyImplementation': ('VdexVocabulary', 'SimpleVocabularyTerm'),
         'DonorType': ('VdexVocabulary', 'SimpleVocabularyTerm'),
