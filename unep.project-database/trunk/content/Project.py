@@ -31,8 +31,6 @@ from Products.CMFCore.utils import getToolByName
 from Products.ATReferenceBrowserWidget.ATReferenceBrowserWidget import ReferenceBrowserWidget
 
 ##code-section module-header #fill in your manual code here
-from types import StringTypes
-from DateTime import DateTime
 ##/code-section module-header
 
 schema = Schema((
@@ -111,6 +109,7 @@ schema = Schema((
     ),
     ComputedField(
         name='GEFid',
+        searchable=True,
         widget=ComputedField._properties['widget'](
             label='Gefid',
             label_msgid='ProjectDatabase_label_GEFid',
@@ -449,7 +448,148 @@ registerType(Project, PROJECTNAME)
 # end of class Project
 
 ##code-section module-footer #fill in your manual code here
+import logging
+from DateTime import DateTime
+
+import transaction
+from zope import event
+from Products.CMFCore.utils import getToolByName
+from Products.ATContentTypes.content.folder import ATFolder
+from Products.Archetypes.event import ObjectInitializedEvent
+
+from Products.ProjectDatabase.content.ProjectDatabase import CSVImporter
+from Products.ProjectDatabase.content.ProjectGeneralInformation import ProjectGeneralInformation
+from Products.ProjectDatabase.content.FMIFolder import FMIFolder
+from Products.ProjectDatabase.content.MandEfolder import MandEfolder
+from Products.ProjectDatabase.content.Milestone import Milestone
+from Products.ProjectDatabase.content.ProjectGeneralInformation import PGI_CSVImporter
+
+class Project_CSVImporter(CSVImporter):
+    def __init__(self, context, csvfile, coding, debug):
+        CSVImporter.__init__(self, context, csvfile, coding, debug)
+        self._LOGGER = logging.getLogger('[Project import]')
+        self._projects_created     = 0
+        self._projects_not_created = 0
+        self._pgis_created         = 0
+        self._pgis_not_created     = 0
+
+    def importCSV(self):
+        dict_reader = self.getDictReader()
+        pgi_importer = PGI_CSVImporter(self._context,
+                                       self._csvfile,
+                                       self._coding,
+                                       self._debug)
+        rows = [row for row in dict_reader]
+        del dict_reader
+
+        self.writeProgressTemplate(len(rows))
+        for row in rows:
+            self.writeMessage('*******************************************')
+            gef_id = row['GEFid']
+            project = self.getProject(gef_id)
+            if not project:
+                self._projects_not_created += 1
+                self.writeMessage('Could not create project:%s' % gef_id)
+                continue
+
+            if pgi_importer.importCSV(project, row):
+                project.reindexObject()
+                self._pgis_created += 1
+            else:
+                self._pgis_not_created += 1
+            self.writeMessage('*******************************************')
+            count = self._pgis_created + self._pgis_not_created
+            self.writeProgressLine(count)
+        
+        msg = ("[unep.import_projects] - 100.0% complete")
+        self.writeMessage(msg)
+
+        msg = "Projects: %s created; %s not created" \
+              % (self._projects_created, self._projects_not_created)
+        self._result_lines.append(msg)
+        self.writeMessage(msg)
+
+        msg = "PGI's: %s created; %s not created" \
+              % (self._pgis_created, self._pgis_not_created)
+        self._result_lines.append(msg)
+        self.writeMessage(msg)
+
+        if self._request:
+            # This trick is needed since previous calls to RESPONSE.write
+            # trashes a normal redirect
+            url = '<script>document.location.href="%s/@@unep.import-form' % \
+                  self._portal.absolute_url()
+            msg = '<br/>'.join(self._result_lines) 
+            params = '?portal_status_message=%s"</script>' % msg
+            self._request.RESPONSE.write('%s%s' % (url, params))
+        return self._result_lines
+
+    def projectExists(self, gef_id):
+        '''
+        Search for a project by GEFid.
+        '''
+        query = {'portal_type': 'Project',
+                 'getGEFid': gef_id}
+        brains = self._pc(**query)
+        if len(brains):
+            return True
+        return False
+
+    def getProject(self, gef_id):
+        project = self.getProjectByGefId(gef_id) or \
+                  self.createProject(self._projectdatabases)
+        return project
+
+    def createProject(self, context):
+        '''
+        Create a new project and all required sub objects.
+        '''
+        ## Create new project and add it to the context
+        #project_id = context.getNextProjectId()
+        #self.writeMessage('Creating project:%s' % project_id)
+        #project = Project(project_id)
+        #context._setOb(project_id, project)
+        #new_project = context._getOb(project_id)
+
+        ## Create the ProjectGeneralInformation and set it on the project
+        #pgi_id='project_general_info'
+        #pgi = ProjectGeneralInformation(pgi_id)
+        #pgi.setTitle('Project General Information')
+        #new_project._setOb(pgi_id, pgi)
+
+        ## Create the FMIFolder and set it on the project
+        ## Needs some more bootstrapping
+        #fmi_id = 'fmi_folder'
+        #fmi_folder = FMIFolder(fmi_id)
+        #fmi_folder.setTitle('Financial Management Information')
+        #new_project._setOb(fmi_id, fmi_folder)
+
+        ## Create the MandEfolder and set it on the project
+        #mne_id = 'mne_folder'
+        #mne_folder = MandEfolder(mne_id)
+        #mne_folder.setTitle('Monitoring and Evaluation Folder')
+        #new_project._setOb(mne_id, mne_folder)
+        #
+        ## Create the Milestone folder and set it on the project
+        ## Needs some more bootstrapping
+        #milestone_id = 'milestones'
+        #milestones = Milestone(milestone_id)
+        #milestones.setTitle('Milestones')
+        #new_project._setOb(milestone_id, milestones)
+
+        ## Create the documents folder and set it on the project
+        #docs_id = 'documents'
+        #docs = ATFolder(docs_id)
+        #docs.setTitle('Documents')
+        #new_project._setOb(docs_id, docs)
+        
+        project_id = context.getNextProjectId()
+        self.writeMessage('Creating project:%s' % project_id)
+        context.invokeFactory(id=project_id, type_name='Project')
+        transaction.commit()
+        new_project = context._getOb(project_id)
+        event.notify(ObjectInitializedEvent(new_project))
+        self._projects_created += 1
+        return new_project
+
 ##/code-section module-footer
-
-
-
