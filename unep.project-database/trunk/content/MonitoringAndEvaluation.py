@@ -99,7 +99,7 @@ schema = Schema((
         name='EvaluationRatings',
         widget=DataGridField._properties['widget'](
             label="Evaluation Ratings",
-            columns={'criterion':SelectColumn('Criterion', vocabulary='getEvaluationCriteria'), 'evaluator_rating':SelectColumn('Evaluator Rating', vocabulary='getRatingVocabulary'), 'EOU_rating':SelectColumn('EOU Rating', vocabulary='getRatingVocabulary'), 'GEF_EO_Rating':SelectColumn('GEF EO Rating', vocabulary='getRatingVocabulary')},
+            columns={'criterion':SelectColumn('Criterion', vocabulary='getEvaluationCriteria'), 'evaluator_rating':SelectColumn('Evaluator Rating', vocabulary='getEvaluatorRatingVocabulary'), 'EOU_rating':SelectColumn('EOU Rating', vocabulary='getRatingVocabulary'), 'GEF_EO_Rating':SelectColumn('GEF EO Rating', vocabulary='getRatingVocabulary')},
             label_msgid='ProjectDatabase_label_EvaluationRatings',
             i18n_domain='ProjectDatabase',
         ),
@@ -195,6 +195,9 @@ class MonitoringAndEvaluation(BaseContent, BrowserDefaultMixin):
 
     def getRatingVocabulary(self):
         return self.getVocabulary('Rating')
+
+    def getEvaluatorRatingVocabulary(self):
+        return self.getVocabulary('EvaluatorRating')
 
     def getEvaluatorRoleVocabulary(self):
         return self.getVocabulary('EvaluatorRole')
