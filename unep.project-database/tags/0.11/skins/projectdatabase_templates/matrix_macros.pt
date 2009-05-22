@@ -1,0 +1,384 @@
+<metal:fmi_matrix define-macro="fmi_matrix">
+<table class="table-fullwidth">
+    <tr>
+        <th>Finance Object</th>
+        <th>IMIS No</th>
+        <th>Status</th>
+        <th>Grant to UNEP</th>
+        <th>Total Disbursements</th>
+        <th>UNEP Fee</th>
+        <th>Actual Cofinancing</th>
+    </tr>
+    <tr tal:repeat="brain brains">
+        <tal:def tal:define="obj brain/getObject">
+        <td tal:content="python:obj.getFinanceCategory().upper() or 'unknown'" />
+        <td>
+            <a href="" 
+                tal:attributes="href string:${obj/absolute_url}/view" 
+                tal:content="obj/getIMISNumber | string:unknown">IMIS</a>
+            <a tal:condition="python:member.has_role(['Owner', 'Manager', 'FMO'], obj)"
+                tal:attributes="href string:${obj/absolute_url}/edit">edit</a>
+        </td>
+        <td tal:content="obj/getStatus | string:unknown" />
+        <td tal:content="obj/getSumFinanceObjectAmount | string:unknown" />
+        <td tal:content="obj/getSumCashDisbursements | string:unknown" />
+        <td tal:content="obj/getFinanceObjectFee | string:unknown" />
+        <td tal:content="obj/getTotalCoFinOfFinanceObjectActual | string:unknown" />
+        </tal:def>
+    </tr>
+    <tr >
+        <td>Total</td>
+        <td></td>
+        <td></td>
+        <td tal:content="fmi_folder/getTotalGrantToUnep | string:unknown" />
+        <td tal:content="fmi_folder/getTotalDisbursements | string:unknown" />
+        <td tal:content="fmi_folder/getTotalUnepFee | string:unknown" />
+        <td tal:content="fmi_folder/getTotalActualCofin | string:unknown" />
+    </tr>
+</table>
+</metal:fmi_matrix>
+
+
+<metal:multiple_fmi_matrix define-macro="multiple_fmi_matrix">
+<tal:def 
+tal:define="fmi_folder nocall:context/fmi_folder;
+            brains fmi_folder/getFolderContents;">
+    <tal:use metal:use-macro="context/matrix_macros/macros/fmi_matrix" />
+</tal:def>
+</metal:multiple_fmi_matrix>
+
+<metal:mande_matrix define-macro="mande_matrix">
+<table class="table-fullwidth">
+    <tr>
+        <th>Fiscal Year</th>
+        <th>DO Rating</th>
+        <th>IP Rating</th>
+        <th>M&amp;E Rating</th>
+        <th>Risk Rating</th>
+    </tr>
+    <tr tal:define="mne nocall:context/mne_folder"
+        tal:repeat="obj python:mne.objectValues(spec='PIRRating')">
+        <td tal:content="obj/getFiscalYear | string:unknown" />
+        <td tal:content="obj/getDevelopmentObjective | string:unknown" />
+        <td tal:content="obj/getImplementationProgress | string:unknown" />
+        <td tal:content="obj/getMonitoringAndEvaluation | string:unknown" />
+        <td tal:content="obj/getProjectRisk | string:unknown" />
+    </tr>
+</table>
+<p>
+   <span style="color:#24a1d1;font-weight:bold;">Expected MTR:  </span>
+   <span tal:content="context/mne_folder/MTR/getPlannedStartDate |string: Unspecified"/>
+</p>
+<p>
+   <span style="color:#24a1d1;font-weight:bold;">Expected TE:   </span>
+   <span tal:content="context/mne_folder/TE/getPlannedStartDate |string: Unspecified"/>
+</p>
+</metal:mande_matrix>
+
+<metal:pgi_matrix define-macro="pgi_matrix">
+<table style="width:100%"
+        tal:define="pgi nocall:ob/project_general_info">
+    <tr>
+        <td i18n:translate="gef_id" width="30%">GEF ID:</td>
+        <td>
+            <span tal:condition="python:member.has_role(['Anonymous'], pgi)"
+                tal:content="pgi/getGEFid|string:Unspecified"> PGI </span>
+            <a tal:condition="python:member.has_role(['Owner', 'Manager', 'TM', 'Registrar'], pgi)"
+                tal:attributes="href string:${pgi/absolute_url}/view"
+                tal:content="pgi/getGEFid|string:Unspecified"> PGI </a>
+            <a tal:condition="python:member.has_role(['Owner', 'Manager', 'TM', 'Registrar'], pgi)"
+                tal:attributes="href string:${pgi/absolute_url}/edit">edit</a>
+        </td>
+    </tr>
+    <tr>
+        <td i18n:translate="focal_areas" width="30%">Focal Areas:</td>
+        <td tal:content="pgi/getFocalAreaNames | string:unknown" />
+    </tr>
+    <tr>
+        <td i18n:translate="geographic_scope" width="30%">Geographic Scope:</td>
+        <td tal:content="pgi/getGeographicScopeValues| string:unknown" />
+    </tr>
+    <tr>
+        <td i18n:translate="countries" width="30%">Country(ies):</td>
+        <td tal:content="pgi/getCountryNames| string:unknown" />
+    </tr>
+    <tr>
+        <td i18n:translate="project_desciption" width="30%">Project Description:</td>
+        <td class="structured_text"
+            tal:content="structure pgi/getSummaryDescription| string:unknown" />
+    </tr>
+    <tr>
+        <td i18n:translate="lead_executing_agency" width="30%">Lead Executing Agency:</td>
+        <td tal:content="pgi/getLeadExecutingAgencyNames | string:unknown" />
+    </tr>
+    <tr>
+        <td i18n:translate="project_type" width="30%">Project Type:</td>
+        <td tal:content="pgi/getProjectType | string:unknown" />
+    </tr>
+    <tr>
+        <td i18n:translate="pif_ppg_grant" width="30%">PPG/PDF Grant:</td>
+        <td tal:content="pgi/getPIFPPGAmount | string:unknown" />
+    </tr>
+    <tr>
+        <td i18n:translate="pif_ppg_cofin" width="30%">PPG Confinancing:</td>
+        <td tal:content="pgi/getPIFPPGCoFinAmount | string:unknown" />
+    </tr>
+    <tr>
+        <td i18n:translate="pif_project_grant" width="30%">Project Grant:</td>
+        <td tal:content="pgi/getPIFProjectAmount | string:unknown" />
+    </tr>
+    <tr>
+        <td i18n:translate="pif_project_cofin" width="30%">Project Confinancing:</td>
+        <td tal:content="pgi/getPIFProjectCoFinAmount | string:unknown" />
+    </tr>
+    <tr>
+        <td i18n:translate="project_results" width="30%">Project Results:</td>
+        <td class="structured_text"
+            tal:content="structure pgi/getProjectResults | string:unknown" />
+    </tr>
+</table>
+</metal:pgi_matrix>
+
+<metal:milestones_matrix define-macro="milestones_matrix">
+<table style="width:100%"
+        tal:define="ms nocall:context/milestones">
+    <tr>
+        <td i18n:translate="pif">PIF:</td>
+        <td i18n:translate="gef_approval">GEF Approval Date &nbsp;
+            <span tal:content="python:ms.getPIFApprovalDate('CEOPIFApprovalActual') or 'Unspecified'"/>
+        </td>
+    </tr>
+    <tr><td colspan=3>&nbsp;</td></tr>
+    <tr>
+        <td i18n:translate="ppg">PPG:</td>
+        <td i18n:translate="gef_approval">GEF Approval Date &nbsp;
+            <span tal:content="python:ms.getPPGApprovalDate('CEOPPGapproval') or 'Unspecified'"/>
+        </td>
+    </tr>
+    <tr><td colspan=3>&nbsp;</td></tr>
+    <tr>
+        <td i18n:translate="project">Project:</td>
+        <td i18n:translate="project_ceo_approval_exp">Expected CEO Approval Date &nbsp;
+            <span tal:content="python:ms.getProjectApprovalDate('CEOApprovalEndorsementExpected') or 'Unspecified'"/>
+        </td>
+        <td i18n:translate="project_ceo_approval_act">Actual CEO Approval Date &nbsp;
+            <span tal:content="python:ms.getProjectApprovalDate('CEOApprovalEndorsementActual') or 'Unspecified'"/>
+        </td>
+    </tr>
+    <tr>
+        <td></td>
+        <td i18n:translate="exp_signature">Expected Signature Of Legal Instrument &nbsp;
+            <span tal:content="python:ms.getProjectImplementationDate('SignatureOfLegalInstrumentExpected') or 'Unspecified'"/>
+        </td>
+        <td i18n:translate="act_signature">Actual Signature Of Legal Instrument&nbsp;
+            <span tal:content="python:ms.getProjectImplementationDate('SignatureOfLegalInstrumentActual') or 'Unspecified'"/>
+        </td>
+    </tr>
+    <tr>
+        <td></td>
+        <td i18n:translate="exp_completion">Expected Completion &nbsp;
+            <span tal:content="python:ms.getProjectImplementationDate('CompletionExpected') or 'Unspecified'"/>
+        </td>
+        <td i18n:translate="act_completion">Actual Completion&nbsp;
+            <span tal:content="python:ms.getProjectImplementationDate('CompletionActual') or 'Unspecified'"/>
+        </td>
+    </tr>
+    <tr>
+        <td></td>
+        <td i18n:translate="exp_closure">Expected Closure &nbsp;
+            <span tal:content="python:ms.getProjectImplementationDate('ClosureExpected') or 'Unspecified'"/>
+        </td>
+        <td i18n:translate="act_closure">Actual Closure&nbsp;
+            <span tal:content="python:ms.getProjectImplementationDate('ClosureActual') or 'Unspecified'"/>
+        </td>
+    </tr>
+</table>
+</metal:milestones_matrix>
+
+<metal:projectstatus_matrix define-macro="projectstatus_matrix">
+<table style="width:100%"
+        tal:define="ms nocall:context/milestones">
+    <tr>
+        <td i18n:translate="pif">PIF:</td>
+        <td i18n:translate="gef_approval">PIF Submission Date &nbsp;
+            <span tal:content="python:ms.getPIFApprovalDate('SubmissionToGEFSec') or 'Unspecified'"/>
+        </td>
+    </tr>
+    <tr>
+        <td></td>
+        <td i18n:translate="gef_approval">GEF Approval Date &nbsp;
+            <span tal:content="python:ms.getPIFApprovalDate('CEOPIFApprovalActual') or 'Unspecified'"/>
+        </td>
+        <td tal:define="docref python:ms.getDataGridReference(ms.getPIFApproval, 'milestone_action', 'CEOPIFApprovalActual', 'document')">
+            <a tal:condition="docref" tal:attributes="href docref"> Document </a>
+            <span tal:condition="not: docref"> No Document </span>
+        </td>
+    </tr>
+    <tr><td colspan=3>&nbsp;</td></tr>
+    <tr>
+        <td i18n:translate="ppg">PPG:</td>
+        <td i18n:translate="gef_approval">GEF Approval Date &nbsp;
+            <span tal:content="python:ms.getPPGApprovalDate('CEOPPGapproval') or 'Unspecified'"/>
+        </td>
+        <td tal:define="docref python:ms.getDataGridReference(ms.getPPGApproval, 'milestone_action', 'CEOPPGapproval', 'document')">
+            <a tal:condition="docref" tal:attributes="href docref"> Document </a>
+            <span tal:condition="not: docref"> No Document </span>
+        </td>
+    </tr>
+    <tr>
+        <td></td>
+        <td i18n:translate="gef_approval">UNEP Approval Date &nbsp;
+            <span tal:content="python:ms.getPPGImplementationDate('SignatureOfLegalInstrumentActual') or 'Unspecified'"/>
+        </td>
+    </tr>
+    <tr>
+        <td></td>
+        <td i18n:translate="gef_approval">Completion Date &nbsp;
+            <span tal:content="python:ms.getPPGImplementationDate('CompletionActual') or 'Unspecified'"/>
+        </td>
+    </tr>
+    <tr><td colspan=3>&nbsp;</td></tr>
+    <tr>
+        <td i18n:translate="project">Project:</td>
+        <td i18n:translate="project_ceo_approval_exp">Expected CEO Approval Date &nbsp;
+            <span tal:content="python:ms.getProjectApprovalDate('CEOApprovalEndorsementExpected') or 'Unspecified'"/>
+        </td>
+    </tr>
+    <tr>
+        <td></td>
+        <td i18n:translate="act_signature">Project Submission To GEF&nbsp;
+            <span tal:content="python:ms.getProjectApprovalDate('SubmissionToGEFSec') or 'Unspecified'"/>
+        </td>
+    </tr>
+    <tr>
+        <td></td>
+        <td i18n:translate="act_signature">CEO Approval Date&nbsp;
+            <span tal:content="python:ms.getProjectApprovalDate('CEOApprovalEndorsementActual') or 'Unspecified'"/>
+        </td>
+        <td tal:define="docref python:ms.getDataGridReference(ms.getProjectApproval, 'milestone_action', 'CEOApprovalEndorsementActual', 'document')">
+            <a tal:condition="docref" tal:attributes="href docref"> Document </a>
+            <span tal:condition="not: docref"> No Document </span>
+        </td>
+    </tr>
+    <tr>
+        <td></td>
+        <td i18n:translate="act_signature">UNEP Approval Date&nbsp;
+            <span tal:content="python:ms.getProjectApprovalDate('PAGApprovalActual') or 'Unspecified'"/>
+        </td>
+    </tr>
+    <tr>
+        <td></td>
+        <td i18n:translate="act_completion">Completion Date&nbsp;
+            <span tal:content="python:ms.getProjectImplementationDate('CompletionActual') or 'Unspecified'"/>
+        </td>
+        <td tal:define="docref python:ms.getDataGridReference(ms.getProjectImplementation, 'milestone_action', 'CompletionActual', 'document')">
+            <a tal:condition="docref" tal:attributes="href docref"> Document </a>
+            <span tal:condition="not: docref"> No Document </span>
+        </td>
+    </tr>
+</table>
+</metal:projectstatus_matrix>
+
+<metal:contacts_matrix define-macro="contacts_matrix">
+<table style="width:100%"
+    tal:define="pgi nocall:context/project_general_info;
+                pm  pgi/getProjectManager;
+                fmo  context/getFundManagerPerson;
+                tm  pgi/getCurrentTMPerson;">
+    <tal:def tal:condition="python:member.has_role(['Owner', 'Manager', 'FMO'], context)">
+        <tal:pm tal:condition="pm">
+        <tr>
+            <td i18n:translate="project_manager">Project Manager:</td>
+            <td i18n:translate="name">Name:</td>
+            <td tal:content="pm/getFullname"></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td i18n:translate="phone">Phone:</td>
+            <td tal:content="pm/getBusinessPhone|string:Unspecified"></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td i18n:translate="email">Email:</td>
+            <td tal:content="pm/getEmail|string:Unspecified"></td>
+        </tr>
+        <tr tal:define="dict pm/getPhysicalAddress;">
+            <td></td>
+            <td i18n:translate="address">Address:</td>
+            <td tal:condition="python:dict.has_key('address')"
+                tal:define="add python:dict.get('address', '');
+                            city python:dict.get('city', '');
+                            country python:dict.get('country', '');
+                            zip python:dict.get('zip', '')"
+                tal:content="python:'%s, %s, %s, %s' % (add, city, country, zip)"/>
+        </tr>
+        </tal:pm>
+        <tal:tm tal:condition="tm">
+        <tr>
+            <td i18n:translate="task_manager">Task Manager:</td>
+            <td i18n:translate="name">Name:</td>
+            <td tal:content="tm/getFullname"></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td i18n:translate="phone">Phone:</td>
+            <td tal:content="tm/getBusinessPhone|string:Unspecified"></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td i18n:translate="email">Email:</td>
+            <td tal:content="tm/getEmail|string:Unspecified"></td>
+        </tr>
+        <tr tal:define="dict tm/getPhysicalAddress;">
+            <td></td>
+            <td i18n:translate="address">Address:</td>
+            <td tal:condition="python:dict.has_key('address')"
+                tal:define="add python:dict.get('address', '');
+                            city python:dict.get('city', '');
+                            country python:dict.get('country', '');
+                            zip python:dict.get('zip', '')"
+                tal:content="python:'%s, %s, %s, %s' % (add, city, country, zip)"/>
+        </tr>
+        </tal:tm>
+        <tal:fmo tal:condition="fmo">
+        <tr>
+            <td i18n:translate="fund_management_officer">Fund Management Officer:</td>
+            <td i18n:translate="name">Name:</td>
+            <td tal:content="fmo/getFullname"></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td i18n:translate="phone">Phone:</td>
+            <td tal:content="fmo/getBusinessPhone|string:Unspecified"></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td i18n:translate="email">Email:</td>
+            <td tal:content="fmo/getEmail|string:Unspecified"></td>
+        </tr>
+        <tr tal:define="dict fmo/getPhysicalAddress;">
+            <td></td>
+            <td i18n:translate="address">Address:</td>
+            <td tal:condition="python:dict.has_key('address')"
+                tal:define="add python:dict.get('address', '');
+                            city python:dict.get('city', '');
+                            country python:dict.get('country', '');
+                            zip python:dict.get('zip', '')"
+                tal:content="python:'%s, %s, %s, %s' % (add, city, country, zip)"/>
+        </tr>
+        </tal:fmo>
+    </tal:def>
+    <tal:def tal:condition="python:member.has_role(['Anonymous'], context)">
+    For more information contact us at <a href="mailto:gefinfo@unep.org">gefinfo@unep.org</a>
+    </tal:def>
+    <tr>
+        <td i18n:translate="website">Website:</td>
+        <td></td>
+        <td tal:condition="pgi/getWebsite">
+           <a tal:attributes="href pgi/getWebsite|nothing"
+                tal:content="pgi/getWebsite|string:Unspecified">
+           </a>
+        </td>
+    </tr>
+</table>
+</metal:contacts_matrix>
