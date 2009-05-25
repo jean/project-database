@@ -5,11 +5,5 @@ from Products.CMFCore.utils import getToolByName
 
 class ExecutingAgencyRiskReport(BaseReport):
     def getReport(self):
-        rc = getToolByName(self, 'reference_catalog')
-        projects = []
-        UIDs = self.context.REQUEST.get('projects', None)
-        if UIDs:
-            UIDs = UIDs.split('|')
-            projects = [rc.lookupObject(UID) for UID in UIDs]
-        factory = ExecutingAgencyRiskReportFactory(self.context, projects=projects)
+        factory = ExecutingAgencyRiskReportFactory(self.context, projects=self_projects)
         return factory.getReport()

@@ -16,10 +16,10 @@
         </tal:loop>
         <div>
             <a href=""
-                tal:attributes="href string:${request/URL}?format=csv">CSV</a>
+                tal:attributes="href string:${request/report}?format=csv&${view/getQueryString}">CSV</a>
             &nbsp;
             <a href=""
-                tal:attributes="href string:${request/URL}?format=pdf">PDF</a>
+                tal:attributes="href string:${request/report}?format=pdf${view/getQueryString}">PDF</a>
         </div>
 
         <div style="overflow: scroll; min-height: 300px;">

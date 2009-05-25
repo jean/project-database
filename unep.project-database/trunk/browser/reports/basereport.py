@@ -136,10 +136,19 @@ class BaseReport(BrowserView):
         self.request.response.setHeader("Content-Type", "application/pdf")
         return buf
 
-    def __call__(self, format=None):
-        if format is None:
-            format = self.request.get('format', None)
+    def __call__(self):
+        import pdb; pdb.set_trace()
+        self._query = {}
+        for key in ['country', 'executing_agency', 'focal_area', \
+                    'fund_manager', 'gef_from_month', 'gef_from_year', \
+                    'gef_to_month', 'gef_to_year', 'project_title',
+                    'project_type', 'task_manager', 'unep_from_month', \
+                    'unep_from_year', 'unep_to_month', 'unep_to_year']:
+            self._query[key] = self.request.get(key, None)
 
+        brains = self.context.restrictedTraverse('@@unepsearch')(self.request)
+        self._projects = [brain.getObject() for brain in brains]
+        format = self.request.get('format', None)
         if format == 'csv':
             return self.csv()
 
@@ -157,3 +166,6 @@ class BaseReport(BrowserView):
     def getReport(self):
         raise TypeError('Abstract method ' + self._class.__name__ + 
                                     '.' + self._function + ' called')
+
+    def getQueryString(self):
+        return ''.join(['%s=%s&' % (k, v) for (k, v) in self._query.items() if v])[:-1]
