@@ -44,7 +44,7 @@
                                 Project Approval Status Report</option>
                         </optgroup>
                         <optgroup label="Project Implementation">
-                            <option tal:attributes="value string:${base}/@@projectimplementationstatusreport">
+                            <option tal:attributes="value string:@@projectimplementationstatusreport">
                                 Project Implementation Status Report
                             </option>
                             <option tal:attributes="value string:${base}/@@completedprojectsreport">

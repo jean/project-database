@@ -11,14 +11,12 @@
 
 import logging
 logger = logging.getLogger('retrieve_projects')
+#logger.info('project type:%s', context.REQUEST.get('project_type'))
 
-# report = context.REQUEST.get('report', None)
-# logger.info('view: %s', report)
-# if not report:
-#     return state.set(status='failure')
+report = context.REQUEST.get('report', None)
+logger.info('view: %s', report)
+if not report:
+    return state.set(status='failure')
 
-brains = context.restrictedTraverse('@@unepsearch')(context.REQUEST)
-projects = '|'.join([b.UID for b in brains])
-logger.info('projects: %s', projects)
-context.REQUEST.set('projects', projects)
-return state
+return context.restrictedTraverse(report)()
+#return state
