@@ -5,5 +5,5 @@ from Products.CMFCore.utils import getToolByName
 
 class KeyMilestonesReport(BaseReport):
     def getReport(self):
-        factory = KeyMilestonesReportFactory(self.context)
+        factory = KeyMilestonesReportFactory(self.context, projects=self._projects)
         return factory.getReport()
