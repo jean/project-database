@@ -31,8 +31,6 @@ class IPIStatusReportFactory(object):
 
     def getReportData(self):
         projects = self.params.get('projects', None)
-        if projects is None:
-            projects = self.projectdatabase.objectValues(spec='Project')
         result = []
         for project in projects:
             if not project.isTheProjectPublished():

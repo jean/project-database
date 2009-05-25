@@ -27,8 +27,6 @@ class InternallyExecutedProjectsReportFactory(object):
 
     def getReportData(self):
         projects = self.params.get('projects', None)
-        if projects is None:
-            projects = self.context.objectValues(spec='Project')
         result = []
 
         for project in projects:

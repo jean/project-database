@@ -38,10 +38,8 @@ class ProjectImplementationStatusReportFactory(object):
         return report
 
     def getReportData(self):
-        projects = self.params.get('projects', None)
-        if projects is None:
-            projects = self.projectdatabase.objectValues(spec='Project')
         result = []
+        projects = self.params.get('projects', None)
         for project in projects:
             mofu = project.fmi_folder.getMainFinanceObject()
             ms = project.milestones
