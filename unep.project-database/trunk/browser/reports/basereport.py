@@ -137,7 +137,6 @@ class BaseReport(BrowserView):
         return buf
 
     def __call__(self):
-        import pdb; pdb.set_trace()
         self._query = {}
         for key in ['country', 'executing_agency', 'focal_area', \
                     'fund_manager', 'gef_from_month', 'gef_from_year', \
