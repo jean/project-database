@@ -10,19 +10,19 @@
 <div metal:fill-slot="main">
     <tal:def define="base here/absolute_url">
     <div>
-        <a href="" tal:attributes="href string:${base}/@@projectratingsreport">
+        <a href="" tal:attributes="href string:@@projectratingsreport">
             Project Ratings Report</a>
     </div>
     <div>
-        <a href="" tal:attributes="href string:${base}/@@keymilestonesreport">
+        <a href="" tal:attributes="href string:@@keymilestonesreport">
             Key Milestones</a>
     </div>
     <div>
-        <a href="" tal:attributes="href string:${base}/@@qoterrreport">
+        <a href="" tal:attributes="href string:@@qoterrreport">
             Quality of Terminal Evaluation report ratings</a>
     </div>
     <div>
-        <a href="" tal:attributes="href string:${base}/@@projectimplementationreviewtablereport">
+        <a href="" tal:attributes="href string:@@projectimplementationreviewtablereport">
             Project Implementation Review Table Report</a>
     </div>
     </tal:def>
