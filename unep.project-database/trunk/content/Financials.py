@@ -1076,10 +1076,16 @@ class Financial_CSVImporter(CSVImporter):
         self._fmis_not_created = 0
 
     def importCSV(self):
+        import pdb; pdb.set_trace()
         dict_reader = self.getDictReader()
-        for raw_dict in dict_reader:
-            self.writeMessage('*******************************************')
-            gef_id = raw_dict.get('GEFid', None)
+        rows = [row for row in dict_reader]
+        # We cannot import subproject financials as top-level data
+        if 'SubProjectId' in rows[0].keys():
+            raise 'Aborting process. This is a subproject Financials file!'
+        del dict_reader
+        self.writeProgressTemplate(len(rows))
+        for row in rows:
+            gef_id = row.get('GEFid', None)
             self.writeMessage('Searching for project:GEFid=%s' %gef_id)
             project = self.getProjectByGefId(gef_id)
             if not project:
@@ -1087,7 +1093,7 @@ class Financial_CSVImporter(CSVImporter):
                 self.writeMessage('No project found for GEFid:%s' % gef_id)
                 continue
 
-            fmi = self.getFMI(project, raw_dict)
+            fmi = self.getFMI(project, row)
             if not fmi:
                 self._fmis_not_created += 1
                 self.writeMessage(
@@ -1095,10 +1101,18 @@ class Financial_CSVImporter(CSVImporter):
                         % gef_id)
                 continue
             self.writeMessage('Updating FMI fields')
-            self.updateFields(fmi, raw_dict)
+            self.updateFields(fmi, row)
+            transaction.commit()
+            fmi.reindexObject()
             self.writeMessage('Done updating fields.')
-            self.writeMessage('*******************************************')
-        return True
+            count = self._fmis_created + self._fmis_not_created
+            self.writeProgressLine(count)
+
+        msg = "Financials created:%s" % self._fmis_created
+        self._result_lines.append(msg)
+        msg = "Financials NOT created:%s" % self._fmis_not_created
+        self._result_lines.append(msg)
+        self.writeRedirectUrl()
 
     def createFMI(self, container, category, title):
         container.invokeFactory(id=category, type_name='Financials')
@@ -1111,7 +1125,7 @@ class Financial_CSVImporter(CSVImporter):
     def getFMI(self, project, data_dict):
         try:
             category = data_dict['FinanceCategory']
-            title = data_dict.get('Title', category)
+            title = data_dict.get('title', category)
             container = project['fmi_folder']
             query = {'portal_type' : 'Financials',
                      'getFinanceCategory': category,
