@@ -16,7 +16,7 @@
         </tal:loop>
         <div>
             <a href=""
-                tal:attributes="href string:${request/report}?format=csv&${view/getQueryString}">CSV</a>
+                tal:attributes="href string:${request/report}?format=csv${view/getQueryString}">CSV</a>
             &nbsp;
             <a href=""
                 tal:attributes="href string:${request/report}?format=pdf${view/getQueryString}">PDF</a>
