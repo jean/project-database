@@ -165,6 +165,7 @@ class CSVImporter:
         self._projectdatabases  = getattr(self._portal, 'projectdatabases')
 
         self._csvfile = csvfile
+        self._required_fields = ['GEFid',]
         self._coding = coding
         self.setDebugLevel(debug)
         self._result_lines = []
@@ -227,24 +228,22 @@ class CSVImporter:
         Use the csv_reader to get get the normal field names from the first
         line in the csv file.
         '''
-        field_names = []
         csv_reader = csv.reader(csv_io_buffer)
         line = csv_reader.next()
-        try:
-            if line and line.index('GEFid') > -1:
-                field_names = line
-        except ValueError:
-            msg = 'CSV file does not contain necessary headings.'
+        if self.existsRequiredFields(line):
+            return line
+        else:
+            msg = 'CSV file does not contain necessary headings: %s' % \
+                  self._required_fields
             self.writeMessage(msg)
             raise AttributeError(msg)
-        return field_names
 
-    def getFieldName(self, str):
-        '''
-        Utility method to get a field name for a datagrid field.
-        '''
-        
-        return '' 
+    def existsRequiredFields(self, line):
+        for name in self._required_fields:
+            if line and line.index(name) > -1:
+                return True
+            else:
+                return False
 
     def checkUserRole(self, context):
         '''
@@ -419,6 +418,16 @@ class CSVImporter:
             writer.write(
                 '''<input style="display: none;"
                    name="inputProgress" value="%s">''' % count)
+
+    def writeRedirectUrl(self):
+        if self._request is not None:
+            # This trick is needed since previous calls to RESPONSE.write
+            # trashes a normal redirect
+            url = '<script>document.location.href="%s/@@unep.import-form' % \
+                  self._portal.absolute_url()
+            msg = '<br/>'.join(self._result_lines) 
+            params = '?portal_status_message=%s"</script>' % msg
+            self._request.RESPONSE.write('%s%s' % (url, params))
 
     def __del__(self):
         """

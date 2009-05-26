@@ -481,10 +481,8 @@ class Project_CSVImporter(CSVImporter):
                                        self._debug)
         rows = [row for row in dict_reader]
         del dict_reader
-
         self.writeProgressTemplate(len(rows))
         for row in rows:
-            self.writeMessage('*******************************************')
             gef_id = row['GEFid']
             project = self.getProject(gef_id)
             if not project:
@@ -497,32 +495,18 @@ class Project_CSVImporter(CSVImporter):
                 self._pgis_created += 1
             else:
                 self._pgis_not_created += 1
-            self.writeMessage('*******************************************')
             count = self._pgis_created + self._pgis_not_created
             self.writeProgressLine(count)
         
-        msg = ("[unep.import_projects] - 100.0% complete")
-        self.writeMessage(msg)
-
-        msg = "Projects: %s created; %s not created" \
-              % (self._projects_created, self._projects_not_created)
+        msg = "Projects created:%s" % self._projects_created
         self._result_lines.append(msg)
-        self.writeMessage(msg)
-
-        msg = "PGI's: %s created; %s not created" \
-              % (self._pgis_created, self._pgis_not_created)
+        msg = "Projects: NOT created:%s" % self._projects_not_created
         self._result_lines.append(msg)
-        self.writeMessage(msg)
-
-        if self._request:
-            # This trick is needed since previous calls to RESPONSE.write
-            # trashes a normal redirect
-            url = '<script>document.location.href="%s/@@unep.import-form' % \
-                  self._portal.absolute_url()
-            msg = '<br/>'.join(self._result_lines) 
-            params = '?portal_status_message=%s"</script>' % msg
-            self._request.RESPONSE.write('%s%s' % (url, params))
-        return self._result_lines
+        msg = "PGI's created:%s" % self._pgis_created
+        self._result_lines.append(msg)
+        msg = "PGI's NOT created:%s" % self._pgis_not_created
+        self._result_lines.append(msg)
+        self.writeRedirectUrl()
 
     def projectExists(self, gef_id):
         '''

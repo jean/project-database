@@ -671,10 +671,12 @@ class Milestone_CSVImporter(CSVImporter):
         self._milestones_not_created = 0
 
     def importCSV(self):
-        # milestone.reindexObject()
         import pdb; pdb.set_trace()
         dict_reader = self.getDictReader()
-        for row in dict_reader: 
+        rows = [row for row in dict_reader]
+        del dict_reader
+        self.writeProgressTemplate(len(rows))
+        for row in rows:
             gef_id = row['GEFid']
             project = self.getProjectByGefId(gef_id)
             if not project:
@@ -689,7 +691,16 @@ class Milestone_CSVImporter(CSVImporter):
 
             self.writeMessage('Updating milestones')
             self.updateFields(milestones, row)
+            transaction.commit()
+            milestones.reindexObject()
             self.writeMessage(
                 'Done updating Milestones:%s' % milestones.getGEFid())
-        return True
+            count = self._milestones_created + self._milestones_not_created
+            self.writeProgressLine(count)
+
+        msg = 'Milestones created:%s' % self._milestones_created
+        self._result_lines.append(msg)
+        msg = 'Milestones NOT created:%s' % self._milestones_not_created
+        self._result_lines.append(msg)
+        self.writeRedirectUrl()
 ##/code-section module-footer

@@ -581,58 +581,83 @@ class SubProject_CSVImporter(CSVImporter):
     def __init__(self, context, csvfile, coding, debug):
         CSVImporter.__init__(self, context, csvfile, coding, debug)
         self.LOGGER = logging.getLogger('[SubProject import]')
+        self._required_fields.extend(['SubProjectId', 'title'])
         self._subprojects_created     = 0
         self._subprojects_not_created = 0
 
     def importCSV(self):
         dict_reader = self.getDictReader()
-        for row in dict_reader:
+        rows = [row for row in dict_reader]
+        del dict_reader
+        self.writeProgressTemplate(len(rows))
+        for row in rows:
             gef_id = row['GEFid']
             project = self.getProjectByGefId(gef_id)
             if not project:
                 self.writeMessage('Project NOT found for GEFId:%s' % gef_id)
                 continue 
             self.writeMessage('Found project:%s' % project.getId())
-            fmi_foder = project.fmi_folder
-            fmi = self.getFMI(fmi_folder, row['category'])
-            subproject_id = row.get('subprojectid', None)
+
+            fmi = self.getFMI(project, row)
+            if not fmi:
+                self._subproject_fmis_not_created += 1
+                self.writeMessage(
+                        'FMI for GEFid:%s could not be found.' \
+                        % gef_id)
+                continue
+            self.writeMessage('Found FMI.')
+
+            subproject_id = row.get('SubProjectId', None)
             if subproject_id:
-                sub_project = self.getSubProject(fmi, subproject_id)
+                sub_project = self.getSubProject(fmi, subproject_id, row)
                 if sub_project:
                     self.writeMessage('Updating subproject fields')
-                    self.updateFields(sub_project, row) 
+                    self.updateFields(sub_project, row)
+                    transaction.commit()
+                    sub_project.reindexObject()
                     self.writeMessage('Done updating fields.')
                 else:
                     self.writeMessage('Could not create subproject:%s')
             else:
                 self.writeMessage('No subproject id supplied. Skipping line.')
+            count = self._subprojects_created + self._subprojects_not_created
+            self.writeProgressLine(count)
         
-        self._result_lines.append('SubProjects created:%s' \
-                % self._subprojects_created)
+        msg = 'SubProjects created:%s' % self._subprojects_created
+        self._result_lines.append(msg)
+        msg = 'SubProjects NOT created:%s' % self._subprojects_not_created
+        self._result_lines.append(msg)
+        self.writeRedirectUrl()
 
-        self._result_lines.append('SubProjects not created:%s' \
-                % self._subprojects_not_created)
-        return self._result_lines
-
-    def getFMI(self, fmi_folder, category):
-        query = ''
-        fmi_list = [item for item in fmi_folder.objectValues('Finance') \
-                   if item.getCategory() == 'category']
-        fmi = len(fmi_list) > 0 and fmi_list[0]
-        if not fmi:
-            self.writeMessage('Could not find FMI instance.')
-            fmi_folder.invokeFactory(id=category, type_name='Financials')
-            new_fmi = container[category]
-            new_fmi.edit(title=title, FinanceCategory=category)
-            transaction.commit()
+    def getFMI(self, project, data_dict):
+        try:
+            category = data_dict['FinanceCategory']
+            query = {'portal_type' : 'Financials',
+                     'getFinanceCategory': category,
+                     'path' : {'query' : '/'.join(project.getPhysicalPath())},
+                    }
+            brains = self._pc(**query)
+            if len(brains):
+                return brains[0].getObject()
+            else:
+                fmi_folder = project['fmi_folder']
+                fmi_folder.invokeFactory(id=category, type_name='Financials')
+                new_fmi = fmi_folder[category]
+                new_fmi.edit(title=category, FinanceCategory=category)
+                transaction.commit()
+                return new_fmi
+        except KeyError:
+            self.writeMessage('Essential Financial info not in CSV:%s.') \
+                % self._csvfile
+            return None
 
     def getSubProject(self, fmi, subproject_id, row):
         return self.getSubProjectById(fmi, subproject_id) or \
-        self.createSubProject(fmi, row)
+               self.createSubProject(fmi, row)
 
     def createSubProject(self, context, data_dict):
-        subproject_id = data_dict['SubprojectId']
-        title = data_dict.get('Title', 'SubProject %s' % subproject_id)
+        subproject_id = data_dict['SubProjectId']
+        title = data_dict.get('title', 'SubProject %s' % subproject_id)
         context.invokeFactory(id=subproject_id, type_name='SubProject')
         new_subproject = context[subproject_id]
         new_subproject.setTitle(title)
@@ -648,5 +673,4 @@ class SubProject_CSVImporter(CSVImporter):
         if len(brains):
             return brains[0].getObject()
         return None
-
 ##/code-section module-footer
