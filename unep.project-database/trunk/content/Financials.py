@@ -36,6 +36,7 @@ from Products.ProjectDatabase.utils import getYearVocabulary
 from Products.CMFCore.utils import getToolByName
 from Products.DataGridField import MoneyColumn, ReferenceColumn
 from Products.ProjectDatabase.content.ProjectDatabase import CSVImporter
+from Products.ProjectDatabase.content.interfaces import IProject
 
 datagrid_schema = Schema((
     MoneyField(
@@ -644,6 +645,14 @@ class Financials(BaseFolder, CurrencyMixin, BrowserDefaultMixin):
 
     # Manually created methods
 
+    def getAProject(self):
+        parent = getattr(self, 'aq_parent', None)
+        while parent is not None:
+            if IProject.providedBy(parent):
+                return parent
+            parent = getattr(parent, 'aq_parent', None)
+        return None
+
     security.declarePublic('getDonorTypesVocabulary')
     def getDonorTypesVocabulary(self):
         """
@@ -795,12 +804,15 @@ class Financials(BaseFolder, CurrencyMixin, BrowserDefaultMixin):
     def getGEFid(self):
         """
         """
-        return self.getAProject()['project_general_info'].getGEFid()
+        project = self.getAProject()
+        return project and project['project_general_info'].getGEFid() or ''
 
     def getLeadExecutingAgency(self):
         """
         """
-        return self.getAProject()['project_general_info'].getLeadExecutingAgencyNames()
+        project = self.getAProject()
+        return project and \
+            project['project_general_info'].getLeadExecutingAgencyNames() or []
 
     def getTotalCoFinOfFinanceObjectPlanned(self):
         """
@@ -1072,11 +1084,11 @@ class Financial_CSVImporter(CSVImporter):
     def __init__(self, context, csvfile, coding, debug):
         CSVImporter.__init__(self, context, csvfile, coding, debug)
         self.LOGGER = logging.getLogger('[Financial import]')
+        self._required_fields.extend(['FinanceCategory',])
         self._fmis_created     = 0
         self._fmis_not_created = 0
 
     def importCSV(self):
-        import pdb; pdb.set_trace()
         dict_reader = self.getDictReader()
         rows = [row for row in dict_reader]
         # We cannot import subproject financials as top-level data

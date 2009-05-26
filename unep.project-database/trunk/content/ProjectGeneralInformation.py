@@ -34,6 +34,7 @@ from Products.ATReferenceBrowserWidget.ATReferenceBrowserWidget import Reference
 from Products.ProjectDatabase.utils import getYearVocabulary
 from Products.DataGridField import MoneyColumn, ReferenceColumn
 from Products.ProjectDatabase.content.ProjectDatabase import CSVImporter
+from Products.ProjectDatabase.content.interfaces import IProject
 
 datagrid_schema = Schema((
     MoneyField(
@@ -853,110 +854,148 @@ class ProjectGeneralInformation(BaseContent, CurrencyMixin, BrowserDefaultMixin)
 
     # Methods
 
+    def getAProject(self):
+        parent = getattr(self, 'aq_parent', None)
+        while parent is not None:
+            if IProject.providedBy(parent):
+                return parent
+            parent = getattr(parent, 'aq_parent', None)
+        return None
+
     security.declarePublic('getTotalGEFAllocation')
     def getTotalGEFAllocation(self):
         """
         """
-        fmi_cash_objs = self.getAProject()['fmi_folder'].contentValues({'portal_type':'Financials'})
         total = self.getZeroMoneyInstance()
-        for fmi_obj in fmi_cash_objs:
-            total += fmi_obj.getCommittedGEFGrant()
+        project = self.getAProject()
+        if project:
+            fmi_cash_objs = project['fmi_folder'].contentValues(
+                {'portal_type':'Financials'})
+            for fmi_obj in fmi_cash_objs:
+                total += fmi_obj.getCommittedGEFGrant()
         return total
 
     security.declarePublic('getTotalUNEPAllocation')
     def getTotalUNEPAllocation(self):
         """
         """
-        fmi_cash_objs = self.getAProject()['fmi_folder'].contentValues({'portal_type':'Financials'})
         total = self.getZeroMoneyInstance()
-        for fmi_obj in fmi_cash_objs:
-            total += fmi_obj.getTotalFinanceObject()
+        project = self.getAProject()
+        if project:
+            fmi_cash_objs = project['fmi_folder'].contentValues(
+                {'portal_type':'Financials'})
+            for fmi_obj in fmi_cash_objs:
+                total += fmi_obj.getTotalFinanceObject()
         return total
 
     security.declarePublic('getTotalCoFinancingPlanned')
     def getTotalCoFinancingPlanned(self):
         """
         """
-        fmi_cash_objs = self.getAProject()['fmi_folder'].contentValues({'portal_type':'Financials'})
         total = self.getZeroMoneyInstance()
-        for fmi_obj in fmi_cash_objs:
-            total += fmi_obj.getSumCoFinCashPlanned()
-            total += fmi_obj.getSumCoFinInKindPlanned()
+        project = self.getAProject()
+        if project:
+            fmi_cash_objs = project['fmi_folder'].contentValues(
+                {'portal_type':'Financials'})
+            for fmi_obj in fmi_cash_objs:
+                total += fmi_obj.getSumCoFinCashPlanned()
+                total += fmi_obj.getSumCoFinInKindPlanned()
         return total
 
     security.declarePublic('getTotalCoFinancingActual')
     def getTotalCoFinancingActual(self):
         """
         """
-        fmi_cash_objs = self.getAProject()['fmi_folder'].contentValues({'portal_type':'Financials'})
         total = self.getZeroMoneyInstance()
-        for fmi_obj in fmi_cash_objs:
-            total += fmi_obj.getSumCoFinCashActual()
-            total += fmi_obj.getSumCoFinInKindActual()
+        project = self.getAProject()
+        if project:
+            fmi_cash_objs = project['fmi_folder'].contentValues(
+                    {'portal_type':'Financials'})
+            for fmi_obj in fmi_cash_objs:
+                total += fmi_obj.getSumCoFinCashActual()
+                total += fmi_obj.getSumCoFinInKindActual()
         return total
 
     security.declarePublic('getTotalCashDisbursements')
     def getTotalCashDisbursements(self):
         """
         """
-        fmi_cash_objs = self.getAProject()['fmi_folder'].contentValues({'portal_type':'Financials'})
         total = self.getZeroMoneyInstance()
-        for fmi_obj in fmi_cash_objs:
-            total += fmi_obj.getSumCashDisbursements()
+        project = self.getAProject()
+        if project:
+            fmi_cash_objs = project['fmi_folder'].contentValues(
+                    {'portal_type':'Financials'})
+            for fmi_obj in fmi_cash_objs:
+                total += fmi_obj.getSumCashDisbursements()
         return total
 
     security.declarePublic('getTotalYearlyExpenditures')
     def getTotalYearlyExpenditures(self):
         """
         """
-        fmi_cash_objs = self.getAProject()['fmi_folder'].contentValues({'portal_type':'Financials'})
         total = self.getZeroMoneyInstance()
-        for fmi_obj in fmi_cash_objs:
-            total += fmi_obj.getSumYearlyExpenditures()
+        project = self.getAProject()
+        if project:
+            fmi_cash_objs = project['fmi_folder'].contentValues(
+                    {'portal_type':'Financials'})
+            for fmi_obj in fmi_cash_objs:
+                total += fmi_obj.getSumYearlyExpenditures()
         return total
 
     security.declarePublic('getPDFAStatus')
     def getPDFAStatus(self):
         """
         """
-        fmi_objs = self.getAProject()['fmi_folder'].contentValues({'portal_type':'Financials'})
         status = ''
-        for fmi_obj in fmi_objs:
-            if fmi_obj.getFinanceCategory() == 'PDF A':
-                status = fmi_obj.getStatus()
+        project = self.getAProject()
+        if project:
+            fmi_objs = project['fmi_folder'].contentValues(
+                    {'portal_type':'Financials'})
+            for fmi_obj in fmi_objs:
+                if fmi_obj.getFinanceCategory() == 'PDF A':
+                    status = fmi_obj.getStatus()
         return status
 
     security.declarePublic('getPDFBStatus')
     def getPDFBStatus(self):
         """
         """
-        fmi_objs = self.getAProject()['fmi_folder'].contentValues({'portal_type':'Financials'})
         status = ''
-        for fmi_obj in fmi_objs:
-            if fmi_obj.getFinanceCategory() == 'PDF B':
-                status = fmi_obj.getStatus()
+        project = self.getAProject()
+        if project:
+            fmi_objs = project['fmi_folder'].contentValues(
+                    {'portal_type':'Financials'})
+            for fmi_obj in fmi_objs:
+                if fmi_obj.getFinanceCategory() == 'PDF B':
+                    status = fmi_obj.getStatus()
         return status
 
     security.declarePublic('getMSPStatus')
     def getMSPStatus(self):
         """
         """
-        fmi_objs = self.getAProject()['fmi_folder'].contentValues({'portal_type':'Financials'})
         status = ''
-        for fmi_obj in fmi_objs:
-            if fmi_obj.getFinanceCategory() == 'MSP':
-                status = fmi_obj.getStatus()
+        project = self.getAProject()
+        if project:
+            fmi_objs = project['fmi_folder'].contentValues(
+                    {'portal_type':'Financials'})
+            for fmi_obj in fmi_objs:
+                if fmi_obj.getFinanceCategory() == 'MSP':
+                    status = fmi_obj.getStatus()
         return status
 
     security.declarePublic('getFSPStatus')
     def getFSPStatus(self):
         """
         """
-        fmi_objs = self.getAProject()['fmi_folder'].contentValues({'portal_type':'Financials'})
         status = ''
-        for fmi_obj in fmi_objs:
-            if fmi_obj.getFinanceCategory() == 'FSP':
-                status = fmi_obj.getStatus()
+        project = self.getAProject()
+        if project:
+            fmi_objs = project['fmi_folder'].contentValues(
+                    {'portal_type':'Financials'})
+            for fmi_obj in fmi_objs:
+                if fmi_obj.getFinanceCategory() == 'FSP':
+                    status = fmi_obj.getStatus()
         return status
 
     security.declarePublic('validate_PhasedTrancheNumber')
@@ -989,22 +1028,28 @@ class ProjectGeneralInformation(BaseContent, CurrencyMixin, BrowserDefaultMixin)
     def getPDFCStatus(self):
         """
         """
-        fmi_objs = self.getAProject()['fmi_folder'].contentValues({'portal_type':'Financials'})
         status = ''
-        for fmi_obj in fmi_objs:
-            if fmi_obj.getFinanceCategory() == 'PDF C':
-                status = fmi_obj.getStatus()
+        project = self.getAProject()
+        if project:
+            fmi_objs = project['fmi_folder'].contentValues(
+                    {'portal_type':'Financials'})
+            for fmi_obj in fmi_objs:
+                if fmi_obj.getFinanceCategory() == 'PDF C':
+                    status = fmi_obj.getStatus()
         return status
 
     security.declarePublic('getPPGStatus')
     def getPPGStatus(self):
         """
         """
-        fmi_objs = self.getAProject()['fmi_folder'].contentValues({'portal_type':'Financials'})
         status = ''
-        for fmi_obj in fmi_objs:
-            if fmi_obj.getFinanceCategory() == 'PPG':
-                status = fmi_obj.getStatus()
+        project = self.getAProject()
+        if project:
+            fmi_objs = project['fmi_folder'].contentValues(
+                    {'portal_type':'Financials'})
+            for fmi_obj in fmi_objs:
+                if fmi_obj.getFinanceCategory() == 'PPG':
+                    status = fmi_obj.getStatus()
         return status
 
     security.declarePublic('getTMCategoryVocab')
