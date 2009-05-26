@@ -680,7 +680,6 @@ class Milestone_CSVImporter(CSVImporter):
         self._milestones_not_created = 0
 
     def importCSV(self):
-        import pdb; pdb.set_trace()
         dict_reader = self.getDictReader()
         rows = [row for row in dict_reader]
         del dict_reader
