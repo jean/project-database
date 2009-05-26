@@ -167,4 +167,4 @@ class BaseReport(BrowserView):
                                     '.' + self._function + ' called')
 
     def getQueryString(self):
-        return ''.join(['%s=%s&' % (k, v) for (k, v) in self._query.items() if v])[:-1]
+        return ''.join(['&%s=%s' % (k, v) for (k, v) in self._query.items() if v])

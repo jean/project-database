@@ -7,7 +7,9 @@
       i18n:domain="plone">
 <body>
 
-<div metal:fill-slot="main">
+<div metal:fill-slot="main"
+    tal:define="getQueryString nocall:view/getQueryString | nothing;
+                queryString python:getQueryString and getQueryString() or ''">
     <tal:def tal:define="report view/getReport">
 
         <tal:loop tal:repeat="header report/getReportHeaders">
@@ -15,11 +17,11 @@
             <h2 class="reportHeader" tal:condition="not:repeat/header/start" tal:content="header">Header</h2>
         </tal:loop>
         <div>
-            <a href=""
-                tal:attributes="href string:${request/report}?format=csv${view/getQueryString}">CSV</a>
+            <a href="#"
+                tal:attributes="href python:'%s?format=csv%s' % (request.get('report'), queryString)">CSV</a>
             &nbsp;
-            <a href=""
-                tal:attributes="href string:${request/report}?format=pdf${view/getQueryString}">PDF</a>
+            <a href="#"
+                tal:attributes="href python:'%s?format=pdf%s' % (request.get('report'), queryString)">PDF</a>
         </div>
 
         <div style="overflow: scroll; min-height: 300px;">
