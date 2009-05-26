@@ -142,6 +142,7 @@ import csv
 import logging
 import transaction
 from cStringIO import StringIO
+from DateTime import DateTime
 
 from zope import event
 from Products.CMFCore.utils import getToolByName
@@ -319,6 +320,8 @@ class CSVImporter:
             column = field.widget.columns.get(column_name)
             if isinstance(column, MoneyColumn):
                 field_dict[column_name] = Money(raw_value, 'USD')
+            elif isinstance(column, CalendarColumn):
+                field_dict[column_name] = DateTime(raw_value)
             else:
                 vocab = hasattr(column, 'vocabulary') and \
                         column.getVocabulary(context)

@@ -581,7 +581,7 @@ class SubProject_CSVImporter(CSVImporter):
     def __init__(self, context, csvfile, coding, debug):
         CSVImporter.__init__(self, context, csvfile, coding, debug)
         self.LOGGER = logging.getLogger('[SubProject import]')
-        self._required_fields.extend(['SubProjectId', 'title'])
+        self._required_fields.extend(['SubProjectId', 'title', 'FinanceCategory'])
         self._subprojects_created     = 0
         self._subprojects_not_created = 0
 
@@ -614,7 +614,7 @@ class SubProject_CSVImporter(CSVImporter):
                     self.writeMessage('Updating subproject fields')
                     self.updateFields(sub_project, row)
                     transaction.commit()
-                    sub_project.reindexObject()
+                    #sub_project.reindexObject()
                     self.writeMessage('Done updating fields.')
                 else:
                     self.writeMessage('Could not create subproject:%s')
@@ -645,6 +645,7 @@ class SubProject_CSVImporter(CSVImporter):
                 new_fmi = fmi_folder[category]
                 new_fmi.edit(title=category, FinanceCategory=category)
                 transaction.commit()
+                #new_fmi.reindexObject()
                 return new_fmi
         except KeyError:
             self.writeMessage('Essential Financial info not in CSV:%s.') \

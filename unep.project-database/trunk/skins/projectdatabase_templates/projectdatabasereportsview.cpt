@@ -33,126 +33,126 @@
                 <td>
                     <select name="report">
                         <optgroup label="Project Development">
-                            <option tal:attributes="value string:${base}/@@ipistatusreport">
+                            <option tal:attributes="value string:@@ipistatusreport">
                                 IPI Status Report
                             </option>
-                            <option tal:attributes="value string:${base}/@@pifapprovalstatusreport">
+                            <option tal:attributes="value string:@@pifapprovalstatusreport">
                                 PIF Approval Status Report</option>
-                            <option tal:attributes="value string:${base}/@@ppgaprandimplstatusreport">
+                            <option tal:attributes="value string:@@ppgaprandimplstatusreport">
                                 PPG Approval and Implementation Status Report</option>
-                            <option tal:attributes="value string:${base}/@@projectapprovalstatusreport">
+                            <option tal:attributes="value string:@@projectapprovalstatusreport">
                                 Project Approval Status Report</option>
                         </optgroup>
                         <optgroup label="Project Implementation">
                             <option tal:attributes="value string:@@projectimplementationstatusreport">
                                 Project Implementation Status Report
                             </option>
-                            <option tal:attributes="value string:${base}/@@completedprojectsreport">
+                            <option tal:attributes="value string:@@completedprojectsreport">
                                 Completed Projects Report
                             </option>
-                            <option tal:attributes="value string:${base}/@@closedprojectsreport">
+                            <option tal:attributes="value string:@@closedprojectsreport">
                                 Closed Projects Report
                             </option>
-                            <option tal:attributes="value string:${base}/@@suspendedprojectsreport">
+                            <option tal:attributes="value string:@@suspendedprojectsreport">
                                 Suspended Projects Report
                             </option>
-                            <option tal:attributes="value string:${base}/@@cancelledprojectsreport">
+                            <option tal:attributes="value string:@@cancelledprojectsreport">
                                 Cancelled Projects Report
                             </option>
                         </optgroup>
                         <optgroup label="Financial Management Information">
-                            <option tal:attributes="value string:${base}/@@ppgimplstatusreport">
+                            <option tal:attributes="value string:@@ppgimplstatusreport">
                                 PPG Implementation Status Report</option>
-                            <option tal:attributes="value string:${base}/@@mspimplstatusreport">
+                            <option tal:attributes="value string:@@mspimplstatusreport">
                                 MSP Implementation Status Report</option>
-                            <option tal:attributes="value string:${base}/@@fspimplstatusreport">
+                            <option tal:attributes="value string:@@fspimplstatusreport">
                                 FSP Implementation Status Report
                             </option>
-                            <option tal:attributes="value string:${base}/@@eeaimplstatusreport">
+                            <option tal:attributes="value string:@@eeaimplstatusreport">
                                 EEA Implementation Status Report
                             </option>
-                            <option tal:attributes="value string:${base}/@@ppgreceivablesreport">
+                            <option tal:attributes="value string:@@ppgreceivablesreport">
                                 PPG Receivables Report
                             </option>
-                            <option tal:attributes="value string:${base}/@@mspreceivablesreport">
+                            <option tal:attributes="value string:@@mspreceivablesreport">
                                 MSP Receivables Report
                             </option>
-                            <option tal:attributes="value string:${base}/@@fspreceivablesreport">
+                            <option tal:attributes="value string:@@fspreceivablesreport">
                                 FSP Receivables Report
                             </option>
-                            <option tal:attributes="value string:${base}/@@eeareceivablesreport">
+                            <option tal:attributes="value string:@@eeareceivablesreport">
                                 EEA Receivables Report
                             </option>
-                            <option tal:attributes="value string:${base}/@@projectsdueforclosurereport">
+                            <option tal:attributes="value string:@@projectsdueforclosurereport">
                                 Projects Due for Closure
                             </option>
                         </optgroup>
                         <optgroup label="Contacts">
-                            <option tal:attributes="value string:${base}/@@projectcontactsreport">
+                            <option tal:attributes="value string:@@projectcontactsreport">
                                 Project Contacts Report
                             </option> 
-                            <option tal:attributes="value string:${base}/@@rosterofevaluatorsreport">
+                            <option tal:attributes="value string:@@rosterofevaluatorsreport">
                                 Roster of Evaluators Report
                             </option>
                         </optgroup>
                         <optgroup label="Monitoring and Evaluation Reports">
-                            <option tal:attributes="value string:${base}/@@midtermreviewstatusreport">
+                            <option tal:attributes="value string:@@midtermreviewstatusreport">
                                 Mid-term Review Status Report
                             </option>
-                            <option tal:attributes="value string:${base}/@@midtermevaluationstatusreport">
+                            <option tal:attributes="value string:@@midtermevaluationstatusreport">
                                 Mid-term Evaluation Status Report
                             </option>
-                            <option tal:attributes="value string:${base}/@@terminalevaluationstatusreport">
+                            <option tal:attributes="value string:@@terminalevaluationstatusreport">
                                 Terminal Evaluation Status Report
                             </option>
-                            <option tal:attributes="value string:${base}/@@qoterrplreport">
+                            <option tal:attributes="value string:@@qoterrplreport">
                                 Quality of Terminal Evaluation Report Ratings (Portfolio Level)
                             </option>
-                            <option tal:attributes="value string:${base}/@@projectsatriskreport">
+                            <option tal:attributes="value string:@@projectsatriskreport">
                                 Projects at Risk Report
                             </option>
-                            <option tal:attributes="value string:${base}/@@countryriskreport">
+                            <option tal:attributes="value string:@@countryriskreport">
                                 Country Risk Report
                             </option>
-                            <option tal:attributes="value string:${base}/@@executingagencyriskreport">
+                            <option tal:attributes="value string:@@executingagencyriskreport">
                                 Executing Agency Risk Report
                             </option>
-                            <option tal:attributes="value string:${base}/@@projectimplementationreviewreport">
+                            <option tal:attributes="value string:@@projectimplementationreviewreport">
                                 Project Implementation Review Report
                             </option>
-                            <option tal:attributes="value string:${base}/@@qualityofprojectmandereport">
+                            <option tal:attributes="value string:@@qualityofprojectmandereport">
                                 Quality of Project Monitoring and Evaluation Report
                             </option>
-                            <option tal:attributes="value string:${base}/@@projectsforceoendorsementreport">
+                            <option tal:attributes="value string:@@projectsforceoendorsementreport">
                                 Projects for CEO Endorsement Report
                             </option>
-                            <option tal:attributes="value string:${base}/@@midtermevaluationscomingupreport">
+                            <option tal:attributes="value string:@@midtermevaluationscomingupreport">
                                 Mid-term Evaluations Coming Up Report
                             </option>
-                            <option tal:attributes="value string:${base}/@@terminalevaluationscomingupreport">
+                            <option tal:attributes="value string:@@terminalevaluationscomingupreport">
                                 Terminal Evaluations Coming Up Report
                             </option>
-                            <option tal:attributes="value string:${base}/@@projectcyclestagestatusreport">
+                            <option tal:attributes="value string:@@projectcyclestagestatusreport">
                                 Project Cycle Stage Status Report
                             </option>
                         </optgroup>
                         <optgroup label="Other Reports">
-                            <option tal:attributes="value string:${base}/@@gefprojectsbypriorityreport">
+                            <option tal:attributes="value string:@@gefprojectsbypriorityreport">
                                 GEF Projects by Priority Report
                             </option>
-                            <option tal:attributes="value string:${base}/@@internallyexecutedprojectsreport">
+                            <option tal:attributes="value string:@@internallyexecutedprojectsreport">
                                 Internally Executed Projects Report
                             </option>
-                            <option tal:attributes="value string:${base}/@@projectsbygeographicscopereport">
+                            <option tal:attributes="value string:@@projectsbygeographicscopereport">
                                 Projects by Geographic Scope Report
                             </option>
-                            <option tal:attributes="value string:${base}/@@projectsbyexecutingagencyreport">
+                            <option tal:attributes="value string:@@projectsbyexecutingagencyreport">
                                 Projects by Executing Agency Report
                             </option>
-                            <option tal:attributes="value string:${base}/@@donorreport">
+                            <option tal:attributes="value string:@@donorreport">
                                 Donor Report
                             </option>
-                            <option tal:attributes="value string:${base}/@@projectsbystaffreport">
+                            <option tal:attributes="value string:@@projectsbystaffreport">
                                 Projects by Staff Report
                             </option>
                         </optgroup>

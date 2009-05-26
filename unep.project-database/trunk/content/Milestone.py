@@ -33,6 +33,7 @@ from Products.ATReferenceBrowserWidget.ATReferenceBrowserWidget import Reference
 from Products.Archetypes.utils import DisplayList
 from DateTime import DateTime
 from Products.ProjectDatabase.utils import getVocabularyValue
+from Products.ProjectDatabase.content.interfaces import IProject
 from Products.DataGridField import ReferenceColumn
 ##/code-section module-header
 
@@ -357,6 +358,14 @@ class Milestone(BaseContent, BrowserDefaultMixin):
     # Methods
 
     # Manually created methods
+
+    def getAProject(self):
+        parent = getattr(self, 'aq_parent', None)
+        while parent is not None:
+            if IProject.providedBy(parent):
+                return parent
+            parent = getattr(parent, 'aq_parent', None)
+        return None
 
     def getConceptDevelopmentActionsVocabulary(self):
         return self.getVocabulary('ConceptDevelopmentActions')
