@@ -5,5 +5,5 @@ from Products.CMFCore.utils import getToolByName
 
 class ExecutingAgencyRiskReport(BaseReport):
     def getReport(self):
-        factory = ExecutingAgencyRiskReportFactory(self.context, projects=self.projects)
+        factory = ExecutingAgencyRiskReportFactory(self.context, projects=self._projects)
         return factory.getReport()
