@@ -134,17 +134,17 @@ class BaseReport(BrowserView):
 
     def __call__(self):
         self._query = {}
-        if self.request.haskey('form.project_database_reports'):
+        if self.request.has_key('form.project_database_reports'):
             for key in ['country', 'executing_agency', 'focal_area', \
                         'fund_manager', 'gef_from_month', 'gef_from_year', \
                         'gef_to_month', 'gef_to_year', 'project_title',
                         'project_type', 'task_manager', 'unep_from_month', \
                         'unep_from_year', 'unep_to_month', 'unep_to_year']:
-                    self._query[key] = self.request.get(key)
+                self._query[key] = self.request.get(key)
 
-                brains = self.context.restrictedTraverse('@@unepsearch')\
-                            (self.request)
-                self._projects = [brain.getObject() for brain in brains]
+            brains = self.context.restrictedTraverse('@@unepsearch')\
+                        (self.request)
+            self._projects = [brain.getObject() for brain in brains]
 
         format = self.request.get('format', None)
         if format:
