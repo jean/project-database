@@ -24,6 +24,7 @@
     <form name="report_criteria" method="post" action=""
             tal:attributes="action string:${context/absolute_url}/${template/id}">
         <input type="hidden" name="form.submitted" value="1" />
+        <input type="hidden" name="form.project_database_reports" value="1" />
         <table width="100%">
             <metal:searchcriteria metal:use-macro="context/filtered_search/macros/search-criteria" />
             <tr>

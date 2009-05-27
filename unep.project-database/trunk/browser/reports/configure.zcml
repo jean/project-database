@@ -34,6 +34,7 @@
         name="ipistatusreport"
         class=".ipistatusreport.IPIStatusReport"
         permission="zope2.View"
+        template="simplehtmlreport.pt"
         />
 
     <browser:page
@@ -41,6 +42,7 @@
         name="pifapprovalstatusreport"
         class=".pifapprovalstatusreport.PIFApprovalStatusReport"
         permission="zope2.View"
+        template="simplehtmlreport.pt"
         />
 
     <browser:page
@@ -48,6 +50,7 @@
         name="ppgaprandimplstatusreport"
         class=".ppgaprandimplstatusreport.PPGApprovalAndImplementationStatusReport"
         permission="zope2.View"
+        template="simplehtmlreport.pt"
         />
 
     <browser:page
@@ -55,6 +58,7 @@
         name="projectapprovalstatusreport"
         class=".projectapprovalstatusreport.ProjectApprovalStatusReport"
         permission="zope2.View"
+        template="simplehtmlreport.pt"
         />
 
     <browser:page
@@ -62,6 +66,7 @@
         name="projectimplementationstatusreport"
         class=".projectimplementationstatusreport.ProjectImplementationStatusReport"
         permission="zope2.View"
+        template="simplehtmlreport.pt"
         />
 
     <browser:page
@@ -69,6 +74,7 @@
         name="completedprojectsreport"
         class=".completedprojectsreport.CompletedProjectsReport"
         permission="zope2.View"
+        template="simplehtmlreport.pt"
         />
 
     <browser:page
@@ -76,6 +82,7 @@
         name="closedprojectsreport"
         class=".closedprojectsreport.ClosedProjectsReport"
         permission="zope2.View"
+        template="simplehtmlreport.pt"
         />
 
     <browser:page
@@ -83,6 +90,7 @@
         name="suspendedprojectsreport"
         class=".suspendedprojectsreport.SuspendedProjectsReport"
         permission="zope2.View"
+        template="simplehtmlreport.pt"
         />
 
     <browser:page
@@ -90,6 +98,7 @@
         name="cancelledprojectsreport"
         class=".cancelledprojectsreport.CancelledProjectsReport"
         permission="zope2.View"
+        template="simplehtmlreport.pt"
         />
 
     <browser:page
@@ -97,6 +106,7 @@
         name="ppgimplstatusreport"
         class=".ppgimplstatusreport.PPGImplStatusReport"
         permission="zope2.View"
+        template="simplehtmlreport.pt"
         />
 
     <browser:page
@@ -104,6 +114,7 @@
         name="mspimplstatusreport"
         class=".mspimplstatusreport.MSPImplStatusReport"
         permission="zope2.View"
+        template="simplehtmlreport.pt"
         />
 
     <browser:page
@@ -111,6 +122,7 @@
         name="fspimplstatusreport"
         class=".fspimplstatusreport.FSPImplStatusReport"
         permission="zope2.View"
+        template="simplehtmlreport.pt"
         />
 
     <browser:page
@@ -118,6 +130,7 @@
         name="eeaimplstatusreport"
         class=".eeaimplstatusreport.EEAImplStatusReport"
         permission="zope2.View"
+        template="simplehtmlreport.pt"
         />
 
     <browser:page
@@ -125,6 +138,7 @@
         name="ppgreceivablesreport"
         class=".ppgreceivablesreport.PPGReceivablesReport"
         permission="zope2.View"
+        template="simplehtmlreport.pt"
         />
 
     <browser:page
@@ -132,6 +146,7 @@
         name="mspreceivablesreport"
         class=".mspreceivablesreport.MSPReceivablesReport"
         permission="zope2.View"
+        template="simplehtmlreport.pt"
         />
 
     <browser:page
@@ -139,6 +154,7 @@
         name="fspreceivablesreport"
         class=".fspreceivablesreport.FSPReceivablesReport"
         permission="zope2.View"
+        template="simplehtmlreport.pt"
         />
 
     <browser:page
@@ -146,6 +162,7 @@
         name="eeareceivablesreport"
         class=".eeareceivablesreport.EEAReceivablesReport"
         permission="zope2.View"
+        template="simplehtmlreport.pt"
         />
 
     <browser:page
@@ -153,6 +170,7 @@
         name="projectsdueforclosurereport"
         class=".projectsdueforclosurereport.ProjectsDueForClosureReport"
         permission="zope2.View"
+        template="simplehtmlreport.pt"
         />
 
     <browser:page
@@ -160,6 +178,7 @@
         name="projectcontactsreport"
         class=".projectcontactsreport.ProjectContactsReport"
         permission="zope2.View"
+        template="simplehtmlreport.pt"
         />
 
     <browser:page
@@ -167,6 +186,7 @@
         name="rosterofevaluatorsreport"
         class=".rosterofevaluatorsreport.RosterOfEvaluatorsReport"
         permission="zope2.View"
+        template="simplehtmlreport.pt"
         />
 
     <browser:page
@@ -174,6 +194,7 @@
         name="midtermreviewstatusreport"
         class=".midtermreviewstatusreport.MidTermReviewStatusReport"
         permission="zope2.View"
+        template="simplehtmlreport.pt"
         />
 
     <browser:page
@@ -181,6 +202,7 @@
         name="midtermevaluationstatusreport"
         class=".midtermevaluationstatusreport.MidTermEvaluationStatusReport"
         permission="zope2.View"
+        template="simplehtmlreport.pt"
         />
 
     <browser:page
@@ -188,6 +210,7 @@
         name="terminalevaluationstatusreport"
         class=".terminalevaluationstatusreport.TerminalEvaluationStatusReport"
         permission="zope2.View"
+        template="simplehtmlreport.pt"
         />
 
     <browser:page
@@ -195,6 +218,7 @@
         name="qoterrplreport"
         class=".qoterrplreport.qoterrplReport"
         permission="zope2.View"
+        template="simplehtmlreport.pt"
         />
 
     <browser:page
@@ -202,6 +226,7 @@
         name="projectsatriskreport"
         class=".projectsatriskreport.ProjectsAtRiskReport"
         permission="zope2.View"
+        template="simplehtmlreport.pt"
         />
 
     <browser:page
@@ -209,6 +234,7 @@
         name="countryriskreport"
         class=".countryriskreport.CountryRiskReport"
         permission="zope2.View"
+        template="simplehtmlreport.pt"
         />
 
     <browser:page
@@ -216,6 +242,7 @@
         name="executingagencyriskreport"
         class=".executingagencyriskreport.ExecutingAgencyRiskReport"
         permission="zope2.View"
+        template="simplehtmlreport.pt"
         />
 
     <browser:page
@@ -223,6 +250,7 @@
         name="projectimplementationreviewreport"
         class=".projectimplementationreviewreport.ProjectImplementationReviewReport"
         permission="zope2.View"
+        template="simplehtmlreport.pt"
         />
 
     <browser:page
@@ -230,6 +258,7 @@
         name="qualityofprojectmandereport"
         class=".qualityofprojectmandereport.QualityOfProjectMandEReport"
         permission="zope2.View"
+        template="simplehtmlreport.pt"
         />
 
     <browser:page
@@ -237,6 +266,7 @@
         name="projectsforceoendorsementreport"
         class=".projectsforceoendorsementreport.ProjectsForCEOEndorsementReport"
         permission="zope2.View"
+        template="simplehtmlreport.pt"
         />
 
     <browser:page
@@ -244,6 +274,7 @@
         name="midtermevaluationscomingupreport"
         class=".midtermevaluationscomingupreport.MidTermEvaluationsComingUpReport"
         permission="zope2.View"
+        template="simplehtmlreport.pt"
         />
 
     <browser:page
@@ -251,6 +282,7 @@
         name="terminalevaluationscomingupreport"
         class=".terminalevaluationscomingupreport.TerminalEvaluationsComingUpReport"
         permission="zope2.View"
+        template="simplehtmlreport.pt"
         />
 
     <browser:page
@@ -258,6 +290,7 @@
         name="projectcyclestagestatusreport"
         class=".projectcyclestagestatusreport.ProjectCycleStageStatusReport"
         permission="zope2.View"
+        template="simplehtmlreport.pt"
         />
 
     <browser:page
@@ -265,6 +298,7 @@
         name="programmeframeworkreport"
         class=".programmeframeworkreport.ProgrammeFrameworkReport"
         permission="zope2.View"
+        template="simplehtmlreport.pt"
         />
 
     <browser:page
@@ -304,6 +338,7 @@
         name="gefprojectsbypriorityreport"
         class=".gefprojectsbypriorityreport.GefProjectsByPriorityReport"
         permission="zope2.View"
+        template="simplehtmlreport.pt"
         />
 
     <browser:page
@@ -311,6 +346,7 @@
         name="internallyexecutedprojectsreport"
         class=".internallyexecutedprojectsreport.InternallyExecutedProjectsReport"
         permission="zope2.View"
+        template="simplehtmlreport.pt"
         />
 
     <browser:page
@@ -318,6 +354,7 @@
         name="projectsbygeographicscopereport"
         class=".projectsbygeographicscopereport.ProjectsByGeographicScopeReport"
         permission="zope2.View"
+        template="simplehtmlreport.pt"
         />
 
     <browser:page
@@ -325,6 +362,7 @@
         name="projectsbyexecutingagencyreport"
         class=".projectsbyexecutingagencyreport.ProjectsByExecutingAgencyReport"
         permission="zope2.View"
+        template="simplehtmlreport.pt"
         />
 
     <browser:page
@@ -332,6 +370,7 @@
         name="donorreport"
         class=".donorreport.DonorReport"
         permission="zope2.View"
+        template="simplehtmlreport.pt"
         />
 
     <browser:page
@@ -339,6 +378,7 @@
         name="projectsbystaffreport"
         class=".projectsbystaffreport.ProjectsByStaffReport"
         permission="zope2.View"
+        template="simplehtmlreport.pt"
         />
 
 </configure>
