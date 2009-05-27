@@ -30,6 +30,8 @@ from Products.CMFCore.utils import getToolByName
 from Products.ATReferenceBrowserWidget.ATReferenceBrowserWidget import ReferenceBrowserWidget
 
 ##code-section module-header #fill in your manual code here
+import logging
+logger = logging.getLogger('[FMIFolder]')
 ##/code-section module-header
 
 schema = Schema((
@@ -74,37 +76,42 @@ class FMIFolder(BaseFolder, CurrencyMixin, BrowserDefaultMixin):
             result = ppg.getSumFinanceObjectAmount()
         return result
 
+    def _queryObjects(self, cat_ids=None):
+        pc = getToolByName(self, 'portal_catalog')
+        query = {'portal_type':'Financials',
+                 'path': '/'.join(self.getPhysicalPath())}
+        if cat_ids is not None:
+            query.update({'getFinanceCategory': cat_ids})
+        brains = pc(**query)
+        return [b.getObject() for b in brains]
+
     security.declarePublic('getTotalPDFPPGcofinActual')
     def getTotalPDFPPGcofinActual(self):
         result = self.getZeroMoneyInstance()
-        for fo in self.objectValues(spec='Financials'):
-            if fo.getFinanceCategory() in ['ppg', 'pdfa', 'pdfb', 'pdfc']:
-                result += fo.getTotalCoFinOfFinanceObjectActual()
+        fin_objs = self._queryObjects(cat_ids=\
+                        ['ppg', 'pdfa', 'pdfb', 'pdfc'])
+        for fo in fin_objs:
+            result += fo.getTotalCoFinOfFinanceObjectActual()
         return result
 
     security.declarePublic('getTotalPDFFunding')
     def getTotalPDFFunding(self):
         result = self.getZeroMoneyInstance()
-        for fo in self.objectValues(spec='Financials'):
-            if fo.getFinanceCategory() in ['ppg', 'pdfa', 'pdfb', 'pdfc']:
-                result += fo.getSumFinanceObjectAmount()
+        fin_objs = self._queryObjects(cat_ids=\
+                        ['ppg', 'pdfa', 'pdfb', 'pdfc'])
+        for fo in fin_objs:
+            result += fo.getSumFinanceObjectAmount()
         return result
 
     security.declarePublic('getMainFinanceObject')
     def getMainFinanceObject(self):
-        mfo = self.get('eea', None)
-        if not mfo:
-            mfo = self.get('msp', None)
-        if not mfo:
-            mfo = self.get('fsp', None)
-        return mfo
+        for item in ('fsp', 'msp', 'eea',):
+            mfos = self._queryObjects(cat_ids=item)
+            if mfos:
+                return mfos[0]
 
     def getAllFinanceObjects(self):
-        pc = getToolByName(self, 'portal_catalog')
-        query = {'portal_type':  'Financials',
-                 'path': '/'.join(self.getPhysicalPath())}
-        brains = pc(query)
-        return [brain.getObject() for brain in brains]
+        return self._queryObjects()
 
     security.declarePublic('getTotalGrantToUnep')
     def getTotalGrantToUnep(self):

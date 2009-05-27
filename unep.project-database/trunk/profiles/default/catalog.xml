@@ -53,6 +53,11 @@
   <column value="getRemarks"/>
   <column value="getYear"/>
 <!-- ##code-section FOOT -->
+  <index name="getFinanceCategory" 
+         meta_type="FieldIndex">
+    <indexed_attr value="getFinanceCategory"/>
+  </index>
+  <column value="getFinanceCategory"/>
   <index name="getProjectTitle" 
          meta_type="ZCTextIndex">
     <indexed_attr value="getProjectTitle"/>
