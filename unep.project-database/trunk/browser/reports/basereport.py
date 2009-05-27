@@ -7,7 +7,8 @@ from Products.Five.browser import BrowserView
 
 have_rl = True
 try:
-    from reportlab.platypus import Table, TableStyle, SimpleDocTemplate, Paragraph
+    from reportlab.platypus import Table, TableStyle, \
+            SimpleDocTemplate, Paragraph
     from reportlab.lib.styles import getSampleStyleSheet
     from reportlab.lib.units import inch
 except ImportError:
@@ -16,13 +17,8 @@ except ImportError:
 class BaseReport(BrowserView):
     implements(IBrowserView)
 
-    _pt = ViewPageTemplateFile("simplehtmlreport.pt")
-
     def getReportFileName(self):
         return self.__class__.__name__
-
-    def html(self):
-        return self._pt()
 
     def csv(self):
         report = self.getReport()
@@ -138,23 +134,27 @@ class BaseReport(BrowserView):
 
     def __call__(self):
         self._query = {}
-        for key in ['country', 'executing_agency', 'focal_area', \
-                    'fund_manager', 'gef_from_month', 'gef_from_year', \
-                    'gef_to_month', 'gef_to_year', 'project_title',
-                    'project_type', 'task_manager', 'unep_from_month', \
-                    'unep_from_year', 'unep_to_month', 'unep_to_year']:
-            self._query[key] = self.request.get(key, None)
+        if self.request.haskey('form.project_database_reports'):
+            for key in ['country', 'executing_agency', 'focal_area', \
+                        'fund_manager', 'gef_from_month', 'gef_from_year', \
+                        'gef_to_month', 'gef_to_year', 'project_title',
+                        'project_type', 'task_manager', 'unep_from_month', \
+                        'unep_from_year', 'unep_to_month', 'unep_to_year']:
+                    self._query[key] = self.request.get(key)
 
-        brains = self.context.restrictedTraverse('@@unepsearch')(self.request)
-        self._projects = [brain.getObject() for brain in brains]
+                brains = self.context.restrictedTraverse('@@unepsearch')\
+                            (self.request)
+                self._projects = [brain.getObject() for brain in brains]
+
         format = self.request.get('format', None)
-        if format == 'csv':
-            return self.csv()
+        if format:
+            if format.lower() == 'csv':
+                return self.csv()
 
-        if format == 'pdf':
-            return self.pdf()
+            if format.lower() == 'pdf':
+                return self.pdf()
 
-        return self.html()
+        return self.index()
         
     def getCSVReport(self):
         return self.__call__(format="csv")
