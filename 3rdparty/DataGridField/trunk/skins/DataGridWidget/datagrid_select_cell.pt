@@ -22,6 +22,9 @@
                             value python:rows.get(column);
                             id string:${column}_${fieldId};
                             ">
+               <option value="">
+                 --Select--
+               </option>
                <option tal:repeat="item vocab"
                   tal:attributes="value item;
                                   selected python:item==rows.get(column) and 'selected' or None;"
@@ -38,6 +41,9 @@
                                 id string:${column}_${fieldId};
                                 ">
                 
+               <option value="">
+                 --Select--
+               </option>
                <option tal:repeat="item vocab"
                   tal:attributes="value item;
                                   selected python:item==column_definition.getDefault(context) and 'selected' or None;"
