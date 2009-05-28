@@ -13,6 +13,7 @@ from Products.Five import BrowserView
 
 from Products.ProjectDatabase.content.Project import Project_CSVImporter
 from Products.ProjectDatabase.content.Financials import Financial_CSVImporter
+from Products.ProjectDatabase.content.Financials import Expenditure_CSVImporter 
 from Products.ProjectDatabase.content.SubProject import SubProject_CSVImporter
 from Products.ProjectDatabase.content.Milestone import Milestone_CSVImporter
 
@@ -42,6 +43,19 @@ class ImportForm(BrowserView):
             return self._import_form(REQUEST=self._request, errors=self._errors)
         # Delegate to external method
         csv_importer = Financial_CSVImporter(
+                               context=self.context,
+                               csvfile=self._csvfile,
+                               coding=self._coding,
+                               debug=self._debug)
+        msg = csv_importer.importCSV()
+        self.returnResult(msg)
+
+    def import_expenditures(self):
+        self.setup()
+        if self._errors:
+            return self._import_form(REQUEST=self._request, errors=self._errors)
+        # Delegate to external method
+        csv_importer = Expenditure_CSVImporter(
                                context=self.context,
                                csvfile=self._csvfile,
                                coding=self._coding,

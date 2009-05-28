@@ -37,6 +37,7 @@ from Products.CMFCore.utils import getToolByName
 from Products.DataGridField import MoneyColumn, ReferenceColumn
 from Products.ProjectDatabase.content.ProjectDatabase import CSVImporter
 from Products.ProjectDatabase.content.interfaces import IProject
+from Products.ProjectDatabase.widgets.UNEPSelectionWidget import UNEPSelectionWidget
 
 datagrid_schema = Schema((
     MoneyField(
@@ -221,7 +222,7 @@ schema = Schema((
     ),
     StringField(
         name='Status',
-        widget=SelectionWidget(
+        widget=UNEPSelectionWidget(
             label="Project Status",
             label_msgid='ProjectDatabase_label_Status',
             i18n_domain='ProjectDatabase',
@@ -257,7 +258,7 @@ schema = Schema((
     ComputedField(
         name='SumFinanceObjectAmount',
         widget=ComputedField._properties['widget'](
-            label='Sumfinanceobjectamount',
+            label='Sum finance object amount',
             label_msgid='ProjectDatabase_label_SumFinanceObjectAmount',
             i18n_domain='ProjectDatabase',
         ),
@@ -582,7 +583,7 @@ schema = Schema((
         name='CurrentPrincipalFMO',
         widget=ComputedField._properties['widget'](
             visible={'edit':'hidden', 'view':'invisible'},
-            label='Currentprincipalfmo',
+            label='Current principal fmo',
             label_msgid='ProjectDatabase_label_CurrentPrincipalFMO',
             i18n_domain='ProjectDatabase',
         ),
@@ -1153,4 +1154,54 @@ class Financial_CSVImporter(CSVImporter):
                 % self._csvfile
             return None
 
+class Expenditure_CSVImporter(CSVImporter):
+    def __init__(self, context, csvfile, coding, debug):
+        import pdb; pdb.set_trace()
+        CSVImporter.__init__(self, context, csvfile, coding, debug)
+        self.LOGGER = logging.getLogger('[Financial Expenditure import]')
+        self._required_fields.extend(['IMISNumber',])
+        self._expenditures_created     = 0
+        self._expenditures_not_created = 0
+
+    def importCSV(self):
+        dict_reader = self.getDictReader()
+        rows = [row for row in dict_reader]
+        del dict_reader
+        self.writeProgressTemplate(len(rows))
+        for row in rows:
+            gef_id = row.get('GEFid', None)
+            self.writeMessage('Searching for project:GEFid=%s' %gef_id)
+            project = self.getProjectByGefId(gef_id)
+            if not project:
+                self._expenditures_not_created += 1
+                self.writeMessage('No project found for GEFid:%s' % gef_id)
+                continue
+            imis_num = row['IMISNumber']
+            fmi = self.getFMIbyIMISnumber(imis_num)
+            if not fmi:
+                self._expenditures_not_created += 1
+                self.writeMessage('No FMI found for IMIS:' % imis_num)
+                continue
+            self.writeMessage('Updating FMI expenditures.')
+            self.updateFields(fmi, row)
+            transaction.commit()
+            self.writeMessage('Done updating FMI expenditures.')
+            count = self._expenditures_created + self._expenditures_not_created
+            self.writeProgressLine(count)
+
+        msg = "FMI expenditures created:%s" % self._expenditures_created
+        self._result_lines.append(msg)
+        msg = "FMI expenditures NOT created:%s" % self._expenditures_not_created
+        self._result_lines.append(msg)
+        self.writeRedirectUrl()
+
+    def getFMIbyIMISnumber(self, imis_num):
+        container = project['fmi_folder']
+        query = {'portal_type' : 'Financials',
+                 'IMISNumber': imis_num,
+                 'path' : {'query' : '/'.join(container.getPhysicalPath())},
+                }
+        brains = self._pc(**query)
+        if len(brains):
+            return brains[0].getObject()
 ##/code-section module-footer

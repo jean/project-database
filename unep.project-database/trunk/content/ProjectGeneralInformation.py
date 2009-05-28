@@ -165,7 +165,7 @@ schema = Schema((
     ),
     StringField(
         name='StrategicPriority',
-        widget=SelectionWidget(
+        widget=UNEPSelectionWidget(
             label="Strategic Priority",
             label_msgid='ProjectDatabase_label_StrategicPriority',
             i18n_domain='ProjectDatabase',
@@ -175,7 +175,7 @@ schema = Schema((
     ),
     StringField(
         name='StrategicObjectives',
-        widget=SelectionWidget(
+        widget=UNEPSelectionWidget(
             label="Strategic Objectives",
             label_msgid='ProjectDatabase_label_StrategicObjectives',
             i18n_domain='ProjectDatabase',
@@ -185,7 +185,7 @@ schema = Schema((
     ),
     StringField(
         name='StrategicProgram',
-        widget=SelectionWidget(
+        widget=UNEPSelectionWidget(
             label="Strategic Program",
             label_msgid='ProjectDatabase_label_StrategicProgram',
             i18n_domain='ProjectDatabase',
@@ -207,7 +207,7 @@ schema = Schema((
     ),
     StringField(
         name='ProjectType',
-        widget=SelectionWidget(
+        widget=UNEPSelectionWidget(
             label="Project Type",
             label_msgid='ProjectDatabase_label_ProjectType',
             i18n_domain='ProjectDatabase',
@@ -359,7 +359,7 @@ schema = Schema((
     ),
     StringField(
         name='LeadAgency',
-        widget=SelectionWidget(
+        widget=UNEPSelectionWidget(
             label="Lead GEF Agency",
             label_msgid='ProjectDatabase_label_LeadAgency',
             i18n_domain='ProjectDatabase',
@@ -393,7 +393,7 @@ schema = Schema((
     ),
     StringField(
         name='ExecutionMode',
-        widget=SelectionWidget(
+        widget=UNEPSelectionWidget(
             label="Mode of Execution",
             label_msgid='ProjectDatabase_label_ExecutionMode',
             i18n_domain='ProjectDatabase',
@@ -403,7 +403,7 @@ schema = Schema((
     ),
     StringField(
         name='LeadDivision',
-        widget=SelectionWidget(
+        widget=UNEPSelectionWidget(
             label="Lead Division",
             label_msgid='ProjectDatabase_label_LeadDivision',
             i18n_domain='ProjectDatabase',
@@ -479,7 +479,7 @@ schema = Schema((
     ),
     StringField(
         name='RiskRatingAtInception',
-        widget=SelectionWidget(
+        widget=UNEPSelectionWidget(
             label="Risk Rating at Inception",
             label_msgid='ProjectDatabase_label_RiskRatingAtInception',
             i18n_domain='ProjectDatabase',
@@ -521,7 +521,7 @@ schema = Schema((
     ),
     StringField(
         name='PhaseTranche',
-        widget=SelectionWidget(
+        widget=UNEPSelectionWidget(
             label="Is this a Tranched/Phased/Addon Project?",
             label_msgid='ProjectDatabase_label_PhaseTranche',
             i18n_domain='ProjectDatabase',

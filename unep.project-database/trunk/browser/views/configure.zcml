@@ -28,6 +28,14 @@
 
     <browser:page
         for="*"
+        name="unep.import-expenditures-action"
+        class=".import.ImportForm"
+        attribute="import_expenditures"
+        permission="cmf.ManagePortal"
+        />  
+
+    <browser:page
+        for="*"
         name="unep.import-subprojects-action"
         class=".import.ImportForm"
         attribute="import_subprojects"
