@@ -32,13 +32,15 @@ from Products.ATReferenceBrowserWidget.ATReferenceBrowserWidget import Reference
 ##code-section module-header #fill in your manual code here
 from Products.ProjectDatabase.utils import getYearVocabulary
 from DateTime import DateTime
+from Products.ProjectDatabase.widgets.UNEPSelectionWidget import \
+         UNEPSelectionWidget
 ##/code-section module-header
 
 schema = Schema((
 
     StringField(
         name='CountryName',
-        widget=SelectionWidget(
+        widget=UNEPSelectionWidget(
             label="Country",
             label_msgid='ProjectDatabase_label_CountryName',
             i18n_domain='ProjectDatabase',
@@ -75,7 +77,7 @@ schema = Schema((
     ),
     StringField(
         name='RiskRating',
-        widget=SelectionWidget(
+        widget=UNEPSelectionWidget(
             label="Risk Rating",
             label_msgid='ProjectDatabase_label_RiskRating',
             i18n_domain='ProjectDatabase',
@@ -92,7 +94,7 @@ schema = Schema((
     ),
     StringField(
         name='Year',
-        widget=SelectionWidget(
+        widget=UNEPSelectionWidget(
             label='Year',
             label_msgid='ProjectDatabase_label_Year',
             i18n_domain='ProjectDatabase',

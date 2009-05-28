@@ -31,6 +31,8 @@ from Products.ATReferenceBrowserWidget.ATReferenceBrowserWidget import Reference
 
 ##code-section module-header #fill in your manual code here
 from Products.ProjectDatabase.utils import getYearVocabulary
+from Products.ProjectDatabase.widgets.UNEPSelectionWidget import \
+         UNEPSelectionWidget
 from DateTime import DateTime
 ##/code-section module-header
 
@@ -38,7 +40,7 @@ schema = Schema((
 
     StringField(
         name='FiscalYear',
-        widget=SelectionWidget(
+        widget=UNEPSelectionWidget(
             label="Fiscal Year",
             label_msgid='ProjectDatabase_label_FiscalYear',
             i18n_domain='ProjectDatabase',
@@ -48,7 +50,7 @@ schema = Schema((
     StringField(
         name='DevelopmentObjective',
         default="No Selection",
-        widget=SelectionWidget(
+        widget=UNEPSelectionWidget(
             label="Development Objective",
             label_msgid='ProjectDatabase_label_DevelopmentObjective',
             i18n_domain='ProjectDatabase',
@@ -58,7 +60,7 @@ schema = Schema((
     StringField(
         name='ImplementationProgress',
         default="No Selection",
-        widget=SelectionWidget(
+        widget=UNEPSelectionWidget(
             label="Implementation Progress",
             label_msgid='ProjectDatabase_label_ImplementationProgress',
             i18n_domain='ProjectDatabase',
@@ -68,7 +70,7 @@ schema = Schema((
     StringField(
         name='MonitoringAndEvaluation',
         default="No Selection",
-        widget=SelectionWidget(
+        widget=UNEPSelectionWidget(
             label="Monitoring and Evaluation",
             label_msgid='ProjectDatabase_label_MonitoringAndEvaluation',
             i18n_domain='ProjectDatabase',
@@ -78,7 +80,7 @@ schema = Schema((
     StringField(
         name='ProjectRisk',
         default="No Selection",
-        widget=SelectionWidget(
+        widget=UNEPSelectionWidget(
             label="Project Risk",
             label_msgid='ProjectDatabase_label_ProjectRisk',
             i18n_domain='ProjectDatabase',

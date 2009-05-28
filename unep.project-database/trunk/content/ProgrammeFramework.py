@@ -30,6 +30,8 @@ from Products.CMFCore.utils import getToolByName
 from Products.ATReferenceBrowserWidget.ATReferenceBrowserWidget import ReferenceBrowserWidget
 
 ##code-section module-header #fill in your manual code here
+from Products.ProjectDatabase.widgets.UNEPSelectionWidget import \
+         UNEPSelectionWidget
 ##/code-section module-header
 
 schema = Schema((
@@ -54,7 +56,7 @@ schema = Schema((
     ),
     StringField(
         name='LeadAgency',
-        widget=SelectionWidget(
+        widget=UNEPSelectionWidget(
             label="Lead Agency",
             label_msgid='ProjectDatabase_label_LeadAgency',
             i18n_domain='ProjectDatabase',

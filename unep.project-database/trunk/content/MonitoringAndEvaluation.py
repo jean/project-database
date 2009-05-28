@@ -35,13 +35,15 @@ from Products.Archetypes.utils import DisplayList
 from DateTime import DateTime
 from Products.ProjectDatabase.utils import getVocabularyValue
 from Products.DataGridField import ReferenceColumn
+from Products.ProjectDatabase.widgets.UNEPSelectionWidget import \
+         UNEPSelectionWidget
 ##/code-section module-header
 
 schema = Schema((
 
     StringField(
         name='EvaluationType',
-        widget=SelectionWidget(
+        widget=UNEPSelectionWidget(
             label="Evaluation Type",
             label_msgid='ProjectDatabase_label_EvaluationType',
             i18n_domain='ProjectDatabase',
@@ -107,7 +109,7 @@ schema = Schema((
     ),
     StringField(
         name='EOUTerminalEvaluationReportQuality',
-        widget=SelectionWidget(
+        widget=UNEPSelectionWidget(
             label="Terminal Evaluation Report Quality: EOU Rating",
             label_msgid='ProjectDatabase_label_EOUTerminalEvaluationReportQuality',
             i18n_domain='ProjectDatabase',
@@ -116,7 +118,7 @@ schema = Schema((
     ),
     StringField(
         name='GEFTerminalEvaluationReportQuality',
-        widget=SelectionWidget(
+        widget=UNEPSelectionWidget(
             label="Terminal Evaluation Report Quality: GEF EO Rating",
             label_msgid='ProjectDatabase_label_GEFTerminalEvaluationReportQuality',
             i18n_domain='ProjectDatabase',

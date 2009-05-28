@@ -35,6 +35,8 @@ from DateTime import DateTime
 from Products.FinanceFields.Money import Money
 from Products.ProjectDatabase.utils import getYearVocabulary as getAnnualVocabulary
 from Products.DataGridField import MoneyColumn, ReferenceColumn
+from Products.ProjectDatabase.widgets.UNEPSelectionWidget import \
+         UNEPSelectionWidget
 
 datagrid_schema = Schema((
 
@@ -267,7 +269,7 @@ schema = Schema((
     ),
     StringField(
         name='Status',
-        widget=SelectionWidget(
+        widget=UNEPSelectionWidget(
             label="Sub Project Status",
             label_msgid='ProjectDatabase_label_Status',
             i18n_domain='ProjectDatabase',
