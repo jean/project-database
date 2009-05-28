@@ -269,10 +269,6 @@ p {
     font-weight: 100;
 }
 
-td.structured_text p {
-    color: #24a1d1;
-}
-
 span.greytext {
     color: #878787;
 }
@@ -511,12 +507,8 @@ table.table-fullwidth {
     width:100%;
 }
 
-table.table-fullwidth th{
-    padding:10px 0 10px 0;
-    background-color:#e8f4ff;
-}
-
 table.table-fullwidth th {
+    background-color:#e8f4ff;
     text-align:center;
     padding: 5px 0 5px 0;
     font-weight: bold;
@@ -531,6 +523,16 @@ table.table-fullwidth td {
     font-weight: 100;
     font-size: small;
     font-family: Arial, Verdana;
+}
+
+table.table-fullwidth th.unep_header {
+    padding: 5px;
+    text-align: left; 
+}
+
+table.table-fullwidth td.unep_td {
+    padding: 5px;
+    text-align: left; 
 }
 
 select {
@@ -575,43 +577,6 @@ fieldset#fieldset-Plone-Settings {
 
 #forgotten-password {
   width: 20em;
-}
-
-div.datagrid-money-wrapper span.currency_edit { 
-    display: none;
-}    
-
-table.datagridwidget-table-view {
-	width: auto !important;
-}
-
-/* datagrid specific cell styles to set widths */
-.datagrid_money_cell-view {
-    width: 100px;
-}
-.datagrid_money_cell-edit {
-    width: 100px;
-}
-.datagrid_calendar_cell-view {
-    width: 100px;
-}
-.ExecutingAgencyRiskRating-Remarks-view {
-    width: 600px;
-}
-.ExecutingAgencyRiskRating-Remarks-edit {
-    width: 300px;
-}
-
-.Reports-report_period-edit {
-    width: 100px;
-}
-
-.ProjectExecutingAgency-executing_agency-edit {
-    width: 400px;
-}
-
-.EvaluationProcessStatus-process_step-edit {
-    width: 450px;
 }
 
 /*
