@@ -141,6 +141,7 @@ class BaseReport(BrowserView):
                         'project_type', 'task_manager', 'unep_from_month', \
                         'unep_from_year', 'unep_to_month', 'unep_to_year']:
                 self._query[key] = self.request.get(key)
+            self._query['form.project_database_reports'] = "1"
             brains = self.context.restrictedTraverse('@@unepsearch')(self.request)
             self._projects = [brain.getObject() for brain in brains]
 
