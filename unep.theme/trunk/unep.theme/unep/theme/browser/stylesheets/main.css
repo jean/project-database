@@ -530,21 +530,31 @@ table.table-fullwidth th.unep_header {
     text-align: left; 
 }
 
+table.table-fullwidth th.unep_money_header {
+    padding: 5px;
+    text-align: right; 
+}
+
 table.table-fullwidth td.unep_td {
     padding: 5px;
     text-align: left; 
+}
+
+table.table-fullwidth td.unep_money {
+    padding: 5px;
+    text-align: right; 
 }
 
 select {
     max-width: 800px;
 }
 
-table.datagrid-table-view th {
+table.datagridwidget-table-view th {
     padding: 5px;
     text-align: left; 
 }
 
-table.datagrid-table-view th.datagrid_money_cell-view {
+table.datagridwidget-table-view th.datagrid_money_cell-view {
     padding: 5px;
     text-align: right; 
 }
