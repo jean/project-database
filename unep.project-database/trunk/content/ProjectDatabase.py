@@ -312,13 +312,13 @@ class CSVImporter:
         Set the values of a datagrid field.
         """
         raw_field_values = self.getListFromString(field_value)
-        #column_names = field.columns
         field_dict = {}
         for count in range(0, len(raw_field_values)):
             raw_value = raw_field_values[count]
             column_name = column_names[count]
             column = field.widget.columns.get(column_name)
             if isinstance(column, MoneyColumn):
+                raw_value = raw_value.strip() and raw_value or '0'
                 field_dict[column_name] = Money(raw_value, 'USD')
             elif isinstance(column, CalendarColumn):
                 field_dict[column_name] = DateTime(raw_value)
@@ -330,7 +330,9 @@ class CSVImporter:
                         context, vocab, raw_value)
                 else:
                     field_dict[column_name] = raw_value
-        field.set(context, [field_dict])
+        row_values = [v for v in field.getRaw(context)]
+        row_values.append(field_dict)
+        field.set(context, row_values)
 
     def getValue(self, field, parent, raw_value):
         vocab = field.vocabulary

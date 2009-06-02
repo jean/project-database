@@ -593,7 +593,10 @@ class SubProject_CSVImporter(CSVImporter):
         del dict_reader
         self.writeProgressTemplate(len(rows))
         for row in rows:
-            gef_id = row['GEFid']
+            gef_id = row['GEFid'].strip()
+            if not gef_id:
+                self.writeMessage('The GEFId is empty!')
+                continue 
             project = self.getProjectByGefId(gef_id)
             if not project:
                 self.writeMessage('Project NOT found for GEFId:%s' % gef_id)
@@ -602,7 +605,7 @@ class SubProject_CSVImporter(CSVImporter):
 
             fmi = self.getFMI(project, row)
             if not fmi:
-                self._subproject_fmis_not_created += 1
+                self._subprojects_not_created += 1
                 self.writeMessage(
                         'FMI for GEFid:%s could not be found.' \
                         % gef_id)
@@ -616,7 +619,7 @@ class SubProject_CSVImporter(CSVImporter):
                     self.writeMessage('Updating subproject fields')
                     self.updateFields(sub_project, row)
                     transaction.commit()
-                    #sub_project.reindexObject()
+                    sub_project.reindexObject()
                     self.writeMessage('Done updating fields.')
                 else:
                     self.writeMessage('Could not create subproject:%s')
@@ -643,11 +646,15 @@ class SubProject_CSVImporter(CSVImporter):
                 return brains[0].getObject()
             else:
                 fmi_folder = project['fmi_folder']
+                new_fmi = fmi_folder.get(category)
+                if new_fmi:
+                    self.writeMessage('Data mismatch detected. Row skipped.')
+                    return None 
                 fmi_folder.invokeFactory(id=category, type_name='Financials')
                 new_fmi = fmi_folder[category]
                 new_fmi.edit(title=category, FinanceCategory=category)
                 transaction.commit()
-                #new_fmi.reindexObject()
+                new_fmi.reindexObject()
                 return new_fmi
         except KeyError:
             self.writeMessage('Essential Financial info not in CSV:%s.') \

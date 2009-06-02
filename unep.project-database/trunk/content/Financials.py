@@ -1156,7 +1156,6 @@ class Financial_CSVImporter(CSVImporter):
 
 class Expenditure_CSVImporter(CSVImporter):
     def __init__(self, context, csvfile, coding, debug):
-        import pdb; pdb.set_trace()
         CSVImporter.__init__(self, context, csvfile, coding, debug)
         self.LOGGER = logging.getLogger('[Financial Expenditure import]')
         self._required_fields.extend(['IMISNumber',])
@@ -1170,6 +1169,10 @@ class Expenditure_CSVImporter(CSVImporter):
         self.writeProgressTemplate(len(rows))
         for row in rows:
             gef_id = row.get('GEFid', None)
+            gef_id = row['GEFid'].strip()
+            if not gef_id:
+                self.writeMessage('The GEFId is empty!')
+                continue 
             self.writeMessage('Searching for project:GEFid=%s' %gef_id)
             project = self.getProjectByGefId(gef_id)
             if not project:
@@ -1177,10 +1180,10 @@ class Expenditure_CSVImporter(CSVImporter):
                 self.writeMessage('No project found for GEFid:%s' % gef_id)
                 continue
             imis_num = row['IMISNumber']
-            fmi = self.getFMIbyIMISnumber(imis_num)
+            fmi = self.getFMIbyIMISnumber(project, imis_num)
             if not fmi:
                 self._expenditures_not_created += 1
-                self.writeMessage('No FMI found for IMIS:' % imis_num)
+                self.writeMessage('No FMI found for IMIS:%s' % imis_num)
                 continue
             self.writeMessage('Updating FMI expenditures.')
             self.updateFields(fmi, row)
@@ -1195,7 +1198,7 @@ class Expenditure_CSVImporter(CSVImporter):
         self._result_lines.append(msg)
         self.writeRedirectUrl()
 
-    def getFMIbyIMISnumber(self, imis_num):
+    def getFMIbyIMISnumber(self, project, imis_num):
         container = project['fmi_folder']
         query = {'portal_type' : 'Financials',
                  'IMISNumber': imis_num,
