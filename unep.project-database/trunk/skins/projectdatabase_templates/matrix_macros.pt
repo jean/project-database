@@ -1,25 +1,25 @@
 <metal:fmi_matrix define-macro="fmi_matrix">
 <table class="table-fullwidth">
     <tr>
-        <th>Finance Object</th>
-        <th>IMIS No</th>
-        <th>Status</th>
-        <th>Grant to UNEP</th>
-        <th>Total Disbursements</th>
-        <th>UNEP Fee</th>
-        <th>Actual Cofinancing</th>
+        <th class="unep_header">Finance Object</th>
+        <th class="unep_header">IMIS No</th>
+        <th class="unep_header">Status</th>
+        <th class="unep_header">Grant to UNEP</th>
+        <th class="unep_header">Total Disbursements</th>
+        <th class="unep_header">UNEP Fee</th>
+        <th class="unep_header">Actual Cofinancing</th>
     </tr>
     <tr tal:repeat="brain brains">
         <tal:def tal:define="obj brain/getObject">
-        <td tal:content="python:obj.getFinanceCategory().upper() or 'unknown'" />
-        <td>
+        <td class="unep_td" tal:content="python:obj.getFinanceCategory().upper() or 'unknown'" />
+        <td class="unep_td">
             <a href="" 
                 tal:attributes="href string:${obj/absolute_url}/view" 
                 tal:content="obj/getIMISNumber | string:unknown">IMIS</a>
             <a tal:condition="python:member.has_role(['Owner', 'Manager', 'FMO'], obj)"
                 tal:attributes="href string:${obj/absolute_url}/edit">edit</a>
         </td>
-        <td tal:content="obj/getStatus | string:unknown" />
+        <td class="unep_td" tal:content="obj/getStatus | string:unknown" />
         <td tal:content="obj/getSumFinanceObjectAmount | string:unknown" />
         <td tal:content="obj/getSumCashDisbursements | string:unknown" />
         <td tal:content="obj/getFinanceObjectFee | string:unknown" />
@@ -27,7 +27,7 @@
         </tal:def>
     </tr>
     <tr >
-        <td>Total</td>
+        <td class="unep_td">Total</td>
         <td></td>
         <td></td>
         <td tal:content="fmi_folder/getTotalGrantToUnep | string:unknown" />
@@ -50,19 +50,19 @@ tal:define="fmi_folder nocall:context/fmi_folder;
 <metal:mande_matrix define-macro="mande_matrix">
 <table class="table-fullwidth">
     <tr>
-        <th>Fiscal Year</th>
-        <th>DO Rating</th>
-        <th>IP Rating</th>
-        <th>M&amp;E Rating</th>
-        <th>Risk Rating</th>
+        <th class="unep_header">Fiscal Year</th>
+        <th class="unep_header">DO Rating</th>
+        <th class="unep_header">IP Rating</th>
+        <th class="unep_header">M&amp;E Rating</th>
+        <th class="unep_header">Risk Rating</th>
     </tr>
     <tr tal:define="mne nocall:context/mne_folder"
         tal:repeat="obj python:mne.objectValues(spec='PIRRating')">
-        <td tal:content="obj/getFiscalYear | string:unknown" />
+        <td class="unep_td" tal:content="obj/getFiscalYear | string:unknown" />
         <td tal:content="obj/getDevelopmentObjective | string:unknown" />
-        <td tal:content="obj/getImplementationProgress | string:unknown" />
-        <td tal:content="obj/getMonitoringAndEvaluation | string:unknown" />
-        <td tal:content="obj/getProjectRisk | string:unknown" />
+        <td class="unep_td" tal:content="obj/getImplementationProgress | string:unknown" />
+        <td class="unep_td" tal:content="obj/getMonitoringAndEvaluation | string:unknown" />
+        <td class="unep_td" tal:content="obj/getProjectRisk | string:unknown" />
     </tr>
 </table>
 <p>
