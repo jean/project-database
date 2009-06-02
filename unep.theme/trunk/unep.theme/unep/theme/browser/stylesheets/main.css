@@ -539,6 +539,16 @@ select {
     max-width: 800px;
 }
 
+table.datagrid-table-view th {
+    padding: 5px;
+    text-align: left; 
+}
+
+table.datagrid-table-view th.datagrid_money_cell-view {
+    padding: 5px;
+    text-align: right; 
+}
+
 div.unep-theme-div-hidden {
   display: none;
 }
