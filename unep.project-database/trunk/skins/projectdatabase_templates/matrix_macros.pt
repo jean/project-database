@@ -4,10 +4,10 @@
         <th class="unep_header">Finance Object</th>
         <th class="unep_header">IMIS No</th>
         <th class="unep_header">Status</th>
-        <th class="unep_header">Grant to UNEP</th>
-        <th class="unep_header">Total Disbursements</th>
-        <th class="unep_header">UNEP Fee</th>
-        <th class="unep_header">Actual Cofinancing</th>
+        <th class="unep_money_header">Grant to UNEP</th>
+        <th class="unep_money_header">Total Disbursements</th>
+        <th class="unep_money_header">UNEP Fee</th>
+        <th class="unep_money_header">Actual Cofinancing</th>
     </tr>
     <tr tal:repeat="brain brains">
         <tal:def tal:define="obj brain/getObject">
@@ -20,20 +20,20 @@
                 tal:attributes="href string:${obj/absolute_url}/edit">edit</a>
         </td>
         <td class="unep_td" tal:content="obj/getStatus | string:unknown" />
-        <td tal:content="obj/getSumFinanceObjectAmount | string:unknown" />
-        <td tal:content="obj/getSumCashDisbursements | string:unknown" />
-        <td tal:content="obj/getFinanceObjectFee | string:unknown" />
-        <td tal:content="obj/getTotalCoFinOfFinanceObjectActual | string:unknown" />
+        <td class="unep_money" tal:content="obj/getSumFinanceObjectAmount | string:unknown" />
+        <td class="unep_money" tal:content="obj/getSumCashDisbursements | string:unknown" />
+        <td class="unep_money" tal:content="obj/getFinanceObjectFee | string:unknown" />
+        <td class="unep_money" tal:content="obj/getTotalCoFinOfFinanceObjectActual | string:unknown" />
         </tal:def>
     </tr>
     <tr >
         <td class="unep_td">Total</td>
         <td></td>
         <td></td>
-        <td tal:content="fmi_folder/getTotalGrantToUnep | string:unknown" />
-        <td tal:content="fmi_folder/getTotalDisbursements | string:unknown" />
-        <td tal:content="fmi_folder/getTotalUnepFee | string:unknown" />
-        <td tal:content="fmi_folder/getTotalActualCofin | string:unknown" />
+        <td class="unep_money" tal:content="fmi_folder/getTotalGrantToUnep | string:unknown" />
+        <td class="unep_money" tal:content="fmi_folder/getTotalDisbursements | string:unknown" />
+        <td class="unep_money" tal:content="fmi_folder/getTotalUnepFee | string:unknown" />
+        <td class="unep_money" tal:content="fmi_folder/getTotalActualCofin | string:unknown" />
     </tr>
 </table>
 </metal:fmi_matrix>

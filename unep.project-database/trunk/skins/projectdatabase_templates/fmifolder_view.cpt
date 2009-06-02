@@ -142,40 +142,40 @@
                 <td colspan="2">
                     <table class="table-fullwidth">
                         <tr>
-                            <th i18n:translate="total_cash_disbursed">
+                            <th class="unep_money_header" i18n:translate="total_cash_disbursed">
                                 Total Cash Disbursed
                             </th>
-                            <th i18n:translate="total_expenditures">
+                            <th class="unep_money_header" i18n:translate="total_expenditures">
                                 Total expenditures (IMIS)
                             </th>
-                            <th i18n:translate="receivable">
+                            <th class="unep_money_header" i18n:translate="receivable">
                                 Receivable
                             </th>
-                            <th i18n:translate="last_expenditure_report">
+                            <th class="unep_header" i18n:translate="last_expenditure_report">
                                 Last Expenditure Report
                             </th>
-                            <th i18n:translate="last_audit_report">
+                            <th class="unep_header" i18n:translate="last_audit_report">
                                 Last Audit Report
                             </th>
-                            <th i18n:translate="last_cofinance_report">
+                            <th class="unep_header" i18n:translate="last_cofinance_report">
                                 Last Co-finance Report
                             </th>
-                            <th i18n:translate="last_inventory_report">
+                            <th class="unep_header" i18n:translate="last_inventory_report">
                                 Last Inventory Report
                             </th>
-                            <th i18n:translate="last_progress_report">
+                            <th class="unep_header" i18n:translate="last_progress_report">
                                 Last Progress Report
                             </th>
                         </tr>
                         <tr class="even">
-                            <td tal:content="fo/getSumCashDisbursements" />
-                            <td tal:content="fo/getSumYearlyExpenditures" />
-                            <td tal:content="fo/getAmountReceivable" />
-                            <td tal:content="python:fo.getLatestReportData('expenditure', 'report_period')" />
-                            <td tal:content="python:fo.getLatestReportData('audit', 'report_received_date')" />
-                            <td tal:content="python:fo.getLatestReportData('cofinance', 'report_received_date')" />
-                            <td tal:content="python:fo.getLatestReportData('inventory', 'report_received_date')" />
-                            <td tal:content="python:fo.getLatestReportData('progress', 'report_period')" />
+                            <td class="unep_money" tal:content="fo/getSumCashDisbursements" />
+                            <td class="unep_money" tal:content="fo/getSumYearlyExpenditures" />
+                            <td class="unep_money" tal:content="fo/getAmountReceivable" />
+                            <td class="unep_td" tal:content="python:fo.getLatestReportData('expenditure', 'report_period')" />
+                            <td class="unep_td" tal:content="python:fo.getLatestReportData('audit', 'report_received_date')" />
+                            <td class="unep_td" tal:content="python:fo.getLatestReportData('cofinance', 'report_received_date')" />
+                            <td class="unep_td" tal:content="python:fo.getLatestReportData('inventory', 'report_received_date')" />
+                            <td class="unep_td" tal:content="python:fo.getLatestReportData('progress', 'report_period')" />
                         </tr>
                     </table>
                 </td>
@@ -203,48 +203,48 @@
                             <th colspan="9">Sub-projects/MOU's<th>
                         </tr>
                         <tr>
-                            <th i18n:translate="imis_no">IMIS No</th>
-                            <th i18n:translate="ea">EA</th>
-                            <th i18n:translate="total_cash_disbursed">
+                            <th class="unep_header" i18n:translate="imis_no">IMIS No</th>
+                            <th class="unep_header" i18n:translate="ea">EA</th>
+                            <th class="unep_money_header" i18n:translate="total_cash_disbursed">
                                 Total Cash Disbursed
                             </th>
-                            <th i18n:translate="total_expenditures">
+                            <th class="unep_money_header" i18n:translate="total_expenditures">
                                 Total expenditures (IMIS)
                             </th>
-                            <th i18n:translate="receivable">
+                            <th class="unep_money_header" i18n:translate="receivable">
                                 Receivable
                             </th>
-                            <th i18n:translate="last_expenditure_report">
+                            <th class="unep_header" i18n:translate="last_expenditure_report">
                                 Last Expenditure Report
                             </th>
-                            <th i18n:translate="last_audit_report">
+                            <th class="unep_header" i18n:translate="last_audit_report">
                                 Last Audit Report
                             </th>
-                            <th i18n:translate="last_cofinance_report">
+                            <th class="unep_header" i18n:translate="last_cofinance_report">
                                 Last Co-finance Report
                             </th>
-                            <th i18n:translate="last_inventory_report">
+                            <th class="unep_header" i18n:translate="last_inventory_report">
                                 Last Inventory Report
                             </th>
-                            <th i18n:translate="actions">
+                            <th class="unep_header" i18n:translate="actions">
                                 Actions 
                             </th>
                         </tr>
                         <tal:block tal:repeat="so sos">
                         <tr tal:define="even repeat/so/even;"
                             tal:attributes="class python:even and 'odd' or 'even'">
-                            <td>
+                            <td class="unep_td">
                                 <a tal:attributes="href string:${so/absolute_url}/view"
                                     tal:content="so/getIMISNumber">sub project</a>
                             </td>
-                            <td tal:content="so/getLeadExecutingAgencyNames" />
-                            <td tal:content="so/getSumCashDisbursements" />
-                            <td tal:content="so/getSumYearlyExpenditures" />
-                            <td tal:content="so/getAmountReceivable" />
-                            <td tal:content="python:so.getLatestReportData('expenditure', 'report_period')" />
-                            <td tal:content="python:so.getLatestReportData('audit', 'report_received_date')" />
-                            <td tal:content="python:so.getLatestReportData('cofinance', 'report_received_date')" />
-                            <td tal:content="python:so.getLatestReportData('inventory', 'report_received_date')" />
+                            <td class="unep_td" tal:content="so/getLeadExecutingAgencyNames" />
+                            <td class="unep_money" tal:content="so/getSumCashDisbursements" />
+                            <td class="unep_money" tal:content="so/getSumYearlyExpenditures" />
+                            <td class="unep_money" tal:content="so/getAmountReceivable" />
+                            <td class="unep_td" tal:content="python:so.getLatestReportData('expenditure', 'report_period')" />
+                            <td class="unep_td" tal:content="python:so.getLatestReportData('audit', 'report_received_date')" />
+                            <td class="unep_td" tal:content="python:so.getLatestReportData('cofinance', 'report_received_date')" />
+                            <td class="unep_td" tal:content="python:so.getLatestReportData('inventory', 'report_received_date')" />
                             <td>  
                               <a tal:attributes="href string:${so/absolute_url}/edit"
                                   tal:condition="python:member.has_role(['Owner','Manager','FMO','SPO','Registrar'], fo)">
@@ -253,11 +253,11 @@
                         </tr>
                         </tal:block>
                         <tr class="even">
-                            <td i18n:translate="total">Total</td>
+                            <td class="unep_td" i18n:translate="total">Total</td>
                             <td>&nbsp;</td>
-                            <td tal:content="fo/getSubProjectsTotalCashDisbursed" />
-                            <td tal:content="fo/getSubProjectsTotalExpenditures" />
-                            <td tal:content="fo/getSubProjectsTotalReceivable" />
+                            <td class="unep_money" tal:content="fo/getSubProjectsTotalCashDisbursed" />
+                            <td class="unep_money" tal:content="fo/getSubProjectsTotalExpenditures" />
+                            <td class="unep_money" tal:content="fo/getSubProjectsTotalReceivable" />
                         </tr>
                     </table>
                     <b><div metal:use-macro="here/batch_macros/macros/navigation" /></b>
