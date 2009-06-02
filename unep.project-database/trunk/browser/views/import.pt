@@ -29,7 +29,7 @@
                name="uploadCSVFile:method" />
 
         <input type="hidden" name="current_url"
-               value="http://localhost:8080/unep/contacts">
+               tal:attributes="value string:${portal_url}/contacts"/>
 
     </form>
 
