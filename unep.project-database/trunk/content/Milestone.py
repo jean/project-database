@@ -127,7 +127,7 @@ schema = Schema((
                      'milestone_date':
                         CalendarColumn('Milestone Date'),
                      'document':
-                        ReferenceColumn('document',
+                        ReferenceColumn('Document',
                         fieldname='PPGImplementationDocument')},
             label="PPG Implementation",
             label_msgid='ProjectDatabase_label_PPGImplementation',
@@ -210,7 +210,7 @@ schema = Schema((
                      'comment':
                         Column('Comment'),
                      'document':
-                        ReferenceColumn('document',
+                        ReferenceColumn('Document',
                         fieldname='NewPhaseApprovalDocument')},
             label="Add-on, Phase or Tranche Approval",
             label_msgid='ProjectDatabase_label_NewPhaseApproval',
