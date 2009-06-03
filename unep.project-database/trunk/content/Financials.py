@@ -450,13 +450,16 @@ schema = Schema((
                           MoneyColumn("Amount",
                           field=datagrid_schema['cash_disbursements_amount']),
                       'cash_disbursements_imis_rcpt_number' :
-                          Column("IMIS RCTP Number") },
+                          Column("IMIS RCTP Number"),
+                      'document':
+                          ReferenceColumn('Document',
+                          fieldname='CashDisbursementsDocument')},
             label="Cash Disbursements",
             label_msgid='ProjectDatabase_label_CashDisbursements',
             i18n_domain='ProjectDatabase',
         ),
         write_permission="FMO",
-        columns=("cash_disbursements_date", "cash_disbursements_amount", "cash_disbursements_imis_rcpt_number"),
+        columns=("cash_disbursements_date", "cash_disbursements_amount", "cash_disbursements_imis_rcpt_number", "document"),
     ),
     ComputedField(
         name='SumCashDisbursements',
@@ -525,13 +528,16 @@ schema = Schema((
                           CalendarColumn("Report Received Date"),
                       'amount' :
                           MoneyColumn("Amount",
-                          field=datagrid_schema['amount']) },
-            label="Reports",
+                          field=datagrid_schema['amount']),
+                      'document':
+                          ReferenceColumn('Document',
+                          fieldname='ReportsDocument')},
+            label="Report s",
             label_msgid='ProjectDatabase_label_Reports',
             i18n_domain='ProjectDatabase',
         ),
         write_permission="FMO",
-        columns=("report_type", "report_period", "report_received_date", "amount"),
+        columns=("report_type", "report_period", "report_received_date", "amount", "document"),
     ),
     DataGridField(
         name='ProjectRevision',
@@ -542,13 +548,16 @@ schema = Schema((
                          SelectColumn("Revision Type",
                          vocabulary="getRevisionTypeVocabulary"),
                      "revision_date":
-                         CalendarColumn("Revision Date")},
+                         CalendarColumn("Revision Date"),
+                      'document':
+                          ReferenceColumn('Document',
+                          fieldname='ProjectRevisionDocument')},
             label="Project Revision",
             label_msgid='ProjectDatabase_label_ProjectRevision',
             i18n_domain='ProjectDatabase',
         ),
         write_permission="FMO",
-        columns=("revision_number", "revision_type","revision_date"),
+        columns=("revision_number", "revision_type","revision_date", "document"),
     ),
     TextField(
         name='FinanceObjectPreparationResults',
@@ -613,6 +622,33 @@ Financials_schema['FinanceCategory'].widget.visible = {'edit':'hidden', 'view':'
 
 Financials_schema = Financials_schema.copy()  + Schema((
 
+    ReferenceField("ReportsDocument",
+            widget = ReferenceBrowserWidget(
+                visible=False,
+                startup_directory_method='getProjectDocumentsFolder',
+            ),
+            allowed_types=('File',),
+            relationship='reports_document_fake',
+            multiValued=1,
+        ),
+    ReferenceField("ProjectRevisionDocument",
+            widget = ReferenceBrowserWidget(
+                visible=False,
+                startup_directory_method='getProjectDocumentsFolder',
+            ),
+            allowed_types=('File',),
+            relationship='projectrevision_document_fake',
+            multiValued=1,
+        ),
+    ReferenceField("CashDisbursementsDocument",
+            widget = ReferenceBrowserWidget(
+                visible=False,
+                startup_directory_method='getProjectDocumentsFolder',
+            ),
+            allowed_types=('File',),
+            relationship='cashdisbursements_document_fake',
+            multiValued=1,
+        ),
     ReferenceField("FMOname",
             widget = ReferenceBrowserWidget(
                 label="Name",
@@ -1065,7 +1101,15 @@ class Financials(BaseFolder, CurrencyMixin, BrowserDefaultMixin):
         now = DateTime()
         return not (prog_date != 'Unspecified' and (now - prog_date) < 300)
 
-
+    security.declarePublic('getProjectDocumentsFolder')
+    def getProjectDocumentsFolder(self):
+        purl = getToolByName(self, 'portal_url'). \
+                getPortalObject().absolute_url()
+        folder = self.getAProject().get('documents', None)
+        if not folder:
+            folder = self.getAProject()
+        curl = folder.absolute_url()
+        return curl[len(purl)+1:]
 
 registerType(Financials, PROJECTNAME)
 # end of class Financials
