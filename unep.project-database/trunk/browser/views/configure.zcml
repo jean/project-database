@@ -51,4 +51,12 @@
         />  
     <!-- Import form end -->
 
+    <browser:page
+        for="*"
+        name="vocabulary_fetcher"
+        class=".utils.UnepUtilities"
+        attribute="getUnepVocabulary"
+        permission="zope.Public"
+        />
+
 </configure>
