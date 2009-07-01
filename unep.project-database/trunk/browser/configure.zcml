@@ -32,6 +32,7 @@
         permission="zope2.View"
         />
 
+
     <include package=".reports" />
     <include package=".views" />
 
