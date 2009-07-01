@@ -1,0 +1,7 @@
+# To update svn:externals run command below:
+# svn propset svn:externals . -F EXTERNALS.txt
+
+UpfrontContacts https://svn.upfronthosting.co.za/svn/UpfrontContacts/trunk 
+FinanceFields   https://svn.upfronthosting.co.za/svn/FinanceFields/trunk 
+ProjectDatabase http://project-database.googlecode.com/svn/unep.project-database/tags/0.9 
+DataGridField   http://project-database.googlecode.com/svn/3rdparty/DataGridField/tags/0.6 
