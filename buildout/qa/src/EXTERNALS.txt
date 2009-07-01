@@ -1,0 +1,5 @@
+# To update svn:externals run command below:
+# svn propset svn:externals . -F EXTERNALS.txt
+
+unep.policy https://project-database.googlecode.com/svn/unep.policy/tags/0.10/unep.policy
+unep.theme  https://project-database.googlecode.com/svn/unep.theme/tags/0.11
