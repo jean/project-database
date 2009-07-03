@@ -7,6 +7,20 @@
   <langstring language="en">Countries</langstring>
 </vocabName>
 <term>
+  <termIdentifier>global</termIdentifier>
+  <caption>
+    <langstring language="en">Global</langstring>
+  </caption>
+  <description />
+</term>
+<term>
+  <termIdentifier>africa</termIdentifier>
+  <caption>
+    <langstring language="en">Africa</langstring>
+  </caption>
+  <description />
+</term>
+<term>
   <termIdentifier>AF</termIdentifier>
   <caption>
     <langstring language="en">Afghanistan</langstring>
@@ -44,7 +58,7 @@
 <term>
   <termIdentifier>AG</termIdentifier>
   <caption>
-    <langstring language="en">Antigua/Barbuda</langstring>
+    <langstring language="en">Antigua and Barbuda</langstring>
   </caption>
   <description />
 </term>
@@ -156,7 +170,7 @@
 <term>
   <termIdentifier>BA</termIdentifier>
   <caption>
-    <langstring language="en">Bosnia-Herz.</langstring>
+    <langstring language="en">Bosnia-Herzegovina</langstring>
   </caption>
   <description />
 </term>
@@ -233,7 +247,7 @@
 <term>
   <termIdentifier>CF</termIdentifier>
   <caption>
-    <langstring language="en">Central African</langstring>
+    <langstring language="en">Central African Republic</langstring>
   </caption>
   <description />
 </term>
@@ -338,10 +352,10 @@
 <term>
   <termIdentifier>DO</termIdentifier>
   <caption>
-    <langstring language="en">Dominican Rep</langstring>
+    <langstring language="en">Dominican Republic</langstring>
   </caption>
   <description />
-</term>('&#187;'# East Timor 
+</term>East Timor 
 <term>
   <termIdentifier>EC</termIdentifier>
   <caption>
@@ -366,7 +380,7 @@
 <term>
   <termIdentifier>GQ</termIdentifier>
   <caption>
-    <langstring language="en">Equator'l Guinea</langstring>
+    <langstring language="en">Equatorial Guinea</langstring>
   </caption>
   <description />
 </term>
@@ -415,7 +429,7 @@
 <term>
   <termIdentifier>MK</termIdentifier>
   <caption>
-    <langstring language="en">FYR Macedonia</langstring>
+    <langstring language="en">Macedonia</langstring>
   </caption>
   <description />
 </term>
@@ -854,6 +868,13 @@
   <description />
 </term>
 <term>
+  <termIdentifier>NI</termIdentifier>
+  <caption>
+    <langstring language="en">Niue</langstring>
+  </caption>
+  <description />
+</term>
+<term>
   <termIdentifier>MP</termIdentifier>
   <caption>
     <langstring language="en">North Korea</langstring>
@@ -959,6 +980,13 @@
   <description />
 </term>
 <term>
+  <termIdentifier>RUF</termIdentifier>
+  <caption>
+    <langstring language="en">Russian Federation</langstring>
+  </caption>
+  <description />
+</term>
+<term>
   <termIdentifier>RW</termIdentifier>
   <caption>
     <langstring language="en">Rwanda</langstring>
@@ -982,7 +1010,7 @@
 <term>
   <termIdentifier>ST</termIdentifier>
   <caption>
-    <langstring language="en">Sao Tome/Princip</langstring>
+    <langstring language="en">Sao Tome and Principe</langstring>
   </caption>
   <description />
 </term>
@@ -1031,7 +1059,7 @@
 <term>
   <termIdentifier>SK</termIdentifier>
   <caption>
-    <langstring language="en">Slovakia</langstring>
+    <langstring language="en">Slovak Republic</langstring>
   </caption>
   <description />
 </term>
@@ -1087,21 +1115,21 @@
 <term>
   <termIdentifier>KN</termIdentifier>
   <caption>
-    <langstring language="en">St Kitts &amp; Nevis</langstring>
+    <langstring language="en">St. Kitts and Nevis</langstring>
   </caption>
   <description />
 </term>
 <term>
   <termIdentifier>LC</termIdentifier>
   <caption>
-    <langstring language="en">St Lucia</langstring>
+    <langstring language="en">St. Lucia</langstring>
   </caption>
   <description />
 </term>
 <term>
   <termIdentifier>VC</termIdentifier>
   <caption>
-    <langstring language="en">St Vincent/Gren</langstring>
+    <langstring language="en">St. Vincent and Grenadines</langstring>
   </caption>
   <description />
 </term>
@@ -1115,7 +1143,7 @@
 <term>
   <termIdentifier>SR</termIdentifier>
   <caption>
-    <langstring language="en">Surinam</langstring>
+    <langstring language="en">Suriname</langstring>
   </caption>
   <description />
 </term>
@@ -1206,7 +1234,7 @@
 <term>
   <termIdentifier>TT</termIdentifier>
   <caption>
-    <langstring language="en">Trinidad/Tobago</langstring>
+    <langstring language="en">Trinidad and Tobago</langstring>
   </caption>
   <description />
 </term>
