@@ -208,7 +208,7 @@
     <langstring language="en">Burkina Faso</langstring>
   </caption>
   <description />
-</term>('&#187;'# Burma 
+</term>
 <term>
   <termIdentifier>BI</termIdentifier>
   <caption>
@@ -355,7 +355,7 @@
     <langstring language="en">Dominican Republic</langstring>
   </caption>
   <description />
-</term>East Timor 
+</term>
 <term>
   <termIdentifier>EC</termIdentifier>
   <caption>
@@ -649,7 +649,7 @@
     <langstring language="en">Kyrgyzstan</langstring>
   </caption>
   <description />
-</term>('&#187;'# Laos 
+</term>
 <term>
   <termIdentifier>LV</termIdentifier>
   <caption>
@@ -868,7 +868,7 @@
   <description />
 </term>
 <term>
-  <termIdentifier>NI</termIdentifier>
+  <termIdentifier>NU</termIdentifier>
   <caption>
     <langstring language="en">Niue</langstring>
   </caption>
@@ -974,13 +974,6 @@
 </term>
 <term>
   <termIdentifier>RU</termIdentifier>
-  <caption>
-    <langstring language="en">Russia</langstring>
-  </caption>
-  <description />
-</term>
-<term>
-  <termIdentifier>RUF</termIdentifier>
   <caption>
     <langstring language="en">Russian Federation</langstring>
   </caption>
@@ -1186,6 +1179,13 @@
   <termIdentifier>TJ</termIdentifier>
   <caption>
     <langstring language="en">Tajikistan</langstring>
+  </caption>
+  <description />
+</term>
+<term>
+  <termIdentifier>TL</termIdentifier>
+  <caption>
+    <langstring language="en">East Timor</langstring>
   </caption>
   <description />
 </term>
