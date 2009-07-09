@@ -29,7 +29,8 @@ class FilteredSearchView(BrowserView):
 
         executing_agency = request.get('executing_agency', None)
         if executing_agency:
-            search_dict['getExecutingAgencies'] = executing_agency
+            executing_agency = executing_agency.strip('*')
+            search_dict['getExecutingAgencies'] = executing_agency + '*'
 
         gef_from_month = request.get('gef_from_month', None)
         gef_from_year = request.get('gef_from_year', None)
@@ -77,15 +78,18 @@ class FilteredSearchView(BrowserView):
 
         project_title = request.get('project_title', None)
         if project_title:
-            search_dict['getProjectTitle'] = project_title
+            project_title = project_title.strip('*')
+            search_dict['getProjectTitle'] = project_title + '*'
 
         task_manager = request.get('task_manager', None)
         if task_manager:
-            search_dict['getTaskManager'] = task_manager
+            task_manager = task_manager.strip('*')
+            search_dict['getTaskManager'] = task_manager + '*'
 
         fund_manager = request.get('fund_manager', None)
         if fund_manager:
-            search_dict['getFundManager'] = fund_manager
+            fund_manager = fund_manager.strip('*')
+            search_dict['getFundManager'] = fund_manager + '*'
 
         print search_dict
 
