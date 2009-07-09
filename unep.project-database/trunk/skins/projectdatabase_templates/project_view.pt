@@ -7,6 +7,7 @@
         <tal:block 
             tal:repeat="wf_action python:context.portal_workflow.listActionInfos(object=context)">
             <a href=""
+                tal:condition="python:wf_action['id'] == 'Publish'"
                 tal:attributes="href string:${context/absolute_url}/content_status_modify?workflow_action=${wf_action/id}" 
                 tal:content="wf_action/title|wf_action/id">
             </a>
