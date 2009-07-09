@@ -636,7 +636,8 @@ class SubProject_CSVImporter(CSVImporter):
 
     def getFMI(self, project, data_dict):
         try:
-            category = data_dict['FinanceCategory']
+            category = data_dict['FinanceCategory'].lower()
+            title = data_dict.get('title', category.upper())
             query = {'portal_type' : 'Financials',
                      'getFinanceCategory': category,
                      'path' : {'query' : '/'.join(project.getPhysicalPath())},
@@ -652,7 +653,7 @@ class SubProject_CSVImporter(CSVImporter):
                     return None 
                 fmi_folder.invokeFactory(id=category, type_name='Financials')
                 new_fmi = fmi_folder[category]
-                new_fmi.edit(title=category, FinanceCategory=category)
+                new_fmi.edit(title=title, FinanceCategory=category)
                 transaction.commit()
                 new_fmi.reindexObject()
                 return new_fmi
