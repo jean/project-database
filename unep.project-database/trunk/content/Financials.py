@@ -1181,8 +1181,8 @@ class Financial_CSVImporter(CSVImporter):
 
     def getFMI(self, project, data_dict):
         try:
-            category = data_dict['FinanceCategory']
-            title = data_dict.get('title', category)
+            category = data_dict['FinanceCategory'].lower()
+            title = data_dict.get('title', category.upper())
             container = project['fmi_folder']
             query = {'portal_type' : 'Financials',
                      'getFinanceCategory': category,
