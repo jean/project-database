@@ -304,7 +304,10 @@ class CSVImporter:
             mutator(value)
 
     def setMoneyField(self, field, context, field_value):
-        field.set(context, Money(field_value, 'USD'))
+        try:
+            field.set(context, Money(field_value, 'USD'))
+        except ValueError:
+            field.set(context, Money(0, 'USD'))
 
     def setDataGridField(self,
             field, context, field_name, column_names, field_value):
