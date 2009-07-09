@@ -3,5 +3,5 @@
 
 UpfrontContacts https://svn.upfronthosting.co.za/svn/UpfrontContacts/trunk 
 FinanceFields   https://svn.upfronthosting.co.za/svn/FinanceFields/trunk 
-ProjectDatabase http://project-database.googlecode.com/svn/unep.project-database/trunk
-DataGridField   http://project-database.googlecode.com/svn/3rdparty/DataGridField/trunk
+ProjectDatabase https://project-database.googlecode.com/svn/unep.project-database/trunk
+DataGridField   https://project-database.googlecode.com/svn/3rdparty/DataGridField/trunk
