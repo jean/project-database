@@ -84,6 +84,7 @@ schema = Schema((
     ),
     ComputedField(
         name='ProjectTitle',
+        searchable=True,
         widget=ComputedField._properties['widget'](
             label='Projecttitle',
             label_msgid='ProjectDatabase_label_ProjectTitle',
