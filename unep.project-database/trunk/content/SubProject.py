@@ -597,6 +597,7 @@ class SubProject_CSVImporter(CSVImporter):
             if not gef_id:
                 self.writeMessage('The GEFId is empty!')
                 continue 
+            self.writeMessage('Processing GEFId:%s' % gef_id)
             project = self.getProjectByGefId(gef_id)
             if not project:
                 self.writeMessage('Project NOT found for GEFId:%s' % gef_id)
@@ -613,6 +614,7 @@ class SubProject_CSVImporter(CSVImporter):
             self.writeMessage('Found FMI.')
 
             subproject_id = row.get('SubProjectId', None)
+            self.writeMessage('Processing SubProject:%s' % subproject_id)
             if subproject_id:
                 sub_project = self.getSubProject(fmi, subproject_id, row)
                 if sub_project:
@@ -622,7 +624,8 @@ class SubProject_CSVImporter(CSVImporter):
                     sub_project.reindexObject()
                     self.writeMessage('Done updating fields.')
                 else:
-                    self.writeMessage('Could not create subproject:%s')
+                    self.writeMessage(
+                            'Could not create subproject:%s' % subproject)
             else:
                 self.writeMessage('No subproject id supplied. Skipping line.')
             count = self._subprojects_created + self._subprojects_not_created
