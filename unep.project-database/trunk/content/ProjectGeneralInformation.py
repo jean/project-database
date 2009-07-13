@@ -93,6 +93,7 @@ schema = Schema((
 
     ComputedField(
         name='DatabaseID',
+        searchable=True,
         widget=ComputedField._properties['widget'](
             label="Database ID",
             label_msgid='ProjectDatabase_label_DatabaseID',
@@ -102,6 +103,7 @@ schema = Schema((
     ),
     TextField(
         name='FormerProjectTitle',
+        searchable=True,
         widget=TextAreaWidget(
             label="Former / Short Title",
             label_msgid='ProjectDatabase_label_FormerProjectTitle',
@@ -111,6 +113,7 @@ schema = Schema((
     ),
     StringField(
         name='GEFid',
+        searchable=True,
         widget=StringField._properties['widget'](
             label="GEF ID",
             label_msgid='ProjectDatabase_label_GEFid',
@@ -207,6 +210,7 @@ schema = Schema((
     ),
     StringField(
         name='ProjectType',
+        searchable=True,
         widget=UNEPSelectionWidget(
             label="Project Type",
             label_msgid='ProjectDatabase_label_ProjectType',
@@ -403,6 +407,7 @@ schema = Schema((
     ),
     StringField(
         name='LeadDivision',
+        searchable=True,
         widget=UNEPSelectionWidget(
             label="Lead Division",
             label_msgid='ProjectDatabase_label_LeadDivision',
