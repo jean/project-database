@@ -324,7 +324,11 @@ class CSVImporter:
                 raw_value = raw_value.strip() and raw_value or '0'
                 field_dict[column_name] = Money(raw_value, 'USD')
             elif isinstance(column, CalendarColumn):
-                field_dict[column_name] = DateTime(raw_value)
+                if raw_value == '':
+                    date_value = None
+                else:
+                    date_value = DateTime(raw_value)
+                field_dict[column_name] = date_value
             else:
                 vocab = hasattr(column, 'vocabulary') and \
                         column.getVocabulary(context)
