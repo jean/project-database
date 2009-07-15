@@ -80,7 +80,7 @@ tal:define="fmi_folder nocall:context/fmi_folder;
         tal:define="pgi nocall:ob/project_general_info">
     <tr>
         <td i18n:translate="gef_id" width="30%">GEF ID:</td>
-        <td>
+        <td class="pgi_matrix_label">
             <span tal:condition="python:member.has_role(['Anonymous'], pgi)"
                 tal:content="pgi/getGEFid|string:Unspecified"> PGI </span>
             <a tal:condition="python:member.has_role(['Owner', 'Manager', 'TM', 'Registrar'], pgi)"
@@ -91,48 +91,70 @@ tal:define="fmi_folder nocall:context/fmi_folder;
         </td>
     </tr>
     <tr>
-        <td i18n:translate="focal_areas" width="30%">Focal Areas:</td>
+        <td i18n:translate="focal_areas"
+            width="30%"
+            class="pgi_matrix_label">Focal Areas:</td>
         <td tal:content="pgi/getFocalAreaNames | string:unknown" />
     </tr>
     <tr>
-        <td i18n:translate="geographic_scope" width="30%">Geographic Scope:</td>
+        <td i18n:translate="geographic_scope"
+            width="30%"
+            class="pgi_matrix_label">Geographic Scope:</td>
         <td tal:content="pgi/getGeographicScopeValues| string:unknown" />
     </tr>
     <tr>
-        <td i18n:translate="countries" width="30%">Country(ies):</td>
+        <td i18n:translate="countries"
+            width="30%"
+            class="pgi_matrix_label">Country(ies):</td>
         <td tal:content="pgi/getCountryNames| string:unknown" />
     </tr>
     <tr>
-        <td i18n:translate="project_desciption" width="30%">Project Description:</td>
+        <td i18n:translate="project_desciption"
+            width="30%"
+            class="pgi_matrix_label">Project Description:</td>
         <td class="structured_text"
             tal:content="structure pgi/getSummaryDescription| string:unknown" />
     </tr>
     <tr>
-        <td i18n:translate="lead_executing_agency" width="30%">Lead Executing Agency:</td>
+        <td i18n:translate="lead_executing_agency"
+            width="30%"
+            class="pgi_matrix_label">Lead Executing Agency:</td>
         <td tal:content="pgi/getLeadExecutingAgencyNames | string:unknown" />
     </tr>
     <tr>
-        <td i18n:translate="project_type" width="30%">Project Type:</td>
+        <td i18n:translate="project_type"
+            width="30%"
+            class="pgi_matrix_label">Project Type:</td>
         <td tal:content="pgi/getProjectType | string:unknown" />
     </tr>
     <tr>
-        <td i18n:translate="pif_ppg_grant" width="30%">PPG/PDF Grant:</td>
+        <td i18n:translate="pif_ppg_grant"
+            width="30%"
+            class="pgi_matrix_label">PPG/PDF Grant:</td>
         <td tal:content="pgi/getPIFPPGAmount | string:unknown" />
     </tr>
     <tr>
-        <td i18n:translate="pif_ppg_cofin" width="30%">PPG Confinancing:</td>
+        <td i18n:translate="pif_ppg_cofin"
+            width="30%"
+            class="pgi_matrix_label">PPG Confinancing:</td>
         <td tal:content="pgi/getPIFPPGCoFinAmount | string:unknown" />
     </tr>
     <tr>
-        <td i18n:translate="pif_project_grant" width="30%">Project Grant:</td>
+        <td i18n:translate="pif_project_grant"
+            width="30%"
+            class="pgi_matrix_label">Project Grant:</td>
         <td tal:content="pgi/getPIFProjectAmount | string:unknown" />
     </tr>
     <tr>
-        <td i18n:translate="pif_project_cofin" width="30%">Project Confinancing:</td>
+        <td i18n:translate="pif_project_cofin"
+            width="30%"
+            class="pgi_matrix_label">Project Confinancing:</td>
         <td tal:content="pgi/getPIFProjectCoFinAmount | string:unknown" />
     </tr>
     <tr>
-        <td i18n:translate="project_results" width="30%">Project Results:</td>
+        <td i18n:translate="project_results"
+            width="30%"
+            class="pgi_matrix_label">Project Results:</td>
         <td class="structured_text"
             tal:content="structure pgi/getProjectResults | string:unknown" />
     </tr>
