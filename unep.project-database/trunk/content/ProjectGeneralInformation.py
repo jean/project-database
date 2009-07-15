@@ -1494,6 +1494,7 @@ registerType(ProjectGeneralInformation, PROJECTNAME)
 # end of class ProjectGeneralInformation
 
 ##code-section module-footer #fill in your manual code here
+import transaction
 import logging
 class PGI_CSVImporter(CSVImporter):
     def __init__(self, context, csvfile, coding, debug):
@@ -1509,6 +1510,7 @@ class PGI_CSVImporter(CSVImporter):
         if pgi:
             self.writeMessage('Updating PGI')
             self.updateFields(pgi, pgi_data)
+            transaction.commit()
             self.writeMessage('Done updating PGI:%s' % pgi.getGEFid())
             return True
         else:
