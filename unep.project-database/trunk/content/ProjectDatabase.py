@@ -298,8 +298,8 @@ class CSVImporter:
         mutator(field_value_list)
 
     def setField(self, field, context, field_value):
-        value = self.getValue(field, context, field_value)
-        if value:
+        value = self.getValue(field, context, field_value) or ""
+        if value is not None:
             mutator = self.getMutator(field, context)
             mutator(value)
 
