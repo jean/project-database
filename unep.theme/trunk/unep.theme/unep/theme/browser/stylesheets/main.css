@@ -545,6 +545,10 @@ table.table-fullwidth td.unep_money {
     text-align: right; 
 }
 
+td.pgi_matrix_label {
+    vertical-align: top;
+}
+
 select {
     max-width: 800px;
 }
