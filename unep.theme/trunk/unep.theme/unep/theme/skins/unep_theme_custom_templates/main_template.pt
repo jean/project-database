@@ -124,7 +124,7 @@
     </div>
 
     <!-- member info bar -->
-    <div class="user-info" tal:condition="python: not isAnon and member.getId() != 'admin'">
+    <div class="user-info" tal:condition="python: not isAnon and member.portal_type == 'Person'">
         <span tal:content="member/title_or_id" class="greytext">Johanna Smith,</span>
         <span class="greytext">&raquo;</span>
         <!-- <span class="greytext">General Project Manager,</span> -->
