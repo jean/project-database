@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vdex xmlns="http://www.imsglobal.org/xsd/imsvdex_v1p0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.imsglobal.org/xsd/imsvdex_v1p0 imsvdex_v1p0.xsd http://www.imsglobal.org/xsd/imsmd_rootv1p2p1 imsmd_rootv1p2p1.xsd"
+    language="en" orderSignificant="true" profileType="flatTokenTerms">
+<vocabName>
+  <langstring language="en">PPG Approval Actions</langstring>
+</vocabName>
+
+<term>
+  <termIdentifier>SubmissionToGEFSec</termIdentifier>
+  <caption>
+    <langstring language="en">Submission to GEF Sec</langstring>
+  </caption>
+  <description />
+</term>
+
+<term>
+  <termIdentifier>ReviewSheet</termIdentifier>
+  <caption>
+    <langstring language="en">Review sheet</langstring>
+  </caption>
+  <description />
+</term>
+
+<term>
+  <termIdentifier>CEOPPGapproval</termIdentifier>
+  <caption>
+    <langstring language="en">CEO PPG approval</langstring>
+  </caption>
+  <description />
+</term>
+
+<term>
+  <termIdentifier>PPGwithdrawal</termIdentifier>
+  <caption>
+    <langstring language="en">PPG withdrawal</langstring>
+  </caption>
+  <description />
+</term>
+
+</vdex>

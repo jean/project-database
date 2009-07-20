@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vdex xmlns="http://www.imsglobal.org/xsd/imsvdex_v1p0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.imsglobal.org/xsd/imsvdex_v1p0 imsvdex_v1p0.xsd http://www.imsglobal.org/xsd/imsmd_rootv1p2p1 imsmd_rootv1p2p1.xsd"
+    language="en" orderSignificant="true" profileType="flatTokenTerms">
+<vocabName>
+  <langstring language="en">Concept Development Actions</langstring>
+</vocabName>
+
+<term>
+  <termIdentifier>ReceiptOfConcept</termIdentifier>
+  <caption>
+    <langstring language="en">Receipt Of Concept</langstring>
+  </caption>
+  <description />
+</term>
+
+<term>
+  <termIdentifier>PeerReview</termIdentifier>
+  <caption>
+    <langstring language="en">Peer Review</langstring>
+  </caption>
+  <description />
+</term>
+
+<term>
+  <termIdentifier>SPOReview</termIdentifier>
+  <caption>
+    <langstring language="en">SPO Review</langstring>
+  </caption>
+  <description />
+</term>
+
+<term>
+  <termIdentifier>SPOClearance</termIdentifier>
+  <caption>
+    <langstring language="en">SPO Clearance</langstring>
+  </caption>
+  <description />
+</term>
+
+<term>
+  <termIdentifier>DirectorClearance</termIdentifier>
+  <caption>
+    <langstring language="en">Director Clearance</langstring>
+  </caption>
+  <description />
+</term>
+
+<term>
+  <termIdentifier>PAGClearance</termIdentifier>
+  <caption>
+    <langstring language="en">PAG Clearance</langstring>
+  </caption>
+  <description />
+</term>
+
+<term>
+  <termIdentifier>Withdrawal</termIdentifier>
+  <caption>
+    <langstring language="en">Withdrawal</langstring>
+  </caption>
+  <description />
+</term>
+
+</vdex>
