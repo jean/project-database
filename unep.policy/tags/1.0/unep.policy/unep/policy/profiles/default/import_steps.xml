@@ -1,8 +1,0 @@
-<?xml version="1.0" ?>
-<import-steps>
-    <import-step id="unep-various" version="20081006-01"
-                handler="unep.policy.setuphandlers.importVarious"
-                title="Additional UNEP site policy setup">
-        <dependency step="" />
-    </import-step>
-</import-steps>
