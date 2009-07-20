@@ -1,0 +1,28 @@
+body:load {
+  action-server: unep.theme.hide-widgets;
+}
+
+div#archetypes-fieldname-GEFPhase select:change,
+div#archetypes-fieldname-ExecutionMode input[type="radio"]:change,
+div#archetypes-fieldname-JointImplementation input[type="checkbox"]:change,
+div#archetypes-fieldname-ProgrammeFramework input[type="checkbox"]:change,
+div#archetypes-fieldname-JointEvaluation input[type="checkbox"]:change {
+  action-server: unep.theme.togglewidget;
+  unep.theme.togglewidget-fieldname: kssAttr('atfieldname', True);
+  unep.theme.togglewidget-value: currentFormVar();
+}
+
+div#archetypes-fieldname-FocalArea input[type="button"]:click {
+  action-server: unep.theme.togglewidget;
+  unep.theme.togglewidget-fieldname: kssAttr('atfieldname', True);
+  unep.theme.togglewidget-value: currentFormVar();
+  unep.theme.togglewidget-ProjectType: currentFormVar('ProjectType');
+  unep.theme.togglewidget-selection: currentFormVar('FocalArea:list');
+}
+
+div#archetypes-fieldname-ProjectType input[type="radio"]:change {
+  action-server: unep.theme.togglewidget;
+  unep.theme.togglewidget-fieldname: kssAttr('atfieldname', True);
+  unep.theme.togglewidget-value: currentFormVar();
+  unep.theme.togglewidget-FocalArea: currentFormVar('FocalArea:list');
+}
