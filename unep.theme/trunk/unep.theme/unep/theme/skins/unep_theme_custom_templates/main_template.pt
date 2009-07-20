@@ -214,15 +214,10 @@
 
     <!-- Colophon -->
     <div class="column-heading" style="font-weight: 100; padding-top: 5px; padding-bottom: 5px;">
-        <span style="margin-left: 40px;" i18n:translate="copyright_unep_2008">&copy;UNEP 2008</span>&nbsp;&nbsp;&nbsp;&nbsp;
-        <span i18n:translate="powered_by">Powered by</span>
-        <a href="http://www.plone.org"><span i18n:translate="Plone">Plone</span></a>
-        &nbsp;&nbsp;&nbsp;&nbsp;
-        <span i18n:translate="created_by">Created by</span>
-        <a href="http://wwww.upfrontsystems.co.za"><span i18n:translate="upfront_systems">Upfront Systems</span></a>
-        &nbsp;&nbsp;&nbsp;&nbsp;
-        <span i18n:translate="designed_by">Designed by</span>
-        <a href="http://theflyingdutchman.co.za"><span i18n:translate="the_flying_dutchman">The Flying Dutchman</span></a>
+        <span style="margin-left: 12px;" i18n:translate="copyright_unep_2009">&copy;UNEP 2009</span>
+        <span style="float: right; margin-right: 12px" i18n:translate="powered_by">
+            Powered by&nbsp;<a href="http://www.plone.org">Plone</a>
+        </span>
     </div>
 
 </div>
