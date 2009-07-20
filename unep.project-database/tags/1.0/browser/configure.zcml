@@ -1,0 +1,39 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    i18n_domain="ProjectDatabase">
+
+    <!-- Page Views -->
+    <browser:page
+        for="*"
+        name="create-project"
+        class=".createproject.ProjectCreation"
+        permission="zope2.View"
+        />
+
+    <browser:page
+        for="*"
+        name="create-country"
+        class=".createcountry.CountryCreation"
+        permission="zope2.View"
+        />
+
+    <browser:page
+        for="*"
+        name="create-framework"
+        class=".createframework.FrameworkCreation"
+        permission="zope2.View"
+        />
+
+    <browser:page
+        for="*"
+        name="unepsearch"
+        class=".filtered_search_view.FilteredSearchView"
+        permission="zope2.View"
+        />
+
+
+    <include package=".reports" />
+    <include package=".views" />
+
+</configure>

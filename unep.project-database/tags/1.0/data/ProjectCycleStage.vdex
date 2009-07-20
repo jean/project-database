@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vdex xmlns="http://www.imsglobal.org/xsd/imsvdex_v1p0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.imsglobal.org/xsd/imsvdex_v1p0 imsvdex_v1p0.xsd http://www.imsglobal.org/xsd/imsmd_rootv1p2p1 imsmd_rootv1p2p1.xsd"
+    language="en" orderSignificant="true" profileType="flatTokenTerms">
+<vocabName>
+  <langstring language="en">ProjectCycleStage</langstring>
+</vocabName>
+<term>
+  <termIdentifier>Concept</termIdentifier>
+  <caption>
+    <langstring language="en">Concept</langstring>
+  </caption>
+  <description />
+</term>
+<term>
+  <termIdentifier>PDFA</termIdentifier>
+  <caption>
+    <langstring language="en">PDFA</langstring>
+  </caption>
+  <description />
+</term>
+<term>
+  <termIdentifier>PDFB</termIdentifier>
+  <caption>
+    <langstring language="en">PDFB</langstring>
+  </caption>
+  <description />
+</term>
+<term>
+  <termIdentifier>EA</termIdentifier>
+  <caption>
+    <langstring language="en">EA</langstring>
+  </caption>
+  <description />
+</term>
+<term>
+  <termIdentifier>MSP</termIdentifier>
+  <caption>
+    <langstring language="en">MSP</langstring>
+  </caption>
+  <description />
+</term>
+<term>
+  <termIdentifier>FSP</termIdentifier>
+  <caption>
+    <langstring language="en">FSP</langstring>
+  </caption>
+  <description />
+</term>
+</vdex>
