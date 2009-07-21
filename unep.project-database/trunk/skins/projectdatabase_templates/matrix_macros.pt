@@ -81,7 +81,7 @@ tal:define="fmi_folder nocall:context/fmi_folder;
     <tr>
         <td i18n:translate="gef_id" width="30%">GEF ID:</td>
         <td class="pgi_matrix_label">
-            <span tal:condition="python:member.has_role(['Anonymous'], pgi)"
+            <span tal:condition="python:member.has_role(['Anonymous', 'Member'], pgi)"
                 tal:content="pgi/getGEFid|string:Unspecified"> PGI </span>
             <a tal:condition="python:member.has_role(['Owner', 'Manager', 'TM', 'Registrar'], pgi)"
                 tal:attributes="href string:${pgi/absolute_url}/view"
