@@ -693,11 +693,15 @@ for record in records:
         for brain in brains:
             count +=1
             fmi = brain.getObject()
-            lines.append('GEFid:%s old expenditures:%s' % \
-                    (fmi.getGEFid(), fmi.getYearlyExpenditures()))
-            if fmi.getGEFid() not in clear_list:
+            if fmi.getIMISNumber() not in clear_list:
+                expenditures = fmi.getYearlyExpenditures()
+                lines.append('GEFid:%s, IMISNumber:%s old expenditures:\n' % \
+                        (fmi.getGEFid(), fmi.getIMISNumber()))
+                for expenditure in expenditures:
+                    lines.append('---- Year:%s Amount:%s\n' % \
+                            (expenditure.get('year'), expenditure.get('amount')))
                 fmi.setYearlyExpenditures({})
-                clear_list.append(fmi.getGEFid())
+                clear_list.append(fmi.getIMISNumber())
             year, amount = record["YearlyExpenditures:year,amount"].split(',')
             amount = amount and amount or '0'
             amount = amount.strip()
@@ -709,18 +713,16 @@ for record in records:
             raw_values = list(field.getRaw(fmi))
             raw_values.append(field_dict)
             fmi.setYearlyExpenditures(raw_values)
-            lines.append('GEFid:%s new expenditures:%s' % \
-                    (fmi.getGEFid(), fmi.getYearlyExpenditures()))
+            lines.append('GEFid:%s, IMISNumber:%s new expenditures:%s\n' % \
+                    (fmi.getGEFid(), fmi.getIMISNumber(), fmi.getYearlyExpenditures()))
+            transaction.commit()
             
-            if count % 100 > 0:
-                print 'commiting'
-                transaction.commit()
     else:
-        lines.append('Key:%s/%s did not return any financial results.' % \
+        lines.append('Key:%s/%s did not return any financial results.\n' % \
                 (record['GEFid'], record['IMISNumber']))
 
 if len(lines) > 0:
-    expense_file = open('expenses_report.csv', 'wb')
+    expense_file = open('expenditure_update_report.csv', 'wb')
     expense_file.writelines(lines)
     expense_file.close()
        
