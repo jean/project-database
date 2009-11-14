@@ -36,6 +36,10 @@
          meta_type="FieldIndex">
     <indexed_attr value="getEvaluationType"/>
   </index>
+  <index name="getIMISNumber" 
+         meta_type="FieldIndex">
+    <indexed_attr value="getIMISNumber"/>
+  </index>
   <column value="getCountries"/>
   <column value="getFocalAreas"/>
   <column value="getProjectType"/>
