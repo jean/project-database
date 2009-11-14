@@ -18,7 +18,7 @@ class BaseReport(BrowserView):
     implements(IBrowserView)
 
     def getReportFileName(self):
-        return self.__class__.__name__
+        return 'project_report'
 
     def csv(self):
         report = self.getReport()
