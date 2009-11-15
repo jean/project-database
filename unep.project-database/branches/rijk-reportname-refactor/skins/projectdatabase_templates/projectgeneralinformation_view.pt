@@ -1,0 +1,29 @@
+<metal:header metal:define-macro="header" />
+
+<metal:folderlisting metal:define-macro="folderlisting" />
+<metal:footer metal:define-macro="footer" />
+
+<metal:body metal:define-macro="body">
+    <h3 i18n:translate="project_general_information">Project General Information</h3>
+
+    <div>
+        <a href=""
+            tal:condition="python:member.has_role(['Owner','Manager','TM','SPO','Registrar'], context)"
+            tal:attributes="href string:${context/absolute_url}/edit">
+            <span i18n:translate="edit_general_info">Edit</span></a>
+    </div>
+    <hr />
+    <div>
+      <tal:fields tal:define="field_macro field_macro | here/widgets/field/macros/view"
+                  tal:repeat="field python:here.Schema().filterFields(isMetadata=0)">
+
+        <tal:if_visible define="mode string:view;
+                                visState python:field.widget.isVisible(here, mode);
+                                visCondition python:field.widget.testCondition(context.aq_inner.aq_parent, portal, context);"
+                        condition="python:visState == 'visible' and visCondition">
+          <metal:use_field use-macro="field_macro" />
+        </tal:if_visible>
+      </tal:fields>
+
+    </div>
+</metal:body>

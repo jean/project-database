@@ -1,0 +1,129 @@
+import sys
+import transaction
+from Products.CMFCore.utils import getToolByName
+
+try:
+    site_id = sys.argv[1]
+except IndexError:
+    print "Usage: <instancehome>/bin/zopectl run %s site_id" % sys.argv[0]
+    sys.exit(1)
+
+pc = getToolByName(app[site_id], 'portal_catalog')
+query = {'portal_type': 'Financials'}
+
+records = [
+             {'GEFid': '14', 'IMISNumber': 'GFL/2732-00-4280', 'FinanceCategory': 'fsp'},
+             {'GEFid': '33', 'IMISNumber': 'GFL/2711-00-4274', 'FinanceCategory': 'msp'},
+             {'GEFid': '176', 'IMISNumber': 'GFL/2731-97-4182', 'FinanceCategory': 'fsp'},
+             {'GEFid': '178', 'IMISNumber': 'GFL/2740-97-4211', 'FinanceCategory': 'msp'},
+             {'GEFid': '340', 'IMISNumber': 'GFL/2731-99-4244', 'FinanceCategory': 'fsp'},
+             {'GEFid': '405', 'IMISNumber': 'GFL/2750-98-4238', 'FinanceCategory': 'msp'},
+             {'GEFid': '457', 'IMISNumber': 'GFL/2711-98-4237', 'FinanceCategory': 'supplementary_allocation'},
+             {'GEFid': '461', 'IMISNumber': 'GFL/2730-00-4291', 'FinanceCategory': 'fsp'},
+             {'GEFid': '464', 'IMISNumber': 'GFL/2740-97-4210', 'FinanceCategory': 'pdfb'},
+             {'GEFid': '504', 'IMISNumber': 'GFL/2711-97-4186', 'FinanceCategory': 'pdfb'},
+             {'GEFid': '583', 'IMISNumber': 'GFL/2731-99-4249', 'FinanceCategory': 'fsp'},
+             {'GEFid': '584', 'IMISNumber': 'GFL/2732-99-4243', 'FinanceCategory': 'fsp'},
+             {'GEFid': '586', 'IMISNumber': 'GFL/2732-99-4248', 'FinanceCategory': 'fsp'},
+             {'GEFid': '600', 'IMISNumber': 'GFL/2711-00-4250', 'FinanceCategory': 'msp'},
+             {'GEFid': '770', 'IMISNumber': 'GFL/2713-01-4306', 'FinanceCategory': 'fsp'},
+             {'GEFid': '791', 'IMISNumber': 'GFL/2730-01-4305', 'FinanceCategory': 'fsp'},
+             {'GEFid': '794', 'IMISNumber': 'GFL/2711-00-4271', 'FinanceCategory': 'msp'},
+             {'GEFid': '807', 'IMISNumber': 'GFL/2732-01-4316', 'FinanceCategory': 'msp'},
+             {'GEFid': '874', 'IMISNumber': 'GFL/2724-00-4275', 'FinanceCategory': 'pdfb'},
+             {'GEFid': '884', 'IMISNumber': 'GFL/2750-98-4212', 'FinanceCategory': 'pdfb'},
+             {'GEFid': '885', 'IMISNumber': 'GFL/2730-97-4179', 'FinanceCategory': 'pdfb'},
+             {'GEFid': '905', 'IMISNumber': 'GFL/2711-01-4308', 'FinanceCategory': 'msp'},
+             {'GEFid': '1016', 'IMISNumber': 'GFL/2732-00-4278', 'FinanceCategory': 'pdfb'},
+             {'GEFid': '1022', 'IMISNumber': 'GF/2712-01-4401', 'FinanceCategory': 'pdfb'},
+             {'GEFid': '1024', 'IMISNumber': 'GFL/2713-03-4679', 'FinanceCategory': 'msp'},
+             {'GEFid': '1025', 'IMISNumber': 'GFL/2715-02-4508', 'FinanceCategory': 'pdfb'},
+             {'GEFid': '1096', 'IMISNumber': 'GFL/2720-99-4267', 'FinanceCategory': 'pdfb'},
+             {'GEFid': '1097', 'IMISNumber': 'GFL/2712-00-4296', 'FinanceCategory': 'pdfb'},
+             {'GEFid': '1111', 'IMISNumber': 'GFL/2731-00-4270', 'FinanceCategory': 'pdfb'},
+             {'GEFid': '1163', 'IMISNumber': 'GFL/2713-01-4309', 'FinanceCategory': 'pdfb'},
+             {'GEFid': '1164', 'IMISNumber': 'GFL/2732-99-4247', 'FinanceCategory': 'pdfb'},
+             {'GEFid': '1188', 'IMISNumber': 'GFL/2730-00-4298', 'FinanceCategory': 'pdfb'},
+             {'GEFid': '1216', 'IMISNumber': 'GFL/2711-01-4310', 'FinanceCategory': 'pdfb'},
+             {'GEFid': '1224', 'IMISNumber': 'GFL/2711-99-4258', 'FinanceCategory': 'pdfb'},
+             {'GEFid': '1242', 'IMISNumber': 'GFL/2711-00-4299', 'FinanceCategory': 'pdfb'},
+             {'GEFid': '1247', 'IMISNumber': 'GFL/2731-97-4178', 'FinanceCategory': 'pdfb'},
+             {'GEFid': '1248', 'IMISNumber': 'GFL/2732-99-4245', 'FinanceCategory': 'pdfb'},
+             {'GEFid': '1254', 'IMISNumber': 'GFL/2731-00-4297', 'FinanceCategory': 'pdfb'},
+             {'GEFid': '1258', 'IMISNumber': 'GFL/2712-00-4289', 'FinanceCategory': 'pdfb'},
+             {'GEFid': '1259', 'IMISNumber': 'GFL/2715-00-4272', 'FinanceCategory': 'pdfb'},
+             {'GEFid': '1281', 'IMISNumber': 'GFL/2721-01-4334', 'FinanceCategory': 'fsp'},
+             {'GEFid': '1328', 'IMISNumber': 'GFL/2740-02-4410', 'FinanceCategory': 'msp'},
+             {'GEFid': '1329', 'IMISNumber': 'GFL/2731-02-4389', 'FinanceCategory': 'pdfb'},
+             {'GEFid': '1344', 'IMISNumber': 'GFL/2711-01-4345', 'FinanceCategory': 'msp'},
+             {'GEFid': '1353', 'IMISNumber': 'GF/2740-02-4400', 'FinanceCategory': 'pdfb'},
+             {'GEFid': '1384', 'IMISNumber': 'GFL/2712-02-4446', 'FinanceCategory': 'msp'},
+             {'GEFid': '1410', 'IMISNumber': 'GFL/2713-01-4356', 'FinanceCategory': 'msp'},
+             {'GEFid': '1431', 'IMISNumber': 'GFL/2740-01-4333', 'FinanceCategory': 'pdfb'},
+             {'GEFid': '1513', 'IMISNumber': 'GFL/2721-04-4808', 'FinanceCategory': 'msp'},
+             {'GEFid': '1584', 'IMISNumber': 'GFL/2740-03-4619', 'FinanceCategory': 'eea'},
+             {'GEFid': '1589', 'IMISNumber': 'GFL/2711-99-4260', 'FinanceCategory': 'pdfb'},
+             {'GEFid': '1591', 'IMISNumber': 'GFL/2732-00-4279', 'FinanceCategory': 'pdfb'},
+             {'GEFid': '1599', 'IMISNumber': 'GFL/2722-04-4767', 'FinanceCategory': 'msp'},
+             {'GEFid': '1604', 'IMISNumber': 'GFL/2713-03-4698', 'FinanceCategory': 'msp'},
+             {'GEFid': '1609', 'IMISNumber': 'GFL/2721-04-4746', 'FinanceCategory': 'pdfb'},
+             {'GEFid': '1644', 'IMISNumber': 'GFL/2740-03-4672', 'FinanceCategory': 'eea'},
+             {'GEFid': '1651', 'IMISNumber': 'GFL/2740-03-4683', 'FinanceCategory': 'eea'},
+             {'GEFid': '1666', 'IMISNumber': 'GFL/2770-04-4779', 'FinanceCategory': 'msp'},
+             {'GEFid': '1694', 'IMISNumber': 'GFL/2711-02-4609', 'FinanceCategory': 'msp'},
+             {'GEFid': '1707', 'IMISNumber': 'GFL/2713-03-4731', 'FinanceCategory': 'msp'},
+             {'GEFid': '1769', 'IMISNumber': 'GFL/2740-03-4650', 'FinanceCategory': 'msp'},
+             {'GEFid': '1776', 'IMISNumber': 'GFL/2714-05-4842', 'FinanceCategory': 'msp'},
+             {'GEFid': '1786', 'IMISNumber': 'GFL/2740-04-4761', 'FinanceCategory': 'eea'},
+             {'GEFid': '1828', 'IMISNumber': 'GFL/2740-04-4777', 'FinanceCategory': 'eea'},
+             {'GEFid': '1895', 'IMISNumber': 'GFL/2713-05-4835', 'FinanceCategory': 'msp'},
+             {'GEFid': '1914', 'IMISNumber': 'GFL/2740-04-4783', 'FinanceCategory': 'eea'},
+             {'GEFid': '1917', 'IMISNumber': 'GFL/2723-05-4825', 'FinanceCategory': 'msp'},
+             {'GEFid': '1918', 'IMISNumber': 'GFL/2714-03-4682', 'FinanceCategory': 'pdfb'},
+             {'GEFid': '1938', 'IMISNumber': 'GFL/2740-07-4959', 'FinanceCategory': 'eea'},
+             {'GEFid': '1994', 'IMISNumber': 'GFL/2714-05-4829', 'FinanceCategory': 'msp'},
+             {'GEFid': '2036', 'IMISNumber': 'GFL/2740-04-4778', 'FinanceCategory': 'eea'},
+             {'GEFid': '2052', 'IMISNumber': 'GFL/2770-05-4823', 'FinanceCategory': 'msp'},
+             {'GEFid': '2064', 'IMISNumber': 'GFL/2740-06-4914', 'FinanceCategory': 'eea'},
+             {'GEFid': '2092', 'IMISNumber': 'GFL/2712-06-4913', 'FinanceCategory': 'msp'},
+             {'GEFid': '2095', 'IMISNumber': 'GFL/2731-03-4686', 'FinanceCategory': 'pdfb'},
+             {'GEFid': '2118', 'IMISNumber': 'GFL/2750-03-4712', 'FinanceCategory': 'pdfb'},
+             {'GEFid': '2119', 'IMISNumber': 'GFL/2721-03-4721', 'FinanceCategory': 'pdfb'},
+             {'GEFid': '2129', 'IMISNumber': 'GFL/2732 -04- 4776', 'FinanceCategory': 'pdfb'},
+             {'GEFid': '2140', 'IMISNumber': 'GFL/2740-03-4684', 'FinanceCategory': 'pdfb'},
+             {'GEFid': '2145', 'IMISNumber': 'GFL/2740-04-4784', 'FinanceCategory': 'eea'},
+             {'GEFid': '2173', 'IMISNumber': 'GFL/2770-04-4805', 'FinanceCategory': 'msp'},
+             {'GEFid': '2175', 'IMISNumber': 'GFL/2770-05-4865', 'FinanceCategory': 'msp'},
+             {'GEFid': '2178', 'IMISNumber': 'GFL/2712-06-4921', 'FinanceCategory': 'msp'},
+             {'GEFid': '2198', 'IMISNumber': 'GFL/2740-04-4790', 'FinanceCategory': 'eea'},
+             {'GEFid': '2377', 'IMISNumber': 'GFL/2770-04-4763', 'FinanceCategory': 'pdfb'},
+             {'GEFid': '2396', 'IMISNumber': 'GFL/2770-05-4857', 'FinanceCategory': 'msp'},
+             {'GEFid': '2597', 'IMISNumber': 'GFL/2721-05-4868', 'FinanceCategory': 'pdfb'},
+             {'GEFid': '2600', 'IMISNumber': 'GFL/2731-06-4904', 'FinanceCategory': 'pdfb'},
+             {'GEFid': '2683', 'IMISNumber': 'GFL/2721-05-4870', 'FinanceCategory': 'pdfb'},
+             {'GEFid': '2796', 'IMISNumber': 'GFL/2711-05-4898', 'FinanceCategory': 'pdfb'},
+             {'GEFid': '2856', 'IMISNumber': 'GFL/2712-06-4905', 'FinanceCategory': 'msp'},
+             {'GEFid': '2861', 'IMISNumber': 'GFL/2712-05-4886', 'FinanceCategory': 'msp'},
+             {'GEFid': '2954', 'IMISNumber': 'GFL/2723-06-4912', 'FinanceCategory': 'pdfb'},
+             {'GEFid': '3037', 'IMISNumber': 'GFL/2715-04-4749', 'FinanceCategory': 'pdfb'},
+             {'GEFid': '3183', 'IMISNumber': 'GFL/2740-08-4995', 'FinanceCategory': 'ppg'}
+          ]
+
+print '-------'
+for record in records:
+    query['getGEFid'] = record['GEFid']
+    query['getFinanceCategory'] = record['FinanceCategory']
+    brains = pc(**query)
+
+    if len(brains) == 1:
+        fmi = brains[0].getObject()
+        print 'For key:%s/%s, the old IMIS:%s' % \
+                (fmi.getGEFid(), fmi.getFinanceCategory(), fmi.getIMISNumber())
+        fmi.setIMISNumber(record['IMISNumber'])
+        transaction.commit()
+        fmi.reindexObject()
+        print 'New IMIS:%s' % fmi.getIMISNumber()
+        print '-------'
+
+    else:
+        print 'Key:%s/%s returned more than one result.' % (record['GEFid'], record['FinanceCategory'])
