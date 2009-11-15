@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vdex xmlns="http://www.imsglobal.org/xsd/imsvdex_v1p0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.imsglobal.org/xsd/imsvdex_v1p0 imsvdex_v1p0.xsd http://www.imsglobal.org/xsd/imsmd_rootv1p2p1 imsmd_rootv1p2p1.xsd" orderSignificant="true" profileType="flatTokenTerms" language="en">
+  <vocabName>
+    <langstring language="en">Milestones</langstring>
+  </vocabName>
+  <term>
+    <termIdentifier>Date of receipt of project concept</termIdentifier>
+    <caption>
+      <langstring language="en">Date of receipt of project concept</langstring>
+    </caption>
+    <description />
+  </term>
+  <term>
+    <termIdentifier>Date of review by Focal Area Task Force</termIdentifier>
+    <caption>
+      <langstring language="en">Date of review by Focal Area Task Force</langstring>
+    </caption>
+    <description />
+  </term>
+  <term>
+    <termIdentifier>Date of submission to DROC</termIdentifier>
+    <caption>
+      <langstring language="en">Date of submission to DROC</langstring>
+    </caption>
+    <description />
+  </term>
+  <term>
+    <termIdentifier>Date of submission to SMG</termIdentifier>
+    <caption>
+      <langstring language="en">Date of submission to SMG/PCC</langstring>
+    </caption>
+    <description />
+  </term>
+  <term>
+    <termIdentifier>Date of national GEF Focal Point endorsements</termIdentifier>
+    <caption>
+      <langstring language="en">Date of national GEF Focal Point endorsements</langstring>
+    </caption>
+    <description />
+  </term>
+  <term>
+    <termIdentifier>Date of submission to GEF</termIdentifier>
+    <caption>
+      <langstring language="en">Date of submission to GEF</langstring>
+    </caption>
+    <description />
+  </term>
+  <term>
+    <termIdentifier>GEF Secretariat Review Sheet</termIdentifier>
+    <caption>
+      <langstring language="en">GEF Secretariat Review Sheet</langstring>
+    </caption>
+    <description />
+  </term>
+  <term>
+    <termIdentifier>Pipeline Entry Date</termIdentifier>
+    <caption>
+      <langstring language="en">Pipeline Entry Date</langstring>
+    </caption>
+    <description />
+  </term>
+  <term>
+    <termIdentifier>Resubmission to GEF</termIdentifier>
+    <caption>
+      <langstring language="en">Resubmission to GEF</langstring>
+    </caption>
+    <description />
+  </term>
+  <term>
+    <termIdentifier>Work Program Entry</termIdentifier>
+    <caption>
+      <langstring language="en">Work Program Entry</langstring>
+    </caption>
+    <description />
+  </term>
+  <term>
+    <termIdentifier>Circulation to Council</termIdentifier>
+    <caption>
+      <langstring language="en">Circulation to Council</langstring>
+    </caption>
+    <description />
+  </term>
+  <term>
+    <termIdentifier>CEO Approval</termIdentifier>
+    <caption>
+      <langstring language="en">CEO Approval (PDF-B or MSP or EA)</langstring>
+    </caption>
+    <description />
+  </term>
+  <term>
+    <termIdentifier>CEO Endorsement</termIdentifier>
+    <caption>
+      <langstring language="en">CEO Endorsement (for FSP)</langstring>
+    </caption>
+    <description />
+  </term>
+  <term>
+    <termIdentifier>GEF Approval Date</termIdentifier>
+    <caption>
+      <langstring language="en">GEF Approval Date</langstring>
+    </caption>
+    <description />
+  </term>
+  <term>
+    <termIdentifier>Approval Date</termIdentifier>
+    <caption>
+      <langstring language="en">Approval Date</langstring>
+    </caption>
+    <description />
+  </term>
+  <term>
+    <termIdentifier>UNEP Approval date</termIdentifier>
+    <caption>
+      <langstring language="en">UNEP Approval date</langstring>
+    </caption>
+    <description />
+  </term>
+  <term>
+    <termIdentifier>Estimated Start Date</termIdentifier>
+    <caption>
+      <langstring language="en">Estimated Start Date</langstring>
+    </caption>
+    <description />
+  </term>
+  <term>
+    <termIdentifier>Actual Start Up date</termIdentifier>
+    <caption>
+      <langstring language="en">Actual Start Up date</langstring>
+    </caption>
+    <description />
+  </term>
+  <term>
+    <termIdentifier>Financial Closure Date</termIdentifier>
+    <caption>
+      <langstring language="en">Financial Closure Date</langstring>
+    </caption>
+    <description />
+  </term>
+</vdex>
