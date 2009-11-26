@@ -45,20 +45,19 @@
         </tr>
 
         <tal:rep tal:repeat="project projects">
-            <tr tal:define="geninfo nocall:project/project_general_info;
-                            even repeat/project/even;
-                            areavalue python:geninfo.displayValue(areavocab, geninfo.getFocalArea());
-                            countryvalue python:geninfo.displayValue(countryvocab, geninfo.getCountry())"
+            <tr tal:define="even repeat/project/even;
+                            areavalue python:project.displayValue(areavocab, project.getFocalAreas());
+                            countryvalue python:project.displayValue(countryvocab, project.getCountries())"
                     tal:attributes="class python:even and 'odd' or 'even'">
                 <td class="unep_td">
                     <a tal:content="project/id"
                         tal:attributes="href project/absolute_url">DBase ID
                     </a></td>
-                <td class="unep_td" tal:content="geninfo/getGEFid | string:Unknown">GEF ID</td>
+                <td class="unep_td" tal:content="project/getGEFid | string:Unknown">GEF ID</td>
                 <td class="unep_td" tal:content="areavalue | string:Unknown">Focal Area</td>
-                <td class="unep_td" tal:content="geninfo/Title | string:Unknown">Project Title</td>
+                <td class="unep_td" tal:content="project/Title | string:Unknown">Project Title</td>
                 <td class="unep_td" tal:content="countryvalue | string:Unknown">Country</td>
-                <td class="unep_td" tal:content="geninfo/getProjectType | string:Unknown">Project Type</td>
+                <td class="unep_td" tal:content="project/getProjectType | string:Unknown">Project Type</td>
             </tr>
         </tal:rep>
     </table>
