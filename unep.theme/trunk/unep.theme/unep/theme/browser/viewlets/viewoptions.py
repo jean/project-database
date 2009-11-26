@@ -15,8 +15,8 @@ class ViewOptions(ViewletBase):
     def getTabs(self):
 
         project = self.context.restrictedTraverse('@@unep_utils').projectParentURL()
-        pm = getToolByName(project, 'portal_membership')
         if project:
+            pm = getToolByName(self.context, 'portal_membership')
             tabs = [
                     (project, "Overview",
                         self._isType('Project') and self._endsWith('/base_view')),
