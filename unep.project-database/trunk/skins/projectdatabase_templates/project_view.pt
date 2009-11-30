@@ -33,19 +33,34 @@
             <td i18n:translate="focal_areas"
                 width="30%"
                 class="pgi_matrix_label">Focal Areas:</td>
-            <td tal:content="context/getFocalAreas | string:unknown" />
+            <td tal:content="python: ' '.join(context.getFocalAreas())" />
         </tr>
         <tr>
             <td i18n:translate="countries"
                 width="30%"
                 class="pgi_matrix_label">Country(ies):</td>
-            <td tal:content="context/getCountries| string:unknown" />
+            <td tal:content="python: ' '.join(context.getCountries())" />
+        </tr>
+
+        <tr>
+            <td i18n:translate="countries"
+                width="30%"
+                class="pgi_matrix_label">Geograpic scope:</td>
+            <td tal:content="context/getGeographicScope| string:unknown" />
+        </tr>
+
+        <tr>
+            <td i18n:translate="project_desciption"
+                width="30%"
+                class="pgi_matrix_label">Project Description:</td>
+            <td class="structured_text"
+                tal:content="structure context/getProjectSummaryDescription| string:unknown" />
         </tr>
         <tr>
             <td i18n:translate="lead_executing_agency"
                 width="30%"
                 class="pgi_matrix_label">Lead Executing Agency:</td>
-            <td tal:content="context/getLeadExecutingAgencies | string:unknown" />
+            <td tal:content="context/getExecutingAgencies | string:unknown" />
         </tr>
         <tr>
             <td i18n:translate="project_type"

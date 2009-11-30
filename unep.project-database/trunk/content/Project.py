@@ -43,6 +43,14 @@ schema = Schema((
         ),
     ),
     ComputedField(
+        name='GeographicScope',
+        widget=ComputedField._properties['widget'](
+            label='GeographicScope',
+            label_msgid='ProjectDatabase_label_GeographicScope',
+            i18n_domain='ProjectDatabase',
+        ),
+    ),
+    ComputedField(
         name='FocalAreas',
         widget=ComputedField._properties['widget'](
             label='Focalareas',
@@ -116,7 +124,15 @@ schema = Schema((
             i18n_domain='ProjectDatabase',
         ),
     ),
-
+    ComputedField(
+        name='ProjectSummaryDescription',
+        searchable=True,
+        widget=ComputedField._properties['widget'](
+            label='Project Summary',
+            label_msgid='ProjectDatabase_label_ProjectSummary',
+            i18n_domain='ProjectDatabase',
+        ),
+    ),
 ),
 )
 
@@ -345,6 +361,14 @@ class Project(BaseFolder, CurrencyMixin, BrowserDefaultMixin):
                       pgi.getCountry(), \
                       'Country')
 
+    security.declarePublic('getGeographicScope')
+    def getGeographicScope(self):
+        """
+        """
+        pgi = self.getProjectGeneralInformation()
+        if pgi:
+            return pgi.getGeographicScopeValues()
+
     security.declarePublic('getFocalAreas')
     def getFocalAreas(self):
         """
@@ -394,6 +418,12 @@ class Project(BaseFolder, CurrencyMixin, BrowserDefaultMixin):
         pgi = self.getProjectGeneralInformation()
         if pgi:
             return pgi.Title()
+
+    security.declarePublic('getProjectSummaryDescription')
+    def getProjectSummaryDescription(self):
+        pgi = self.getProjectGeneralInformation()
+        if pgi:
+            return pgi.getSummaryDescription()
 
     security.declarePublic('getGEFid')
     def getGEFid(self):
