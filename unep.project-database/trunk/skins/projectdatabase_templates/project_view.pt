@@ -15,13 +15,13 @@
     </div>
     <hr />
     
-    <tal:notAnonymous python:not isAnon>
+    <tal:notAnonymous condition="python:not isAnon">
     <tal:def tal:define="ob nocall:context">
         <tal:use metal:use-macro="context/matrix_macros/macros/pgi_matrix" />
     </tal:def>
     </tal:notAnonymous>
 
-    <tal:anonymous python:isAnon>
+    <tal:anonymous condition="python:isAnon">
     <table style="width:100%">
         <tr>
             <td i18n:translate="gef_id" width="30%">GEF ID:</td>
@@ -76,8 +76,11 @@
         <tal:use metal:use-macro="context/matrix_macros/macros/milestones_matrix" />
         <hr />
     </tal:def>
+    
+    <tal:notAnonymous condition="python:not isAnon">
     <h3>Contacts</h3>
     <tal:def >
             <tal:use metal:use-macro="context/matrix_macros/macros/contacts_matrix" />
     </tal:def>
+    </tal:notAnonymous>
 </metal:body>
