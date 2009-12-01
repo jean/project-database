@@ -1,0 +1,101 @@
+<metal:header metal:define-macro="header" />
+<metal:folderlisting metal:define-macro="folderlisting" />
+<metal:footer metal:define-macro="footer" />
+
+<metal:body metal:define-macro="body">
+    <div>
+        <tal:block 
+            tal:repeat="wf_action python:context.portal_workflow.listActionInfos(object=context)">
+            <a href=""
+                tal:condition="python:wf_action['id'] == 'Publish'"
+                tal:attributes="href string:${context/absolute_url}/content_status_modify?workflow_action=${wf_action/id}" 
+                tal:content="wf_action/title|wf_action/id">
+            </a>
+        </tal:block>
+    </div>
+    <hr />
+    
+    <tal:notAnonymous condition="python:not isAnon">
+    <tal:def tal:define="ob nocall:context">
+        <tal:use metal:use-macro="context/matrix_macros/macros/pgi_matrix" />
+    </tal:def>
+    </tal:notAnonymous>
+
+    <tal:anonymous condition="python:isAnon">
+    <table style="width:100%">
+        <tr>
+            <td i18n:translate="gef_id" width="30%">GEF ID:</td>
+            <td class="pgi_matrix_label">
+                <span tal:content="context/getGEFid|string:Unspecified"> PGI </span>
+            </td>
+        </tr>
+        <tr>
+            <td i18n:translate="focal_areas"
+                width="30%"
+                class="pgi_matrix_label">Focal Areas:</td>
+            <td tal:content="python: ' '.join(context.getFocalAreas())" />
+        </tr>
+        <tr>
+            <td i18n:translate="countries"
+                width="30%"
+                class="pgi_matrix_label">Country(ies):</td>
+            <td tal:content="python: ' '.join(context.getCountries())" />
+        </tr>
+
+        <tr>
+            <td i18n:translate="countries"
+                width="30%"
+                class="pgi_matrix_label">Geograpic scope:</td>
+            <td tal:content="context/getGeographicScope| string:unknown" />
+        </tr>
+
+        <tr>
+            <td i18n:translate="project_desciption"
+                width="30%"
+                class="pgi_matrix_label">Project Description:</td>
+            <td class="structured_text"
+                tal:content="structure context/getProjectSummaryDescription| string:unknown" />
+        </tr>
+        <tr>
+            <td i18n:translate="lead_executing_agency"
+                width="30%"
+                class="pgi_matrix_label">Lead Executing Agency:</td>
+            <td tal:content="context/getExecutingAgencies | string:unknown" />
+        </tr>
+        <tr>
+            <td i18n:translate="project_type"
+                width="30%"
+                class="pgi_matrix_label">Project Type:</td>
+            <td tal:content="context/getProjectType | string:unknown" />
+        </tr>
+    </table>
+    </tal:anonymous>
+    <hr />
+
+    <tal:def tal:condition="python:member.has_role(['Owner', 'Manager', 'FMO'], context)">
+        <tal:use metal:use-macro="context/matrix_macros/macros/multiple_fmi_matrix" />
+        <hr />
+    </tal:def>
+    <tal:def tal:condition="python:member.has_role(['Owner', 'Manager', 'FMO'], context)">
+        <h3>Monitoring and Evaluation</h3>
+        <tal:use metal:use-macro="context/matrix_macros/macros/mande_matrix" />
+        <hr />
+    </tal:def>
+    <tal:def tal:condition="python:member.has_role(['Anonymous'], context)">
+        <h3>Project Status</h3>
+        <tal:use metal:use-macro="context/matrix_macros/macros/projectstatus_matrix" />
+        <hr />
+    </tal:def>
+    <tal:def tal:condition="python:member.has_role(['Owner', 'Manager', 'FMO'], context)">
+        <h3>Milestones</h3>
+        <tal:use metal:use-macro="context/matrix_macros/macros/milestones_matrix" />
+        <hr />
+    </tal:def>
+    
+    <tal:notAnonymous condition="python:not isAnon">
+    <h3>Contacts</h3>
+    <tal:def >
+            <tal:use metal:use-macro="context/matrix_macros/macros/contacts_matrix" />
+    </tal:def>
+    </tal:notAnonymous>
+</metal:body>
