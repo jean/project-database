@@ -33,12 +33,15 @@ class ProjectsByExecutingAgencyReportFactory(object):
             pgi = project.project_general_info
             if pgi.getExecutionMode() == 'External':
                 mofu = project.fmi_folder.getMainFinanceObject()
+                status = ''
+                if mofu:
+                    status = mofu.getStatus()
                 if project.isTheProjectPublished():
                     result.append((
                         pgi.getLeadExecutingAgencyNames(),
                         pgi.Title(),
                         getVocabularyValue(self.context, \
-                                'Status', mofu.getStatus()),
+                                'Status', status),
                         pgi.getFocalAreaNames(),
                         inner_strip(project.getTotalGEFAmount()),
                     ))
