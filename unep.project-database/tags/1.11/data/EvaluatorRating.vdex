@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vdex xmlns="http://www.imsglobal.org/xsd/imsvdex_v1p0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.imsglobal.org/xsd/imsvdex_v1p0 imsvdex_v1p0.xsd http://www.imsglobal.org/xsd/imsmd_rootv1p2p1 imsmd_rootv1p2p1.xsd"
+    language="en" orderSignificant="true" profileType="flatTokenTerms">
+<vocabName>
+  <langstring language="en">Rating</langstring>
+</vocabName>
+
+<term>
+  <termIdentifier>NA</termIdentifier>
+  <caption>
+    <langstring language="en">Not Applicable</langstring>
+  </caption>
+  <description />
+</term>
+
+<term>
+  <termIdentifier>L</termIdentifier>
+  <caption>
+    <langstring language="en">Low</langstring>
+  </caption>
+  <description />
+</term>
+
+<term>
+  <termIdentifier>M</termIdentifier>
+  <caption>
+    <langstring language="en">Medium</langstring>
+  </caption>
+  <description />
+</term>
+
+<term>
+  <termIdentifier>S</termIdentifier>
+  <caption>
+    <langstring language="en">Substantial</langstring>
+  </caption>
+  <description />
+</term>
+
+<term>
+  <termIdentifier>H</termIdentifier>
+  <caption>
+    <langstring language="en">High</langstring>
+  </caption>
+  <description />
+</term>
+
+<term>
+  <termIdentifier>LL</termIdentifier>
+  <caption>
+    <langstring language="en">Likely</langstring>
+  </caption>
+  <description />
+</term>
+
+<term>
+  <termIdentifier>ML</termIdentifier>
+  <caption>
+    <langstring language="en">Moderately Likely</langstring>
+  </caption>
+  <description />
+</term>
+
+<term>
+  <termIdentifier>MU</termIdentifier>
+  <caption>
+    <langstring language="en">Moderaltely Unlikely</langstring>
+  </caption>
+  <description />
+</term>
+
+<term>
+  <termIdentifier>U</termIdentifier>
+  <caption>
+    <langstring language="en">Unlikely</langstring>
+  </caption>
+  <description />
+</term>
+
+</vdex>
