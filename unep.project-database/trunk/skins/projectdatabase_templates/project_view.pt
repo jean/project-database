@@ -43,7 +43,7 @@
         </tr>
 
         <tr>
-            <td i18n:translate="countries"
+            <td i18n:translate="scope"
                 width="30%"
                 class="pgi_matrix_label">Geograpic scope:</td>
             <td tal:content="context/getGeographicScope| string:unknown" />
