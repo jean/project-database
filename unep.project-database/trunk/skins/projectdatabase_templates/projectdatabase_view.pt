@@ -55,7 +55,7 @@
                     </a></td>
                 <td class="unep_td" tal:content="project/getGEFid | string:Unknown">GEF ID</td>
                 <td class="unep_td" tal:content="areavalue | string:Unknown">Focal Area</td>
-                <td class="unep_td" tal:content="project/Title | string:Unknown">Project Title</td>
+                <td class="unep_td" tal:content="project/getProjectTitle | string:Unknown">Project Title</td>
                 <td class="unep_td" tal:content="countryvalue | string:Unknown">Country</td>
                 <td class="unep_td" tal:content="project/getProjectType | string:Unknown">Project Type</td>
             </tr>
