@@ -1,0 +1,44 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope">
+
+    <utility
+        name="FMO"
+        factory=".localroles.FMORole"
+        />
+
+    <utility
+        name="MO"
+        factory=".localroles.MORole"
+        />
+
+    <utility
+        name="EO"
+        factory=".localroles.EORole"
+        />
+
+    <utility
+        name="Registrar"
+        factory=".localroles.RegistrarRole"
+        />
+
+    <utility
+        name="TM"
+        factory=".localroles.TMRole"
+        />
+
+    <utility
+        name="SPO"
+        factory=".localroles.SPORole"
+        />
+
+    <utility
+        name="SPMO"
+        factory=".localroles.SPMORole"
+        />
+
+    <utility
+        name="SM"
+        factory=".localroles.SMRole"
+        />
+
+</configure>
