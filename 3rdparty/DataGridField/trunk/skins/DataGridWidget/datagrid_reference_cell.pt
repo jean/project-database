@@ -50,6 +50,10 @@
                        cell_value python:column_definition.sanitize(context, cell_value);
                        value cell_value">
        <div class="datagrid-reference-wrapper">
+          <span tal:attributes="startup_directory python:context.referencebrowser_startupDirectory(widget.getStartupDirectory(context));
+                                at_url python:'/'.join(context.getPhysicalPath());
+                                fieldRealName field/getName"
+                class="meta"/>
          <metal:use use-macro="here/datagrid_referencebrowser/macros/reference_edit"/>
        </div>
      </tal:def>
