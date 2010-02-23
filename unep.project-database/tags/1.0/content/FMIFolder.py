@@ -117,28 +117,36 @@ class FMIFolder(BaseFolder, CurrencyMixin, BrowserDefaultMixin):
     def getTotalGrantToUnep(self):
         result = self.getZeroMoneyInstance()
         for fo in self.getAllFinanceObjects():
-            result += fo.getSumFinanceObjectAmount()
+            amount = fo.getSumFinanceObjectAmount()
+            if amount:
+                result += amount
         return result
 
     security.declarePublic('getTotalDisbursements')
     def getTotalDisbursements(self):
         result = self.getZeroMoneyInstance()
         for fo in self.getAllFinanceObjects():
-            result += fo.getSumCashDisbursements()
+            amount = fo.getSumCashDisbursements()
+            if amount:
+                result += amount
         return result
 
     security.declarePublic('getTotalUnepFee')
     def getTotalUnepFee(self):
         result = self.getZeroMoneyInstance()
         for fo in self.getAllFinanceObjects():
-            result += fo.getFinanceObjectFee()
+            amount = fo.getFinanceObjectFee()
+            if amount:
+                result += amount
         return result
 
     security.declarePublic('getTotalActualCofin')
     def getTotalActualCofin(self):
         result = self.getZeroMoneyInstance()
         for fo in self.getAllFinanceObjects():
-            result += fo.getTotalCoFinOfFinanceObjectActual()
+            amount = fo.getTotalCoFinOfFinanceObjectActual()
+            if amount:
+                result += amount
         return result
 
 
