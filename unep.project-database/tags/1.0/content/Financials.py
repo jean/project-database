@@ -764,6 +764,7 @@ class Financials(BaseFolder, CurrencyMixin, BrowserDefaultMixin):
         return self._computeDataGridAmount( \
             [v['cofinancing_cash_planned_amount']  \
                 for v in values if v['cofinancing_cash_planned_amount']])
+    
     security.declarePublic('getSumCoFinCashActual')
     def getSumCoFinCashActual(self):
         """
@@ -772,6 +773,7 @@ class Financials(BaseFolder, CurrencyMixin, BrowserDefaultMixin):
         return self._computeDataGridAmount( \
             [v['cofinancing_cash_actual_amount'] \
                 for v in values if v['cofinancing_cash_actual_amount']])
+
     security.declarePublic('getSumCoFinInKindPlanned')
     def getSumCoFinInKindPlanned(self):
         """
@@ -780,6 +782,7 @@ class Financials(BaseFolder, CurrencyMixin, BrowserDefaultMixin):
         return self._computeDataGridAmount( \
             [v['cofinancing_inkind_planned_amount'] \
                 for v in values if v['cofinancing_inkind_planned_amount']])
+
     security.declarePublic('getSumCoFinInKindActual')
     def getSumCoFinInKindActual(self):
         """
@@ -828,7 +831,15 @@ class Financials(BaseFolder, CurrencyMixin, BrowserDefaultMixin):
         """
         Total GEF Amount
         """
-        return self.getSumFinanceObjectAmount() + self.getFinanceObjectFee()
+        sum_fin_object = self.getSumFinanceObjectAmount()
+        if sum_fin_object is None:
+            sum_fin_object = 0
+
+        fin_object_fee = self.getFinanceObjectFee()
+        if fin_object_fee is None:
+            fin_object_fee = 0
+
+        return sum_fin_object + fin_object_fee
 
     def getSumYearlyExpenditures(self):
         """
