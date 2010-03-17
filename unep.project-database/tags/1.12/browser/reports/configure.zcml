@@ -1,0 +1,384 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    i18n_domain="ProjectDatabase">
+
+    <!-- Page Views -->
+    <!--
+    <browser:page
+        for="Products.ProjectDatabase.content.interfaces.IProjectDatabase"
+        name="reports"
+        class=".projectdatabasereportsview.ProjectDatabaseReportsView"
+        permission="zope2.View"
+        template="projectdatabasereportsview.cpt"
+        />
+    -->
+
+    <browser:page
+        for="Products.ProjectDatabase.content.interfaces.IProject"
+        name="reports"
+        class=".projectreportsview.ProjectReportsView"
+        permission="zope2.View"
+        template="projectreportsview.pt"
+        />
+
+    <browser:page
+        for="*"
+        name="dummyreport"
+        class=".dummyreport.DummyReport"
+        permission="zope2.View"
+        />
+
+    <browser:page
+        for="*"
+        name="ipistatusreport"
+        class=".ipistatusreport.IPIStatusReport"
+        permission="zope2.View"
+        template="simplehtmlreport.pt"
+        />
+
+    <browser:page
+        for="*"
+        name="pifapprovalstatusreport"
+        class=".pifapprovalstatusreport.PIFApprovalStatusReport"
+        permission="zope2.View"
+        template="simplehtmlreport.pt"
+        />
+
+    <browser:page
+        for="*"
+        name="ppgaprandimplstatusreport"
+        class=".ppgaprandimplstatusreport.PPGApprovalAndImplementationStatusReport"
+        permission="zope2.View"
+        template="simplehtmlreport.pt"
+        />
+
+    <browser:page
+        for="*"
+        name="projectapprovalstatusreport"
+        class=".projectapprovalstatusreport.ProjectApprovalStatusReport"
+        permission="zope2.View"
+        template="simplehtmlreport.pt"
+        />
+
+    <browser:page
+        for="*"
+        name="projectimplementationstatusreport"
+        class=".projectimplementationstatusreport.ProjectImplementationStatusReport"
+        permission="zope2.View"
+        template="simplehtmlreport.pt"
+        />
+
+    <browser:page
+        for="*"
+        name="completedprojectsreport"
+        class=".completedprojectsreport.CompletedProjectsReport"
+        permission="zope2.View"
+        template="simplehtmlreport.pt"
+        />
+
+    <browser:page
+        for="*"
+        name="closedprojectsreport"
+        class=".closedprojectsreport.ClosedProjectsReport"
+        permission="zope2.View"
+        template="simplehtmlreport.pt"
+        />
+
+    <browser:page
+        for="*"
+        name="suspendedprojectsreport"
+        class=".suspendedprojectsreport.SuspendedProjectsReport"
+        permission="zope2.View"
+        template="simplehtmlreport.pt"
+        />
+
+    <browser:page
+        for="*"
+        name="cancelledprojectsreport"
+        class=".cancelledprojectsreport.CancelledProjectsReport"
+        permission="zope2.View"
+        template="simplehtmlreport.pt"
+        />
+
+    <browser:page
+        for="*"
+        name="ppgimplstatusreport"
+        class=".ppgimplstatusreport.PPGImplStatusReport"
+        permission="zope2.View"
+        template="simplehtmlreport.pt"
+        />
+
+    <browser:page
+        for="*"
+        name="mspimplstatusreport"
+        class=".mspimplstatusreport.MSPImplStatusReport"
+        permission="zope2.View"
+        template="simplehtmlreport.pt"
+        />
+
+    <browser:page
+        for="*"
+        name="fspimplstatusreport"
+        class=".fspimplstatusreport.FSPImplStatusReport"
+        permission="zope2.View"
+        template="simplehtmlreport.pt"
+        />
+
+    <browser:page
+        for="*"
+        name="eeaimplstatusreport"
+        class=".eeaimplstatusreport.EEAImplStatusReport"
+        permission="zope2.View"
+        template="simplehtmlreport.pt"
+        />
+
+    <browser:page
+        for="*"
+        name="ppgreceivablesreport"
+        class=".ppgreceivablesreport.PPGReceivablesReport"
+        permission="zope2.View"
+        template="simplehtmlreport.pt"
+        />
+
+    <browser:page
+        for="*"
+        name="mspreceivablesreport"
+        class=".mspreceivablesreport.MSPReceivablesReport"
+        permission="zope2.View"
+        template="simplehtmlreport.pt"
+        />
+
+    <browser:page
+        for="*"
+        name="fspreceivablesreport"
+        class=".fspreceivablesreport.FSPReceivablesReport"
+        permission="zope2.View"
+        template="simplehtmlreport.pt"
+        />
+
+    <browser:page
+        for="*"
+        name="eeareceivablesreport"
+        class=".eeareceivablesreport.EEAReceivablesReport"
+        permission="zope2.View"
+        template="simplehtmlreport.pt"
+        />
+
+    <browser:page
+        for="*"
+        name="projectsdueforclosurereport"
+        class=".projectsdueforclosurereport.ProjectsDueForClosureReport"
+        permission="zope2.View"
+        template="simplehtmlreport.pt"
+        />
+
+    <browser:page
+        for="*"
+        name="projectcontactsreport"
+        class=".projectcontactsreport.ProjectContactsReport"
+        permission="zope2.View"
+        template="simplehtmlreport.pt"
+        />
+
+    <browser:page
+        for="*"
+        name="rosterofevaluatorsreport"
+        class=".rosterofevaluatorsreport.RosterOfEvaluatorsReport"
+        permission="zope2.View"
+        template="simplehtmlreport.pt"
+        />
+
+    <browser:page
+        for="*"
+        name="midtermreviewstatusreport"
+        class=".midtermreviewstatusreport.MidTermReviewStatusReport"
+        permission="zope2.View"
+        template="simplehtmlreport.pt"
+        />
+
+    <browser:page
+        for="*"
+        name="midtermevaluationstatusreport"
+        class=".midtermevaluationstatusreport.MidTermEvaluationStatusReport"
+        permission="zope2.View"
+        template="simplehtmlreport.pt"
+        />
+
+    <browser:page
+        for="*"
+        name="terminalevaluationstatusreport"
+        class=".terminalevaluationstatusreport.TerminalEvaluationStatusReport"
+        permission="zope2.View"
+        template="simplehtmlreport.pt"
+        />
+
+    <browser:page
+        for="*"
+        name="qoterrplreport"
+        class=".qoterrplreport.qoterrplReport"
+        permission="zope2.View"
+        template="simplehtmlreport.pt"
+        />
+
+    <browser:page
+        for="*"
+        name="projectsatriskreport"
+        class=".projectsatriskreport.ProjectsAtRiskReport"
+        permission="zope2.View"
+        template="simplehtmlreport.pt"
+        />
+
+    <browser:page
+        for="*"
+        name="countryriskreport"
+        class=".countryriskreport.CountryRiskReport"
+        permission="zope2.View"
+        template="simplehtmlreport.pt"
+        />
+
+    <browser:page
+        for="*"
+        name="executingagencyriskreport"
+        class=".executingagencyriskreport.ExecutingAgencyRiskReport"
+        permission="zope2.View"
+        template="simplehtmlreport.pt"
+        />
+
+    <browser:page
+        for="*"
+        name="projectimplementationreviewreport"
+        class=".projectimplementationreviewreport.ProjectImplementationReviewReport"
+        permission="zope2.View"
+        template="simplehtmlreport.pt"
+        />
+
+    <browser:page
+        for="*"
+        name="qualityofprojectmandereport"
+        class=".qualityofprojectmandereport.QualityOfProjectMandEReport"
+        permission="zope2.View"
+        template="simplehtmlreport.pt"
+        />
+
+    <browser:page
+        for="*"
+        name="projectsforceoendorsementreport"
+        class=".projectsforceoendorsementreport.ProjectsForCEOEndorsementReport"
+        permission="zope2.View"
+        template="simplehtmlreport.pt"
+        />
+
+    <browser:page
+        for="*"
+        name="midtermevaluationscomingupreport"
+        class=".midtermevaluationscomingupreport.MidTermEvaluationsComingUpReport"
+        permission="zope2.View"
+        template="simplehtmlreport.pt"
+        />
+
+    <browser:page
+        for="*"
+        name="terminalevaluationscomingupreport"
+        class=".terminalevaluationscomingupreport.TerminalEvaluationsComingUpReport"
+        permission="zope2.View"
+        template="simplehtmlreport.pt"
+        />
+
+    <browser:page
+        for="*"
+        name="projectcyclestagestatusreport"
+        class=".projectcyclestagestatusreport.ProjectCycleStageStatusReport"
+        permission="zope2.View"
+        template="simplehtmlreport.pt"
+        />
+
+    <browser:page
+        for="*"
+        name="programmeframeworkreport"
+        class=".programmeframeworkreport.ProgrammeFrameworkReport"
+        permission="zope2.View"
+        template="simplehtmlreport.pt"
+        />
+
+    <browser:page
+        for="*"
+        name="projectratingsreport"
+        class=".projectratingsreport.ProjectRatingsReport"
+        template="simpleprojectreport.pt"
+        permission="zope2.View"
+        />
+
+    <browser:page
+        for="*"
+        name="qoterrreport"
+        class=".qoterrreport.qoterrReport"
+        template="simpleprojectreport.pt"
+        permission="zope2.View"
+        />
+
+    <browser:page
+        for="*"
+        name="projectimplementationreviewtablereport"
+        class=".projectimplementationreviewtablereport.ProjectImplementationReviewTableReport"
+        template="simpleprojectreport.pt"
+        permission="zope2.View"
+        />
+
+    <browser:page
+        for="*"
+        name="keymilestonesreport"
+        class=".keymilestonesreport.KeyMilestonesReport"
+        template="simpleprojectreport.pt"
+        permission="zope2.View"
+        />
+
+    <browser:page
+        for="*"
+        name="gefprojectsbypriorityreport"
+        class=".gefprojectsbypriorityreport.GefProjectsByPriorityReport"
+        permission="zope2.View"
+        template="simplehtmlreport.pt"
+        />
+
+    <browser:page
+        for="*"
+        name="internallyexecutedprojectsreport"
+        class=".internallyexecutedprojectsreport.InternallyExecutedProjectsReport"
+        permission="zope2.View"
+        template="simplehtmlreport.pt"
+        />
+
+    <browser:page
+        for="*"
+        name="projectsbygeographicscopereport"
+        class=".projectsbygeographicscopereport.ProjectsByGeographicScopeReport"
+        permission="zope2.View"
+        template="simplehtmlreport.pt"
+        />
+
+    <browser:page
+        for="*"
+        name="projectsbyexecutingagencyreport"
+        class=".projectsbyexecutingagencyreport.ProjectsByExecutingAgencyReport"
+        permission="zope2.View"
+        template="simplehtmlreport.pt"
+        />
+
+    <browser:page
+        for="*"
+        name="donorreport"
+        class=".donorreport.DonorReport"
+        permission="zope2.View"
+        template="simplehtmlreport.pt"
+        />
+
+    <browser:page
+        for="*"
+        name="projectsbystaffreport"
+        class=".projectsbystaffreport.ProjectsByStaffReport"
+        permission="zope2.View"
+        template="simplehtmlreport.pt"
+        />
+
+</configure>

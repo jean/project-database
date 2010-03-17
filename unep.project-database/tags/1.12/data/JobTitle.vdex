@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vdex xmlns="http://www.imsglobal.org/xsd/imsvdex_v1p0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.imsglobal.org/xsd/imsvdex_v1p0 imsvdex_v1p0.xsd http://www.imsglobal.org/xsd/imsmd_rootv1p2p1 imsmd_rootv1p2p1.xsd" orderSignificant="true" profileType="flatTokenTerms" language="en">
+  <vocabName>
+    <langstring language="en">JobTitle</langstring>
+  </vocabName>
+  <term>
+    <termIdentifier>TM</termIdentifier>
+    <caption>
+      <langstring language="en">Task Manager</langstring>
+    </caption>
+    <description />
+  </term>
+  <term>
+    <termIdentifier>FMO</termIdentifier>
+    <caption>
+      <langstring language="en">Fund Management Officer</langstring>
+    </caption>
+    <description />
+  </term>
+  <term>
+    <termIdentifier>SPO</termIdentifier>
+    <caption>
+      <langstring language="en">Senior Programme Officer</langstring>
+    </caption>
+    <description />
+  </term>
+  <term>
+    <termIdentifier>PA</termIdentifier>
+    <caption>
+      <langstring language="en">Programme Assistant</langstring>
+    </caption>
+    <description />
+  </term>
+  <term>
+    <termIdentifier>FA</termIdentifier>
+    <caption>
+      <langstring language="en">Finance Assistant</langstring>
+    </caption>
+    <description />
+  </term>
+  <term>
+    <termIdentifier>EO</termIdentifier>
+    <caption>
+      <langstring language="en">Evaluation Officer</langstring>
+    </caption>
+    <description />
+  </term>
+  <term>
+    <termIdentifier>MO</termIdentifier>
+    <caption>
+      <langstring language="en">Monitoring Officer</langstring>
+    </caption>
+    <description />
+  </term>
+  <term>
+    <termIdentifier>Registrar</termIdentifier>
+    <caption>
+      <langstring language="en">Registrar</langstring>
+    </caption>
+    <description />
+  </term>
+  <term>
+    <termIdentifier>SPMO</termIdentifier>
+    <caption>
+      <langstring language="en">Senior Programme Management Officer</langstring>
+    </caption>
+    <description />
+  </term>
+  <term>
+    <termIdentifier>PM</termIdentifier>
+    <caption>
+      <langstring language="en">Project Manager</langstring>
+    </caption>
+    <description />
+  </term>
+  <term>
+    <termIdentifier>Evaluator</termIdentifier>
+    <caption>
+      <langstring language="en">Evaluator</langstring>
+    </caption>
+    <description />
+  </term>
+  <term>
+    <termIdentifier>IAStaff</termIdentifier>
+    <caption>
+      <langstring language="en">IA Staff</langstring>
+    </caption>
+    <description />
+  </term>
+  <term>
+    <termIdentifier>EAStaff</termIdentifier>
+    <caption>
+      <langstring language="en">Executing Agency Staff</langstring>
+    </caption>
+    <description />
+  </term>
+  <term>
+    <termIdentifier>GEFStaff</termIdentifier>
+    <caption>
+      <langstring language="en">GEF Sec Staff</langstring>
+    </caption>
+    <description />
+  </term>
+</vdex>
+

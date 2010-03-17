@@ -1,0 +1,7 @@
+[default]
+title=Projectdatabase Reports View
+
+[actions]
+action.failure=redirect_to_action:string:view
+action.success=traverse_to:string:retrieve_projects
+
