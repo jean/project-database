@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vdex xmlns="http://www.imsglobal.org/xsd/imsvdex_v1p0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.imsglobal.org/xsd/imsvdex_v1p0 imsvdex_v1p0.xsd http://www.imsglobal.org/xsd/imsmd_rootv1p2p1 imsmd_rootv1p2p1.xsd"
+    language="en" orderSignificant="true" profileType="flatTokenTerms">
+<vocabName>
+  <langstring language="en">Project Implementation Actions</langstring>
+</vocabName>
+
+<term>
+  <termIdentifier>SignatureOfLegalInstrumentExpected</termIdentifier>
+  <caption>
+    <langstring language="en">Signature of legal instrument (expected)</langstring>
+  </caption>
+  <description />
+</term>
+
+<term>
+  <termIdentifier>SignatureOfLegalInstrumentActual</termIdentifier>
+  <caption>
+    <langstring language="en">Signature of legal instrument (actual)</langstring>
+  </caption>
+  <description />
+</term>
+
+<term>
+  <termIdentifier>AppointmentOfProjectManager</termIdentifier>
+  <caption>
+    <langstring language="en">Appointment of Project Manager</langstring>
+  </caption>
+  <description />
+</term>
+
+<term>
+  <termIdentifier>FirstDisbursementExpected</termIdentifier>
+  <caption>
+    <langstring language="en">First disbursement (expected)</langstring>
+  </caption>
+  <description />
+</term>
+
+<term>
+  <termIdentifier>FirstDisbursementActual</termIdentifier>
+  <caption>
+    <langstring language="en">First disbursement (actual)</langstring>
+  </caption>
+  <description />
+</term>
+
+<term>
+  <termIdentifier>CompletionExpected</termIdentifier>
+  <caption>
+    <langstring language="en">Completion (expected)</langstring>
+  </caption>
+  <description />
+</term>
+
+<term>
+  <termIdentifier>CompletionRevised</termIdentifier>
+  <caption>
+    <langstring language="en">Completion (revised)</langstring>
+  </caption>
+  <description />
+</term>
+
+<term>
+  <termIdentifier>CompletionActual</termIdentifier>
+  <caption>
+    <langstring language="en">Completion (actual)</langstring>
+  </caption>
+  <description />
+</term>
+
+<term>
+  <termIdentifier>ClosureExpected</termIdentifier>
+  <caption>
+    <langstring language="en">Closure (expected)</langstring>
+  </caption>
+  <description />
+</term>
+
+<term>
+  <termIdentifier>ClosureActual</termIdentifier>
+  <caption>
+    <langstring language="en">Closure (actual)</langstring>
+  </caption>
+  <description />
+</term>
+
+<term>
+  <termIdentifier>Cancellation</termIdentifier>
+  <caption>
+    <langstring language="en">Cancellation</langstring>
+  </caption>
+  <description />
+</term>
+
+<term>
+  <termIdentifier>Termination</termIdentifier>
+  <caption>
+    <langstring language="en">Termination</langstring>
+  </caption>
+  <description />
+</term>
+
+<term>
+  <termIdentifier>Suspension</termIdentifier>
+  <caption>
+    <langstring language="en">Suspension</langstring>
+  </caption>
+  <description />
+</term>
+
+<term>
+  <termIdentifier>ExpectedReinitiation</termIdentifier>
+  <caption>
+    <langstring language="en">Expected Re-initiation</langstring>
+  </caption>
+  <description />
+</term>
+
+<term>
+  <termIdentifier>ActualReinitiation</termIdentifier>
+  <caption>
+    <langstring language="en">Actual Re-initiation</langstring>
+  </caption>
+  <description />
+</term>
+
+</vdex>
+
