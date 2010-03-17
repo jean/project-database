@@ -1315,21 +1315,24 @@ class ProjectGeneralInformation(BaseContent, CurrencyMixin, BrowserDefaultMixin)
         values = self.getPIFFinancialData()
         amount = self.getZeroMoneyInstance()
         for v in values:
-            amount += v['grant_to_unep']
+            if v['grant_to_unep'] is not None:
+                amount += v['grant_to_unep']
         return amount
 
     def getPIFUNEPFee(self):
         values = self.getPIFFinancialData()
         amount = self.getZeroMoneyInstance()
         for v in values:
-            amount += v['unep_fee']
+            if v['unep_fee'] is not None:
+                amount += v['unep_fee']
         return amount
 
     def getPIFCofinancingAmount(self):
         values = self.getPIFFinancialData()
         amount = self.getZeroMoneyInstance()
         for v in values:
-            amount += v['cofinancing']
+            if v['cofinancing'] is not None:
+                amount += v['cofinancing']
         return amount
 
     def getPIFPPGAmount(self):
@@ -1337,7 +1340,8 @@ class ProjectGeneralInformation(BaseContent, CurrencyMixin, BrowserDefaultMixin)
         amount = self.getZeroMoneyInstance()
         for v in values:
             if v['stage'] in ['PPG', 'PDF']:
-                amount += v['grant_to_unep']
+                if v['grant_to_unep'] is not None:
+                    amount += v['grant_to_unep']
         return amount
 
     def getPIFPPGCoFinAmount(self):
@@ -1345,7 +1349,8 @@ class ProjectGeneralInformation(BaseContent, CurrencyMixin, BrowserDefaultMixin)
         amount = self.getZeroMoneyInstance()
         for v in values:
             if v['stage'] in ['PPG', 'PDF']:
-                amount += v['cofinancing']
+                if v['cofinancing'] is not None:
+                    amount += v['cofinancing']
         return amount
 
     def getPIFProjectAmount(self):
@@ -1353,7 +1358,8 @@ class ProjectGeneralInformation(BaseContent, CurrencyMixin, BrowserDefaultMixin)
         amount = self.getZeroMoneyInstance()
         for v in values:
             if v['stage'] == 'Project':
-                amount += v['grant_to_unep']
+                if v['grant_to_unep'] is not None:
+                    amount += v['grant_to_unep']
         return amount
 
     def getPIFProjectCoFinAmount(self):
@@ -1361,7 +1367,8 @@ class ProjectGeneralInformation(BaseContent, CurrencyMixin, BrowserDefaultMixin)
         amount = self.getZeroMoneyInstance()
         for v in values:
             if v['stage'] == 'Project':
-                amount += v['cofinancing']
+                if v['cofinancing'] is not None:
+                    amount += v['cofinancing']
         return amount
 
     security.declarePublic('getPGFPath')
