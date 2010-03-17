@@ -225,8 +225,9 @@ class Project(BaseFolder, CurrencyMixin, BrowserDefaultMixin):
         fin_objs = self.fmi_folder.getAllFinanceObjects()
         total = self.getZeroMoneyInstance()
         for fo in fin_objs:
-            if fo is not None:
-                total += fo.getFinanceObjectFee()
+            fo_fee = fo.getFinanceObjectFee()
+            if fo_fee is not None:
+                total += fo_fee
         return total
 
     security.declarePublic('isTheProjectPublished')
