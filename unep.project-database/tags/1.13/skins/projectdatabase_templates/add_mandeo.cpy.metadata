@@ -1,0 +1,5 @@
+[default]
+
+[actions]
+action.success = redirect_to:string:${object_url}/edit
+

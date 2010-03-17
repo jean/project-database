@@ -1,0 +1,33 @@
+import sys
+
+try:
+    site_id = sys.argv[1]
+except IndexError:
+    print 'Usage: <instance-home>/bin/instance run %s site_id' % sys.argv[0]
+    sys.exit(1)
+
+import transaction
+
+portal = app[site_id]
+pc = portal.portal_catalog
+
+projects = portal.projectdatabases.objectValues('Project')
+for project in projects:
+    pgi = project.project_general_info
+
+    lead_agency = pgi.getLeadAgency()
+    if lead_agency:
+        agencybrain = pc(portal_type='Organisation', Title=lead_agency)
+        if agencybrain:
+            lead_agency = agencybrain[0].UID
+
+            field = pgi.schema['ProjectExecutingAgency']
+            field.set(pgi, [{'executing_agency':lead_agency, 'executing_agency_category':None}])
+
+            print 'Set %s lead executing agency to %s' % (pgi.getGEFid(), lead_agency)
+
+            transaction.commit()
+            project.reindexObject()
+
+print 'Done'
+
