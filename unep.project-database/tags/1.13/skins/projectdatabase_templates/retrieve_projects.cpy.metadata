@@ -1,0 +1,5 @@
+[default]
+title=Retrieve Reports
+
+[actions]
+action.success=redirect_to:string:${request/report}?projects=${request/projects}
