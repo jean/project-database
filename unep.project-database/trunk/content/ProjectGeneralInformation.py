@@ -1301,10 +1301,14 @@ class ProjectGeneralInformation(BaseContent, CurrencyMixin, BrowserDefaultMixin)
         values = self.getPIFFinancialData()
         amount = self.getZeroMoneyInstance()
         for v in values:
-            amount += v['grant_to_unep'] + \
-                    v['grant_to_other_ia'] + \
-                    v['unep_fee'] + \
-                    v['other_ia_fee']
+            if v['grant_to_unep'] is not None:
+                amount += v['grant_to_unep']
+            if v['grant_to_other_ia'] is not None:
+                amount += v['grant_to_other_ia']
+            if v['unep_fee'] is not None:
+                amount += v['unep_fee']
+            if v['other_ia_fee'] is not None:
+                amount += v['other_ia_fee']
         return amount
 
     def getPIFUNEPGEFAmount(self):
