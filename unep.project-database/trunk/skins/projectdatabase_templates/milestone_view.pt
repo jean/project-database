@@ -5,7 +5,7 @@
 <metal:body metal:define-macro="body">
     <h3 tal:content="context/Title|context/id">Milestones</h3>
 
-    <div>
+    <div tal:condition="python:mtool.checkPermission('Modify portal content', context)">
       <a href=""
           tal:attributes="href string:${context/absolute_url}/edit">
           <span i18n:translate="edit_milestones">Edit</span>
