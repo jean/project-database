@@ -9,6 +9,7 @@
   <permission-map name="Modify portal content"
                   acquired="True">
    <permission-role>TM</permission-role>
+   <permission-role>SPO</permission-role>
    <permission-role>Registrar</permission-role>
   </permission-map>
   <permission-map name="View"
