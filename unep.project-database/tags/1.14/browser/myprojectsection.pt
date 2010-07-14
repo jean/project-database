@@ -1,0 +1,53 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      lang="en"
+      metal:use-macro="here/main_template/macros/master"
+      i18n:domain="plone">
+
+<body>
+
+<div metal:fill-slot="main">
+    <tal:main-macro metal:define-macro="main">
+
+    <h1 class="documentFirstHeading" i18n:translate="heading_myprojects_a2z">My Project Sections</h1>
+
+
+    <p tal:condition="isAnon"
+        i18n:translate="log_in_first">
+        Please log in first to view your project
+    </p>
+
+    <div tal:condition="not:isAnon">
+        <tal:projectlist
+            tal:define="projects python:view.my_project_sections(member.getId()) or None">
+            <div tal:condition="projects">
+
+                <p>
+                    <span tal:content="view/sectionName">section</span>
+                    <span i18n:translate="sections_of_your_projects">sections of your projects</span>
+                </p>
+                <ul>
+                    <li tal:repeat="project projects">
+                        <a href=""
+                            tal:attributes="href project/link"
+                            tal:content="project/title">project</a>
+                    </li>
+                </ul>
+            </div>
+            <p tal:condition="not:projects"
+                i18n:translate="no_projects">
+                You are not currently working on projects
+            </p>
+        </tal:projectlist>
+    </div>
+
+    </tal:main-macro>
+
+</div>
+
+</body>
+</html>
+
+
