@@ -30,6 +30,8 @@
                   acquired="True">
    <permission-role>TM</permission-role>
    <permission-role>FMO</permission-role>
+   <permission-role>SPO</permission-role>
+   <permission-role>SPMO</permission-role>
   </permission-map>
   <permission-map name="Access contents information"
                   acquired="False">
@@ -41,6 +43,10 @@
    <permission-role>Reviewer</permission-role>
    <permission-role>TM</permission-role>
    <permission-role>FMO</permission-role>
+   <permission-role>SPO</permission-role>
+   <permission-role>SPMO</permission-role>
+   <permission-role>MO</permission-role>
+   <permission-role>EO</permission-role>
   </permission-map>
   <permission-map name="Change portal events"
                   acquired="False">
@@ -48,6 +54,8 @@
    <permission-role>Reviewer</permission-role>
    <permission-role>TM</permission-role>
    <permission-role>FMO</permission-role>
+   <permission-role>SPO</permission-role>
+   <permission-role>SPMO</permission-role>
   </permission-map>
   <permission-map name="List folder contents"
                   acquired="False">
@@ -59,6 +67,10 @@
    <permission-role>Reviewer</permission-role>
    <permission-role>TM</permission-role>
    <permission-role>FMO</permission-role>
+   <permission-role>SPO</permission-role>
+   <permission-role>SPMO</permission-role>
+   <permission-role>MO</permission-role>
+   <permission-role>EO</permission-role>
   </permission-map>
   <permission-map name="Modify portal content"
                   acquired="False">
@@ -66,6 +78,8 @@
    <permission-role>Reviewer</permission-role>
    <permission-role>TM</permission-role>
    <permission-role>FMO</permission-role>
+   <permission-role>SPO</permission-role>
+   <permission-role>SPMO</permission-role>
   </permission-map>
   <permission-map name="View" acquired="False">
    <permission-role>Manager</permission-role>
@@ -76,6 +90,10 @@
    <permission-role>Reviewer</permission-role>
    <permission-role>TM</permission-role>
    <permission-role>FMO</permission-role>
+   <permission-role>SPO</permission-role>
+   <permission-role>SPMO</permission-role>
+   <permission-role>MO</permission-role>
+   <permission-role>EO</permission-role>
   </permission-map>
 
  </state>
@@ -89,6 +107,8 @@
                   acquired="True">
    <permission-role>TM</permission-role>
    <permission-role>FMO</permission-role>
+   <permission-role>SPO</permission-role>
+   <permission-role>SPMO</permission-role>
   </permission-map>
   <permission-map name="Access contents information"
                   acquired="False">
@@ -99,6 +119,10 @@
    <permission-role>Contributor</permission-role>
    <permission-role>TM</permission-role>
    <permission-role>FMO</permission-role>
+   <permission-role>SPO</permission-role>
+   <permission-role>SPMO</permission-role>
+   <permission-role>MO</permission-role>
+   <permission-role>EO</permission-role>
   </permission-map>
   <permission-map name="Change portal events"
                   acquired="False">
@@ -107,6 +131,8 @@
    <permission-role>Editor</permission-role>
    <permission-role>TM</permission-role>
    <permission-role>FMO</permission-role>
+   <permission-role>SPO</permission-role>
+   <permission-role>SPMO</permission-role>
   </permission-map>
   <permission-map name="List folder contents"
                   acquired="False">
@@ -117,6 +143,10 @@
    <permission-role>Contributor</permission-role>
    <permission-role>TM</permission-role>
    <permission-role>FMO</permission-role>
+   <permission-role>SPO</permission-role>
+   <permission-role>SPMO</permission-role>
+   <permission-role>MO</permission-role>
+   <permission-role>EO</permission-role>
   </permission-map>
   <permission-map name="Modify portal content"
                   acquired="False">
@@ -125,6 +155,8 @@
    <permission-role>Editor</permission-role>
    <permission-role>TM</permission-role>
    <permission-role>FMO</permission-role>
+   <permission-role>SPO</permission-role>
+   <permission-role>SPMO</permission-role>
   </permission-map>
   <permission-map name="View" acquired="False">
    <permission-role>Manager</permission-role>
@@ -134,6 +166,10 @@
    <permission-role>Contributor</permission-role>
    <permission-role>TM</permission-role>
    <permission-role>FMO</permission-role>
+   <permission-role>SPO</permission-role>
+   <permission-role>SPMO</permission-role>
+   <permission-role>MO</permission-role>
+   <permission-role>EO</permission-role>
   </permission-map>
  </state>
  <state state_id="published" title="Published" i18n:attributes="title">
@@ -146,6 +182,8 @@
                   acquired="True">
    <permission-role>TM</permission-role>
    <permission-role>FMO</permission-role>
+   <permission-role>SPO</permission-role>
+   <permission-role>SPMO</permission-role>
   </permission-map>
   <permission-map name="Access contents information"
                   acquired="False">
@@ -158,6 +196,8 @@
    <permission-role>Editor</permission-role>
    <permission-role>TM</permission-role>
    <permission-role>FMO</permission-role>
+   <permission-role>SPO</permission-role>
+   <permission-role>SPMO</permission-role>
   </permission-map>
   <permission-map name="List folder contents"
                   acquired="False">
@@ -170,6 +210,8 @@
    <permission-role>Editor</permission-role>
    <permission-role>TM</permission-role>
    <permission-role>FMO</permission-role>
+   <permission-role>SPO</permission-role>
+   <permission-role>SPMO</permission-role>
   </permission-map>
   <permission-map name="View" acquired="False">
    <permission-role>Anonymous</permission-role>
