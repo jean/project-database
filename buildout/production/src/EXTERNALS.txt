@@ -2,4 +2,4 @@
 # svn propset svn:externals . -F EXTERNALS.txt
 
 unep.policy https://project-database.googlecode.com/svn/unep.policy/tags/1.0
-unep.theme  https://project-database.googlecode.com/svn/unep.theme/tags/1.0
+unep.theme  https://project-database.googlecode.com/svn/unep.theme/tags/1.01
