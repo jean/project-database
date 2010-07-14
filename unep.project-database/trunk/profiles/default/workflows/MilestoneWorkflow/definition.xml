@@ -12,8 +12,8 @@
    <permission-role>SPO</permission-role>
    <permission-role>Registrar</permission-role>
    <permission-role>FMO</permission-role>
+   <permission-role>SPMO</permission-role>
    <permission-role>EO</permission-role>
-   <permission-role>MO</permission-role>
   </permission-map>
  </state>
  <variable variable_id="action" for_catalog="False"

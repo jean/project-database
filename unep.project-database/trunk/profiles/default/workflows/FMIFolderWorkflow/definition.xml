@@ -10,6 +10,7 @@
   <permission-map name="Add portal content"
                   acquired="True">
    <permission-role>FMO</permission-role>
+   <permission-role>SPMO</permission-role>
   </permission-map>
   <permission-map name="View"
                   acquired="False">
@@ -18,6 +19,7 @@
   <permission-map name="Modify portal content"
                   acquired="True">
    <permission-role>FMO</permission-role>
+   <permission-role>SPMO</permission-role>
   </permission-map>
  </state>
  <variable variable_id="action" for_catalog="False"
