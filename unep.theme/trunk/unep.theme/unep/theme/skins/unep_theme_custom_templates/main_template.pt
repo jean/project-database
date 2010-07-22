@@ -79,7 +79,7 @@
                         dir python:test(isRTL, 'rtl', 'ltr')">
 
 <!-- page container -->
-<div style="position: relative; left: 40px; width: 896px;">
+<div id="page-container">
 
     <!-- logged in bar -->
     <div class="bar logged-in-bar">
@@ -220,6 +220,7 @@
         </span>
     </div>
 
+    <div id="kss-spinner"><img tal:attributes="src string:${portal_url}/spinner.gif" alt="" /></div>
 </div>
 
 </body>
