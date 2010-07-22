@@ -7,14 +7,14 @@
 
 <metal:body metal:define-macro="body">
 
-<tal:batch tal:define="brains python:context.getFolderContents(full_objects=False, contentFilter={'portal_type':'Project'});
-                        Batch python:modules['Products.CMFPlone'].Batch;
-                        b_size python:20;b_start python:0;b_start request/b_start | b_start;
-                        batch python:Batch(brains, b_size, int(b_start), orphan=1);
-                        projects python:[brain.getObject() for brain in batch];
-                        vocab_fetcher nocall:context/@@vocabulary_fetcher;
-                        areavocab python:vocab_fetcher('FocalArea');
-                        countryvocab python:vocab_fetcher('Country');">
+<tal:batch tal:define="brains python:isAnon and context.getFolderContents(contentFilter={'portal_type':'Project'}) or context.getFolderContents(contentFilter={'portal_type':'Project', 'allowedEditors': member.getId()});
+                       Batch python:modules['Products.CMFPlone'].Batch;
+                       b_size python:20;b_start python:0;b_start request/b_start | b_start;
+                       batch python:Batch(brains, b_size, int(b_start), orphan=1);
+                       projects python:[brain.getObject() for brain in batch];
+                       vocab_fetcher nocall:context/@@vocabulary_fetcher;
+                       areavocab python:vocab_fetcher('FocalArea');
+                       countryvocab python:vocab_fetcher('Country');">
 
     <div metal:define-macro="create_project">
         <form method="GET" action="" 
