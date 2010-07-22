@@ -90,5 +90,9 @@
     <extra name="lexicon_id" value="plone_lexicon"/>
   </index>
   <column value="getFundManager"/>
+  <index name="allowedEditors" 
+         meta_type="KeywordIndex">
+    <indexed_attr value="allowedEditors"/>
+  </index>
 <!-- ##/code-section FOOT -->
 </object>

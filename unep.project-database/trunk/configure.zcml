@@ -12,6 +12,7 @@
     <include package=".extensions" />
     <include package="archetypes.schemaextender" />
     <include file="localroles.zcml" />
+    <adapter name="allowedEditors" factory=".content.Project.allowedEditors" />
   <!-- ##/code-section configure.zcml -->
 
 </configure>

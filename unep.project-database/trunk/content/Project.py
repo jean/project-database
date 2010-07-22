@@ -30,6 +30,7 @@ from Products.CMFCore.utils import getToolByName
 from Products.ATReferenceBrowserWidget.ATReferenceBrowserWidget import ReferenceBrowserWidget
 
 ##code-section module-header #fill in your manual code here
+from plone.indexer.decorator import indexer
 ##/code-section module-header
 
 schema = Schema((
@@ -151,6 +152,7 @@ class Project(BaseFolder, CurrencyMixin, BrowserDefaultMixin):
     """
     """
     security = ClassSecurityInfo()
+    _cmf_security_indexes = ('allowedRolesAndUsers', 'allowedEditors')
 
     implements(interfaces.IProject)
 
@@ -480,6 +482,21 @@ registerType(Project, PROJECTNAME)
 # end of class Project
 
 ##code-section module-footer #fill in your manual code here
+@indexer(interfaces.IProject)
+def allowedEditors(object, **kw):
+    """ Inspect the local roles to determine what users can edit the
+        project or sections within it.
+    """
+    users = []
+    sharing_view = object.unrestrictedTraverse('@@sharing')
+    for role_info in sharing_view.existing_role_settings():  
+        userid = role_info['id']
+        for role in ('TM', 'FMO', 'MO', 'EO', 'SM', 'SPO', 'SPMO'):
+            if role_info['roles'][role] in (True, 'acquired'):
+                users.append(userid)
+    return users
+
+
 import logging
 from DateTime import DateTime
 
