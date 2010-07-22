@@ -1,0 +1,10 @@
+1.02
+----
+
+* add kss-spinner * remove inline style and assign id for styling 
+
+* move the inline style for page-container into css file
+
+* position body in the center of the page
+
+* express padding as "em" to make it relative
