@@ -28,8 +28,16 @@ div.logged-in-bar {
 }
 
 div.page-heading {
-    font-size: x-large; 
+    font-size: large; 
     text-align: center;
+    white-space: nowrap;
+    padding-top: 0.5em;
+}
+
+div#page-container {
+    width: 896px;
+    margin: auto;
+    height: auto;
 }
 
 /* ------------------ Top Menu Styles ----------------------------------- */
@@ -48,7 +56,7 @@ div.unep-menuitem, div.unep-menuselected {
 
 div.unep-menuitem a, div.unep-menuselected a {
     display: block;
-    padding: 1em 2em 1em 2em; 
+    padding: 1em 1em 1em 1em; 
 }
 
 div.unep-menuitem a:hover {
@@ -146,7 +154,7 @@ div.full-column {
 
 div#content div ul {
     margin-left: 0.75em;
-    padding-left: 20px;
+    padding-left: 2em;
 }
 
 div#content div.field br {
@@ -167,7 +175,7 @@ div.column-heading {
     color: white; 
     font-size: large; 
     padding: 10px; 
-    padding-left: 30px; 
+    padding-left: 3em; 
     padding-right: 0px;
     font-weight: bold;
 }
@@ -178,7 +186,7 @@ div#region-content h1.documentFirstHeading {
     color: #24a1d1; 
     font-size: medium; 
     padding: 10px; 
-    padding-left: 30px; 
+    padding-left: 1em; 
     padding-right: 0px;
     font-weight: bold;
 }
@@ -210,6 +218,7 @@ div.column-heading-link {
 div.page-block {
     width: 100%; 
     height: auto; 
+    padding-top: 1em;
 }
 
 span.block-anchor {
