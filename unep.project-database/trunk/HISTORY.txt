@@ -1,0 +1,8 @@
+1.15
+----
+
+* when logged in, only show projects where user has editing rights
+
+* add indexer for allowedEditors
+
+* document permissions
