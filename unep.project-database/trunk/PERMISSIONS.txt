@@ -1,0 +1,21 @@
+1. Registrar (has editing rights to PGI, FMI, M&E, Milestones and Documents
+sections of all projects in the database )
+
+2. Task Manager (TM) has editing rights to PGI, M&E, Milestones and
+Documents sections and viewing rights to the other sections that they do
+not have rights to (FMI)
+
+3. Fund Management Officer (FMO) has editing rights to FMI, Milestones and
+Documents sections. Viewing rights to the other sections that they do not
+have rights to (PGI)
+
+4. Senior Programme Officer (SPO) same as TM rights
+
+5. SPMO (same as FMOs, but for all projects)
+
+6. Monitoring Officer (M&E editting rights only for all projects)
+
+7. Evaluation Officer (M&E editing rights only for all projects)
+
+8. Senior Manager (editing rights on all sections but will not administer).
+
