@@ -43,8 +43,8 @@ class PIFApprovalStatusReportFactory(object):
         result = []
         for project in projects:
             if project.isTheProjectPublished() and \
-                    not project.milestones.isPIFClearedByCEO():
-                    # project.milestones.isConceptClearedBySPO() and \
+                    not project.milestones.isPIFClearedByCEO() and \
+                    not project.milestones.getPIFApprovalComplete():
                 result.append((
                     project.getId(),
                     project.project_general_info.getGEFid(),
