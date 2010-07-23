@@ -938,6 +938,9 @@ class Financials(BaseFolder, CurrencyMixin, BrowserDefaultMixin):
             if date != DateTime('1900/01/01'):
                 return result
         return 'Unspecified'
+    
+    def getSubProjects(self):
+        return self.getFolderContents(full_objects=True)
 
     def getSubProjectsTotalCashDisbursed(self):
         result = self.getZeroMoneyInstance()

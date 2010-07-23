@@ -149,6 +149,15 @@ class FMIFolder(BaseFolder, CurrencyMixin, BrowserDefaultMixin):
                 result += amount
         return result
 
+    security.declarePublic('getFspSubProjects')
+    def getFspSubProjects(self):
+        fsps = self._queryObjects(cat_ids=['fsp',])
+        subprojects = []
+        for fsp in fsps:
+            tempsubs = fsp.getSubProjects()
+            if tempsubs is not None and len(tempsubs) > 0:
+                subprojects.extend(tempsubs)
+        return subprojects
 
 
 registerType(FMIFolder, PROJECTNAME)
