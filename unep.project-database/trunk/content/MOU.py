@@ -46,6 +46,11 @@ MOU_schema = BaseSchema.copy() + \
     schema.copy()
 
 ##code-section after-schema #fill in your manual code here
+# Change the field label as per client request in issue 9342
+# It would probably be better off in the UNEP theme...
+widget = MOU_schema.widgets().get('IMISNumber')
+if widget is not None:
+    widget.label = 'MoU Ref No.'
 ##/code-section after-schema
 
 class MOU(BaseContent, SubProject, BrowserDefaultMixin):
