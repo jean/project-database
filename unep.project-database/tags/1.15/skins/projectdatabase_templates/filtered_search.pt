@@ -1,0 +1,229 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      lang="en"
+      metal:use-macro="here/main_template/macros/master"
+      i18n:domain="plone">
+
+<body>
+
+<div metal:fill-slot="main"
+    tal:define="country request/country|nothing;
+              focal_area request/focal_area|nothing;
+              project_type request/project_type|nothing;
+              executing_agency request/executing_agency|nothing;
+              project_title request/project_title|nothing;
+              task_manager request/task_manager|nothing;
+              fund_manager request/fund_manager|nothing;
+              unepsearch nocall:context/@@unepsearch;
+              ">
+
+    <h3 class="documentFirstHeading" i18n:translate="Filtered_Search">Filtered Search</h3>
+    <form name="filtered_search" method="post" action=""
+            tal:attributes="action string:${context/absolute_url}/${template/id}">
+        <input type="hidden" name="form.submitted" value="1" />
+        <table width="100%">
+            <metal:searchcriteria metal:define-macro="search-criteria">
+            <tr tal:define="fieldName string:country; 
+                            vocabularyName string:Country; 
+                            labelText string:Country;">
+                <metal:select-items metal:define-macro="select-items-macro">
+                <td width="30%">
+                    <label tal:content="labelText">Label</label>
+                </td>
+                <td>
+                    <select name="dummy" 
+                        tal:attributes="name fieldName"
+                        tal:define="
+                            vocab python:context.portal_vocabularies.getVocabularyByName(vocabularyName);
+                            dList python:vocab.getDisplayList(context)">
+                        <option value="" i18n:translate="all_options">All</option>
+                        <tal:rep tal:repeat="item dList/items">
+                            <option tal:attributes="value python:item[1];
+                                        selected python:item[1] == request.get(fieldName,None) and 'selected' or None"
+                                    tal:content="python:item[1]">
+                                    Option
+                            </option>
+                        </tal:rep>
+                    </select>
+                </td>
+                </metal:select-items>
+            </tr>
+            <tr tal:define="fieldName string:focal_area; 
+                            vocabularyName string:FocalArea; 
+                            labelText string:Focal Area;">
+                <tal:items metal:use-macro="context/filtered_search/macros/select-items-macro" />
+            </tr>
+            <tr tal:define="fieldName string:project_type; 
+                            vocabularyName string:ProjectType; 
+                            labelText string:Project Type;">
+                <td width="30%">
+                    <label tal:content="labelText">Label</label>
+                </td>
+                <td>
+                    <select name="dummy" 
+                        tal:attributes="name fieldName"
+                        tal:define="
+                            vocab python:context.portal_vocabularies.getVocabularyByName(vocabularyName);
+                            dList python:vocab.getDisplayList(context)">
+                        <option value="" i18n:translate="all_options">All</option>
+                        <tal:rep tal:repeat="item dList/items">
+                            <option tal:attributes="value python:item[0];
+                                        selected python:item[0] == request.get(fieldName,None) and 'selected' or None"
+                                    tal:content="python:item[1]">
+                                    Option
+                            </option>
+                        </tal:rep>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label i18n:translate="search_executing_agency">Executing Agency</label>
+                </td>
+                <td>
+                    <input type="text" name="executing_agency" tal:attributes="value executing_agency" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label i18n:translate="gef_approval_period">GEF Approval Period</label>
+                </td>
+                <td>
+                    <tal:gef-from-date
+                        tal:define="label string:From:;
+                                    month_name string:gef_from_month;
+                                    year_name string:gef_from_year">
+                        <metal:date define-macro="search-date-macro">
+                        <label tal:content="label">From:</label>
+                        <select tal:attributes="name month_name"
+                            tal:define="months python:range(12)">
+                            <option value="">--</option>
+                            <option tal:repeat="month months"
+                                tal:attributes="
+                                    value python:str(month+1);
+                                    selected python:str(month+1) == request.get(month_name,None) and 'selected' or None"
+                                tal:content="python:str(month+1)">1</option>
+                        </select>
+                        <select tal:attributes="name year_name" 
+                            tal:define="years unepsearch/getSearchYearVocabulary">
+                            <option value="">--</option>
+                            <option tal:repeat="year years"
+                                tal:attributes="
+                                    value python:str(year);
+                                    selected python:str(year) == request.get(year_name,None) and 'selected' or None"
+                                tal:content="python:str(year)">2000</option>
+                        </select>
+                        </metal:date>
+                    </tal:gef-from-date>
+                    &nbsp;
+                    <tal:gef-to-date
+                        tal:define="label string:To:;
+                                    month_name string:gef_to_month;
+                                    year_name string:gef_to_year">
+                        <metal:date use-macro="context/filtered_search/macros/search-date-macro" />
+                    </tal:gef-to-date>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label i18n:translate="gef_approval_period">UNEP Approval Period</label>
+                </td>
+                <td>
+                    <tal:unep-from-date
+                        tal:define="label string:From:;
+                                    month_name string:unep_from_month;
+                                    year_name string:unep_from_year">
+                        <metal:date use-macro="context/filtered_search/macros/search-date-macro" />
+                    </tal:unep-from-date>
+                    &nbsp;
+                    <tal:unep-to-date
+                        tal:define="label string:To:;
+                                    month_name string:unep_to_month;
+                                    year_name string:unep_to_year">
+                        <metal:date use-macro="context/filtered_search/macros/search-date-macro" />
+                    </tal:unep-to-date>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label i18n:translate="search_project_title">Project Title</label>
+                </td>
+                <td>
+                    <input type="text" name="project_title" tal:attributes="value project_title" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label i18n:translate="search_tm">Task Manager</label>
+                </td>
+                <td>
+                    <input type="text" name="task_manager" tal:attributes="value task_manager" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label i18n:translate="search_fmo">Fund Management Officer</label>
+                </td>
+                <td>
+                    <input type="text" name="fund_manager" tal:attributes="value fund_manager" />
+                </td>
+            </tr>
+            </metal:searchcriteria>
+            <tr>
+                <td>&nbsp;</td>
+                <td>
+                    <input 
+                        class="context" 
+                        type="submit" 
+                        name="form.button.search" 
+                        value="Search"/>
+                </td>
+            </tr>
+        </table>
+    </form>
+    <br />
+    <div style="width 100%" 
+            tal:define="submitted request/form.submitted|nothing"
+            tal:condition="submitted">
+      <h3 class="documentFirstHeading" 
+              i18n:translate="search_result">Search Results</h3>
+      <tal:results 
+          tal:define="brains python:unepsearch(request);">
+          <table class="table-fullwidth"
+              tal:condition="python:len(brains) > 0">
+              <tr>
+                  <th i18n:translate="dbase_id">DBase ID</th>
+                  <th i18n:translate="gef_id">GEF ID</th>
+                  <th i18n:translate="focal_area">Focal Areas</th>
+                  <th i18n:translate="project_title">Project Title</th>
+                  <th i18n:translate="country">Country</th>
+                  <th i18n:translate="project_type">Project Type</th>
+              </tr>
+              <tal:block tal:repeat="brain brains">
+              <tr tal:define="even repeat/brain/even;"
+                  tal:attributes="class python:even and 'odd' or 'even'">
+                  <td>
+                      <a tal:attributes="href string:${brain/getURL}"
+                          tal:content="brain/id">Project ID</a>
+                  </td>
+                  <td tal:content="brain/getGEFid" />
+                  <td tal:content="python:','.join([f for f in brain.getFocalAreas])" />
+                  <td tal:content="brain/getProjectTitle" />
+                  <td tal:content="python:','.join([c for c in brain.getCountries])" />
+                  <td tal:content="brain/getProjectType" />
+              </tr>
+              </tal:block>
+          </table>
+          <p tal:condition="python:len(brains) == 0"
+              i18n:translate="no_results">
+              No projects matched your search criteria. 
+              Refine your criteria above, and re-submit the form
+          </p>
+      </tal:results>
+    </div>
+</div>
+
+</body>
+</html>

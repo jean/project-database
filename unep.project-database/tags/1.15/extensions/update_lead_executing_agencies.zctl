@@ -1,0 +1,39 @@
+import sys
+from Products.CMFCore.utils import getToolByName
+
+try:
+    site_id = sys.argv[1]
+except IndexError:
+    print "Usage: <instancehome>/bin/zopectl run %s site_id" % sys.argv[0]
+    sys.exit(1)
+
+records = []
+
+header = '"GEFid", "LeadExecutingAgencies"\n',]
+lines = errors = [header, ]
+
+pc = getToolByName(app[site_id], 'portal_catalog')
+query = {'portal_type': 'Project'}
+
+for record in records:
+    query['getGEFid'] = record['GEFid']
+    query['getIMISNumber'] = record['IMISNumber']
+   
+    brains = pc(**query)
+    if len(brains) != 1:
+        errors.append()
+        continue
+    
+    org = brain.getObject()
+    org.setLeadExecutingAgencies(record['LeadExecutingAgency'])
+    lines.append('"%s","%s"' % (
+                 project.getGEFid(),
+                 ','.join(project.getExecutingAgencies()))
+                )
+
+if len(lines) > 0:
+    expense_file = open('leadexecuting_agency_report.csv', 'wb')
+    expense_file.writelines(lines)
+    expense_file.close()
+       
+print 'Done'

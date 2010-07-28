@@ -1,0 +1,47 @@
+<metal:header metal:define-macro="header">
+<h3 class="documentFirstHeading">Programme Framework Database</h3>
+</metal:header>
+
+<metal:folderlisting metal:define-macro="folderlisting" />
+<metal:footer metal:define-macro="footer" />
+
+<metal:body metal:define-macro="body">
+<table>
+    <tr>
+        <td colspan="100" style="padding: 2px;">
+            <a style="float:left" 
+                tal:condition="python:member.has_role(['Owner','Manager','TM','SPO'], context)"
+                tal:attributes="href string:@@programmeframeworkreport">Projects By Framework Report</a>
+        </td>
+    </tr>
+    <tr metal:define-macro="create_framework">
+        <td colspan="100" style="padding: 2px;">
+            <a style="float:left" 
+                tal:condition="python:member.has_role(['Owner','Manager','Registrar','SPO'], context)"
+                tal:attributes="href string:@@create-framework">Create a new
+                programme framework</a>
+        </td>
+    </tr>
+    <tr>
+        <th i18n:translate="Title">Title</th>
+        <th i18n:translate="Actions">Actions</th>
+    </tr>
+
+    <tal:rep tal:repeat="framework here/getFolderContents">
+        <tr tal:define=" even repeat/framework/even;"
+                tal:attributes="class python:even and 'odd' or 'even'">
+          <td tal:content="framework/Title" />
+          <td>
+              <a tal:attributes="href string:${framework/getURL}/view">
+                  <span i18n:translate="view">view</span></a>
+              <a tal:attributes="href string:${framework/getURL}/edit"
+                  tal:condition="python:member.has_role(['Owner','Manager','TM','SPO',
+                  'EO'], framework)">
+                  <span i18n:translate="edit">edit</span></a>
+          </td>
+        </tr>
+    </tal:rep>
+    <tr
+    metal:use-macro="here/frameworkdatabase_view/macros/create_framework" />
+</table>
+</metal:body>
