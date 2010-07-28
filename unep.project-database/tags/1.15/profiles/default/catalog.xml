@@ -1,0 +1,98 @@
+<?xml version="1.0"?>
+<object name="portal_catalog" meta_type="Plone Catalog Tool">
+  <index name="getCountries" 
+         meta_type="KeywordIndex">
+    <indexed_attr value="getCountries"/>
+  </index>
+  <index name="getFocalAreas" 
+         meta_type="KeywordIndex">
+    <indexed_attr value="getFocalAreas"/>
+  </index>
+  <index name="getProjectType" 
+         meta_type="FieldIndex">
+    <indexed_attr value="getProjectType"/>
+  </index>
+  <index name="getGEFApprovalDate" 
+         meta_type="DateIndex">
+    <indexed_attr value="getGEFApprovalDate"/>
+  </index>
+  <index name="getUNEPApprovalDate" 
+         meta_type="DateIndex">
+    <indexed_attr value="getUNEPApprovalDate"/>
+  </index>
+  <index name="getGEFid" 
+         meta_type="FieldIndex">
+    <indexed_attr value="getGEFid"/>
+  </index>
+  <index name="getCurrentPrincipalFMO" 
+         meta_type="FieldIndex">
+    <indexed_attr value="getCurrentPrincipalFMO"/>
+  </index>
+  <index name="getCurrentBackupFMO" 
+         meta_type="FieldIndex">
+    <indexed_attr value="getCurrentBackupFMO"/>
+  </index>
+  <index name="getEvaluationType" 
+         meta_type="FieldIndex">
+    <indexed_attr value="getEvaluationType"/>
+  </index>
+  <index name="getIMISNumber" 
+         meta_type="FieldIndex">
+    <indexed_attr value="getIMISNumber"/>
+  </index>
+  <column value="getCountries"/>
+  <column value="getFocalAreas"/>
+  <column value="getProjectType"/>
+  <column value="getGEFApprovalDate"/>
+  <column value="getUNEPApprovalDate"/>
+  <column value="getGEFid"/>
+  <column value="getCurrentPrincipalFMO"/>
+  <column value="getCurrentBackupFMO"/>
+  <column value="getEvaluationType"/>
+  <column value="getCountryName"/>
+  <column value="getConventionRatification"/>
+  <column value="getCountryGrouping"/>
+  <column value="getOtherGroup"/>
+  <column value="getRiskRating"/>
+  <column value="getRemarks"/>
+  <column value="getYear"/>
+<!-- ##code-section FOOT -->
+  <index name="getFinanceCategory" 
+         meta_type="FieldIndex">
+    <indexed_attr value="getFinanceCategory"/>
+  </index>
+  <column value="getFinanceCategory"/>
+  <index name="getProjectTitle" 
+         meta_type="ZCTextIndex">
+    <indexed_attr value="getProjectTitle"/>
+    <extra name="index_type" value="Okapi BM25 Rank"/>
+    <extra name="lexicon_id" value="plone_lexicon"/>
+  </index>
+  <column value="getProjectTitle"/>
+  <index name="getExecutingAgencies" 
+         meta_type="ZCTextIndex">
+    <indexed_attr value="getExecutingAgencies"/>
+    <extra name="index_type" value="Okapi BM25 Rank"/>
+    <extra name="lexicon_id" value="plone_lexicon"/>
+  </index>
+  <column value="getExecutingAgencies"/>
+  <index name="getTaskManager" 
+         meta_type="ZCTextIndex">
+    <indexed_attr value="getTaskManager"/>
+    <extra name="index_type" value="Okapi BM25 Rank"/>
+    <extra name="lexicon_id" value="plone_lexicon"/>
+  </index>
+  <column value="getTaskManager"/>
+  <index name="getFundManager" 
+         meta_type="ZCTextIndex">
+    <indexed_attr value="getFundManager"/>
+    <extra name="index_type" value="Okapi BM25 Rank"/>
+    <extra name="lexicon_id" value="plone_lexicon"/>
+  </index>
+  <column value="getFundManager"/>
+  <index name="allowedEditors" 
+         meta_type="KeywordIndex">
+    <indexed_attr value="allowedEditors"/>
+  </index>
+<!-- ##/code-section FOOT -->
+</object>
