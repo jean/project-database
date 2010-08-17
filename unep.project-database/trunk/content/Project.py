@@ -476,6 +476,20 @@ class Project(BaseFolder, CurrencyMixin, BrowserDefaultMixin):
 
         return False
 
+    security.declarePublic('getPublicPGIInfo')
+    def getPublicPGIInfo(self):
+        """ return info from pgi that is public 
+        """
+        info = {}
+        if self.hasObject('project_general_info'):
+            pgi = self.project_general_info
+            info['PIFPPGAmount'] = pgi.getPIFPPGAmount()
+            info['PIFPPGCoFinAmount'] =  pgi.getPIFPPGCoFinAmount()
+            info['PIFProjectAmount'] = pgi.getPIFProjectAmount()
+            info['PIFProjectCoFinAmount'] = pgi.getPIFProjectCoFinAmount()
+        return info
+
+
 
 
 registerType(Project, PROJECTNAME)
