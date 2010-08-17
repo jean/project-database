@@ -22,7 +22,7 @@
     </tal:notAnonymous>
 
     <tal:anonymous condition="python:isAnon">
-    <table style="width:100%">
+    <table style="width:100%" tal:define="pgi context/getPublicPGIInfo">
         <tr>
             <td i18n:translate="gef_id" width="30%">GEF ID:</td>
             <td class="pgi_matrix_label">
@@ -67,6 +67,30 @@
                 width="30%"
                 class="pgi_matrix_label">Project Type:</td>
             <td tal:content="context/getProjectType | string:unknown" />
+        </tr>
+        <tr>
+            <td i18n:translate="pif_ppg_grant"
+                width="30%"
+                class="pgi_matrix_label">PPG/PDF Grant:</td>
+            <td tal:content="pgi/PIFPPGAmount | string:unknown" />
+        </tr>
+        <tr>
+            <td i18n:translate="pif_ppg_cofin"
+                width="30%"
+                class="pgi_matrix_label">PPG Confinancing:</td>
+            <td tal:content="pgi/PIFPPGCoFinAmount | string:unknown" />
+        </tr>
+        <tr>
+            <td i18n:translate="pif_project_grant"
+                width="30%"
+                class="pgi_matrix_label">Project Grant:</td>
+            <td tal:content="pgi/PIFProjectAmount | string:unknown" />
+        </tr>
+        <tr>
+            <td i18n:translate="pif_project_cofin"
+                width="30%"
+                class="pgi_matrix_label">Project Confinancing:</td>
+            <td tal:content="pgi/PIFProjectCoFinAmount | string:unknown" />
         </tr>
     </table>
     </tal:anonymous>
