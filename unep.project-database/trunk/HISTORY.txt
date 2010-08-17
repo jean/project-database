@@ -12,3 +12,5 @@
 * exclude projects which have gone beyond PIF approval stage
 
 * set label for IMISNumber on a MOU instance to "MoU Ref No."
+
+* allow public access to a few amounts on the PGI object
