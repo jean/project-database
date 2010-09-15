@@ -42,36 +42,43 @@
                   acquired="False">
    <permission-role>TM</permission-role>
    <permission-role>Manager</permission-role>
+   <permission-role>Owner</permission-role>
   </permission-map>
   <permission-map name="Registrar TM FMO"
                   acquired="False">
    <permission-role>TM</permission-role>
    <permission-role>Manager</permission-role>
+   <permission-role>Owner</permission-role>
   </permission-map>
   <permission-map name="Registrar TM MO EO"
                   acquired="False">
    <permission-role>TM</permission-role>
    <permission-role>Manager</permission-role>
+   <permission-role>Owner</permission-role>
   </permission-map>
   <permission-map name="Registrar TM SPO"
                   acquired="False">
    <permission-role>TM</permission-role>
    <permission-role>Manager</permission-role>
+   <permission-role>Owner</permission-role>
   </permission-map>
   <permission-map name="TM"
                   acquired="False">
    <permission-role>TM</permission-role>
    <permission-role>Manager</permission-role>
+   <permission-role>Owner</permission-role>
   </permission-map>
   <permission-map name="TM EO"
                   acquired="False">
    <permission-role>TM</permission-role>
    <permission-role>Manager</permission-role>
+   <permission-role>Owner</permission-role>
   </permission-map>
   <permission-map name="TM MO"
                   acquired="False">
    <permission-role>TM</permission-role>
    <permission-role>Manager</permission-role>
+   <permission-role>Owner</permission-role>
   </permission-map>
   <permission-map name="View"
                   acquired="False">
