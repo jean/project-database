@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vdex xmlns="http://www.imsglobal.org/xsd/imsvdex_v1p0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.imsglobal.org/xsd/imsvdex_v1p0 imsvdex_v1p0.xsd http://www.imsglobal.org/xsd/imsmd_rootv1p2p1 imsmd_rootv1p2p1.xsd"
+    language="en" orderSignificant="true" profileType="flatTokenTerms">
+
+<vocabName>
+  <langstring language="en">EvaluationCriteria</langstring>
+</vocabName>
+
+<term>
+  <termIdentifier>Project Objectives</termIdentifier>
+  <caption>
+    <langstring language="en">Project Objectives</langstring>
+  </caption>
+  <description />
+</term>
+
+<term>
+  <termIdentifier>Implementation Progress</termIdentifier>
+  <caption>
+    <langstring language="en">Implementation Progress</langstring>
+  </caption>
+  <description />
+</term>
+
+<term>
+  <termIdentifier>Monitoring and Evaluation</termIdentifier>
+  <caption>
+    <langstring language="en">Monitoring and Evaluation</langstring>
+  </caption>
+  <description />
+</term>
+
+<term>
+  <termIdentifier>Risk</termIdentifier>
+  <caption>
+    <langstring language="en">Risk</langstring>
+  </caption>
+  <description />
+</term>
+
+<term>
+  <termIdentifier>Project Outputs and Activities</termIdentifier>
+  <caption>
+    <langstring language="en">Project Outputs and Activities</langstring>
+  </caption>
+  <description />
+</term>
+
+<term>
+  <termIdentifier>Catalytic Role</termIdentifier>
+  <caption>
+    <langstring language="en">Catalytic Role</langstring>
+  </caption>
+  <description />
+</term>
+
+<term>
+  <termIdentifier>Preparation and Readiness</termIdentifier>
+  <caption>
+    <langstring language="en">Preparation and Readiness</langstring>
+  </caption>
+  <description />
+</term>
+
+<term>
+  <termIdentifier>Sustainability of Outcomes</termIdentifier>
+  <caption>
+    <langstring language="en">Sustainability of Outcomes</langstring>
+  </caption>
+  <description />
+</term>
+
+<term>
+  <termIdentifier>Stakeholder Involvement</termIdentifier>
+  <caption>
+    <langstring language="en">Stakeholder Involvement</langstring>
+  </caption>
+  <description />
+</term>
+
+<term>
+  <termIdentifier>Country Ownership</termIdentifier>
+  <caption>
+    <langstring language="en">Country Ownership</langstring>
+  </caption>
+  <description />
+</term>
+
+<term>
+  <termIdentifier>Financial Planning</termIdentifier>
+  <caption>
+    <langstring language="en">Financial Planning</langstring>
+  </caption>
+  <description />
+</term>
+
+<term>
+  <termIdentifier>UNEP Supervision and Backstopping</termIdentifier>
+  <caption>
+    <langstring language="en">UNEP Supervision and Backstopping</langstring>
+  </caption>
+  <description />
+</term>
+
+<term>
+  <termIdentifier>Overall Rating</termIdentifier>
+  <caption>
+    <langstring language="en">Overall Rating</langstring>
+  </caption>
+  <description />
+</term>
+
+</vdex>
