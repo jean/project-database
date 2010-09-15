@@ -501,12 +501,12 @@ def allowedEditors(object, **kw):
     """ Inspect the local roles to determine what users can edit the
         project or sections within it.
     """
-    users = []
+    users = [object.Creator()]
     sharing_view = object.unrestrictedTraverse('@@sharing')
     for role_info in sharing_view.existing_role_settings():  
         userid = role_info['id']
         for role in ('TM', 'FMO', 'MO', 'EO', 'SM', 'SPO', 'SPMO'):
-            if role_info['roles'][role] in (True, 'acquired'):
+            if role_info['roles'].get(role) in (True, 'acquired'):
                 users.append(userid)
     return users
 
