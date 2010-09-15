@@ -1,0 +1,23 @@
+THINGS TO DO ON UNEP PROJECT
+* Print and Send Email links
+* Styling
+  - Skin Organisation
+  - Documents need work
+* Add filtering to certain reports
+
+OUTSTANDING REPORTS
+* Programme Framework
+    Requires change to reporting mechanism
+* Projects at risk
+
+ISSUES
+* Text boxes – all over the database – should be small but expandible (not to discourage TMs)
+    -Add rows to textareas and max-height to kupu
+* Save/Cancel options at the bottom of the edit mode, should also be available at the top to avoid one scrolling down a long page, just to save one small change.
+    -Not easy UI change.
+
+BUG FIXES
+Await Feedback * PDF Reports failing
+
+MISCELLANEOOUS
+* Thousand separators

@@ -1,0 +1,24 @@
+1.16
+----
+Add owner to allowedEditors
+
+Modify ProjectWorkflow to give owner the same permissions on project as TM role
+
+Modify FMIFolderWorkflow to not acquire and permissions
+
+1.15
+----
+
+* when logged in, only show projects where user has editing rights
+
+* add indexer for allowedEditors
+
+* document permissions
+
+* extend fspreceivables report to include sub projects
+
+* exclude projects which have gone beyond PIF approval stage
+
+* set label for IMISNumber on a MOU instance to "MoU Ref No."
+
+* allow public access to a few amounts on the PGI object
