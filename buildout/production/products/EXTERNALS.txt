@@ -3,5 +3,5 @@
 
 UpfrontContacts https://svn.upfronthosting.co.za/svn/UpfrontContacts/tags/unep-1.0
 FinanceFields   https://svn.upfronthosting.co.za/svn/FinanceFields/tags/unep-1.0
-ProjectDatabase http://project-database.googlecode.com/svn/unep.project-database/tags/1.15
+ProjectDatabase http://project-database.googlecode.com/svn/unep.project-database/tags/1.16
 DataGridField   http://project-database.googlecode.com/svn/3rdparty/DataGridField/tags/1.0
