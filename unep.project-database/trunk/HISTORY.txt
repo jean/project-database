@@ -1,3 +1,11 @@
+1.16
+----
+Add owner to allowedEditors
+
+Modify ProjectWorkflow to give owner the same permissions on project as TM role
+
+Modify FMIFolderWorkflow to not acquire and permissions
+
 1.15
 ----
 
