@@ -115,7 +115,8 @@ class ProjectDatabase(BaseFolder, BrowserDefaultMixin):
         projects = self.objectValues(spec='Project')
         results = []
         for project in projects:
-            if executing_agency in project.getExecutingAgencies():
+            agencies = project.getExecutingAgencies()
+            if agencies and executing_agency in agencies:
                 results.append(project)
         return results
 
